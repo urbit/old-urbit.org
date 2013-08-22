@@ -1,4 +1,10 @@
-1: Introduction and philosophy
+---
+layout: doc_chapter
+title: Introduction and philosophy
+---
+
+
+{{page.title}}
 ==============================
 
 Urbit is a new programming and execution environment

@@ -1,5 +1,11 @@
-2: Hoon - Philosophy
-=========
+---
+layout: doc_chapter
+title: 2: Hoon - Philosophy
+---
+
+
+{{page.title}}
+==============================
 
 Yo, let's write some Hoon!
 

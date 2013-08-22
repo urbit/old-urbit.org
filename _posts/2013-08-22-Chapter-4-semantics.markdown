@@ -1,5 +1,11 @@
-4: Hoon - Semantics
-=========
+---
+layout: doc_chapter
+title: 4: Hoon - Semantics
+---
+
+
+{{page.title}}
+==============================
 
 Now let's actually learn to program in Hoon, which really isn't
 that hard.  Unfortunately, we have to start by learning enough

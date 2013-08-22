@@ -1,5 +1,11 @@
-3: Hoon - Syntax
-=========
+---
+layout: doc_chapter
+title: 3: Hoon - Syntax
+---
+
+
+{{page.title}}
+==============================
 
 Now, let's actually look at Hoon.  Really, try not to recoil
 in horror.  It's actually not anything like line noise.
