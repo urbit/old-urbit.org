@@ -1,6 +1,6 @@
 ---
 layout: doc_chapter
-title: 2: Hoon - Philosophy
+title: Chapter 2 &#58; Hoon - Philosophy
 ---
 
 

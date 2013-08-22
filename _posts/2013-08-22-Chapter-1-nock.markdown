@@ -1,6 +1,6 @@
 ---
 layout: doc_chapter
-title: 1: Crash course in Nock
+title: Chapter 1 &#58; Crash course in Nock
 ---
 
 

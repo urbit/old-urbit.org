@@ -1,6 +1,6 @@
 ---
 layout: doc_chapter
-title: 4: Hoon - Semantics
+title: Chapter 4 &#58;  Hoon - Semantics
 ---
 
 
