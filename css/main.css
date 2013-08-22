@@ -57,7 +57,7 @@ ul.posts span {
 
 .site {
   font-size: 115%;
-  text-align: justify;
+  text-align: left;
   width: 42em;
   margin: 3em auto 2em;
   line-height: 1.5em;
@@ -136,7 +136,6 @@ ul.posts span {
 
 .post ul, .post ol {
   margin-left: 1.35em;
-  text-align: left;
 }
 
 .post code {
