@@ -16,7 +16,7 @@ body {
   background-color: #FFF;
   font: 13.34px Helvetica, Arial, sans-serif;
   font-size: small;
-  text-align: center;
+  text-align: left;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -132,12 +132,10 @@ ul.posts span {
   border: none;
   background-color: #FFF;
   padding: 0 1em;
-  text-align: left
 }
 
 .post ul, .post ol {
   margin-left: 1.35em;
-  text-align: left 
 }
 
 .post code {
