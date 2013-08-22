@@ -132,10 +132,12 @@ ul.posts span {
   border: none;
   background-color: #FFF;
   padding: 0 1em;
+  text-align: left
 }
 
 .post ul, .post ol {
   margin-left: 1.35em;
+  text-align: left 
 }
 
 .post code {
