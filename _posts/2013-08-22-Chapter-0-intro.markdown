@@ -1,6 +1,6 @@
 ---
 layout: doc_chapter
-title: Introduction and philosophy
+title: Chapter 0 &#58; Introduction and philosophy
 ---
 
 
