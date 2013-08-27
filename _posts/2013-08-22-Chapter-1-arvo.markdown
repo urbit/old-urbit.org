@@ -53,9 +53,9 @@ The process for which will vary depending on your OS. Currently we support OSX, 
 
 **OS X:**
 
-	1. Install XCode (if you haven't already). You should be able to get it here: https://developer.apple.com/xcode/
-	2. Install Homebrew. Look at www.brew.sh for instructions. (Can you use MacPorts? Yes, and you can also build the dependencies by hand.)
-	3. At the terminal run the following for Homebrew: 
+1. Install XCode (if you haven't already). You should be able to get it here: https://developer.apple.com/xcode/
+2. Install Homebrew. Look at www.brew.sh for instructions. (Can you use MacPorts? Yes, and you can also build the dependencies by hand.)
+3. At the terminal run the following for Homebrew: 
 
 	`brew install readline gmp bison libsigsegv openssl`
 
@@ -109,10 +109,10 @@ and then it'll pause a little, 'cause this is slow... and then
 and, then, if the network gods are happy, your submarine will 
 start pulling down Arvo files:
 
-	`+ /~zod/main/1/bin/ticket/hoon`
-	`+ /~zod/main/1/bin/reset/hoon`
-	`+ /~zod/main/1/bin/ye/hoon`
-	`+ /~zod/main/1/bin/ls/hoon`
+`+ /~zod/main/1/bin/ticket/hoon`
+`+ /~zod/main/1/bin/reset/hoon`
+`+ /~zod/main/1/bin/ye/hoon`
+`+ /~zod/main/1/bin/ls/hoon`
 
 You'll see a couple pages of this stuff.  Don't worry too much
 about the details right now.  Finally, you'll get the Arvo shell
