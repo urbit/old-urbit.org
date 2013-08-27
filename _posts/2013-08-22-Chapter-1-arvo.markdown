@@ -15,7 +15,7 @@ First, build.
 
 ###Step 1: Get the Source###
 
-Download the zip of the latest Urbit source from https://github.com/urbit/urbit/archive/master.zip and unzip it. Move the file, which should be called urbit-master to the directory of your choice ($DIR).
+Download the zip of the latest Urbit source from https://github.com/urbit/urbit/archive/master.zip and unzip it. Move the file, which should be called urbit-master to the directory of your choice (`$DIR`).
 
 
 (You can also get the source by using git clone. We'll assume that if you want to use git, you already know how to use git.)
@@ -25,7 +25,7 @@ The next thing you have to do is add
 
 	export URBIT_HOME=$DIR/urb
 
-your `.bash_profile` or `.bashrc` file, where `$DIR` is the location of urbit-master from Step 1. (the default is `$home/urbit/urb`)
+your `.bash_profile` or `.bashrc` file, where `$DIR` is the location of urbit-master from Step 1 (the default is `$home/urbit/urb`).
 
 Then run `source ~/.bash_profile` or `source ~/.bashrc`
 
@@ -33,7 +33,7 @@ Check that you've done this right with
 
 	echo URBIT_HOME
 
-which should return $DIR/urb.
+which should return `$DIR/urb`.
 
 ###Step 3: Dependencies###
 
@@ -48,15 +48,14 @@ Urbit depends on the following:
 + ncurses (Linux only)
 
 
-The process for which will vary depending on your OS. Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid ninja's may attempt ports to other OS's. If you're an intrepid ninja, let us know, successful ports will result in prizes. If you don't have OS X or Ubuntu and you're not an intrepid ninja, don't worry, Urbit runs just fine on a VM (https://www.virtualbox.org/).
+The process for which will vary depending on your OS. Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid ninjas may attempt ports to other OS's. If you're an intrepid ninja, let us know, successful ports will result in prizes. If you're not an intrepid ninja, don't worry, Urbit runs just fine on a VM (https://www.virtualbox.org/).
 
 
 **OS X:**
 
-1. Install XCode if you haven't already. You should be able to get it here: https://developer.apple.com/xcode/
-2. Install Homebrew. Look at www.brew.sh for instructions. (Can you use MacPorts? Yes, and you can also build the dependencies by hand.)
-
-3. At the terminal run the following for Homebrew:
+	1. Install XCode (if you haven't already). You should be able to get it here: https://developer.apple.com/xcode/
+	2. Install Homebrew. Look at www.brew.sh for instructions. (Can you use MacPorts? Yes, and you can also build the dependencies by hand.)
+	3. At the terminal run the following for Homebrew: 
 
 	`brew install readline gmp bison libsigsegv openssl`
 
@@ -110,10 +109,10 @@ and then it'll pause a little, 'cause this is slow... and then
 and, then, if the network gods are happy, your submarine will 
 start pulling down Arvo files:
 
-	\+ /~zod/main/1/bin/ticket/hoon
-	\+ /~zod/main/1/bin/reset/hoon
-	\+ /~zod/main/1/bin/ye/hoon
-	\+ /~zod/main/1/bin/ls/hoon
+	`+ /~zod/main/1/bin/ticket/hoon`
+	`+ /~zod/main/1/bin/reset/hoon`
+	`+ /~zod/main/1/bin/ye/hoon`
+	`+ /~zod/main/1/bin/ls/hoon`
 
 You'll see a couple pages of this stuff.  Don't worry too much
 about the details right now.  Finally, you'll get the Arvo shell
@@ -133,7 +132,7 @@ with a nice short name like
 
 Just email urbit@urbit.org, with your submarine in the subject.
 We'll send you destroyers - not one, but _two_.  Yes, two!  Tell
-us something cool in the body, and we'll send you even
+us something cool in the body, and we'll send you even more.
 
 If you have a destroyer, you need to configure it.  Otherwise,
 just stretch that xterm wide and skip to section 1.2.
@@ -156,6 +155,8 @@ and follow the directions.
 ##1.2 Life in Arvo##
 
 If all went well, you now have a nice short prompt:
+
+	~waclux-tomwyc/try=>
 
 If all did not go well (send us another email), or you're just
 too impatient to wait for your destroyer, you have a big long
