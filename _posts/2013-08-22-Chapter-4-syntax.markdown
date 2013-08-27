@@ -1,6 +1,6 @@
 ---
 layout: doc_chapter
-title: Chapter 3 &#58; Hoon - Syntax
+title: Chapter 4 &#58; Hoon - Syntax
 ---
 
 
