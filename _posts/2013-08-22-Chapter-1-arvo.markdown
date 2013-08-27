@@ -109,10 +109,11 @@ and then it'll pause a little, 'cause this is slow... and then
 and, then, if the network gods are happy, your submarine will 
 start pulling down Arvo files:
 
-`+ /~zod/main/1/bin/ticket/hoon`
-`+ /~zod/main/1/bin/reset/hoon`
-`+ /~zod/main/1/bin/ye/hoon`
-`+ /~zod/main/1/bin/ls/hoon`
+
+		+ /~zod/main/1/bin/ticket/hoon
+		+ /~zod/main/1/bin/reset/hoon
+		+ /~zod/main/1/bin/ye/hoon
+		+ /~zod/main/1/bin/ls/hoon
 
 You'll see a couple pages of this stuff.  Don't worry too much
 about the details right now.  Finally, you'll get the Arvo shell
