@@ -20,12 +20,12 @@ Download the zip of the latest Urbit source from https://github.com/urbit/urbit/
 
 (You can also get the source by using git clone. We'll assume that if you want to use git, you already know how to use git.)
 
-###Step 2: Set URBIT _ HOME###
+###Step 2: Set URBIT_HOME###
 The next thing you have to do is add
 
 	export URBIT_HOME=$DIR/urb
 
-your `.bash_profile` or `.bashrc` file, where $DIR is the location of urbit-master from Step 1. (the default is $home/urbit/urb)
+your `.bash_profile` or `.bashrc` file, where `$DIR` is the location of urbit-master from Step 1. (the default is `$home/urbit/urb`)
 
 Then run `source ~/.bash_profile` or `source ~/.bashrc`
 
@@ -58,7 +58,7 @@ The process for which will vary depending on your OS. Currently we support OSX, 
 
 3. At the terminal run the following for Homebrew:
 
-	brew install readline gmp bison libsigsegv openssl
+	`brew install readline gmp bison libsigsegv openssl`
 
 
 **Ubuntu**
@@ -77,7 +77,7 @@ At the Terminal, run the following:
 
 ###Step 4: Make###
 
-At your terminal run 'make OS=osx' for OSX or 'make OS=linux' for Linux. 
+In your Urbit directory (`$DIR`) run `make OS=osx` for OSX or `make OS=linux` for Linux. 
 
 
 ###Step 5: Run Urbit###
@@ -92,34 +92,34 @@ identities, or _ships_.  When you run `vere -c`, it automatically
 creates a 128-bit ship, or `submarine`.  Your name (a hash of a
 randomly-generated public key) will look like:
 
-  ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted
+	~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted
 
 First you'll see a string of messages like:
 
-  vere: urbit home is /Users/cyarvin/Documents/src/u3/urb
-  loom: mapped 1024MB
-  time: ~2013.8.23..03.57.11..4935
-  ames: on localhost, UDP 63908.
-  generating 2048-bit RSA pair...
+	vere: urbit home is /Users/cyarvin/Documents/src/u3/urb
+	loom: mapped 1024MB
+	time: ~2013.8.23..03.57.11..4935
+	ames: on localhost, UDP 63908.
+	generating 2048-bit RSA pair...
 
 and then it'll pause a little, 'cause this is slow... and then
 
-  saving passcode in /Users/cyarvin/.urbit/~magsut-hopful.txt
-  (for real security, write it down and delete the file...)
+	saving passcode in /Users/cyarvin/.urbit/~magsut-hopful.txt
+	(for real security, write it down and delete the file...)
 
 and, then, if the network gods are happy, your submarine will 
 start pulling down Arvo files:
 
-  + /~zod/main/1/bin/ticket/hoon
-  + /~zod/main/1/bin/reset/hoon
-  + /~zod/main/1/bin/ye/hoon
-  + /~zod/main/1/bin/ls/hoon
+	\+ /~zod/main/1/bin/ticket/hoon
+	\+ /~zod/main/1/bin/reset/hoon
+	\+ /~zod/main/1/bin/ye/hoon
+	\+ /~zod/main/1/bin/ls/hoon
 
 You'll see a couple pages of this stuff.  Don't worry too much
 about the details right now.  Finally, you'll get the Arvo shell
 prompt (which is also a Hoon REPL):
 
-  ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=> 
+	~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=> 
 
 Next, you need to decide whether a mere submarine is enough for
 you right now.  This monicker is a mouthful.  You can stick with
@@ -129,7 +129,7 @@ Which might be fine!  However, please note that just by sending
 a simple email, you can get a much better ship - a `destroyer`,
 with a nice short name like
 
-  ~waclux-tomwyc
+	~waclux-tomwyc
 
 Just email urbit@urbit.org, with your submarine in the subject.
 We'll send you destroyers - not one, but _two_.  Yes, two!  Tell
@@ -141,7 +141,7 @@ just stretch that xterm wide and skip to section 1.2.
 Your destroyers will arrive in the form of a [ship ticket] pair.
 Let's say the ship is `~waclux-tomwyc` and the ticket is 
 
-  `~ribdyr-famtem-larrun-figtyd`
+	~ribdyr-famtem-larrun-figtyd
 
 (What are this strings, anyway?  Just random unsigned integers,
 rendered in Hoon's syllabic base, `@p`.)
@@ -149,7 +149,7 @@ rendered in Hoon's syllabic base, `@p`.)
 A new life awaits you on the off-world colonies!  To begin, just 
 type at the prompt:
 
-  :begin ~waclux-tomwyc
+	:begin ~waclux-tomwyc
 
 and follow the directions.
 
@@ -165,32 +165,32 @@ exercises will still work.
 Let's try a few quick things to stretch your fingers.  Type
 these command lines and you should 
 
-  ~waclux-tomwyc/try=> "hello, world"
-  "hello, world"
+	~waclux-tomwyc/try=> "hello, world"
+	"hello, world"
 
-  ~waclux-tomwyc/try=> (add 2 2)
-  4
+	~waclux-tomwyc/try=> (add 2 2)
+	4
 
-  ~waclux-tomwyc/try=> :hello %world
-  "hello, world."
+	~waclux-tomwyc/try=> :hello %world
+	"hello, world."
 
-  ~waclux-tomwyc/try=> :cat /=main=/bin/hello/hoon
-  ::
-  ::  /=main=/bin/hello/hoon
-  ::
-  |=  *
-  |=  [planet=@ta ~]
-  ^-  bowl
-  :_  ~  :_  ~
-  :-  %%
-  !>("hello, {(trip planet)}.")
+	~waclux-tomwyc/try=> :cat /=main=/bin/hello/hoon
+	::
+	::  /=main=/bin/hello/hoon
+	::
+	|=  *
+	|=  [planet=@ta ~]
+	^-  bowl
+	:_  ~  :_  ~
+	:-  %%
+	!>("hello, {(trip planet)}.")
 
 What did you just do?  
 
 One, you used Arvo as a Hoon REPL to print the constant `"hello,
 world"`, which is a fancy way to write the Nock noun 
 
-  [104 101 108 108 111 44 32 119 111 114 108 100 0]
+	[104 101 108 108 111 44 32 119 111 114 108 100 0]
 
 Two, you called the Hoon `add` function to see that two plus two
 is four.  Math seems to work the same on the off-world colonies.
@@ -207,16 +207,16 @@ URL-safe, which dot is and comma isn't.)
 And you (4) used the Arvo application :cat to print the Hoon
 file
 
-  /=main=/bin/hello/hoon
+	/=main=/bin/hello/hoon
 
 which, supposing your current date is
 
-  ~2013.8.23..04.38.31..f259
+	~2013.8.23..04.38.31..f259
 
 (ie, August 23, 2013 at 4:38:31 GMT plus 0xf259/0x1000 seconds),
 is equivalent to the global path
 
-  /~waclux-tomlyc/main/~2013.8.23..04.38.31..f259/bin/hello/hoon
+	/~waclux-tomlyc/main/~2013.8.23..04.38.31..f259/bin/hello/hoon
 
 which anyone in Urbit can, _[given the right permissions]_, see
 and even use - but we're getting ahead of ourselves.
@@ -230,15 +230,15 @@ Try your arrow keys - you'll see that Arvo has traditional Unix
 history editing.  Up and down, left and right work, as do the
 simple emacs controls:
 
-  ^A  go to beginning of line
-  ^B  left arrow
-  ^D  delete next character
-  ^E  go to end of line
-  ^F  right arrow
-  ^K  kill to end of line
-  ^L  clear the screen
-  ^U  kill the whole line
-  ^Y  yank (restore from kill ring)
+	^A  go to beginning of line
+	^B  left arrow
+	^D  delete next character
+	^E  go to end of line
+	^F  right arrow
+	^K  kill to end of line
+	^L  clear the screen
+	^U  kill the whole line
+	^Y  yank (restore from kill ring)
 
 Don't expect any other emacs (or even readline - this is not
 readline, it's internal to Arvo) commands to work.
@@ -248,15 +248,15 @@ a good idea to learn these first so that you feel in, um, control.
 
 First, we'll quit out of an infinite loop with ^C:
 
-  ~tasfyn-partyv/try=> :infinite
+	~tasfyn-partyv/try=> :infinite
 
 When you hit return at the end of this line, Arvo will appear to
 hang.  Do not be alarmed!  This is not a bug - it means that
 we've started running our infinite loop before printing the
 next console prompt.  Simply hit ^C, and you'll see 
 
-  ! intr
-  ~tasfyn-partyv/try=> :infinite
+	! intr
+	~tasfyn-partyv/try=> :infinite
 
 Hit ^U to delete the line and escape from infinity.  Arvo is a
 deterministic OS; you interrupted it while processing an event
