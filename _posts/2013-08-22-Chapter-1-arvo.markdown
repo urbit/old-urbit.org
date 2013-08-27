@@ -59,7 +59,8 @@ The process for which will vary depending on your OS. Currently we support OSX, 
 
 **Ubuntu**
 
-Run the following:`sudo apt-get install libreadline-dev libgmp3-dev bison libsigsegv-dev openssl libssl-dev libncurses5-dev`
+Run the following:
+	sudo apt-get install libreadline-dev libgmp3-dev bison libsigsegv-dev openssl libssl-dev libncurses5-dev`
 
 
 **AWS:**
