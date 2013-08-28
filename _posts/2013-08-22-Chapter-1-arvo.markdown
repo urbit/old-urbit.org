@@ -18,7 +18,7 @@ First, build.
 Download the zip of the latest Urbit source from https://github.com/urbit/urbit/archive/master.zip and unzip it. Move the file, which should be called urbit-master to the directory of your choice (`$DIR`).
 
 
-(You can also get the source by using git clone. We'll assume that if you want to use git, you already know how to use git.)
+(You can also get the source by using git clone. We'll assume that if you want to use git, you already know how to use git. Note: If you're building Urbit through ssh, i.e. because you're somewhere in the cloud, git clone is a lot easier.)
 
 ###Step 2: Set URBIT_HOME###
 The next thing you have to do is add
@@ -46,13 +46,13 @@ Urbit depends on the following:
 + ncurses (Linux only)
 
 
-The process for which will vary depending on your OS. Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid ninjas may attempt ports to other OS's. If you're an intrepid ninja, let us know, successful ports will result in prizes. If you're not an intrepid ninja, don't worry, Urbit runs just fine on a VM (https://www.virtualbox.org/).
+The process for which will vary depending on your OS. Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid ninjas may attempt ports to other OSes. If you're an intrepid ninja, let us know, successful ports will result in prizes. If you're not an intrepid ninja, don't worry, Urbit runs just fine on a VM (https://www.virtualbox.org/).
 
 
 **OS X:**
 
-1. Install XCode (if you haven't already). You should be able to get it here: https://developer.apple.com/xcode/
-2. Install Homebrew. Look at www.brew.sh for instructions. (Can you use MacPorts? Yes, and you can also build the dependencies by hand.)
+1. Install XCode and it's Command Line Tools (if you haven't already). You should be able to get it here: https://developer.apple.com/xcode/
+2. Install Homebrew. `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` should work. Look at www.brew.sh for further detail. (Can you use MacPorts? Yes you can. You can also build the dependencies by hand.)
 3. At the terminal run the following for Homebrew: `brew install gmp libsigsegv openssl`
 
 **Ubuntu**
@@ -63,11 +63,13 @@ Run the following:
 
 
 **AWS:**
+Assuming you're running a clean instance:
 
+sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel
 
 ###Step 4: Make###
 
-In your Urbit directory (`$DIR`) run `make OS=osx` for OSX or `make OS=linux` for Linux. 
+In your Urbit directory (`$DIR`) run `make OS=osx` for OSX or `make OS=linux` for Linux. Sometimes things are just easy.
 
 
 ###Step 5: Run Urbit###
