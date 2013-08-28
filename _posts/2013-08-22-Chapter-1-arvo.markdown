@@ -39,9 +39,7 @@ which should return `$DIR/urb`.
 
 Urbit depends on the following:
 
-+ readline library
 + GNU Multiprecision
-+ bison
 + libsigsegv
 + openssl
 + libssl-dev (Linux only)
@@ -55,13 +53,13 @@ The process for which will vary depending on your OS. Currently we support OSX, 
 
 1. Install XCode (if you haven't already). You should be able to get it here: https://developer.apple.com/xcode/
 2. Install Homebrew. Look at www.brew.sh for instructions. (Can you use MacPorts? Yes, and you can also build the dependencies by hand.)
-3. At the terminal run the following for Homebrew: `brew install readline gmp bison libsigsegv openssl`
+3. At the terminal run the following for Homebrew: `brew install gmp libsigsegv openssl`
 
 **Ubuntu**
 
 Run the following:
 
-	sudo apt-get install libreadline-dev libgmp3-dev bison libsigsegv-dev openssl libssl-dev libncurses5-dev
+	sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev
 
 
 **AWS:**
