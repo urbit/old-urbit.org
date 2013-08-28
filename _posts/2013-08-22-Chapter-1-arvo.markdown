@@ -15,23 +15,24 @@ First, build.
 
 ###Step 1: Get the Source###
 
-Download the zip of the latest Urbit source from https://github.com/urbit/urbit/archive/master.zip and unzip it. Move the file, which should be called urbit-master to the directory of your choice (`$DIR`).
+Download the zip of the latest Urbit source from https://github.com/urbit/urbit/archive/master.zip and unzip it. Move the folder, which should be called `urbit-master` to a directory of your choice. We recommend your /home folder. And renaming the file to just `urbit.` 
 
-
-(You can also get the source by using git clone. We'll assume that if you want to use git, you already know how to use git. Note: If you're building Urbit through ssh, i.e. because you're somewhere in the cloud, git clone is a lot easier.)
+(You can also get the source by doing `git clone https://github.com/urbit/urbit.git`. We'll assume that if you want to use git, you already know how to use git. Note: If you're building Urbit through ssh, i.e. because you're somewhere in the cloud, git clone is the preferred choice.)
 
 ###Step 2: Set URBIT_HOME###
-The next thing you have to do is add
+
+
+The next thing to do is to add
 
 	export URBIT_HOME=$DIR/urb
 
-your `.bash_profile` or `.bashrc` file, where `$DIR` is the location of urbit-master from Step 1 (the default is `$home/urbit/urb`).
+to your `.bash_profile` or `.bashrc` file, where `$DIR` is the location of your urbit folder from Step 1 (the default is `$home/urbit/urb`).
 
-Then run `source ~/.bash_profile` or `source ~/.bashrc`
+Then run `source ~/.bash_profile` or `source ~/.bashrc`.
 
 Check that you've done this right with
 
-	echo URBIT_HOME
+	echo $URBIT_HOME
 
 which should return `$DIR/urb`.
 
@@ -65,7 +66,7 @@ Run the following:
 **AWS:**
 Assuming you're running a clean instance:
 
-sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel
+	sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel
 
 ###Step 4: Make###
 
