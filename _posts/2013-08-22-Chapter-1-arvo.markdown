@@ -43,17 +43,15 @@ which should return `$DIR/urb`.
 
 Urbit depends on:
 
-+ GNU Multiprecision
++ gmp
 + libsigsegv
 + openssl
 + libssl-dev (Linux only)
 + ncurses (Linux only)
 
-The process for which will vary depending on your OS. Currently we support OSX,
-Ubuntu and AWS Linux AMI. Intrepid ninjas may attempt ports to other OSes. If
-you're not an intrepid ninja, don't worry, Urbit runs just fine on a VM
-(https://www.virtualbox.org/).
-
+Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid
+ninjas may attempt ports to other OSes. If you're not an intrepid
+ninja, don't worry, try a VM (eg, VirtualBox).
 
 **OS X:**
 
@@ -61,9 +59,9 @@ you're not an intrepid ninja, don't worry, Urbit runs just fine on a VM
 
 2. Install Homebrew. `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` 
 should work.  (Can you use MacPorts? Yes you can. You can also resolve the dependencies 
-by hand.:-)
+by hand :-)
 
-3. `brew install gmp libsigsegv openssl`
+3. `sudo brew install gmp libsigsegv openssl`
 
 **Ubuntu**
 
@@ -99,7 +97,7 @@ First you'll see a string of messages like:
 
     vere: urbit home is /Users/cyarvin/Documents/src/u3/urb
     loom: mapped 1024MB
-    time: ~2013.8.23..03.57.11..4935
+    time: ~2013.9.1..03.57.11..4935
     ames: on localhost, UDP 63908.
     generating 2048-bit RSA pair...
 
@@ -111,10 +109,10 @@ and then it'll pause a little, 'cause this is slow... and then
 and, then, if the network gods are happy, your submarine will start pulling
 down Arvo files:
 
-    + /~zod/main/1/bin/ticket/hoon
-    + /~zod/main/1/bin/reset/hoon
-    + /~zod/main/1/bin/ye/hoon
-    + /~zod/main/1/bin/ls/hoon
+    + /~waclux-tomwyc/main/1/bin/ticket/hoon
+    + /~waclux-tomwyc/main/1/bin/reset/hoon
+    + /~waclux-tomwyc/main/1/bin/ye/hoon
+    + /~waclux-tomwyc/main/1/bin/ls/hoon
 
 and the like.  You'll see a couple pages of this stuff.  Don't worry too much
 about the details right now.  Finally, you'll get the Arvo shell prompt (which
@@ -138,8 +136,8 @@ body, and we'll send you even more.
 If you have a destroyer, you need to configure it.  Otherwise, just stretch
 that xterm wide and skip to section 1.2.
 
-Your destroyers will arrive in the form of [ship ticket] pairs.  Let's say the
-ship is `~waclux-tomwyc` and the ticket is 
+Your destroyers will arrive in the form of [ship ticket] pairs.  Let's say one
+of your ships is `~waclux-tomwyc` and its ticket is 
 
     ~ribdyr-famtem-larrun-figtyd
 
@@ -211,12 +209,12 @@ And you (4) used the Arvo application :cat to print the Hoon file
 
 which, supposing your current date is
 
-    ~2013.8.23..04.38.31..f259
+    ~2013.9.1..04.38.31..f259
 
-(ie, August 23, 2013 at 4:38:31 GMT/leap-second 25 plus 0xf259/0x1000 seconds),
-is equivalent to the global path
+(ie, September 1, 2013 at 4:38:31 GMT/leap-second 25 plus
+0xf259/0x1000 seconds), is equivalent to the global path
 
-    /~waclux-tomlyc/main/~2013.8.23..04.38.31..f259/bin/hello/hoon
+    /~waclux-tomwyc/main/~2013.8.23..04.38.31..f259/bin/hello/hoon
 
 which anyone in Urbit can, _[given the right permissions]_, see and even use -
 but we're getting ahead of ourselves.
@@ -247,7 +245,7 @@ learn these first so that you feel in, um, control.
 
 First, we'll quit out of an infinite loop with ^C:
 
-    ~waclux-tomlyc/try=> :infinite
+    ~waclux-tomwyc/try=> :infinite
 
 When you hit return at the end of this line, Arvo will appear to hang.  Do not
 be alarmed!  This is not a bug - it means that we've started running our
@@ -255,7 +253,7 @@ infinite loop before printing the next console prompt.  Simply hit ^C, and
 you'll see 
 
     ! intr
-    ~waclux-tomlyc/try=> :infinite
+    ~waclux-tomwyc/try=> :infinite
 
 Hit ^U to delete the line and escape from infinity.  Arvo is a deterministic
 OS; you interrupted it while processing an event that would never terminate.
@@ -274,7 +272,7 @@ something else other than keyboard input.
 
 Try this by running
 
-    ~waclux-tomlyc/try=> :begin
+    ~waclux-tomwyc/try=> :begin
 
     Do you have a ship and a ticket? yes
 
@@ -285,29 +283,29 @@ We don't always want to kill the prompting task.  We often want to switch
 between tasks, or between tasks and the command line.  Sort of like switching
 between windows, except in a command line.  We do this with ^X.  Try
 
-    ~waclux-tomlyc/try=> :begin
+    ~waclux-tomwyc/try=> :begin
 
     Do you have a ship and a ticket? yes
 
 But hit ^X instead of ^C.  You'll get a prompt again.  Use it:
 
-    ~waclux-tomlyc/try=> :begin
+    ~waclux-tomwyc/try=> :begin
 
-    ~waclux-tomlyc/try=> :hello %world
+    ~waclux-tomwyc/try=> :hello %world
     "hello, world."
-    ~waclux-tomlyc/try=> 
+    ~waclux-tomwyc/try=> 
 
 Hit ^X again:
 
-    ~waclux-tomlyc/try=> :begin
+    ~waclux-tomwyc/try=> :begin
 
-    ~waclux-tomlyc/try=> :hello %world
+    ~waclux-tomwyc/try=> :hello %world
     "hello, world."
     Do you have a ship and a ticket? yes
 
 And finally, hit ^C to kill the task.
 
-Last, there's one more magic control key that changes your whole
+There's one more magic control key that switches your whole
 reality.  This is ^W, which switches between the ships in a pier.
 Do you have multiple ships in your pier?  Sure - you still have
 your old submarine.  Hit ^W:
@@ -316,31 +314,69 @@ your old submarine.  Hit ^W:
 
 Hit ^W again:
 
-    ~waclux-tomlyc/try=>
+    ~waclux-tomwyc/try=>
 
-##1.2 Paths and stuff##
+Finally, Arvo is a single-level store.  Since it's not the '70s
+anymore and disk is cheap, everything you do is saved for ever.
+(In fact, it's saved in two ways - as a memory image and an 
+event log - so you, or the government if they haz your filez, 
+can repeat every computation you've every performed.)
+
+As in Unix, hitting ^D on an empty line ends the program:
+
+    ~waclux-tomwyc/try=> 
+    oxford:~/urbit; pwd
+    /Users/cyarvin/urbit
+    oxford:~/urbit; echo "hello, world"
+    hello, world
+    oxford:~/urbit; 
+
+Then you can restart and be right back where you were - just
+run `vere` without `-c`:
+
+    oxford:~/urbit; bin/vere mypier
+    vere: urbit home is /Users/cyarvin/urb
+    loom: loaded 9MB
+    time: ~2013.9.1..17.23.05..0cc1
+    ames: on localhost, UDP 60342.
+    http: live on 8080
+    rest: checkpoint to event 383
+    rest: old 0v1c.gkr1o, new 0v10.m4gdu
+    ---------------- playback complete----------------
+    waclux-tomwyc/try=> 
+
+Use your arrow keys and you'll see your history is still there.
+Arvo is indestructible and can be shut down however you like
+without losing data.  Also, starting a new process while an old
+one is still running will kill the old one safely.  And, to leave
+a server running in the background, use `vere -d`.
+
+But don't try to operate the same ship on two Unix hosts at the
+same time.  This will confuse everyone, including yourself.
+
+##1.2 Path magic##
 
 What do we know?  Okay, so this is an OS.  It's a little like
 Unix but different.  It can print expressions and run commands.
 Commands start with a colon.  Let's try the simplest command:
 
-    ~tasfyn-partyv/try=> :ls
+    ~waclux-tomwyc/try=> :ls
     ! type-fail
     ! exit
 
 Hey, that didn't work!  It didn't work for two reasons.  One,
 Arvo command-line arguments are typed, and `:ls` expects a path.
-Two, `:ls` needs a path - unlike in Unix, applications can't see
-the current path or shell variables.  (This is because Arvo
+Two, `:ls` needs that path - unlike in Unix, applications can't
+see the current path or shell variables.  (This is because Arvo
 doesn't have 57 different ways of configuring an app.)  So try
 
-    ~tasfyn-partyv/try=> :ls /~tasfyn-partyv/try=
+    ~waclux-tomwyc/try=> :ls /~waclux-tomwyc/try=
     con bin lib doc
 
 This seems somewhat cumbersome - isn't there a way to refer to
 the current path?  There is, though it doesn't look like Unix.
 
-    ~tasfyn-partyv/try=> :ls %
+    ~waclux-tomwyc/try=> :ls %
     con bin lib doc
 
 Let's look at these paths in a little more detail.  An Arvo path
@@ -358,4 +394,156 @@ always one of `bin`, `lib`, `con`, or `doc` - ie, a file is
 either a function, a library, a configuration, or a document
 (meaning any kind of data file).  The rest is the `pole`.
 
+As in Unix, the shell (`batz`) keeps a current path.  As in 
+Unix, you can write paths in an absolute or relative syntax,
+and as in Unix `/` is the path separator.  Everything else
+is completely different.
 
+Let's use the REPL to print out some paths.  First, here's
+the current path or something like it:
+
+    ~waclux-tomwyc/try=> /~waclux-tomwyc/try/~2013.9.1
+    ['~waclux-tomwyc' %try '~2013.9.1' ~]
+
+For complicated reasons related to the Hoon type system - which, 
+for a higher-order functional type inference engine, is as stupid
+as we could make it - this noun gets rendered as a tuple rather
+than a path.  We can rectify this with a cast:
+
+    ~waclux-tomwyc/try=> `path`/~waclux-tomwyc/try/~2013.9.1
+    /~waclux-tomwyc/try/~2013.9.1
+
+It's the same value, just printed differently.  Except for the
+date, this is the same as your current path:
+
+    ~waclux-tomwyc/try=> `path`%
+    /~waclux-tomwyc/try/~2013.9.1..17.49.18..282e
+
+The current date, of course, is always changing:
+
+    ~waclux-tomwyc/try=> `path`%
+    /~waclux-tomwyc/try/~2013.9.1..17.50.39..7e38
+
+Just to remind ourselves that these are Hoon expressions:
+
+    ~waclux-tomwyc/try=> `path`/(scot %p ->-)/try/(scot %da (add ~d7 -<-))
+    /~waclux-tomwyc/try/~2013.9.8..17.55.03..b2ae
+
+That's you next week.  It's black magic, don't worry about it.
+Let's get back to relative paths.
+
+A relative path is a function of the current path.  First, let's
+make the current path interesting by moving to something deeper:
+
+    ~waclux-tomwyc/try=> :cd /=main=/foo/bar/baz/bam
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> 
+
+Hey, wait, we actually used a relative path here.  The simplest
+kind of relative path matches the current path by replacing a
+path component with `=`.  So we could just as well have said
+
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> -<+
+    '~2013.9.1..21.38.34..7a08'
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> :cd /~waclux-tomwyc/main/[-<+]/foo/bar/baz/bam
+
+Why is `-<+` the current date as text?  Look, we're trying to
+learn Arvo without too much Hoon here.  Just accept that it is.
+In this context, anyway.  Notice also that the prompt uses a
+relative path when (as is usually the case) the current case 
+is just the present time, so that we don't have to stare at
+
+    ~waclux-tomwyc/main/~2013.9.1..21.38.34..7a08/foo/bar/baz/bam>
+
+In any case, we can now use `=` to our heart's content.  Notice
+that you don't need `/` to separate content from 
+
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`/=
+    /~waclux-tomwyc
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`/==
+    /~waclux-tomwyc/main
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`/===
+    /~waclux-tomwyc/main/~2013.9.1..21.46.46..b250
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`/===zebra==
+    /~waclux-tomwyc/main/~2013.9.1..21.47.45..9ec8/zebra/bar/baz
+
+I guess you could do this on Unix.  With awk or something.  It's
+apparently been some time since the Nixon administration - how
+about a new OS?  Anyway, there's another way to edit paths - with
+`%`, which we've seen before, from the end -
+
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`%
+    /~waclux-tomwyc/main/~2013.9.1..21.53.17..07f6/foo/bar/baz/bam
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`%/frampton/comes/alive
+    /~waclux-tomwyc/main/~2013.9.1..21.55.53..8c5f/foo/bar/baz/bam/frampton/comes/alive
+
+Unix can back up with `..`.  We do the same with multiple `%`:
+
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`%%
+    /~waclux-tomwyc/main/~2013.9.1..22.22.51..34a1/foo/bar/baz
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`%%%
+    /~waclux-tomwyc/main/~2013.9.1..22.22.53..a332/foo/bar
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`%%%%
+    /~waclux-tomwyc/main/~2013.9.1..22.22.55..4909/foo
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`%%%%/frampton/comes/alive
+    /~waclux-tomwyc/main/~2013.9.1..22.23.02..9b05/foo/frampton/comes/alive
+
+Finally, we can use `%` as a separator and edit both prefix and
+suffix.  In this case, `=` is assumed up to the endpoint edit:
+
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`/=zebra%%%%/frampton/comes/alive
+    /~waclux-tomwyc/zebra/~2013.9.1..22.26.39..e76d/foo/frampton/comes/alive
+
+Thus concludes our edition of Path School.  Let's go back to the
+default desk (`try`, meant for experiments only):
+
+    ~zod/main=/foo/bar/baz/bam> :cd /=try=
+    ~zod/try=> 
+
+To be fair, Unix has some cool features that Arvo is still
+missing - such as globbing (expanding `*` and the like).  A
+toddler can't really go to war against a middle-aged neckbeard.
+But if Arvo is a toddler, hopefully it's a promising toddler.
+
+##1.2 Actual editing##
+
+But wait!  There seem to be a bunch of files in your ship.  How
+did they get there?  Oh, right, installation automatically
+checked them out of the server.  That's one way to get files.
+We'll see more of this in a little bit.
+
+Another way is to create them within Arvo itself.  We'll see this
+in a moment, but it's worth noting its limitations - no one has
+ported `vim` to Urbit yet, nor will for a long time.
+
+The easiest way to get data in and out of Arvo is just to sync.
+You'll find a complete copy of your ship's filesystem, as of the
+current date, in your `$URBIT_HOME`.  For example:
+
+    ~zod/try=> :cat %/bin/goodbye/hoon
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    :_  ~
+    :_  ~
+    :-  %$
+    !>("hello, {planet}.")
+    ~zod/try=>
+
+Then either stop the server with ^D, or switch to another window:
+
+    oxford:~/urbit; cat $URBIT_HOME/zod/try/bin/goodbye.hoon
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    :_  ~
+    :_  ~
+    :-  %$
+    !>("hello, {planet}.")
+    oxford:~/urbit; 
+
+As you see, the dot-extension pattern in Unix gets converted to a
+path slash in Urbit.  Otherwise, the mapping is straightforward.
+Legal Urbit paths are a subset of Unix paths - for example,
+uppercase characters are not allowed - 
