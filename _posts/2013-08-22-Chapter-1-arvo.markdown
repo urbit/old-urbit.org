@@ -11,9 +11,7 @@ Welcome to Urbit!
 
 First, build...
 
-##1.1 Build instructions##
-
-###Step 1: Get the Source###
+###1: get the source##
 
 Either:
 
@@ -21,15 +19,14 @@ Either:
 
 2. `git clone https://github.com/urbit/urbit.git`. 
 
-###Step 2: Set URBIT_HOME###
+###2: set URBIT_HOME###
 
 Add
 
     export URBIT_HOME=$DIR/urb
 
-to your `.bash_profile` or `.bashrc` file, where `$DIR` is the
-location of your urbit folder from Step 1 (the default is
-`$home/urbit/urb`).
+to your `.bash_profile` or `.bashrc` file, where `$DIR` is your urbit folder 
+from step 1 - eg, `$HOME/urbit`.
 
 Then run `source ~/.bash_profile` or `source ~/.bashrc`.
 
@@ -39,7 +36,7 @@ Check that you've done this right with
 
 which should return `$DIR/urb`.
 
-###Step 3: Dependencies###
+###3: resolve dependencies###
 
 Urbit depends on:
 
@@ -51,9 +48,10 @@ Urbit depends on:
 
 Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid
 ninjas may attempt ports to other OSes. If you're not an intrepid
-ninja, don't worry, try a VM (eg, VirtualBox).
+ninja, try a VM (eg, VirtualBox).
 
-**OS X:**
+
+**OS X**
 
 1. Install XCode: `https://developer.apple.com/xcode/`.
 
@@ -63,24 +61,23 @@ by hand :-)
 
 3. `sudo brew install gmp libsigsegv openssl`
 
+
 **Ubuntu**
 
-Run the following:
-
-    sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev
+1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev`
 
 
-**AWS:**
+**AWS**
 
-Assuming a clean instance:
+1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel`
 
-    sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel
 
-###Step 4: Make###
+###4: make###
 
-In your Urbit directory (`$DIR`), `make`.  Sometimes things are just easy.
+In your Urbit directory (`$DIR`), `make`.  Sometimes things are just easy.  Or at least,
+they should be easy.
 
-###Step 5: Run Urbit###
+###5: vere###
 
 Run `bin/vere -c $mypier`, where $mypier is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this
@@ -109,10 +106,10 @@ and then it'll pause a little, 'cause this is slow... and then
 and, then, if the network gods are happy, your submarine will start pulling
 down Arvo files:
 
-    + /~waclux-tomwyc/main/1/bin/ticket/hoon
-    + /~waclux-tomwyc/main/1/bin/reset/hoon
-    + /~waclux-tomwyc/main/1/bin/ye/hoon
-    + /~waclux-tomwyc/main/1/bin/ls/hoon
+    + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ticket/hoon
+    + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/reset/hoon
+    + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ye/hoon
+    + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ls/hoon
 
 and the like.  You'll see a couple pages of this stuff.  Don't worry too much
 about the details right now.  Finally, you'll get the Arvo shell prompt (which
@@ -129,7 +126,7 @@ you can get a much better ship - a `destroyer`, with a nice short name like
 
     ~waclux-tomwyc
 
-Just email urbit@urbit.org, with your submarine in the subject.  We'll send you
+Just email `urbit@urbit.org`, with your submarine in the subject.  We'll send you
 destroyers - not one, but _two_.  Yes, two!  Tell us something cool in the
 body, and we'll send you even more.
 
@@ -216,8 +213,8 @@ which, supposing your current date is
 
     /~waclux-tomwyc/main/~2013.8.23..04.38.31..f259/bin/hello/hoon
 
-which anyone in Urbit can, _[given the right permissions]_, see and even use -
-but we're getting ahead of ourselves.
+which anyone in Urbit can, see and even use - but we're getting ahead of
+ourselves.
 
 In any case, what we've seen is that Arvo is a dangerous and powerful operating
 system which if handled improperly can cause serious injury or loss of life.
@@ -545,5 +542,27 @@ Then either stop the server with ^D, or switch to another window:
 
 As you see, the dot-extension pattern in Unix gets converted to a
 path slash in Urbit.  Otherwise, the mapping is straightforward.
-Legal Urbit paths are a subset of Unix paths - for example,
-uppercase characters are not allowed - 
+Legal Urbit paths are a strict subset of Unix paths - for
+example, uppercase characters are not allowed - so the round trip
+is always clean.
+
+Edit `$URBIT_HOME/zod/try/bin/goodbye.hoon`, in another window or
+while the server is down, then restart the server.  As soon as
+you enter any keyboard input in `vere`, you'll see 
+
+    : /~zod/try/2/bin/goodbye/hoon
+    ~zod/try=>  
+
+Go ahead and type 
+
+    ~zod/try=> :goodbye "world"
+    "goodbye, world."
+    ~zod/try=> 
+
+What happened here?  Arvo, of course, cannot make system calls
+and does not have any access at all to the Unix filesystem.  But
+Arvo processes an event stream which the Unix program `vere`
+follows, and generates actions which `vere` applies.  If you know
+Git, the best way to see `$URBIT_HOME` is as a working directory
+in which changes are automatically committed.
+
