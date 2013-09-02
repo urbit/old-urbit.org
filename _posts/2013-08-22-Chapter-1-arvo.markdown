@@ -79,7 +79,7 @@ they should be easy.
 
 ###5: vere###
 
-Run `bin/vere -c $mypier`, where $mypier is a directory that doesn't yet exist.
+Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this
 directory.  Its name doesn't matter and is not visible internally.
 
@@ -452,7 +452,8 @@ is just the present time, so that we don't have to stare at
     ~waclux-tomwyc/main/~2013.9.1..21.38.34..7a08/foo/bar/baz/bam>
 
 In any case, we can now use `=` to our heart's content.  Notice
-that you don't need `/` to separate content from 
+that you don't need `/` to separate content from `=`.  `==` is
+perfectly fine, too.
 
     ~waclux-tomwyc/main=/foo/bar/baz/bam> `path`/=
     /~waclux-tomwyc
@@ -493,8 +494,8 @@ suffix.  In this case, `=` is assumed up to the endpoint edit:
 Thus concludes our edition of Path School.  Let's go back to the
 default desk (`try`, meant for experiments only):
 
-    ~zod/main=/foo/bar/baz/bam> :cd /=try=
-    ~zod/try=> 
+    ~waclux-tomwyc/main=/foo/bar/baz/bam> :cd /=try=
+    ~waclux-tomwyc/try=> 
 
 To be fair, Unix has some cool features that Arvo is still
 missing - such as globbing (expanding `*` and the like).  A
@@ -510,54 +511,46 @@ We'll see more of this in a little bit.
 
 Another way is to create them within Arvo itself.  We'll see this
 in a moment, but it's worth noting its limitations - no one has
-ported `vim` to Urbit yet, nor will for a long time.
+ported `vim` to Arvo yet, nor will for a long time.
 
 The easiest way to get data in and out of Arvo is just to sync.
 You'll find a complete copy of your ship's filesystem, as of the
 current date, in your `$URBIT_HOME`.  For example:
 
-    ~zod/try=> :cat %/bin/goodbye/hoon
-    !:
+    ~waclux-tomwyc/try=> :cat %/bin/goodbye/hoon
     |=  *
     |=  [planet=tape ~]
-    ^-  bowl
-    :_  ~
-    :_  ~
-    :-  %$
-    !>("hello, {planet}.")
-    ~zod/try=>
+    :_  ~  :_  ~
+    [%$ !>("hello, {planet}.")]
+    ~waclux-tomwyc/try=>
 
 Then either stop the server with ^D, or switch to another window:
 
-    oxford:~/urbit; cat $URBIT_HOME/zod/try/bin/goodbye.hoon
-    !:
+    oxford:~/urbit; cat $URBIT_HOME/waclux-tomwyc/try/bin/goodbye.hoon
     |=  *
     |=  [planet=tape ~]
-    ^-  bowl
-    :_  ~
-    :_  ~
-    :-  %$
-    !>("hello, {planet}.")
+    :_  ~  :_  ~
+    [%$ !>("hello, {planet}.")]
     oxford:~/urbit; 
 
 As you see, the dot-extension pattern in Unix gets converted to a
-path slash in Urbit.  Otherwise, the mapping is straightforward.
-Legal Urbit paths are a strict subset of Unix paths - for
+path slash in Arvo.  Otherwise, the mapping is straightforward.
+Legal Arvo paths are a strict subset of Unix paths - for
 example, uppercase characters are not allowed - so the round trip
 is always clean.
 
-Edit `$URBIT_HOME/zod/try/bin/goodbye.hoon`, in another window or
+Edit `$URBIT_HOME/waclux-tomwyc/try/bin/goodbye.hoon`, in another window or
 while the server is down, then restart the server.  As soon as
 you enter any keyboard input in `vere`, you'll see 
 
-    : /~zod/try/2/bin/goodbye/hoon
-    ~zod/try=>  
+    : /~waclux-tomwyc/try/2/bin/goodbye/hoon
+    ~waclux-tomwyc/try=>  
 
 Go ahead and type 
 
-    ~zod/try=> :goodbye "world"
+    ~waclux-tomwyc/try=> :goodbye "world"
     "goodbye, world."
-    ~zod/try=> 
+    ~waclux-tomwyc/try=> 
 
 What happened here?  Arvo, of course, cannot make system calls
 and does not have any access at all to the Unix filesystem.  But
@@ -565,4 +558,235 @@ Arvo processes an event stream which the Unix program `vere`
 follows, and generates actions which `vere` applies.  If you know
 Git, the best way to see `$URBIT_HOME` is as a working directory
 in which changes are automatically committed.
+
+##1.3 Revision control##
+
+Now we're prepared to see the true awesome of a
+revision-controlled filesystem.  
+
+Of course, you can build a revision-control system on top of
+Unix.  And many have.  That doesn't make Unix a revision-control
+system, though.  VMS had something of the sort.  (Some of us are
+so old we actually used VMS.)  But VMS had... other issues...
+
+Again, an Arvo path starts with `/ship/desk/case`.  The case,
+ie version, applies to the whole desk, ie, project.  When we
+edited `/=try=/bin/goodbye/hoon/`, our change created case
+`2` of `/~waclux-tomwyc/try`.
+
+All paths are immutable and referentially transparent.  Once
+we've made our change, both cases of `/~waclux-tomwyc/try` exist
+(logically; they're not actually copied, of course):
+
+    ~waclux-tomwyc/try=> :cat /=try/1/bin/goodbye/hoon
+    |=  *
+    |=  [planet=tape ~]
+    :_  ~  :_  ~
+    [%$ !>("hello, {planet}.")]
+
+    ~waclux-tomwyc/try=> :cat /=try/2/bin/goodbye/hoon
+    |=  *
+    |=  [planet=tape ~]
+    :_  ~  :_  ~
+    [%$ !>("goodbye, {planet}.")]
+
+Time also works as you'd expect.  Remember, `=` as the case means
+"at the current time":
+
+    ~waclux-tomwyc/try=> :cat /=try=/bin/goodbye/hoon
+    |=  *
+    |=  [planet=tape ~]
+    :_  ~  :_  ~
+    [%$ !>("goodbye, {planet}.")]
+
+    ~waclux-tomwyc/try=> :cat /=try/(scot %da (sub -<- ~m1))/bin/goodbye/hoon
+    |=  *
+    |=  [planet=tape ~]
+    :_  ~  :_  ~
+    [%$ !>("hello, {planet}.")]
+
+Ie, now it's goodbye and a minute ago it was hello.  This is
+anything but fancy.  Finally, let's label it:
+
+    ~waclux-tomwyc/try=> :label %try %zebra
+    = new /~waclux-tomwyc/try/3
+
+    ~waclux-tomwyc/try=> :cat /=try/zebra/bin/goodbye/hoon
+    |=  *
+    |=  [planet=tape ~]
+    :_  ~  :_  ~
+    [%$ !>("goodbye, {planet}.")]
+
+Note that adding a label is part of the delta stream and creates
+a new change number, `3`.
+
+What's more, these revisions don't just apply in `:cat`.  Of
+course, this is a program and it exists to be run.  Normally when
+we say
+
+    ~waclux-tomwyc/try=> :goodbye "world"
+    "goodbye, world."
+
+this actually does a path search and ends up as a shorthand for
+
+    ~waclux-tomwyc/try=> :=/try=/goodbye "world"
+    "goodbye, world."
+
+(Note that the `bin` is still inserted automagically.)  But of 
+course, we can use the full revision notation here:
+
+    ~waclux-tomwyc/try=> :=/try/1/goodbye "world"
+    "hello, world."
+    ~waclux-tomwyc/try=> :=/try/2/goodbye "world"
+    "goodbye, world."
+    ~waclux-tomwyc/try=> :=/try/new/goodbye "world"
+    "goodbye, world."
+
+Yeah, I guess that's kind of cool.  But... actually...
+
+Arvo is anything but a fancy revision control system - partly
+because it's a very young one, partly because it's cool to be
+crude.  However, making revision control part of the OS, not on
+top of the OS, opens up... certain... possibilities.
+
+What happens if we try to use a revision that doesn't exist yet?
+Remember that the `new` label was change `3`.  But suppose we try
+
+    ~waclux-tomwyc/try=> :=/try/4/goodbye "world"
+    [waiting...]
+
+Hm?  Again, either quit with ^D, or use another window; edit 
+`$URBIT_HOME/waclux-tomwyc/try/bin/goodbye.hoon`.  Change
+"goodbye" to "hasta la vista."  Then, `bin/vere mypier` if
+you quit, or just hit space to trigger the sync.
+
+    vere: urbit home is /Users/cyarvin/Documents/src/u3/urb
+    loom: loaded 10MB
+    time: ~2013.9.2..07.26.20..b510
+    ames: on localhost, UDP 31337.
+    http: live on 8080
+    rest: checkpoint to event 965
+    rest: old 0v16.5un6m, new 0v1i.il78t
+
+    ---------------- playback complete----------------
+    : /~waclux-tomwyc/try/4/bin/goodbye/hoon
+    "hasta la vista, world."
+
+Tell me you've seen _that_ before.  It works with labels too:
+
+    ~waclux-tomwyc/try=> :=/try/crazy/goodbye "world"
+    [waiting...]
+
+Use ^X to get a prompt back while this task waits.  Then, create
+the label:
+
+    ~waclux-tomwyc/try=> :=/try/crazy/goodbye "world"
+    ~waclux-tomwyc/try=> :label %try %crazy
+    = crazy /~waclux-tomwyc/try/5
+    "hasta la vista, world."
+
+What's going on here?  What's going on is that the Arvo
+filesystem is an immutable, ie, referentially transparent,
+namespace.  Since every path will only be bound to one file, when
+we encounter a path that's not yet bound (but could be bound in
+future), we do every OS's favorite thing - we _block_.
+
+Civilization, a wise man once said, is the set of events you can
+block on.  What's happening here is not in principle difficult at
+all.  It is pretty hard to do, however, if your revision control
+system is not in intimate proximity to your process table.
+
+It would be difficult, we feel, to argue that this isn't cool.
+But one could argue that it's just a party trick. 
+
+##1.4 Internal changes##
+
+Lorem ipsum.
+
+##1.5 Networking##
+
+Arvo is the OS.  Urbit is the network.  In theory you could write
+an Urbit client that wasn't Arvo, though it's hard to see why.
+But it seems unseemly to erase this distinction entirely.
+
+So... let's do some networking.  Arvo is an immutable namespace.
+But... Urbit is a _global_ immutable namespace.
+
+We sent you two destroyers, right?  You could run them both from
+the same pier (ie, from the same Unix process), but this would be
+confusing for a newb.  So it's time to make a new window and boot
+up your second ship.  Let's say it's `~wolnum-sorleb`:
+
+    vere -c otherpier
+
+And follow the same directions as above.  If it worked, you
+should be able to say hi to yourself:
+
+    ~wolnum-sorleb/try=> :hi ~waclux-tomwyc "welcome to Urbit"
+    ; ~waclux-tomwyc is your neighbor
+    ; ~waclux-tomwyc: "this is fun"
+
+    ; ~wolnum-sorleb is your neighbor
+    ~waclux-tomwyc/try=> :hi ~wolnum-sorleb "this is fun"
+    ; ~wolnum-sorleb: "welcome to Urbit"
+
+(Neighbors are Urbit ships that have completed a symmetric key
+exchange.  In most cases they will also be communicating via
+direct UDP packets, though if both sides are behind bad NAT
+gateways the (encrypted) packets have to bounce through our
+servers.)
+
+Okay, that seemed to work.  Now we can use the global namespace
+as if _the whole world was one giant computer_:
+
+    ~waclux-tomwyc/try=> :cat /~wolnum-sorleb/try=/bin/goodbye/hoon
+    [waiting...]
+    |=  *
+    |=  [planet=tape ~]
+    :_  ~  :_  ~
+    [%$ !>("hello, {planet}.")]
+    ~waclux-tomwyc/try=> :~wolnum-sorleb/try=/goodbye "world"
+    [waiting...]
+    "hello, world."
+
+Whoa.
+
+But perhaps that was a little slow.  The network isn't very well
+tuned yet, and there are several roundtrips as we request config
+files that aren't actually there for this trivial app.  
+
+Moreover, if we try it again, it'll be slow again, because we are
+requesting files at the current date with that `try=`.  Let's try
+to use a label instead:
+
+    ~waclux-tomwyc/try=> :~wolnum/sorleb/try/alpha/goodbye "world"
+    [waiting...]
+
+Hey, whoops.  That label doesn't exist yet.  So, our process will
+block forever until it does.  Let's go over to the other side and
+create it:
+
+    ~wolnum-sorleb/try=> :label %try %alpha
+    = alpha /~wolnum-sorleb/try/2
+
+At which point you'll see
+
+    ~waclux-tomwyc/try=> :~wolnum/sorleb/try/alpha/goodbye "world"
+    "hello, world."
+
+Pretty cool, right?  Now try it again.  Since bindings are
+permanent, it won't hit the network at all:
+
+    ~waclux-tomwyc/try=> :~wolnum/sorleb/try/alpha/goodbye "world"
+    "hello, world."
+
+Obviously, what's going on here is that a file request is just a
+special case of a publish-subscribe mechanism.  An attempt to use
+a resource, local or remote, that isn't ready, is automatically
+treated as a subscription to that resource, and creates state on
+the server that owns it which will be activated once the resource
+does exist.  (And if you kill the requesting task on the client,
+it will cancel the request on the server.)
+
+
 
