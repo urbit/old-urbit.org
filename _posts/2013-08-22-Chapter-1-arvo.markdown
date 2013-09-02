@@ -9,9 +9,11 @@ title: Chapter 1 &#58; Crash course in Arvo
 
 Welcome to Urbit!
 
+#1.1 Build#
+
 First, build...
 
-###1: get the source##
+##1: get the source##
 
 Either:
 
@@ -19,7 +21,7 @@ Either:
 
 2. `git clone https://github.com/urbit/urbit.git`. 
 
-###2: set URBIT_HOME###
+##2: set URBIT_HOME##
 
 Add
 
@@ -36,7 +38,7 @@ Check that you've done this right with
 
 which should return `$DIR/urb`.
 
-###3: resolve dependencies###
+##3: resolve dependencies##
 
 Urbit depends on:
 
@@ -51,9 +53,9 @@ ninjas may attempt ports to other OSes. If you're not an intrepid
 ninja, try a VM (eg, VirtualBox).
 
 
-**OS X**
+**OS X:**
 
-1. Install XCode: `https://developer.apple.com/xcode/`.
+1. Install XCode: `https://developer.apple.com/xcode/`. You need to install XCode's Command Line Tools.
 
 2. Install Homebrew. `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` 
 should work.  (Can you use MacPorts? Yes you can. You can also resolve the dependencies 
@@ -62,22 +64,22 @@ by hand :-)
 3. `sudo brew install gmp libsigsegv openssl`
 
 
-**Ubuntu**
+**Ubuntu:**
 
 1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev`
 
 
-**AWS**
+**AWS:**
 
 1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel`
 
 
-###4: make###
+##4: make##
 
 In your Urbit directory (`$DIR`), `make`.  Sometimes things are just easy.  Or at least,
 they should be easy.
 
-###5: vere###
+##5: vere##
 
 Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this
@@ -106,10 +108,10 @@ and then it'll pause a little, 'cause this is slow... and then
 and, then, if the network gods are happy, your submarine will start pulling
 down Arvo files:
 
-    + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ticket/hoon
-    + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/reset/hoon
-    + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ye/hoon
-    + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ls/hoon
+     + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ticket/hoon
+     + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/reset/hoon
+     + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ye/hoon
+     + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ls/hoon
 
 and the like.  You'll see a couple pages of this stuff.  Don't worry too much
 about the details right now.  Finally, you'll get the Arvo shell prompt (which
@@ -149,7 +151,7 @@ prompt:
 and follow the directions.  When the script completes, hit return and you'll be
 the `~waclux-tomwyc` you wanted to be.
 
-##1.2 Controlling Arvo##
+#1.2 Controlling Arvo#
 
 If all went well, you now have a nice short prompt:
 
@@ -351,7 +353,7 @@ a server running in the background, use `vere -d`.
 But don't try to operate the same ship on two Unix hosts at the
 same time.  This will confuse everyone, including yourself.
 
-##1.2 Path magic##
+#1.3 Path magic#
 
 What do we know?  Okay, so this is an OS.  It's a little like
 Unix but different.  It can print expressions and run commands.
@@ -502,7 +504,7 @@ missing - such as globbing (expanding `*` and the like).  A
 toddler can't really go to war against a middle-aged neckbeard.
 But if Arvo is a toddler, hopefully it's a promising toddler.
 
-##1.2 Actual editing##
+#1.4 Actual editing#
 
 But wait!  There seem to be a bunch of files in your ship.  How
 did they get there?  Oh, right, installation automatically
@@ -559,7 +561,7 @@ follows, and generates actions which `vere` applies.  If you know
 Git, the best way to see `$URBIT_HOME` is as a working directory
 in which changes are automatically committed.
 
-##1.3 Revision control##
+#1.5 Revision control#
 
 Now we're prepared to see the true awesome of a
 revision-controlled filesystem.  
@@ -699,11 +701,11 @@ system is not in intimate proximity to your process table.
 It would be difficult, we feel, to argue that this isn't cool.
 But one could argue that it's just a party trick. 
 
-##1.4 Internal changes##
+#1.6 Internal changes#
 
 Lorem ipsum.
 
-##1.5 Networking##
+#1.7 Networking#
 
 Arvo is the OS.  Urbit is the network.  In theory you could write
 an Urbit client that wasn't Arvo, though it's hard to see why.
@@ -796,6 +798,3 @@ but at bottom a Web request remains a side effect in a mutable
 system.  While Urbit requests are built on a message queue layer
 which you can use if you like, simply sharing data (and/or code)
 isn't a matter of APIs, requests, installs, etc.  You just use it.
-
-makes Urbit a 
-
