@@ -788,5 +788,14 @@ the server that owns it which will be activated once the resource
 does exist.  (And if you kill the requesting task on the client,
 it will cancel the request on the server.)
 
+It's the combination of a purely functional language and OS with
+a secure, referentially transparent global namespace that makes
+Urbit a qualitatively different programming experience.  APIs are
+great and REST is an attempt to make the Web almost functional,
+but at bottom a Web request remains a side effect in a mutable
+system.  While Urbit requests are built on a message queue layer
+which you can use if you like, simply sharing data (and/or code)
+isn't a matter of APIs, requests, installs, etc.  You just use it.
 
+makes Urbit a 
 
