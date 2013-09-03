@@ -388,11 +388,6 @@ where `ship` is your ship, `desk` is a project (repository,
 branch, etc), `case` is a revision of that project (a change
 number, a date or a label), and `spur` is a path within it.
 
-By convention, the head of the spur is the `neck`, which is
-always one of `bin`, `lib`, `con`, or `doc` - ie, a file is
-either a function, a library, a configuration, or a document
-(meaning any kind of data file).  The rest is the `pole`.
-
 As in Unix, the shell (`batz`) keeps a current path.  As in 
 Unix, you can write paths in an absolute or relative syntax,
 and as in Unix `/` is the path separator.  Everything else
@@ -631,17 +626,16 @@ we say
 
 this actually does a path search and ends up as a shorthand for
 
-    ~waclux-tomwyc/try=> :=/try=/goodbye "world"
+    ~waclux-tomwyc/try=> :=/try=/bin/goodbye "world"
     "goodbye, world."
 
-(Note that the `bin` is still inserted automagically.)  But of 
-course, we can use the full revision notation here:
+But of course, we can use the full revision notation here:
 
-    ~waclux-tomwyc/try=> :=/try/1/goodbye "world"
+    ~waclux-tomwyc/try=> :=/try/1/bin/goodbye "world"
     "hello, world."
-    ~waclux-tomwyc/try=> :=/try/2/goodbye "world"
+    ~waclux-tomwyc/try=> :=/try/2/bin/goodbye "world"
     "goodbye, world."
-    ~waclux-tomwyc/try=> :=/try/new/goodbye "world"
+    ~waclux-tomwyc/try=> :=/try/new/bin/goodbye "world"
     "goodbye, world."
 
 Yeah, I guess that's kind of cool.  But... actually...
@@ -654,7 +648,7 @@ top of the OS, opens up... certain... possibilities.
 What happens if we try to use a revision that doesn't exist yet?
 Remember that the `new` label was change `3`.  But suppose we try
 
-    ~waclux-tomwyc/try=> :=/try/4/goodbye "world"
+    ~waclux-tomwyc/try=> :=/try/4/bin/goodbye "world"
     [waiting...]
 
 Hm?  Again, either quit with ^D, or use another window; edit 
@@ -676,13 +670,13 @@ you quit, or just hit space to trigger the sync.
 
 Tell me you've seen _that_ before.  It works with labels too:
 
-    ~waclux-tomwyc/try=> :=/try/crazy/goodbye "world"
+    ~waclux-tomwyc/try=> :=/try/crazy/bin/goodbye "world"
     [waiting...]
 
 Use ^X to get a prompt back while this task waits.  Then, create
 the label:
 
-    ~waclux-tomwyc/try=> :=/try/crazy/goodbye "world"
+    ~waclux-tomwyc/try=> :=/try/crazy/bin/goodbye "world"
     ~waclux-tomwyc/try=> :label %try %crazy
     = crazy /~waclux-tomwyc/try/5
     "hasta la vista, world."
