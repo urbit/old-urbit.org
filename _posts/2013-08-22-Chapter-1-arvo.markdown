@@ -699,7 +699,7 @@ system is not in intimate proximity to your process table.
 It would be difficult, we feel, to argue that this isn't cool.
 But one could argue that it's just a party trick. 
 
-##1.4 Internal changes##
+##1.4 Internal I/O##
 
 Lorem ipsum.
 
@@ -759,7 +759,7 @@ Moreover, if we try it again, it'll be slow again, because we are
 requesting files at the current date with that `try=`.  Let's try
 to use a label instead:
 
-    ~waclux-tomwyc/try=> :~wolnum/sorleb/try/alpha/goodbye "world"
+    ~waclux-tomwyc/try=> :~wolnum-sorleb/try/alpha/goodbye "world"
     [waiting...]
 
 Hey, whoops.  That label doesn't exist yet.  So, our process will
@@ -771,14 +771,30 @@ create it:
 
 At which point you'll see
 
-    ~waclux-tomwyc/try=> :~wolnum/sorleb/try/alpha/goodbye "world"
+    ~waclux-tomwyc/try=> :~wolnum-sorleb/try/alpha/goodbye "world"
     "hello, world."
 
 Pretty cool, right?  Now try it again.  Since bindings are
 permanent, it won't hit the network at all:
 
-    ~waclux-tomwyc/try=> :~wolnum/sorleb/try/alpha/goodbye "world"
+    ~waclux-tomwyc/try=> :~wolnum-sorleb/try/alpha/goodbye "world"
     "hello, world."
+
+Let's try it with some data:
+
+    ~waclyx-tomwyc/try=> (mul 10 ^:@/~zod/try/beta/fortytwo/noun)
+    [waiting...]
+ 
+    ~wolnum-sorleb/try=> :ram /===/doc/fortytwo/noun; (mul 6 7)
+    + /~wolnum-sorleb/try/3/doc/fortytwo/noun
+    ~wolnum-sorleb/try=> :label %try %beta
+      
+    ~waclyx-tomwyc/try=> (mul 10 ^:@/~zod/try/beta/fortytwo/noun)
+    420
+
+So not only can you use any data in Urbit, on the command line
+or in a program, as if it were a constant - if the data isn't 
+available yet, your task will block until it is.
 
 Obviously, what's going on here is that a file request is just a
 special case of a publish-subscribe mechanism.  An attempt to use
@@ -797,5 +813,4 @@ system.  While Urbit requests are built on a message queue layer
 which you can use if you like, simply sharing data (and/or code)
 isn't a matter of APIs, requests, installs, etc.  You just use it.
 
-makes Urbit a 
 
