@@ -778,14 +778,14 @@ permanent, it won't hit the network at all:
 
 Let's try it with some data:
 
-    ~waclyx-tomwyc/try=> (mul 10 ^:@/~zod/try/beta/fortytwo/noun)
+    ~waclyx-tomwyc/try=> (mul 10 ^:@/~zod/try/beta/doc/fortytwo/noun)
     [waiting...]
  
     ~wolnum-sorleb/try=> :ram /===/doc/fortytwo/noun; (mul 6 7)
     + /~wolnum-sorleb/try/3/doc/fortytwo/noun
     ~wolnum-sorleb/try=> :label %try %beta
       
-    ~waclyx-tomwyc/try=> (mul 10 ^:@/~zod/try/beta/fortytwo/noun)
+    ~waclyx-tomwyc/try=> (mul 10 ^:@/~zod/try/beta/doc/fortytwo/noun)
     420
 
 So not only can you use any data in Urbit, on the command line
