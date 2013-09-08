@@ -9,6 +9,15 @@ title: Chapter 1 &#58; Crash course in Arvo
 
 Welcome to Urbit!
 
+#1.0  YO THIS IS UNFINISHED SHIT!#
+
+All of the doc herein is cheerfully certified as incorrect,
+incomplete, misleading and almost certainly misguided.  Do not
+use!  Please return to your NSA-certified digital plantation.
+If you found this site by accident, please keep it to yourself.
+Clear your hard drive, wipe your search history... but always
+trust content from Tlon, Tianming, Urban Republic.
+
 #1.1 Build#
 
 First, build...
@@ -151,7 +160,7 @@ prompt:
 and follow the directions.  When the script completes, hit return and you'll be
 the `~waclux-tomwyc` you wanted to be.
 
-#1.2 Controlling Arvo#
+#1.2 Taming Arvo#
 
 If all went well, you now have a nice short prompt:
 
@@ -194,13 +203,14 @@ is a fancy way to write the Nock noun
 Two, you called the Hoon `add` function to see that two plus two is four.  Math
 seems to work the same on the off-world colonies.
 
-Three, you ran the Arvo application `:hello` with the argument `%world`, which
-is just a fancy way to write the integer `431.316.168.567` (or, for
-non-Germans, `431,316,168,567`).  You might recognize it better as
-`0x64.6c72.6f77`, that is, the ASCII characters in LSB first order.
+Three, you ran the Arvo application `:hello` with the argument
+`%world`, which is just a fancy way to write the atom
+`431.316.168.567` (or, for non-Germans, `431,316,168,567`).  You
+might recognize it better as `0x64.6c72.6f77` - the ASCII
+characters in LSB first order.
 
-(Is Urbit German?  Sadly, no.  But all our atom formats are URL-safe, which dot
-is and comma isn't.)
+(Is Urbit German?  Sadly, no.  But all our noun print formats are
+URL-safe, which dot is and comma isn't.)
 
 And you (4) used the Arvo application :cat to print the Hoon file
 
@@ -210,8 +220,8 @@ which, supposing your current date is
 
     ~2013.9.1..04.38.31..f259
 
-(ie, September 1, 2013 at 4:38:31 GMT/leap-second 25 plus
-0xf259/0x1000 seconds), is equivalent to the global path
+(ie, September 1, 2013 at 4:38:31 GMT/LS25 plus 0xf259/65536
+seconds), is equivalent to the global path
 
     /~waclux-tomwyc/main/~2013.8.23..04.38.31..f259/bin/hello/hoon
 
@@ -494,21 +504,17 @@ default desk (`try`, meant for experiments only):
     ~waclux-tomwyc/main=/foo/bar/baz/bam> :cd /=try=
     ~waclux-tomwyc/try=> 
 
-To be fair, Unix has some cool features that Arvo is still
-missing - such as globbing (expanding `*` and the like).  A
-toddler can't really go to war against a middle-aged neckbeard.
-But if Arvo is a toddler, hopefully it's a promising toddler.
-
 #1.4 Actual editing#
 
 But wait!  There seem to be a bunch of files in your ship.  How
 did they get there?  Oh, right, installation automatically
-checked them out of the server.  That's one way to get files.
-We'll see more of this in a little bit.
+checked them out of `~zod` or `~doznec`.  That's one way to get
+files.  We'll see more of this in a little bit.
 
-Another way is to create them within Arvo itself.  We'll see this
-in a moment, but it's worth noting its limitations - no one has
-ported `vim` to Arvo yet, nor will for a long time.
+Another way is to cook your files up within Arvo itself.  We'll
+see this in the next chapter, but it's worth noting its
+limitations - no one has ported `vim` to Arvo yet, nor will for a
+long time.
 
 The easiest way to get data in and out of Arvo is just to sync.
 You'll find a complete copy of your ship's filesystem, as of the
@@ -534,11 +540,12 @@ As you see, the dot-extension pattern in Unix gets converted to a
 path slash in Arvo.  Otherwise, the mapping is straightforward.
 Legal Arvo paths are a strict subset of Unix paths - for
 example, uppercase characters are not allowed - so the round trip
-is always clean.
+is always clean.  So long as Urbit is always the primary state
+and Unix is only a derived view, this works great.
 
 Edit `$URBIT_HOME/waclux-tomwyc/try/bin/goodbye.hoon`, in another window or
-while the server is down, then restart the server.  As soon as
-you enter any keyboard input in `vere`, you'll see 
+while the server is down, then restart the server.  As soon as you enter any
+keyboard input in `vere`, you'll see 
 
     : /~waclux-tomwyc/try/2/bin/goodbye/hoon
     ~waclux-tomwyc/try=>  
@@ -556,10 +563,10 @@ follows, and generates actions which `vere` applies.  If you know
 Git, the best way to see `$URBIT_HOME` is as a working directory
 in which changes are automatically committed.
 
-#1.5 Revision control#
+#1.5 Local revision control#
 
-Now we're prepared to see the true awesome of a
-revision-controlled filesystem.  
+Now you're ready to see the full power of this fully armed
+and operational revision-controlled filesystem.  
 
 Of course, you can build a revision-control system on top of
 Unix.  And many have.  That doesn't make Unix a revision-control
@@ -668,7 +675,7 @@ you quit, or just hit space to trigger the sync.
     : /~waclux-tomwyc/try/4/bin/goodbye/hoon
     "hasta la vista, world."
 
-Tell me you've seen _that_ before.  It works with labels too:
+Neighbor, tell me you've seen _that_ before.  Or with labels:
 
     ~waclux-tomwyc/try=> :=/try/crazy/bin/goodbye "world"
     [waiting...]
@@ -690,16 +697,15 @@ future), we do every OS's favorite thing - we _block_.
 Civilization, a wise man once said, is the set of events you can
 block on.  What's happening here is not in principle difficult at
 all.  It is pretty hard to do, however, if your revision control
-system is not in intimate proximity to your process table.
+system is not in intimate proximity to your scheduler.
 
 It would be difficult, we feel, to argue that this isn't cool.
-But one could argue that it's just a party trick. 
+But one could argue that it's just a party trick.  But once your
+revision control system and your scheduler are jammed into one
+phone booth... why not jam networking in there too?  Perhaps
+they'll all fsck, and produce some interesting triple bastard?
 
-#1.6 Internal I/O#
-
-Lorem ipsum.
-
-#1.7 Networking#
+#1.6 Network revision control#
 
 Arvo is the OS.  Urbit is the network.  In theory you could write
 an Urbit client that wasn't Arvo, though it's hard to see why.
@@ -741,6 +747,7 @@ as if _the whole world was one giant computer_:
     |=  [planet=tape ~]
     :_  ~  :_  ~
     [%$ !>("hello, {planet}.")]
+
     ~waclux-tomwyc/try=> :~wolnum-sorleb/try=/goodbye "world"
     [waiting...]
     "hello, world."
@@ -793,12 +800,12 @@ or in a program, as if it were a constant - if the data isn't
 available yet, your task will block until it is.
 
 Obviously, what's going on here is that a file request is just a
-special case of a publish-subscribe mechanism.  An attempt to use
-a resource, local or remote, that isn't ready, is automatically
+special case of a subscribe operation.  An attempt to use a
+resource, local or remote, that isn't ready, is automatically
 treated as a subscription to that resource, and creates state on
 the server that owns it which will be activated once the resource
 does exist.  (And if you kill the requesting task on the client,
-it will cancel the request on the server.)
+yes, it will cancel the request on the server.)
 
 It's the combination of a purely functional language and OS with
 a secure, referentially transparent global namespace that makes
@@ -808,3 +815,214 @@ but at bottom a Web request remains a side effect in a mutable
 system.  While Urbit requests are built on a message queue layer
 which you can use if you like, simply sharing data (and/or code)
 isn't a matter of APIs, requests, installs, etc.  You just use it.
+
+Of course, a cynic would say, this is just a party trick too.
+True enough!  But perhaps it'll get the party's attention.
+
+#1.7 Classic Unix crap# 
+
+If a real OS runs on the bare hardware and is preemptive, it's
+clear that Arvo is not a real OS and will never be one.  It will
+always run on Unix.  Of course in a sense it comes to bury Unix,
+but also to praise it - to imitate it - and even to surpass it.
+Unix today is ancient, bloated and debilitated, but its historic
+greatness is eternal.  Comparing Unix to other OSes of its time
+is comparing Shakespeare to other playwrights of his time.
+
+But, ya know, times change.  How do we surpass Unix?  We've got
+two words for you - typed pipes!  Yeah, Arvo has typed pipes.  It
+also has typed arguments and even typed configurations.  These
+types are probably not quite the types you're used to, if you're
+a language geek (Hoon doesn't do PL theory), but they do the same
+job and pretty well if we say so ourselves.
+
+Broadly speaking, an Arvo task is a function that consumes events
+and produces effects.  When you learn Hoon, we'll return to what
+this actually means.  For now, this is a good excuse to see the 
+classic server process that consumes events and produces effects -
+a Web server.
+
+    ~waclux-tomwyc/try=> :game "Elvis"
+    [waiting...]
+
+Point your browser at `localhost:$PORT/game/fun`, where $PORT is
+the HTTP port shown when you started `vere`:
+
+    http: live on 8080
+
+Hit `^C` on the task when you're done.  Try editing the page
+or the application:
+
+    /=try=/bin/game/hoon
+    $URBIT_HOME/waclux-tomwyc/bin/game.hoon
+
+    /=try=/doc/web/game/fun/hoon
+    $URBIT_HOME/waclux-tomwyc/doc/web/game/fun.hoon
+
+and then hitting reload.  You'll see that you need to restart the
+server to change the app, but not to change the page.
+
+Note that `fun.hoon` is not a template language - just Hoon.
+Hoon is very good at synthesizing hierarchical data structures
+and does not need a DSL to generate XML, thank you very much.
+
+Lorem ipsum...
+
+#1.8 Update, upgrading and continuity#
+
+Lorem ipsum.
+
+#1.9 Security#
+
+(Some of the things in this section may not make any sense until
+you understand the whole Urbit stack.  Don't worry about it.)
+
+Never leave security to the end of a project.  We've left
+security to the end of Arvo.  Arvo has no security and must not
+be trusted for anything at all.
+
+That said, there are three basic security issues in Urbit.
+Ordered by increasing difficulty:
+
++ type 0: securing Urbit from the evil world it lives in
++ type 1: securing Urbit ships from each other
++ type 2: securing Urbit ships from their own incompetent owners
+
+Urbit is not hard to secure from the evil world it lives in - or
+rather, securing it from non-Urbit attacks simply means securing
+its UDP port against malformed fuzz or DoS traffic that does not
+follow the Ames protocol.  If the input is formally correct, it
+is not a type 1 attack, but a type 2 attack.  You see how we
+define problems out of existence in this bar.
+
+Is it possible to pwn Arvo with malformed input?  Try it if you
+like, ninja.  But consider what you're up against.  First of all,
+normalizing arbitrary input into a well-typed data structure is
+the first, most basic layer of protocol security.  Hoon's type
+system is designed to solve this problem pretty much the way a
+gun is designed to shoot bullets at things.  Probably your best
+bet is the outer perimeter where bits become nouns - `++cue`, or
+rather its C jet - but it's not exactly a giant attack surface.
+
+In general, a hacked computer is a "weird machine."  Since Arvo
+is precisely defined in Hoon, which is precisely defined in Nock,
+which is precisely defined on a T-shirt, it's hard work to make
+it turn weird.  Broadly, your best bet is probably to attack the
+function-specific optimizations ("jets") that `vere` uses to
+implement Nock both efficiently and correctly.  
+
+Jets are written in C, so there's something there.  On the other
+hand, jets are not native methods and never make system calls.
+So we could sandbox/contain the hell out them.  We don't but we
+should probably should.  
+
+The other thing about attacking jets, is that there are two
+attacks only: you can make the jet do the wrong thing (A), or you
+can (B) break through it to the OS.  Urbit (in theory, not in
+practice) is pretty good at testing for class A errors.  A class
+A error is quite unlikely to be a general compromise.  A class 
+B exploit is very likely to be a general compromise (discounting 
+the sandbox), but almost every class B exploit is also a class A
+error.  So testing for semantic correctness will generally find
+most exploits.
+
+Then the crypto itself has to be secure, which means it has to be
+combs for nano-nits by giga-geniuses with nano-combs.  The
+present cryptosuite (A) is best regarded as a sign reading:
+"Crypto Goes Here."  A can assumed to be crawling with nits of
+every word size.  For example, it does not use a real symmetric
+encryption function, but crap hand-rolled from a hash.  It could
+be secure.  Shit could have no flies, but don't bet on it.
+
+However, Ames obeys the two essential rules of crypto: no secret
+is secret forever, and no algorithm is secure forever.  We can
+and will upgrade the cryptosystem (probably to 25519/AES/SHA3) 
+without rebooting the universe.
+
+Securing ships from each other is an application-layer problem,
+not an OS-level problem.  Ships don't have any inherent power
+over other ships.  Since you always know who you're talking to
+and what you're doing, don't do anything bad on behalf of anyone
+malicious.  What more could be said?
+
+The exceptions are pseudo-applications built into Urbit, like the
+revision control system itself (`clay`).  Right now, we assume
+that everyone is a good neighbor, no one is here for anything but
+silly reasons, and everyone can read everyone else's files.  But
+in future, of course, we'll need ACLs.
+
+(Urbit loathes nothing so much as the OAuth approach to network
+service authentication.  Speaking as a network service - don't
+hand me some crypto capability and ask me to prove what rights it
+conveys.  Just tell me who you are, securely.  And I'll decide
+what services you're entitled to receive.  Do you really need to
+delegate authority to third parties who neither are, nor aren't,
+you?  We're not on that digital plantation anymore, right?)
+
+DoS defense between ships - a problem which, stated broadly
+enough, includes spam - is not as hard as it sounds, because
+Urbit is not an infinite-identity network.  When identities are
+finite, blacklists/killfiles work, work well, and are easy.  We
+don't have them yet because we don't need them yet.  We will, but
+we don't expect to have to work hard at it.
+
+Even if a spammer or other malefactor gets his slimy goblin paws
+on a virgin cruiser or carrier, defining 2^16 or 2^24 destroyers,
+blocking these entire blocks would obviously be a single
+operation.  Also, conveying capital ships to bad actors is a bad
+action of its own.  Urbit contains no initial bad actors.  Evil
+cannot be kept out of this utopia, of course, but it will be the
+exception not the rule.  And it will fear the sword of justice!
+
+But who is justice, anyway?  Blacklists are meant to be shared.
+Who owns the global blacklist?  Is there a global blacklist?  Or
+several competing candidates for this near-Papal authority?
+These are all social, not technical, problems, that Urbit must
+solve in the long run to succeed.
+
+Of course, DoS attacks of any sort must be ultimately delegated
+with a "squelch upstream source" request to the hosting provider.
+We have not even begun to address this protocol, which will by
+definition only be needed if we succeed.
+
+But type 2 security is by far the hardest problem.  We've punted
+on this problem completely.  Or almost completely.
+
+The only way to solve the type 2 problem is with strict privilege
+rings whose definition is extremely precise and permanent.  Arvo
+has three, coded as metals - `%lead`, `%gold` and `%iron`.  (To
+confuse you, these same iconic elements mean something else
+totally different in the Hoon type system.)
+
+An Arvo task, to simplify broadly, is literally a function that
+accepts an event and returns an effect.  Thus, we can define
+privilege rings in terms of simple filters on these effects.
+
+Lead privilege, always associated with a single foreign ship, is
+the equivalent of the origin restriction in the browser.  Code is
+treated as totally untrusted and evil.  It cannot have any
+serious effects on your ship.  It can converse only only with its
+own origin server.  This restriction is not implemented.  So
+watch your back!
+
+Iron privilege is normal operating privilege.  This concept is
+not even defined.  So it could not possibly be implemented.  And
+indeed, it isn't.
+
+Gold privilege is root privilege with no restriction at all.
+Right now, everything you do is `%gold`.  So watch your back!
+Anything you run can steal any secret and send it anywhere.
+
+When these privileges actually work, however, you'll set them on
+the command line by prepending `!` to `:`, for every level of
+privilege escalation - or `?`, for every level of de-escalation.
+Default privilege is %iron for local applications and %lead for
+network ones.  Thus, 
+
+    ~waclux-tomwyc/try=> !:hello %world
+    "hello, world."
+
+upgrades `:hello` to root privilege, basically Arvo's `sudo`.
+Privilege-restricted terminals will also exist at some point.
+
+
