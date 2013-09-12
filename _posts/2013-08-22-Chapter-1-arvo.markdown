@@ -799,6 +799,9 @@ So not only can you use any data in Urbit, on the command line
 or in a program, as if it were a constant - if the data isn't 
 available yet, your task will block until it is.
 
+Of course, a cynic would say, this is just a party trick too.
+True enough!  But perhaps it'll get the party's attention.
+
 Obviously, what's going on here is that a file request is just a
 special case of a subscribe operation.  An attempt to use a
 resource, local or remote, that isn't ready, is automatically
@@ -816,8 +819,13 @@ system.  While Urbit requests are built on a message queue layer
 which you can use if you like, simply sharing data (and/or code)
 isn't a matter of APIs, requests, installs, etc.  You just use it.
 
-Of course, a cynic would say, this is just a party trick too.
-True enough!  But perhaps it'll get the party's attention.
+It is of course possible to build the same kinds of services with
+20th-century Web protocols.  Just as there are revision control
+servers on the Internet, there are pretty good (certainly much
+more featureful) publish-and-subscribe protocols over HTTP.  But
+such protocols are standalone systems, and difficult to integrate
+with each other in a single programming environment and service
+layer.
 
 #1.7 Classic Unix crap# 
 
@@ -863,166 +871,13 @@ and then hitting reload.  You'll see that you need to restart the
 server to change the app, but not to change the page.
 
 Note that `fun.hoon` is not a template language - just Hoon.
-Hoon is very good at synthesizing hierarchical data structures
+Hoon is good at synthesizing hierarchical data structures
 and does not need a DSL to generate XML, thank you very much.
 
 Lorem ipsum...
 
 #1.8 Update, upgrading and continuity#
 
-Lorem ipsum.
-
-#1.9 Security#
-
-(Some of the things in this section may not make any sense until
-you understand the whole Urbit stack.  Don't worry about it.)
-
-Never leave security to the end of a project.  We've left
-security to the end of Arvo.  Arvo has no security and must not
-be trusted for anything at all.
-
-That said, there are three basic security issues in Urbit.
-Ordered by increasing difficulty:
-
-+ type 0: securing Urbit from the evil world it lives in
-+ type 1: securing Urbit ships from each other
-+ type 2: securing Urbit ships from their own incompetent owners
-
-Urbit is not hard to secure from the evil world it lives in - or
-rather, securing it from non-Urbit attacks simply means securing
-its UDP port against malformed fuzz or DoS traffic that does not
-follow the Ames protocol.  If the input is formally correct, it
-is not a type 1 attack, but a type 2 attack.  You see how we
-define problems out of existence in this bar.
-
-Is it possible to pwn Arvo with malformed input?  Try it if you
-like, ninja.  But consider what you're up against.  First of all,
-normalizing arbitrary input into a well-typed data structure is
-the first, most basic layer of protocol security.  Hoon's type
-system is designed to solve this problem pretty much the way a
-gun is designed to shoot bullets at things.  Probably your best
-bet is the outer perimeter where bits become nouns - `++cue`, or
-rather its C jet - but it's not exactly a giant attack surface.
-
-In general, a hacked computer is a "weird machine."  Since Arvo
-is precisely defined in Hoon, which is precisely defined in Nock,
-which is precisely defined on a T-shirt, it's hard work to make
-it turn weird.  Broadly, your best bet is probably to attack the
-function-specific optimizations ("jets") that `vere` uses to
-implement Nock both efficiently and correctly.  
-
-Jets are written in C, so there's something there.  On the other
-hand, jets are not native methods and never make system calls.
-So we could sandbox/contain the hell out them.  We don't but we
-should probably should.  
-
-The other thing about attacking jets, is that there are two
-attacks only: you can make the jet do the wrong thing (A), or you
-can (B) break through it to the OS.  Urbit (in theory, not in
-practice) is pretty good at testing for class A errors.  A class
-A error is quite unlikely to be a general compromise.  A class 
-B exploit is very likely to be a general compromise (discounting 
-the sandbox), but almost every class B exploit is also a class A
-error.  So testing for semantic correctness will generally find
-most exploits.
-
-Then the crypto itself has to be secure, which means it has to be
-combs for nano-nits by giga-geniuses with nano-combs.  The
-present cryptosuite (A) is best regarded as a sign reading:
-"Crypto Goes Here."  A can assumed to be crawling with nits of
-every word size.  For example, it does not use a real symmetric
-encryption function, but crap hand-rolled from a hash.  It could
-be secure.  Shit could have no flies, but don't bet on it.
-
-However, Ames obeys the two essential rules of crypto: no secret
-is secret forever, and no algorithm is secure forever.  We can
-and will upgrade the cryptosystem (probably to 25519/AES/SHA3) 
-without rebooting the universe.
-
-Securing ships from each other is an application-layer problem,
-not an OS-level problem.  Ships don't have any inherent power
-over other ships.  Since you always know who you're talking to
-and what you're doing, don't do anything bad on behalf of anyone
-malicious.  What more could be said?
-
-The exceptions are pseudo-applications built into Urbit, like the
-revision control system itself (`clay`).  Right now, we assume
-that everyone is a good neighbor, no one is here for anything but
-silly reasons, and everyone can read everyone else's files.  But
-in future, of course, we'll need ACLs.
-
-(Urbit loathes nothing so much as the OAuth approach to network
-service authentication.  Speaking as a network service - don't
-hand me some crypto capability and ask me to prove what rights it
-conveys.  Just tell me who you are, securely.  And I'll decide
-what services you're entitled to receive.  Do you really need to
-delegate authority to third parties who neither are, nor aren't,
-you?  We're not on that digital plantation anymore, right?)
-
-DoS defense between ships - a problem which, stated broadly
-enough, includes spam - is not as hard as it sounds, because
-Urbit is not an infinite-identity network.  When identities are
-finite, blacklists/killfiles work, work well, and are easy.  We
-don't have them yet because we don't need them yet.  We will, but
-we don't expect to have to work hard at it.
-
-Even if a spammer or other malefactor gets his slimy goblin paws
-on a virgin cruiser or carrier, defining 2^16 or 2^24 destroyers,
-blocking these entire blocks would obviously be a single
-operation.  Also, conveying capital ships to bad actors is a bad
-action of its own.  Urbit contains no initial bad actors.  Evil
-cannot be kept out of this utopia, of course, but it will be the
-exception not the rule.  And it will fear the sword of justice!
-
-But who is justice, anyway?  Blacklists are meant to be shared.
-Who owns the global blacklist?  Is there a global blacklist?  Or
-several competing candidates for this near-Papal authority?
-These are all social, not technical, problems, that Urbit must
-solve in the long run to succeed.
-
-Of course, DoS attacks of any sort must be ultimately delegated
-with a "squelch upstream source" request to the hosting provider.
-We have not even begun to address this protocol, which will by
-definition only be needed if we succeed.
-
-But type 2 security is by far the hardest problem.  We've punted
-on this problem completely.  Or almost completely.
-
-The only way to solve the type 2 problem is with strict privilege
-rings whose definition is extremely precise and permanent.  Arvo
-has three, coded as metals - `%lead`, `%gold` and `%iron`.  (To
-confuse you, these same iconic elements mean something else
-totally different in the Hoon type system.)
-
-An Arvo task, to simplify broadly, is literally a function that
-accepts an event and returns an effect.  Thus, we can define
-privilege rings in terms of simple filters on these effects.
-
-Lead privilege, always associated with a single foreign ship, is
-the equivalent of the origin restriction in the browser.  Code is
-treated as totally untrusted and evil.  It cannot have any
-serious effects on your ship.  It can converse only only with its
-own origin server.  This restriction is not implemented.  So
-watch your back!
-
-Iron privilege is normal operating privilege.  This concept is
-not even defined.  So it could not possibly be implemented.  And
-indeed, it isn't.
-
-Gold privilege is root privilege with no restriction at all.
-Right now, everything you do is `%gold`.  So watch your back!
-Anything you run can steal any secret and send it anywhere.
-
-When these privileges actually work, however, you'll set them on
-the command line by prepending `!` to `:`, for every level of
-privilege escalation - or `?`, for every level of de-escalation.
-Default privilege is %iron for local applications and %lead for
-network ones.  Thus, 
-
-    ~waclux-tomwyc/try=> !:hello %world
-    "hello, world."
-
-upgrades `:hello` to root privilege, basically Arvo's `sudo`.
-Privilege-restricted terminals will also exist at some point.
+To update the 
 
 
