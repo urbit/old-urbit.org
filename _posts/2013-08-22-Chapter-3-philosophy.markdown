@@ -1,11 +1,7 @@
 ---
-layout: doc_chapter
+layout: post
 title: Chapter 3 &#58; Hoon - Philosophy
 ---
-
-
-{{page.title}}
-==============================
 
 Yo, let's write some Hoon!
 

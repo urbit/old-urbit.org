@@ -1,11 +1,7 @@
 ---
-layout: doc_chapter
+layout: post
 title: Chapter 0 &#58; Introduction and philosophy
 ---
-
-
-{{page.title}}
-==============================
 
 Urbit is a new programming and execution environment
 designed from scratch.  Any resemblance to existing languages

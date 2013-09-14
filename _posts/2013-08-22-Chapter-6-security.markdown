@@ -1,11 +1,7 @@
 ---
-layout: doc_chapter
-title: Chapter 1 &#58; Crash_course in Arvo
+layout: post
+title: Chapter 6 &#58; Security
 ---
-
-
-{{page.title}}
-==============================
 
 Welcome to Urbit!
 

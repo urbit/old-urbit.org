@@ -1,11 +1,7 @@
 ---
-layout: doc_chapter
+layout: post
 title: Chapter 2 &#58; Crash course in Nock
 ---
-
-
-{{page.title}}
-==============================
 
 So let's learn Nock!  But wait - why learn Nock?  After all,
 we're going to be programming in Hoon, not Nock.

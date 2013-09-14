@@ -1,4 +1,27 @@
-name: Urbit Documentation
-lsi: false
-markdown: redcarpet
+# General Jekyll Config
 pygments: true
+url: http://example.com
+lsi: false
+exclude: [LICENSE, CNAME, README.md, .gitignore]
+
+# Theme customization - please change from the defaults!
+theme:
+  # Color for top bar, links, etc
+  highlight_color: '#971223'
+
+  # Profile links on the left sidebar, leave blank to ignore
+  social:
+    github: urbit 
+    twitter: Urbit_
+    hacker_news: urbit
+
+  # "Hi, I'm _______"
+  name: Urbit
+  email: urbit@urbit.org
+  tagline: "An operating function"
+
+  # Google Analytics key, leave blank to ignore
+  google_analytics_key: UA-xxxx-x
+
+  # Toggle "Postings are my own" disclaimer in footer
+  show_disclaimer: false
