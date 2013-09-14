@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Urbit - Chapter 1 &#58; Crash course in Arvo</title>
+  <meta name="author" content="Urbit" />
+  <meta name="description" content="The blog of Urbit" />
+  <link rel="canonical" href="http://example.com/2013/08/22/Chapter-1-arvo.html" />
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="alternate" type="application/rss+xml" title="Urbit" href="http://example.com/atom.xml" />
+
+  <link rel="stylesheet" href="/assets/css/all.css">
+<!--[if IE 7]>
+  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css">
+<![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="four columns sidebar">
+      <nav>
+  <a href="/">
+    <img src="/logo.svg" id="logo" alt="logo"/>
+  </a>
+  <h2> Urbit</h2>
+  <hr/>
+  <ul>
+  <p>An operating function</p>
+  <p>
+   <a href="/">Documentation </a>
+   <br>
+   <a href="/">FAQ</a>
+   <br/>
+   <a href="/">Community</a>
+  </p>
+  <hr/>
+  <div>
+    <div id="social">
+      Follow:
+<div id="stalker">
+  
+  <a title="urbit on Github" href="http://github.com/urbit">
+    <i class="icon-github-sign"></i>
+  </a>
+  
+
+  
+  <a title="urbit on Hacker News" href="http://news.ycombinator.com/user?id=urbit">
+    <i class="icon-sign-blank"></i>
+    <span class="icon-overlay icon-hn">Y</span>
+  </a>
+  
+  
+  <a title="urbit on Twitter" href="http://twitter.com/urbit">
+    <i class="icon-twitter-sign"></i>
+  </a>
+  
+  <a title="RSS feed" id="rss" href="/atom.xml">
+    <i class="icon-rss-sign"></i>
+  </a>
+</div>
+
+    </div>
+  </div>
+  </ul>
+</nav>
+
+    </div>
+
+    <div class="eleven columns content">
+      <p class="meta">
+  <a href="/">
+    <i class="home icon-home"></i>
+  </a>
+</p>
+
+<h1 class="title">Chapter 1 &#58; Crash course in Arvo</h1>
+
+<div id="post">
+  <p>Welcome to Urbit!</p>
+
+<h1 id='10_yo_this_is_unfinished_shit'>1.0 YO THIS IS UNFINISHED SHIT!</h1>
+
+<p>All of the doc herein is cheerfully certified as incorrect, incomplete, misleading and almost certainly misguided. Do not use! Please return to your NSA-certified digital plantation. If you found this site by accident, please keep it to yourself. Clear your hard drive, wipe your search history&#8230; but always trust content from Tlon, Tianming, Urban Republic.</p>
+
+<h1 id='11_build'>1.1 Build</h1>
+
+<p>First, build&#8230;</p>
+
+<h2 id='1_get_the_source'>1: get the source</h2>
+
+<p>Either:</p>
+
+<ol>
+<li>
+<p>Download the source from <code>https://github.com/urbit/urbit/archive/master.zip</code>.</p>
+</li>
+
+<li>
+<p><code>git clone https://github.com/urbit/urbit.git</code>.</p>
+</li>
+</ol>
+
+<h2 id='2_set_urbit_home'>2: set URBIT_HOME</h2>
+
+<p>Add</p>
+
+<pre><code>export URBIT_HOME=$DIR/urb</code></pre>
+
+<p>to your <code>.bash_profile</code> or <code>.bashrc</code> file, where <code>$DIR</code> is your urbit folder from step 1 - eg, <code>$HOME/urbit</code>.</p>
+
+<p>Then run <code>source ~/.bash_profile</code> or <code>source ~/.bashrc</code>.</p>
+
+<p>Check that you&#8217;ve done this right with</p>
+
+<pre><code>echo $URBIT_HOME</code></pre>
+
+<p>which should return <code>$DIR/urb</code>.</p>
+
+<h2 id='3_resolve_dependencies'>3: resolve dependencies</h2>
+
+<p>Urbit depends on:</p>
+
+<ul>
+<li>gmp</li>
+
+<li>libsigsegv</li>
+
+<li>openssl</li>
+
+<li>libssl-dev (Linux only)</li>
+
+<li>ncurses (Linux only)</li>
+</ul>
+
+<p>Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid ninjas may attempt ports to other OSes. If you&#8217;re not an intrepid ninja, try a VM (eg, VirtualBox).</p>
+
+<p><strong>OS X:</strong></p>
+
+<ol>
+<li>
+<p>Install XCode: <code>https://developer.apple.com/xcode/</code>. You need to install XCode&#8217;s Command Line Tools.</p>
+</li>
+
+<li>
+<p>Install Homebrew. <code>ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;</code> should work. (Can you use MacPorts? Yes you can. You can also resolve the dependencies by hand :-)</p>
+</li>
+
+<li>
+<p><code>sudo brew install gmp libsigsegv openssl</code></p>
+</li>
+</ol>
+
+<p><strong>Ubuntu:</strong></p>
+
+<ol>
+<li><code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev</code></li>
+</ol>
+
+<p><strong>AWS:</strong></p>
+
+<ol>
+<li><code>sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel</code></li>
+</ol>
+
+<h2 id='4_make'>4: make</h2>
+
+<p>In your Urbit directory (<code>$DIR</code>), <code>make</code>. Sometimes things are just easy. Or at least, they should be easy.</p>
+
+<h2 id='5_vere'>5: vere</h2>
+
+<p>Run <code>bin/vere -c mypier</code>, where <code>mypier</code> is a directory that doesn&#8217;t yet exist. All your state (an append-only log and a memory checkpoint) will live in this directory. Its name doesn&#8217;t matter and is not visible internally.</p>
+
+<p>A <em>pier</em> is an Urbit virtual machine that hosts one or more Urbit identities, or <em>ships</em>. When you run <code>vere -c</code>, it automatically creates a 128-bit ship, or <code>submarine</code>. Your name (a hash of a randomly-generated public key) will look like:</p>
+
+<pre><code>~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted</code></pre>
+
+<p>First you&#8217;ll see a string of messages like:</p>
+
+<pre><code>vere: urbit home is /Users/cyarvin/Documents/src/u3/urb
+loom: mapped 1024MB
+time: ~2013.9.1..03.57.11..4935
+ames: on localhost, UDP 63908.
+generating 2048-bit RSA pair...</code></pre>
+
+<p>and then it&#8217;ll pause a little, &#8216;cause this is slow&#8230; and then</p>
+
+<pre><code>saving passcode in /Users/cyarvin/.urbit/~magsut-hopful.txt
+(for real security, write it down and delete the file...)</code></pre>
+
+<p>and, then, if the network gods are happy, your submarine will start pulling down Arvo files:</p>
+
+<pre><code> + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ticket/hoon
+ + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/reset/hoon
+ + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ye/hoon
+ + /~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/main/1/bin/ls/hoon</code></pre>
+
+<p>and the like. You&#8217;ll see a couple pages of this stuff. Don&#8217;t worry too much about the details right now. Finally, you&#8217;ll get the Arvo shell prompt (which is also a Hoon REPL):</p>
+
+<pre><code>~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=&gt; </code></pre>
+
+<p>Next, you need to decide whether a mere submarine is enough for you right now. This monicker is a mouthful. You can stick with it (for now), but&#8230; you&#8217;re going to need a wider xterm.</p>
+
+<p>Which might be fine! However, please note that just by sending a simple email, you can get a much better ship - a <code>destroyer</code>, with a nice short name like</p>
+
+<pre><code>~waclux-tomwyc</code></pre>
+
+<p>Just email <code>urbit@urbit.org</code>, with your submarine in the subject. We&#8217;ll send you destroyers - not one, but <em>two</em>. Yes, two! Tell us something cool in the body, and we&#8217;ll send you even more.</p>
+
+<p>If you have a destroyer, you need to configure it. Otherwise, just stretch that xterm wide and skip to section 1.2.</p>
+
+<p>Your destroyers will arrive in the form of <span>ship ticket</span> pairs. Let&#8217;s say one of your ships is <code>~waclux-tomwyc</code> and its ticket is</p>
+
+<pre><code>~ribdyr-famtem-larrun-figtyd</code></pre>
+
+<p>(What are these strings, anyway? Just random unsigned integers, rendered in Hoon&#8217;s syllabic base, <code>@p</code>.)</p>
+
+<p>A new life awaits you on the off-world colonies! To begin, just type at the prompt:</p>
+
+<pre><code>:begin ~waclux-tomwyc</code></pre>
+
+<p>and follow the directions. When the script completes, hit return and you&#8217;ll be the <code>~waclux-tomwyc</code> you wanted to be.</p>
+
+<h1 id='12_taming_arvo'>1.2 Taming Arvo</h1>
+
+<p>If all went well, you now have a nice short prompt:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt;</code></pre>
+
+<p>If all did not go well (send us another email), or you&#8217;re just too impatient to wait for your destroyer, you have a big long prompt. Which is fine, really, just ugly - and all these exercises will still work.</p>
+
+<p>Let&#8217;s try a few quick things to stretch your fingers. Type these command lines and you should see the matching results:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; &quot;hello, world&quot;
+&quot;hello, world&quot;
+
+~waclux-tomwyc/try=&gt; (add 2 2)
+4
+
+~waclux-tomwyc/try=&gt; :hello %world
+&quot;hello, world.&quot;
+
+~waclux-tomwyc/try=&gt; :cat /=main=/bin/hello/hoon
+::
+::  /=main=/bin/hello/hoon
+::
+|=  *
+|=  [planet=@ta ~]
+^-  bowl
+:_  ~  :_  ~
+:-  %%
+!&gt;(&quot;hello, {(trip planet)}.&quot;)</code></pre>
+
+<p>What did you just do?</p>
+
+<p>One, you used Arvo as a Hoon REPL to print the constant <code>&quot;hello, world&quot;</code>, which is a fancy way to write the Nock noun</p>
+
+<pre><code>[104 101 108 108 111 44 32 119 111 114 108 100 0]</code></pre>
+
+<p>Two, you called the Hoon <code>add</code> function to see that two plus two is four. Math seems to work the same on the off-world colonies.</p>
+
+<p>Three, you ran the Arvo application <code>:hello</code> with the argument <code>%world</code>, which is just a fancy way to write the atom <code>431.316.168.567</code> (or, for non-Germans, <code>431,316,168,567</code>). You might recognize it better as <code>0x64.6c72.6f77</code> - the ASCII characters in LSB first order.</p>
+
+<p>(Is Urbit German? Sadly, no. But all our noun print formats are URL-safe, which dot is and comma isn&#8217;t.)</p>
+
+<p>And you (4) used the Arvo application :cat to print the Hoon file</p>
+
+<pre><code>/=main=/bin/hello/hoon</code></pre>
+
+<p>which, supposing your current date is</p>
+
+<pre><code>~2013.9.1..04.38.31..f259</code></pre>
+
+<p>(ie, September 1, 2013 at 4:38:31 GMT/LS25 plus 0xf259/65536 seconds), is equivalent to the global path</p>
+
+<pre><code>/~waclux-tomwyc/main/~2013.8.23..04.38.31..f259/bin/hello/hoon</code></pre>
+
+<p>which anyone in Urbit can, see and even use - but we&#8217;re getting ahead of ourselves.</p>
+
+<p>In any case, what we&#8217;ve seen is that Arvo is a dangerous and powerful operating system which if handled improperly can cause serious injury or loss of life. We exaggerate. Slightly.</p>
+
+<p>The first thing you need to know is how to control this tool. Try your arrow keys - you&#8217;ll see that Arvo has traditional Unix history editing. Up and down, left and right work, as do the simple emacs controls:</p>
+
+<pre><code>^A  go to beginning of line
+^B  left arrow
+^D  delete next character
+^E  go to end of line
+^F  right arrow
+^K  kill to end of line
+^L  clear the screen
+^U  kill the whole line
+^Y  yank (restore from kill ring)</code></pre>
+
+<p>Don&#8217;t expect any other emacs (or even readline - this is not readline, it&#8217;s internal to Arvo) commands to work.</p>
+
+<p>There are also some special control keys specific to Arvo. It&#8217;s a good idea to learn these first so that you feel in, um, control.</p>
+
+<p>First, we&#8217;ll quit out of an infinite loop with ^C:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :infinite</code></pre>
+
+<p>When you hit return at the end of this line, Arvo will appear to hang. Do not be alarmed! This is not a bug - it means that we&#8217;ve started running our infinite loop before printing the next console prompt. Simply hit ^C, and you&#8217;ll see</p>
+
+<pre><code>! intr
+~waclux-tomwyc/try=&gt; :infinite</code></pre>
+
+<p>Hit ^U to delete the line and escape from infinity. Arvo is a deterministic OS; you interrupted it while processing an event that would never terminate. It returns to the state it was in before you hit return - as if nothing had ever happened.</p>
+
+<p>You&#8217;re probably used to using nondeterministic, preemptive OSes, in which the difference between a waiting process and an executing event isn&#8217;t apparent to the user. Since Arvo is not preemptive, it has two very different states: waiting and working.</p>
+
+<p>When Arvo is working, ^C cancels the event it&#8217;s working on. When Arvo is waiting, ^C ends the current task, which is the task that&#8217;s currently prompting you - or showing the <code>[waiting...]</code> prompt, indicating that it&#8217;s waiting for something else other than keyboard input.</p>
+
+<p>Try this by running</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :begin
+
+Do you have a ship and a ticket? yes</code></pre>
+
+<p>Then hit ^C and you&#8217;ll be back to the command prompt (which, unlike in Unix, is not a task itself, but part of the OS).</p>
+
+<p>We don&#8217;t always want to kill the prompting task. We often want to switch between tasks, or between tasks and the command line. Sort of like switching between windows, except in a command line. We do this with ^X. Try</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :begin
+
+Do you have a ship and a ticket? yes</code></pre>
+
+<p>But hit ^X instead of ^C. You&#8217;ll get a prompt again. Use it:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :begin
+
+~waclux-tomwyc/try=&gt; :hello %world
+&quot;hello, world.&quot;
+~waclux-tomwyc/try=&gt; </code></pre>
+
+<p>Hit ^X again:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :begin
+
+~waclux-tomwyc/try=&gt; :hello %world
+&quot;hello, world.&quot;
+Do you have a ship and a ticket? yes</code></pre>
+
+<p>And finally, hit ^C to kill the task.</p>
+
+<p>There&#8217;s one more magic control key that switches your whole reality. This is ^W, which switches between the ships in a pier. Do you have multiple ships in your pier? Sure - you still have your old submarine. Hit ^W:</p>
+
+<pre><code>~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=&gt; </code></pre>
+
+<p>Hit ^W again:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt;</code></pre>
+
+<p>Finally, Arvo is a single-level store. Since it&#8217;s not the &#8217;70s anymore and disk is cheap, everything you do is saved for ever. (In fact, it&#8217;s saved in two ways - as a memory image and an event log - so you, or the government if they haz your filez, can repeat every computation you&#8217;ve every performed.)</p>
+
+<p>As in Unix, hitting ^D on an empty line ends the program:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; 
+oxford:~/urbit; pwd
+/Users/cyarvin/urbit
+oxford:~/urbit; echo &quot;hello, world&quot;
+hello, world
+oxford:~/urbit; </code></pre>
+
+<p>Then you can restart and be right back where you were - just run <code>vere</code> without <code>-c</code>:</p>
+
+<pre><code>oxford:~/urbit; bin/vere mypier
+vere: urbit home is /Users/cyarvin/urb
+loom: loaded 9MB
+time: ~2013.9.1..17.23.05..0cc1
+ames: on localhost, UDP 60342.
+http: live on 8080
+rest: checkpoint to event 383
+rest: old 0v1c.gkr1o, new 0v10.m4gdu
+---------------- playback complete----------------
+waclux-tomwyc/try=&gt; </code></pre>
+
+<p>Use your arrow keys and you&#8217;ll see your history is still there. Arvo is indestructible and can be shut down however you like without losing data. Also, starting a new process while an old one is still running will kill the old one safely. And, to leave a server running in the background, use <code>vere -d</code>.</p>
+
+<p>But don&#8217;t try to operate the same ship on two Unix hosts at the same time. This will confuse everyone, including yourself.</p>
+
+<h1 id='13_path_magic'>1.3 Path magic</h1>
+
+<p>What do we know? Okay, so this is an OS. It&#8217;s a little like Unix but different. It can print expressions and run commands. Commands start with a colon. Let&#8217;s try the simplest command:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :ls
+! type-fail
+! exit</code></pre>
+
+<p>Hey, that didn&#8217;t work! It didn&#8217;t work for two reasons. One, Arvo command-line arguments are typed, and <code>:ls</code> expects a path. Two, <code>:ls</code> needs that path - unlike in Unix, applications can&#8217;t see the current path or shell variables. (This is because Arvo doesn&#8217;t have 57 different ways of configuring an app.) So try</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :ls /~waclux-tomwyc/try=
+con bin lib doc</code></pre>
+
+<p>This seems somewhat cumbersome - isn&#8217;t there a way to refer to the current path? There is, though it doesn&#8217;t look like Unix.</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :ls %
+con bin lib doc</code></pre>
+
+<p>Let&#8217;s look at these paths in a little more detail. An Arvo path is more or less the same thing as a Unix path, except that Unix isn&#8217;t a global revision-control store. It has the general form</p>
+
+<pre><code>/ship/desk/case/spur</code></pre>
+
+<p>where <code>ship</code> is your ship, <code>desk</code> is a project (repository, branch, etc), <code>case</code> is a revision of that project (a change number, a date or a label), and <code>spur</code> is a path within it.</p>
+
+<p>As in Unix, the shell (<code>batz</code>) keeps a current path. As in Unix, you can write paths in an absolute or relative syntax, and as in Unix <code>/</code> is the path separator. Everything else is completely different.</p>
+
+<p>Let&#8217;s use the REPL to print out some paths. First, here&#8217;s the current path or something like it:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; /~waclux-tomwyc/try/~2013.9.1
+[&#39;~waclux-tomwyc&#39; %try &#39;~2013.9.1&#39; ~]</code></pre>
+
+<p>For complicated reasons related to the Hoon type system - which, for a higher-order functional type inference engine, is as stupid as we could make it - this noun gets rendered as a tuple rather than a path. We can rectify this with a cast:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; `path`/~waclux-tomwyc/try/~2013.9.1
+/~waclux-tomwyc/try/~2013.9.1</code></pre>
+
+<p>It&#8217;s the same value, just printed differently. Except for the date, this is the same as your current path:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; `path`%
+/~waclux-tomwyc/try/~2013.9.1..17.49.18..282e</code></pre>
+
+<p>The current date, of course, is always changing:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; `path`%
+/~waclux-tomwyc/try/~2013.9.1..17.50.39..7e38</code></pre>
+
+<p>Just to remind ourselves that these are Hoon expressions:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; `path`/(scot %p -&gt;-)/try/(scot %da (add ~d7 -&lt;-))
+/~waclux-tomwyc/try/~2013.9.8..17.55.03..b2ae</code></pre>
+
+<p>That&#8217;s you next week. It&#8217;s black magic, don&#8217;t worry about it. Let&#8217;s get back to relative paths.</p>
+
+<p>A relative path is a function of the current path. First, let&#8217;s make the current path interesting by moving to something deeper:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :cd /=main=/foo/bar/baz/bam
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; </code></pre>
+
+<p>Hey, wait, we actually used a relative path here. The simplest kind of relative path matches the current path by replacing a path component with <code>=</code>. So we could just as well have said</p>
+
+<pre><code>~waclux-tomwyc/main=/foo/bar/baz/bam&gt; -&lt;+
+&#39;~2013.9.1..21.38.34..7a08&#39;
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; :cd /~waclux-tomwyc/main/[-&lt;+]/foo/bar/baz/bam</code></pre>
+
+<p>Why is <code>-&lt;+</code> the current date as text? Look, we&#8217;re trying to learn Arvo without too much Hoon here. Just accept that it is. In this context, anyway. Notice also that the prompt uses a relative path when (as is usually the case) the current case is just the present time, so that we don&#8217;t have to stare at</p>
+
+<pre><code>~waclux-tomwyc/main/~2013.9.1..21.38.34..7a08/foo/bar/baz/bam&gt;</code></pre>
+
+<p>In any case, we can now use <code>=</code> to our heart&#8217;s content. Notice that you don&#8217;t need <code>/</code> to separate content from <code>=</code>. <code>==</code> is perfectly fine, too.</p>
+
+<pre><code>~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`/=
+/~waclux-tomwyc
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`/==
+/~waclux-tomwyc/main
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`/===
+/~waclux-tomwyc/main/~2013.9.1..21.46.46..b250
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`/===zebra==
+/~waclux-tomwyc/main/~2013.9.1..21.47.45..9ec8/zebra/bar/baz</code></pre>
+
+<p>I guess you could do this on Unix. With awk or something. It&#8217;s apparently been some time since the Nixon administration - how about a new OS? Anyway, there&#8217;s another way to edit paths - with <code>%</code>, which we&#8217;ve seen before, from the end -</p>
+
+<pre><code>~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`%
+/~waclux-tomwyc/main/~2013.9.1..21.53.17..07f6/foo/bar/baz/bam
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`%/frampton/comes/alive
+/~waclux-tomwyc/main/~2013.9.1..21.55.53..8c5f/foo/bar/baz/bam/frampton/comes/alive</code></pre>
+
+<p>Unix can back up with <code>..</code>. We do the same with multiple <code>%</code>:</p>
+
+<pre><code>~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`%%
+/~waclux-tomwyc/main/~2013.9.1..22.22.51..34a1/foo/bar/baz
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`%%%
+/~waclux-tomwyc/main/~2013.9.1..22.22.53..a332/foo/bar
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`%%%%
+/~waclux-tomwyc/main/~2013.9.1..22.22.55..4909/foo
+~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`%%%%/frampton/comes/alive
+/~waclux-tomwyc/main/~2013.9.1..22.23.02..9b05/foo/frampton/comes/alive</code></pre>
+
+<p>Finally, we can use <code>%</code> as a separator and edit both prefix and suffix. In this case, <code>=</code> is assumed up to the endpoint edit:</p>
+
+<pre><code>~waclux-tomwyc/main=/foo/bar/baz/bam&gt; `path`/=zebra%%%%/frampton/comes/alive
+/~waclux-tomwyc/zebra/~2013.9.1..22.26.39..e76d/foo/frampton/comes/alive</code></pre>
+
+<p>Thus concludes our edition of Path School. Let&#8217;s go back to the default desk (<code>try</code>, meant for experiments only):</p>
+
+<pre><code>~waclux-tomwyc/main=/foo/bar/baz/bam&gt; :cd /=try=
+~waclux-tomwyc/try=&gt; </code></pre>
+
+<h1 id='14_actual_editing'>1.4 Actual editing</h1>
+
+<p>But wait! There seem to be a bunch of files in your ship. How did they get there? Oh, right, installation automatically checked them out of <code>~zod</code> or <code>~doznec</code>. That&#8217;s one way to get files. We&#8217;ll see more of this in a little bit.</p>
+
+<p>Another way is to cook your files up within Arvo itself. We&#8217;ll see this in the next chapter, but it&#8217;s worth noting its limitations - no one has ported <code>vim</code> to Arvo yet, nor will for a long time.</p>
+
+<p>The easiest way to get data in and out of Arvo is just to sync. You&#8217;ll find a complete copy of your ship&#8217;s filesystem, as of the current date, in your <code>$URBIT_HOME</code>. For example:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :cat %/bin/goodbye/hoon
+|=  *
+|=  [planet=tape ~]
+:_  ~  :_  ~
+[%$ !&gt;(&quot;hello, {planet}.&quot;)]
+~waclux-tomwyc/try=&gt;</code></pre>
+
+<p>Then either stop the server with ^D, or switch to another window:</p>
+
+<pre><code>oxford:~/urbit; cat $URBIT_HOME/waclux-tomwyc/try/bin/goodbye.hoon
+|=  *
+|=  [planet=tape ~]
+:_  ~  :_  ~
+[%$ !&gt;(&quot;hello, {planet}.&quot;)]
+oxford:~/urbit; </code></pre>
+
+<p>As you see, the dot-extension pattern in Unix gets converted to a path slash in Arvo. Otherwise, the mapping is straightforward. Legal Arvo paths are a strict subset of Unix paths - for example, uppercase characters are not allowed - so the round trip is always clean. So long as Urbit is always the primary state and Unix is only a derived view, this works great.</p>
+
+<p>Edit <code>$URBIT_HOME/waclux-tomwyc/try/bin/goodbye.hoon</code>, in another window or while the server is down, then restart the server. As soon as you enter any keyboard input in <code>vere</code>, you&#8217;ll see</p>
+
+<pre><code>: /~waclux-tomwyc/try/2/bin/goodbye/hoon
+~waclux-tomwyc/try=&gt;  </code></pre>
+
+<p>Go ahead and type</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :goodbye &quot;world&quot;
+&quot;goodbye, world.&quot;
+~waclux-tomwyc/try=&gt; </code></pre>
+
+<p>What happened here? Arvo, of course, cannot make system calls and does not have any access at all to the Unix filesystem. But Arvo processes an event stream which the Unix program <code>vere</code> follows, and generates actions which <code>vere</code> applies. If you know Git, the best way to see <code>$URBIT_HOME</code> is as a working directory in which changes are automatically committed.</p>
+
+<h1 id='15_local_revision_control'>1.5 Local revision control</h1>
+
+<p>Now you&#8217;re ready to see the full power of this fully armed and operational revision-controlled filesystem.</p>
+
+<p>Of course, you can build a revision-control system on top of Unix. And many have. That doesn&#8217;t make Unix a revision-control system, though. VMS had something of the sort. (Some of us are so old we actually used VMS.) But VMS had&#8230; other issues&#8230;</p>
+
+<p>Again, an Arvo path starts with <code>/ship/desk/case</code>. The case, ie version, applies to the whole desk, ie, project. When we edited <code>/=try=/bin/goodbye/hoon/</code>, our change created case <code>2</code> of <code>/~waclux-tomwyc/try</code>.</p>
+
+<p>All paths are immutable and referentially transparent. Once we&#8217;ve made our change, both cases of <code>/~waclux-tomwyc/try</code> exist (logically; they&#8217;re not actually copied, of course):</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :cat /=try/1/bin/goodbye/hoon
+|=  *
+|=  [planet=tape ~]
+:_  ~  :_  ~
+[%$ !&gt;(&quot;hello, {planet}.&quot;)]
+
+~waclux-tomwyc/try=&gt; :cat /=try/2/bin/goodbye/hoon
+|=  *
+|=  [planet=tape ~]
+:_  ~  :_  ~
+[%$ !&gt;(&quot;goodbye, {planet}.&quot;)]</code></pre>
+
+<p>Time also works as you&#8217;d expect. Remember, <code>=</code> as the case means &#8220;at the current time&#8221;:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :cat /=try=/bin/goodbye/hoon
+|=  *
+|=  [planet=tape ~]
+:_  ~  :_  ~
+[%$ !&gt;(&quot;goodbye, {planet}.&quot;)]
+
+~waclux-tomwyc/try=&gt; :cat /=try/(scot %da (sub -&lt;- ~m1))/bin/goodbye/hoon
+|=  *
+|=  [planet=tape ~]
+:_  ~  :_  ~
+[%$ !&gt;(&quot;hello, {planet}.&quot;)]</code></pre>
+
+<p>Ie, now it&#8217;s goodbye and a minute ago it was hello. This is anything but fancy. Finally, let&#8217;s label it:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :label %try %zebra
+= new /~waclux-tomwyc/try/3
+
+~waclux-tomwyc/try=&gt; :cat /=try/zebra/bin/goodbye/hoon
+|=  *
+|=  [planet=tape ~]
+:_  ~  :_  ~
+[%$ !&gt;(&quot;goodbye, {planet}.&quot;)]</code></pre>
+
+<p>Note that adding a label is part of the delta stream and creates a new change number, <code>3</code>.</p>
+
+<p>What&#8217;s more, these revisions don&#8217;t just apply in <code>:cat</code>. Of course, this is a program and it exists to be run. Normally when we say</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :goodbye &quot;world&quot;
+&quot;goodbye, world.&quot;</code></pre>
+
+<p>this actually does a path search and ends up as a shorthand for</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :=/try=/bin/goodbye &quot;world&quot;
+&quot;goodbye, world.&quot;</code></pre>
+
+<p>But of course, we can use the full revision notation here:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :=/try/1/bin/goodbye &quot;world&quot;
+&quot;hello, world.&quot;
+~waclux-tomwyc/try=&gt; :=/try/2/bin/goodbye &quot;world&quot;
+&quot;goodbye, world.&quot;
+~waclux-tomwyc/try=&gt; :=/try/new/bin/goodbye &quot;world&quot;
+&quot;goodbye, world.&quot;</code></pre>
+
+<p>Yeah, I guess that&#8217;s kind of cool. But&#8230; actually&#8230;</p>
+
+<p>Arvo is anything but a fancy revision control system - partly because it&#8217;s a very young one, partly because it&#8217;s cool to be crude. However, making revision control part of the OS, not on top of the OS, opens up&#8230; certain&#8230; possibilities.</p>
+
+<p>What happens if we try to use a revision that doesn&#8217;t exist yet? Remember that the <code>new</code> label was change <code>3</code>. But suppose we try</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :=/try/4/bin/goodbye &quot;world&quot;
+[waiting...]</code></pre>
+
+<p>Hm? Again, either quit with ^D, or use another window; edit <code>$URBIT_HOME/waclux-tomwyc/try/bin/goodbye.hoon</code>. Change &#8220;goodbye&#8221; to &#8220;hasta la vista.&#8221; Then, <code>bin/vere mypier</code> if you quit, or just hit space to trigger the sync.</p>
+
+<pre><code>vere: urbit home is /Users/cyarvin/Documents/src/u3/urb
+loom: loaded 10MB
+time: ~2013.9.2..07.26.20..b510
+ames: on localhost, UDP 31337.
+http: live on 8080
+rest: checkpoint to event 965
+rest: old 0v16.5un6m, new 0v1i.il78t
+
+---------------- playback complete----------------
+: /~waclux-tomwyc/try/4/bin/goodbye/hoon
+&quot;hasta la vista, world.&quot;</code></pre>
+
+<p>Neighbor, tell me you&#8217;ve seen <em>that</em> before. Or with labels:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :=/try/crazy/bin/goodbye &quot;world&quot;
+[waiting...]</code></pre>
+
+<p>Use ^X to get a prompt back while this task waits. Then, create the label:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :=/try/crazy/bin/goodbye &quot;world&quot;
+~waclux-tomwyc/try=&gt; :label %try %crazy
+= crazy /~waclux-tomwyc/try/5
+&quot;hasta la vista, world.&quot;</code></pre>
+
+<p>What&#8217;s going on here? What&#8217;s going on is that the Arvo filesystem is an immutable, ie, referentially transparent, namespace. Since every path will only be bound to one file, when we encounter a path that&#8217;s not yet bound (but could be bound in future), we do every OS&#8217;s favorite thing - we <em>block</em>.</p>
+
+<p>Civilization, a wise man once said, is the set of events you can block on. What&#8217;s happening here is not in principle difficult at all. It is pretty hard to do, however, if your revision control system is not in intimate proximity to your scheduler.</p>
+
+<p>It would be difficult, we feel, to argue that this isn&#8217;t cool. But one could argue that it&#8217;s just a party trick. But once your revision control system and your scheduler are jammed into one phone booth&#8230; why not jam networking in there too? Perhaps they&#8217;ll all fsck, and produce some interesting triple bastard?</p>
+
+<h1 id='16_network_revision_control'>1.6 Network revision control</h1>
+
+<p>Arvo is the OS. Urbit is the network. In theory you could write an Urbit client that wasn&#8217;t Arvo, though it&#8217;s hard to see why. But it seems unseemly to erase this distinction entirely.</p>
+
+<p>So&#8230; let&#8217;s do some networking. Arvo is an immutable namespace. But&#8230; Urbit is a <em>global</em> immutable namespace.</p>
+
+<p>We sent you two destroyers, right? You could run them both from the same pier (ie, from the same Unix process), but this would be confusing for a newb. So it&#8217;s time to make a new window and boot up your second ship. Let&#8217;s say it&#8217;s <code>~wolnum-sorleb</code>:</p>
+
+<pre><code>vere -c otherpier</code></pre>
+
+<p>And follow the same directions as above. If it worked, you should be able to say hi to yourself:</p>
+
+<pre><code>~wolnum-sorleb/try=&gt; :hi ~waclux-tomwyc &quot;welcome to Urbit&quot;
+; ~waclux-tomwyc is your neighbor
+; ~waclux-tomwyc: &quot;this is fun&quot;
+
+; ~wolnum-sorleb is your neighbor
+~waclux-tomwyc/try=&gt; :hi ~wolnum-sorleb &quot;this is fun&quot;
+; ~wolnum-sorleb: &quot;welcome to Urbit&quot;</code></pre>
+
+<p>(Neighbors are Urbit ships that have completed a symmetric key exchange. In most cases they will also be communicating via direct UDP packets, though if both sides are behind bad NAT gateways the (encrypted) packets have to bounce through our servers.)</p>
+
+<p>Okay, that seemed to work. Now we can use the global namespace as if <em>the whole world was one giant computer</em>:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :cat /~wolnum-sorleb/try=/bin/goodbye/hoon
+[waiting...]
+|=  *
+|=  [planet=tape ~]
+:_  ~  :_  ~
+[%$ !&gt;(&quot;hello, {planet}.&quot;)]
+
+~waclux-tomwyc/try=&gt; :~wolnum-sorleb/try=/goodbye &quot;world&quot;
+[waiting...]
+&quot;hello, world.&quot;</code></pre>
+
+<p>Whoa.</p>
+
+<p>But perhaps that was a little slow. The network isn&#8217;t very well tuned yet, and there are several roundtrips as we request config files that aren&#8217;t actually there for this trivial app.</p>
+
+<p>Moreover, if we try it again, it&#8217;ll be slow again, because we are requesting files at the current date with that <code>try=</code>. Let&#8217;s try to use a label instead:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :~wolnum-sorleb/try/alpha/goodbye &quot;world&quot;
+[waiting...]</code></pre>
+
+<p>Hey, whoops. That label doesn&#8217;t exist yet. So, our process will block forever until it does. Let&#8217;s go over to the other side and create it:</p>
+
+<pre><code>~wolnum-sorleb/try=&gt; :label %try %alpha
+= alpha /~wolnum-sorleb/try/2</code></pre>
+
+<p>At which point you&#8217;ll see</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :~wolnum-sorleb/try/alpha/goodbye &quot;world&quot;
+&quot;hello, world.&quot;</code></pre>
+
+<p>Pretty cool, right? Now try it again. Since bindings are permanent, it won&#8217;t hit the network at all:</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :~wolnum-sorleb/try/alpha/goodbye &quot;world&quot;
+&quot;hello, world.&quot;</code></pre>
+
+<p>Let&#8217;s try it with some data:</p>
+
+<pre><code>~waclyx-tomwyc/try=&gt; (mul 10 ^:@/~zod/try/beta/doc/fortytwo/noun)
+[waiting...]
+
+~wolnum-sorleb/try=&gt; :ram /===/doc/fortytwo/noun; (mul 6 7)
++ /~wolnum-sorleb/try/3/doc/fortytwo/noun
+~wolnum-sorleb/try=&gt; :label %try %beta
+  
+~waclyx-tomwyc/try=&gt; (mul 10 ^:@/~zod/try/beta/doc/fortytwo/noun)
+420</code></pre>
+
+<p>So not only can you use any data in Urbit, on the command line or in a program, as if it were a constant - if the data isn&#8217;t available yet, your task will block until it is.</p>
+
+<p>Of course, a cynic would say, this is just a party trick too. True enough! But perhaps it&#8217;ll get the party&#8217;s attention.</p>
+
+<p>Obviously, what&#8217;s going on here is that a file request is just a special case of a subscribe operation. An attempt to use a resource, local or remote, that isn&#8217;t ready, is automatically treated as a subscription to that resource, and creates state on the server that owns it which will be activated once the resource does exist. (And if you kill the requesting task on the client, yes, it will cancel the request on the server.)</p>
+
+<p>It&#8217;s the combination of a purely functional language and OS with a secure, referentially transparent global namespace that makes Urbit a qualitatively different programming experience. APIs are great and REST is an attempt to make the Web almost functional, but at bottom a Web request remains a side effect in a mutable system. While Urbit requests are built on a message queue layer which you can use if you like, simply sharing data (and/or code) isn&#8217;t a matter of APIs, requests, installs, etc. You just use it.</p>
+
+<p>It is of course possible to build the same kinds of services with 20th-century Web protocols. Just as there are revision control servers on the Internet, there are pretty good (certainly much more featureful) publish-and-subscribe protocols over HTTP. But such protocols are standalone systems, and difficult to integrate with each other in a single programming environment and service layer.</p>
+
+<h1 id='17_classic_unix_crap'>1.7 Classic Unix crap</h1>
+
+<p>If a real OS runs on the bare hardware and is preemptive, it&#8217;s clear that Arvo is not a real OS and will never be one. It will always run on Unix. Of course in a sense it comes to bury Unix, but also to praise it - to imitate it - and even to surpass it. Unix today is ancient, bloated and debilitated, but its historic greatness is eternal. Comparing Unix to other OSes of its time is comparing Shakespeare to other playwrights of his time.</p>
+
+<p>But, ya know, times change. How do we surpass Unix? We&#8217;ve got two words for you - typed pipes! Yeah, Arvo has typed pipes. It also has typed arguments and even typed configurations. These types are probably not quite the types you&#8217;re used to, if you&#8217;re a language geek (Hoon doesn&#8217;t do PL theory), but they do the same job and pretty well if we say so ourselves.</p>
+
+<p>Broadly speaking, an Arvo task is a function that consumes events and produces effects. When you learn Hoon, we&#8217;ll return to what this actually means. For now, this is a good excuse to see the classic server process that consumes events and produces effects - a Web server.</p>
+
+<pre><code>~waclux-tomwyc/try=&gt; :game &quot;Elvis&quot;
+[waiting...]</code></pre>
+
+<p>Point your browser at <code>localhost:$PORT/game/fun</code>, where $PORT is the HTTP port shown when you started <code>vere</code>:</p>
+
+<pre><code>http: live on 8080</code></pre>
+
+<p>Hit <code>^C</code> on the task when you&#8217;re done. Try editing the page or the application:</p>
+
+<pre><code>/=try=/bin/game/hoon
+$URBIT_HOME/waclux-tomwyc/bin/game.hoon
+
+/=try=/doc/web/game/fun/hoon
+$URBIT_HOME/waclux-tomwyc/doc/web/game/fun.hoon</code></pre>
+
+<p>and then hitting reload. You&#8217;ll see that you need to restart the server to change the app, but not to change the page.</p>
+
+<p>Note that <code>fun.hoon</code> is not a template language - just Hoon. Hoon is good at synthesizing hierarchical data structures and does not need a DSL to generate XML, thank you very much.</p>
+
+<p>Lorem ipsum&#8230;</p>
+
+<h1 id='18_update_upgrading_and_continuity'>1.8 Update, upgrading and continuity</h1>
+
+<p>To update the</p>
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+    <li>
+      <span>22 Aug 2013 &raquo;</span> <a href="/2013/08/22/Chapter-6-security.html">Chapter 6 &#58; Security</a>
+    </li>
+    
+    <li>
+      <span>22 Aug 2013 &raquo;</span> <a href="/2013/08/22/Chapter-4-syntax.html">Chapter 4 &#58; Hoon - Syntax</a>
+    </li>
+    
+    <li>
+      <span>22 Aug 2013 &raquo;</span> <a href="/2013/08/22/Chapter-3-philosophy.html">Chapter 3 &#58; Hoon - Philosophy</a>
+    </li>
+    
+  </ul>
+</div>
+
+    
+      <div class="footer">
+        <div class="disclaimer">
+  
+
+  <p>
+    © Urbit, 2013 &mdash; built with Jekyll using Lagom theme
+  </p>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-xxxx-x']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>
