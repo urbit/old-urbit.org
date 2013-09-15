@@ -56,7 +56,7 @@
   </a>
   
   
-  <a title="urbit on Twitter" href="http://twitter.com/urbit">
+  <a title="Urbit1 on Twitter" href="http://twitter.com/Urbit1">
     <i class="icon-twitter-sign"></i>
   </a>
   
@@ -92,9 +92,7 @@
 
 <p>So let&#8217;s learn Nock! But wait - which Nock? Nock, though more frozen than Walt Disney, does have versions. Nock versions are measured by integer degrees Kelvin, newer being colder. The newest, Nock 5K - roughly the temperature of Neptune. No change is anticipated between 5K and absolute zero, though you never know. Any such change would certainly be quite painful.</p>
 
-<ol>
-<li>1 Definition</li>
-</ol>
+<h1 id='11_definition'>1.1 Definition</h1>
 
 <p>The best way to learn Nock is to read the spec and write your own naive interpreter. Here is Nock 5K:</p>
 
@@ -143,9 +141,7 @@ A cell is any ordered pair of nouns.</code></pre>
 
 <p>Your interpreter should be no more than a page of code in any language. For extra credit, <code>6</code>-<code>10</code> are macros; implement them directly. For extra extra credit, optimize tail calls. To test your code, write a decrement formula b such that <code>*[a b]</code> is <code>a - 1</code> for any atomic nonzero <code>a</code>.</p>
 
-<ol>
-<li>2 Installation</li>
-</ol>
+<h1 id='12_installation'>1.2 Installation</h1>
 
 <p>The second best way to learn Nock is to boot up your own Arvo virtual computer. Using a Mac with OS X, install Homebrew and add the following packages: <code>gmp</code>, <code>libsigsegv</code>, <code>libev</code>. Then, make. This will produce <code>bin/vere</code>, the virtual machine.</p>
 
@@ -188,9 +184,7 @@ hub/tasfyn-partyv</code></pre>
 
 <p>Now we&#8217;re ready to continue and learn Nock.</p>
 
-<ol>
-<li>3 Nock</li>
-</ol>
+<h1 id='13_nock'>1.3 Nock</h1>
 
 <p>To make Nock make sense, let&#8217;s work through Nock 5K line by line. First the data model:</p>
 
@@ -235,7 +229,7 @@ A cell is any ordered pair of nouns.</code></pre>
 
 <p>Note that we can and do use unnecessary brackets anyway, for emphasis.</p>
 
-<h2 id='line_2'>Line 2</h2>
+<h2 id='line_2'>Line 2:</h2>
 
 <pre><code>2  ::    nock(a)           *a</code></pre>
 
@@ -400,7 +394,7 @@ A cell is any ordered pair of nouns.</code></pre>
 
 <p>If this seems obvious, you&#8217;re doin&#8217; good. Finally, we jump back up to line 16, the trickiest in the spec:</p>
 
-<h2 id='line_16'>Line 16</h2>
+<h2 id='line_16'>Line 16:</h2>
 
 <pre><code>16 ::    *[a [b c] d]      [*[a b c] *[a d]]</code></pre>
 
@@ -549,6 +543,8 @@ A cell is any ordered pair of nouns.</code></pre>
 <p>But we need the full power of the funk, because if <code>b</code> produces, say, <code>7</code>, all kinds of weirdness will result. We&#8217;d really like <code>6</code> to just crash if the test product is not a boolean. How can we accomplish this? This is an excellent way to prove to yourself that you understand Nock: figure out what the real <code>6</code> does. Or you could just agree that <code>6</code> is &#8220;if,&#8221; and move on.</p>
 
 <p>(It&#8217;s worth noting that in practical, compiler-generated Nock, we never do anything as funky as these <code>6</code> macro internals. There&#8217;s no reason we couldn&#8217;t build formulas at runtime, but we have no reason to and we don&#8217;t - except when actually metaprogramming. As in most languages, normally code is code and data is data.)</p>
+
+<h1 id='14_decrement_in_nock'>1.4 Decrement in Nock</h1>
 
 <p>A good practice exercise for Nock is a decrement formula. Ie, a formula <code>f</code> which implements the partial function that produces <code>(s - 1)</code> if <code>s</code> is a nonzero atom, and otherwise does not terminate.</p>
 
@@ -779,7 +775,7 @@ $(b +(b))                   ::  line 6</code></pre>
 
 <p>If decrement seems fun - why not write add? I wrote a Nock adder a long, long time ago. But I&#8217;ve forgotten where I put it. There is absolutely no use in this exercise, except to prove to yourself that you&#8217;ve mastered Nock.</p>
 
-<h2 id='appendix_a_operator_reductions'>Appendix A: Operator Reductions</h2>
+<h1 id='appendix_a_operator_reductions'>Appendix A: Operator Reductions</h1>
 
 <h2 id='_reduction'><code>6</code> Reduction:</h2>
 
@@ -920,24 +916,6 @@ $(b +(b))                   ::  line 6</code></pre>
 <pre><code>10r ::    *[a 10 [b c] d]   *[a d]</code></pre>
 </div>
 
-<div id="related">
-  <h3>Related Posts</h3>
-  <ul class="posts">
-    
-    <li>
-      <span>22 Aug 2013 &raquo;</span> <a href="/2013/08/22/Chapter-6-security.html">Chapter 6 &#58; Security</a>
-    </li>
-    
-    <li>
-      <span>22 Aug 2013 &raquo;</span> <a href="/2013/08/22/Chapter-4-syntax.html">Chapter 4 &#58; Hoon - Syntax</a>
-    </li>
-    
-    <li>
-      <span>22 Aug 2013 &raquo;</span> <a href="/2013/08/22/Chapter-3-philosophy.html">Chapter 3 &#58; Hoon - Philosophy</a>
-    </li>
-    
-  </ul>
-</div>
 
     
       <div class="footer">

@@ -19,7 +19,7 @@ trust content from Tlon, Tianming, Urban Republic.
 
 First, build...
 
-##1: get the source##
+###Get the source:###
 
 Either:
 
@@ -27,7 +27,7 @@ Either:
 
 2. `git clone https://github.com/urbit/urbit.git`. 
 
-##2: set URBIT_HOME##
+###Set URBIT_HOME:###
 
 Add
 
@@ -44,7 +44,7 @@ Check that you've done this right with
 
 which should return `$DIR/urb`.
 
-##3: resolve dependencies##
+###Resolve dependencies:###
 
 Urbit depends on:
 
@@ -80,12 +80,12 @@ by hand :-)
 1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel`
 
 
-##4: make##
+###make:###
 
 In your Urbit directory (`$DIR`), `make`.  Sometimes things are just easy.  Or at least,
 they should be easy.
 
-##5: vere##
+###vere:###
 
 Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this

@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://example.com/atom.xml" rel="self"/>
  <link href="http://example.com"/>
- <updated>2013-09-14T03:03:00-04:00</updated>
+ <updated>2013-09-15T19:59:00-04:00</updated>
  <id>http://example.com</id>
  <author>
    <name>Urbit</name>
@@ -371,9 +371,7 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;So let&amp;#8217;s learn Nock! But wait - which Nock? Nock, though more frozen than Walt Disney, does have versions. Nock versions are measured by integer degrees Kelvin, newer being colder. The newest, Nock 5K - roughly the temperature of Neptune. No change is anticipated between 5K and absolute zero, though you never know. Any such change would certainly be quite painful.&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;1 Definition&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h1 id=&#39;11_definition&#39;&gt;1.1 Definition&lt;/h1&gt;
 
 &lt;p&gt;The best way to learn Nock is to read the spec and write your own naive interpreter. Here is Nock 5K:&lt;/p&gt;
 
@@ -422,9 +420,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Your interpreter should be no more than a page of code in any language. For extra credit, &lt;code&gt;6&lt;/code&gt;-&lt;code&gt;10&lt;/code&gt; are macros; implement them directly. For extra extra credit, optimize tail calls. To test your code, write a decrement formula b such that &lt;code&gt;*[a b]&lt;/code&gt; is &lt;code&gt;a - 1&lt;/code&gt; for any atomic nonzero &lt;code&gt;a&lt;/code&gt;.&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;2 Installation&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h1 id=&#39;12_installation&#39;&gt;1.2 Installation&lt;/h1&gt;
 
 &lt;p&gt;The second best way to learn Nock is to boot up your own Arvo virtual computer. Using a Mac with OS X, install Homebrew and add the following packages: &lt;code&gt;gmp&lt;/code&gt;, &lt;code&gt;libsigsegv&lt;/code&gt;, &lt;code&gt;libev&lt;/code&gt;. Then, make. This will produce &lt;code&gt;bin/vere&lt;/code&gt;, the virtual machine.&lt;/p&gt;
 
@@ -467,9 +463,7 @@ hub/tasfyn-partyv&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now we&amp;#8217;re ready to continue and learn Nock.&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;3 Nock&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h1 id=&#39;13_nock&#39;&gt;1.3 Nock&lt;/h1&gt;
 
 &lt;p&gt;To make Nock make sense, let&amp;#8217;s work through Nock 5K line by line. First the data model:&lt;/p&gt;
 
@@ -514,7 +508,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note that we can and do use unnecessary brackets anyway, for emphasis.&lt;/p&gt;
 
-&lt;h2 id=&#39;line_2&#39;&gt;Line 2&lt;/h2&gt;
+&lt;h2 id=&#39;line_2&#39;&gt;Line 2:&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;2  ::    nock(a)           *a&lt;/code&gt;&lt;/pre&gt;
 
@@ -679,7 +673,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If this seems obvious, you&amp;#8217;re doin&amp;#8217; good. Finally, we jump back up to line 16, the trickiest in the spec:&lt;/p&gt;
 
-&lt;h2 id=&#39;line_16&#39;&gt;Line 16&lt;/h2&gt;
+&lt;h2 id=&#39;line_16&#39;&gt;Line 16:&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;16 ::    *[a [b c] d]      [*[a b c] *[a d]]&lt;/code&gt;&lt;/pre&gt;
 
@@ -828,6 +822,8 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;But we need the full power of the funk, because if &lt;code&gt;b&lt;/code&gt; produces, say, &lt;code&gt;7&lt;/code&gt;, all kinds of weirdness will result. We&amp;#8217;d really like &lt;code&gt;6&lt;/code&gt; to just crash if the test product is not a boolean. How can we accomplish this? This is an excellent way to prove to yourself that you understand Nock: figure out what the real &lt;code&gt;6&lt;/code&gt; does. Or you could just agree that &lt;code&gt;6&lt;/code&gt; is &amp;#8220;if,&amp;#8221; and move on.&lt;/p&gt;
 
 &lt;p&gt;(It&amp;#8217;s worth noting that in practical, compiler-generated Nock, we never do anything as funky as these &lt;code&gt;6&lt;/code&gt; macro internals. There&amp;#8217;s no reason we couldn&amp;#8217;t build formulas at runtime, but we have no reason to and we don&amp;#8217;t - except when actually metaprogramming. As in most languages, normally code is code and data is data.)&lt;/p&gt;
+
+&lt;h1 id=&#39;14_decrement_in_nock&#39;&gt;1.4 Decrement in Nock&lt;/h1&gt;
 
 &lt;p&gt;A good practice exercise for Nock is a decrement formula. Ie, a formula &lt;code&gt;f&lt;/code&gt; which implements the partial function that produces &lt;code&gt;(s - 1)&lt;/code&gt; if &lt;code&gt;s&lt;/code&gt; is a nonzero atom, and otherwise does not terminate.&lt;/p&gt;
 
@@ -1058,7 +1054,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If decrement seems fun - why not write add? I wrote a Nock adder a long, long time ago. But I&amp;#8217;ve forgotten where I put it. There is absolutely no use in this exercise, except to prove to yourself that you&amp;#8217;ve mastered Nock.&lt;/p&gt;
 
-&lt;h2 id=&#39;appendix_a_operator_reductions&#39;&gt;Appendix A: Operator Reductions&lt;/h2&gt;
+&lt;h1 id=&#39;appendix_a_operator_reductions&#39;&gt;Appendix A: Operator Reductions&lt;/h1&gt;
 
 &lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;6&lt;/code&gt; Reduction:&lt;/h2&gt;
 
@@ -1214,7 +1210,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;First, build&amp;#8230;&lt;/p&gt;
 
-&lt;h2 id=&#39;1_get_the_source&#39;&gt;1: get the source&lt;/h2&gt;
+&lt;h3 id=&#39;get_the_source&#39;&gt;Get the source:&lt;/h3&gt;
 
 &lt;p&gt;Either:&lt;/p&gt;
 
@@ -1228,7 +1224,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#39;2_set_urbit_home&#39;&gt;2: set URBIT_HOME&lt;/h2&gt;
+&lt;h3 id=&#39;set_urbit_home&#39;&gt;Set URBIT_HOME:&lt;/h3&gt;
 
 &lt;p&gt;Add&lt;/p&gt;
 
@@ -1244,7 +1240,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;which should return &lt;code&gt;$DIR/urb&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#39;3_resolve_dependencies&#39;&gt;3: resolve dependencies&lt;/h2&gt;
+&lt;h3 id=&#39;resolve_dependencies&#39;&gt;Resolve dependencies:&lt;/h3&gt;
 
 &lt;p&gt;Urbit depends on:&lt;/p&gt;
 
@@ -1290,11 +1286,11 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;code&gt;sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#39;4_make&#39;&gt;4: make&lt;/h2&gt;
+&lt;h3 id=&#39;make&#39;&gt;make:&lt;/h3&gt;
 
 &lt;p&gt;In your Urbit directory (&lt;code&gt;$DIR&lt;/code&gt;), &lt;code&gt;make&lt;/code&gt;. Sometimes things are just easy. Or at least, they should be easy.&lt;/p&gt;
 
-&lt;h2 id=&#39;5_vere&#39;&gt;5: vere&lt;/h2&gt;
+&lt;h3 id=&#39;vere&#39;&gt;vere:&lt;/h3&gt;
 
 &lt;p&gt;Run &lt;code&gt;bin/vere -c mypier&lt;/code&gt;, where &lt;code&gt;mypier&lt;/code&gt; is a directory that doesn&amp;#8217;t yet exist. All your state (an append-only log and a memory checkpoint) will live in this directory. Its name doesn&amp;#8217;t matter and is not visible internally.&lt;/p&gt;
 

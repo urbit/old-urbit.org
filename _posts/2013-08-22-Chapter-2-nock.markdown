@@ -29,8 +29,7 @@ newest, Nock 5K - roughly the temperature of Neptune.  No change
 is anticipated between 5K and absolute zero, though you never
 know.  Any such change would certainly be quite painful.
 
-1.1 Definition
---------------
+#1.1 Definition#
 
 The best way to learn Nock is to read the spec and write your own
 naive interpreter.  Here is Nock 5K:
@@ -84,8 +83,7 @@ them directly.  For extra extra credit, optimize tail calls.
 To test your code, write a decrement formula b such that
 `*[a b]` is `a - 1` for any atomic nonzero `a`.
 
-1.2 Installation
-----------------
+#1.2 Installation#
 
 The second best way to learn Nock is to boot up your own Arvo
 virtual computer.  Using a Mac with OS X, install Homebrew and
@@ -152,8 +150,7 @@ check it into a public github repo or similar.
 
 Now we're ready to continue and learn Nock.
 
-1.3 Nock
---------
+#1.3 Nock#
 
 To make Nock make sense, let's work through Nock 5K line by line.
 First the data model:
@@ -231,7 +228,7 @@ which is equivalent to
 Note that we can and do use unnecessary brackets anyway, for
 emphasis.
 
-##Line 2##
+##Line 2:##
 
 	2  ::    nock(a)           *a
 
@@ -436,7 +433,7 @@ and
 If this seems obvious, you're doin' good.  Finally, we jump back up
 to line 16, the trickiest in the spec:
 
-##Line 16##
+##Line 16:##
 
 	16 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
@@ -663,6 +660,8 @@ never do anything as funky as these `6` macro internals.  There's
 no reason we couldn't build formulas at runtime, but we have no
 reason to and we don't - except when actually metaprogramming.
 As in most languages, normally code is code and data is data.)
+
+#1.4 Decrement in Nock#
 
 A good practice exercise for Nock is a decrement formula.  Ie, a
 formula `f` which implements the partial function that produces
@@ -961,8 +960,7 @@ a long, long time ago.  But I've forgotten where I put it.  There
 is absolutely no use in this exercise, except to prove to
 yourself that you've mastered Nock.
 
-Appendix A: Operator Reductions
--------------------------------
+#Appendix A: Operator Reductions#
 
 ##`6` Reduction:##
 
