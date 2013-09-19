@@ -705,8 +705,7 @@ system is not in intimate proximity to your scheduler.
 It would be difficult, we feel, to argue that this isn't cool.
 But one could argue that it's just a party trick.  But once your
 revision control system and your scheduler are jammed into one
-phone booth... why not jam networking in there too?  Perhaps
-they'll all fsck, and produce some interesting triple bastard?
+phone booth... why not jam networking in there too?
 
 #1.6 Network revision control#
 
