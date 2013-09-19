@@ -1,11 +1,8 @@
 ---
-layout: doc_chapter
+layout: post
 title: Chapter 1 &#58; Crash course in Arvo
 ---
 
-
-{{page.title}}
-==============================
 
 Welcome to Urbit!
 
@@ -22,7 +19,7 @@ trust content from Tlon, Tianming, Urban Republic.
 
 First, build...
 
-##1: prepare your computer##
+###Prepare your computer:###
 
 Urbit depends on:
 
@@ -63,16 +60,15 @@ This will ask you for the root password, which ideally you know.
 
 1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel`
 
-
-##2: get the source##
+###Get the source:###
 
 Either:
 
-1. Download and unzip `https://github.com/urbit/urbit/archive/master.zip`.
+A. Download and unzip `https://github.com/urbit/urbit/archive/master.zip`.
 
-2. `git clone https://github.com/urbit/urbit.git`. 
+B. `git clone https://github.com/urbit/urbit.git`. 
 
-##3: set URBIT_HOME##
+###Configure your build:###
 
 `cd` to the unpacked Urbit directory you just created.  If this works,
 `ls urb` should show:
@@ -91,11 +87,11 @@ To make sure this worked,
 
 should show `/urb` within the current directory.
 
-##4: make##
+###make:###
 
 `make`.  Sometimes things are just easy.
 
-##5: vere##
+###vere:###
 
 Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this

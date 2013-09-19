@@ -1,11 +1,8 @@
 ---
-layout: doc_chapter
+layout: post
 title: Chapter 4 &#58; Hoon - Syntax
 ---
 
-
-{{page.title}}
-==============================
 
 Now, let's actually look at Hoon.  Really, try not to recoil
 in horror.  It's actually not anything like line noise.
