@@ -19,32 +19,7 @@ trust content from Tlon, Tianming, Urban Republic.
 
 First, build...
 
-##1: get the source##
-
-Either:
-
-1. Download the source from `https://github.com/urbit/urbit/archive/master.zip`.
-
-2. `git clone https://github.com/urbit/urbit.git`. 
-
-##2: set URBIT_HOME##
-
-Add
-
-    export URBIT_HOME=$DIR/urb
-
-to your `.bash_profile` or `.bashrc` file, where `$DIR` is your urbit folder 
-from step 1 - eg, `$HOME/urbit`.
-
-Then run `source ~/.bash_profile` or `source ~/.bashrc`.
-
-Check that you've done this right with
-
-    echo $URBIT_HOME
-
-which should return `$DIR/urb`.
-
-##3: resolve dependencies##
+###Prepare your computer:###
 
 Urbit depends on:
 
@@ -61,14 +36,20 @@ ninja, try a VM (eg, VirtualBox).
 
 **OS X:**
 
-1. Install XCode: `https://developer.apple.com/xcode/`. You need to install XCode's Command Line Tools.
+1. Do you have XCode?  Type `gcc`.  If it says `no input files`, you have XCode.
 
-2. Install Homebrew. `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` 
-should work.  (Can you use MacPorts? Yes you can. You can also resolve the dependencies 
-by hand :-)
+Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the 
+Command Line tools.
+
+2. Do you have Homebrew?  Type `brew`.  If it does something, you have Homebrew. 
+
+Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` 
+will install it.  (Can you use MacPorts? Yes you can. You can also resolve the 
+dependencies by hand :-)
 
 3. `sudo brew install gmp libsigsegv openssl`
 
+This will ask you for the root password, which ideally you know.
 
 **Ubuntu:**
 
@@ -79,13 +60,38 @@ by hand :-)
 
 1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel`
 
+###Get the source:###
 
-##4: make##
+Either:
 
-In your Urbit directory (`$DIR`), `make`.  Sometimes things are just easy.  Or at least,
-they should be easy.
+A. Download and unzip `https://github.com/urbit/urbit/archive/master.zip`.
 
-##5: vere##
+B. `git clone https://github.com/urbit/urbit.git`. 
+
+###Configure your build:###
+
+`cd` to the unpacked Urbit directory you just created.  If this works,
+`ls urb` should show:
+
+    urbit.pill  zod/
+
+Great!  Now, let's do some dirty Unix stuff to set up your environment.
+If you know what this is doing, feel free to do it right.  Otherwise:
+
+    echo "export URBIT_HOME=`pwd`/urb" >>~/.bash_profile
+    source ~/.bash_profile
+
+To make sure this worked, 
+
+    echo $URBIT_HOME
+
+should show `/urb` within the current directory.
+
+###make:###
+
+`make`.  Sometimes things are just easy.
+
+###vere:###
 
 Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this
@@ -699,8 +705,7 @@ system is not in intimate proximity to your scheduler.
 It would be difficult, we feel, to argue that this isn't cool.
 But one could argue that it's just a party trick.  But once your
 revision control system and your scheduler are jammed into one
-phone booth... why not jam networking in there too?  Perhaps
-they'll all fsck, and produce some interesting triple bastard?
+phone booth... why not jam networking in there too?
 
 #1.6 Network revision control#
 

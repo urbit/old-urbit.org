@@ -18,8 +18,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #181818;
-  font-family: "open sans", sans-serif;
-  font-weight: 600;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 1000;
 }
 
 h1.title {
@@ -80,12 +80,12 @@ ul.posts {
 
 ul.posts li {
   line-height: 22px;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 0px;
 }
 
 ul.posts span {
-  font-family: 'Lucida Console', 'Andale Mono', monospace;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #aaa;
   padding-right: 5px;
   font-size:14px;
@@ -144,7 +144,7 @@ nav hr {
 
 .sidebar {
   padding-top: 25px;
-  font-family: "open sans", sans-serif;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .sidebar p {
@@ -156,7 +156,7 @@ nav hr {
 }
 
 .content {
-  font: 400 16px/22px "open sans", sans-serif;
+  font: 400 16px/22px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-left: 1px solid #DDD;
   padding-left: 40px;
   padding-top: 25px;
@@ -210,7 +210,7 @@ nav hr {
 }
 
 span.icon-hn {
-  font-family: "open sans", sans-serif;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 20px;
   text-align: center;
   font-weight: bold;
