@@ -92,37 +92,7 @@
 
 <p>First, build&#8230;</p>
 
-<h3 id='get_the_source'>Get the source:</h3>
-
-<p>Either:</p>
-
-<ol>
-<li>
-<p>Download the source from <code>https://github.com/urbit/urbit/archive/master.zip</code>.</p>
-</li>
-
-<li>
-<p><code>git clone https://github.com/urbit/urbit.git</code>.</p>
-</li>
-</ol>
-
-<h3 id='set_urbit_home'>Set URBIT_HOME:</h3>
-
-<p>Add</p>
-
-<pre><code>export URBIT_HOME=$DIR/urb</code></pre>
-
-<p>to your <code>.bash_profile</code> or <code>.bashrc</code> file, where <code>$DIR</code> is your urbit folder from step 1 - eg, <code>$HOME/urbit</code>.</p>
-
-<p>Then run <code>source ~/.bash_profile</code> or <code>source ~/.bashrc</code>.</p>
-
-<p>Check that you&#8217;ve done this right with</p>
-
-<pre><code>echo $URBIT_HOME</code></pre>
-
-<p>which should return <code>$DIR/urb</code>.</p>
-
-<h3 id='resolve_dependencies'>Resolve dependencies:</h3>
+<h3 id='prepare_your_computer'>Prepare your computer:</h3>
 
 <p>Urbit depends on:</p>
 
@@ -143,18 +113,22 @@
 <p><strong>OS X:</strong></p>
 
 <ol>
-<li>
-<p>Install XCode: <code>https://developer.apple.com/xcode/</code>. You need to install XCode&#8217;s Command Line Tools.</p>
-</li>
-
-<li>
-<p>Install Homebrew. <code>ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;</code> should work. (Can you use MacPorts? Yes you can. You can also resolve the dependencies by hand :-)</p>
-</li>
-
-<li>
-<p><code>sudo brew install gmp libsigsegv openssl</code></p>
-</li>
+<li>Do you have XCode? Type <code>gcc</code>. If it says <code>no input files</code>, you have XCode.</li>
 </ol>
+
+<p>Otherwise, install XCode: <code>https://developer.apple.com/xcode/</code>, with the Command Line tools.</p>
+
+<ol>
+<li>Do you have Homebrew? Type <code>brew</code>. If it does something, you have Homebrew.</li>
+</ol>
+
+<p>Otherwise, <code>ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;</code> will install it. (Can you use MacPorts? Yes you can. You can also resolve the dependencies by hand :-)</p>
+
+<ol>
+<li><code>sudo brew install gmp libsigsegv openssl</code></li>
+</ol>
+
+<p>This will ask you for the root password, which ideally you know.</p>
 
 <p><strong>Ubuntu:</strong></p>
 
@@ -168,9 +142,34 @@
 <li><code>sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel</code></li>
 </ol>
 
+<h3 id='get_the_source'>Get the source:</h3>
+
+<p>Either:</p>
+
+<p>A. Download and unzip <code>https://github.com/urbit/urbit/archive/master.zip</code>.</p>
+
+<p>B. <code>git clone https://github.com/urbit/urbit.git</code>.</p>
+
+<h3 id='configure_your_build'>Configure your build:</h3>
+
+<p><code>cd</code> to the unpacked Urbit directory you just created. If this works, <code>ls urb</code> should show:</p>
+
+<pre><code>urbit.pill  zod/</code></pre>
+
+<p>Great! Now, let&#8217;s do some dirty Unix stuff to set up your environment. If you know what this is doing, feel free to do it right. Otherwise:</p>
+
+<pre><code>echo &quot;export URBIT_HOME=`pwd`/urb&quot; &gt;&gt;~/.bash_profile
+source ~/.bash_profile</code></pre>
+
+<p>To make sure this worked,</p>
+
+<pre><code>echo $URBIT_HOME</code></pre>
+
+<p>should show <code>/urb</code> within the current directory.</p>
+
 <h3 id='make'>make:</h3>
 
-<p>In your Urbit directory (<code>$DIR</code>), <code>make</code>. Sometimes things are just easy. Or at least, they should be easy.</p>
+<p><code>make</code>. Sometimes things are just easy.</p>
 
 <h3 id='vere'>vere:</h3>
 
@@ -636,7 +635,7 @@ rest: old 0v16.5un6m, new 0v1i.il78t
 
 <p>Civilization, a wise man once said, is the set of events you can block on. What&#8217;s happening here is not in principle difficult at all. It is pretty hard to do, however, if your revision control system is not in intimate proximity to your scheduler.</p>
 
-<p>It would be difficult, we feel, to argue that this isn&#8217;t cool. But one could argue that it&#8217;s just a party trick. But once your revision control system and your scheduler are jammed into one phone booth&#8230; why not jam networking in there too? Perhaps they&#8217;ll all fsck, and produce some interesting triple bastard?</p>
+<p>It would be difficult, we feel, to argue that this isn&#8217;t cool. But one could argue that it&#8217;s just a party trick. But once your revision control system and your scheduler are jammed into one phone booth&#8230; why not jam networking in there too?</p>
 
 <h1 id='16_network_revision_control'>1.6 Network revision control</h1>
 
