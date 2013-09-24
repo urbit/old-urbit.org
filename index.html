@@ -7,8 +7,12 @@ title: Documentation
 <iframe src="//player.vimeo.com/video/75312418" width="640" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p></p>
   <h2><i class="icon-bookmark"></i> Documentation</h2>
   <ul id="blog-posts" class="posts">
-    {% for post in site.posts reversed %}
+{% for post in site.posts reversed %}
+  {% if post.categories contains 'doc' %}
+    <div class="post">
       <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
+     </div>
+  {% endif %}
+{% endfor %}
   </ul>
 </div>
