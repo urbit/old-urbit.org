@@ -86,69 +86,7 @@ To test your code, write a decrement formula b such that
 #1.2 Installation#
 
 The second best way to learn Nock is to boot up your own Arvo
-virtual computer.  Using a Mac with OS X, install Homebrew and
-add the following packages: `gmp`, `libsigsegv`, `libev`.  Then, make.
-This will produce `bin/vere`, the virtual machine.
-
-To create an Arvo computer, you need an Urbit identity (seat).
-In theory, a computer can host one or more seats; in practice,
-one is the right number.
-
-There are two ways to get a seat - you can make your own or you
-can get an invitation.  If you make your own, your seat is a 
-128-bit hash of an RSA public key.  If you get an invitation,
-it's a 32-bit number.  Either way, that number is encoded in a
-phonetic base designed to make it easy to remember.  So if it's
-a 128-bit seat or `pawn`, it looks like:
-
-	~ralnyl-panned-tinmul-winpex--togtux-ralsem-lanrus-pagrup
- 
-And if it's a 32-bit seat, it looks like:
-
-	~tasfyn-partyv
-
-If you have an invitation file, create a computer by running
-
-	vere -i $file
-
-Otherwise, generate a 1024-bit RSA key with
-
-	vere -n 10
-
-This is just a toy for now, so use the defaults to generate
-a passcode stored in your home directory.  Write this passcode
-down on a piece of paper if you're especially concerned.
-
-In either case, this generates a directory in `hub/`:
-
-	hub/ralnyl-panned-tinmul-winpex--
-	hub/tasfyn-partyv
-
-Quit vere with ^D, then restart with 
-
-	vere $directory
-
-This is how you start your computer.  Arvo is a single-level
-store which works by remembering all its events.  It should
-also checkpoint its memory but doesn't, so restarting may be
-quite slow if you have a lot of events.  To reset, `vere -R.`
-
-In $directory are two things - a filesystem tree and an event
-log (`~egz.hope`).  
-
-Files in the tree are mirrored in Arvo's revision control system,
-with changes detected automagically.  So, even though Arvo cannot
-read the Unix filesystem, you can edit files externally and use
-them within Arvo.  (At present the change detection is not
-actually magic, but will happen every time you hit return on the
-command line.)
-
-`~egz.hope` contains your events, encrypted with your passcode.
-Every keypress on the command line, filesystem change, network
-packet, etc, is in this file.  Since it is encrypted, you can
-check it into a public github repo or similar.
-
-Now we're ready to continue and learn Nock.
+virtual computer.  See the Arvo tutorial for instructions.
 
 #1.3 Nock#
 
