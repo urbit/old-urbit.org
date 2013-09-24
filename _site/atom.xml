@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://example.com/atom.xml" rel="self"/>
  <link href="http://example.com"/>
- <updated>2013-09-24T16:12:54-04:00</updated>
+ <updated>2013-09-24T16:16:35-04:00</updated>
  <id>http://example.com</id>
  <author>
    <name>Urbit</name>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Welcome to Urbit</title>
-   <link href="http://example.com/blog/2013/09/24/urbit-intro.html"/>
+   <link href="http://example.com/2013/09/24/urbit-intro.html"/>
    <updated>2013-09-24T15:00:00-04:00</updated>
-   <id>http://example.com/blog/2013/09/24/urbit-intro</id>
+   <id>http://example.com/2013/09/24/urbit-intro</id>
    <content type="html">&lt;p&gt;But wait - what the hell is Urbit?&lt;/p&gt;
 
 &lt;p&gt;One of Urbit&amp;#8217;s problems is that we don&amp;#8217;t exactly have a word for what Urbit is. If there is such a word, it somehow means both &amp;#8220;operating system&amp;#8221; and &amp;#8220;network protocol,&amp;#8221; while somehow also implying &amp;#8220;functional&amp;#8221; and &amp;#8220;deterministic.&amp;#8221;&lt;/p&gt;
@@ -154,9 +154,9 @@
  
  <entry>
    <title>Chapter 6 &#58; Security</title>
-   <link href="http://example.com/doc/2013/08/22/Chapter-6-security.html"/>
+   <link href="http://example.com/2013/08/22/Chapter-6-security.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/doc/2013/08/22/Chapter-6-security</id>
+   <id>http://example.com/2013/08/22/Chapter-6-security</id>
    <content type="html">&lt;p&gt;Welcome to Urbit!&lt;/p&gt;
 
 &lt;h1 id=&#39;10_yo_this_is_unfinished_shit&#39;&gt;1.0 YO THIS IS UNFINISHED SHIT!&lt;/h1&gt;
@@ -265,9 +265,9 @@
  
  <entry>
    <title>Chapter 4 &#58; Hoon - Syntax</title>
-   <link href="http://example.com/doc/2013/08/22/Chapter-4-syntax.html"/>
+   <link href="http://example.com/2013/08/22/Chapter-4-syntax.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/doc/2013/08/22/Chapter-4-syntax</id>
+   <id>http://example.com/2013/08/22/Chapter-4-syntax</id>
    <content type="html">&lt;p&gt;Now, let&amp;#8217;s actually look at Hoon. Really, try not to recoil in horror. It&amp;#8217;s actually not anything like line noise.&lt;/p&gt;
 
 &lt;p&gt;Open the Hoon kernel - &lt;code&gt;urb/les/arvo/hoon.hoon&lt;/code&gt;. Let&amp;#8217;s look at the full, official decrement function (line 549):&lt;/p&gt;
@@ -464,9 +464,9 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
  
  <entry>
    <title>Chapter 3 &#58; Hoon - Philosophy</title>
-   <link href="http://example.com/doc/2013/08/22/Chapter-3-philosophy.html"/>
+   <link href="http://example.com/2013/08/22/Chapter-3-philosophy.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/doc/2013/08/22/Chapter-3-philosophy</id>
+   <id>http://example.com/2013/08/22/Chapter-3-philosophy</id>
    <content type="html">&lt;p&gt;Yo, let&amp;#8217;s write some Hoon!&lt;/p&gt;
 
 &lt;p&gt;In this tutorial we&amp;#8217;re going to try to learn Hoon, without first learning either Nock or Arvo. You probably should at least skim the Nock doc though - learning Hoon without understanding Nock is a little like learning C without understanding how a CPU works. It is not easier than knowing both, it&amp;#8217;s harder.&lt;/p&gt;
@@ -498,9 +498,9 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
  
  <entry>
    <title>Chapter 2 &#58; Crash course in Nock</title>
-   <link href="http://example.com/doc/2013/08/22/Chapter-2-nock.html"/>
+   <link href="http://example.com/2013/08/22/Chapter-2-nock.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/doc/2013/08/22/Chapter-2-nock</id>
+   <id>http://example.com/2013/08/22/Chapter-2-nock</id>
    <content type="html">&lt;p&gt;So let&amp;#8217;s learn Nock! But wait - why learn Nock? After all, we&amp;#8217;re going to be programming in Hoon, not Nock.&lt;/p&gt;
 
 &lt;p&gt;Like JVM bytecode, Nock is as inscrutable as assembly language. In fact, you can think of it as a sort of &amp;#8220;functional assembly language.&amp;#8221; There are sometimes reasons to program in real assembly language. There is never a reason to program in Nock. Except to learn Nock.&lt;/p&gt;
@@ -1337,9 +1337,9 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
  
  <entry>
    <title>Chapter 1 &#58; Crash course in Arvo</title>
-   <link href="http://example.com/doc/2013/08/22/Chapter-1-arvo.html"/>
+   <link href="http://example.com/2013/08/22/Chapter-1-arvo.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/doc/2013/08/22/Chapter-1-arvo</id>
+   <id>http://example.com/2013/08/22/Chapter-1-arvo</id>
    <content type="html">&lt;p&gt;Welcome to Urbit!&lt;/p&gt;
 
 &lt;h1 id=&#39;10_yo_this_is_unfinished_shit&#39;&gt;1.0 YO THIS IS UNFINISHED SHIT!&lt;/h1&gt;

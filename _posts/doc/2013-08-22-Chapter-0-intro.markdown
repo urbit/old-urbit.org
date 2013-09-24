@@ -1,7 +1,6 @@
 ---
 layout: post
 category: doc
-permalink: /2013/08/22/Chapter-0-intro.html
 title: Chapter 0 &#58; Introduction and philosophy
 ---
 
