@@ -3,7 +3,8 @@ pygments: true
 url: http://example.com
 lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
-
+permalink: /:year/:month/:day/:title.html
+ 
 # Theme customization - please change from the defaults!
 theme:
   # Color for top bar, links, etc

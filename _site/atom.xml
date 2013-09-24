@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://example.com/atom.xml" rel="self"/>
  <link href="http://example.com"/>
- <updated>2013-09-24T15:53:04-04:00</updated>
+ <updated>2013-09-24T16:12:54-04:00</updated>
  <id>http://example.com</id>
  <author>
    <name>Urbit</name>
@@ -2012,9 +2012,9 @@ $URBIT_HOME/waclux-tomwyc/doc/web/game/fun.hoon&lt;/code&gt;&lt;/pre&gt;
  
  <entry>
    <title>Chapter 0 &#58; Introduction and philosophy</title>
-   <link href="http://example.com/doc/2013/08/22/Chapter-0-intro.html"/>
+   <link href="http://example.com/2013/08/22/Chapter-0-intro.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/doc/2013/08/22/Chapter-0-intro</id>
+   <id>http://example.com/2013/08/22/Chapter-0-intro</id>
    <content type="html">&lt;p&gt;Urbit is a new programming and execution environment designed from scratch. Any resemblance to existing languages or operating systems is coincidental, cosmetic, or inevitable.&lt;/p&gt;
 
 &lt;h2 id=&#39;urbit_is_a_stack&#39;&gt;Urbit is a stack&lt;/h2&gt;
