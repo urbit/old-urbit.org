@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>The blog of Urbit</title>
- <link href="http://example.com/atom.xml" rel="self"/>
- <link href="http://example.com"/>
- <updated>2013-09-24T18:50:24-04:00</updated>
- <id>http://example.com</id>
+ <link href="http://urbit.org/atom.xml" rel="self"/>
+ <link href="http://urbit.org"/>
+ <updated>2013-09-25T18:19:02-04:00</updated>
+ <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
    <email>urbit@urbit.org</email>
@@ -13,10 +13,38 @@
 
  
  <entry>
+   <title>Continuity Timeframe</title>
+   <link href="http://urbit.org/2013/09/25/continuity.html"/>
+   <updated>2013-09-25T15:00:00-04:00</updated>
+   <id>http://urbit.org/2013/09/25/continuity</id>
+   <content type="html">&lt;p&gt;Thought we&amp;#8217;d share the following email that we sent out on the developers mailing list (urbit-dev@googlegroups.org):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Welcome to Urbit! You&amp;#8217;ve been added to this mailing list because you all are now proud owners of one or more destroyers (let us know if you&amp;#8217;re not and we&amp;#8217;ll remedy that). We&amp;#8217;ll be using this list to update all of you with the latest news from the offworld colonies. Presently your subscription settings are at one digest email daily (we have a powerful hatred of listserv-spam). Feel free to change these settings on Google Groups to whatever you like.&lt;/p&gt;
+
+&lt;p&gt;Our target date for network continuity is Friday October 4th. At which point the data structures we create will (if we succeed) live forever. We&amp;#8217;ll almost certainly do at least one reboot sometime before then, so you&amp;#8217;ll have to recreate your destroyers from your keys when we do.&lt;/p&gt;
+
+&lt;p&gt;Also, we plan on putting up some actual Hoon doc by then, so you all can, you know, actually learn Hoon.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;ll leave you with some Borges: &amp;#8220;Stranger and more pure than any hron is, at times, the ur: the object produced through suggestion, educed by hope.&amp;#8221;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Since this blog post is not limited to 1000 words (seriously Google) and because I love that quote so damn much, I&amp;#8217;ll post the whole thing:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;#8220;In the most ancient regions of Tlön, the duplication of lost objects is not infrequent. Two persons look for a pencil; the first finds it and says nothing; the second finds a second pencil, no less real, but closer to his expectations. These secondary objects are called hronir and are, though awkward in form, somewhat longer. Until recently, the hronir were the accidental products of distraction and forgetfulness. It seems unbelievable that their methodical production dates back scarcely a hundred years, but this is what the Eleventh Volume tells us.&lt;/p&gt;
+
+&lt;p&gt;&lt;span&gt;&amp;#8230;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;The methodical fabrication of hronir (says the Eleventh Volume) has performed prodigious services for archaeologists. It has made possible the interrogation and even the modification of the past, which is now no less plastic and docile than the future. Curiously, the hronir of second and third degree - the hronir derived from another hron, those derived from the hron of a hron - exaggerate the aberrations of the initial one; those of fifth degree are almost uniform; those of ninth degree become confused with those of the second; in those of the eleventh there is a purity of line not found in the original. The process is cyclical: the hron of the twelfth degree begins to fall off in quality. Stranger and more pure than any hron is, at times, the ur: the object produced through suggestion, educed by hope.&amp;#8221;&lt;/p&gt;
+&lt;/blockquote&gt;</content>
+ </entry>
+ 
+ <entry>
    <title>Welcome to Urbit</title>
-   <link href="http://example.com/2013/09/24/urbit-intro.html"/>
+   <link href="http://urbit.org/2013/09/24/urbit-intro.html"/>
    <updated>2013-09-24T15:00:00-04:00</updated>
-   <id>http://example.com/2013/09/24/urbit-intro</id>
+   <id>http://urbit.org/2013/09/24/urbit-intro</id>
    <content type="html">&lt;p&gt;But wait - what the hell is Urbit?&lt;/p&gt;
 
 &lt;p&gt;One of Urbit&amp;#8217;s problems is that we don&amp;#8217;t exactly have a word for what Urbit is. If there is such a word, it somehow means both &amp;#8220;operating system&amp;#8221; and &amp;#8220;network protocol,&amp;#8221; while somehow also implying &amp;#8220;functional&amp;#8221; and &amp;#8220;deterministic.&amp;#8221;&lt;/p&gt;
@@ -149,14 +177,14 @@
 
 &lt;p&gt;This does not make it trivial for the forces of light to hunt you down and render you into processed meat clippings. But it sure as heck evens the game. Who will win? I guess we&amp;#8217;ll see.&lt;/p&gt;
 
-&lt;p&gt;So do you want an Urbit destroyer? Read the &lt;a href=&#39;/doc/2013/08/22/Chapter-1-arvo.html&#39;&gt;documentation&lt;/a&gt; for instructions. Come on, they&amp;#8217;re free&amp;#8230;&lt;/p&gt;</content>
+&lt;p&gt;So do you want an Urbit destroyer? Read the &lt;a href=&#39;/2013/08/22/Chapter-1-arvo.html&#39;&gt;documentation&lt;/a&gt; for instructions. Come on, they&amp;#8217;re free&amp;#8230;&lt;/p&gt;</content>
  </entry>
  
  <entry>
    <title>Chapter 6 &#58; Security</title>
-   <link href="http://example.com/2013/08/22/Chapter-6-security.html"/>
+   <link href="http://urbit.org/2013/08/22/Chapter-6-security.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/2013/08/22/Chapter-6-security</id>
+   <id>http://urbit.org/2013/08/22/Chapter-6-security</id>
    <content type="html">&lt;p&gt;Welcome to Urbit!&lt;/p&gt;
 
 &lt;h1 id=&#39;10_yo_this_is_unfinished_shit&#39;&gt;1.0 YO THIS IS UNFINISHED SHIT!&lt;/h1&gt;
@@ -265,9 +293,9 @@
  
  <entry>
    <title>Chapter 4 &#58; Hoon - Syntax</title>
-   <link href="http://example.com/2013/08/22/Chapter-4-syntax.html"/>
+   <link href="http://urbit.org/2013/08/22/Chapter-4-syntax.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/2013/08/22/Chapter-4-syntax</id>
+   <id>http://urbit.org/2013/08/22/Chapter-4-syntax</id>
    <content type="html">&lt;p&gt;Now, let&amp;#8217;s actually look at Hoon. Really, try not to recoil in horror. It&amp;#8217;s actually not anything like line noise.&lt;/p&gt;
 
 &lt;p&gt;Open the Hoon kernel - &lt;code&gt;urb/les/arvo/hoon.hoon&lt;/code&gt;. Let&amp;#8217;s look at the full, official decrement function (line 549):&lt;/p&gt;
@@ -464,9 +492,9 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
  
  <entry>
    <title>Chapter 3 &#58; Hoon - Philosophy</title>
-   <link href="http://example.com/2013/08/22/Chapter-3-philosophy.html"/>
+   <link href="http://urbit.org/2013/08/22/Chapter-3-philosophy.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/2013/08/22/Chapter-3-philosophy</id>
+   <id>http://urbit.org/2013/08/22/Chapter-3-philosophy</id>
    <content type="html">&lt;p&gt;Yo, let&amp;#8217;s write some Hoon!&lt;/p&gt;
 
 &lt;p&gt;In this tutorial we&amp;#8217;re going to try to learn Hoon, without first learning either Nock or Arvo. You probably should at least skim the Nock doc though - learning Hoon without understanding Nock is a little like learning C without understanding how a CPU works. It is not easier than knowing both, it&amp;#8217;s harder.&lt;/p&gt;
@@ -498,9 +526,9 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
  
  <entry>
    <title>Chapter 2 &#58; Crash course in Nock</title>
-   <link href="http://example.com/2013/08/22/Chapter-2-nock.html"/>
+   <link href="http://urbit.org/2013/08/22/Chapter-2-nock.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/2013/08/22/Chapter-2-nock</id>
+   <id>http://urbit.org/2013/08/22/Chapter-2-nock</id>
    <content type="html">&lt;p&gt;So let&amp;#8217;s learn Nock! But wait - why learn Nock? After all, we&amp;#8217;re going to be programming in Hoon, not Nock.&lt;/p&gt;
 
 &lt;p&gt;Like JVM bytecode, Nock is as inscrutable as assembly language. In fact, you can think of it as a sort of &amp;#8220;functional assembly language.&amp;#8221; There are sometimes reasons to program in real assembly language. There is never a reason to program in Nock. Except to learn Nock.&lt;/p&gt;
@@ -522,38 +550,38 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;2. Pseudocode&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;1  ::    [a b c]           [a [b c]]
-2  ::    nock(a)           *a
+&lt;pre&gt;&lt;code&gt;1  ::    nock(a)           *a
+2  ::    [a b c]           [a [b c]]
 3  ::  
 4  ::    ?[a b]            0
 5  ::    ?a                1
-6  ::    +a                1 + a
-7  ::    =[a a]            0
-8  ::    =[a b]            1
-9  ::
-10 ::    /[1 a]            a
-11 ::    /[2 a b]          a
-12 ::    /[3 a b]          b
-13 ::    /[(a + a) b]      /[2 /[a b]]
-14 ::    /[(a + a + 1) b]  /[3 /[a b]]
-15 ::
-16 ::    *[a [b c] d]      [*[a b c] *[a d]]
-17 ::
-18 ::    *[a 0 b]          /[b a]
-19 ::    *[a 1 b]          b
-20 ::    *[a 2 b c]        *[*[a b] *[a c]]
-21 ::    *[a 3 b]          ?*[a b]
-22 ::    *[a 4 b]          +*[a b]
-23 ::    *[a 5 b]          =*[a b]
-24 ::
-25 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
-26 ::    *[a 7 b c]        *[a 2 b 1 c]
-27 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
-28 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
-29 ::    *[a 10 b c]       *[a c]
-30 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 2] d]
-31 ::
-32 ::    +[a b]            +[a b]
+6  ::    +[a b]            +[a b]
+7  ::    +a                1 + a
+8  ::    =[a a]            0
+9  ::    =[a b]            1
+10 ::
+11 ::    /[1 a]            a
+12 ::    /[2 a b]          a
+13 ::    /[3 a b]          b
+14 ::    /[(a + a) b]      /[2 /[a b]]
+15 ::    /[(a + a + 1) b]  /[3 /[a b]]
+16 ::
+17 ::    *[a [b c] d]      [*[a b c] *[a d]]
+18 ::
+19 ::    *[a 0 b]          /[b a]
+20 ::    *[a 1 b]          b
+21 ::    *[a 2 b c]        *[*[a b] *[a c]]
+22 ::    *[a 3 b]          ?*[a b]
+23 ::    *[a 4 b]          +*[a b]
+24 ::    *[a 5 b]          =*[a b]
+25 ::
+26 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+27 ::    *[a 7 b c]        *[a 2 b 1 c]
+28 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+29 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+30 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
+31 ::    *[a 10 b c]]      *[a c]
+32 ::
 33 ::    =a                =a
 34 ::    /a                /a
 35 ::    *a                *a&lt;/code&gt;&lt;/pre&gt;
@@ -666,25 +694,26 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Let&amp;#8217;s move on to the axiomatic functions.&lt;/p&gt;
 
-&lt;h2 id=&#39;lines_48&#39;&gt;Lines 4-8:&lt;/h2&gt;
+&lt;h2 id=&#39;lines_49&#39;&gt;Lines 4-9:&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;4  ::    ?[a b]            0
 5  ::    ?a                1
-6  ::    +a                1 + a
-7  ::    =[a a]            0
-8  ::    =[a b]            1&lt;/code&gt;&lt;/pre&gt;
+6  ::    +[a b]            +[a b]
+7  ::    +a                1 + a
+8  ::    =[a a]            0
+9  ::    =[a b]            1&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Here we define more pseudocode operators, which we&amp;#8217;ll use in reductions further down. So far we have four built-in functions: &lt;code&gt;*&lt;/code&gt; meaning Nock itself, &lt;code&gt;?&lt;/code&gt; testing whether a noun is a cell or an atom, &lt;code&gt;+&lt;/code&gt; incrementing an atom, and &lt;code&gt;=&lt;/code&gt; testing for equality. Again, no rocket science here.&lt;/p&gt;
 
 &lt;p&gt;We should note that in Nock and Hoon, &lt;code&gt;0&lt;/code&gt; (pronounced &amp;#8220;yes&amp;#8221;) is true, and &lt;code&gt;1&lt;/code&gt; (&amp;#8220;no&amp;#8221;) is false. Why? It&amp;#8217;s fresh, it&amp;#8217;s different, it&amp;#8217;s new. And it&amp;#8217;s annoying. And it keeps you on your toes. And it&amp;#8217;s also just intuitively right.&lt;/p&gt;
 
-&lt;h2 id=&#39;lines_1014&#39;&gt;Lines 10-14:&lt;/h2&gt;
+&lt;h2 id=&#39;lines_1115&#39;&gt;Lines 11-15:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;10 ::    /[1 a]            a
-11 ::    /[2 a b]          a
-12 ::    /[3 a b]          b
-13 ::    /[(a + a) b]      /[2 /[a b]]
-14 ::    /[(a + a + 1) b]  /[3 /[a b]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;11 ::    /[1 a]            a
+12 ::    /[2 a b]          a
+13 ::    /[3 a b]          b
+14 ::    /[(a + a) b]      /[2 /[a b]]
+15 ::    /[(a + a + 1) b]  /[3 /[a b]]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Slightly more interesting is our tree numbering. Every noun is of course a tree. The &lt;code&gt;/&lt;/code&gt; operator - pronounced &amp;#8220;slot&amp;#8221; - imposes an address space on that tree, mapping every nonzero atom to a tree position.&lt;/p&gt;
 
@@ -719,11 +748,11 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;I do hope this isn&amp;#8217;t so terribly hard to follow.&lt;/p&gt;
 
-&lt;h2 id=&#39;line_18&#39;&gt;Line 18:&lt;/h2&gt;
+&lt;h2 id=&#39;line_19&#39;&gt;Line 19:&lt;/h2&gt;
 
 &lt;p&gt;Now we enter the definition of Nock itself - ie, the &lt;code&gt;*&lt;/code&gt; operator.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;18 ::    *[a 0 b]          /[b a]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;19 ::    *[a 0 b]          /[b a]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;0&lt;/code&gt; is simply Nock&amp;#8217;s tree-addressing operator. Let&amp;#8217;s try it out from the Arvo command line.&lt;/p&gt;
 
@@ -741,9 +770,9 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Even stupider is line 19:&lt;/p&gt;
 
-&lt;h2 id=&#39;line_19&#39;&gt;Line 19:&lt;/h2&gt;
+&lt;h2 id=&#39;line_20&#39;&gt;Line 20:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;19 ::    *[a 1 b]          b&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;20 ::    *[a 1 b]          b&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;1&lt;/code&gt; is the constant operator. It produces its argument without reference to the subject. So&lt;/p&gt;
 
@@ -753,11 +782,11 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;[153 218]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#39;line_20&#39;&gt;Line 20:&lt;/h2&gt;
+&lt;h2 id=&#39;line_21&#39;&gt;Line 21:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;20 ::    *[a 2 b c]        *[*[a b] *[a c]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;21 ::    *[a 2 b c]        *[*[a b] *[a c]]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Line 27 brings us the essential magic of recursion. &lt;code&gt;2&lt;/code&gt; is the Nock operator. If you can compute a subject and a formula, you can evaluate them in the interpreter. In most fundamental languages, like Lisp, &lt;code&gt;eval&lt;/code&gt; is a curiosity. But Nock has no &lt;code&gt;apply&lt;/code&gt; - so all our work gets done with &lt;code&gt;2&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Line 21 brings us the essential magic of recursion. &lt;code&gt;2&lt;/code&gt; is the Nock operator. If you can compute a subject and a formula, you can evaluate them in the interpreter. In most fundamental languages, like Lisp, &lt;code&gt;eval&lt;/code&gt; is a curiosity. But Nock has no &lt;code&gt;apply&lt;/code&gt; - so all our work gets done with &lt;code&gt;2&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s convert the previous example into a stupid use of &lt;code&gt;2&lt;/code&gt;:&lt;/p&gt;
 
@@ -783,13 +812,13 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 [153 218]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#39;lines_2123&#39;&gt;Lines 21-23:&lt;/h2&gt;
+&lt;h2 id=&#39;lines_2224&#39;&gt;Lines 22-24:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;21 ::    *[a 3 b]          ?*[a b]
-22 ::    *[a 4 b]          +*[a b]
-23 ::    *[a 5 b]          =*[a b]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;22 ::    *[a 3 b]          ?*[a b]
+23 ::    *[a 4 b]          +*[a b]
+24 ::    *[a 5 b]          =*[a b]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In lines 21-23, we meet our axiomatic functions again:&lt;/p&gt;
+&lt;p&gt;In lines 22-24, we meet our axiomatic functions again:&lt;/p&gt;
 
 &lt;p&gt;For instance, if &lt;code&gt;x&lt;/code&gt; is a formula that calculates some product, &lt;code&gt;[4 x]&lt;/code&gt; calculates that product plus one. Hence:&lt;/p&gt;
 
@@ -811,17 +840,17 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;~tasfyn-partyv&amp;gt; .*([132 19] [4 0 3])
 20&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;If this seems obvious, you&amp;#8217;re doin&amp;#8217; good. Finally, we jump back up to line 16, the trickiest in the spec:&lt;/p&gt;
+&lt;p&gt;If this seems obvious, you&amp;#8217;re doin&amp;#8217; good. Finally, we jump back up to line 17, the trickiest in the spec:&lt;/p&gt;
 
-&lt;h2 id=&#39;line_16&#39;&gt;Line 16:&lt;/h2&gt;
+&lt;h2 id=&#39;line_17&#39;&gt;Line 17:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;16 ::    *[a [b c] d]      [*[a b c] *[a d]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;17 ::    *[a [b c] d]      [*[a b c] *[a d]]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Um, what?&lt;/p&gt;
 
 &lt;p&gt;Since Nock of an atom just crashes, the practical domain of the Nock function is always a cell. Conventionally, the head of this cell is the &amp;#8220;subject,&amp;#8221; the tail is the &amp;#8220;formula,&amp;#8221; and the result of Nocking it is the &amp;#8220;product.&amp;#8221; Basically, the subject is your data and the formula is your code.&lt;/p&gt;
 
-&lt;p&gt;We could write line 16 less formally:&lt;/p&gt;
+&lt;p&gt;We could write line 17 less formally:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;*[subject [formula-x formula-y]]
 =&amp;gt;  [*[subject formula-x] *[subject formula-y]]&lt;/code&gt;&lt;/pre&gt;
@@ -850,18 +879,18 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Operators 6 through 10 are macros. They exist because Nock is not a toy, but a practical interpreter. Let&amp;#8217;s see them all together:&lt;/p&gt;
 
-&lt;h2 id=&#39;lines_2530&#39;&gt;Lines 25-30:&lt;/h2&gt;
+&lt;h2 id=&#39;lines_2631&#39;&gt;Lines 26-31:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;25 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
-26 ::    *[a 7 b c]        *[a 2 b 1 c]
-27 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
-28 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
-29 ::    *[a 10 b c]       *[a c]
-30 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 2] d]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;26 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+27 ::    *[a 7 b c]        *[a 2 b 1 c]
+28 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+29 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+30 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
+31 ::    *[a 10 b c]]      *[a c]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Whoa! Have we entered rocket-science territory? Let&amp;#8217;s try to figure out what these strange formulas do - simplest first. The simplest is clearly line 29:&lt;/p&gt;
+&lt;p&gt;Whoa! Have we entered rocket-science territory? Let&amp;#8217;s try to figure out what these strange formulas do - simplest first. The simplest is clearly line 30:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;29 ::    *[a 10 b c]       *[a c]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;31 ::    *[a 10 b c]       *[a c]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If &lt;code&gt;x&lt;/code&gt; is an atom and &lt;code&gt;y&lt;/code&gt; is a formula, the formula &lt;code&gt;[10 x y]&lt;/code&gt; appears to be equivalent to&amp;#8230; &lt;code&gt;y&lt;/code&gt;. For instance:&lt;/p&gt;
 
@@ -874,7 +903,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;There is another reduction for hints - line 30:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;30 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 2] d]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;31 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Once we see what &lt;code&gt;7&lt;/code&gt; and &lt;code&gt;8&lt;/code&gt; do, we&amp;#8217;ll see that this complex hint throws away an arbitrary &lt;code&gt;b&lt;/code&gt;, but computes the formula &lt;code&gt;c&lt;/code&gt; against the subject and&amp;#8230; throws away the product. This formula is simply equivalent to &lt;code&gt;d&lt;/code&gt;. Of course, in practice the product of &lt;code&gt;c&lt;/code&gt; will be put to some sordid and useful use. It could even wind up as a side effect, though we try not to get &lt;em&gt;that&lt;/em&gt; sordid.&lt;/p&gt;
 
@@ -882,7 +911,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We move on to the next simplest operator, &lt;code&gt;7&lt;/code&gt;. Line 26:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;	26 ::    *[a 7 b c]        *[a 2 b 1 c]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;	27 ::    *[a 7 b c]        *[a 2 b 1 c]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Suppose we have two formulas, &lt;code&gt;b&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt;. What is the formula &lt;code&gt;[7 b c]&lt;/code&gt;? This example will show you:&lt;/p&gt;
 
@@ -891,9 +920,9 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;7&lt;/code&gt; is an old mathematical friend, function composition. It&amp;#8217;s easy to see how this is built out of &lt;code&gt;2&lt;/code&gt;. The data to evaluate is simply &lt;code&gt;b&lt;/code&gt;, and the formula is &lt;code&gt;c&lt;/code&gt; quoted.&lt;/p&gt;
 
-&lt;p&gt;Line 27 looks very similar:&lt;/p&gt;
+&lt;p&gt;Line 28 looks very similar:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;27 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;28 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Indeed, &lt;code&gt;8&lt;/code&gt; is &lt;code&gt;7&lt;/code&gt;, except that the subject for &lt;code&gt;c&lt;/code&gt; is not simply the product of &lt;code&gt;b&lt;/code&gt;, but the ordered pair of the product of &lt;code&gt;b&lt;/code&gt; and the original subject. Hence:&lt;/p&gt;
 
@@ -913,13 +942,13 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Another simple macro is line 28:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;28 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;29 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;9&lt;/code&gt; is a calling convention. With &lt;code&gt;c&lt;/code&gt;, we produce a noun which contains both code and data - a &lt;em&gt;core&lt;/em&gt;. We use this core as the subject, and apply the formula within it at slot &lt;code&gt;b&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;And finally, we come to the piece de resistance - line 25:&lt;/p&gt;
+&lt;p&gt;And finally, we come to the piece de resistance - line 26:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;25 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;26 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Great giblets! WTF is this doing? It seems we&amp;#8217;ve finally arrived at some real rocket science.&lt;/p&gt;
 
@@ -1198,49 +1227,49 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;6&lt;/code&gt; Reduction:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;25 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+&lt;pre&gt;&lt;code&gt;26 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
 
 *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
 
-20 ::    *[a 2 b c]        *[*[a b] *[a c]]
+21 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
 *[*[a 0 1] *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
 
-18 ::    *[a 0 b]          /[b a]
+19 ::    *[a 0 b]          /[b a]
 
 *[a *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
 
-20 ::    *[a 2 b c]        *[*[a b] *[a c]]
+21 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
 *[a *[*[a [1 c d]] *[a [1 0] 2 [1 2 3] [1 0] 4 4 b]]]
 
-19 ::    *[a 1 b]          b
+20 ::    *[a 1 b]          b
 
-16 ::    *[a [b c] d]      [*[a b c] *[a d]]
+17 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
 *[a *[[c d] [*[a 1 0] *[a 2 [1 2 3] [1 0] 4 4 b]]]]
 
-19 ::    *[a 1 b]          b
+20 ::    *[a 1 b]          b
 
 *[a *[[c d] [0 *[a 2 [1 2 3] [1 0] 4 4 b]]]]
 
-20 ::    *[a 2 b c]        *[*[a b] *[a c]]
+21 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
 *[a *[[c d] [0 *[*[a [1 2 3]] *[a [1 0] 4 4 b]]]]]
 
-19 ::    *[a 1 b]          b
+20 ::    *[a 1 b]          b
 
 *[a *[[c d] [0 *[[2 3] *[a [1 0] 4 4 b]]]]]
 
-16 ::    *[a [b c] d]      [*[a b c] *[a d]]
+17 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
 *[a *[[c d] [0 *[[2 3] [*[a [1 0]] *[a 4 4 b]]]]]]
 
-19 ::    *[a 1 b]          b
+20 ::    *[a 1 b]          b
 
 *[a *[[c d] [0 *[[2 3] [0 *[a 4 4 b]]]]]]
 
-22 ::    *[a 4 b]          +*[a b]
+23 ::    *[a 4 b]          +*[a b]
 
 *[a *[[c d] [0 *[[2 3] [0 ++[a b]]]]]]&lt;/code&gt;&lt;/pre&gt;
 
@@ -1250,15 +1279,15 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;7&lt;/code&gt; Reduction:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;26 ::    *[a 7 b c]        *[a 2 b 1 c]
+&lt;pre&gt;&lt;code&gt;27 ::    *[a 7 b c]        *[a 2 b 1 c]
 
 *[a 2 b 1 c]
 
-20 ::    *[a 2 b c]        *[*[a b] *[a c]] 
+21 ::    *[a 2 b c]        *[*[a b] *[a c]] 
 
 *[*[a b] *[a 1 c]]
 
-19 ::    *[a 1 b]          b
+20:    *[a 1 b]          b
  
 *[*[a b] c]&lt;/code&gt;&lt;/pre&gt;
 
@@ -1268,7 +1297,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;8&lt;/code&gt; Reduction:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;27 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+&lt;pre&gt;&lt;code&gt;28 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
 
 *[a 7 [[7 [0 1] b] 0 1] c]   
 
@@ -1276,15 +1305,15 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 *[*[a [7 [0 1] b] 0 1]] c]
 
-16 ::    *[a [b c] d]      [*[a b c] *[a d]]
+17 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
 *[[*[a [7 [0 1] b]] *[a 0 1]] c]
 
-18 ::    *[a 0 b]          /[b a]
+19 ::    *[a 0 b]          /[b a]
 
 *[[*[a [7 [0 1] b]] /[1 a]] c]
 
-10 ::    /[1 a]            a
+11 ::    /[1 a]            a
 
 *[[*[a [7 [0 1] b]] a] c]
 
@@ -1298,7 +1327,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;9&lt;/code&gt; Reduction:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;*[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+&lt;pre&gt;&lt;code&gt;29 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
 
 *[a 7 c [2 [0 1] [0 b]]]
 
@@ -1306,11 +1335,11 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 *[*[a c] [2 [0 1] [0 b]]]
 
-20 ::     *[a 2 b c]        *[*[a b] *[a c]]
+21 ::     *[a 2 b c]        *[*[a b] *[a c]]
 
 *[*[*[a c] [0 1]] *[*[a c] [0 b]]]
 
-18 ::     *[a 0 b]          /[b a]&lt;/code&gt;&lt;/pre&gt;
+19 ::     *[a 0 b]          /[b a]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;9&lt;/code&gt; Reduced:&lt;/strong&gt;&lt;/p&gt;
 
@@ -1326,9 +1355,9 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 7r ::     *[a 7 b c]        *[*[a b] c]
 
-*[*[[*[a c] a] 0 2] d]
+*[*[[*[a c] a] 0 3] d]
 
-18 ::     *[a 0 b]          /[b a]&lt;/code&gt;&lt;/pre&gt;
+19 ::     *[a 0 b]          /[b a]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;10&lt;/code&gt; reduced:&lt;/strong&gt;&lt;/p&gt;
 
@@ -1337,9 +1366,9 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
  
  <entry>
    <title>Chapter 1 &#58; Crash course in Arvo</title>
-   <link href="http://example.com/2013/08/22/Chapter-1-arvo.html"/>
+   <link href="http://urbit.org/2013/08/22/Chapter-1-arvo.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/2013/08/22/Chapter-1-arvo</id>
+   <id>http://urbit.org/2013/08/22/Chapter-1-arvo</id>
    <content type="html">&lt;p&gt;Welcome to Urbit!&lt;/p&gt;
 
 &lt;h1 id=&#39;10_yo_this_is_unfinished_shit&#39;&gt;1.0 YO THIS IS UNFINISHED SHIT!&lt;/h1&gt;
@@ -2012,9 +2041,9 @@ $URBIT_HOME/waclux-tomwyc/doc/web/game/fun.hoon&lt;/code&gt;&lt;/pre&gt;
  
  <entry>
    <title>Chapter 0 &#58; Introduction and philosophy</title>
-   <link href="http://example.com/2013/08/22/Chapter-0-intro.html"/>
+   <link href="http://urbit.org/2013/08/22/Chapter-0-intro.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://example.com/2013/08/22/Chapter-0-intro</id>
+   <id>http://urbit.org/2013/08/22/Chapter-0-intro</id>
    <content type="html">&lt;p&gt;Urbit is a new programming and execution environment designed from scratch. Any resemblance to existing languages or operating systems is coincidental, cosmetic, or inevitable.&lt;/p&gt;
 
 &lt;h2 id=&#39;urbit_is_a_stack&#39;&gt;Urbit is a stack&lt;/h2&gt;
