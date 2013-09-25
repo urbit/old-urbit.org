@@ -1,6 +1,6 @@
 # General Jekyll Config
 pygments: true
-url: http://example.com
+url: http://urbit.org
 lsi: false
 exclude: [LICENSE, CNAME, README.md, .gitignore]
 permalink: /:year/:month/:day/:title.html
