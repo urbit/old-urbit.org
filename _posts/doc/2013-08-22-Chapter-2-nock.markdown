@@ -42,12 +42,12 @@ naive interpreter.  Here is Nock 5K:
 
 **2. Pseudocode**
 
-        1  ::    nock(a)           *a
-        2  ::    [a b c]           [a [b c]]
-        3  ::  
-        4  ::    ?[a b]            0
-        5  ::    ?a                1
-        6  ::    +[a b]            +[a b]
+	1  ::    nock(a)           *a
+	2  ::    [a b c]           [a [b c]]
+	3  ::  
+	4  ::    ?[a b]            0
+	5  ::    ?a                1
+	6  ::    +[a b]            +[a b]
 	7  ::    +a                1 + a
 	8  ::    =[a a]            0
 	9  ::    =[a b]            1
