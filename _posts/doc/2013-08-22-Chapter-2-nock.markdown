@@ -1088,7 +1088,7 @@ yourself that you've mastered Nock.
 
 ##`10` Reduction:##
 
-	*[a 10 [b c] d]   *[a 8 c 7 [0 2] d]
+	*[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
 	
 	8r ::     *[a 8 b c]        [[*[a b] a] c]
 
