@@ -14,15 +14,15 @@ mailing list (urbit-dev@googlegroups.org):
 >latest news from the offworld colonies. Presently your subscription settings
 >are at one digest email daily (we have a powerful hatred of listserv-spam).
 >Feel free to change these settings on Google Groups to whatever you like.
-
+>
 >Our target date for network continuity is Friday October 4th. At which point
 >the data structures we create will (if we succeed) live forever. We'll almost
 >certainly do at least one reboot sometime before then, so you'll have to
 >recreate your destroyers from your keys when we do.
-
+>
 >Also, we plan on putting up some actual Hoon doc by then, so you all can, you
 >know, actually learn Hoon.
-
+>
 >I'll leave you with some Borges: "Stranger and more pure than any hron is, at
 >times, the ur: the object produced through suggestion, educed by hope." 
 
@@ -37,9 +37,9 @@ because I love that quote so damn much, I'll post the whole thing:
 >distraction and forgetfulness. It seems unbelievable that their methodical
 >production dates back scarcely a hundred years, but this is what the Eleventh
 >Volume tells us.
-
+>
 >[...]
-
+>
 >The methodical fabrication of hronir (says the Eleventh Volume) has performed
 >prodigious services for archaeologists.  It has made possible the interrogation
 >and even the modification of the past, which is now no less plastic and docile
