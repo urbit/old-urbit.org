@@ -281,7 +281,7 @@ the ship's hierarchical prefix, or "flagship."  Mere submarine are
 independent; carriers create cruisers; cruisers create
 destroyers; destroyers create yachts.  
 
-A submarine is the fingerprint of its own private key; a carrier's
+A submarine is the fingerprint of its own public key; a carrier's
 fingerprint is predefined in the kernel.  Anyone can create any
 number of 128-bit submarines, whose free and independent
 society the 64-bit naval hierarchy cannot interfere with.  And
