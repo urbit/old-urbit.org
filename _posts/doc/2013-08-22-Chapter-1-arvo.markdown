@@ -30,7 +30,7 @@ Urbit depends on:
 + libssl-dev (Linux only)
 + ncurses (Linux only)
 
-Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid
+Currently we support OSX, Ubuntu, Debian and AWS Linux AMI. Intrepid
 ninjas may attempt ports to other OSes. If you're not an intrepid
 ninja, try a VM (eg, VirtualBox).
 
@@ -52,14 +52,14 @@ dependencies by hand :-)
 
 This will ask you for the root password, which ideally you know.
 
-**Ubuntu:**
+**Ubuntu or Debian:**
 
-1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev`
+1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev exuberant-ctags`
 
 
 **AWS:**
 
-1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel`
+1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel exuberant-ctags`
 
 ###Get the source:###
 
