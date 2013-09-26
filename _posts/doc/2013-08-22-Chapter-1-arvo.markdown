@@ -39,18 +39,27 @@ ninja, try a VM (eg, VirtualBox).
 
 1. Do you have XCode?  Type `gcc`.  If it says `no input files`, you have XCode.
 
-Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the 
-Command Line tools.
+   Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the 
+   Command Line tools.
 
-2. Do you have Homebrew?  Type `brew`.  If it does something, you have Homebrew. 
+2. Install dependencies
+   - Do you have Homebrew?  Type `brew`.  If it does something, you have Homebrew. 
+     
+     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` 
+     will install it.
 
-Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` 
-will install it.  (Can you use MacPorts? Yes you can. You can also resolve the 
-dependencies by hand :-)
+     And follow up with `sudo brew install gmp libsigsegv openssl`
 
-3. `sudo brew install gmp libsigsegv openssl`
+     This will ask you for the root password, which ideally you know.
 
-This will ask you for the root password, which ideally you know.
+   - Macports? Type `port`.  If it does something, you have Macports.
+
+     Otherwise go [here](http://www.macports.org/install.php "here").
+
+     Then `sudo port install gmp libsigsegv openssl`
+
+     Enter your root password at the prompt.
+
 
 **Ubuntu:**
 
