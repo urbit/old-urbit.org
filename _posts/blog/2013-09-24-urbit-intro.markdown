@@ -158,6 +158,8 @@ basis of all distributed, secure PKIs.
 Unfortunately, an identity should be above all a _name_.  A
 128-bit fingerprint looks like this:
 
+        316.931.986.049.624.498.975.974.005.376.666.572.699
+
 which isn't a name.  For no better reason than the fact that,
 unless you're an autistic savant, you are basically a monkey with
 an overgrown monkey brain.  A name is something that fits in a 
