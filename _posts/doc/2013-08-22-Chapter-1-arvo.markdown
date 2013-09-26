@@ -59,7 +59,7 @@ This will ask you for the root password, which ideally you know.
 
 **AWS:**
 
-1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel exuberant-ctags`
+1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags`
 
 ###Get the source:###
 
