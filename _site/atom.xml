@@ -4,13 +4,210 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2013-09-25T18:19:02-04:00</updated>
+ <updated>2013-09-26T18:42:08-04:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
    <email>urbit@urbit.org</email>
  </author>
 
+ 
+ <entry>
+   <title>Tea at the Palaz of Hoon</title>
+   <link href="http://urbit.org/2013/09/26/palaz.html"/>
+   <updated>2013-09-26T15:00:00-04:00</updated>
+   <id>http://urbit.org/2013/09/26/palaz</id>
+   <content type="html">&lt;!DOCTYPE html&gt;
+&lt;!--[if lt IE 7 ]&gt;&lt;html class=&quot;ie ie6&quot; lang=&quot;en&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 7 ]&gt;&lt;html class=&quot;ie ie7&quot; lang=&quot;en&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if IE 8 ]&gt;&lt;html class=&quot;ie ie8&quot; lang=&quot;en&quot;&gt; &lt;![endif]--&gt;
+&lt;!--[if (gte IE 9)|!(IE)]&gt;&lt;!--&gt;&lt;html lang=&quot;en&quot;&gt; &lt;!--&lt;![endif]--&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;title&gt;Urbit - Tea at the Palaz of Hoon&lt;/title&gt;
+  &lt;meta name=&quot;author&quot; content=&quot;Urbit&quot; /&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;The blog of Urbit&quot; /&gt;
+  &lt;link rel=&quot;canonical&quot; href=&quot;http://urbit.org/2013/09/25/palaz.html&quot; /&gt;
+
+  &lt;link href=&quot;//fonts.googleapis.com/css?family=Open+Sans:600,800&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+  &lt;link rel=&quot;shortcut icon&quot; href=&quot;/favicon.png&quot;&gt;
+  &lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;Urbit&quot; href=&quot;http://urbit.org/atom.xml&quot; /&gt;
+
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/all.css&quot;&gt;
+&lt;!--[if IE 7]&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/font-awesome-ie7.min.css&quot;&gt;
+&lt;![endif]--&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;div class=&quot;four columns sidebar&quot;&gt;
+      &lt;nav&gt;
+  &lt;a href=&quot;/&quot;&gt;
+    &lt;img src=&quot;/logo.svg&quot; id=&quot;logo&quot; alt=&quot;logo&quot;/&gt;
+  &lt;/a&gt;
+  &lt;h2&gt; Urbit&lt;/h2&gt;
+  &lt;hr/&gt;
+  &lt;ul&gt;
+  &lt;p&gt;An operating function&lt;/p&gt;
+  &lt;p&gt;
+   &lt;a href=&quot;/&quot;&gt;Documentation &lt;/a&gt;
+   &lt;br&gt;
+   &lt;a href=&quot;/faq.html&quot;&gt;FAQ&lt;/a&gt;
+   &lt;br/&gt;
+   &lt;a href=&quot;/blog.html&quot;&gt;Blog&lt;/a&gt;
+   &lt;br&gt;
+   &lt;a href=&quot;/community.html&quot;&gt;Community&lt;/a&gt;
+  &lt;/p&gt;
+  &lt;hr/&gt;
+  &lt;div&gt;
+    &lt;div id=&quot;social&quot;&gt;
+      Follow:
+&lt;div id=&quot;stalker&quot;&gt;
+  
+  &lt;a title=&quot;urbit on Github&quot; href=&quot;http://github.com/urbit&quot;&gt;
+    &lt;i class=&quot;icon-github-sign&quot;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+
+  
+  &lt;a title=&quot;urbit on Hacker News&quot; href=&quot;http://news.ycombinator.com/user?id=urbit&quot;&gt;
+    &lt;i class=&quot;icon-sign-blank&quot;&gt;&lt;/i&gt;
+    &lt;span class=&quot;icon-overlay icon-hn&quot;&gt;Y&lt;/span&gt;
+  &lt;/a&gt;
+  
+  
+  &lt;a title=&quot;Urbit_ on Twitter&quot; href=&quot;http://twitter.com/Urbit_&quot;&gt;
+    &lt;i class=&quot;icon-twitter-sign&quot;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+  
+  &lt;a title=&quot;RSS feed&quot; id=&quot;rss&quot; href=&quot;/atom.xml&quot;&gt;
+    &lt;i class=&quot;icon-rss-sign&quot;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+    &lt;/div&gt;
+
+    &lt;div class=&quot;eleven columns content&quot;&gt;
+      &lt;p class=&quot;meta&quot;&gt;
+  &lt;a href=&quot;/&quot;&gt;
+    &lt;i class=&quot;home icon-home&quot;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/p&gt;
+
+&lt;h1 class=&quot;title&quot;&gt;Tea at the Palaz of Hoon&lt;/h1&gt;
+
+&lt;div id=&quot;post&quot;&gt;
+  &lt;blockquote&gt;
+&lt;p&gt;Not less because in purple I descended&lt;br /&gt;The western day through what you called&lt;br /&gt;The loneliest air, not less was I myself.&lt;/p&gt;
+
+&lt;p&gt;What was the ointment sprinkled on my beard?&lt;br /&gt;What were the hymns that buzzed beside my ears?&lt;br /&gt;What was the sea whose tide swept through me there?&lt;/p&gt;
+
+&lt;p&gt;Out of my mind the golden ointment rained,&lt;br /&gt;And my ears made the blowing hymns they heard.&lt;br /&gt;I was myself the compass of that sea:&lt;/p&gt;
+
+&lt;p&gt;I was the world in which I walked, and what I saw&lt;br /&gt;Or heard or felt came not but from myself;&lt;br /&gt;And there I found myself more truly and more strange.&lt;/p&gt;
+
+&lt;p&gt;-Wallace Stevens&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A hymn can be full of love, or hate. And the quality of Urbit&amp;#8217;s haters is absurdly high. We cherish each and every one of them. There&amp;#8217;s something sublime about being hit with a perfectly-formed jab. So here we&amp;#8217;d like to serve some of the choicest examples for you here, names redacted (we don&amp;#8217;t want to embarrass anyone):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.mcclatchydc.com/2013/09/24/203134/exclusive-john-mcafee-vows-to.html#.UkS1bryoWqk&quot;&gt;&lt;img alt=&#39;It&#39;s an image. It&#39;s a link&#39; src=&#39;/assets/tweets.png&#39; /&gt;&lt;/a&gt; Sadly, though we&amp;#8217;re avid followers of the &lt;a href=&quot;http://www.mcclatchydc.com/2013/09/24/203134/exclusive-john-mcafee-vows-to.html#.UkS1bryoWqk&quot;&gt;adventures&lt;/a&gt; of John McAffee, he&amp;#8217;s not involved.&lt;/p&gt;
+
+&lt;p&gt;Yet.&lt;/p&gt;
+
+&lt;p&gt;But outside the Twitterverse is where things really start to shine. Pay attention, class, &lt;a href=&#39;http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=2#post419831292&#39;&gt;this&lt;/a&gt; is &lt;a href=&#39;http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=2#post419831292&#39;&gt;how&lt;/a&gt; you &lt;a href=&#39;http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=1#post419822422&#39;&gt;gripe&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;this one looks like x86 assembly had a fetal alcohol syndrome love child with haskell&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;so are there actually several people involved in this, and if so, what language do they speak amongst themselves?&lt;/p&gt;
+
+&lt;p&gt;or do they just gently sway in unison, softly keening&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;++  grip			 ::  extend will  
+  |=  [wet=will law=will]  
+  ^-  will  
+  ?~  wet  law  
+  ?:  =(wet law)  law  
+  ?^  t.wet  
+    ?&amp;gt;((meld i.wet i.t.wet) [i.wet $(wet t.wet)])  
+  ?~  law  
+    ?&amp;gt;((pier i.wet) [i.wet ~])  
+  ?~  q.p.q.i.wet  
+    ?&amp;gt;((meld i.wet i.law) [i.wet law])  S&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;it&amp;#8217;s like the obfuscated c code contestants and the losethos guy got together and created a monster&lt;/p&gt;
+
+&lt;p&gt;wait why do I feel moist&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And our &lt;a href=&#39;http://irclog.perlgeek.de/perl6/2013-09-25&#39;&gt;favorite:&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;08:14 * moritz: congratulates the makers on the most elaborate joke he has seen in quite some time&lt;/p&gt;
+
+&lt;p&gt;08:15 * timotimo: imagines being the creator of urbit and seeing it show up on a publically logged irc channel of a similarly insane language design community via a google alert&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Because that&amp;#8217;s literally what happened&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&#39;Aint even mad&#39; src=&#39;/assets/notevenmad.jpg&#39; /&gt;&lt;/p&gt;
+
+&lt;p&gt;[Note: there&amp;#8217;s also a lot of great substantive criticism out there, especially on the &lt;a href=&#39;https://news.ycombinator.com/item?id=6438320&#39;&gt;Hacker News Thread&lt;/a&gt;. We love all that too.]&lt;/p&gt;
+
+&lt;p&gt;We also want to acknowledge some of the love we&amp;#8217;ve received over the past few days:&lt;/p&gt;
+&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;PLT/OS geeks, this is weird and fascinating. Plan 9 meets Factor meets Haskell, (t)rolled into one: &lt;a href=&#39;http://t.co/22e4xIBWIN&#39;&gt;http://t.co/22e4xIBWIN&lt;/a&gt; (via &lt;a href=&#39;https://twitter.com/goodmanio&#39;&gt;@goodmanio&lt;/a&gt;)&lt;/p&gt;&amp;mdash; Alex Payne (@al3x) &lt;a href=&#39;https://twitter.com/al3x/statuses/382954933974097920&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;&lt;a href=&#39;https://twitter.com/fet&#39;&gt;@fet&lt;/a&gt; Yeah. It&amp;#39;s first thing to give me the same feeling I had as a teenager, stumbling around the early internet trying to learn computing…&lt;/p&gt;&amp;mdash; Izzy (@frozendevil) &lt;a href=&#39;https://twitter.com/frozendevil/statuses/382942599847215104&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;&lt;a href=&#39;https://twitter.com/ericflo&#39;&gt;@ericflo&lt;/a&gt; of course, my first thought *after* &amp;quot;is this a joke?&amp;quot; was &amp;quot;hmm, this would be fun to implement in Python&amp;quot;&lt;/p&gt;&amp;mdash; James Tauber (@jtauber) &lt;a href=&#39;https://twitter.com/jtauber/statuses/383052324429893632&#39;&gt;September 26, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;It&amp;#39;s late. I should have been in bed hours ago. Instead I made my first commit to urbit and quoted Borges in my email to get my destroyers.&lt;/p&gt;&amp;mdash; J Kenneth King (@agentultra) &lt;a href=&#39;https://twitter.com/agentultra/statuses/382718105111109633&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;Urbit seems deeply cool, deeply weird, but destined to be a new Usenet for libertarian cipherpunks and bitcoin fans.&lt;/p&gt;&amp;mdash; David Flanagan (@__DavidFlanagan) &lt;a href=&#39;https://twitter.com/__DavidFlanagan/statuses/383126596246196224&#39;&gt;September 26, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;Oh my God. &lt;a href=&#39;http://t.co/ImZkS1d71U&#39;&gt;http://t.co/ImZkS1d71U&lt;/a&gt; .  It&amp;#39;s like being a kid again!  Hackers still exist! Someone else wants to rebuild *everything*!&lt;/p&gt;&amp;mdash; Mike Biggs (@nfomon) &lt;a href=&#39;https://twitter.com/nfomon/statuses/382690623352225793&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;*drops everything, goes to live in Urbit monastery*&lt;/p&gt;&amp;mdash; Swizzlr (@swizzlr) &lt;a href=&#39;https://twitter.com/swizzlr/statuses/382986416730681344&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;But our favorite piece of love was this comment on &lt;a href=&#39;https://news.ycombinator.com/item?id=6439913&#39;&gt;Hacker News&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Watching the &lt;a href=&quot;http://vimeo.com/75312418&quot;&gt;video&lt;/a&gt; blew my brains out the back of my head. Figuratively of course. Thanks for not letting me get anything productive done for the rest of the day.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+
+
+    
+      &lt;div class=&quot;footer&quot;&gt;
+        &lt;div class=&quot;disclaimer&quot;&gt;
+  
+
+  &lt;p&gt;
+    © Urbit, 2013 &amp;mdash; built with Jekyll using Lagom theme
+  &lt;/p&gt;
+&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+  var _gaq = _gaq || [];
+  _gaq.push([&#39;_setAccount&#39;, &#39;UA-xxxx-x&#39;]);
+  _gaq.push([&#39;_trackPageview&#39;]);
+
+  (function() {
+    var ga = document.createElement(&#39;script&#39;); ga.type = &#39;text/javascript&#39;; ga.async = true;
+    ga.src = (&#39;https:&#39; == document.location.protocol ? &#39;https://ssl&#39; : &#39;http://www&#39;) + &#39;.google-analytics.com/ga.js&#39;;
+    var s = document.getElementsByTagName(&#39;script&#39;)[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Continuity Timeframe</title>
@@ -141,7 +338,7 @@
 
 &lt;p&gt;Every ship but a submarine has a &amp;#8220;will,&amp;#8221; or certificate chain - a linked list of &amp;#8220;deeds.&amp;#8221; The first deed in this list is signed by the ship&amp;#8217;s hierarchical prefix, or &amp;#8220;flagship.&amp;#8221; Mere submarine are independent; carriers create cruisers; cruisers create destroyers; destroyers create yachts.&lt;/p&gt;
 
-&lt;p&gt;A submarine is the fingerprint of its own private key; a carrier&amp;#8217;s fingerprint is predefined in the kernel. Anyone can create any number of 128-bit submarines, whose free and independent society the 64-bit naval hierarchy cannot interfere with. And of course, since Urbit is (a) in the public domain and (b) not patented, anyone can fork Urbit and change the carrier fingerprints. Anyone can also create his own independent and incompatible DNS, but efforts in this direction have not been crowned with great success. In general, the easier it is technically to fork open-source code or an open standard, the less likely a fork is to actually happen.&lt;/p&gt;
+&lt;p&gt;A submarine is the fingerprint of its own public key; a carrier&amp;#8217;s fingerprint is predefined in the kernel. Anyone can create any number of 128-bit submarines, whose free and independent society the 64-bit naval hierarchy cannot interfere with. And of course, since Urbit is (a) in the public domain and (b) not patented, anyone can fork Urbit and change the carrier fingerprints. Anyone can also create his own independent and incompatible DNS, but efforts in this direction have not been crowned with great success. In general, the easier it is technically to fork open-source code or an open standard, the less likely a fork is to actually happen.&lt;/p&gt;
 
 &lt;p&gt;An independent ship is an independent reputation. Your flagship hierarchy, though it created your ship, has no control over it - so your reputations are and should be separate. But there are not 2^64 independent reputations in Urbit, only 2^32. Cruisers have no control over the destroyers they create, but yachts have no independence from the destroyers that created them.&lt;/p&gt;
 
@@ -1347,7 +1544,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;10&lt;/code&gt; Reduction:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;*[a 10 [b c] d]   *[a 8 c 7 [0 2] d]
+&lt;pre&gt;&lt;code&gt;*[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
 
 8r ::     *[a 8 b c]        [[*[a b] a] c]
 
@@ -1395,38 +1592,50 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;ncurses (Linux only)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Currently we support OSX, Ubuntu and AWS Linux AMI. Intrepid ninjas may attempt ports to other OSes. If you&amp;#8217;re not an intrepid ninja, try a VM (eg, VirtualBox).&lt;/p&gt;
+&lt;p&gt;Currently we support OSX, Ubuntu, Debian and AWS Linux AMI. Intrepid ninjas may attempt ports to other OSes. If you&amp;#8217;re not an intrepid ninja, try a VM (eg, VirtualBox).&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;OS X:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Do you have XCode? Type &lt;code&gt;gcc&lt;/code&gt;. If it says &lt;code&gt;no input files&lt;/code&gt;, you have XCode.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;
+&lt;p&gt;Do you have XCode? Type &lt;code&gt;gcc&lt;/code&gt;. If it says &lt;code&gt;no input files&lt;/code&gt;, you have XCode.&lt;/p&gt;
 
 &lt;p&gt;Otherwise, install XCode: &lt;code&gt;https://developer.apple.com/xcode/&lt;/code&gt;, with the Command Line tools.&lt;/p&gt;
+&lt;/li&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Do you have Homebrew? Type &lt;code&gt;brew&lt;/code&gt;. If it does something, you have Homebrew.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install dependencies - Do you have Homebrew? Type &lt;code&gt;brew&lt;/code&gt;. If it does something, you have Homebrew.&lt;/p&gt;
 
-&lt;p&gt;Otherwise, &lt;code&gt;ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&amp;quot;&lt;/code&gt; will install it. (Can you use MacPorts? Yes you can. You can also resolve the dependencies by hand :-)&lt;/p&gt;
+&lt;p&gt;Otherwise, &lt;code&gt;ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&amp;quot;&lt;/code&gt; will install it.&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;sudo brew install gmp libsigsegv openssl&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;And follow up with &lt;code&gt;sudo brew install gmp libsigsegv openssl&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;This will ask you for the root password, which ideally you know.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Ubuntu:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Macports? Type &lt;code&gt;port&lt;/code&gt;. If it does something, you have Macports.&lt;/p&gt;
+
+&lt;p&gt;Otherwise go &lt;a href=&#39;http://www.macports.org/install.php&#39; title=&#39;here&#39;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then &lt;code&gt;sudo port install gmp libsigsegv openssl&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Enter your root password at the prompt.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Ubuntu or Debian:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;code&gt;sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev exuberant-ctags&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;strong&gt;AWS:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;code&gt;sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&#39;get_the_source&#39;&gt;Get the source:&lt;/h3&gt;
@@ -2064,7 +2273,7 @@ $URBIT_HOME/waclux-tomwyc/doc/web/game/fun.hoon&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;There is no formal difference between Nock and the JVM. In theory, both are Turing-complete computers. In practice, they have just about nothing in common.&lt;/p&gt;
 
-&lt;p&gt;The main practical difference is that Nock is two orders of magnitude simpler. The JVM spec is a book. The Nock spec is 200 words; it fits on a T-shirt; it gzips to 371 bytes. There are lots of other differences, but all follow from this.&lt;/p&gt;
+&lt;p&gt;The main practical difference is that Nock is two orders of magnitude simpler. The JVM spec is a book. The Nock spec is 200 words; it fits on a T-shirt; it gzips to 372 bytes. There are lots of other differences, but all follow from this.&lt;/p&gt;
 
 &lt;p&gt;Why does size matter? The goal of any programming language is to become a standard. Universal standardization equals world domination. The simpler a specification is, the easier to standardize. Nock is a practical interpreter as simple as the most frozen and fundamental of protocols or formats: IPv4, XML, JSON. A 200-word spec needs a standards process like a fish needs swim lessons. When a T-shirt goes to war with a book, it&amp;#8217;s like tanks against cavalry - or should be, anyway.&lt;/p&gt;
 
