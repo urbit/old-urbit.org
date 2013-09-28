@@ -1014,7 +1014,7 @@ yourself that you've mastered Nock.
 	
 **`6` Reduced:**
 
-	6r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++[a b]]]]]]
+	6r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
 	
 ##`7` Reduction:##
 
