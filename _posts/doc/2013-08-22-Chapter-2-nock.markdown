@@ -1010,7 +1010,7 @@ yourself that you've mastered Nock.
 	
 	25 ::    *[a 4 b]          +*[a b]
 	
-	*[a *[[c d] [0 *[[2 3] [0 ++[a b]]]]]]
+	*[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
 	
 **`6` Reduced:**
 
