@@ -72,9 +72,9 @@ naive interpreter.  Here is Nock 5K:
 	28 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
 	29 ::    *[a 7 b c]        *[a 2 b 1 c]
 	30 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
-	31 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+	31 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
 	32 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
-	33 ::    *[a 10 b c]]      *[a c]
+	33 ::    *[a 10 b c]       *[a c]
 	34 ::
 	35 ::    *a                *a
 
@@ -455,7 +455,7 @@ We could write line 19 less formally:
 In other words, if you have two Nock formulas `x` and `y`, a
 formula that computes the pair of them is just `[x y]`.  We can 
 recognize this because no atom is a valid formula, and
-every formula that _does not_ use line 16 has an atomic head.
+every formula that _does not_ use line 19 has an atomic head.
 
 If you know Lisp, you can think of this feature as a sort of
 "implicit cons."  Where in Lisp you would write `(cons x y)`,
@@ -490,12 +490,12 @@ together:
 
 ##Lines 28-33:##
 
-	26 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
-	27 ::    *[a 7 b c]        *[a 2 b 1 c]
-	28 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
-	29 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
-	30 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
-	31 ::    *[a 10 b c]]      *[a c]
+	28 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+	29 ::    *[a 7 b c]        *[a 2 b 1 c]
+	30 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+	31 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
+	32 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
+	33 ::    *[a 10 b c]       *[a c]
 
 Whoa!  Have we entered rocket-science territory?  Let's try to
 figure out what these strange formulas do - simplest first.
@@ -578,7 +578,7 @@ For extra credit, explain why we can't just define
 
 Another simple macro is line 31:
 
-	31 ::    *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+	31 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
 
 `9` is a calling convention.  With `c`, we produce a noun which
 contains both code and data - a _core_.  We use this core as the
@@ -640,7 +640,7 @@ Nock with subject `[1 c d]`, formula `[[1 0] [4 4 b]]`.
 
 Obviously, `[1 c d]` produces just `[c d]` - that is, the ordered
 pair of the "then" and "else" formulas.  `[[1 0] [4 4 b]]` is a
-line 23 cell - its head is `[1 0]`, producing just `0`, its tail
+line 19 cell - its head is `[1 0]`, producing just `0`, its tail
 `[4 4 b]`, producing... what?  Well, if `[4 b]` is `b` plus `1`,
 `[4 4 b]` is `b` plus `2`.
 
