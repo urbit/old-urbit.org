@@ -63,7 +63,7 @@ ninja, try a VM (eg, VirtualBox).
 
 **Ubuntu or Debian:**
 
-1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev exuberant-ctags`
+1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags`
 
 
 **AWS:**
