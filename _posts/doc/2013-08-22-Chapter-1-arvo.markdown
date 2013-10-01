@@ -63,7 +63,7 @@ ninja, try a VM (eg, VirtualBox).
 
 **Ubuntu:**
 
-1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev`
+1. `sudo apt-get install git libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev make`
 
 
 **AWS:**
