@@ -194,14 +194,18 @@ right margin as tab depth increases.
 A glance at the more complex organs of the Hoon kernel reveals
 that Hoon is relatively untroubled by either of these woes.  But
 why?  One dubious panacea for the terminator problem is the use
-of significant whitespace.  Whitespace in Hoon is not
-significant.  (To be exact, the presence or absence of whitespace
-matters, but the quantity never does.)
+of significant indentation.  Indentation in Hoon is not significant.
+Of course, the parser will properly reject hard tabs.
 
-The answer is that the normal syntax for every rune has two
-forms: "wide" and "tall."  As a functional language, Hoon does
-not distinguish between statements and expressions, but normal
-wide syntax is expression-like and tall is statement-like.
+Rather, composing a Hoon function on the page is a quasi-artistic
+act that requires at least a modicum of design sense.  Hoon is
+the opposite of Go in this way (not that we don't admire Go).
+Formatting a function elegantly is part of the job of writing it.
+
+In Hoon, the normal syntax for every rune has two forms: "wide"
+and "tall."  As a functional language, Hoon does not distinguish
+between statements and expressions, but normal wide syntax is
+expression-like and tall is statement-like.
 
 For instance, in our example above, 
 
@@ -223,9 +227,10 @@ a statement can contain expressions but not vice versa.
 
 In the wide normal form, the rune is followed immediately (no
 whitespace) by a left paren ("pel"), then the subgenes with a
-single space between them, then a right paren ("per") as
+_single_ space between them, then a right paren ("per") as
 terminator.  If the rune was inside the parens rather than a
 prefix, this would be the Lisp syntax.
+
 
 In the tall normal form, any quantity of whitespace follows the
 rune, and separates the subgenes from each other.  Where is the
@@ -263,15 +268,15 @@ which no one would ever write, preferring the custom
 	[%foo %bar %baz %moo]
 
 This leaves only one question: indentation.  Since space is not
-significant (even linebreaks are irrelevant - the newline is just
-another space), the use of whitespace in tall forms is purely a
-matter of style.  Style is very important, however!
+significant (in tall mode, linebreaks are irrelevant - the
+newline is just another space), the use of whitespace in tall
+forms is purely a matter of style.  Style is very important!
 
 The first law of Hoon indentation style is that all tall
 indentation is in two-space increments.  (Tabs are illegal.  If
 you pollute a Hoon file with ASCII 9, not only will it not parse,
 but thugs in ski masks will kick down your door and shoot you.
-You laugh!  Try it!)  Single spaces are for wide only.
+You laugh!  Try it, knave!)  Single spaces are for wide only.
 
 The second law of Hoon indentation is that everything in the
 kernel is good indentation style.  Or at least if it's not, it
