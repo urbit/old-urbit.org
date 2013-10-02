@@ -450,8 +450,8 @@ type nests in both directions.  Hence, invariance.
 In a `%lead` core, the entire payload is opaque, so any core with
 the same battery type is compatible.  Hence, bivariance.
 
-In an `%iro`n core (normal gates, ie functions/lambdas, are either 
-`%gold` or` %iron'), the sample is write-only.  Hence, a core with a 
+In an `%iron` core (normal gates, ie functions/lambdas, are either 
+`%gold` or `%iron`), the sample is write-only.  Hence, a core with a 
 less restrictive sample can be substituted - contravariance.  The
 payload is opaque.
 
@@ -479,7 +479,7 @@ may differ from the sample type, we really can't avoid the fact
 that we're _changing the type_ of this core.  There are two ways
 to deal with this.
 
-One is the` %ash` way.  In `%ash` feet, when we infer into the foot,
+One is the `%ash` way.  In `%ash` feet, when we infer into the foot,
 we simply reset the payload type to the type the foot was
 compiled with.  Effectively, our case for the substitution is the
 case that our payload is a subtype of this original type - we are
@@ -498,7 +498,7 @@ In the second (`%elm`), we infer right through the function.
 
 How does this work?  Its stupid might surprise you.
 
-In %elm feet, we ask: suppose we compiled the foot with the type
+In `%elm` feet, we ask: suppose we compiled the foot with the type
 in the argument, not in the sample?  Or more generally, with the
 changed payload?  We didn't, of course.  We compiled it with the
 sample.

@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2013-10-02T04:26:32-04:00</updated>
+ <updated>2013-10-02T05:10:08-04:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -491,7 +491,7 @@
  </entry>
  
  <entry>
-   <title>Chapter 5 &#58; Hoon's moronic type system</title>
+   <title>Chapter 5 &#58; Hoon's Moronic Type System</title>
    <link href="http://urbit.org/2013/08/22/Chapter-5-types.html"/>
    <updated>2013-08-22T00:00:00-04:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-5-types</id>
@@ -542,7 +542,7 @@
 
 &lt;p&gt;First, even though this is Hoon and you can&amp;#8217;t read Hoon, you may find that you&amp;#8217;re actually able to read these definitions. For example, what they&amp;#8217;re saying is that a &lt;code&gt;++type&lt;/code&gt; is (like all nouns) either an atom or a cell. If it&amp;#8217;s an atom, it&amp;#8217;s either &lt;code&gt;%noun&lt;/code&gt; or &lt;code&gt;%void&lt;/code&gt; - ie, either &lt;code&gt;0x6e75.6f6e&lt;/code&gt; or &lt;code&gt;0x6469.6f76&lt;/code&gt;. If a cell, its head is one of&lt;/p&gt;
 
-&lt;p&gt;?(%atom %cell %core %cube %face %fork %hold)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?(%atom %cell %core %cube %face %fork %hold)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and its tail is the corresponding tuple. Maw always said if you can milk a cow, you can understand &lt;code&gt;bucbar&lt;/code&gt; and &lt;code&gt;bucwut&lt;/code&gt;. Also, in a &amp;#8220;tagged noun&amp;#8221; or &lt;code&gt;%kelp&lt;/code&gt; of the form &lt;code&gt;[%cell p=type q=type]&lt;/code&gt;, &lt;code&gt;%atom&lt;/code&gt; is called the &lt;code&gt;%stem&lt;/code&gt; and &lt;code&gt;[p=type q=type]&lt;/code&gt; the &lt;code&gt;%bulb&lt;/code&gt;. Hoon&amp;#8217;s doxology thus combines two of our great interests out here in the real America, plants and four-letter words.&lt;/p&gt;
 
@@ -621,32 +621,32 @@
 
 &lt;p&gt;Odors are a little floppy but actually work quite well. Also, you can place a completely orthogonal capital letter on the tail of the odor string, to bound the size of the atom. This follows the &lt;code&gt;++bex&lt;/code&gt; function. A chart is useful for the congenitally dense:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;    A   1 bit
-    B   2 bits
-    C   4 bits
-    D   8 bits; 1 byte
-    E   16 bits; 2 bytes
-    F   32 bits; 4 bytes
-    G   64 bits; 8 bytes
-    H   128 bits; 16 bytes
-    I   256 bits; 32 bytes
-    J   512 bits; 64 bytes 
-    K   1024 bits; 128 bytes
-    L   2048 bits; 256 bytes
-    M   4096 bits; 512 bytes
-    N   8192 bits; 1K bytes
-    O   2K bytes
-    P   4K bytes
-    Q   8K bytes
-    R   16K bytes
-    S   32K bytes
-    T   64K bytes
-    U   128K bytes
-    V   256K bytes
-    W   512K bytes
-    X   1MB
-    Y   2MB
-    Z   4MB&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;A   1 bit
+B   2 bits
+C   4 bits
+D   8 bits; 1 byte
+E   16 bits; 2 bytes
+F   32 bits; 4 bytes
+G   64 bits; 8 bytes
+H   128 bits; 16 bytes
+I   256 bits; 32 bytes
+J   512 bits; 64 bytes 
+K   1024 bits; 128 bytes
+L   2048 bits; 256 bytes
+M   4096 bits; 512 bytes
+N   8192 bits; 1K bytes
+O   2K bytes
+P   4K bytes
+Q   8K bytes
+R   16K bytes
+S   32K bytes
+T   64K bytes
+U   128K bytes
+V   256K bytes
+W   512K bytes
+X   1MB
+Y   2MB
+Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;(Since big computations should be chunked in some way, anyone needing to manipulate atoms larger than 4MB (which is obviously perfectly normal and fine) is operating not only outside the type system, but also way in the future or maybe in Europe.)&lt;/p&gt;
 
@@ -682,7 +682,9 @@
 
 &lt;p&gt;Anyone trying to construct a function in Nock will produce something more or like this noun, which we call a &lt;code&gt;%gate&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;gate &lt;span&gt;formula payload&lt;/span&gt; &lt;span&gt;formula &lt;span&gt;sample context&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gate
+[formula payload]
+[formula [sample context]]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The &lt;code&gt;formula&lt;/code&gt; is the Nock formula which executes the function. The subject for this formula is the &lt;em&gt;entire gate&lt;/em&gt;, obviously because we want the function to be able to recurse.&lt;/p&gt;
 
@@ -690,7 +692,8 @@
 
 &lt;p&gt;This structure may seem quite general, but it&amp;#8217;s easy to improve. First, we can abstract over the structure of the payload, for which a &lt;code&gt;[sample context]&lt;/code&gt; cell is just one design pattern. Second, a formula is a general case of:&lt;/p&gt;
 
-&lt;p&gt;core &lt;span&gt;battery payload&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;core
+[battery payload]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;where a &lt;code&gt;battery&lt;/code&gt; is just a tuple tree of formulas. Again, each of these formulas takes as its subject the entire core.&lt;/p&gt;
 
@@ -750,13 +753,13 @@
 
 &lt;p&gt;These are different points on the well-known tradeoff between variance and opacity.&lt;/p&gt;
 
-&lt;p&gt;In a %gold core, the whole payload is both readable and writable, but the core is not compatible with another unless the payload type nests in both directions. Hence, invariance.&lt;/p&gt;
+&lt;p&gt;In a &lt;code&gt;%gold&lt;/code&gt; core, the whole payload is both readable and writable, but the core is not compatible with another unless the payload type nests in both directions. Hence, invariance.&lt;/p&gt;
 
-&lt;p&gt;In a %lead core, the entire payload is opaque, so any core with the same battery type is compatible. Hence, bivariance.&lt;/p&gt;
+&lt;p&gt;In a &lt;code&gt;%lead&lt;/code&gt; core, the entire payload is opaque, so any core with the same battery type is compatible. Hence, bivariance.&lt;/p&gt;
 
-&lt;p&gt;In an %iron core (normal gates, ie functions/lambdas, are either %gold or %iron), the sample is write-only. Hence, a core with a less restrictive sample can be substituted - contravariance. The payload is opaque.&lt;/p&gt;
+&lt;p&gt;In an &lt;code&gt;%iron&lt;/code&gt; core (normal gates, ie functions/lambdas, are either &lt;code&gt;%gold&lt;/code&gt; or &lt;code&gt;%iron&lt;/code&gt;), the sample is write-only. Hence, a core with a less restrictive sample can be substituted - contravariance. The payload is opaque.&lt;/p&gt;
 
-&lt;p&gt;In a %zinc core, the sample is read-only and the payload is opaque - covariance. We haven&amp;#8217;t used this much but someone smarter might find something it&amp;#8217;s good for.&lt;/p&gt;
+&lt;p&gt;In a &lt;code&gt;%zinc&lt;/code&gt; core, the sample is read-only and the payload is opaque - covariance. We haven&amp;#8217;t used this much but someone smarter might find something it&amp;#8217;s good for.&lt;/p&gt;
 
 &lt;p&gt;In any case, we call metal work with variance &lt;em&gt;geometric polymorphism&lt;/em&gt;. And then, we have our woods, &lt;code&gt;%ash&lt;/code&gt; and &lt;code&gt;%elm&lt;/code&gt;. Feet of &lt;code&gt;%ash&lt;/code&gt; are also called &lt;code&gt;%dry&lt;/code&gt;, and &lt;code&gt;%elm&lt;/code&gt; &lt;code&gt;%wet&lt;/code&gt;. Wet work is &lt;em&gt;generic polymorphism&lt;/em&gt;, and does much the same job that typeclasses do in some fancy language from Europe.&lt;/p&gt;
 
@@ -766,9 +769,9 @@
 
 &lt;p&gt;But since we may have arbitrary type on the argument, and this may differ from the sample type, we really can&amp;#8217;t avoid the fact that we&amp;#8217;re &lt;em&gt;changing the type&lt;/em&gt; of this core. There are two ways to deal with this.&lt;/p&gt;
 
-&lt;p&gt;One is the %ash way. In %ash feet, when we infer into the foot, we simply reset the payload type to the type the foot was compiled with. Effectively, our case for the substitution is the case that our payload is a subtype of this original type - we are disguising our modified payload as a case of the sample.&lt;/p&gt;
+&lt;p&gt;One is the &lt;code&gt;%ash&lt;/code&gt; way. In &lt;code&gt;%ash&lt;/code&gt; feet, when we infer into the foot, we simply reset the payload type to the type the foot was compiled with. Effectively, our case for the substitution is the case that our payload is a subtype of this original type - we are disguising our modified payload as a case of the sample.&lt;/p&gt;
 
-&lt;p&gt;Here is a simple example of the difference between %ash and %elm. %ash, then %elm:&lt;/p&gt;
+&lt;p&gt;Here is a simple example of the difference between &lt;code&gt;%ash&lt;/code&gt; and &lt;code&gt;%elm&lt;/code&gt;. &lt;code&gt;%ash&lt;/code&gt;, then &lt;code&gt;%elm&lt;/code&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~doznec/try=&amp;gt; (|=([a=* b=*] [b a]) -&amp;lt;- %foo)
 [7.303.014 170.141.184.500.621.432.791.952.199.169.123.287.040]
@@ -779,7 +782,7 @@
 
 &lt;p&gt;How does this work? Its stupid might surprise you.&lt;/p&gt;
 
-&lt;p&gt;In %elm feet, we ask: suppose we compiled the foot with the type in the argument, not in the sample? Or more generally, with the changed payload? We didn&amp;#8217;t, of course. We compiled it with the sample.&lt;/p&gt;
+&lt;p&gt;In &lt;code&gt;%elm&lt;/code&gt; feet, we ask: suppose we compiled the foot with the type in the argument, not in the sample? Or more generally, with the changed payload? We didn&amp;#8217;t, of course. We compiled it with the sample.&lt;/p&gt;
 
 &lt;p&gt;But, if we were to treat it as if it had been compiled with the argument, would we get the wrong result? Well, one simple test is to &lt;em&gt;compile it again with the argument type&lt;/em&gt;. Then, we can simply test the two formulas (statically, of course) for equality. The actual algorithm, in &lt;code&gt;++mung&lt;/code&gt;, is a little more complicated than this (consider, for instance, branches that would not be taken in the specialized version) but not much.&lt;/p&gt;
 
