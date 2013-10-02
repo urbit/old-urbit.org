@@ -93,7 +93,7 @@ nouns) either an atom or a cell.  If it's an atom, it's either
 `%noun` or `%void` - ie, either `0x6e75.6f6e` or `0x6469.6f76`.
 If a cell, its head is one of 
 
-  ?(%atom %cell %core %cube %face %fork %hold)
+	?(%atom %cell %core %cube %face %fork %hold)
 
 and its tail is the corresponding tuple.  Maw always said if you
 can milk a cow, you can understand `bucbar` and `bucwut`.  Also,
@@ -245,32 +245,32 @@ can place a completely orthogonal capital letter on the tail of
 the odor string, to bound the size of the atom.  This follows the
 `++bex` function.  A chart is useful for the congenitally dense:
 
-	    A   1 bit
-	    B   2 bits
-	    C   4 bits
-	    D   8 bits; 1 byte
-	    E   16 bits; 2 bytes
-	    F   32 bits; 4 bytes
-	    G   64 bits; 8 bytes
-	    H   128 bits; 16 bytes
-	    I   256 bits; 32 bytes
-	    J   512 bits; 64 bytes 
-	    K   1024 bits; 128 bytes
-	    L   2048 bits; 256 bytes
-	    M   4096 bits; 512 bytes
-	    N   8192 bits; 1K bytes
-	    O   2K bytes
-	    P   4K bytes
-	    Q   8K bytes
-	    R   16K bytes
-	    S   32K bytes
-	    T   64K bytes
-	    U   128K bytes
-	    V   256K bytes
-	    W   512K bytes
-	    X   1MB
-	    Y   2MB
-	    Z   4MB
+	A   1 bit
+	B   2 bits
+	C   4 bits
+	D   8 bits; 1 byte
+	E   16 bits; 2 bytes
+	F   32 bits; 4 bytes
+	G   64 bits; 8 bytes
+	H   128 bits; 16 bytes
+	I   256 bits; 32 bytes
+	J   512 bits; 64 bytes 
+	K   1024 bits; 128 bytes
+	L   2048 bits; 256 bytes
+	M   4096 bits; 512 bytes
+	N   8192 bits; 1K bytes
+	O   2K bytes
+	P   4K bytes
+	Q   8K bytes
+	R   16K bytes
+	S   32K bytes
+	T   64K bytes
+	U   128K bytes
+	V   256K bytes
+	W   512K bytes
+	X   1MB
+	Y   2MB
+	Z   4MB
 
 (Since big computations should be chunked in some way, anyone
 needing to manipulate atoms larger than 4MB (which is obviously
@@ -349,9 +349,9 @@ Not meaning anything bad by it mind you.)
 Anyone trying to construct a function in Nock will produce
 something more or like this noun, which we call a `%gate`:
 
-  gate
-  [formula payload]
-  [formula [sample context]]
+	gate
+	[formula payload]
+	[formula [sample context]]
 
 The `formula` is the Nock formula which executes the function.
 The subject for this formula is the _entire gate_, obviously
@@ -366,8 +366,8 @@ First, we can abstract over the structure of the payload, for
 which a `[sample context]` cell is just one design pattern.
 Second, a formula is a general case of:
 
-  core
-  [battery payload]
+	core
+	[battery payload]
 
 where a `battery` is just a tuple tree of formulas.  Again, each
 of these formulas takes as its subject the entire core.
