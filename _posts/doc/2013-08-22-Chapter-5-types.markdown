@@ -1,7 +1,7 @@
 ---
 layout: post
 category: doc
-title: Chapter 4 &#58; Hoon's moronic type system
+title: Chapter 5 &#58; Hoon's Moronic Type System
 ---
 
 No, we're quite serious about this word _moronic_.  (Since you
@@ -11,26 +11,26 @@ _moronic type inference_ (MTI).
 Why _moronic_?  Here is Hoon's type system - or at least, all
 the data structures it uses?
 
-  |%
-  ++  coil  $:  p=?(%gold %iron %lead %zinc)
-                q=type
-                r=[p=?(~ ^) q=(map ,@tas foot)]
-            ==
-  ++  foot  $%  [%ash p=gene]
-                [%elm p=gene]
-                [%oak ~]
-                [%yew p=(map ,@tas foot)]
-            ==
-  ++  type  $|  ?(%noun %void)
-            $%  [%atom p=@tas]
-                [%cell p=type q=type]
-                [%core p=type q=coil]
-                [%cube p=* q=type]
-                [%face p=term q=type]
-                [%fork p=type q=type]
-                [%hold p=(list ,[p=type q=gene])]
-            ==
-  --
+	  |%
+	  ++  coil  $:  p=?(%gold %iron %lead %zinc)
+	                q=type
+	                r=[p=?(~ ^) q=(map ,@tas foot)]
+	            ==
+	  ++  foot  $%  [%ash p=gene]
+	                [%elm p=gene]
+	                [%oak ~]
+	                [%yew p=(map ,@tas foot)]
+	            ==
+	  ++  type  $|  ?(%noun %void)
+	            $%  [%atom p=@tas]
+	                [%cell p=type q=type]
+	                [%core p=type q=coil]
+	                [%cube p=* q=type]
+	                [%face p=term q=type]
+	                [%fork p=type q=type]
+	                [%hold p=(list ,[p=type q=gene])]
+	            ==
+	  --
 
 `%oak` and `%yew` are for inheritance, a feature we're not using
 yet, but we leave them in for completeness.
@@ -146,26 +146,26 @@ If we keep our type inference strictly _forward_ as obviously
 the good Lord intended, we are left with this basic interface,
 which is a simplified version of the real `++ut`:
 
-  |%
-  ++  nock  $&  [p=nock q=nock]
-            $%  [0 p=@]
-                [1 p=*]
-                [2 p=nock q=nock]
-                [3 p=nock]
-                [4 p=nock]
-                [5 p=nock q=nock]
-                [6 p=nock q=nock r=nock]
-                [7 p=nock q=nock]
-                [8 p=nock q=nock]
-                [9 p=@ q=nock]
-                [10 p=?(@ [p=@ q=nock]) q=nock]
-                [11 p=nock]
-            == 
-  ::
-  ++  mint  |=  [sut=type gen=gene]
-            ^-  [p=type q=nock]
-            !!
-  -- 
+	  |%
+	  ++  nock  $&  [p=nock q=nock]
+	            $%  [0 p=@]
+	                [1 p=*]
+	                [2 p=nock q=nock]
+	                [3 p=nock]
+	                [4 p=nock]
+	                [5 p=nock q=nock]
+	                [6 p=nock q=nock r=nock]
+	                [7 p=nock q=nock]
+	                [8 p=nock q=nock]
+	                [9 p=@ q=nock]
+	                [10 p=?(@ [p=@ q=nock]) q=nock]
+	                [11 p=nock]
+	            == 
+	  ::
+	  ++  mint  |=  [sut=type gen=gene]
+	            ^-  [p=type q=nock]
+	            !!
+	  -- 
 
 `nock` is obviously a Nock formula.  (But why does it go to 11?
 Why is there a watermelon there?) In any case, the basic function
@@ -203,15 +203,15 @@ What is the structure of a `type` and what does it mean?
 
 Let's look at the structure again:
 
-  ++  type  $|  ?(%noun %void)
-            $%  [%atom p=@ta]
-                [%cell p=type q=type]
-                [%core p=type q=coil]
-                [%cube p=* q=type]
-                [%face p=term q=type]
-                [%fork p=type q=type]
-                [%hold p=(list ,[p=type q=gene])]
-            ==
+	  ++  type  $|  ?(%noun %void)
+	            $%  [%atom p=@ta]
+	                [%cell p=type q=type]
+	                [%core p=type q=coil]
+	                [%cube p=* q=type]
+	                [%face p=term q=type]
+	                [%fork p=type q=type]
+	                [%hold p=(list ,[p=type q=gene])]
+	            ==
 
 First, note that `type` is no mere `%kelp` but in fact a `%bush`,
 because we overload a set of atoms on a set of cells.  Like
@@ -245,32 +245,32 @@ can place a completely orthogonal capital letter on the tail of
 the odor string, to bound the size of the atom.  This follows the
 `++bex` function.  A chart is useful for the congenitally dense:
 
-    A   1 bit
-    B   2 bits
-    C   4 bits
-    D   8 bits; 1 byte
-    E   16 bits; 2 bytes
-    F   32 bits; 4 bytes
-    G   64 bits; 8 bytes
-    H   128 bits; 16 bytes
-    I   256 bits; 32 bytes
-    J   512 bits; 64 bytes 
-    K   1024 bits; 128 bytes
-    L   2048 bits; 256 bytes
-    M   4096 bits; 512 bytes
-    N   8192 bits; 1K bytes
-    O   2K bytes
-    P   4K bytes
-    Q   8K bytes
-    R   16K bytes
-    S   32K bytes
-    T   64K bytes
-    U   128K bytes
-    V   256K bytes
-    W   512K bytes
-    X   1MB
-    Y   2MB
-    Z   4MB
+	    A   1 bit
+	    B   2 bits
+	    C   4 bits
+	    D   8 bits; 1 byte
+	    E   16 bits; 2 bytes
+	    F   32 bits; 4 bytes
+	    G   64 bits; 8 bytes
+	    H   128 bits; 16 bytes
+	    I   256 bits; 32 bytes
+	    J   512 bits; 64 bytes 
+	    K   1024 bits; 128 bytes
+	    L   2048 bits; 256 bytes
+	    M   4096 bits; 512 bytes
+	    N   8192 bits; 1K bytes
+	    O   2K bytes
+	    P   4K bytes
+	    Q   8K bytes
+	    R   16K bytes
+	    S   32K bytes
+	    T   64K bytes
+	    U   128K bytes
+	    V   256K bytes
+	    W   512K bytes
+	    X   1MB
+	    Y   2MB
+	    Z   4MB
 
 (Since big computations should be chunked in some way, anyone
 needing to manipulate atoms larger than 4MB (which is obviously
@@ -389,42 +389,42 @@ as a naked symbol it is just `$` - or `buc`.
 We are now ready to explain this ungodly structure.  Let's see
 the whole type system again:
 
-  |%
-  ++  coil  $:  p=?(%gold %iron %lead %zinc)
-                q=type
-                r=[p=?(~ ^) q=(map ,@tas foot)]
-            ==
-  ++  foot  $%  [%ash p=gene]
-                [%elm p=gene]
-                [%oak ~]
-                [%yew p=(map ,@tas foot)]
-            ==
-  ++  type  $|  ?(%noun %void)
-            $%  [%atom p=@tas]
-                [%cell p=type q=type]
-                [%core p=type q=coil]
-                [%cube p=* q=type]
-                [%face p=term q=type]
-                [%fork p=type q=type]
-                [%hold p=(list ,[p=type q=gene])]
-            ==
-  --
+	  |%
+	  ++  coil  $:  p=?(%gold %iron %lead %zinc)
+	                q=type
+	                r=[p=?(~ ^) q=(map ,@tas foot)]
+	            ==
+	  ++  foot  $%  [%ash p=gene]
+	                [%elm p=gene]
+	                [%oak ~]
+	                [%yew p=(map ,@tas foot)]
+	            ==
+	  ++  type  $|  ?(%noun %void)
+	            $%  [%atom p=@tas]
+	                [%cell p=type q=type]
+	                [%core p=type q=coil]
+	                [%cube p=* q=type]
+	                [%face p=term q=type]
+	                [%fork p=type q=type]
+	                [%hold p=(list ,[p=type q=gene])]
+	            ==
+	  --
 
 We notice that most of its complexity is within `%core`.
 Actually, you could build a very solid, not at all fancy
 proto-Hoon with a much simpler type system:
 
-  |%
-  ++  type  $|  ?(%noun %void)
-            $%  [%atom p=@tas]
-                [%cell p=type q=type]
-                [%core p=type q=(map @tas gene)]
-                [%cube p=* q=type]
-                [%face p=term q=type]
-                [%fork p=type q=type]
-                [%hold p=(list ,[p=type q=gene])]
-            ==
-  --
+	  |%
+	  ++  type  $|  ?(%noun %void)
+	            $%  [%atom p=@tas]
+	                [%cell p=type q=type]
+	                [%core p=type q=(map @tas gene)]
+	                [%cube p=* q=type]
+	                [%face p=term q=type]
+	                [%fork p=type q=type]
+	                [%hold p=(list ,[p=type q=gene])]
+	            ==
+	  --
 
 But then we'd miss out on these weird "woods" and "metals."
 
@@ -435,10 +435,10 @@ relaxation.  Gold turns into anything, anything turns into lead.
 
 If you know these terms, this table may explain the metals:
 
-  %gold   invariant
-  %zinc   covariant
-  %iron   contravariant
-  %lead   bivariant
+	%gold   invariant
+	%zinc   covariant
+	%iron   contravariant
+	%lead   bivariant
 
 These are different points on the well-known tradeoff between
 variance and opacity.  
@@ -488,10 +488,10 @@ disguising our modified payload as a case of the sample.
 Here is a simple example of the difference between %ash and %elm.
 %ash, then %elm:
 
-  ~doznec/try=> (|=([a=* b=*] [b a]) -<- %foo)
-  [7.303.014 170.141.184.500.621.432.791.952.199.169.123.287.040]
-  ~doznec/try=> (|*([a=* b=*] [b a]) -<- %foo)
-  [%foo ~2013.10.2..05.27.01..f5b8]
+  	~doznec/try=> (|=([a=* b=*] [b a]) -<- %foo)
+  	[7.303.014 170.141.184.500.621.432.791.952.199.169.123.287.040]
+  	~doznec/try=> (|*([a=* b=*] [b a]) -<- %foo)
+	[%foo ~2013.10.2..05.27.01..f5b8]
 
 In the first case (`%ash`), we lose the type of the arguments.
 In the second (`%elm`), we infer right through the function.
