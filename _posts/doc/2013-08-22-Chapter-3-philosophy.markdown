@@ -1,5 +1,6 @@
 ---
 layout: post
+category: doc
 title: Chapter 3 &#58; Hoon - Philosophy
 ---
 

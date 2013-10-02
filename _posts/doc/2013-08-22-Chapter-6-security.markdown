@@ -1,5 +1,6 @@
 ---
 layout: post
+category: doc
 title: Chapter 6 &#58; Security
 ---
 

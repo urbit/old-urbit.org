@@ -1,5 +1,6 @@
 ---
 layout: post
+category: doc
 title: Chapter 0 &#58; Introduction and philosophy
 ---
 
@@ -54,7 +55,7 @@ have just about nothing in common.
 
 The main practical difference is that Nock is two orders of
 magnitude simpler.  The JVM spec is a book.  The Nock spec is 200
-words; it fits on a T-shirt; it gzips to 371 bytes.  There are
+words; it fits on a T-shirt; it gzips to 372 bytes.  There are
 lots of other differences, but all follow from this.
 
 Why does size matter?  The goal of any programming language is to

@@ -1,5 +1,6 @@
 ---
 layout: post
+category: doc
 title: Chapter 4 &#58; Hoon - Syntax
 ---
 
