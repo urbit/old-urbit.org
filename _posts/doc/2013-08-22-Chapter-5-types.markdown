@@ -93,7 +93,7 @@ nouns) either an atom or a cell.  If it's an atom, it's either
 `%noun` or `%void` - ie, either `0x6e75.6f6e` or `0x6469.6f76`.
 If a cell, its head is one of 
 
-	?(%atom %cell %core %cube %face %fork %hold)
+    ?(%atom %cell %core %cube %face %fork %hold)
 
 and its tail is the corresponding tuple.  Maw always said if you
 can milk a cow, you can understand `bucbar` and `bucwut`.  Also,
@@ -349,9 +349,9 @@ Not meaning anything bad by it mind you.)
 Anyone trying to construct a function in Nock will produce
 something more or like this noun, which we call a `%gate`:
 
-	gate
-	[formula payload]
-	[formula [sample context]]
+    gate
+    [formula payload]
+    [formula [sample context]]
 
 The `formula` is the Nock formula which executes the function.
 The subject for this formula is the _entire gate_, obviously
@@ -366,8 +366,8 @@ First, we can abstract over the structure of the payload, for
 which a `[sample context]` cell is just one design pattern.
 Second, a formula is a general case of:
 
-	core
-	[battery payload]
+    core
+    [battery payload]
 
 where a `battery` is just a tuple tree of formulas.  Again, each
 of these formulas takes as its subject the entire core.
