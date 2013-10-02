@@ -225,7 +225,7 @@ fact illegal to `mint` any gene against a `%void` subject.
 `%atom` is slightly interesting.  Obviously, it means... atom.
 As in, unsigned integer.  But what is the bulb here?
 
-It's a `@tas`, which means an %odor of `%tas`.  This string is
+It's a `@tas`, which means an `%odor` of `%tas`.  This string is
 really an extremely compressed way of specifying a conventional
 subset hierarchy - in this case _text, ascii, symbol_.  Of
 course, Nock stores no dynamic atom type information, but we can
