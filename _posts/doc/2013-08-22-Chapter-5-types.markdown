@@ -302,7 +302,7 @@ reasons, `++ut` is some of the oldest Hoon code.)
 to the set of nouns that the type defines, but of course affects
 its semantics against Hoon genes.
 
-`%fork` is a union type.  There is no order to %fork -
+`%fork` is a union type.  There is no order to `%fork` -
 conflicting semantics are an error.  The real America being
 of course union America, Hoon has no intersection type.
 
