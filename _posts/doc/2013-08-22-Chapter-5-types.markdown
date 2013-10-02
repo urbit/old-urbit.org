@@ -443,19 +443,19 @@ If you know these terms, this table may explain the metals:
 These are different points on the well-known tradeoff between
 variance and opacity.  
 
-In a %gold core, the whole payload is both readable and writable,
+In a `%gold` core, the whole payload is both readable and writable,
 but the core is not compatible with another unless the payload
 type nests in both directions.  Hence, invariance.
 
-In a %lead core, the entire payload is opaque, so any core with
+In a `%lead` core, the entire payload is opaque, so any core with
 the same battery type is compatible.  Hence, bivariance.
 
-In an %iron core (normal gates, ie functions/lambdas, are either 
-%gold or %iron), the sample is write-only.  Hence, a core with a 
+In an `%iro`n core (normal gates, ie functions/lambdas, are either 
+`%gold` or` %iron'), the sample is write-only.  Hence, a core with a 
 less restrictive sample can be substituted - contravariance.  The
 payload is opaque.
 
-In a %zinc core, the sample is read-only and the payload is
+In a `%zinc` core, the sample is read-only and the payload is
 opaque - covariance.  We haven't used this much but someone
 smarter might find something it's good for.
 
@@ -479,14 +479,14 @@ may differ from the sample type, we really can't avoid the fact
 that we're _changing the type_ of this core.  There are two ways
 to deal with this.
 
-One is the %ash way.  In %ash feet, when we infer into the foot,
+One is the` %ash` way.  In `%ash` feet, when we infer into the foot,
 we simply reset the payload type to the type the foot was
 compiled with.  Effectively, our case for the substitution is the
 case that our payload is a subtype of this original type - we are
 disguising our modified payload as a case of the sample.
 
-Here is a simple example of the difference between %ash and %elm.
-%ash, then %elm:
+Here is a simple example of the difference between `%ash` and `%elm`.
+`%ash`, then `%elm`:
 
   	~doznec/try=> (|=([a=* b=*] [b a]) -<- %foo)
   	[7.303.014 170.141.184.500.621.432.791.952.199.169.123.287.040]
