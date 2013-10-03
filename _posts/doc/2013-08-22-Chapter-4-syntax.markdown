@@ -8,8 +8,8 @@ title: Chapter 4 &#58; Hoon - Syntax
 Now, let's actually look at Hoon.  Really, try not to recoil
 in horror.  It's actually not anything like line noise.
 
-Open the Hoon kernel - `urb/les/arvo/hoon.hoon`.  Let's look at
-the full, official decrement function (line 549):
+Open the Hoon kernel - `urb/zod/arvo/hoon.hoon`.  Let's look at
+the full, official decrement function (line 551):
 
 	++  dec
           ~/  %dec
@@ -36,8 +36,8 @@ other languages have reserved words, Hoon has squiggles.
 
 We use so many of these ASCII glyphs that we like to be able
 to read them out loud.  A language is meant to be _said_.  The
-squiggles have conventional names, sort of, some of them, some of
-them easy to say, others not so much.  So we've renamed them:
+squiggles have conventional names, sort of, some of them easy to
+say, others not so much.  So we've renamed them:
  
     ace  space      gal  <          per  )
     bar  |          gar  >          sel  [
