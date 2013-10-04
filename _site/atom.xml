@@ -1265,7 +1265,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Like so:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;*[77 [2 [1 42] [1 1 153 218]]
+&lt;pre&gt;&lt;code&gt;*[77 [2 [1 42] [1 1 153 218]]]
 
 23 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
