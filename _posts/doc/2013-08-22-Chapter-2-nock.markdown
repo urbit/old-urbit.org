@@ -327,7 +327,7 @@ with a constant subject and a constant formula, gives the same
 	
 Like so:
 
-	*[77 [2 [1 42] [1 1 153 218]]
+	*[77 [2 [1 42] [1 1 153 218]]]
 	
 	23 ::    *[a 2 b c]        *[*[a b] *[a c]]
 	
