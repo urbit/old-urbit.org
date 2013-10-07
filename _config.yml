@@ -26,3 +26,14 @@ theme:
 
   # Toggle "Postings are my own" disclaimer in footer
   show_disclaimer: false
+
+authors:
+  cgy:
+    display_name: ~tasfyn-partyv [Curtis Yarvin]
+    email: curtis@urbit.org
+    github: cgyarvin
+
+  jcb:
+    display_name: ~tomsyt-balsen [John Burnham]
+    email: john@urbit.org
+    github: johncburnham

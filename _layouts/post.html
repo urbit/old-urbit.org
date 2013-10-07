@@ -9,8 +9,12 @@ layout: default
 </p>
 
 <h1 class="title">{{ page.title }}</h1>
-
-<div id="post">
-  {{ content }}
+{% assign author = site.authors[page.author] %}
+<div class="post">
+	<div class="meta">
+		<span class="author">{{ author.display_name }}</span>
+	</div>
+	{{ content }}
 </div>
+
 

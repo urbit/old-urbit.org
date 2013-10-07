@@ -1,6 +1,7 @@
 --- 
 layout: post 
 category: blog 
+author: jcb
 title: Continuity Timeframe 
 date: 2013-9-25 15:00 
 ---
