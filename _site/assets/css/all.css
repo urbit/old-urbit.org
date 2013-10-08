@@ -716,7 +716,7 @@ nav hr {
   font-size: 13px;
 }
 
-#post pre {
+.post pre {
   border: 1px solid #ccc;
   background-color: #eee;
   padding: 0 .4em;
@@ -728,15 +728,13 @@ nav hr {
   margin-left: 1.35em;
 }
 
-#post code {
-  border: 1px solid #ccc;
+.post code {
   background-color: #eee;
   font-size: 85%;
   padding: 0 .2em;
 }
 
 #post pre code {
-  border: none;
 }
 
 .sidebar {
