@@ -2,7 +2,8 @@
 layout: post 
 category: blog
 author: cgy 
-title: Hi Zod! Or, basic Urbit tunneling 
+title: Hi Zod! Or, basic Urbit tunneling
+date: 2013-10-08 
 ---
 
 One bug, or really minor misfeature, in Urbit's networking - not the evil :update bug, possibly aka "ok/not responding," which remains my main quarry today, but one I had to investigate on the way to it - is that it's all very well and good to punch a NAT hole, but a lot of routers - for I guess understandable reasons - like to heal the hole up relatively quickly.  As in, a minute or two.
