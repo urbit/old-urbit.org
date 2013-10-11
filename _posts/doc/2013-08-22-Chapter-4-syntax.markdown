@@ -64,13 +64,12 @@ Which has an inevitable tendency to turn into "barts" - a sin
 to be encouraged.  In any language actually spoken by actual
 humans, laziness soon rounds off any rough edges.
 
-So if we had to read the above decrement, omitting the spaces
-(which only a real purist would pronounce), we'd say: "luslus dec
-sigfas cen dec bartis a tis pat sigbar soq dec soq ketcab pat wutgal
-tis pel zero a per tislus b tis pat barhep wutcol tis pel a lus pel
-b per per b buc pel b lus pel b per per." The authorities would
-then arrive, and drag us out in a big net.  Definitely don't do
-this at the airport.
+So if we had to read the above decrement, omitting the spaces (which
+only a real purist would pronounce), we'd say: "luslus dec sigfas cen
+dec bartis a tis pat kethelp pat wutgal tis pel zero a per tislus b
+tis pat barhep wutcol tis pel a lus pel b per per b buc pel b lus pel
+b per per." The authorities would then arrive, and drag us out in a big
+net. Definitely don't do this at the airport.
 
 Geeks being solitary by nature, opportunities for reading code
 aloud are limited.  But studies by actual scientists have shown
