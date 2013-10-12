@@ -1,7 +1,7 @@
 ---
 layout: post
 category: doc
-title: Chapter 6 &#58; Security
+title: Chapter 7 &#58; Security
 ---
 
 Welcome to Urbit!

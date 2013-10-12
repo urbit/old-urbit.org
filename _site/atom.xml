@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2013-10-08T19:43:54-04:00</updated>
+ <updated>2013-10-12T16:20:20-07:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -15,7 +15,7 @@
  <entry>
    <title>Hi Zod! Or, basic Urbit tunneling</title>
    <link href="http://urbit.org/2013/10/08/hizod.html"/>
-   <updated>2013-10-08T00:00:00-04:00</updated>
+   <updated>2013-10-08T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/10/08/hizod</id>
    <content type="html">
 &lt;p&gt;One bug, or really minor misfeature, in Urbit’s networking - not the evil :update bug, possibly aka “ok/not responding,” which remains my main quarry today, but one I had to investigate on the way to it - is that it’s all very well and good to punch a NAT hole, but a lot of routers - for I guess understandable reasons - like to heal the hole up relatively quickly. As in, a minute or two.&lt;/p&gt;
@@ -41,7 +41,7 @@
  <entry>
    <title>Urbit, from the NICU to Ops Week</title>
    <link href="http://urbit.org/2013/10/06/nicu.html"/>
-   <updated>2013-10-06T00:00:00-04:00</updated>
+   <updated>2013-10-06T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/10/06/nicu</id>
    <content type="html">
 &lt;p&gt;(TLDR: to keep using Urbit, delete all your pre-10/6 data, git pull the source again, make clean, make, and start over. Your destroyers and tickets will keep working. No, this will not keep happening, though it may happen once or twice again.)&lt;/p&gt;
@@ -100,7 +100,7 @@
  <entry>
    <title>Tea at the Palaz of Hoon</title>
    <link href="http://urbit.org/2013/09/26/palaz.html"/>
-   <updated>2013-09-26T15:00:00-04:00</updated>
+   <updated>2013-09-26T15:00:00-07:00</updated>
    <id>http://urbit.org/2013/09/26/palaz</id>
    <content type="html">&lt;!DOCTYPE html&gt;
 &lt;!--[if lt IE 7 ]&gt;&lt;html class=&quot;ie ie6&quot; lang=&quot;en&quot;&gt; &lt;![endif]--&gt;
@@ -300,7 +300,7 @@
  <entry>
    <title>Continuity Timeframe</title>
    <link href="http://urbit.org/2013/09/25/continuity.html"/>
-   <updated>2013-09-25T15:00:00-04:00</updated>
+   <updated>2013-09-25T15:00:00-07:00</updated>
    <id>http://urbit.org/2013/09/25/continuity</id>
    <content type="html">
 &lt;p&gt;Thought we’d share the following email that we sent out on the developers mailing list (urbit-dev@googlegroups.org):&lt;/p&gt;
@@ -330,7 +330,7 @@
  <entry>
    <title>Welcome to Urbit</title>
    <link href="http://urbit.org/2013/09/24/urbit-intro.html"/>
-   <updated>2013-09-24T15:00:00-04:00</updated>
+   <updated>2013-09-24T15:00:00-07:00</updated>
    <id>http://urbit.org/2013/09/24/urbit-intro</id>
    <content type="html">
 &lt;p&gt;But wait - what the hell is Urbit?&lt;/p&gt;
@@ -472,10 +472,10 @@
  </entry>
  
  <entry>
-   <title>Chapter 6 &#58; Security</title>
-   <link href="http://urbit.org/2013/08/22/Chapter-6-security.html"/>
-   <updated>2013-08-22T00:00:00-04:00</updated>
-   <id>http://urbit.org/2013/08/22/Chapter-6-security</id>
+   <title>Chapter 7 &#58; Security</title>
+   <link href="http://urbit.org/2013/08/22/Chapter-7-security.html"/>
+   <updated>2013-08-22T00:00:00-07:00</updated>
+   <id>http://urbit.org/2013/08/22/Chapter-7-security</id>
    <content type="html">
 &lt;p&gt;Welcome to Urbit!&lt;/p&gt;
 
@@ -585,9 +585,317 @@
  </entry>
  
  <entry>
-   <title>Chapter 5 &#58; Hoon's Moronic Type System</title>
+   <title>Chapter 6 &#58; 29 ways of looking at a hoon</title>
+   <link href="http://urbit.org/2013/08/22/Chapter-6-hoons.html"/>
+   <updated>2013-08-22T00:00:00-07:00</updated>
+   <id>http://urbit.org/2013/08/22/Chapter-6-hoons</id>
+   <content type="html">
+&lt;p&gt;Since writing the last chapter (this here is a &lt;em&gt;living document&lt;/em&gt;, darn it), we’ve bowed to the inevitable and changed the name of the Hoon AST node type from the vague and pretentious &lt;code&gt;gene&lt;/code&gt;, to the bold country-flavored &lt;code&gt;hoon&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This can and will be deployed broadly - it is ridiculous to speak of “Hoon runes” when you could just say “hoons.” Somehow the same word means the symbol, the source code, the expression, etc.&lt;/p&gt;
+
+&lt;p&gt;Let’s start off with two big hoons. The first is the definition of &lt;code&gt;++hoon&lt;/code&gt; (in /~ship/arvo=/hoon/hoon):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  |%                                                      ::
+  ++  axis  ,@                                            ::
+  ++  beer  $|(@ [~ p=hoon])                              ::
+  ++  foot  $%  [%ash p=hoon]                             ::
+                [%elm p=hoon]                             ::
+                [%oak ~]                                  ::
+                [%yew p=(map term foot)]                  ::
+            ==                                            ::
+  ++  gens  (list hoon)                                   ::
+  ++  gent  (list ,[p=hoon q=hoon])                       ::
+  ++  genu  (list ,[p=term q=hoon])                       ::
+  ++  goon  (list (unit hoon))                            ::
+  ++  hoon  $&amp;amp;  [p=hoon q=hoon]                           ::
+            $%                                            ::
+              [%$ p=axis]                                 ::
+            ::                                            ::
+              [%bcbr p=hoon q=hoon]                       ::
+              [%bccb p=hoon]                              ::
+              [%bccl p=gens]                              ::
+              [%bccn p=hoon q=gens]                       ::
+              [%bccm p=hoon]                              ::
+              [%bckt p=hoon]                              ::
+              [%bcpm p=hoon q=hoon]                       ::
+              [%bctr p=hoon]                              ::
+              [%bcts p=bozo]                              ::
+              [%bcwt p=hoon q=gens]                       ::
+            ::                                            ::
+              [%brbr p=hoon q=hoon]                       ::
+              [%brcb p=hoon q=(map term foot)]            ::
+              [%brcl p=hoon q=(map term foot)]            ::
+              [%brcn p=(map term foot)]                   ::
+              [%brdt p=hoon]                              ::
+              [%brkt p=hoon q=(map term foot)]            ::
+              [%brhp p=hoon]                              ::
+              [%brls p=hoon q=hoon]                       ::
+              [%brtr p=hoon q=hoon]                       ::
+              [%brts p=hoon q=hoon]                       ::
+              [%brwt p=hoon]                              ::
+            ::                                            ::
+              [%clcb p=hoon q=hoon]                       ::
+              [%clcn p=gens]                              ::
+              [%clfs p=hoon]                              ::
+              [%clkt p=hoon q=hoon r=hoon s=hoon]         ::
+              [%clhp p=hoon q=hoon]                       ::
+              [%clls p=hoon q=hoon r=hoon]                ::
+              [%clsg p=gens]                              ::
+              [%cltr p=gens]                              ::
+              [%clzp p=gens]                              ::
+            ::                                            ::
+              [%cnbc p=term]                              ::
+              [%cncb p=wing q=gent]                       ::
+              [%cncl p=hoon q=hoon]                       ::
+              [%cndt p=hoon q=hoon]                       ::
+              [%cnhp p=hoon q=gens]                       ::
+              [%cnhx p=wing]                              ::
+              [%cntr p=wing q=hoon r=gent]                ::
+              [%cnkt p=hoon q=hoon r=hoon s=hoon]         ::
+              [%cnls p=hoon q=hoon r=hoon]                ::
+              [%cnsg p=wing q=hoon r=hoon]                ::
+              [%cnts p=wing q=gent]                       ::
+            ::                                            ::
+              [%dtkt p=hoon]                              ::
+              [%dtls p=hoon]                              ::
+              [%dtpt p=term q=@]                          ::
+              [%dtsg p=term q=*]                          ::
+              [%dttr p=hoon q=hoon]                       ::
+              [%dtts p=hoon q=hoon]                       ::
+              [%dtwt p=hoon]                              ::
+            ::                                            ::
+              [%hxgl p=gens]                              ::
+              [%hxgr p=gens]                              ::
+            ::                                            ::
+              [%ktbr p=hoon]                              ::
+              [%ktls p=hoon q=hoon]                       ::
+              [%ktdt p=hoon q=hoon]                       ::
+              [%kthp p=hoon q=hoon]                       ::
+              [%ktpm p=hoon]                              ::
+              [%ktsg p=hoon]                              ::
+              [%ktts p=term q=hoon]                       ::
+              [%ktwt p=hoon]                              ::
+            ::                                            ::
+              [%sgbr p=hoon q=hoon]                       ::
+              [%sgcl p=[p=@ q=@] q=hoon]                  ::
+              [%sgcn p=chop q=hoon r=genu s=hoon]         ::
+              [%sgfs p=chop q=hoon]                       ::
+              [%sggl p=$|(term [p=term q=hoon]) q=hoon]   ::
+              [%sggr p=$|(term [p=term q=hoon]) q=hoon]   ::
+              [%sgbc p=term q=hoon]                       ::
+              [%sghx p=term q=hoon]                       ::
+              [%sgkt p=hoon q=hoon]                       ::
+              [%sgls p=@ q=hoon]                          ::
+              [%sgpm p=@ud q=hoon r=hoon]                 ::
+              [%sgts p=hoon q=hoon]                       ::
+              [%sgwt p=@ud q=hoon r=hoon s=hoon]          ::
+              [%sgzp p=hoon q=hoon]                       ::
+            ::                                            ::
+              [%smcb p=hoon q=hoon]                       ::
+              [%smcl p=hoon q=gens]                       ::
+              [%smcm p=hoon q=gens]                       ::
+              [%smcn p=gens]                              ::
+              [%smdt p=hoon q=gens]                       ::
+              [%smdq p=(list beer)]                       ::
+              [%smgl p=hoon q=hoon r=hoon]                ::
+              [%smgr p=hoon q=hoon r=hoon]                ::
+              [%smkt p=hoon q=hoon]                       ::
+              [%smhp p=hoon q=hoon]                       ::
+              [%smhx p=(list beer)]                       ::
+              [%smls p=hoon q=hoon]                       ::
+              [%smpm p=hoon q=gens]                       ::
+              [%smsg p=hoon q=gens]                       ::
+              [%smsm p=hoon q=hoon]                       ::
+              [%smtr p=hoon q=hoon]                       ::
+              [%smts p=hoon q=hoon]                       ::
+              [%smwt p=hoon q=hoon]                       ::
+            ::                                            ::
+              [%tsbr p=hoon q=hoon]                       ::
+              [%tscl p=gent q=hoon]                       ::
+              [%tsdt p=hoon q=hoon r=hoon]                ::
+              [%tsgl p=hoon q=hoon]                       ::
+              [%tsgr p=hoon q=hoon]                       ::
+              [%tskt p=hoon q=hoon r=hoon s=hoon]         ::
+              [%tsls p=hoon q=hoon]                       ::
+              [%tshp p=hoon q=hoon]                       ::
+              [%tssg p=gens]                              ::
+            ::                                            ::
+              [%wtbr p=gens]                              ::
+              [%wthp p=hoon q=gent]                       ::
+              [%wtcl p=hoon q=hoon r=hoon]                ::
+              [%wtcn p=hoon q=hoon]                       ::
+              [%wtdt p=hoon q=hoon r=hoon]                ::
+              [%wtkt p=hoon q=hoon r=hoon]                ::
+              [%wtgl p=hoon q=hoon]                       ::
+              [%wtgr p=hoon q=hoon]                       ::
+              [%wtls p=hoon q=hoon r=gent]                ::
+              [%wtpm p=gens]                              ::
+              [%wtpt p=hoon q=hoon r=hoon]                ::
+              [%wtsg p=hoon q=hoon r=hoon]                ::
+              [%wtts p=hoon q=hoon]                       ::
+              [%wtzp p=hoon]                              ::
+            ::                                            ::
+              [%zpcb p=spot q=hoon]                       ::
+              [%zpcm p=hoon q=hoon]                       ::
+              [%zpcn ~]                                   ::
+              [%zpfs p=hoon]                              ::
+              [%zpgr p=hoon]                              ::
+              [%zpsm p=hoon q=hoon]                       ::
+              [%zpts p=hoon]                              ::
+              [%zpzp ~]                                   ::
+            ==                                            ::
+  ++  limb  $|(term $%([&amp;amp; p=axis] [| p=@ud q=term]))      ::
+  ++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::
+  ++  spot  ,[p=path q=pint]                              ::
+  ++  term  ,@tas                                         ::
+  ++  wing  (list limb)                                   ::&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;Wha? Of course, we learned to use this subset of Hoon in the last chapter. We know that &lt;code&gt;++hoon&lt;/code&gt; is a function which normalizes an untyped noun into a hoon. (And Australians, really, you can stop laughing now.)&lt;/p&gt;
+
+&lt;p&gt;But perhaps we missed the &lt;code&gt;$&amp;amp;&lt;/code&gt; hoon. This tells us that hoons use the same “autocons” trick as Nock formulas.&lt;/p&gt;
+
+&lt;p&gt;A hoon is always a cell. If the head of that hoon is also a cell, the whole hoon is a cell [p=hoon q=hoon], and its product against any subject is the equivalent of Lisp &lt;code&gt;(cons p q)&lt;/code&gt;. But there is no &lt;code&gt;cons&lt;/code&gt; in Hoon - you just say &lt;code&gt;[p q]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The next simplest kind of hoon is exactly the same as the Nock formula. &lt;code&gt;%$&lt;/code&gt; is the empty formula and an &lt;code&gt;axis&lt;/code&gt; is just &lt;code&gt;@&lt;/code&gt;, so &lt;code&gt;[%$ p=axis]&lt;/code&gt; just means the cell &lt;code&gt;[0 p]&lt;/code&gt;, as in Nock &lt;code&gt;/p&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This reminds us that Hoon is just Nock in a fancy suit. In Nock, we write a Nock formula that specifies a function of the subject. In Hoon we write a hoon that, with the semantic assistance of the subject type, is converted into a Nock formula. Much as C is just a fancy macro assembler for machine code, Hoon is just a fancy macro assembler for Nock.&lt;/p&gt;
+
+&lt;p&gt;The basic function in this assembler is &lt;code&gt;++mint&lt;/code&gt;, which maps a cell &lt;code&gt;[type hoon]&lt;/code&gt; to a cell &lt;code&gt;[type nock]&lt;/code&gt;. (If you look at the code for &lt;code&gt;++mint&lt;/code&gt;, you’ll see it also takes a second type &lt;code&gt;gol&lt;/code&gt;, but this goal type is only for more accurate error location.)&lt;/p&gt;
+
+&lt;p&gt;But in the compiler core, &lt;code&gt;++ut&lt;/code&gt;, there are only three arms where we &lt;code&gt;?-&lt;/code&gt; on this giant clan of hoons. These are &lt;code&gt;++mint&lt;/code&gt;; &lt;code&gt;++play&lt;/code&gt;, an abbreviated mint that only does type inference; and &lt;code&gt;++mung&lt;/code&gt;, which implements generic polymorphism. Let’s look at &lt;code&gt;++play&lt;/code&gt;, because it’s the simplest.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  |%
+  ++  play  
+    ~/  %play
+    =&amp;gt;  .(vet |)
+    |=  gen=hoon
+    ?-  gen
+      [^ *]      (cell $(gen p.gen) $(gen q.gen))
+      [%brcl *]  (heir(sut $(gen p.gen)) q.gen)
+      [%brcn *]  (core sut %gold sut [[%0 0] p.gen])
+      [%cnts *]  =+  lar=(foil (seek %read p.gen))
+                 =+  mew=(swab q.gen)
+                 =+  rag=q.q.lar
+                 %-  fire
+                 |-  ^-  (list ,[p=type q=foot])
+                 ?~  mew
+                   rag
+                 $(mew t.mew, rag q:(tock p.i.mew ^$(gen q.i.mew) rag))
+      [%dtkt *]  %noun
+      [%dtls *]  [%atom %$]
+      [%dtpt *]  ?:(=(%f p.gen) ?&amp;gt;((lte q.gen 1) bean) [%atom p.gen])
+      [%dtsg *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
+      [%dttr *]  %noun
+      [%dtts *]  bean
+      [%dtwt *]  bean
+      [%ktbr *]  (wrap(sut $(gen p.gen)) %iron)
+      [%ktdt *]  $(gen (snap(sut $(gen p.gen)) q.gen))
+      [%ktls *]  $(gen p.gen)
+      [%ktpm *]  (wrap(sut $(gen p.gen)) %zinc)
+      [%ktsg *]  $(gen p.gen)
+      [%ktts *]  (face p.gen $(gen q.gen))
+      [%ktwt *]  (wrap(sut $(gen p.gen)) %lead)
+      [%sggr *]  $(gen q.gen)
+      [%tsgr *]  $(gen q.gen, sut $(gen p.gen))
+      [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
+                 %+  fork
+                   ?:(=(%void fex) %void $(sut fex, gen q.gen))
+                 ?:(=(%void wux) %void $(sut wux, gen r.gen))
+      [%wtcn *]  bean
+      [%zpcb *]  ~!((show %o p.gen) $(gen q.gen))  
+      [%zpcm *]  (play p.gen)
+      [%zpcn ~]  p:seed
+      [%zpfs *]  %void
+      [%zpsm *]  (cell $(gen p.gen) $(gen q.gen))
+      [%zpts *]  %noun
+      [%zpzp ~]  %void
+      *          =+  doz=~(open ap gen) 
+                 ?:  =(doz gen)
+                   ~!  (show [%c 'hoon'] [%q gen])
+                   ~|(%play-open !!)
+                 $(gen doz)
+    ==&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;p&gt;The first thing we notice about this code, which almost fits on a page but doesn’t quite, is that there are only 28 runes we evaluate directly. The rest go into &lt;code&gt;++open&lt;/code&gt; in &lt;code&gt;++ut&lt;/code&gt;, where they are expanded as macros.&lt;/p&gt;
+
+&lt;p&gt;Which makes no difference at all if you’re trying to learn Hoon from the top down, tutorial style. We’ll do that later. But if you’re trying to understand it from the bottom up… that means, there are only 28 runes we have to understand. And honestly, most of them are pretty minor.&lt;/p&gt;
+
+&lt;p&gt;Let’s start with a simple but important one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %wtcl ?: &amp;quot;wutcol&amp;quot; [%wtcl p=hoon q=hoon r=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is exactly the same as the C operator and has the same semantics. It’s also the same as Nock operator &lt;code&gt;6&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So how do we infer type through it? Since both &lt;code&gt;q&lt;/code&gt; and &lt;code&gt;r&lt;/code&gt; are applied to the same subject as the original hoon, you might think the code would be&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      [%wtcl *]  [%fork $(gen q.gen) $(gen r.gen)]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But in fact, it’s&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
+                 %+  fork
+                   ?:(=(%void fex) %void $(sut fex, gen q.gen))
+                 ?:(=(%void wux) %void $(sut wux, gen r.gen))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What’s going on here is that we analyze &lt;code&gt;p.gen&lt;/code&gt;, the test in the if, to refine the subject type. On either branch, we’ve learned something about the subject, so we should have a new type - created by &lt;code&gt;++gain&lt;/code&gt; for the yes branch, &lt;code&gt;++lose&lt;/code&gt; for the no. Then, the product type is the union of both branches.&lt;/p&gt;
+
+&lt;p&gt;The power of &lt;code&gt;+gain&lt;/code&gt; and &lt;code&gt;++lose&lt;/code&gt; shouldn’t be overstated. It can analyze boolean logic (but is not a SAT solver) and can use the results of &lt;code&gt;?%&lt;/code&gt; (which is normally used through the macro &lt;code&gt;?=&lt;/code&gt;, testing if a noun matches a type.&lt;/p&gt;
+
+&lt;p&gt;Moreover, this is not enforced in &lt;code&gt;++play&lt;/code&gt;, but when the type system figures out that a path isn’t taken, that’s an error - you’ll see &lt;code&gt;mint-vain&lt;/code&gt;, meaning that your code is in vain.&lt;/p&gt;
+
+&lt;p&gt;When you see the &lt;code&gt;?-&lt;/code&gt; pattern-matching macro, it simply resolves down to a series of &lt;code&gt;?:&lt;/code&gt; tests. Eventually it should probably be pulled into &lt;code&gt;++ut&lt;/code&gt;, to be more efficient than linear search.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;wutcol&lt;/code&gt; is actually the second most important hoon. Let’s do the most important and complex:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %cnts %= &amp;quot;centis&amp;quot; [%cnts p=wing q=gent]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;centis&lt;/code&gt; could be described as “query with changes.” First let’s look at the data structures it uses:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    ++  axis  ,@
+    ++  gent  (list ,[p=hoon q=hoon])
+    ++  limb  $|(term $%([&amp;amp; p=axis] [| p=@ud q=term]))
+    ++  term  ,@tas
+    ++  wing  (list limb)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;p&lt;/code&gt; is the query, &lt;code&gt;q&lt;/code&gt; the changes. Let’s forget about &lt;code&gt;q&lt;/code&gt; and just think about &lt;code&gt;p&lt;/code&gt; for right now.&lt;/p&gt;
+
+&lt;p&gt;What is a &lt;code&gt;wing&lt;/code&gt;? It’s a way to reference either a part of a typed noun (a fragment, as in Nock &lt;code&gt;/&lt;/code&gt;; or &lt;code&gt;leg&lt;/code&gt;), or a computed expression (&lt;code&gt;arm&lt;/code&gt;). Each &lt;code&gt;limb&lt;/code&gt; in the wing can be either a tree address (like &lt;code&gt;+3&lt;/code&gt;, meaning Nock’s &lt;code&gt;/3&lt;/code&gt;) or a name (like &lt;code&gt;foo&lt;/code&gt;). Syntactically, these run outward from right to left, so&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    +3.foo.bar.+7.moo&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;means “+3 in foo in bar in +7 in moo” - ie, the opposite of the “object.attribute” order you’re used to from Earth languages.&lt;/p&gt;
+
+&lt;p&gt;Obviously, &lt;code&gt;+3&lt;/code&gt; is always a leg. Whereas &lt;code&gt;moo&lt;/code&gt; can resolve either when it finds a &lt;code&gt;%face&lt;/code&gt;, or when it finds a &lt;code&gt;%core&lt;/code&gt;. When searching in a type, the search stops at a &lt;code&gt;%face&lt;/code&gt; that conflicts with the term we’re looking for, but continues into the payload of a &lt;code&gt;%core&lt;/code&gt; that doesn’t have an arm that matches the term we’re looking for. Moreover, a term limb has a numeric parameter that lets us skip the first &lt;code&gt;p&lt;/code&gt; matches; so, &lt;code&gt;moo&lt;/code&gt; means the first &lt;code&gt;moo&lt;/code&gt; we find, but &lt;code&gt;^^moo&lt;/code&gt; means “skip over the first 2 &lt;code&gt;moo&lt;/code&gt;s we find and accept the third.”&lt;/p&gt;
+
+&lt;p&gt;This explains mysterious usages like &lt;code&gt;^^$&lt;/code&gt;. &lt;code&gt;$&lt;/code&gt; is just a syntax for the empty symbol - &lt;code&gt;$&lt;/code&gt; compares to &lt;code&gt;%$&lt;/code&gt; as &lt;code&gt;moo&lt;/code&gt; to %moo. The one is a limb, the other a constant. In practice, &lt;code&gt;$&lt;/code&gt; is used for “the nameless function or loop we’re inside.”&lt;/p&gt;
+
+&lt;p&gt;So &lt;code&gt;^$&lt;/code&gt; gives us the functional equivalent of multi-level break. Indeed, if there is one practical problem with most functional languages, it’s the inability to refer to anonymous functions that you’re inside.&lt;/p&gt;
+
+&lt;p&gt;Then we have the changes. Actually, Hoon in Hoon is relatively old code, and done right it would be&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    ++  gent  (list ,[p=wing q=hoon])&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But a wing is one case of a hoon, so we just parse it as a general hoon and reduce it by brute force.&lt;/p&gt;
+
+&lt;p&gt;This isn’t rocket science: we produce the query described in &lt;code&gt;p&lt;/code&gt;, with each of the wings in &lt;code&gt;q&lt;/code&gt; replaced by the corresponding hoon (computed against the current subject). So, for example, when calling a classic function, we produce a gate or “lambda” of the form&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    [formula [sample context]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and evaluate the formula (typically named &lt;code&gt;$&lt;/code&gt;) with the sample, (&lt;code&gt;+6&lt;/code&gt;), replaced with your actual argument. Hence, the code for this, supposing you have your gate in &lt;code&gt;moo&lt;/code&gt;, and your argument is &lt;code&gt;bar&lt;/code&gt;, would look like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %=  $.moo
+      +6  bar
+    ==&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and &lt;code&gt;centis&lt;/code&gt; in this case means “replace the sample with the argument, and execute the function body.”&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Chapter 5 &#58; Hoon's moronic type system</title>
    <link href="http://urbit.org/2013/08/22/Chapter-5-types.html"/>
-   <updated>2013-08-22T00:00:00-04:00</updated>
+   <updated>2013-08-22T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-5-types</id>
    <content type="html">
 &lt;p&gt;No, we’re quite serious about this word &lt;em&gt;moronic&lt;/em&gt;. (Since you ask, it rhymes with &lt;em&gt;electronic&lt;/em&gt;.) &lt;em&gt;Scientifically&lt;/em&gt;, we speak of &lt;em&gt;moronic type inference&lt;/em&gt; (MTI).&lt;/p&gt;
@@ -890,7 +1198,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
  <entry>
    <title>Chapter 4 &#58; Hoon - Syntax</title>
    <link href="http://urbit.org/2013/08/22/Chapter-4-syntax.html"/>
-   <updated>2013-08-22T00:00:00-04:00</updated>
+   <updated>2013-08-22T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-4-syntax</id>
    <content type="html">
 &lt;p&gt;Now, let’s actually look at Hoon. Really, try not to recoil in horror. It’s actually not anything like line noise.&lt;/p&gt;
@@ -934,7 +1242,7 @@ fas  /          pel  (          zap  !&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;To pronounce a rune, concatenate the glyph names, stressing the first syllable and softening the second vowel into a “schwa.” Hence, to say &lt;code&gt;~.&lt;/code&gt;, say “sigdot.” To say &lt;code&gt;|=&lt;/code&gt;, say “bartis.” Which has an inevitable tendency to turn into “barts” - a sin to be encouraged. In any language actually spoken by actual humans, laziness soon rounds off any rough edges.&lt;/p&gt;
 
-&lt;p&gt;So if we had to read the above decrement, omitting the spaces (which only a real purist would pronounce), we’d say: “luslus dec sigfas cen dec bartis a tis pat sigbar soq dec soq ketcab pat wutgal tis pel zero a per tislus b tis pat barhep wutcol tis pel a lus pel b per per b buc pel b lus pel b per per.” The authorities would then arrive, and drag us out in a big net. Definitely don’t do this at the airport.&lt;/p&gt;
+&lt;p&gt;So if we had to read the above decrement, omitting the spaces (which only a real purist would pronounce), we’d say: “luslus dec sigfas cen dec bartis a tis pat kethep pat wutgal tis pel zero a per tislus b tis pat barhep wutcol tis pel a lus pel b per per b buc pel b lus pel b per per.” The authorities would then arrive, and drag us out in a big net. Definitely don’t do this at the airport.&lt;/p&gt;
 
 &lt;p&gt;Geeks being solitary by nature, opportunities for reading code aloud are limited. But studies by actual scientists have shown that even when we read silently, we activate the motor cortex that controls our vocal cords. Even if we never speak these squiggles, they’re easier to &lt;em&gt;think&lt;/em&gt; if bound to simple sounds.&lt;/p&gt;
 
@@ -1093,7 +1401,7 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
  <entry>
    <title>Chapter 3 &#58; Hoon - Philosophy</title>
    <link href="http://urbit.org/2013/08/22/Chapter-3-philosophy.html"/>
-   <updated>2013-08-22T00:00:00-04:00</updated>
+   <updated>2013-08-22T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-3-philosophy</id>
    <content type="html">
 &lt;p&gt;Yo, let’s write some Hoon!&lt;/p&gt;
@@ -1129,7 +1437,7 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
  <entry>
    <title>Chapter 2 &#58; Crash course in Nock</title>
    <link href="http://urbit.org/2013/08/22/Chapter-2-nock.html"/>
-   <updated>2013-08-22T00:00:00-04:00</updated>
+   <updated>2013-08-22T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-2-nock</id>
    <content type="html">
 &lt;p&gt;So let’s learn Nock! But wait - why learn Nock? After all, we’re going to be programming in Hoon, not Nock.&lt;/p&gt;
@@ -1932,7 +2240,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
  <entry>
    <title>Chapter 1 &#58; Crash course in Arvo</title>
    <link href="http://urbit.org/2013/08/22/Chapter-1-arvo.html"/>
-   <updated>2013-08-22T00:00:00-04:00</updated>
+   <updated>2013-08-22T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-1-arvo</id>
    <content type="html">
 &lt;p&gt;Welcome to Urbit!&lt;/p&gt;
@@ -1985,7 +2293,7 @@ $(b +(b))                   ::  line 6&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;
 &lt;p&gt;Macports? Type &lt;code&gt;port&lt;/code&gt;. If it does something, you have Macports.&lt;/p&gt;
 
-&lt;p&gt;Otherwise go &lt;a title=&quot;here&quot; href=&quot;http://www.macports.org/install.php&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Otherwise go &lt;a href=&quot;http://www.macports.org/install.php&quot; title=&quot;here&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Then &lt;code&gt;sudo port install gmp libsigsegv openssl&lt;/code&gt;&lt;/p&gt;
 
@@ -2621,7 +2929,7 @@ $URBIT_HOME/waclux-tomwyc/doc/web/game/fun.hoon&lt;/code&gt;&lt;/pre&gt;
  <entry>
    <title>Chapter 0 &#58; Introduction and philosophy</title>
    <link href="http://urbit.org/2013/08/22/Chapter-0-intro.html"/>
-   <updated>2013-08-22T00:00:00-04:00</updated>
+   <updated>2013-08-22T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-0-intro</id>
    <content type="html">
 &lt;p&gt;Urbit is a new programming and execution environment designed from scratch. Any resemblance to existing languages or operating systems is coincidental, cosmetic, or inevitable.&lt;/p&gt;
