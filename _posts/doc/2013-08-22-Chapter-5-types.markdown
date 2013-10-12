@@ -1,7 +1,7 @@
 ---
 layout: post
 category: doc
-title: Chapter 5 &#58; Hoon's Moronic Type System
+title: Chapter 5 &#58; Hoon's moronic type system
 ---
 
 No, we're quite serious about this word _moronic_.  (Since you
