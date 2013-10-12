@@ -1,6 +1,7 @@
 ---
 layout: post
 category: blog
+author: cgy
 title: Welcome to Urbit
 date: 2013-9-24 15:00
 ---

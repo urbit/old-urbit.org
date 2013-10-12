@@ -1,6 +1,7 @@
 --- 
 layout: post 
-category: blog 
+category: blog
+author: cgy 
 title: Urbit, from the NICU to Ops Week
 date: 2013-10-06 
 ---
