@@ -16,8 +16,8 @@ the data structures it uses?
 	                q=type
 	                r=[p=?(~ ^) q=(map ,@tas foot)]
 	            ==
-	  ++  foot  $%  [%ash p=gene]
-	                [%elm p=gene]
+	  ++  foot  $%  [%ash p=hoon]
+	                [%elm p=hoon]
 	                [%oak ~]
 	                [%yew p=(map ,@tas foot)]
 	            ==
@@ -28,7 +28,7 @@ the data structures it uses?
 	                [%cube p=* q=type]
 	                [%face p=term q=type]
 	                [%fork p=type q=type]
-	                [%hold p=(list ,[p=type q=gene])]
+	                [%hold p=(list ,[p=type q=hoon])]
 	            ==
 	  --
 
@@ -43,9 +43,9 @@ programmers.  But if "type" means to you what it means to
 Professor Pierce, Hoon actually has no types at all.  Nor don't
 we miss 'em.)
 
-The only dependency not included above is `++gene`, a gene being
+The only dependency not included above is `++hoon`, a hoon being
 a node in Hoon's AST.  Ie, one of the mysterious digraphic runes
-we saw in the last chapter.  You can look up `++gene` in
+we saw in the last chapter.  You can look up `++hoon` in
 `hoon.hoon` - to be fair, it's pretty big.
 
 And of course, there is a bunch of code that uses this structure.
@@ -83,7 +83,7 @@ grammar / top-down LL parser.  Extra credit, if the grammar is
 composed as a combinator of general-purpose primitives.
 
 Can Hoon do this?  Can it, for instance, infer or at least check
-the `++gene` type against the Hoon grammar that produces it?  Hey, 
+the `++hoon` type against the Hoon grammar that produces it?  Hey, 
 we like our suspense around here.  Let's go back to `++type`.
 
 First, even though this is Hoon and you can't read Hoon, you may
@@ -162,7 +162,7 @@ which is a simplified version of the real `++ut`:
 	                [11 p=nock]
 	            == 
 	  ::
-	  ++  mint  |=  [sut=type gen=gene]
+	  ++  mint  |=  [sut=type gen=hoon]
 	            ^-  [p=type q=nock]
 	            !!
 	  -- 
@@ -170,7 +170,7 @@ which is a simplified version of the real `++ut`:
 `nock` is obviously a Nock formula.  (But why does it go to 11?
 Why is there a watermelon there?) In any case, the basic function
 of forward type inference is this here function `mint`, which
-maps `[sut=type gen=gene]` to a pair `[p=type q=nock]`.
+maps `[sut=type gen=hoon]` to a pair `[p=type q=nock]`.
 
 What does `mint` mean?  It means: when you compile `gen` for the
 subject type `sut`, `gen` representing in a sense the abstract
@@ -210,7 +210,7 @@ Let's look at the structure again:
 	                [%cube p=* q=type]
 	                [%face p=term q=type]
 	                [%fork p=type q=type]
-	                [%hold p=(list ,[p=type q=gene])]
+	                [%hold p=(list ,[p=type q=hoon])]
 	            ==
 
 First, note that `type` is no mere `%kelp` but in fact a `%bush`,
@@ -220,7 +220,7 @@ perfectly all right.
 
 `%noun` and `%void` ought to be obvious.  Meaning - the set
 of all nouns, and the set of no nouns, respectively.  It's in
-fact illegal to `mint` any gene against a `%void` subject.
+fact illegal to `mint` any hoon against a `%void` subject.
 
 `%atom` is slightly interesting.  Obviously, it means... atom.
 As in, unsigned integer.  But what is the bulb here?
@@ -300,7 +300,7 @@ reasons, `++ut` is some of the oldest Hoon code.)
 
 `%face` wraps a name around a type.  This is obviously orthogonal
 to the set of nouns that the type defines, but of course affects
-its semantics against Hoon genes.
+its semantics against Hoon hoons.
 
 `%fork` is a union type.  There is no order to `%fork` -
 conflicting semantics are an error.  The real America being
@@ -327,9 +327,9 @@ approach has a number of distinct advantages, like, for instance,
 you can, like, send it over the network without coughing up a
 giant mathematical loogie.
 
-The bulb of `%hold` is a list of `[p=type q=gene]` pairs.  The
+The bulb of `%hold` is a list of `[p=type q=hoon]` pairs.  The
 semantics each is simply defined as the type inferred by `++mint`
-with subject `p` and gene `q`.  The combination is a union,
+with subject `p` and hoon `q`.  The combination is a union,
 `%fork` style.  
 
 Since this structure is only logically infinite, traversing its
@@ -394,8 +394,8 @@ the whole type system again:
 	                q=type
 	                r=[p=?(~ ^) q=(map ,@tas foot)]
 	            ==
-	  ++  foot  $%  [%ash p=gene]
-	                [%elm p=gene]
+	  ++  foot  $%  [%ash p=hoon]
+	                [%elm p=hoon`
 	                [%oak ~]
 	                [%yew p=(map ,@tas foot)]
 	            ==
@@ -406,7 +406,7 @@ the whole type system again:
 	                [%cube p=* q=type]
 	                [%face p=term q=type]
 	                [%fork p=type q=type]
-	                [%hold p=(list ,[p=type q=gene])]
+	                [%hold p=(list ,[p=type q=hoon])]
 	            ==
 	  --
 
@@ -418,11 +418,11 @@ proto-Hoon with a much simpler type system:
 	  ++  type  $|  ?(%noun %void)
 	            $%  [%atom p=@tas]
 	                [%cell p=type q=type]
-	                [%core p=type q=(map @tas gene)]
+	                [%core p=type q=(map @tas hoon)]
 	                [%cube p=* q=type]
 	                [%face p=term q=type]
 	                [%fork p=type q=type]
-	                [%hold p=(list ,[p=type q=gene])]
+	                [%hold p=(list ,[p=type q=hoon])]
 	            ==
 	  --
 
