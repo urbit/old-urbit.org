@@ -1,7 +1,7 @@
 ---
 layout: post
 category: doc
-title: Chapter 3 &#58; Hoon - Philosophy
+title: Chapter 3 &#58; Hoon - philosophy
 ---
 
 Yo, let's write some Hoon!

@@ -2,7 +2,7 @@
 layout: post 
 category: blog
 author: cgy 
-title: Urbit, from the NICU to Ops Week
+title: Urbit, from the NICU to ops Week
 date: 2013-10-06 
 ---
 
