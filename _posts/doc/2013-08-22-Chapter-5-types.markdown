@@ -98,7 +98,7 @@ If a cell, its head is one of
 and its tail is the corresponding tuple.  Maw always said if you
 can milk a cow, you can understand `bucbar` and `bucwut`.  Also,
 in a "tagged noun" or `%kelp` of the form `[%cell p=type q=type]`, 
-`%atom` is called the `%stem` and `[p=type q=type]` the `%bulb`.
+`%cell` is called the `%stem` and `[p=type q=type]` the `%bulb`.
 Hoon's doxology thus combines two of our great interests out here
 in the real America, plants and four-letter words.
 
@@ -121,7 +121,7 @@ case, a normalizer.
 
 What this means is that if you have some function which needs a
 `bar`, and some fool from two counties down sends you a big
-binary blob (an `%atom`), `foo`, he can call `(bar (cue foo))` to
+binary blob (an `%atom`), `foo`, you can call `(bar (cue foo))` to
 deserialize, validate and type this totally untrusted input.  If
 poorly formed, it will end up as a default.  Or, if normalization
 is not desired, use `((hard bar) (cue foo))`, and you'll exit
@@ -204,7 +204,7 @@ What is the structure of a `type` and what does it mean?
 Let's look at the structure again:
 
 	  ++  type  $|  ?(%noun %void)
-	            $%  [%atom p=@ta]
+	            $%  [%atom p=@tas]
 	                [%cell p=type q=type]
 	                [%core p=type q=coil]
 	                [%cube p=* q=type]

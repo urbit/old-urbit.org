@@ -9,7 +9,7 @@ Now, let's actually look at Hoon.  Really, try not to recoil
 in horror.  It's actually not anything like line noise.
 
 Open the Hoon kernel - `urb/zod/arvo/hoon.hoon`.  Let's look at
-the full, official decrement function (line 551):
+the full, official decrement function (line 553):
 
 	++  dec
           ~/  %dec
