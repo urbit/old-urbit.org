@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2013-10-12T17:04:27-07:00</updated>
+ <updated>2013-10-13T13:19:30-07:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>Hi Zod! Or, basic Urbit tunneling</title>
+   <title>Hi Zod! or basic Urbit tunneling</title>
    <link href="http://urbit.org/2013/10/08/hizod.html"/>
    <updated>2013-10-08T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/10/08/hizod</id>
@@ -37,7 +37,7 @@
  </entry>
  
  <entry>
-   <title>Urbit, from the NICU to Ops Week</title>
+   <title>Urbit, from the NICU to ops Week</title>
    <link href="http://urbit.org/2013/10/06/nicu.html"/>
    <updated>2013-10-06T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/10/06/nicu</id>
@@ -94,7 +94,7 @@
  </entry>
  
  <entry>
-   <title>Tea at the Palaz of Hoon</title>
+   <title>Tea at the palaz of Hoon</title>
    <link href="http://urbit.org/2013/09/26/palaz.html"/>
    <updated>2013-09-26T15:00:00-07:00</updated>
    <id>http://urbit.org/2013/09/26/palaz</id>
@@ -106,7 +106,7 @@
 &lt;head&gt;
   &lt;meta charset=&quot;utf-8&quot;&gt;
   &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-  &lt;title&gt;Urbit - Tea at the Palaz of Hoon&lt;/title&gt;
+  &lt;title&gt;Urbit - Tea at the palaz of Hoon&lt;/title&gt;
   &lt;meta name=&quot;author&quot; content=&quot;Urbit&quot; /&gt;
   &lt;meta name=&quot;description&quot; content=&quot;The blog of Urbit&quot; /&gt;
   &lt;link rel=&quot;canonical&quot; href=&quot;http://urbit.org/2013/09/25/palaz.html&quot; /&gt;
@@ -294,7 +294,7 @@
  </entry>
  
  <entry>
-   <title>Continuity Timeframe</title>
+   <title>Continuity timeframe</title>
    <link href="http://urbit.org/2013/09/25/continuity.html"/>
    <updated>2013-09-25T15:00:00-07:00</updated>
    <id>http://urbit.org/2013/09/25/continuity</id>
@@ -896,8 +896,8 @@
                 q=type
                 r=[p=?(~ ^) q=(map ,@tas foot)]
             ==
-  ++  foot  $%  [%ash p=gene]
-                [%elm p=gene]
+  ++  foot  $%  [%ash p=hoon]
+                [%elm p=hoon]
                 [%oak ~]
                 [%yew p=(map ,@tas foot)]
             ==
@@ -908,7 +908,7 @@
                 [%cube p=* q=type]
                 [%face p=term q=type]
                 [%fork p=type q=type]
-                [%hold p=(list ,[p=type q=gene])]
+                [%hold p=(list ,[p=type q=hoon])]
             ==
   --&lt;/code&gt;&lt;/pre&gt;
 
@@ -916,7 +916,7 @@
 
 &lt;p&gt;(Compare to Professor Pierce&amp;#8217;s great work on type theory, which surely somewhere right now is keeping a door open. We had one except the dog peed on it. &amp;#8220;PL theory&amp;#8221; is in fact a beautiful symphony of mathematics with many fascinating implications for programmers. But if &amp;#8220;type&amp;#8221; means to you what it means to Professor Pierce, Hoon actually has no types at all. Nor don&amp;#8217;t we miss &amp;#8216;em.)&lt;/p&gt;
 
-&lt;p&gt;The only dependency not included above is &lt;code&gt;++gene&lt;/code&gt;, a gene being a node in Hoon&amp;#8217;s AST. Ie, one of the mysterious digraphic runes we saw in the last chapter. You can look up &lt;code&gt;++gene&lt;/code&gt; in &lt;code&gt;hoon.hoon&lt;/code&gt; - to be fair, it&amp;#8217;s pretty big.&lt;/p&gt;
+&lt;p&gt;The only dependency not included above is &lt;code&gt;++hoon&lt;/code&gt;, a hoon being a node in Hoon&amp;#8217;s AST. Ie, one of the mysterious digraphic runes we saw in the last chapter. You can look up &lt;code&gt;++hoon&lt;/code&gt; in &lt;code&gt;hoon.hoon&lt;/code&gt; - to be fair, it&amp;#8217;s pretty big.&lt;/p&gt;
 
 &lt;p&gt;And of course, there is a bunch of code that uses this structure. But not as much as one might think. &lt;code&gt;++ut&lt;/code&gt; is the Hoon backend, which combines type inference and Nock code generation. It&amp;#8217;s only a couple thousand lines of code - most of &lt;code&gt;hoon.hoon&lt;/code&gt; is actually just standard library.&lt;/p&gt;
 
@@ -930,7 +930,7 @@
 
 &lt;p&gt;Love it or hate it, a good test for a type inference system is whether it can infer the type of the AST from an executable grammar / top-down LL parser. Extra credit, if the grammar is composed as a combinator of general-purpose primitives.&lt;/p&gt;
 
-&lt;p&gt;Can Hoon do this? Can it, for instance, infer or at least check the &lt;code&gt;++gene&lt;/code&gt; type against the Hoon grammar that produces it? Hey, we like our suspense around here. Let&amp;#8217;s go back to &lt;code&gt;++type&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Can Hoon do this? Can it, for instance, infer or at least check the &lt;code&gt;++hoon&lt;/code&gt; type against the Hoon grammar that produces it? Hey, we like our suspense around here. Let&amp;#8217;s go back to &lt;code&gt;++type&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;First, even though this is Hoon and you can&amp;#8217;t read Hoon, you may find that you&amp;#8217;re actually able to read these definitions. For example, what they&amp;#8217;re saying is that a &lt;code&gt;++type&lt;/code&gt; is (like all nouns) either an atom or a cell. If it&amp;#8217;s an atom, it&amp;#8217;s either &lt;code&gt;%noun&lt;/code&gt; or &lt;code&gt;%void&lt;/code&gt; - ie, either &lt;code&gt;0x6e75.6f6e&lt;/code&gt; or &lt;code&gt;0x6469.6f76&lt;/code&gt;. If a cell, its head is one of&lt;/p&gt;
 
@@ -970,12 +970,12 @@
                 [11 p=nock]
             == 
   ::
-  ++  mint  |=  [sut=type gen=gene]
+  ++  mint  |=  [sut=type gen=hoon]
             ^-  [p=type q=nock]
             !!
   -- &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;nock&lt;/code&gt; is obviously a Nock formula. (But why does it go to 11? Why is there a watermelon there?) In any case, the basic function of forward type inference is this here function &lt;code&gt;mint&lt;/code&gt;, which maps &lt;code&gt;[sut=type gen=gene]&lt;/code&gt; to a pair &lt;code&gt;[p=type q=nock]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;nock&lt;/code&gt; is obviously a Nock formula. (But why does it go to 11? Why is there a watermelon there?) In any case, the basic function of forward type inference is this here function &lt;code&gt;mint&lt;/code&gt;, which maps &lt;code&gt;[sut=type gen=hoon]&lt;/code&gt; to a pair &lt;code&gt;[p=type q=nock]&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;What does &lt;code&gt;mint&lt;/code&gt; mean? It means: when you compile &lt;code&gt;gen&lt;/code&gt; for the subject type &lt;code&gt;sut&lt;/code&gt;, &lt;code&gt;gen&lt;/code&gt; representing in a sense the abstract Hoon equivalent of a Nock formula, you produce the actual Nock formula &lt;code&gt;q&lt;/code&gt;. And for any subject noun &lt;code&gt;s&lt;/code&gt;, &lt;code&gt;nock(s q)&lt;/code&gt; will be of type &lt;code&gt;p&lt;/code&gt;.&lt;/p&gt;
 
@@ -998,12 +998,12 @@
                 [%cube p=* q=type]
                 [%face p=term q=type]
                 [%fork p=type q=type]
-                [%hold p=(list ,[p=type q=gene])]
+                [%hold p=(list ,[p=type q=hoon])]
             ==&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;First, note that &lt;code&gt;type&lt;/code&gt; is no mere &lt;code&gt;%kelp&lt;/code&gt; but in fact a &lt;code&gt;%bush&lt;/code&gt;, because we overload a set of atoms on a set of cells. Like riding ATVs without a helmet, this may seem risky but in fact is perfectly all right.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;%noun&lt;/code&gt; and &lt;code&gt;%void&lt;/code&gt; ought to be obvious. Meaning - the set of all nouns, and the set of no nouns, respectively. It&amp;#8217;s in fact illegal to &lt;code&gt;mint&lt;/code&gt; any gene against a &lt;code&gt;%void&lt;/code&gt; subject.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;%noun&lt;/code&gt; and &lt;code&gt;%void&lt;/code&gt; ought to be obvious. Meaning - the set of all nouns, and the set of no nouns, respectively. It&amp;#8217;s in fact illegal to &lt;code&gt;mint&lt;/code&gt; any hoon against a &lt;code&gt;%void&lt;/code&gt; subject.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;%atom&lt;/code&gt; is slightly interesting. Obviously, it means&amp;#8230; atom. As in, unsigned integer. But what is the bulb here?&lt;/p&gt;
 
@@ -1052,7 +1052,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;%cube&lt;/code&gt; is a typed constant. &lt;code&gt;p&lt;/code&gt; is the constant, &lt;code&gt;q&lt;/code&gt; is the type. This should probably be the other way around, just out of good Hoon style, but it&amp;#8217;d be a pain to change it. (For obvious reasons, &lt;code&gt;++ut&lt;/code&gt; is some of the oldest Hoon code.)&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;%face&lt;/code&gt; wraps a name around a type. This is obviously orthogonal to the set of nouns that the type defines, but of course affects its semantics against Hoon genes.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;%face&lt;/code&gt; wraps a name around a type. This is obviously orthogonal to the set of nouns that the type defines, but of course affects its semantics against Hoon hoons.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;%fork&lt;/code&gt; is a union type. There is no order to &lt;code&gt;%fork&lt;/code&gt; - conflicting semantics are an error. The real America being of course union America, Hoon has no intersection type.&lt;/p&gt;
 
@@ -1064,7 +1064,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Well, &lt;em&gt;representing&lt;/em&gt; stuff! We can do that too. Except that instead of an &lt;em&gt;implicit&lt;/em&gt; (special fancy) data structure, we&amp;#8217;ll have to use an &lt;em&gt;explicit&lt;/em&gt; (simple country) one. This country approach has a number of distinct advantages, like, for instance, you can, like, send it over the network without coughing up a giant mathematical loogie.&lt;/p&gt;
 
-&lt;p&gt;The bulb of &lt;code&gt;%hold&lt;/code&gt; is a list of &lt;code&gt;[p=type q=gene]&lt;/code&gt; pairs. The semantics each is simply defined as the type inferred by &lt;code&gt;++mint&lt;/code&gt; with subject &lt;code&gt;p&lt;/code&gt; and gene &lt;code&gt;q&lt;/code&gt;. The combination is a union, &lt;code&gt;%fork&lt;/code&gt; style.&lt;/p&gt;
+&lt;p&gt;The bulb of &lt;code&gt;%hold&lt;/code&gt; is a list of &lt;code&gt;[p=type q=hoon]&lt;/code&gt; pairs. The semantics each is simply defined as the type inferred by &lt;code&gt;++mint&lt;/code&gt; with subject &lt;code&gt;p&lt;/code&gt; and hoon &lt;code&gt;q&lt;/code&gt;. The combination is a union, &lt;code&gt;%fork&lt;/code&gt; style.&lt;/p&gt;
 
 &lt;p&gt;Since this structure is only logically infinite, traversing its infinitude lazily (and thus not ending up in an infinite loop) is the responsibility of the traversing algorithm. A responsibility which is not papered over - various users do it different ways. Thus, the strict, stupid approach actually affords more control.&lt;/p&gt;
 
@@ -1102,8 +1102,8 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
                 q=type
                 r=[p=?(~ ^) q=(map ,@tas foot)]
             ==
-  ++  foot  $%  [%ash p=gene]
-                [%elm p=gene]
+  ++  foot  $%  [%ash p=hoon]
+                [%elm p=hoon`
                 [%oak ~]
                 [%yew p=(map ,@tas foot)]
             ==
@@ -1114,7 +1114,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
                 [%cube p=* q=type]
                 [%face p=term q=type]
                 [%fork p=type q=type]
-                [%hold p=(list ,[p=type q=gene])]
+                [%hold p=(list ,[p=type q=hoon])]
             ==
   --&lt;/code&gt;&lt;/pre&gt;
 
@@ -1124,11 +1124,11 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
   ++  type  $|  ?(%noun %void)
             $%  [%atom p=@tas]
                 [%cell p=type q=type]
-                [%core p=type q=(map @tas gene)]
+                [%core p=type q=(map @tas hoon)]
                 [%cube p=* q=type]
                 [%face p=term q=type]
                 [%fork p=type q=type]
-                [%hold p=(list ,[p=type q=gene])]
+                [%hold p=(list ,[p=type q=hoon])]
             ==
   --&lt;/code&gt;&lt;/pre&gt;
 
@@ -1188,7 +1188,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
  </entry>
  
  <entry>
-   <title>Chapter 4 &#58; Hoon - Syntax</title>
+   <title>Chapter 4 &#58; Hoon - syntax</title>
    <link href="http://urbit.org/2013/08/22/Chapter-4-syntax.html"/>
    <updated>2013-08-22T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-4-syntax</id>
@@ -1389,7 +1389,7 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
  </entry>
  
  <entry>
-   <title>Chapter 3 &#58; Hoon - Philosophy</title>
+   <title>Chapter 3 &#58; Hoon - philosophy</title>
    <link href="http://urbit.org/2013/08/22/Chapter-3-philosophy.html"/>
    <updated>2013-08-22T00:00:00-07:00</updated>
    <id>http://urbit.org/2013/08/22/Chapter-3-philosophy</id>

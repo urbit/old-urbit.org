@@ -2,7 +2,7 @@
 layout: post 
 category: blog
 author: cgy 
-title: Hi Zod! Or, basic Urbit tunneling
+title: Hi Zod! or basic Urbit tunneling
 date: 2013-10-08 
 ---
 
