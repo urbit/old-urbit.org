@@ -797,14 +797,14 @@ permanent, it won't hit the network at all:
 
 Let's try it with some data:
 
-    ~waclyx-tomwyc/try=> (mul 10 ^:@/~zod/try/beta/doc/fortytwo/noun)
+    ~waclyx-tomwyc/try=> (mul 10 ^:@/~wolnum-sorleb/try/beta/doc/fortytwo/noun)
     [waiting...]
  
     ~wolnum-sorleb/try=> :ram /===/doc/fortytwo/noun; (mul 6 7)
     + /~wolnum-sorleb/try/3/doc/fortytwo/noun
     ~wolnum-sorleb/try=> :label %try %beta
       
-    ~waclyx-tomwyc/try=> (mul 10 ^:@/~zod/try/beta/doc/fortytwo/noun)
+    ~waclyx-tomwyc/try=> (mul 10 ^:@/~wolnum-sorleb/try/beta/doc/fortytwo/noun)
     420
 
 So not only can you use any data in Urbit, on the command line
@@ -874,10 +874,10 @@ Hit `^C` on the task when you're done.  Try editing the page
 or the application:
 
     /=try=/bin/game/hoon
-    $URBIT_HOME/waclux-tomwyc/bin/game.hoon
+    $URBIT_HOME/waclux-tomwyc/try/bin/game.hoon
 
-    /=try=/doc/web/game/fun/hoon
-    $URBIT_HOME/waclux-tomwyc/doc/web/game/fun.hoon
+    /=try=/web/game/fun/hoon
+    $URBIT_HOME/waclux-tomwyc/try/web/game/fun.hoon
 
 and then hitting reload.  You'll see that you need to restart the
 server to change the app, but not to change the page.
