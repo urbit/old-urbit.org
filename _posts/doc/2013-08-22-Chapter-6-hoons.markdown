@@ -466,7 +466,7 @@ Nock `3` - `0` (yes, `&`) for cell, `1` (false, `|`) for atom.
 only in the bowels of macros; and if we had to explain why it
 exists at all, we'd be embarrassed.  So we won't.
 
-        %ktpm ^@ "ketpam" [%ktpm p=hoon q=hoon]
+        %ktpm ^& "ketpam" [%ktpm p=hoon q=hoon]
 
 `ketpam` converts a gold core to `%zinc`, ie, covariant.
 
