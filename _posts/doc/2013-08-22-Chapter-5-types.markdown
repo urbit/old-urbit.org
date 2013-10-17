@@ -395,7 +395,7 @@ the whole type system again:
 	                r=[p=?(~ ^) q=(map ,@tas foot)]
 	            ==
 	  ++  foot  $%  [%ash p=hoon]
-	                [%elm p=hoon`
+	                [%elm p=hoon]
 	                [%oak ~]
 	                [%yew p=(map ,@tas foot)]
 	            ==
