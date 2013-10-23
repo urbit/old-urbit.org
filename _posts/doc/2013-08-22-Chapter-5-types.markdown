@@ -96,7 +96,7 @@ If a cell, its head is one of
     ?(%atom %cell %core %cube %face %fork %hold)
 
 and its tail is the corresponding tuple.  Maw always said if you
-can milk a cow, you can understand `bucbar` and `bucwut`.  Also,
+can milk a cow, you can understand `bucbar` and `buccen`.  Also,
 in a "tagged noun" or `%kelp` of the form `[%cell p=type q=type]`, 
 `%cell` is called the `%stem` and `[p=type q=type]` the `%bulb`.
 Hoon's doxology thus combines two of our great interests out here
