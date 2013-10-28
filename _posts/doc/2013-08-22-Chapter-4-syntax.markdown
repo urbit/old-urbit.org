@@ -109,7 +109,7 @@ Opening this file, we see:
     %brts  |=  "bartis"
 
       define:
-        [%brts p=gene q=gene]
+        [%brts p=hoon q=hoon]
 
       expand:
         [%brts *]  [%brcb p.gen (~(put by *(map term foot)) %% [%ash q.gen])]
@@ -119,18 +119,18 @@ There should be some actual discussion, but there isn't.  Still,
 need to step back a little.
 
 When the Hoon parser parses a source file, it generates a noun
-called a `gene`.  If you know what an AST is, a gene is an AST node.
+called a `hoon`.  If you know what an abstract syntax tree is, a hoon is an AST node.
 If you don't, don't worry about it.
 
-Search the current kernel for `++  gene` - note double space.
-This code is both the type declaration for type `gene`, and
-a function that maps an untyped noun to a typed gene.  In it
+Search the current kernel for `++  hoon` - note double space.
+This code is both the type declaration for type `hoon`, and
+a function that maps an untyped noun to a typed hoon.  In it
 you'll see the above definition,
 
-    [%brts p=gene q=gene]
+    [%brts p=hoon q=hoon]
 
-Ie, one kind of gene is a triple whose head is the constant
-`%brts`, and whose tail is a pair of genes, `p` and `q`.  
+Ie, one kind of hoon is a triple whose head is the constant
+`%brts`, and whose tail is a pair of hoons, `p` and `q`.  
 
 We also see the semantics of this rune: it expands to
 
@@ -217,38 +217,38 @@ is a tall normal form.  The equivalent wide form is
 
   	?:(=(a +(b)) b $(b +(b)))
 
-It's usually best to use the wide form if your gene fits on the
-line, but this is obviously an aesthetic choice.  If your gene
+It's usually best to use the wide form if your hoon fits on the
+line, but this is obviously an aesthetic choice.  If your hoon
 does not fit your margin (which should always be 80 columns), 
 you have no choice but to go tall.  For reasons that should be
-obvious, a tall gene can contain wide subgenes, but a wide gene
-cannot contain tall subgenes - just as, in procedural languages,
+obvious, a tall hoon can contain wide subhoons, but a wide hoon
+cannot contain tall subhoons - just as, in procedural languages,
 a statement can contain expressions but not vice versa.
 
 In the wide normal form, the rune is followed immediately (no
-whitespace) by a left paren ("pel"), then the subgenes with a
+whitespace) by a left paren ("pel"), then the subhoons with a
 _single_ space between them, then a right paren ("per") as
 terminator.  If the rune was inside the parens rather than a
 prefix, this would be the Lisp syntax.
 
 
 In the tall normal form, any quantity of whitespace follows the
-rune, and separates the subgenes from each other.  Where is the
+rune, and separates the subhoons from each other.  Where is the
 terminator?  There is no terminator - in most cases.
 
 Consider the `?:` rune, "wutcol," `%wtcl`.  This is
 
-  	[%wtcl p=gene q=gene r=gene]
+  	[%wtcl p=hoon q=hoon r=hoon]
 
 Why should we need a terminator?  We know `%wtcl`, whose
-semantics are if-then-else, has three subgenes.  When the parser
+semantics are if-then-else, has three subhoons.  When the parser
 sees `?:` followed by space, it simply parses the next three
-genes and fills the rune with them.
+hoons and fills the rune with them.
 
 This only works in runes with fixed tuple structure, which
 fortunately is most of them.  A counterexample is `:*`, ie, 
 
-  	[%cltr p=(list gene)]
+  	[%cltr p=(list hoon)]
 
 which is of variable length and needs a terminator.  But we 
 have no dangling parens, but an attractive tall closure:
@@ -285,7 +285,7 @@ above all suspicion - a Doric column, a Tlingit totem pole,
 an Egyptian obelisk.
 
 Tallness matters.  The third law of Hoon indentation is that
-large genes should flow _down_ and not _across_ - like the
+large hoons should flow _down_ and not _across_ - like the
 decrement example above.  The right margin is a precious resource
 not to be wasted.  It's this law, when properly applied, that
 makes casual readers wonder if Hoon is a functional language at
@@ -298,7 +298,7 @@ and most have limited "fanout" - 1, 2, 3 or at most 4.
 
 Both of our above examples - `|=` and `?:` - use "backstep"
 indentation which takes advantage of this tuple structure.  For
-instance, `|=` has two subgenes, `p` and `q.`  We put `p` on the
+instance, `|=` has two subhoons, `p` and `q.`  We put `p` on the
 same line as `|=`, set off by two spaces, losing 4 characters of
 margin.  We put `q` _directly below_, losing no margin at all.
 
