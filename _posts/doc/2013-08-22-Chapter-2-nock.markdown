@@ -37,46 +37,46 @@ naive interpreter.  Here is Nock 5K:
 
 **1. Structures**
 
-	A noun is an atom or a cell.  An atom is any natural number.  
-	A cell is any ordered pair of nouns.
+	A noun is an atom or a cell.  An atom is a natural number.  
+	A cell is an ordered pair of nouns.
 
 **2. Pseudocode**
 
-	1  ::    nock(a)           *a
-	2  ::
-	3  ::    ?[a b]            0
-	4  ::    ?a                1
-	5  ::    +[a b]            +[a b]
-	6  ::    +a                1 + a
-	7  ::    =[a a]            0
-	8  ::    =[a b]            1
-	9 ::    =a                =a	
-	10 ::
-	11 ::    /[1 a]            a
-	12 ::    /[2 a b]          a
-	13 ::    /[3 a b]          b
-	14 ::    /[(a + a) b]      /[2 /[a b]]
-	15 ::    /[(a + a + 1) b]  /[3 /[a b]]
-	16 ::    /a                /a
-	17 ::
-	18 ::    *[a [b c] d]      [*[a b c] *[a d]]
-	19 ::
-	20 ::    *[a 0 b]          /[b a]
-	21 ::    *[a 1 b]          b
-	22 ::    *[a 2 b c]        *[*[a b] *[a c]]
-	23 ::    *[a 3 b]          ?*[a b]
-	24 ::    *[a 4 b]          +*[a b]
-	25 ::    *[a 5 b]          =*[a b]
-	26 ::
-	27 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
-	28 ::    *[a 7 b c]        *[a 2 b 1 c]
-	29 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
-	30 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
-	31 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
-	32 ::    *[a 10 b c]       *[a c]
-	33 ::
-	34 ::    [a b c]           [a [b c]]
-	35 ::    *a                *a
+	1  ::    nock(a)             *a
+        2  ::    [a b c]             [a [b c]]
+        3  ::
+        4  ::    ?[a b]              0
+        5  ::    ?a                  1
+        6  ::    +[a b]              +[a b]
+        7  ::    +a                  1 + a
+        8  ::    =[a a]              0
+        9  ::    =[a b]              1
+        10 ::    =a                  =a
+        11 ::
+        12 ::    /[1 a]              a
+        13 ::    /[2 [a b]]          a
+        14 ::    /[3 [a b]]          b
+        15 ::    /[(a + a) b]        /[2 /[a b]]
+        16 ::    /[(a + a + 1) b]    /[3 /[a b]]
+        17 ::    /a                  /a
+        18 ::
+        19 ::    *[a [[b c] d]]      [*[a [b c]] *[a d]]
+        20 ::
+        21 ::    *[a [0 b]]          /[b a]
+        22 ::    *[a [1 b]]          b
+        23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+        24 ::    *[a [3 b]]          ?*[a b]
+        25 ::    *[a [4 b]]          +*[a b]
+        26 ::    *[a [5 b]]          =*[a b]
+        27 ::
+        28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+        29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
+        30 ::    *[a [8 [b c]]]      *[a 7 [[7 [0 1] b] 0 1] c]
+        31 ::    *[a [9 [b c]]]      *[a 7 c 2 [0 1] 0 b]
+        32 ::    *[a [10 [[b c] d]]] *[a 8 c 7 [0 3] d]
+        33 ::    *[a [10 [b c]]]     *[a c]
+        34 ::
+        35 ::    *a                  *a
 
 Your interpreter should be no more than a page of code in
 any language.  For extra credit, `6`-`10` are macros; implement 
@@ -176,9 +176,9 @@ or any other high-level language built on Nock, will build its
 own function calling convention which *does not* map directly
 to `*[subject formula]`.
 
-##Line 34:##
+##Line 2:##
 
-	34  ::    [a b c]           [a [b c]]
+	2  ::    [a b c]           [a [b c]]
 
 Ie, brackets (in our pseudocode, as in Hoon) associate to the
 right.  For those with Lisp experience, it's important to note
@@ -201,14 +201,14 @@ emphasis.
 
 Let's move on to the axiomatic functions.  
 
-##Lines 3-8:##
+##Lines 4-10:##
 
-	3  ::    ?[a b]            0
-	4  ::    ?a                1
-	5  ::    +[a b]            +[a b]
-	6  ::    +a                1 + a
-	7  ::    =[a a]            0
-	8  ::    =[a b]            1
+	4  ::    ?[a b]            0
+	5  ::    ?a                1
+	6  ::    +[a b]            +[a b]
+	7  ::    +a                1 + a
+	8  ::    =[a a]            0
+	9  ::    =[a b]            1
 
 Here we define more pseudocode operators, which we'll use in
 reductions further down.  So far we have four built-in functions:
@@ -222,13 +222,13 @@ it's new.  And it's annoying.  And it keeps you on your toes.
 And it's also just intuitively right.
 
 
-##Lines 11-15:##
+##Lines 12-16:##
 
-	11 ::    /[1 a]            a
-	12 ::    /[2 a b]          a
-	13 ::    /[3 a b]          b
-	14 ::    /[(a + a) b]      /[2 /[a b]]
-	15 ::    /[(a + a + 1) b]  /[3 /[a b]]
+	12 ::    /[1 a]            a
+	13 ::    /[2 a b]          a
+	14 ::    /[3 a b]          b
+	15 ::    /[(a + a) b]      /[2 /[a b]]
+	16 ::    /[(a + a + 1) b]  /[3 /[a b]]
     
 Slightly more interesting is our tree numbering.  Every noun is of course a tree.  The `/` operator - pronounced
 "slot" - imposes an address space on that tree, mapping every
@@ -266,12 +266,12 @@ is `[14 15]`
 
 I do hope this isn't so terribly hard to follow.  
 
-##Line 20:##
+##Line 21:##
 
 Now we enter the definition of Nock itself - ie, the `*`
 operator.
 
-	20 ::    *[a 0 b]          /[b a]
+	21 ::    *[a 0 b]          /[b a]
 
 `0` is simply Nock's tree-addressing operator.  Let's try it out
 from the Arvo command line.  
@@ -307,9 +307,9 @@ yields
 	[153 218]
 
 
-##Line 22:##
+##Line 23:##
 
-    22 ::    *[a 2 b c]        *[*[a b] *[a c]]
+    23 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
 Line 22 brings us the essential magic of recursion.
 `2` is the Nock operator.  If you can compute a subject and a
@@ -341,11 +341,11 @@ Like so:
 
 	[153 218]
 
-##Lines 23-25:##
+##Lines 24-26:##
 
-	23 ::    *[a 3 b]          ?*[a b]
-	24 ::    *[a 4 b]          +*[a b]
-	25 ::    *[a 5 b]          =*[a b]
+	24 ::    *[a 3 b]          ?*[a b]
+	25 ::    *[a 4 b]          +*[a b]
+	26 ::    *[a 5 b]          =*[a b]
     
 In lines 23-25, we meet our axiomatic functions again:
 
@@ -373,9 +373,9 @@ and
 If this seems obvious, you're doin' good.  Finally, we jump back up
 to line 18, the trickiest in the spec:
 
-##Line 18:##
+##Line 19:##
 
-	18 ::    *[a [b c] d]      [*[a b c] *[a d]]
+	19 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
 Um, what?
 
@@ -385,7 +385,7 @@ cell is the "subject," the tail is the "formula," and the result
 of Nocking it is the "product."  Basically, the subject is your
 data and the formula is your code.
 
-We could write line 18 less formally:
+We could write line 19 less formally:
 
 	*[subject [formula-x formula-y]]
 	=>  [*[subject formula-x] *[subject formula-y]]
@@ -393,7 +393,7 @@ We could write line 18 less formally:
 In other words, if you have two Nock formulas `x` and `y`, a
 formula that computes the pair of them is just `[x y]`.  We can 
 recognize this because no atom is a valid formula, and
-every formula that _does not_ use line 18 has an atomic head.
+every formula that _does not_ use line 19 has an atomic head.
 
 If you know Lisp, you can think of this feature as a sort of
 "implicit cons."  Where in Lisp you would write `(cons x y)`,
@@ -416,7 +416,7 @@ we get
 
 	[43 1]
 
-Except for the crash defaults (lines 5, 9, 16, and 35), we've actually
+Except for the crash defaults (lines 6, 10, 17, and 35), we've actually
 completed all the _essential_ aspects of Nock.  The operators up
 through 5 provide all necessary computational functionality.
 Nock, though very simple, is actually much more complex than it
@@ -426,20 +426,20 @@ Operators 6 through 10 are macros.  They exist because Nock is
 not a toy, but a practical interpreter.  Let's see them all
 together:
 
-##Lines 27-32:##
+##Lines 28-33:##
 
-	27 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
-	28 ::    *[a 7 b c]        *[a 2 b 1 c]
-	29 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
-	30 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
-	31 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
-	32 ::    *[a 10 b c]       *[a c]
+	28 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+	29 ::    *[a 7 b c]        *[a 2 b 1 c]
+	30 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+	31 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
+	32 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
+	33 ::    *[a 10 b c]       *[a c]
 
 Whoa!  Have we entered rocket-science territory?  Let's try to
 figure out what these strange formulas do - simplest first.
-The simplest is clearly line 32:
+The simplest is clearly line 33:
 
-	32 ::    *[a 10 b c]       *[a c]
+	33 ::    *[a 10 b c]       *[a c]
 
 If `x` is an atom and `y` is a formula, the formula `[10 x y]` 
 appears to be equivalent to... `y`.  For instance:
@@ -459,9 +459,9 @@ the Nock spec.  Some are defined in Hoon.  Indeed, a naive Nock
 interpreter not optimized for Hoon will run Hoon quite poorly.
 When it gets the product, however, the product will be right.
 
-There is another reduction for hints - line 31:
+There is another reduction for hints - line 32:
 
-	31 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
+	32 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
 
 Once we see what `7` and `8` do, we'll see that this complex hint
 throws away an arbitrary `b`, but computes the formula `c`
@@ -474,9 +474,9 @@ wind up as a side effect, though we try not to get _that_ sordid.
 crash.  A correct Nock cannot simply ignore it, and treat both
 variants of `10` as equivalent.)
 
-We move on to the next simplest operator, `7`.  Line 28:
+We move on to the next simplest operator, `7`.  Line 29:
 
-		28 ::    *[a 7 b c]        *[a 2 b 1 c]
+		29 ::    *[a 7 b c]        *[a 2 b 1 c]
 
 Suppose we have two formulas, `b` and `c`.  What is the formula 
 `[7 b c]`?  This example will show you:
@@ -488,9 +488,9 @@ Suppose we have two formulas, `b` and `c`.  What is the formula
 easy to see how this is built out of `2`.  The data to evaluate
 is simply `b`, and the formula is `c` quoted.
 
-Line 29 looks very similar:
+Line 30 looks very similar:
 
-	29 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+	30 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
 
 Indeed, `8` is `7`, except that the subject for `c` is not simply
 the product of `b`, but the ordered pair of the product of `b`
@@ -514,17 +514,17 @@ For extra credit, explain why we can't just define
 
 	*[a 8 b c]        *[a 7 [b 0 1] c]
 
-Another simple macro is line 30:
+Another simple macro is line 31:
 
-	30 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
+	31 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
 
 `9` is a calling convention.  With `c`, we produce a noun which
 contains both code and data - a _core_.  We use this core as the
 subject, and apply the formula within it at slot `b`.
 
-And finally, we come to the piece de resistance - line 27:
+And finally, we come to the piece de resistance - line 28:
 
-	27 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+	28 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
 
 Great giblets!  WTF is this doing?  It seems we've finally
 arrived at some real rocket science.
@@ -904,49 +904,49 @@ yourself that you've mastered Nock.
 
 ##`6` Reduction:##
 
-	27 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+	28 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
 	
 	*[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
 
-	22 ::    *[a 2 b c]        *[*[a b] *[a c]]
+	23 ::    *[a 2 b c]        *[*[a b] *[a c]]
 	
 	*[*[a 0 1] *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
 
-	20 ::    *[a 0 b]          /[b a]
+	21 ::    *[a 0 b]          /[b a]
 	
 	*[a *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
 	
-	22 ::    *[a 2 b c]        *[*[a b] *[a c]]
+	23 ::    *[a 2 b c]        *[*[a b] *[a c]]
 	
 	*[a *[*[a [1 c d]] *[a [1 0] 2 [1 2 3] [1 0] 4 4 b]]]
 	
-	21 ::    *[a 1 b]          b
+	22 ::    *[a 1 b]          b
 	
-	18 ::    *[a [b c] d]      [*[a b c] *[a d]]
+	19 ::    *[a [b c] d]      [*[a b c] *[a d]]
 	
 	*[a *[[c d] [*[a 1 0] *[a 2 [1 2 3] [1 0] 4 4 b]]]]
 
-	21 ::    *[a 1 b]          b
+	22 ::    *[a 1 b]          b
 	
 	*[a *[[c d] [0 *[a 2 [1 2 3] [1 0] 4 4 b]]]]
 	
-	22 ::    *[a 2 b c]        *[*[a b] *[a c]]
+	23 ::    *[a 2 b c]        *[*[a b] *[a c]]
 	
 	*[a *[[c d] [0 *[*[a [1 2 3]] *[a [1 0] 4 4 b]]]]]
 	
-	21 ::    *[a 1 b]          b
+	22 ::    *[a 1 b]          b
 	
 	*[a *[[c d] [0 *[[2 3] *[a [1 0] 4 4 b]]]]]
 	
-	18 ::    *[a [b c] d]      [*[a b c] *[a d]]
+	19 ::    *[a [b c] d]      [*[a b c] *[a d]]
 	
 	*[a *[[c d] [0 *[[2 3] [*[a [1 0]] *[a 4 4 b]]]]]]
 	
-	21 ::    *[a 1 b]          b
+	22 ::    *[a 1 b]          b
 	
 	*[a *[[c d] [0 *[[2 3] [0 *[a 4 4 b]]]]]]
 	
-	24 ::    *[a 4 b]          +*[a b]
+	25 ::    *[a 4 b]          +*[a b]
 	
 	*[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
 	
@@ -956,15 +956,15 @@ yourself that you've mastered Nock.
 	
 ##`7` Reduction:##
 
-	28 ::    *[a 7 b c]        *[a 2 b 1 c]
+	29 ::    *[a 7 b c]        *[a 2 b 1 c]
 
 	*[a 2 b 1 c]
 
-	22 ::    *[a 2 b c]        *[*[a b] *[a c]] 
+	23 ::    *[a 2 b c]        *[*[a b] *[a c]] 
 	
 	*[*[a b] *[a 1 c]]
 
-	21:    *[a 1 b]          b
+	22:    *[a 1 b]          b
 	 
 	*[*[a b] c]
 	 
@@ -974,7 +974,7 @@ yourself that you've mastered Nock.
 
 ##`8` Reduction:##
 
-	29 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+	30 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
     
 	*[a 7 [[7 [0 1] b] 0 1] c]   
     
@@ -982,15 +982,15 @@ yourself that you've mastered Nock.
 	
 	*[*[a [7 [0 1] b] 0 1]] c]
 
-	18 ::    *[a [b c] d]      [*[a b c] *[a d]]
+	19 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
 	*[[*[a [7 [0 1] b]] *[a 0 1]] c]
  	
-	20 ::    *[a 0 b]          /[b a]
+	21 ::    *[a 0 b]          /[b a]
 	
 	*[[*[a [7 [0 1] b]] /[1 a]] c]
 	
-	11 ::    /[1 a]            a
+	12 ::    /[1 a]            a
 
 	*[[*[a [7 [0 1] b]] a] c]
 	
@@ -1005,7 +1005,7 @@ yourself that you've mastered Nock.
 
 ##`9` Reduction:##
 
-	30 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+	31 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
     
 	*[a 7 c [2 [0 1] [0 b]]]
     
@@ -1013,11 +1013,11 @@ yourself that you've mastered Nock.
     
 	*[*[a c] [2 [0 1] [0 b]]]
 	
-	22 ::     *[a 2 b c]        *[*[a b] *[a c]]
+	23 ::     *[a 2 b c]        *[*[a b] *[a c]]
     
 	*[*[*[a c] [0 1]] *[*[a c] [0 b]]]
     
-	20 ::     *[a 0 b]          /[b a]
+	21 ::     *[a 0 b]          /[b a]
     
 **`9` Reduced:**    
 
@@ -1036,7 +1036,7 @@ yourself that you've mastered Nock.
 
 	*[*[[*[a c] a] 0 3] d]
 	
-	20 ::     *[a 0 b]          /[b a]
+	21 ::     *[a 0 b]          /[b a]
 
 **`10` reduced:**
 
