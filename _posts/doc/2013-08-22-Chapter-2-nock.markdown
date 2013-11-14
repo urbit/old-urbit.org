@@ -26,7 +26,7 @@ it, you will be forever bemused by why it works the way it does.
 So let's learn Nock!  But wait - which Nock?  Nock, though more
 frozen than Walt Disney, does have versions.  Nock versions are
 measured by integer degrees Kelvin, newer being colder.  The
-newest, Nock 5K - roughly the temperature of Neptune.  No change
+newest, Nock 5K - roughly the temperature of Neptune. No change
 is anticipated between 5K and absolute zero, though you never
 know.  Any such change would certainly be quite painful.
 
