@@ -42,7 +42,7 @@ naive interpreter.  Here is Nock 5K:
 
 **2. Pseudocode**
 
-	1  ::    nock(a)             *a
+        1  ::    nock(a)             *a
         2  ::    [a b c]             [a [b c]]
         3  ::
         4  ::    ?[a b]              0
