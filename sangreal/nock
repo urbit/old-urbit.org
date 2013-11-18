@@ -5,8 +5,8 @@ scary than it looks.
 
 **1. Structures**
 
-	A noun is an atom or a cell.  An atom is any natural number.  
-	A cell is any ordered pair of nouns.
+	A noun is an atom or a cell.  An atom is any natural number. 
+ 	A cell is any ordered pair of nouns.
 
 **2. Pseudocode**
 
@@ -80,15 +80,15 @@ Albeit a really funky kind of English (called "pseudocode")
 Pairs of atoms are written using square brackets, and we separate the pairs
 with a space. Like so:
 
-[1 1]
-[34 45]
+[1 1] 
+[34 45] 
 [123.456.789 987.654.321]
 
 A pair of atoms is called a cell. If we wanted to write pseudocode Nock, we
 could write:
 
-[a 1]
-[34 b]
+[a 1] 
+[34 b] 
 [c d] 
 
 Where a,b,c and d all are standing in for atoms.
@@ -112,8 +112,8 @@ Remember that since a noun is either an atom or a cell (a number or a pair),
 then a pair of nouns can be a pair of atoms, a pair of cells, or an atom and a
 cell. Like so:
 
-[1 1]
-[1 [2 3]]
+[1 1] 
+[1 [2 3]] 
 [[1 1] [2 3]]
 
 Any cell in Nock, you can put inside another cell. This means that the cells
@@ -148,7 +148,6 @@ them back in. That means instead of writing:
 [[[8 9] 5] 3]
 [[2 [[12 13] 7]]
 [2 [[12 13] [14 15]]]
-
 
 We can just write:
 
@@ -198,11 +197,11 @@ when we actually go through the mechanics of applying line 2).
 
 Let's line up [2 6 7] and a b c] so that the right-brackets align.
 
-[2 6 7]
+[2 6 7] 
  a b c]
 
-Pretty clearly, a is 2, b is 6 and c is 7. So you could rewrite our noun 
-[2 6 7] as [a b c].
+Pretty clearly, a is 2, b is 6 and c is 7. So you could rewrite our noun [2 6
+7] as [a b c].
 
 The right-hand side of line 2 says:
 
@@ -226,18 +225,19 @@ And finally we turn the letters back to nouns
 
 [2 [6 7]]
 
-And that's our output. We've just done our very first Nock reduction! [2 6 7] goes into Nock, and [2 [6 7]] comes out.
+And that's our output. We've just done our very first Nock reduction! [2 6 7]
+goes into Nock, and [2 [6 7]] comes out.
 
 Let's try putting the more complicated noun [2 6 14 15] into line 2:
 
- 	2  ::    a b c]           a [b c]]
+	2  ::    a b c]           a [b c]]
 
 We start on the inside, because the right-brackets have to align. 
 
-[2 6 14 15]
-   a  b  c]
+[2 6 14 15] a  b  c]
 
-Like we did before, we replace nouns with their matching letters. a is 6, b is 14 and c is 15.
+Like we did before, we replace nouns with their matching letters. a is 6, b is
+14 and c is 15.
 
 [2 a b c]
 
@@ -255,21 +255,20 @@ through line 2 twice before its reduction is complete. We do this by taking the
 output noun from our first time through line 2 ([2 6 [14 15]]) and then putting
 that noun back in to Nock as input.
 
-We'll go through it a bit faster this time, but the process is still exactly the same.
+We'll go through it a bit faster this time, but the process is still exactly
+the same.
 
-Align expressions (remember that letters can be either atoms or cells):
-[2 6 [14 15]]
- a b   c   ]
+Align expressions (remember that letters can be either atoms or cells): 
+[2 6 [14 15]] 
+ a b    c   ]
 
-Turn nouns to letters:
-[a b c]
+Turn nouns to letters: [a b c]
 
 Transform noun according to the right-hand side:
 
 [a [b c]]
 
-Turn letters to nouns (a is 2, b is 6, c is [14 15]):
-[2 [6 [14 15]]]
+Turn letters to nouns (a is 2, b is 6, c is [14 15]): [2 [6 [14 15]]]
 
 Which is our final output, with all the brackets added back to the noun [2 6 14
 15]. For even more complicated nouns, like [2 6 14 30 31] or [2 [12 26 27] 14
@@ -293,11 +292,10 @@ Section II: Starting, Stopping and Reading Reductions
 
 Some Basic Notation: nock(noun) *
 
-In the last section, we reduced the noun [2 6 14 15] to the noun [2 [6 [14 15]]].
+In the last section, we reduced the noun [2 6 14 15] to the noun [2 [6 [14
+15]]].
 
-In proper notation, we could write this as
-nock([2 6 14 15]) 
-     [2 [6 [14 15]]]
+In proper notation, we could write this as nock([2 6 14 15]) [2 [6 [14 15]]]
 
 Where nock(noun) means "Apply Nock to this noun" and the new line signifies
 equals or outputs.
@@ -306,22 +304,21 @@ If you'll remember from the previous section a noun can be represented by a
 letter and we can rewrite nock(noun) as nock(a). Which brings us to the first
 line of the Nock specification:
 
-        1  ::    nock(a)             *a
+	1  ::    nock(a)             *a
 
-This line is actually very simple. It's just giving as a new piece of notation. All says is that the asterisk (*) means the same thing as nock(a).
+This line is actually very simple. It's just giving as a new piece of notation.
+All says is that the asterisk (*) means the same thing as nock(a).
 
-So we can write our previous reduction as
-*[2 6 14 15]
- *[2 [6 [14 15]]]
+So we can write our previous reduction as *[2 6 14 15] *[2 [6 [14 15]]]
 
-Or if we wanted to fill in the intermediate steps, with labels for the rules we used, we could write
+Or if we wanted to fill in the intermediate steps, with labels for the rules we
+used, we could write
 
-*[2 6 14 15]
-	2  ::    a b c]           a [b c]]
+*[2 6 14 15] 2  ::    a b c]           a [b c]]
 
 	*[2 6 [14 15]]
 
- 	2  ::    a b c]           a [b c]]
+	2  ::    a b c]           a [b c]]
 
 	*[2 [6 [14 15]]]
 
@@ -330,15 +327,15 @@ We could also, if we really wanted to, write it this way:
 
 nock([2 6 14 15])
 
-        1  ::    nock(a)             *a
+	1  ::    nock(a)             *a
 
 	*[2 6 14 15]
 
- 	2  ::    a b c]           a [b c]]
+	2  ::    a b c]           a [b c]]
 
 	*[2 6 [14 15]]
 
- 	2  ::    a b c]           a [b c]]
+	2  ::    a b c]           a [b c]]
 
 	*[2 [6 [14 15]]]
 
@@ -370,7 +367,8 @@ To see why they don't let's take a look at lines 6, 10, 17 and 35:
         17 ::    /a                  /a
         35 ::    *a                  *a
 
-On these lines, the input is the same as the output. Which means that the reduction never ends and continues forever in a stream of something like: 
+On these lines, the input is the same as the output. Which means that the
+reduction never ends and continues forever in a stream of something like: 
 
 	35 :: *a
 	35 :: *a
@@ -420,7 +418,7 @@ Let's start with "+":
 
         6  ::    +[a b]              +[a b]
         7  ::    +a                  1 + a
-       
+ 
 "+" is very simple. It just means add 1 (or "increment"). Obviously you can
 only add 1 to a number, so line 6 says that if you try to add 1 to a cell
 you'll loop forever and crash. Line 6 comes before line 7 in the specification
@@ -428,7 +426,7 @@ to catch all cases of trying to add a number to a cell.
 
 The next symbol to learn is "=":
 
-        8  ::    =[a a]              0
+	8  ::    =[a a]              0
         9  ::    =[a b]              1
         10 ::    =a                  =a
         
@@ -438,14 +436,17 @@ into the atom 0, or "yes" (line 8). If not, "=[a b]" gets transformed into the
 atom 1, or "no" (line 9). If you try and do an equality test on an atom, you'll
 loop forever and crash (line 10).
 
-Before we cover our final crash default (line 17, and "/"), we should go over the what "?" means, since it's pretty easy.
+Before we cover our final crash default (line 17, and "/"), we should go over
+the what "?" means, since it's pretty easy.
 
         4  ::    ?[a b]              0
         5  ::    ?a                  1
 
-As with "=", "?" is just another test that produces "yes" or "no." Specifically, "?" tests whether a noun is a cell. 
+As with "=", "?" is just another test that produces "yes" or "no."
+Specifically, "?" tests whether a noun is a cell. 
 
-And now for the trickiest piece of notation, the "/", which we call the "slot" operator:
+And now for the trickiest piece of notation, the "/", which we call the "slot"
+operator:
 
 The Slot Operator
 
@@ -456,11 +457,20 @@ The Slot Operator
         16 ::    /[(a + a + 1) b]    /[3 /[a b]]
         17 ::    /a                  /a
 
-Since this is fairly complicated, we'll explain it in two ways. First, we'll describe what the slot operator ("/") does at an intuitive level (what it's intended to do). And then we'll dive into the mechanics of how it actually works.
+Since this is fairly complicated, we'll explain it in two ways. First, we'll
+describe what the slot operator ("/") does at an intuitive level (what it's
+intended to do). And then we'll dive into the mechanics of how it actually
+works.
 
-Intuitively, the slot operator is how we refer to individual nouns that are inside of a larger cell. It's how we pull things out of the big tree-like cell structure. Each noun in the tree gets a number and when we do /[b a], where b is the number that corresponds to the noun and a is the larger cell that contains the noun, we produce just the noun we referred to. Think of it as an index or an address for a noun.
+Intuitively, the slot operator is how we refer to individual nouns that are
+inside of a larger cell. It's how we pull things out of the big tree-like cell
+structure. Each noun in the tree gets a number and when we do /[b a], where b
+is the number that corresponds to the noun and a is the larger cell that
+contains the noun, we produce just the noun we referred to. Think of it as an
+index or an address for a noun.
 
-Since all cells are pairs of nouns that break down into other pairs, the structure of our tree looks like this:
+Since all cells are pairs of nouns that break down into other pairs, the
+structure of our tree looks like this:
 
             1
        2          3
@@ -469,8 +479,9 @@ Since all cells are pairs of nouns that break down into other pairs, the structu
 
 [2 [6 [14 15]]]
 
-
-1 is the slot address that matches the entire original cell (the root). 2 refers to the first noun of that cell (the head) and 3 refers to the second noun of that pair (the tail).
+1 is the slot address that matches the entire original cell (the root). 2
+refers to the first noun of that cell (the head) and 3 refers to the second
+noun of that pair (the tail).
 
 Let's build some example nouns where every atom is equal to its slot address:
 
@@ -483,13 +494,18 @@ Let's build some example nouns where every atom is equal to its slot address:
 [[4 [10 11]] [[12 13] [14 15]]]
 [[8 9] [10 11] [[12 13] [14 15]]]
 
-Actually, all the examples we used earlier when we explained the line 2 bracket rule follow this same pattern. 
+Actually, all the examples we used earlier when we explained the line 2 bracket
+rule follow this same pattern. 
 
-Another way to think about this is that if you replace any atom with a value "n" in the above tree with a cell, the atom at head of the cell will be equal to two times "n" (2n) and the tail of the cell will be 2n + 1. Heads are even, tails are odd.
+Another way to think about this is that if you replace any atom with a value
+"n" in the above tree with a cell, the atom at head of the cell will be equal
+to two times "n" (2n) and the tail of the cell will be 2n + 1. Heads are even,
+tails are odd.
 
 Let's go into the mechanics of how this works with some more examples:
 
-Say you have a noun [[100 101] 102 103]]. We'll use this noun to show how the actual Nock rules produce what they're supposed to.
+Say you have a noun [[100 101] 102 103]]. We'll use this noun to show how the
+actual Nock rules produce what they're supposed to.
 
         12 ::    /[1 a]              a
         13 ::    /[2 [a b]]          a
@@ -518,13 +534,14 @@ Using addresses 1, 2, and 3 with the slot operator is fairly straightforward.
 
 	[102 103]
 
-(We've skipped the step of using line 2 to add brackets back in. The aspiring Nock programmer needs to learn to do line 2 in their head.)
+(We've skipped the step of using line 2 to add brackets back in. The aspiring
+Nock programmer needs to learn to do line 2 in their head.)
 
 So now what about addresses that are greater than 3?
 
 /[4 [[100 101] 102 103]]
 
-        15 ::    /[(a + a) b]        /[2 /[a b]]
+	15 ::    /[(a + a) b]        /[2 /[a b]]
 
 	/[2 /[2 [[100 101] 102 103]]]
 
@@ -536,11 +553,12 @@ So now what about addresses that are greater than 3?
 
 	100
 
-We see that the (a + a) in line 15 is doing the same thing as saying that every cell with an address n has a head with an address that's 2n.
+We see that the (a + a) in line 15 is doing the same thing as saying that every
+cell with an address n has a head with an address that's 2n.
 
 /[5 [[100 101] 102 103]]
 
-        16 ::    /[(a + a + 1) b]    /[3 /[a b]]
+	16 ::    /[(a + a + 1) b]    /[3 /[a b]]
 
 	/[3 /[2 [[100 101] 102 103]]]
 
@@ -552,16 +570,23 @@ We see that the (a + a) in line 15 is doing the same thing as saying that every 
 
 	101
 
-As an exercise, do /[6 [[[100 101] 102 103]] and /[7 [[[100 101] 102 103]] on your own.
+As an exercise, do /[6 [[[100 101] 102 103]] and /[7 [[[100 101] 102 103]] on
+your own.
 
 Section IV: Nock Operators
 
-"You get used to it. I don’t even see the code. All I see is blonde, brunette, red-head."
+"You get used to it. I don’t even see the code. All I see is blonde, brunette,
+red-head."
 
 
-This is where we get into the real meat and bones of Nock: the Operators. Nock has ten operators, numbered 1 through 10. The symbols for these operators are just plain ordinary atoms. Remember how we said that real Nock code doesn't have letters? It doesn't have any symbols (like "+") either. If we want to add 1 to a number, we'll have to use a number to do it.
+This is where we get into the real meat and bones of Nock: the Operators. Nock
+has ten operators, numbered 1 through 10. The symbols for these operators are
+just plain ordinary atoms. Remember how we said that real Nock code doesn't
+have letters? It doesn't have any symbols (like "+") either. If we want to add
+1 to a number, we'll have to use a number to do it.
 
-I think you know enough Nock by now not to be intimidated by a sample of real Nock code:
+I think you know enough Nock by now not to be intimidated by a sample of real
+Nock code:
 
 	  [8 
 	    [1 0] 
@@ -581,11 +606,18 @@ Or, on one line with the the brackets removed.
 
 	[8 [1 0] 8 [1 6 [5 [0 7] 4 0 6] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]
 
-That's decrement (or "subtract 1"). Right now, it just looks like like a meaningless blob of numbers. When you utterly master Nock, you won't even see the atoms, you'll see what they do. But,to be fair, there's a very good reason why no one uses Nock for real programming. There's also a very good reason why, to understand Urbit, you need to learn it anyway.
+That's decrement (or "subtract 1"). Right now, it just looks like like a
+meaningless blob of numbers. When you utterly master Nock, you won't even see
+the atoms, you'll see what they do. But,to be fair, there's a very good reason
+why no one uses Nock for real programming. There's also a very good reason why,
+to understand Urbit, you need to learn it anyway.
 
-Each atom in the decrement blob is there because it represents a function. Most of these functions, you already know.
+Each atom in the decrement blob is there because it represents a function. Most
+of these functions, you already know.
 
-We'll start with the first five, since not only are they easy to understand, but they actually are the only fundamental operators in Nock. Operators 6 through 10 are just macros made up of Operators 1 through 5.
+We'll start with the first five, since not only are they easy to understand,
+but they actually are the only fundamental operators in Nock. Operators 6
+through 10 are just macros made up of Operators 1 through 5.
 
         21 ::    *[a [0 b]]          /[b a]
         22 ::    *[a [1 b]]          b
@@ -596,31 +628,45 @@ We'll start with the first five, since not only are they easy to understand, but
 
 Most of these operators are just doing things we already know. 
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
-Nock 0 is just our good old friend the slot operator. But it's in a different order than "/" on its own.
+Nock 0 is just our good old friend the slot operator. But it's in a different
+order than "/" on its own.
 
-The reason for this is that the convention in Nock is for any actual code to be of the form:
+The reason for this is that the convention in Nock is for any actual code to be
+of the form:
 
 *[subject formula]
 
-The head of a noun is the subject (i.e. the thing we want to operate upon) and the tail is the formula, which has the actualy operation (function) we're going to perform. The outcome of applying a formula to a subject is called the product.
+The head of a noun is the subject (i.e. the thing we want to operate upon) and
+the tail is the formula, which has the actualy operation (function) we're going
+to perform. The outcome of applying a formula to a subject is called the
+product.
 
-All operators should be thought of as acting on, or doing something to the head of their cell, always denoted by the letter a. After the operator are its arguments, which are the nouns that are getting applied in some way to the subject a.
+All operators should be thought of as acting on, or doing something to the head
+of their cell, always denoted by the letter a. After the operator are its
+arguments, which are the nouns that are getting applied in some way to the
+subject a.
 
 Moving on:
 
-        22 ::    *[a [1 b]]          b
+	22 ::    *[a [1 b]]          b
 
-Nock 1 is the constant operator. It produces the argument and drops the subject.
+Nock 1 is the constant operator. It produces the argument and drops the
+subject.
 
         24 ::    *[a [3 b]]          ?*[a b]
         25 ::    *[a [4 b]]          +*[a b]
         26 ::    *[a [5 b]]          =*[a b]
 
-We'll go slightly out of order here and skip Nock 2 for a moment. Nock 3, 4 and 5 do exactly what the notation says. Nock 3 tests if the product of b applied to a is a cell. Nock 4 increments the outcome, and Nock five tests if it has a head and a tail that are equal.
+We'll go slightly out of order here and skip Nock 2 for a moment. Nock 3, 4 and
+5 do exactly what the notation says. Nock 3 tests if the product of b applied
+to a is a cell. Nock 4 increments the outcome, and Nock five tests if it has a
+head and a tail that are equal.
 
-We should note though, that if you wanted to write a Nock expression that increments a number, you would have to take into account that you cannot increment a cell and would have to write it like this:
+We should note though, that if you wanted to write a Nock expression that
+increments a number, you would have to take into account that you cannot
+increment a cell and would have to write it like this:
 
 *[42 4 0 1]
 
@@ -636,12 +682,14 @@ We should note though, that if you wanted to write a Nock expression that increm
 
 	43
 
-Nock 2 looks complicated, but actually isn't. All Nock 2 does is distribute the subject a over the arguments b and c and evaluate them independently.
+Nock 2 looks complicated, but actually isn't. All Nock 2 does is distribute the
+subject a over the arguments b and c and evaluate them independently.
 
-        23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+	23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
 
 
-For example, lets say that a is the noun [[101 102] 103 104], b is the noun [0 4] and c is the noun [0 6]:
+For example, lets say that a is the noun [[101 102] 103 104], b is the noun [0
+4] and c is the noun [0 6]:
 
 *[[101 102] 103 104] [2 [[0 4] [0 6]]]]
 
@@ -649,7 +697,7 @@ For example, lets say that a is the noun [[101 102] 103 104], b is the noun [0 4
 
 	*[*[[101 102] 103 104] 0 4] *[[101 102] 103 104] 0 6]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 	*[/[4 [101 102] 103 104]] /[6 [101 102] 103 104]]
 
@@ -657,17 +705,21 @@ For example, lets say that a is the noun [[101 102] 103 104], b is the noun [0 4
 
 	*[101 103]
 
-As you can see, Nock 2 is pretty useful. It lets us apply multiple formulas to the same subject. 
+As you can see, Nock 2 is pretty useful. It lets us apply multiple formulas to
+the same subject. 
 
-Before we move into the macro operators 6 through 10, there's one more line of Nock that we need to cover, line 19:
+Before we move into the macro operators 6 through 10, there's one more line of
+Nock that we need to cover, line 19:
 
 	19 ::    *[a [[b c] d]]      [*[a b c] *[a d]]
 
-Line 19 is actually quite similar to Nock 2. If you understand Nock 2, you understand Line 19.
+Line 19 is actually quite similar to Nock 2. If you understand Nock 2, you
+understand Line 19.
 
-        23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+	23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
 
-In less formal terms, if you have a two formulas (call them b and c), Nock 2 does this:
+In less formal terms, if you have a two formulas (call them b and c), Nock 2
+does this:
 
 *[subject-a 2 [formula-b formula-c]]
 
@@ -683,7 +735,8 @@ Line 19, on the other hand, does this:
 
 	[product-ab product-ac]
 
-As you can see, here they look almost identical. Let's redo our previous example from Nock 2 using line 19 instead.
+As you can see, here they look almost identical. Let's redo our previous
+example from Nock 2 using line 19 instead.
 
 *[[[101 102] 103 104] [0 4] [0 6]]
 
@@ -691,7 +744,7 @@ As you can see, here they look almost identical. Let's redo our previous example
 
 	[*[[101 102] 103 104] 0 4] *[[101 102] 103 104] 0 6]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 	[/[4 [101 102] 103 104]] /[6 [101 102] 103 104]]
 
@@ -699,15 +752,22 @@ As you can see, here they look almost identical. Let's redo our previous example
 
 	[101 103]
 
-Almost, exactly the same result. So why do we have two different ways of doing the same thing? If you compare the rules again:
+Almost, exactly the same result. So why do we have two different ways of doing
+the same thing? If you compare the rules again:
 
 	19 ::    *[a [[b c] d]]      [*[a b c] *[a d]]
 
-        23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+	23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
 
-You'll see that Nock 2 is a bit more general, because the first argument of Nock 2 can be any noun, whereas line 19 has to have a cell as its first argument. But the real difference is the extra *. Line 19 just distributes the subject onto formula-x and formula-y, but  Nock 2 actually forces you to evaluate the result of *[product-x product-y].
+You'll see that Nock 2 is a bit more general, because the first argument of
+Nock 2 can be any noun, whereas line 19 has to have a cell as its first
+argument. But the real difference is the extra *. Line 19 just distributes the
+subject onto formula-x and formula-y, but  Nock 2 actually forces you to
+evaluate the result of *[product-x product-y].
 
-Let's change our previous example slightly to illustrate. We'll change the subject to [[[101 102] [4 0 1] [3 0 1]]. As you can see, our new subject has two cells inside it that contain the operators 3 and 4.
+Let's change our previous example slightly to illustrate. We'll change the
+subject to [[[101 102] [4 0 1] [3 0 1]]. As you can see, our new subject has
+two cells inside it that contain the operators 3 and 4.
 
 Using line 19:
 
@@ -717,7 +777,7 @@ Using line 19:
 
 	[*[[[101 102] [4 0 1] [3 0 1]] 0 4] *[[[101 102] [4 0 1] [3 0 1]] 0 6]]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 	[/[4 [[101 102] [4 0 1] [3 0 1]]] /[6 [[101 102] [4 0 1] [3 0 1]]]]
 
@@ -733,7 +793,7 @@ But with Nock 2:
 
 	[*[[[101 102] [4 0 1] [3 0 1]] 0 4] *[[[101 102] [4 0 1] [3 0 1]] 0 6]]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 	*[/[4 [[101 102] [4 0 1] [3 0 1]]] /[6 [[101 102] [4 0 1] [3 0 1]]]]
 
@@ -741,11 +801,11 @@ But with Nock 2:
 
 	*[101 4 0 1]
 
-        25 ::    *[a [4 b]]          +*[a b]
+	25 ::    *[a [4 b]]          +*[a b]
 
 	?*[101 0 1]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 	+101
 
@@ -753,7 +813,9 @@ But with Nock 2:
 
 	102
 
-Nock 2 actually carries through the whole evaluation. Let's say we change the arguments that 2 uses in our prior example. The subject is the same, but we're varying the formulas. 
+Nock 2 actually carries through the whole evaluation. Let's say we change the
+arguments that 2 uses in our prior example. The subject is the same, but we're
+varying the formulas. 
 
 *[[[101 102] [4 0 1] [3 0 1]] 2 [0 5] [0 7]]
 
@@ -761,7 +823,7 @@ Nock 2 actually carries through the whole evaluation. Let's say we change the ar
 
 	[*[[[101 102] [4 0 1] [3 0 1]] 0 5] *[[[101 102] [4 0 1] [3 0 1]] 0 7]]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 	*[/[5 [[101 102] [4 0 1] [3 0 1]]] /[7 [[101 102] [4 0 1] [3 0 1]]]]
 
@@ -769,24 +831,35 @@ Nock 2 actually carries through the whole evaluation. Let's say we change the ar
 
 	*[102 3 0 1]
 
-        24 ::    *[a [3 b]]          ?*[a b]
+	24 ::    *[a [3 b]]          ?*[a b]
 
 	?*[101 0 1]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 	?101
 
-        5  ::    ?a                  1
+	5  ::    ?a                  1
 
 	1
 
-Our subject has some formulas inside it. Nock 2 lets us select which formula to use and which part of the subject to evaulate it against. Line 19, on the other hand, doesn't carry through the whole evaluation and always returns a cell (of the form [product-x product-y]). A Nock programmer might very well use that cell as a subject for another formula, but that's outside the scope of what we've covered so far.
+Our subject has some formulas inside it. Nock 2 lets us select which formula to
+use and which part of the subject to evaulate it against. Line 19, on the other
+hand, doesn't carry through the whole evaluation and always returns a cell (of
+the form [product-x product-y]). A Nock programmer might very well use that
+cell as a subject for another formula, but that's outside the scope of what
+we've covered so far.
 
-Be very careful though when reducing line 19 or Nock 2. One of the most common mistakes when doing reductions by hand is accidentally adding or removing an asterisk.
+Be very careful though when reducing line 19 or Nock 2. One of the most common
+mistakes when doing reductions by hand is accidentally adding or removing an
+asterisk.
 
 
-Congratulations! You've now learned all the essential details of Nock. Operators 6-10 add nothing new except a convenient way to do certain series of operations over and over again. And Operators 6-10 are entirely composed of things you already know. Hang on to your seatbelts, we're about to take the plunge:
+Congratulations! You've now learned all the essential details of Nock.
+Operators 6-10 add nothing new except a convenient way to do certain series of
+operations over and over again. And Operators 6-10 are entirely composed of
+things you already know. Hang on to your seatbelts, we're about to take the
+plunge:
 
         28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
         29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
@@ -799,9 +872,11 @@ Although you might not realize it, you already know how to do all of these.
 
 Let's start with Nock 7, since it's the simplest:
 
-        29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
+	29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
 
-Almost exactly like Nock 2, except with the twist that instead of evaluating formula b and formula in parallel, you evaluate them on subject-a one after the other. Like so:
+Almost exactly like Nock 2, except with the twist that instead of evaluating
+formula b and formula in parallel, you evaluate them on subject-a one after the
+other. Like so:
 
 Nock 2:
 
@@ -812,8 +887,7 @@ Nock 2:
 
 	*[product-ab product-ac]
 
-Nock 7
-*[subject-a 7 [formula-b formula-c]]
+Nock 7 *[subject-a 7 [formula-b formula-c]]
 
 	*[*[subject-a formula-b] formula-c]
 
@@ -825,7 +899,7 @@ Let's use an example:
 
 *[101 [7 [4 0 1] 4 0 1]]
 
-       	29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
+	29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
 
 	*[101 2 [4 0 1] [1 4 0 1]]
 
@@ -857,7 +931,8 @@ If we had just used Nock 2, we would have ended up with:
 
 	*[102 102]
 
-For Nock 7, and for the rest of the macro operators, we'll work through a reduction that puts the macro in the simplest psuedo-code.
+For Nock 7, and for the rest of the macro operators, we'll work through a
+reduction that puts the macro in the simplest psuedo-code.
 
 ##`7` Reduction:##
 
@@ -877,17 +952,20 @@ For Nock 7, and for the rest of the macro operators, we'll work through a reduct
 
 	7r ::     *[a 7 b c]         *[*[a b] c]
 
-We'll reuse this reduced Nock 7 rule in the future, since it's easier to read, and much quicker when you're doing reductions by hand.
+We'll reuse this reduced Nock 7 rule in the future, since it's easier to read,
+and much quicker when you're doing reductions by hand.
 
 
 Moving on to Nock 8:
 
 	30 ::    *[a 8 [b c]]        *[a 7 [[7 [0 1] b] 0 1] c]
 
-Nock 8 is extremely similar to Nock 7. Instead of just applying both formulas to the subject, Nock 8 applys the first formula, but preserves the original subject as the tail of the cell that the second formula gets applied to. Like so:
+Nock 8 is extremely similar to Nock 7. Instead of just applying both formulas
+to the subject, Nock 8 applys the first formula, but preserves the original
+subject as the tail of the cell that the second formula gets applied to. Like
+so:
 
-Nock 7
-*[subject 7 [formula-x formula-y]]
+Nock 7 *[subject 7 [formula-x formula-y]]
 
 	*[*[subject formula-x] formula-y]
 
@@ -937,7 +1015,8 @@ In more formal pseudo-code, here's what the reduction looks like:
 
 Let's work through an example of how you might use Nock 8:
 
-Let's say we have a subject and we want to test whether it's a cell, but we also want to preserve the subject:
+Let's say we have a subject and we want to test whether it's a cell, but we
+also want to preserve the subject:
 
 *[101 [8 [3 0 1] 0 1]]
 
@@ -945,11 +1024,9 @@ Let's say we have a subject and we want to test whether it's a cell, but we also
 
 	*[[*[101 [3 0 1] 101] 0 1]]
 
-	24 ::    *[a [3 b]]          ?*[a b]
-        5  ::    ?a                  1
+	24 ::    *[a [3 b]]          ?*[a b] 5  ::    ?a                  1
 
-	*[[1 101] 0 1]
-	[1 101]
+	*[[1 101] 0 1] [1 101]
 
 Or if the subject is a cell:
 
@@ -959,22 +1036,23 @@ Or if the subject is a cell:
 
 	*[[*[[101 102] [3 0 1] 101] 0 1]]
 
-	24 ::    *[a [3 b]]          ?*[a b]
-	5  ::    ?a                  1
+	24 ::    *[a [3 b]]          ?*[a b] 5  ::    ?a                  1
 
-	*[[0 [101 102]  0 1]
-	[0 [101 102]]
+	*[[0 [101 102]  0 1] [0 [101 102]]
 
 
 
 Nock 10:
 
-        32 ::    *[a [10 [[b c] d]]] *[a 8 c 7 [0 3] d]
-        33 ::    *[a [10 [b c]]]     *[a c]
+	32 ::    *[a [10 [[b c] d]]] *[a 8 c 7 [0 3] d] 33 ::    *[a [10 [b
+c]]]     *[a c]
 
-Nock 10, in the context of everything we've learned so far, does nothing. Literally, it takes an argument b, or an argument that's a cell [b c] and throws it away. 
+Nock 10, in the context of everything we've learned so far, does nothing.
+Literally, it takes an argument b, or an argument that's a cell [b c] and
+throws it away. 
 
-You can see that very clearly in line 33, and if you do the reduction in line 32:
+You can see that very clearly in line 33, and if you do the reduction in line
+32:
 
 ##`10` Reduction:##
 
@@ -994,16 +1072,24 @@ You can see that very clearly in line 33, and if you do the reduction in line 32
 
 	10r ::    *[a 10 [b c] d]   *[a d]
 
-Nock 10 is really only ever used for one specialized purpose that has to do with making a computer run Nock faster (it's how you declare "jets"). We'll cover Nock 10 more in later chapters. For now, you can safely ignore it.
+Nock 10 is really only ever used for one specialized purpose that has to do
+with making a computer run Nock faster (it's how you declare "jets"). We'll
+cover Nock 10 more in later chapters. For now, you can safely ignore it.
 
 
 Nock 6:
 
-        28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+	28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1
+0] 4 4 b]
 
-Nock 6 looks pretty complicated, but actually is doing something very simple: it's an if-then-else statement. a is a subject, b is some test (such as Nock 3, perhaps) that you apply to the subject, if the test returns 0, or "yes", you apply the formula c to the subject a. If the test returns 1, or "no," you instead apply d to a.
+Nock 6 looks pretty complicated, but actually is doing something very simple:
+it's an if-then-else statement. a is a subject, b is some test (such as Nock 3,
+perhaps) that you apply to the subject, if the test returns 0, or "yes", you
+apply the formula c to the subject a. If the test returns 1, or "no," you
+instead apply d to a.
 
-You can see this much more clearly if you work through the reduction of Nock 6 and examine the reduced form.
+You can see this much more clearly if you work through the reduction of Nock 6
+and examine the reduced form.
 
 ##`6` Reduction:##
 
@@ -1062,11 +1148,16 @@ A simpler version of Nock 6 would be
 	6s ::   *[a 6 b c d]               *[a *[[c d] [0 ++*[a b]]]]]]
 
 
-*[a b] returns either 0 or 1, because b is a true or false test. Then you increment the 0 or 1 twice, which gives you either 2 or 3. If you remember from our discussion on the slot operator and Nock 0, /[2 cell] selects the head of the cell, whereas /[3 cell] selects the tail. 
+*[a b] returns either 0 or 1, because b is a true or false test. Then you
+increment the 0 or 1 twice, which gives you either 2 or 3. If you remember from
+our discussion on the slot operator and Nock 0, /[2 cell] selects the head of
+the cell, whereas /[3 cell] selects the tail. 
 
-Let's work through an example using our simpler Nock 6 (6s), where we want to test if our subject is a atom. If it is, we'll increment it, if our subject is instead a cell, we'll just return the cell.
+Let's work through an example using our simpler Nock 6 (6s), where we want to
+test if our subject is a atom. If it is, we'll increment it, if our subject is
+instead a cell, we'll just return the cell.
 
-*[a 6 [3 0 1] [0 1] [4 0 1]]
+*[a 6 [3 0 1] [0 1] [4 0 1]] 
 	6s ::   *[a 6 b c d]               *[a *[[c d] [0 ++*[a b]]]]]]
 
 	*[a *[[[0 1] [4 0 1]] [0 ++*[a [3 0 1]]]]]
@@ -1075,11 +1166,11 @@ Let's work through an example using our simpler Nock 6 (6s), where we want to te
 
 	*[a *[[[0 1] [4 0 1]] [0 ++?*[a 0 1]]]]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 	*[a *[[[0 1] [4 0 1]] [0 ++?/[1 a]]]]
 
-        12 ::    /[1 a]              a
+	12 ::    /[1 a]              a
 	
 	*[a *[[[0 1] [4 0 1]] [0 ++?a]]
 
@@ -1099,7 +1190,7 @@ Now let's say that our subject a is the atom 42:
 
 	*[42 \[3 [[0 1] [4 0 1]]]]
 
-        14 ::    /[3 [a b]]          b
+	14 ::    /[3 [a b]]          b
 
 	*[42 [4 0 1]]
 	
@@ -1115,7 +1206,7 @@ Now let's say that our subject a is the atom 42:
 
 	+42
 
-        7  ::    +a                  1 + a
+	7  ::    +a                  1 + a
 
 	43
 
@@ -1135,7 +1226,7 @@ And if our subject was instead the cell [42 42]:
 
 	*[[42 42] /[2 [[0 1] [4 0 1]]]]
 
-        13 ::    /[2 [a b]]          a
+	13 ::    /[2 [a b]]          a
 
 	*[[42 42] [0 1]]
 
@@ -1150,7 +1241,7 @@ And if our subject was instead the cell [42 42]:
 
 But why in actual Nock, do we use:
 
-        28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+	28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
 
 which reduces to:
 
@@ -1158,15 +1249,18 @@ which reduces to:
 
 Instead of the simpler:
 
-        28s ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 4 4 b]
+	28s ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 4 4 b]
 
 which would reduce to:
 
 	6s ::   *[a 6 b c d]               *[a *[[c d] [0 ++*[a b]]]]]]
 
-The answer is that the simpler version of Nock 6 (6s) would do strange things if we had a test that returned anything other than 0 ("yes") or 1 ("no").
+The answer is that the simpler version of Nock 6 (6s) would do strange things
+if we had a test that returned anything other than 0 ("yes") or 1 ("no").
 
-Let's use our prior example with the subject 42 and this time we'll change the test b from [3 0 1] to [7 [3 0 1] 4 0 1] (remember that 7 daisy-chains formulas) so it returns a "2"
+Let's use our prior example with the subject 42 and this time we'll change the
+test b from [3 0 1] to [7 [3 0 1] 4 0 1] (remember that 7 daisy-chains
+formulas) so it returns a "2"
 
 *[42 6 [7 [3 0 1] 4 0 1] [0 1] [4 0 1]]
 
@@ -1178,16 +1272,15 @@ Let's use our prior example with the subject 42 and this time we'll change the t
 
 *[42 *[[[0 1] [4 0 1]] [0 ++*[*[42 [3 0 1]] 4 0 1]]]
 
-        24 ::    *[a [3 b]]          ?*[a b]
-        5  ::    ?a                  1
+	24 ::    *[a [3 b]]          ?*[a b] 5  ::    ?a                  1
 
 *[42 *[[[0 1] [4 0 1]] [0 ++*[1 4 0 1]]]
 
-        25 ::    *[a [4 b]]          +*[a b]
+	25 ::    *[a [4 b]]          +*[a b]
 
 *[42 *[[[0 1] [4 0 1]] [0 ++2]]]
 
-        7  ::    +a                  1 + a
+	7  ::    +a                  1 + a
 
 *[42 *[[[0 1] [4 0 1]] [0 4]]
 
@@ -1196,33 +1289,61 @@ Let's use our prior example with the subject 42 and this time we'll change the t
 *[42 0]
 
 
-As you can see, having the test return an atom greater than 1 means that the slot operator will select some partial subset of our then or else formulas. In this case /[4 [0 1] [4 0 1]]
-produces just 0, but it should be fairly easy to imagine how, with a more complicated then r else formula, this could produce significant strangeness.
+As you can see, having the test return an atom greater than 1 means that the
+slot operator will select some partial subset of our then or else formulas. In
+this case /[4 [0 1] [4 0 1]] produces just 0, but it should be fairly easy to
+imagine how, with a more complicated then r else formula, this could produce
+significant strangeness.
 
-What we really want is for Nock 6 to crash if the our test formula b produces anything other than 0 or 1.
+What we really want is for Nock 6 to crash if the our test formula b produces
+anything other than 0 or 1.
 
-We do this by adding a second slot operator selection. Since we want to select either our then formula c or our else formula d, but not any partial piece of either, we want to restrict our slot operation to either /[2 [c d]] or /[3 [c d]]. If we try to do a slot operation with any other tree-address, we want Nock 6 to crash.
+We do this by adding a second slot operator selection. Since we want to select
+either our then formula c or our else formula d, but not any partial piece of
+either, we want to restrict our slot operation to either /[2 [c d]] or /[3 [c
+d]]. If we try to do a slot operation with any other tree-address, we want Nock
+6 to crash.
 
- We can do this by recognizing that the only way a slot operation  will complete is if the subject of the operation actually has a tree structure with a matching address. In other words, if you try to do /[4 a] and a doesn't have anything that matches a slot 4 (such as if a is [1 2] for example), the slot operation will crash. 
+ We can do this by recognizing that the only way a slot operation  will
+complete is if the subject of the operation actually has a tree structure with
+a matching address. In other words, if you try to do /[4 a] and a doesn't have
+anything that matches a slot 4 (such as if a is [1 2] for example), the slot
+operation will crash. 
 
 	6r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
 
-Our real Nock 6 is exactly like our simplified Nock 6s except we've add the cell [2 3]. Our 
-test *[a b]] will produce some number and then  *[[2 3] [0 ++*[a b]]] will slot that number with the cell [2 3]. Since [2 3] only has the slots 1, 2 and 3, the only way that the operation will complete is if ++*[a b] equals 1, 2 or 3. ++*[a b] can't equal 1 since that would imply that *[a b] equal -1 and there are no negative numbers in Nock. Therefore, for Nock 6 to complete, *[a b] can only be 0 or 1.
+Our real Nock 6 is exactly like our simplified Nock 6s except we've add the
+cell [2 3]. Our test *[a b]] will produce some number and then  *[[2 3] [0
+++*[a b]]] will slot that number with the cell [2 3]. Since [2 3] only has the
+slots 1, 2 and 3, the only way that the operation will complete is if ++*[a b]
+equals 1, 2 or 3. ++*[a b] can't equal 1 since that would imply that *[a b]
+equal -1 and there are no negative numbers in Nock. Therefore, for Nock 6 to
+complete, *[a b] can only be 0 or 1.
 
 
-We now know everything we need to build our decrement function. We're going to skip over Nock 9 for now and come back to it later. Nock 9 is just a macro, it doesn't let us do anything new; it lets us do something in a single operation that would have otherwise take several. But the purpose of Nock 9 doesn't really make a lot of sense until we've sunk our teeth into some real Nock code.
+We now know everything we need to build our decrement function. We're going to
+skip over Nock 9 for now and come back to it later. Nock 9 is just a macro, it
+doesn't let us do anything new; it lets us do something in a single operation
+that would have otherwise take several. But the purpose of Nock 9 doesn't
+really make a lot of sense until we've sunk our teeth into some real Nock code.
 
 
 Decrement:
 
-Let's say we have an atom 42. In Nock, incrementing 42 is easy: *[42 4 0 1]) returns 43. But what if instead of adding 1 to 42 we wanted to subtract 1 and get 41?
+Let's say we have an atom 42. In Nock, incrementing 42 is easy: *[42 4 0 1])
+returns 43. But what if instead of adding 1 to 42 we wanted to subtract 1 and
+get 41?
 
-As you may have noticed, Nock has an increment operator ("+", Nock 4) but no decrement operator. This means that we'll have to build one. 
+As you may have noticed, Nock has an increment operator ("+", Nock 4) but no
+decrement operator. This means that we'll have to build one. 
 
-Our criteria for a decrement function in Nock is that it has to be some formula that when given any atomic subject a, produces a - 1.
+Our criteria for a decrement function in Nock is that it has to be some formula
+that when given any atomic subject a, produces a - 1.
 
-The first piece of decrement that we'll need is a test for whether an atom b is equal to one less than an atom a. In other words, is b equal to a decremented. Which is equivalent to testing whether a is equal to b incremented. Of course, to test whether two things are equal, we'll use Nock 5. 
+The first piece of decrement that we'll need is a test for whether an atom b is
+equal to one less than an atom a. In other words, is b equal to a decremented.
+Which is equivalent to testing whether a is equal to b incremented. Of course,
+to test whether two things are equal, we'll use Nock 5. 
 
 *[[a b] 5 0 1]
 =*[[a b] 0 1]
@@ -1233,7 +1354,9 @@ The first piece of decrement that we'll need is a test for whether an atom b is 
 =[*[[a b] 0 2] *[[a b] 4 0 3]] 
 =[a +b]
 
-Now we've got our test [5 [0 2] [4 0 3]], time to put that in an if statement. If our test is true, we want to return b. If it's false, then let's say we want to return [a +b]
+Now we've got our test [5 [0 2] [4 0 3]], time to put that in an if statement.
+If our test is true, we want to return b. If it's false, then let's say we want
+to return [a +b]
 
 
 *[[a b] 6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]
@@ -1286,23 +1409,39 @@ And now with the cell: [40 42]
 
 [41 42]
 
-If we took [41 42] and ran that back through our if statement (which is exactly what we did the first time), it would produce 41, which is, of course, 42 - 1 or 42 decremented.
+If we took [41 42] and ran that back through our if statement (which is exactly
+what we did the first time), it would produce 41, which is, of course, 42 - 1
+or 42 decremented.
 
-Now imagine what would happen if we put the cell [0 42] into our if statement. The test would say that =[+0 42] is "no" and would return [+0 42], which is [1 42]. If we then ran [1 42]we'd get [2 42]. And if we kept daisy-chaining the output of the if statement back in, after another 39 tries we'd get [41 42], which would test "yes" and our if statement would return41.
+Now imagine what would happen if we put the cell [0 42] into our if statement.
+The test would say that =[+0 42] is "no" and would return [+0 42], which is [1
+42]. If we then ran [1 42]we'd get [2 42]. And if we kept daisy-chaining the
+output of the if statement back in, after another 39 tries we'd get [41 42],
+which would test "yes" and our if statement would return41.
 
-That's roughly going to be the structure of our decrement algorithm. We take an atom a, create the cell [0 a], run the cell through the above if statement, and then keep looping through Nock 6 (output turning into input etc. etc.) until the 0 in [0 a] counts up to a - 1. Simply,  We're calculating a minus one by counting up from 0. At which point, we exit the loop and end.
+That's roughly going to be the structure of our decrement algorithm. We take an
+atom a, create the cell [0 a], run the cell through the above if statement, and
+then keep looping through Nock 6 (output turning into input etc. etc.) until
+the 0 in [0 a] counts up to a - 1. Simply,  We're calculating a minus one by
+counting up from 0. At which point, we exit the loop and end.
 
-It's pretty easy to see how we can do this manually. But that would take a while, and besides, wouldn't fulfill our criteria for a decrement function. 
+It's pretty easy to see how we can do this manually. But that would take a
+while, and besides, wouldn't fulfill our criteria for a decrement function. 
 
-Let's figure out how to create the cell [0 a] first and then we'll attack the problem of looping. Remember that our decrement criteria specificied that our Nock code has to accept an atom, unlike our decrement test, which accepts only cells.
+Let's figure out how to create the cell [0 a] first and then we'll attack the
+problem of looping. Remember that our decrement criteria specificied that our
+Nock code has to accept an atom, unlike our decrement test, which accepts only
+cells.
 
 Fortunately, we've got Nock 8,
 
 	8r ::     *[a 8 b c]        *[[*[a b] a] c]
 
-which takes a subject, applies a formula to it, and turns it into the new subject [*[a b] a]] before applying a second formula to it.
+which takes a subject, applies a formula to it, and turns it into the new
+subject [*[a b] a]] before applying a second formula to it.
 
-Let's say our decrement test is the second formula (corresponding to c). As a big blob this looks like:
+Let's say our decrement test is the second formula (corresponding to c). As a
+big blob this looks like:
 
 *[a 8 b [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
 
@@ -1310,7 +1449,7 @@ We want to figure out what to set b as in order to turn [*[a b] a]] into [0 a].
 
 We'll use Nock 1, which produces an argument without reference to the subject.
 
-        22 ::    *[a [1 b]]          b
+	22 ::    *[a [1 b]]          b
 
 If we say that b is 0, *[a [1 0]] will just produce 0.
 
@@ -1318,7 +1457,8 @@ Which means that with:
 
 *[a 8 b [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
 
-If we set our first formula for Nock 8 as [1 0], [*[a b] a]] will simply turn into [0 a], which is what we wanted.
+If we set our first formula for Nock 8 as [1 0], [*[a b] a]] will simply turn
+into [0 a], which is what we wanted.
 
 Walking through it:
 
@@ -1328,7 +1468,7 @@ Walking through it:
 
 *[[*[a [1 0]] a] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
 
-        22 ::    *[a [1 b]]          b
+	22 ::    *[a [1 b]]          b
 
 *[[0 a] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
 
@@ -1338,7 +1478,8 @@ Now let's figure out how to loop:
 
 *[42 8 [1 0] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
 
-to make this easier to read, we'll replace our Nock 6 decrement test with "test"
+to make this easier to read, we'll replace our Nock 6 decrement test with
+"test"
 
 *[42 8 [1 0] test]
 
@@ -1346,11 +1487,17 @@ to make this easier to read, we'll replace our Nock 6 decrement test with "test"
 
 which of course, returns [1 42]. 
 
-What we want to do is create some code that runs "test" on [0 42] forty-one times, piping the output of the first into the input of the second, until the subject of the last test is [41 42]. Obviously this would be silly, but you could think of this structure as looking something like:
+What we want to do is create some code that runs "test" on [0 42] forty-one
+times, piping the output of the first into the input of the second, until the
+subject of the last test is [41 42]. Obviously this would be silly, but you
+could think of this structure as looking something like:
 
 [[0 42] [test [test [test [test ... etc.]]]]
 
-Problem is, the number of tests is going to depend on size of a in [0 a], in this case, 42. So what we have to do instead is give our test a way to refer to itself. If =[+b a] produces "no", instead of our else formula just producing [+b a], we want it to automatically call the entire test and run it on [+b a].
+Problem is, the number of tests is going to depend on size of a in [0 a], in
+this case, 42. So what we have to do instead is give our test a way to refer to
+itself. If =[+b a] produces "no", instead of our else formula just producing
+[+b a], we want it to automatically call the entire test and run it on [+b a].
 
 Our current test says:
 
@@ -1366,7 +1513,9 @@ we want it to say:
 	[0 2]          ::then b
 	?		::else [[+b a] test]
 
-To do this, we're going to do something we've never done before, we're going to put code, in this case "test" into our subject and we're going to build a formula "sel" that will allow us to select our test and apply it .
+To do this, we're going to do something we've never done before, we're going to
+put code, in this case "test" into our subject and we're going to build a
+formula "sel" that will allow us to select our test and apply it .
 
 We'll use Nock 8 for this:
 
@@ -1381,7 +1530,8 @@ And then Nock 1:
 *[[test [0 42]] sel]
 
 
-The subject [test [0 42]] is called a core. Nearly everything interesting in Urbit is done using cores.
+The subject [test [0 42]] is called a core. Nearly everything interesting in
+Urbit is done using cores.
 
 We want to figure out how to write "sel" to turn 
 
@@ -1391,7 +1541,8 @@ into
 
 *[[test [0 42]] test]
 
-Since we have two copies of test, we can have one refer to the other if the test returns "no.
+Since we have two copies of test, we can have one refer to the other if the
+test returns "no.
 
 
 Okay, so for sel, 
@@ -1406,13 +1557,15 @@ However, simply doing:
 
 *[test]
 
-which isn't useful. So we'll have to get creative. Remember, we're looking to get:
+which isn't useful. So we'll have to get creative. Remember, we're looking to
+get:
 
 *[[test [0 42]] test]
 
-Let's try adding Nock 2, with formula-b set as [0 1] and formula-c set as [0 2]:
+Let's try adding Nock 2, with formula-b set as [0 1] and formula-c set as [0
+2]:
 
-        23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+	23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
 
 *[[test [0 42]] 2 [0 1] 0 2]
 
@@ -1427,9 +1580,12 @@ Now let's add our test back in so we can edit our else formula:
 
 *[[test [0 42]] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
 
-There's a small fix we have to make first, when we changed the subject of our test from [0 42] to [test [0 42]] we change the slot addresses of 0 and 42. 
+There's a small fix we have to make first, when we changed the subject of our
+test from [0 42] to [test [0 42]] we change the slot addresses of 0 and 42. 
 
-With a subject [0 42], 0 has the slot address /2 and 42 has the address /3. With [test [0 42]], 0 is at /6  and 42 is at /7 (because we we moved [0 42] down one step the tail branch. [0 42] itself is now at /3).
+With a subject [0 42], 0 has the slot address /2 and 42 has the address /3.
+With [test [0 42]], 0 is at /6  and 42 is at /7 (because we we moved [0 42]
+down one step the tail branch. [0 42] itself is now at /3).
 
 So let's fix the addresses:
 
@@ -1441,7 +1597,8 @@ We'll just replace every 2 with a 6 and every 3 with a 7:
 
 Now let's change our else formula [[0 6] 4 0 7]. 
 
-If our test returns "no", we want our else formula, instead of producing [1 42] to produce:
+If our test returns "no", we want our else formula, instead of producing [1 42]
+to produce:
 
 *[[test [1 42]] test]
 
@@ -1461,11 +1618,14 @@ if our test returns "no":
 
 *[[test [0 42]] test]
 
-Small problem, since we got rid of the Nock formula that actually does the work of incrementing 0, ([[0 6] 4 0 7]), we'll just keep doing the same thing over and over again. we've got a loop alright, it's an infinite loop.
+Small problem, since we got rid of the Nock formula that actually does the work
+of incrementing 0, ([[0 6] 4 0 7]), we'll just keep doing the same thing over
+and over again. we've got a loop alright, it's an infinite loop.
 
 So let's add to sel so that it actually implements [[4 0 6] 0 7].
 
-We'll use Nock 7, since we want to apply [[4 0 6] 0 7] and sel (2 [0 1] [0 2]]) to [test [0 42]] in order. 
+We'll use Nock 7, since we want to apply [[4 0 6] 0 7] and sel (2 [0 1] [0 2]])
+to [test [0 42]] in order. 
 
 
 [test [0 42]] [7 [[4 0 6] 0 7] 2 [0 1] [0 2]]
@@ -1495,20 +1655,20 @@ Let's try it again, but we'll add a [0 2] this time so that doesn't happen:
 
 *[[*[[test [0 42]] [0 2]] *[[test [0 42]]] [4 0 6] 0 7] 2 [0 1] [0 2]]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 *[[test *[[test [0 42]] [4 0 6] 0 7]] 2 [0 1] [0 2]]
 
-        21 ::    *[a [0 b]]          /[b a]
-        25 ::    *[a [4 b]]          +*[a b]
+	21 ::    *[a [0 b]]          /[b a] 25 ::    *[a [4 b]]          +*[a
+b]
 
 *[[test [1 42]] 2 [0 1] [0 2]]
 
-        23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+	23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
 
 *[*[[test [1 42]] 0 1] *[[test [1 42]] 0 2]]
 
-        21 ::    *[a [0 b]]          /[b a]
+	21 ::    *[a [0 b]]          /[b a]
 
 *[[test [1 42]] test]
 
@@ -1530,13 +1690,15 @@ And so on and so forth. Until we get to
 
 *[[test [41 42]] test]
 
-We know from our test that =[+41 42] will return "yes", which will activate our then formula, which is simply [0 6]:
+We know from our test that =[+41 42] will return "yes", which will activate our
+then formula, which is simply [0 6]:
 
 *[[test [41 42]] [0 6]]
 
 41
 
-Now that we have a good idea of how the loop in decrement works, let's put the pieces together:
+Now that we have a good idea of how the loop in decrement works, let's put the
+pieces together:
 
 We start with an atom a:
 
@@ -1557,7 +1719,8 @@ we'll use another Nock 8 and our test to produce a core:
 	]
 
         ]
-And finally, we'll add "sel", which allows us to select a formula (an "arm") from our core, turning [test [0 a]] into [[test [0 a]] test]:
+And finally, we'll add "sel", which allows us to select a formula (an "arm") 
+from our core, turning [test [0 a]] into [[test [0 a]] test]:
 
 	 [2 [0 1] 0 2]
 ]
@@ -1586,7 +1749,8 @@ And all together:
 
 And that's decrement in Nock. 
 
-However, we can actually simplify this, by using Nock 9. Now that you know decrement, Nock 9 is trivially simple:
+However, we can actually simplify this, by using Nock 9. Now that you know
+decrement, Nock 9 is trivially simple:
 
 Nock 9:
 
@@ -1615,7 +1779,8 @@ Looking at the line 31 in Nock:
 
 	31 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
 
-We notice that the definition on Nock 9 is exactly the same structure as our else formula:
+We notice that the definition on Nock 9 is exactly the same structure as our
+else formula:
 
 [7 [0 2] [[4 0 6] 0 7] 2 [0 1] 0 2] 
 
@@ -1638,7 +1803,11 @@ turns into:
 Not a whole lot simpler, but still simpler.
 
 
-And that's the whole Nock specification. Nothing more, nothing less. If you followed all that closely, you likely feel like you understand Nock somewhat, but by no means feel mastery over it.
+And that's the whole Nock specification. Nothing more, nothing less. If you
+followed all that closely, you likely feel like you understand Nock somewhat,
+but by no means feel mastery over it.
 
-In the next section, we'll expand on our understanding of cores and write addition, subtraction, multiplication, and division functions, as well as a less-than function. 
+In the next section, we'll expand on our understanding of cores and write
+addition, subtraction, multiplication, and division functions, as well as a
+less-than function. 
 
