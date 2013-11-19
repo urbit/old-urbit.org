@@ -739,7 +739,7 @@ compose these functions with the handy `7` operator:
 `p` produces our core, `a` activates it.  Let's take these in
 reverse order.  How do we activate a core?
 
-Since we have only one formula, it's is the battery itself.
+Since we have only one formula, it's the battery itself.
 Thus we want to execute Nock with the whole core (already the
 subject, and the entire battery (slot `2`).  Hence, `a` is
 
