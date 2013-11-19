@@ -4,13 +4,1566 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2013-10-13T13:19:30-07:00</updated>
+ <updated>2013-11-18T19:32:31-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
    <email>urbit@urbit.org</email>
  </author>
 
+ 
+ <entry>
+   <title>Urbit Made Easy&#58;  Chapter IV</title>
+   <link href="http://urbit.org/2013/11/18/urbit-made-easy-ch4.html"/>
+   <updated>2013-11-18T00:00:00-08:00</updated>
+   <id>http://urbit.org/2013/11/18/urbit-made-easy-ch4</id>
+   <content type="html">&lt;h1 id=&#39;chapter_iv_decrement&#39;&gt;Chapter IV: Decrement&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;#8217;s say we have an atom 42. In Nock, incrementing 42 is easy: &lt;code&gt;*[42 4 0 1]&lt;/code&gt; returns 43. But what if instead of adding 1 to 42 we wanted to subtract 1 and get 41?&lt;/p&gt;
+
+&lt;p&gt;As you may have noticed, Nock has an increment operator (&amp;#8221;+&amp;#8221;, Nock 4) but no decrement operator. This means that we&amp;#8217;ll have to build one.&lt;/p&gt;
+
+&lt;p&gt;Our criteria for a decrement function in Nock is that it has to be some formula that when given any atomic subject a, produces a - 1.&lt;/p&gt;
+
+&lt;p&gt;The first piece of decrement that we&amp;#8217;ll need is a test for whether an atom b is equal to one less than an atom a. In other words, is b equal to a decremented. Which is equivalent to testing whether a is equal to b incremented. Of course, to test whether two things are equal, we&amp;#8217;ll use Nock 5.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[a b] 5 0 1]
+=*[[a b] 0 1]
+=[a b]
+
+*[[a b] 5 [0 2] [4 0 3]]
+=*[[a b] [0 2] [4 0 3]]
+=[*[[a b] 0 2] *[[a b] 4 0 3]] 
+=[a +b]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we&amp;#8217;ve got our test &lt;code&gt;[5 [0 2] [4 0 3]]&lt;/code&gt;, time to put that in an if statement. If our test is true, we want to return b. If it&amp;#8217;s false, then let&amp;#8217;s say we want to return &lt;span&gt;a +b&lt;/span&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[a b] 6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;#8217;s test our if statement with the cell 42 41:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[41 42] 6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]
+
+6r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
+
+*[[41 42] *[[0 2] [[4 0 2] 0 3]] [0 *[[2 3] [0 ++*[[41 42] [5 [4 0 2] 0 3]]]]]
+
+*[[41 42] *[[0 2] [[4 0 2] 0 3]]  [0 *[[2 3] [0 ++=[+41 42]]]]]
+
+*[[41 42] *[[0 2] [[4 0 2] 0 3]]  [0 *[[2 3] [0 ++=[42 42]]]]]
+
+*[[41 42] *[[0 2] [[4 0 2] 0 3]] [0 *[[2 3] [0 ++0]]]]
+
+*[[41 42] *[[0 2] [[4 0 2] 0 3]]  [0 *[[2 3] [0 2]]]]
+
+*[[41 42] *[[0 2] [[4 0 2] 0 3]]  [0 2]]
+
+*[[41 42] [0 2]]
+
+41&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And now with the cell: &lt;span&gt;40 42&lt;/span&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[40 42] 6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]
+
+6r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
+
+*[[40 42] *[[0 2] [[4 0 2] 0 3]] [0 *[[2 3] [0 ++*[[40 42] [5 [4 0 2] 0 3]]]]]
+
+*[[40 42] *[[0 2] [[4 0 2] 0 3]] [0 *[[2 3] [0 ++=[+40 42]]]]]
+
+*[[40 42] *[[0 2] [[4 0 2] 0 3]] [0 *[[2 3] [0 ++=[41 42]]]]]
+
+*[[40 42] *[[0 2] [[4 0 2] 0 3]] [0 *[[2 3] [0 ++1]]]]
+
+*[[40 42] *[[0 2] [[4 0 2] 0 3]] [0 *[[2 3] [0 3]]]]
+
+*[[40 42] *[[0 2] [[4 0 2] 0 3]] [0 3]]
+
+*[[40 42] [4 0 2] 0 3]
+
+[*[[40 42] [4 0 2]] *[[40 42] 0 3]]
+
+*[41 *[[40 42] 0 3]]
+
+[41 42]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we took &lt;span&gt;41 42&lt;/span&gt; and ran that back through our if statement (which is exactly what we did the first time), it would produce 41, which is, of course, 42 - 1 or 42 decremented.&lt;/p&gt;
+
+&lt;p&gt;Now imagine what would happen if we put the cell &lt;span&gt;0 42&lt;/span&gt; into our if statement. The test would say that =&lt;span&gt;+0 42&lt;/span&gt; is &amp;#8220;no&amp;#8221; and would return &lt;span&gt;+0 42&lt;/span&gt;, which is &lt;span&gt;1 42&lt;/span&gt;. If we then ran &lt;span&gt;1 42&lt;/span&gt;we&amp;#8217;d get &lt;span&gt;2 42&lt;/span&gt;. And if we kept daisy-chaining the output of the if statement back in, after another 39 tries we&amp;#8217;d get &lt;span&gt;41 42&lt;/span&gt;, which would test &amp;#8220;yes&amp;#8221; and our if statement would return41.&lt;/p&gt;
+
+&lt;p&gt;That&amp;#8217;s roughly going to be the structure of our decrement algorithm. We take an atom a, create the cell &lt;span&gt;0 a&lt;/span&gt;, run the cell through the above if statement, and then keep looping through Nock 6 (output turning into input etc. etc.) until the 0 in &lt;span&gt;0 a&lt;/span&gt; counts up to a - 1. Simply, We&amp;#8217;re calculating a minus one by counting up from 0. At which point, we exit the loop and end.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#8217;s pretty easy to see how we can do this manually. But that would take a while, and besides, wouldn&amp;#8217;t fulfill our criteria for a decrement function.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s figure out how to create the cell &lt;span&gt;0 a&lt;/span&gt; first and then we&amp;#8217;ll attack the problem of looping. Remember that our decrement criteria specificied that our Nock code has to accept an atom, unlike our decrement test, which accepts only cells.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, we&amp;#8217;ve got Nock 8,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;8r ::     *[a 8 b c]        *[[*[a b] a] c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which takes a subject, applies a formula to it, and turns it into the new subject &lt;code&gt;[*[a b] a]]&lt;/code&gt; before applying a second formula to it.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s say our decrement test is the second formula (corresponding to c). As a big blob this looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[a 8 b [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We want to figure out what to set b as in order to turn &lt;code&gt;[*[a b] a]] into [0 a]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We&amp;#8217;ll use Nock 1, which produces an argument without reference to the subject.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;22 ::    *[a [1 b]]          b&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we say that b is 0,&lt;code&gt; *[a [1 0]]&lt;/code&gt; will just produce 0.&lt;/p&gt;
+
+&lt;p&gt;Which means that with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[a 8 b [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we set our first formula for Nock 8 as &lt;span&gt;1 0&lt;/span&gt;, &lt;code&gt;[*[a b] a]]&lt;/code&gt; will simply turn into &lt;span&gt;0 a&lt;/span&gt;, which is what we wanted.&lt;/p&gt;
+
+&lt;p&gt;Walking through it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[a 8 [1 0] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
+
+8r ::     *[a 8 b c]        *[[*[a b] a] c]
+
+*[[*[a [1 0]] a] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
+
+22 ::    *[a [1 b]]          b
+
+*[[0 a] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;#8217;s figure out how to loop:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[42 8 [1 0] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to make this easier to read, we&amp;#8217;ll replace our Nock 6 decrement test with &amp;#8220;test&amp;#8221;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[42 8 [1 0] test]
+
+*[[0 42] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which of course, returns &lt;span&gt;1 42&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;What we want to do is create some code that runs &amp;#8220;test&amp;#8221; on &lt;span&gt;0 42&lt;/span&gt; forty-one times, piping the output of the first into the input of the second, until the subject of the last test is &lt;span&gt;41 42&lt;/span&gt;. Obviously this would be silly, but you could think of this structure as looking something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[0 42] [test [test [test [test ... etc.]]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Problem is, the number of tests is going to depend on size of a in &lt;span&gt;0 a&lt;/span&gt;, in this case, 42. So what we have to do instead is give our test a way to refer to itself. If =&lt;span&gt;+b a&lt;/span&gt; produces &amp;#8220;no&amp;#8221;, instead of our else formula just producing &lt;span&gt;+b a&lt;/span&gt;, we want it to automatically call the entire test and run it on &lt;span&gt;+b a&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our current test says:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[6 
+[5 [4 0 2] 0 3]        ::if =[+b a]
+	[0 2]          ::then b
+	[[4 0 2] 0 3]] ::else [+b a]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;we want it to say:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[6 
+[5 [4 0 2] 0 3]        ::if =[+b a]
+	[0 2]          ::then b
+	?		::else [[+b a] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To do this, we&amp;#8217;re going to do something we&amp;#8217;ve never done before, we&amp;#8217;re going to put code, in this case &amp;#8220;test&amp;#8221; into our subject and we&amp;#8217;re going to build a formula &amp;#8220;sel&amp;#8221; that will allow us to select our test and apply it .&lt;/p&gt;
+
+&lt;p&gt;We&amp;#8217;ll use Nock 8 for this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[0 42] 8 [1 test] sel]
+
+	8r ::     *[a 8 b c]        *[[*[a b] a] c]
+
+*[[*[[0 42] [1 test]] [0 42]] sel]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then Nock 1:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] sel]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The subject &lt;span&gt;test &lt;span&gt;0 42&lt;/span&gt;&lt;/span&gt; is called a core. Nearly everything interesting in Urbit is done using cores.&lt;/p&gt;
+
+&lt;p&gt;We want to figure out how to write &amp;#8220;sel&amp;#8221; to turn&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] sel]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;into&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since we have two copies of test, we can have one refer to the other if the test returns &amp;#8220;no.&lt;/p&gt;
+
+&lt;p&gt;Okay, so for sel,&lt;/p&gt;
+
+&lt;p&gt;Nock 0, &lt;span&gt;0 2&lt;/span&gt; allows us to refer to &amp;#8220;test&amp;#8221; which is in the head of our subject.&lt;/p&gt;
+
+&lt;p&gt;However, simply doing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] sel]
+
+*[[test [0 42]] 0 2]
+
+*[test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which isn&amp;#8217;t useful. So we&amp;#8217;ll have to get creative. Remember, we&amp;#8217;re looking to get:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;#8217;s try adding Nock 2, with formula-b set as &lt;span&gt;0 1&lt;/span&gt; and formula-c set as &lt;span&gt;0 2&lt;/span&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+
+*[[test [0 42]] 2 [0 1] 0 2]
+
+*[*[[test [0 42]] [0 1]] *[[test [0 42]] 0 2]]
+
+*[[test [0 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Success! sel is now set as &lt;span&gt;2 &lt;span&gt;0 1&lt;/span&gt; 0 2&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;#8217;s add our test back in so we can edit our else formula:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There&amp;#8217;s a small fix we have to make first, when we changed the subject of our test from &lt;span&gt;0 42&lt;/span&gt; to &lt;span&gt;test &lt;span&gt;0 42&lt;/span&gt;&lt;/span&gt; we change the slot addresses of 0 and 42.&lt;/p&gt;
+
+&lt;p&gt;With a subject &lt;span&gt;0 42&lt;/span&gt;, 0 has the slot address /2 and 42 has the address /3. With &lt;span&gt;test &lt;span&gt;0 42&lt;/span&gt;&lt;/span&gt;, 0 is at /6 and 42 is at /7 (because we we moved &lt;span&gt;0 42&lt;/span&gt; down one step the tail branch. &lt;span&gt;0 42&lt;/span&gt; itself is now at /3).&lt;/p&gt;
+
+&lt;p&gt;So let&amp;#8217;s fix the addresses:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;#8217;ll just replace every 2 with a 6 and every 3 with a 7:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] [6 [5 [4 0 6] 0 7] [0 6] [[4 0 6] 0 7]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;#8217;s change our else formula &lt;span&gt;&lt;span&gt;0 6&lt;/span&gt; 4 0 7&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;If our test returns &amp;#8220;no&amp;#8221;, we want our else formula, instead of producing &lt;span&gt;1 42&lt;/span&gt; to produce:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [1 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So we want to do pretty much exactly what we already did with sel:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 [0 1] 0 2].&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;#8217;s try just setting our else formula to sel&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] [6 [5 [4 0 2] 0 3] [0 2] [2 [0 1] 0 2]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;if our test returns &amp;#8220;no&amp;#8221;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] [2 [0 1] 0 2]]
+
+*[*[[test [0 42]] [0 1]] *[[test [0 42]] 0 2]]
+
+*[[test [0 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Small problem, since we got rid of the Nock formula that actually does the work of incrementing 0, (&lt;span&gt;&lt;span&gt;0 6&lt;/span&gt; 4 0 7&lt;/span&gt;), we&amp;#8217;ll just keep doing the same thing over and over again. we&amp;#8217;ve got a loop alright, it&amp;#8217;s an infinite loop.&lt;/p&gt;
+
+&lt;p&gt;So let&amp;#8217;s add to sel so that it actually implements &lt;span&gt;&lt;span&gt;4 0 6&lt;/span&gt; 0 7&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;We&amp;#8217;ll use Nock 7, since we want to apply &lt;span&gt;&lt;span&gt;4 0 6&lt;/span&gt; 0 7&lt;/span&gt; and sel &lt;code&gt;(2 [0 1] [0 2]]&lt;/code&gt;) to &lt;span&gt;test &lt;span&gt;0 42&lt;/span&gt;&lt;/span&gt; in order.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[test [0 42]] [7 [[4 0 6] 0 7] 2 [0 1] [0 2]]
+
+7r ::     *[a 7 b c]         *[*[a b] c]
+
+*[*[[test [0 42]] [[4 0 6] 0 7]] 2 [0 1] [0 2]]
+
+*[[1 42]] 2 [0 1] [0 2]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Oops, looks like we accidentally got rid of test!&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s try it again, but we&amp;#8217;ll add a &lt;span&gt;0 2&lt;/span&gt; this time so that doesn&amp;#8217;t happen:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[7 [0 2] [[4 0 6] 0 7] 2 [0 1] [0 2]]
+
+
+*[[test [0 42]] [7 [[0 2] [[4 0 6] 0 7]] 2 [0 1] [0 2]]
+
+7r ::     *[a 7 b c]         *[*[a b] c]
+
+
+*[*[[test [0 42]] [0 2] [[4 0 6] 0 7]] 2 [0 1] [0 2]]
+
+19 ::    *[a [b c] d]      [*[a b c] *[a d]]
+
+*[[*[[test [0 42]] [0 2]] *[[test [0 42]]] [4 0 6] 0 7] 2 [0 1] [0 2]]
+
+21 ::    *[a [0 b]]          /[b a]
+
+*[[test *[[test [0 42]] [4 0 6] 0 7]] 2 [0 1] [0 2]]
+
+21 ::    *[a [0 b]]          /[b a] 25 ::    *[a [4 b]]          +*[a b]
+
+*[[test [1 42]] 2 [0 1] [0 2]]
+
+23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+
+*[*[[test [1 42]] 0 1] *[[test [1 42]] 0 2]]
+
+21 ::    *[a [0 b]]          /[b a]
+
+*[[test [1 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which is exactly what we wanted.&lt;/p&gt;
+
+&lt;p&gt;You&amp;#8217;ll notice that before we ran our test, we had the noun:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [0 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and after, we had produced the noun:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [1 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which has exactly the same structure. And the above will produce&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [2 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And so on and so forth. Until we get to&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [41 42]] test]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We know from our test that =&lt;span&gt;+41 42&lt;/span&gt; will return &amp;#8220;yes&amp;#8221;, which will activate our then formula, which is simply &lt;span&gt;0 6&lt;/span&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[test [41 42]] [0 6]]
+
+41&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that we have a good idea of how the loop in decrement works, let&amp;#8217;s put the pieces together:&lt;/p&gt;
+
+&lt;p&gt;We start with an atom a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;we use Nock 8 to turn it into the cell &lt;span&gt;0 a&lt;/span&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[8 
+	[1 0]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;we&amp;#8217;ll use another Nock 8 and our test to produce a core:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[8 1
+[6 
+	[5 [4 0 2] 0 3]                      ::if =[+b a]
+	[0 6]                                ::then b
+	[7 [0 2] [[4 0 6] 0 7] 2 [0 1] 0 2]  ::else [[test [+b a]] test]
+]
+
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And finally, we&amp;#8217;ll add &amp;#8220;sel&amp;#8221;, which allows us to select a formula (an &amp;#8220;arm&amp;#8221;) from our core, turning &lt;span&gt;test &lt;span&gt;0 a&lt;/span&gt;&lt;/span&gt; into &lt;span&gt;&lt;span&gt;test &lt;span&gt;0 a&lt;/span&gt;&lt;/span&gt; test&lt;/span&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; [2 [0 1] 0 2]
+]
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And all together:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[a
+   [8 
+	[1 0]                                        ::declare variable b
+
+        [8 1                                         ::build core
+
+	   [6                                        ::if    
+		[5 [4 0 2] 0 3]                      ::=[+b a]
+		[0 6]                                ::then b
+		[7 [0 2] [[4 0 6] 0 7] 2 [0 1] 0 2]  ::else [[test [+b a]] test]
+	   ]
+
+        ]
+
+	[2 [0 1] 0 2]                                :: activate core
+   ]
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that&amp;#8217;s decrement in Nock.&lt;/p&gt;
+
+&lt;p&gt;However, we can actually simplify this, by using Nock 9. Now that you know decrement, Nock 9 is trivially simple:&lt;/p&gt;
+
+&lt;p&gt;Nock 9:&lt;/p&gt;
+
+&lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;9&lt;/code&gt; Reduction:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;31 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+
+*[a 7 c [2 [0 1] [0 b]]]
+
+7r ::     *[a 7 b c]         *[*[a b] c]
+
+*[*[a c] [2 [0 1] [0 b]]]
+
+23 ::     *[a 2 b c]        *[*[a b] *[a c]]
+
+*[*[*[a c] [0 1]] *[*[a c] [0 b]]]
+
+21 ::     *[a 0 b]          /[b a]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;9&lt;/code&gt; Reduced:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;9r ::     *[a 9 b c]        *[*[a c] *[*[a c] 0 b]] &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looking at the line 31 in Nock:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;31 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We notice that the definition on Nock 9 is exactly the same structure as our else formula:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[7 [0 2] [[4 0 6] 0 7] 2 [0 1] 0 2] &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which we could rewrite as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[9 2 [4 0 6] 0 7]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Really, that&amp;#8217;s a lot cleaner, don&amp;#8217;t you think?&lt;/p&gt;
+
+&lt;p&gt;Nock 9 is designed to do operations on cores.&lt;/p&gt;
+
+&lt;p&gt;We can also replace our old friend sel with Nock 9:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 [0 1] 0 2]   &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;turns into:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[9 2 0 1]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Not a whole lot simpler, but still simpler.&lt;/p&gt;
+
+&lt;p&gt;And that&amp;#8217;s the whole Nock specification. Nothing more, nothing less. If you followed all that closely, you likely feel like you understand Nock somewhat, but by no means feel mastery over it.&lt;/p&gt;
+
+&lt;p&gt;In the next section, we&amp;#8217;ll expand on our understanding of cores and write addition, subtraction, multiplication, and division functions, as well as a less-than function.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Urbit Made Easy&#58; Chapter III</title>
+   <link href="http://urbit.org/2013/11/18/urbit-made-easy-ch3.html"/>
+   <updated>2013-11-18T00:00:00-08:00</updated>
+   <id>http://urbit.org/2013/11/18/urbit-made-easy-ch3</id>
+   <content type="html">&lt;h1 id=&#39;chapter_iii_nock_operators&#39;&gt;Chapter III: Nock Operators&lt;/h1&gt;
+
+&lt;p&gt;&amp;#8220;You get used to it. I don’t even see the code. All I see is blonde, brunette, red-head.&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;This is where we get into the real meat and bones of Nock: the Operators. Nock has ten operators, numbered &lt;code&gt;1&lt;/code&gt; through &lt;code&gt;10&lt;/code&gt;. The symbols for these operators are just plain ordinary atoms. Remember how we said that real Nock code doesn&amp;#8217;t have letters? It doesn&amp;#8217;t have any symbols (like &lt;code&gt;+&lt;/code&gt;) either. If we want to add 1 to a number, we&amp;#8217;ll have to use a number to do it.&lt;/p&gt;
+
+&lt;p&gt;I think you know enough Nock by now not to be intimidated by a sample of real Nock code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  [8 
+    [1 0] 
+    [ 8 
+      [ 1 
+        [ 6 
+          [5 [0 7] [4 0 6]]
+          [0 6]
+          [9 2 [[0 2] [4 0 6] [0 7]]]
+        ]
+      ]
+      [9 2 0 1]
+    ]
+  ]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or, on one line with the the brackets removed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[8 [1 0] 8 [1 6 [5 [0 7] 4 0 6] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s decrement (or &amp;#8220;subtract 1&amp;#8221;). Right now, it just looks like like a meaningless blob of numbers. When you utterly master Nock, you won&amp;#8217;t even see the atoms, you&amp;#8217;ll see what they do. But,to be fair, there&amp;#8217;s a very good reason why no one uses Nock for real programming. There&amp;#8217;s also a very good reason why, to understand Urbit, you need to learn it anyway.&lt;/p&gt;
+
+&lt;p&gt;Each atom in the decrement blob is there because it represents a function. Most of these functions, you already know.&lt;/p&gt;
+
+&lt;p&gt;We&amp;#8217;ll start with the first five, since not only are they easy to understand, but they actually are the only fundamental operators in Nock. Operators &lt;code&gt;6&lt;/code&gt; through &lt;code&gt;10&lt;/code&gt; are just macros made up of Operators &lt;code&gt;1&lt;/code&gt; through &lt;code&gt;5&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;21 ::    *[a [0 b]]          /[b a]
+22 ::    *[a [1 b]]          b
+23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+24 ::    *[a [3 b]]          ?*[a b]
+25 ::    *[a [4 b]]          +*[a b]
+26 ::    *[a [5 b]]          =*[a b]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Most of these operators are just doing things we already know.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;21 ::    *[a [0 b]]          /[b a]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 0 is just our good old friend the slot operator. But it&amp;#8217;s in a different order than &lt;code&gt;/&lt;/code&gt; on its own.&lt;/p&gt;
+
+&lt;p&gt;The reason for this is that the convention in Nock is for any actual code to be of the form:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[subject formula]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The head of a noun is the subject (i.e. the thing we want to operate upon) and the tail is the formula, which has the actualy operation (function) we&amp;#8217;re going to perform. The outcome of applying a formula to a subject is called the product.&lt;/p&gt;
+
+&lt;p&gt;All operators should be thought of as acting on, or doing something to the head of their cell, always denoted by the letter a. After the operator are its arguments, which are the nouns that are getting applied in some way to the subject a.&lt;/p&gt;
+
+&lt;p&gt;Moving on:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;22 ::    *[a [1 b]]          b&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 1 is the constant operator. It produces the argument and drops the subject.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    24 ::    *[a [3 b]]          ?*[a b]
+    25 ::    *[a [4 b]]          +*[a b]
+    26 ::    *[a [5 b]]          =*[a b]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;#8217;ll go slightly out of order here and skip Nock &lt;code&gt;2&lt;/code&gt; for a moment. Nock &lt;code&gt;3&lt;/code&gt;, &lt;code&gt;4&lt;/code&gt; and &lt;code&gt;5&lt;/code&gt; do exactly what the notation says. Nock &lt;code&gt;3&lt;/code&gt; tests if the product of &lt;code&gt;b&lt;/code&gt; applied to a is a cell. Nock &lt;code&gt;4&lt;/code&gt; increments the outcome, and Nock &lt;code&gt;5&lt;/code&gt; tests if it has a head and a tail that are equal.&lt;/p&gt;
+
+&lt;p&gt;We should note though, that if you wanted to write a Nock expression that increments a number, you would have to take into account that you cannot increment a cell and would have to write it like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[42 4 0 1]
+
+	24 ::    *[a [4 b]]          +*[a b]
+
+	+*[42 0 1]
+
+	21 :: *[a [0 b]]             /[b a]
+
+	+42
+
+	7  ::    +a                  1 + a
+
+	43&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock &lt;code&gt;2&lt;/code&gt; looks complicated, but actually isn&amp;#8217;t. All Nock &lt;code&gt;2&lt;/code&gt; does is distribute the subject &lt;code&gt;a&lt;/code&gt; over the arguments &lt;code&gt;b&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt; and evaluate them independently.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For example, lets say that &lt;code&gt;a&lt;/code&gt; is the noun &lt;code&gt;[[101 102] 103 104&lt;/code&gt;], &lt;code&gt;b&lt;/code&gt; is the noun &lt;code&gt;[0 4]&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt; is the noun &lt;code&gt;[0 6]&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[101 102] 103 104] [2 [[0 4] [0 6]]]]
+
+	23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+
+	*[*[[101 102] 103 104] 0 4] *[[101 102] 103 104] 0 6]
+
+	21 ::    *[a [0 b]]          /[b a]
+	
+	*[/[4 [101 102] 103 104]] /[6 [101 102] 103 104]]
+
+	/ operator (full steps ommitted)
+
+	*[101 103]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, Nock &lt;code&gt;2&lt;/code&gt; is pretty useful. It lets us apply multiple formulas to the same subject.&lt;/p&gt;
+
+&lt;p&gt;Before we move into the macro operators &lt;code&gt;6&lt;/code&gt; through &lt;code&gt;10&lt;/code&gt;, there&amp;#8217;s one more line of Nock that we need to cover, &lt;code&gt;line 19&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;19 ::    *[a [[b c] d]]      [*[a b c] *[a d]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Line 19&lt;/code&gt; is actually quite similar to &lt;code&gt;Nock 2&lt;/code&gt;. If you understand &lt;code&gt;Nock 2&lt;/code&gt;, you understand &lt;code&gt;Line 19&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In less formal terms, if you have a two formulas (call them b and c), Nock 2 does this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[subject-a 2 [formula-b formula-c]]
+
+	*[*[subject-a formula-b] *[subject formula-c]]
+
+	*[product-ab product-ac]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Line 19, on the other hand, does this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[subject-a [formula-b] formula-c]
+
+	[*[subject-a formula-b] *[subject-a formula-c]]
+
+	[product-ab product-ac]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, here they look almost identical. Let&amp;#8217;s redo our previous example from Nock 2 using line 19 instead.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[[101 102] 103 104] [0 4] [0 6]]
+
+	19 ::    *[a [[b c] d]]      [*[a b c] *[a d]]
+
+	[*[[101 102] 103 104] 0 4] *[[101 102] 103 104] 0 6]
+
+	21 ::    *[a [0 b]]          /[b a]
+
+	[/[4 [101 102] 103 104]] /[6 [101 102] 103 104]]
+
+	/ operator 
+
+	[101 103]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Almost, exactly the same result. So why do we have two different ways of doing the same thing? If you compare the rules again:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;19 ::    *[a [[b c] d]]      [*[a b c] *[a d]]
+
+23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You&amp;#8217;ll see that Nock 2 is a bit more general, because the first argument of Nock 2 can be any noun, whereas line 19 has to have a cell as its first argument. But the real difference is the extra &lt;code&gt;*&lt;/code&gt;. Line 19 just distributes the subject onto &lt;code&gt;formula-x&lt;/code&gt; and &lt;code&gt;formula-y&lt;/code&gt;, but Nock 2 actually forces you to evaluate the result of &lt;code&gt;*[product-x product-y]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s change our previous example slightly to illustrate. We&amp;#8217;ll change the subject to &lt;code&gt;[[[101 102] [4 0 1] [3 0 1]]&lt;/code&gt;. As you can see, our new subject has two cells inside it that contain the operators 3 and 4.&lt;/p&gt;
+
+&lt;p&gt;Using line 19:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[[101 102] [4 0 1] [3 0 1]] [0 4] [0 6]]
+
+	19 ::    *[a [[b c] d]]      *[*[a b c] *[a d]]
+
+	[*[[[101 102] [4 0 1] [3 0 1]] 0 4] *[[[101 102] [4 0 1] [3 0 1]] 0 6]]
+
+	21 ::    *[a [0 b]]          /[b a]
+
+	[/[4 [[101 102] [4 0 1] [3 0 1]]] /[6 [[101 102] [4 0 1] [3 0 1]]]]
+
+	/ operator 
+
+	[101 4 0 1]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But with Nock 2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[[101 102] [4 0 1] [3 0 1]] 2 [0 4] [0 6]]
+
+23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+
+[*[[[101 102] [4 0 1] [3 0 1]] 0 4] *[[[101 102] [4 0 1] [3 0 1]] 0 6]]
+
+21 ::    *[a [0 b]]          /[b a]
+
+*[/[4 [[101 102] [4 0 1] [3 0 1]]] /[6 [[101 102] [4 0 1] [3 0 1]]]]
+
+/ operator 
+
+*[101 4 0 1]
+
+25 ::    *[a [4 b]]          +*[a b]
+
+?*[101 0 1]
+
+21 ::    *[a [0 b]]          /[b a]
+
++101
+
+7  ::    +a                1 + a
+
+102&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 2 actually carries through the whole evaluation. Let&amp;#8217;s say we change the arguments that 2 uses in our prior example. The subject is the same, but we&amp;#8217;re varying the formulas.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[[101 102] [4 0 1] [3 0 1]] 2 [0 5] [0 7]]
+
+23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+
+[*[[[101 102] [4 0 1] [3 0 1]] 0 5] *[[[101 102] [4 0 1] [3 0 1]] 0 7]]
+
+21 ::    *[a [0 b]]          /[b a]
+
+*[/[5 [[101 102] [4 0 1] [3 0 1]]] /[7 [[101 102] [4 0 1] [3 0 1]]]]
+
+/ operator 
+
+*[102 3 0 1]
+
+24 ::    *[a [3 b]]          ?*[a b]
+
+?*[101 0 1]
+
+21 ::    *[a [0 b]]          /[b a]
+
+?101
+
+5  ::    ?a                  1
+
+1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our subject has some formulas inside it. Nock 2 lets us select which formula to use and which part of the subject to evaulate it against. Line 19, on the other hand, doesn&amp;#8217;t carry through the whole evaluation and always returns a cell (of the form &lt;code&gt;[product-ab product-ac]&lt;/code&gt;). A Nock programmer might very well use that cell as a subject for another formula, but that&amp;#8217;s outside the scope of what we&amp;#8217;ve covered so far.&lt;/p&gt;
+
+&lt;p&gt;Be very careful though when reducing line 19 or Nock 2. One of the most common mistakes when doing reductions by hand is accidentally adding or removing an asterisk.&lt;/p&gt;
+
+&lt;p&gt;Congratulations! You&amp;#8217;ve now learned all the essential details of Nock. Operators 6-10 add nothing new except a convenient way to do certain series of operations over and over again. And Operators 6-10 are entirely composed of things you already know. Hang on to your seatbelts, we&amp;#8217;re about to take the plunge:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+    29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
+    30 ::    *[a [8 [b c]]]      *[a 7 [[7 [0 1] b] 0 1] c]
+    31 ::    *[a [9 [b c]]]      *[a 7 c 2 [0 1] 0 b]
+    32 ::    *[a [10 [[b c] d]]] *[a 8 c 7 [0 3] d]
+    33 ::    *[a [10 [b c]]]     *[a c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although you might not realize it, you already know how to do all of these.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s start with Nock 7, since it&amp;#8217;s the simplest:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Almost exactly like Nock 2, except with the twist that instead of evaluating formula b and formula in parallel, you evaluate them on subject-a one after the other. Like so:&lt;/p&gt;
+
+&lt;p&gt;Nock 2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[subject-a 2 [formula-b formula-c]]
+
+	*[*[subject-a formula-b] *[subject formula-c]]
+
+	*[product-ab product-ac]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 7:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[subject-a 7 [formula-b formula-c]]	
+
+	*[*[subject-a formula-b] formula-c]
+
+	*[product-ab formula-c]
+
+	[product-abc]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;#8217;s use an example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[101 [7 [4 0 1] 4 0 1]]
+
+29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
+
+*[101 2 [4 0 1] [1 4 0 1]]
+
+23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+
+*[*[101 4 0 1] *[101 1 4 0 1]]
+
+22 ::    *[a [1 b]]          b
+
+*[*[101 4 0 1] [4 0 1]]
+
+25 ::    *[a [4 b]]          +*[a b]
+
+*[102 4 0 1]
+
+25 ::    *[a [4 b]]          +*[a b]
+
+*[103]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we had just used Nock 2, we would have ended up with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[101 [2 [4 0 1] 4 0 1]]
+
+23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+
+*[*[101 4 0 1] *[101 4 0 1]]
+
+25 ::    *[a [4 b]]          +*[a b]
+
+*[102 102]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For Nock 7, and for the rest of the macro operators, we&amp;#8217;ll work through a reduction that puts the macro in the simplest psuedo-code.&lt;/p&gt;
+
+&lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;7&lt;/code&gt; Reduction:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;29 ::    *[a 7 b c]        *[a 2 b 1 c]
+
+*[a 2 b 1 c]
+
+23 ::    *[a 2 b c]        *[*[a b] *[a c]] 
+
+*[*[a b] *[a 1 c]]
+
+22:    *[a 1 b]          b
+ 
+*[*[a b] c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;7&lt;/code&gt; Reduced:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;7r ::     *[a 7 b c]         *[*[a b] c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;#8217;ll reuse this reduced Nock 7 rule in the future, since it&amp;#8217;s easier to read, and much quicker when you&amp;#8217;re doing reductions by hand.&lt;/p&gt;
+
+&lt;p&gt;Moving on to Nock 8:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;30 ::    *[a 8 [b c]]        *[a 7 [[7 [0 1] b] 0 1] c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 8 is extremely similar to Nock 7. Instead of just applying both formulas to the subject, Nock 8 applys the first formula, but preserves the original subject as the tail of the cell that the second formula gets applied to. Like so:&lt;/p&gt;
+
+&lt;p&gt;Nock 7:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[subject 7 [formula-x formula-y]]
+	*[*[subject formula-x] formula-y]
+	*[product-x formula-y]
+	[product-xy]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 8 does&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[subject 8 [formula-b formula-c]]
+	*[[*[subject-a formula-b] subject-a] formula-c]
+	*[[product-ab subject-a] formula-c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In more formal pseudo-code, here&amp;#8217;s what the reduction looks like:&lt;/p&gt;
+
+&lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;8&lt;/code&gt; Reduction:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;30 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+
+*[a 7 [[7 [0 1] b] 0 1] c]   
+
+7r ::     *[a 7 b c]         *[*[a b] c]
+		
+*[*[a [7 [0 1] b] 0 1]] c]
+
+19 ::    *[a [b c] d]      [*[a b c] *[a d]]
+
+*[[*[a [7 [0 1] b]] *[a 0 1]] c]
+	
+21 ::    *[a 0 b]          /[b a]
+
+*[[*[a [7 [0 1] b]] /[1 a]] c]
+	
+12 ::    /[1 a]            a
+
+*[[*[a [7 [0 1] b]] a] c]
+
+7r ::     *[a 7 b c]         *[*[a b] c]
+	
+*[[*[*[a 0 1]] b] a] c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;8&lt;/code&gt; Reduced:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;8r ::     *[a 8 b c]        *[[*[a b] a] c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;#8217;s work through an example of how you might use Nock 8:&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s say we have a subject and we want to test whether it&amp;#8217;s a cell, but we also want to preserve the subject:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[101 [8 [3 0 1] 0 1]]
+
+8r ::     *[a 8 b c]        *[[*[a b] a] c]
+
+*[[*[101 [3 0 1] 101] 0 1]]
+
+24 ::    *[a [3 b]]          ?*[a b] 5  ::    ?a                  1
+
+*[[1 101] 0 1] [1 101]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or if the subject is a cell:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[101 102] [8 [3 0 1] 0 1]]
+
+8r ::     *[a 8 b c]        *[[*[a b] a] c]
+
+*[[*[[101 102] [3 0 1] 101] 0 1]]
+
+24 ::    *[a [3 b]]          ?*[a b] 5  ::    ?a                  1
+
+*[[0 [101 102]  0 1] [0 [101 102]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 10:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;32 ::    *[a [10 [[b c] d]]] *[a 8 c 7 [0 3] d]
+33 ::    *[a [10 [b c]]]     *[a c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 10, in the context of everything we&amp;#8217;ve learned so far, does nothing. Literally, it takes an argument b, or an argument that&amp;#8217;s a cell &lt;span&gt;b c&lt;/span&gt; and throws it away.&lt;/p&gt;
+
+&lt;p&gt;You can see that very clearly in line 33, and if you do the reduction in line 32:&lt;/p&gt;
+
+&lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;10&lt;/code&gt; Reduction:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;*[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
+	
+8r ::     *[a 8 b c]        [[*[a b] a] c]
+
+*[[*[a c] a] 7 [0 2] d]
+	
+7r ::     *[a 7 b c]        *[*[a b] c]
+
+*[*[[*[a c] a] 0 3] d]
+	
+21 ::     *[a 0 b]          /[b a]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;10&lt;/code&gt; reduced:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;10r ::    *[a 10 [b c] d]   *[a d]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 10 is really only ever used for one specialized purpose that has to do with making a computer run Nock faster (it&amp;#8217;s how you declare &amp;#8220;jets&amp;#8221;). We&amp;#8217;ll cover Nock 10 more in later chapters. For now, you can safely ignore it.&lt;/p&gt;
+
+&lt;p&gt;Nock 6:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock 6 looks pretty complicated, but actually is doing something very simple: it&amp;#8217;s an if-then-else statement. a is a subject, b is some test (such as Nock 3, perhaps) that you apply to the subject, if the test returns 0, or &amp;#8220;yes&amp;#8221;, you apply the formula c to the subject a. If the test returns 1, or &amp;#8220;no,&amp;#8221; you instead apply d to a.&lt;/p&gt;
+
+&lt;p&gt;You can see this much more clearly if you work through the reduction of Nock 6 and examine the reduced form.&lt;/p&gt;
+
+&lt;h2 id=&#39;_reduction&#39;&gt;&lt;code&gt;6&lt;/code&gt; Reduction:&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;28 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+	
+*[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+
+23 ::    *[a 2 b c]        *[*[a b] *[a c]]
+	
+*[*[a 0 1] *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
+
+21 ::    *[a 0 b]          /[b a]
+	
+*[a *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
+	
+23 ::    *[a 2 b c]        *[*[a b] *[a c]]
+	
+*[a *[*[a [1 c d]] *[a [1 0] 2 [1 2 3] [1 0] 4 4 b]]]
+	
+22 ::    *[a 1 b]          b
+	
+19 ::    *[a [b c] d]      [*[a b c] *[a d]]
+	
+*[a *[[c d] [*[a 1 0] *[a 2 [1 2 3] [1 0] 4 4 b]]]]
+
+22 ::    *[a 1 b]          b
+	
+*[a *[[c d] [0 *[a 2 [1 2 3] [1 0] 4 4 b]]]]
+	
+23 ::    *[a 2 b c]        *[*[a b] *[a c]]
+	
+*[a *[[c d] [0 *[*[a [1 2 3]] *[a [1 0] 4 4 b]]]]]
+	
+22 ::    *[a 1 b]          b
+	
+*[a *[[c d] [0 *[[2 3] *[a [1 0] 4 4 b]]]]]
+	
+19 ::    *[a [b c] d]      [*[a b c] *[a d]]
+	
+*[a *[[c d] [0 *[[2 3] [*[a [1 0]] *[a 4 4 b]]]]]]
+	
+22 ::    *[a 1 b]          b
+	
+*[a *[[c d] [0 *[[2 3] [0 *[a 4 4 b]]]]]]
+	
+25 ::    *[a 4 b]          +*[a b]
+	
+*[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;6&lt;/code&gt; Reduced:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;6r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A simpler version of Nock 6 would be&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;6s ::   *[a 6 b c d]               *[a *[[c d] [0 ++*[a b]]]]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;*[a b]&lt;/code&gt; returns either 0 or 1, because b is a true or false test. Then you increment the 0 or 1 twice, which gives you either 2 or 3. If you remember from our discussion on the slot operator and Nock 0, &lt;code&gt;/[2 cell]&lt;/code&gt; selects the head of the cell, whereas &lt;code&gt;/[3 cell]&lt;/code&gt; selects the tail.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s work through an example using our simpler Nock 6 (6s), where we want to test if our subject is a atom. If it is, we&amp;#8217;ll increment it, if our subject is instead a cell, we&amp;#8217;ll just return the cell.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[a 6 [3 0 1] [0 1] [4 0 1]] 
+	6s ::   *[a 6 b c d]               *[a *[[c d] [0 ++*[a b]]]]]]
+
+	*[a *[[[0 1] [4 0 1]] [0 ++*[a [3 0 1]]]]]
+
+	24 ::    *[a [3 b]]          ?*[a b]
+
+	*[a *[[[0 1] [4 0 1]] [0 ++?*[a 0 1]]]]
+
+	21 ::    *[a [0 b]]          /[b a]
+
+	*[a *[[[0 1] [4 0 1]] [0 ++?/[1 a]]]]
+
+	12 ::    /[1 a]              a
+	
+	*[a *[[[0 1] [4 0 1]] [0 ++?a]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;#8217;s say that our subject a is the atom 42:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[42 *[[[0 1] [4 0 1]] [0 ++?42]]]
+
+	5  ::    ?a                  1
+
+	*[42 *[[[0 1] [4 0 1]] [0 ++1]]]
+
+	7  ::    +a                  1 + a
+
+	*[42 *[[[0 1] [4 0 1]] [0 3]]]
+
+	21 ::    *[a [0 b]]          /[b a]
+
+	*[42 \[3 [[0 1] [4 0 1]]]]
+
+	14 ::    /[3 [a b]]          b
+
+	*[42 [4 0 1]]
+	
+	25 ::    *[a [4 b]]          +*[a b]
+
+	+*[42 0 1]
+
+	21 ::    *[a [0 b]]          /[b a]
+
+	+/[1 42]
+
+	12 ::    /[1 a]              a
+
+	+42
+
+	7  ::    +a                  1 + a
+
+	43&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And if our subject was instead the cell &lt;code&gt;[42 42]&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[[42 42] *[[[0 1] [4 0 1]] [0 ++?[42 42]]]]
+	
+	4  ::    ?[a b]              0
+
+	*[[42 42] *[[[0 1] [4 0 1]] [0 ++0]]]
+
+	7  ::    +a                  1 + a
+
+	*[[42 42] *[[[0 1] [4 0 1]] [0 2]]]
+
+	21 ::    *[a [0 b]]          /[b a]	
+
+	*[[42 42] /[2 [[0 1] [4 0 1]]]]
+
+	13 ::    /[2 [a b]]          a
+
+	*[[42 42] [0 1]]
+
+	21 ::    *[a [0 b]]          /[b a]
+
+	/[1 [42 42]]
+
+	12 ::    /[1 a]              a
+
+	[42 42]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But why in actual Nock, do we use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which reduces to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;6r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Instead of the simpler:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;28s ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 4 4 b]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;which would reduce to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;6s ::   *[a 6 b c d]               *[a *[[c d] [0 ++*[a b]]]]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The answer is that the simpler version of Nock 6 (6s) would do strange things if we had a test that returned anything other than 0 (&amp;#8220;yes&amp;#8221;) or 1 (&amp;#8220;no&amp;#8221;).&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s use our prior example with the subject 42 and this time we&amp;#8217;ll change the test b from &lt;code&gt;[3 0 1]&lt;/code&gt; to &lt;code&gt;[7 [3 0 1] 4 0 1]&lt;/code&gt; (remember that 7 daisy-chains formulas) so it returns a &amp;#8220;2&amp;#8221;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[42 6 [7 [3 0 1] 4 0 1] [0 1] [4 0 1]]
+
+	6s ::   *[a 6 b c d]               *[a *[[c d] [0 ++*[a b]]]]]]
+
+	*[42 *[[[0 1] [4 0 1]] [0 ++*[42 [7 [3 0 1] 4 0 1]]]
+
+	7r ::     *[a 7 b c]         *[*[a b] c]
+
+	*[42 *[[[0 1] [4 0 1]] [0 ++*[*[42 [3 0 1]] 4 0 1]]]
+
+	24 ::    *[a [3 b]]          ?*[a b] 
+	5  ::    ?a                  1
+
+	*[42 *[[[0 1] [4 0 1]] [0 ++*[1 4 0 1]]]
+
+	25 ::    *[a [4 b]]          +*[a b]
+
+	*[42 *[[[0 1] [4 0 1]] [0 ++2]]]
+
+	7  ::    +a                  1 + a
+
+	*[42 *[[[0 1] [4 0 1]] [0 4]]
+
+	/ operator
+
+	*[42 0]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, having the test return an atom greater than 1 means that the slot operator will select some partial subset of our then or else formulas. In this case &lt;code&gt;/[4 [0 1] [4 0 1]]&lt;/code&gt; produces just 0, but it should be fairly easy to imagine how, with a more complicated then r else formula, this could produce significant strangeness.&lt;/p&gt;
+
+&lt;p&gt;What we really want is for Nock 6 to crash if the our test formula b produces anything other than 0 or 1.&lt;/p&gt;
+
+&lt;p&gt;We do this by adding a second slot operator selection. Since we want to select either our then formula c or our else formula d, but not any partial piece of either, we want to restrict our slot operation to either &lt;code&gt;/[2 [c d]]&lt;/code&gt; or &lt;code&gt;/[3 [c
+d]]&lt;/code&gt;. If we try to do a slot operation with any other tree-address, we want Nock 6 to crash.&lt;/p&gt;
+
+&lt;p&gt;We can do this by recognizing that the only way a slot operation will complete is if the subject of the operation actually has a tree structure with a matching address. In other words, if you try to do &lt;code&gt;/[4 a&lt;/code&gt;] and a doesn&amp;#8217;t have anything that matches a slot 4 (such as if a is &lt;code&gt;[1 2]&lt;/code&gt; for example), the slot operation will crash.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;6r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our real Nock 6 is exactly like our simplified Nock 6s except we&amp;#8217;ve add the cell &lt;span&gt;2 3&lt;/span&gt;. Our test&lt;code&gt; *[a b]]&lt;/code&gt; will produce some number and then &lt;code&gt;*[[2 3] [0
+++*[a b]]]&lt;/code&gt; will slot that number with the cell &lt;code&gt;[2 3]&lt;/code&gt;. Since &lt;code&gt;[2 3] &lt;/code&gt;only has the slots 1, 2 and 3, the only way that the operation will complete is if &lt;code&gt;++*[a b]&lt;/code&gt; equals 1, 2 or 3. &lt;code&gt;++*[a b&lt;/code&gt;] can&amp;#8217;t equal 1 since that would imply that &lt;code&gt;*[a b]&lt;/code&gt;equal -1 and there are no negative numbers in Nock. Therefore, for Nock 6 to complete, &lt;code&gt;*[a b]&lt;/code&gt; can only be &lt;code&gt;0&lt;/code&gt; or &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We now know everything we need to build our decrement function. We&amp;#8217;re going to skip over Nock 9 for now and come back to it later. Nock 9 is just a macro, it doesn&amp;#8217;t let us do anything new; it lets us do something in a single operation that would have otherwise take several. But the purpose of Nock 9 doesn&amp;#8217;t really make a lot of sense until we&amp;#8217;ve sunk our teeth into some real Nock code.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Urbit Made Easy&#58; Chapter II</title>
+   <link href="http://urbit.org/2013/11/18/urbit-made-easy-ch2.html"/>
+   <updated>2013-11-18T00:00:00-08:00</updated>
+   <id>http://urbit.org/2013/11/18/urbit-made-easy-ch2</id>
+   <content type="html">&lt;h1 id=&#39;chapter_ii_starting_stopping_and_reading_reductions&#39;&gt;Chapter II: Starting, Stopping and Reading Reductions&lt;/h1&gt;
+
+&lt;h2 id=&#39;some_basic_notation&#39;&gt;Some Basic Notation&lt;/h2&gt;
+
+&lt;p&gt;In the last chapter, we reduced the noun &lt;code&gt;[2 6 14 15]&lt;/code&gt; to the noun &lt;code&gt;[2 [6 [14 15]]]&lt;/code&gt; using &lt;code&gt;line 2&lt;/code&gt; of Nock.&lt;/p&gt;
+
+&lt;p&gt;In proper notation, we could write this as&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nock([2 6 14 15])
+	[2 [6 [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where nock(noun) means &amp;#8220;Apply Nock to this noun&amp;#8221; and the new line signifies equals or outputs.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#8217;ll remember from the previous section a noun can be represented by a letter and we can rewrite nock(noun) as nock(a). Which brings us to the first line of the Nock specification:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1  ::    nock(a)             *a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This line is actually very simple. It&amp;#8217;s just giving as a new piece of notation. All says is that the asterisk (*) means the same thing as nock(a).&lt;/p&gt;
+
+&lt;p&gt;So we can write our previous reduction as&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[2 6 14 15] 
+*[2 [6 [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or if we wanted to fill in the intermediate steps, with labels for the rules we used, we could write&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;*[2 6 14 15] 
+
+	2  ::    a b c]           a [b c]]
+
+	*[2 6 [14 15]]
+
+	2  ::    a b c]           a [b c]]
+
+	*[2 [6 [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We could also, if we really wanted to, write it this way:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nock([2 6 14 15])
+
+	1  ::    nock(a)             *a
+
+	*[2 6 14 15]
+
+	2  ::    a b c]           a [b c]]
+
+	*[2 6 [14 15]]
+	
+	2  ::    a b c]           a [b c]]
+
+	*[2 [6 [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is actually the most complete way to describe a reduction, but since reductions can grow very big and cumbersome, we&amp;#8217;ll often skip a lot of the mechanical steps as we get further on and rely more on our intuitive understanding of the system.&lt;/p&gt;
+
+&lt;p&gt;You might also have noticed that we&amp;#8217;ve added the asterisk (&lt;code&gt;*&lt;/code&gt;) to our outputs. The reductions we did in the last section didn&amp;#8217;t have them because that likely would have been an unnecessary level of detail too soon. Practically speaking, the &lt;code&gt;*&lt;/code&gt; is necessary, because it tells you that you need to run your noun through Nock again, but because all lines in a reduction will start with a &lt;code&gt;*&lt;/code&gt;, we&amp;#8217;ll often remove it for the sake of minimalism.&lt;/p&gt;
+
+&lt;p&gt;But now, you&amp;#8217;re probably asking yourself, &amp;#8220;If * means run the noun through Nock, why does our final output have a &lt;code&gt;*&lt;/code&gt;? I thought we had finished our reduction.&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;Excellent question! This brings us right to the topic of how a Nock reduction ends. Like many things in Urbit the answer is short and stupid: They don&amp;#8217;t.&lt;/p&gt;
+
+&lt;h2 id=&#39;a_nock_that_never_ends&#39;&gt;A Nock that Never Ends&lt;/h2&gt;
+
+&lt;p&gt;Actually this isn&amp;#8217;t true, there are some operations that do terminate, but most of them, and nearly all the interesting ones, don&amp;#8217;t.&lt;/p&gt;
+
+&lt;p&gt;To see why they don&amp;#8217;t let&amp;#8217;s take a look at lines 6, 10, 17 and 35:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    6  ::    +[a b]              +[a b]
+    10 ::    =a                  =a
+    17 ::    /a                  /a
+    35 ::    *a                  *a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On these lines, the input is the same as the output. Which means that the reduction never ends and continues forever in a stream of something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;35 :: *a
+35 :: *a
+35 :: *a
+35 :: *a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And so on. Of course in practice, you&amp;#8217;ll hopefully notice that this is occuring and stop typing. The same principle is true when it&amp;#8217;s not you doing the reduction by hand, but rather a computer program called an &amp;#8220;interpreter&amp;#8221;. Whether it&amp;#8217;s you or the interpreter, detecting an infinite loop and stopping is known as an &amp;#8220;out of band error.&amp;#8221; The good news is that this is how you know when your reduction is done. your interpreter (either human or machine) crashes, you look at the last thing it did and that&amp;#8217;s your final output.&lt;/p&gt;
+
+&lt;p&gt;Another question you probably have is how Nock avoids getting caught in an infinite loop before the reduction is supposed to be done. Why can&amp;#8217;t you have a loop that looks like this? :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;35 :: *[2 6 [14 15]]
+35 :: *[2 6 [14 15]]
+35 :: *[2 6 [14 15]]
+35 :: *[2 6 [14 15]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The answer is something that we briefly mentioned earlier, you have to try and apply the rules of Nock to your noun in the top-down order they appear in the specification. You&amp;#8217;ll never get a loop that looks like the above, because you&amp;#8217;re forced to try and apply lines 1 through 34 to your noun before you get to try line 35. In practice with the above, since you can apply line 2 (our bracket rule, if you remember), you have to apply line 2.&lt;/p&gt;
+
+&lt;p&gt;But line 35 isn&amp;#8217;t the only line that puts us into an infinite loop! We have three more, lines 6, 10 and 17. (we call them &amp;#8220;crash defaults&amp;#8221;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    6  ::    +[a b]              +[a b]
+    10 ::    =a                  =a
+    17 ::    /a                  /a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Actually these are not the only possible way to put Nock into an infinite loop (Halting problem), but they are the only ones we care about for now.&lt;/p&gt;
+
+&lt;p&gt;To read these lines, we&amp;#8217;ll have to learn the rest of our Nock pseudocode notation.&lt;/p&gt;
+
+&lt;h2 id=&#39;more_notation___&#39;&gt;More Notation, &lt;code&gt;+&lt;/code&gt; &lt;code&gt;=&lt;/code&gt; &lt;code&gt;?&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#8217;s start with &amp;#8221;+&amp;#8221;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    6  ::    +[a b]              +[a b]
+    7  ::    +a                  1 + a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;#8221;+&amp;#8221; is very simple. It just means add 1 (or &amp;#8220;increment&amp;#8221;). Obviously you can only add 1 to a number, so line 6 says that if you try to add 1 to a cell you&amp;#8217;ll loop forever and crash. Line 6 comes before line 7 in the specification to catch all cases of trying to add a number to a cell.&lt;/p&gt;
+
+&lt;p&gt;The next symbol to learn is &amp;#8221;=&amp;#8221;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;8  ::    =[a a]              0
+9  ::    =[a b]              1
+10 ::    =a                  =a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;#8221;=&amp;#8221; means equals, or, more specifically, &amp;#8220;Does the following cell contain a pair of identical nouns?&amp;#8221; If the cell does, then &amp;#8220;=&lt;span&gt;a a&lt;/span&gt;&amp;#8221; gets transformed into the atom 0, or &amp;#8220;yes&amp;#8221; (line 8). If not, &amp;#8220;=&lt;span&gt;a b&lt;/span&gt;&amp;#8221; gets transformed into the atom 1, or &amp;#8220;no&amp;#8221; (line 9). If you try and do an equality test on an atom, you&amp;#8217;ll loop forever and crash (line 10).&lt;/p&gt;
+
+&lt;p&gt;Before we cover our final crash default (line 17, and &amp;#8221;/&amp;#8221;), we should go over the what &amp;#8221;?&amp;#8221; means, since it&amp;#8217;s pretty easy.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    4  ::    ?[a b]              0
+    5  ::    ?a                  1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As with &amp;#8221;=&amp;#8221;, &amp;#8221;?&amp;#8221; is just another test that produces &amp;#8220;yes&amp;#8221; or &amp;#8220;no.&amp;#8221; Specifically, &amp;#8221;?&amp;#8221; tests whether a noun is a cell.&lt;/p&gt;
+
+&lt;p&gt;And now for the trickiest piece of notation, the &amp;#8221;/&amp;#8221;, which we call the &amp;#8220;slot&amp;#8221; operator:&lt;/p&gt;
+
+&lt;p&gt;The Slot Operator&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;12 ::    /[1 a]              a
+13 ::    /[2 [a b]]          a
+14 ::    /[3 [a b]]          b
+15 ::    /[(a + a) b]        /[2 /[a b]]
+16 ::    /[(a + a + 1) b]    /[3 /[a b]]
+17 ::    /a                  /a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since this is fairly complicated, we&amp;#8217;ll explain it in two ways. First, we&amp;#8217;ll describe what the slot operator (&amp;#8221;/&amp;#8221;) does at an intuitive level (what it&amp;#8217;s intended to do). And then we&amp;#8217;ll dive into the mechanics of how it actually works.&lt;/p&gt;
+
+&lt;p&gt;Intuitively, the slot operator is how we refer to individual nouns that are inside of a larger cell. It&amp;#8217;s how we pull things out of the big tree-like cell structure. Each noun in the tree gets a number and when we do /&lt;span&gt;b a&lt;/span&gt;, where b is the number that corresponds to the noun and a is the larger cell that contains the noun, we produce just the noun we referred to. Think of it as an index or an address for a noun.&lt;/p&gt;
+
+&lt;p&gt;Since all cells are pairs of nouns that break down into other pairs, the structure of our tree looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;            1
+       2          3
+    4    5     6     7
+   8 9 10 11 12 13 14 15
+
+[2 [6 [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;1 is the slot address that matches the entire original cell (the root). 2 refers to the first noun of that cell (the head) and 3 refers to the second noun of that pair (the tail).&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s build some example nouns where every atom is equal to its slot address:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1
+[2 3]
+[2 [6 7]]
+[[4 5] [6 7]]
+[[4 5] [6 [14 15]]]
+[[4 5] [[12 13] [14 15]]]
+[[4 [10 11]] [[12 13] [14 15]]]
+[[8 9] [10 11] [[12 13] [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Actually, all the examples we used earlier when we explained the line 2 bracket rule follow this same pattern.&lt;/p&gt;
+
+&lt;p&gt;Another way to think about this is that if you replace any atom with a value &amp;#8220;n&amp;#8221; in the above tree with a cell, the atom at head of the cell will be equal to two times &amp;#8220;n&amp;#8221; (2n) and the tail of the cell will be 2n + 1. Heads are even, tails are odd.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s go into the mechanics of how this works with some more examples:&lt;/p&gt;
+
+&lt;p&gt;Say you have a noun &lt;span&gt;&lt;span&gt;100 101&lt;/span&gt; 102 103&lt;/span&gt;]. We&amp;#8217;ll use this noun to show how the actual Nock rules produce what they&amp;#8217;re supposed to.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;12 ::    /[1 a]              a
+13 ::    /[2 [a b]]          a
+14 ::    /[3 [a b]]          b
+15 ::    /[(a + a) b]        /[2 /[a b]]
+16 ::    /[(a + a + 1) b]    /[3 /[a b]]
+17 ::    /a                  /a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Using addresses 1, 2, and 3 with the slot operator is fairly straightforward.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/[1 [[100 101] 102 103]]
+
+	 12 ::    /[1 a]             a
+
+	 [[100 101] 102 103]
+
+/[2 [[100 101] 102 103]
+
+	13 ::    /[2 [a b]]          a
+
+	[100 101]
+
+/[3 [[100 101] 102 103]]
+
+	14 ::    /[3 [a b]]          b
+
+	[102 103]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(We&amp;#8217;ve skipped the step of using line 2 to add brackets back in. The aspiring Nock programmer needs to learn to do line 2 in their head.)&lt;/p&gt;
+
+&lt;p&gt;So now what about addresses that are greater than 3?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/[4 [[100 101] 102 103]]
+
+	15 ::    /[(a + a) b]        /[2 /[a b]]
+
+	/[2 /[2 [[100 101] 102 103]]]
+
+	13 ::    /[2 [a b]]          a   
+
+	/[2 [100 101]]
+
+	13 ::    /[2 [a b]]          a   
+
+	100&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We see that the (a + a) in line 15 is doing the same thing as saying that every cell with an address n has a head with an address that&amp;#8217;s 2n.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/[5 [[100 101] 102 103]]
+
+	16 ::    /[(a + a + 1) b]    /[3 /[a b]]
+
+	/[3 /[2 [[100 101] 102 103]]]
+
+	13 ::    /[2 [a b]]          a   
+
+	/[3 [100 101]]
+
+	14 ::    /[3 [a b]]          b
+
+	101&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As an exercise, do &lt;code&gt;/[6 [[[100 101] 102 103]]&lt;/code&gt; and &lt;code&gt;/[7 [[[100 101] 102 103]]&lt;/code&gt; on your own.&lt;/p&gt;
+
+&lt;p&gt;In Chapter 3, we&amp;#8217;ll get into the real meat and bones of Nock: the Operators.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Urbit Made Easy &#58; Chapter I</title>
+   <link href="http://urbit.org/2013/11/18/urbit-made-easy-ch1.html"/>
+   <updated>2013-11-18T00:00:00-08:00</updated>
+   <id>http://urbit.org/2013/11/18/urbit-made-easy-ch1</id>
+   <content type="html">&lt;h1 id=&#39;what_one_fool_can_do_another_can&#39;&gt;&amp;#8220;What one fool can do, another can&amp;#8221;&lt;/h1&gt;
+
+&lt;p&gt;A lot of people think that Urbit is complicated. A lot of people are wrong. Urbit was designed to be stupid.&lt;/p&gt;
+
+&lt;p&gt;This guide assumes no prior knowledge of programming, computer science or math.&lt;/p&gt;
+
+&lt;h1 id=&#39;chapter_i_what_is_nock&#39;&gt;Chapter I: What is Nock?&lt;/h1&gt;
+
+&lt;p&gt;Let&amp;#8217;s start with the formal specification of Nock. Don&amp;#8217;t worry, it&amp;#8217;s much less scary than it looks.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Structures&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;A noun is an atom or a cell.  An atom is any natural number. 
+A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;2. Pseudocode&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1  ::    nock(a)           *a
+2  ::     a b c]           a [b c]]
+3  ::
+4  ::    ?[a b]            0
+5  ::    ?a                1
+6  ::    +[a b]            +[a b]
+7  ::    +a                1 + a
+8  ::    =[a a]            0
+9  ::    =[a b]            1
+10 ::    =a                =a	
+11 ::
+12 ::    /[1 a]            a
+13 ::    /[2 [a b]]          a
+14 ::    /[3 [a b]]          b
+15 ::    /[(a + a) b]      /[2 /[a b]]
+16 ::    /[(a + a + 1) b]  /[3 /[a b]]
+17 ::    /a                /a
+18 ::
+19 ::    *[a [[b c] d]]      [*[a [b c]] *[a d]]
+20 ::
+21 ::    *[a [0 b]]          /[b a]
+22 ::    *[a [1 b]]          b
+23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+24 ::    *[a [3 b]]          ?*[a b]
+25 ::    *[a [4 b]]          +*[a b]
+26 ::    *[a [5 b]]          =*[a b]
+27 ::
+28 ::    *[a 6 [b [c d]]]    *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+29 ::    *[a 7 [b c]]        *[a 2 b 1 c]
+30 ::    *[a 8 [b c]]        *[a 7 [[7 [0 1] b] 0 1] c]
+31 ::    *[a 9 [b c]]        *[a 7 c 2 [0 1] 0 b]
+32 ::    *[a 10 [[b c] d]]   *[a 8 c 7 [0 3] d]
+33 ::    *[a 10 [b c]]       *[a c]
+34 ::
+35 ::    *a                *a&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you&amp;#8217;re going through the first part of this guide, it will be helpful to have a copy of the specification that you can quickly refer to.&lt;/p&gt;
+
+&lt;p&gt;Nock may look intimidating now, but by the end of this guide, you will have utterly mastered it.&lt;/p&gt;
+
+&lt;p&gt;Nock is what some fancy people call a &amp;#8220;computational automaton.&amp;#8221; All that means is it&amp;#8217;s a list of rules about how to turn symbols into other symbols. You put some symbols in, you follow the rules, and you get some symbols out.&lt;/p&gt;
+
+&lt;h2 id=&#39;atoms__cells&#39;&gt;Atoms &amp;amp; Cells&lt;/h2&gt;
+
+&lt;p&gt;The symbols that go into Nock are called nouns, which are just numbers and pairs of numbers (and pairs of those pairs, but we&amp;#8217;ll get to that). The numbers that go into Nock are called &amp;#8220;atoms&amp;#8221; and are always positive whole numbers. In math, these are called &amp;#8220;natural numbers,&amp;#8221; because they&amp;#8217;re the set of numbers used for counting. In Nock, we&amp;#8217;ll write atoms in two different ways. The first way, when we know what the atom is we&amp;#8217;ll just write the number: &lt;code&gt;1&lt;/code&gt;, &lt;code&gt;2&lt;/code&gt;, &lt;code&gt;3&lt;/code&gt;, &lt;code&gt;4&lt;/code&gt;&amp;#8230; &lt;code&gt;424&lt;/code&gt;, &lt;code&gt;9.904&lt;/code&gt; etc.&lt;/p&gt;
+
+&lt;p&gt;(Note: Nock, and Urbit as a whole, use a period instead of a comma for long numbers. You&amp;#8217;ll see why much later on.)&lt;/p&gt;
+
+&lt;p&gt;The second way we write atoms is with single letters. We do this when we don&amp;#8217;t know what the atom is, so we use letters (&lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt;, &lt;code&gt;d&lt;/code&gt; etc.) as placeholders or variables. This isn&amp;#8217;t actually part of Nock and we only do it in the rules that make up Nock, so we can describe what those rules are. In real Nock code, there are no letters.&lt;/p&gt;
+
+&lt;p&gt;This is actually a really important point to keep in mind: The formal definition of Nock isn&amp;#8217;t written in Nock, but is actually written in English. Albeit a really funky kind of English (called &amp;#8220;pseudocode&amp;#8221;)&lt;/p&gt;
+
+&lt;p&gt;Pairs of atoms are written using square brackets, and we separate the pairs with a space. Like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1 1] 
+[34 45] 
+[123.456.789 987.654.321]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A pair of atoms is called a cell. If we wanted to write pseudocode Nock, we could write:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[a 1] 
+[34 b] 
+[c d] &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt; and &lt;code&gt;d&lt;/code&gt; all are standing in for atoms.&lt;/p&gt;
+
+&lt;p&gt;Both atoms and cells are called nouns, which are the symbols (the fancy word is &amp;#8220;expressions&amp;#8221;) that go into Nock. You can think of Nock as a machine that transforms nouns into other nouns.&lt;/p&gt;
+
+&lt;p&gt;I think we&amp;#8217;re ready to take a look at the first part of the formal Nock definition:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. Structures&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;A noun is an atom or a cell.  An atom is a natural number.  
+A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first two sentences we&amp;#8217;ve covered. The third sentence adds a new concept: Cells can go inside other cells.&lt;/p&gt;
+
+&lt;p&gt;Remember that since a noun is either an atom or a cell (a number or a pair), then a pair of nouns can be a pair of atoms, a pair of cells, or the pair of an atom and a cell. Like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1 1] 
+[1 [2 3]] 
+[[1 1] [2 3]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Any cell in Nock, you can put inside another cell. This means that the cells can get arbitrarily long (or nest arbitrarily deep). All of the following are valid cells:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 3]
+[2 [6 7]]
+[2 [6 [14 15]]]
+[2 [6 [14 [30 31]]]]
+[2 [6 [14 [30 [62 63]]]]]
+[[4 5] 3]
+[[[8 9] 5] 3]
+[2 [[12 13] 7]]
+[2 [[12 13] [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As you can see, the brackets start to pile up, making this somewhat difficult to read.&lt;/p&gt;
+
+&lt;h2 id=&#39;brackets_who_needs_them&#39;&gt;Brackets: Who Needs Them?&lt;/h2&gt;
+
+&lt;p&gt;Fortunately, there&amp;#8217;s a rule in Nock that helps make things more legible: We can leave out all the brackets that group to the right, because Nock will just add them back in. That means instead of writing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[2 3]
+[2 [6 7]]
+[2 [6 [14 15]]]
+[2 [6 [14 [30 31]]]]
+[2 [6 [14 [30 [62 63]]]]]
+[[4 5] 3]
+[[[8 9] 5] 3]
+[[2 [[12 13] 7]]
+[2 [[12 13] [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can just write:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 3]
+[2 6 7]
+[2 6 14 15]
+[2 6 14 30 31]
+[2 6 14 30 62 63]
+[[4 5] 3]
+[[[8 9] 5] 3]
+[2 [12 13] 7]
+[2 [12 13] [14 15]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The brackets haven&amp;#8217;t gone away, we&amp;#8217;ve just decided not to write them.&lt;/p&gt;
+
+&lt;p&gt;We can do this because of &lt;code&gt;line 2&lt;/code&gt; of Nock, which puts the brackets back in.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2  ::    a b c]          a [b c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Simply speaking, line 2 says that brackets always group to the right.Before we go into this, we need to quickly cover two things:&lt;/p&gt;
+
+&lt;p&gt;First, we need to extend our understanding of letters being placeholders for atoms. Letters can also stand in for cells. A letter represents a noun. So whenever you see a letter, all that that means is &amp;#8220;Noun goes here.&amp;#8221; And that noun can be, of course, either an atom or a cell.&lt;/p&gt;
+
+&lt;p&gt;Second, we need to explain how to read the Nock&amp;#8217;s rules. Nock has a left-hand column, and a right-hand column. The left-hand column is for inputs, the right-hand column, for outputs. You take a noun, match it to the pattern on the left. And then you transform your noun so that the pattern on the left becomes the pattern on the right. The whole process is called a &amp;#8220;reduction.&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;We&amp;#8217;ll walk you through how this works:&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s say that we have the noun &lt;code&gt;[2 6 7]&lt;/code&gt;. &lt;code&gt;Line 2&lt;/code&gt; says:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2  ::   a b c]           a [b c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can match &lt;code&gt;[2 6 7]&lt;/code&gt; to &lt;code&gt;a b c]&lt;/code&gt;, because they have the same structure. &lt;code&gt;a&lt;/code&gt; is the placeholder for &lt;code&gt;2&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; for &lt;code&gt;6&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt; for 7, and the right bracket in &lt;code&gt;a b c]&lt;/code&gt; matches the right bracket in &lt;code&gt;[2 6 7]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;(There are no left brackets in &lt;code&gt;line 2&lt;/code&gt;. This is not a typo, we&amp;#8217;ll show you why when we actually go through the mechanics of applying &lt;code&gt;line 2&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s line up &lt;code&gt;[2 6 7]&lt;/code&gt; and &lt;code&gt;a b c]&lt;/code&gt; so that the right-brackets align.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 6 7] 
+ a b c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pretty clearly, &lt;code&gt;a&lt;/code&gt; is &lt;code&gt;2&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is &lt;code&gt;6&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt; is &lt;code&gt;7&lt;/code&gt;. So you could rewrite our noun &lt;code&gt;[2 6 7]&lt;/code&gt; as &lt;code&gt;[a b c]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The right-hand side of &lt;code&gt;line 2&lt;/code&gt; says:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;a [b c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Meaning we need to insert a left-bracket before &lt;code&gt;b&lt;/code&gt;, and a right bracket after &lt;code&gt;c&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our input noun:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 6 7]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We replace nouns with the matching letters (&lt;code&gt;a&lt;/code&gt; is &lt;code&gt;2&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is &lt;code&gt;6&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt; is &lt;code&gt;7&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[a b c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We do the transformation (putting the left-bracket and right-bracket in):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[a [b c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And finally we turn the letters back to nouns&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 [6 7]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that&amp;#8217;s our output. We&amp;#8217;ve just done our very first Nock reduction! &lt;code&gt;[2 6 7]&lt;/code&gt; goes into Nock, and &lt;code&gt;[2 [6 7]]&lt;/code&gt; comes out.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s try putting the more complicated noun &lt;code&gt;[2 6 14 15]&lt;/code&gt; into &lt;code&gt;line 2&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2  ::    a b c]           a [b c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We start on the inside, because the right-brackets have to align.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 6 14 15] 
+   a  b  c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Like we did before, we replace nouns with their matching letters. &lt;code&gt;a&lt;/code&gt; is &lt;code&gt;6&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is &lt;code&gt;14&lt;/code&gt; and &lt;code&gt;c&lt;/code&gt; is &lt;code&gt;15&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 a b c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We do the transformation and add in the brackets&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 a [b c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And finally we replace our placeholder letters with their corresponding nouns.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 6 [14 15]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But we&amp;#8217;re not done yet! We still have another pair of brackets to add. Unlike what we did before with the noun &lt;code&gt;[2 6 7]&lt;/code&gt;, the noun &lt;code&gt;[2 6 14 15]&lt;/code&gt; has to go through &lt;code&gt;line 2&lt;/code&gt; twice before its reduction is complete. We do this by taking the output noun from our first time through &lt;code&gt;line 2&lt;/code&gt; (&lt;code&gt;[2 6 [14 15]]&lt;/code&gt;) and then putting that noun back in to Nock as input.&lt;/p&gt;
+
+&lt;p&gt;We&amp;#8217;ll go through it a bit faster this time, but the process is still exactly the same.&lt;/p&gt;
+
+&lt;p&gt;Align expressions (remember that letters can be either atoms or cells): &lt;span&gt;2 6 &lt;span&gt;14 15&lt;/span&gt;&lt;/span&gt; a b c ]&lt;/p&gt;
+
+&lt;p&gt;Turn nouns to letters:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[a b c]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Transform noun according to the right-hand side:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[a [b c]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Turn letters to nouns (&lt;code&gt;a&lt;/code&gt; is &lt;code&gt;2&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is &lt;code&gt;6&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt; is &lt;code&gt;[14 15]&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[2 [6 [14 15]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which is our final output, with all the brackets added back to the noun &lt;code&gt;[2 6 14 15]&lt;/code&gt;. For even more complicated nouns, like &lt;code&gt;[2 6 14 30 31]&lt;/code&gt; or &lt;code&gt;[2 [12 26 27] 14 15]&lt;/code&gt;, you would have to apply the rule from line 2 even more times. Every time you transform a noun using a rule in Nock, you have to take the output of that transformation and run it through Nock again until no more patterns in the left-hand column match. Nock has further rules that describe how and when you end the reduction process. We&amp;#8217;ll get into these rules in a moment.&lt;/p&gt;
+
+&lt;p&gt;Before we do, and completely move on to bigger and better things, we should briefly cover why &lt;code&gt;line 2&lt;/code&gt; has mismatched brackets, because that does look a little odd. The answer to this is simply that if &lt;code&gt;line &lt;/code&gt;2 had left-brackets, our pattern-matching with nouns that need multiple transformations wouldn&amp;#8217;t work. We wouldn&amp;#8217;t have been able to match &lt;code&gt;[2 6 14 15]&lt;/code&gt; to the pattern &lt;code&gt;[a b
+c]&lt;/code&gt;, because the brackets wouldn&amp;#8217;t have lined up. To actually have gone through and done the mechanical reduction this way, we would have had to ignore what &lt;code&gt;line 2&lt;/code&gt; actually says, and reconstruct in our minds what it actually means. Which would have been very confusing for everyone.&lt;/p&gt;
+
+&lt;p&gt;On to Chapter 2, where we&amp;#8217;ll start learning the notation of Nock reductions!&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>Hi Zod! or basic Urbit tunneling</title>
@@ -585,161 +2138,161 @@
 
 &lt;p&gt;Let&amp;#8217;s start off with two big hoons. The first is the definition of &lt;code&gt;++hoon&lt;/code&gt; (in /~ship/arvo=/hoon/hoon):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;  |%                                                      ::
-  ++  axis  ,@                                            ::
-  ++  beer  $|(@ [~ p=hoon])                              ::
-  ++  foot  $%  [%ash p=hoon]                             ::
-                [%elm p=hoon]                             ::
-                [%oak ~]                                  ::
-                [%yew p=(map term foot)]                  ::
-            ==                                            ::
-  ++  gens  (list hoon)                                   ::
-  ++  gent  (list ,[p=hoon q=hoon])                       ::
-  ++  genu  (list ,[p=term q=hoon])                       ::
-  ++  goon  (list (unit hoon))                            ::
-  ++  hoon  $&amp;amp;  [p=hoon q=hoon]                           ::
-            $%                                            ::
-              [%$ p=axis]                                 ::
-            ::                                            ::
-              [%bcbr p=hoon q=hoon]                       ::
-              [%bccb p=hoon]                              ::
-              [%bccl p=gens]                              ::
-              [%bccn p=hoon q=gens]                       ::
-              [%bccm p=hoon]                              ::
-              [%bckt p=hoon]                              ::
-              [%bcpm p=hoon q=hoon]                       ::
-              [%bctr p=hoon]                              ::
-              [%bcts p=bozo]                              ::
-              [%bcwt p=hoon q=gens]                       ::
-            ::                                            ::
-              [%brbr p=hoon q=hoon]                       ::
-              [%brcb p=hoon q=(map term foot)]            ::
-              [%brcl p=hoon q=(map term foot)]            ::
-              [%brcn p=(map term foot)]                   ::
-              [%brdt p=hoon]                              ::
-              [%brkt p=hoon q=(map term foot)]            ::
-              [%brhp p=hoon]                              ::
-              [%brls p=hoon q=hoon]                       ::
-              [%brtr p=hoon q=hoon]                       ::
-              [%brts p=hoon q=hoon]                       ::
-              [%brwt p=hoon]                              ::
-            ::                                            ::
-              [%clcb p=hoon q=hoon]                       ::
-              [%clcn p=gens]                              ::
-              [%clfs p=hoon]                              ::
-              [%clkt p=hoon q=hoon r=hoon s=hoon]         ::
-              [%clhp p=hoon q=hoon]                       ::
-              [%clls p=hoon q=hoon r=hoon]                ::
-              [%clsg p=gens]                              ::
-              [%cltr p=gens]                              ::
-              [%clzp p=gens]                              ::
-            ::                                            ::
-              [%cnbc p=term]                              ::
-              [%cncb p=wing q=gent]                       ::
-              [%cncl p=hoon q=hoon]                       ::
-              [%cndt p=hoon q=hoon]                       ::
-              [%cnhp p=hoon q=gens]                       ::
-              [%cnhx p=wing]                              ::
-              [%cntr p=wing q=hoon r=gent]                ::
-              [%cnkt p=hoon q=hoon r=hoon s=hoon]         ::
-              [%cnls p=hoon q=hoon r=hoon]                ::
-              [%cnsg p=wing q=hoon r=hoon]                ::
-              [%cnts p=wing q=gent]                       ::
-            ::                                            ::
-              [%dtkt p=hoon]                              ::
-              [%dtls p=hoon]                              ::
-              [%dtpt p=term q=@]                          ::
-              [%dtsg p=term q=*]                          ::
-              [%dttr p=hoon q=hoon]                       ::
-              [%dtts p=hoon q=hoon]                       ::
-              [%dtwt p=hoon]                              ::
-            ::                                            ::
-              [%hxgl p=gens]                              ::
-              [%hxgr p=gens]                              ::
-            ::                                            ::
-              [%ktbr p=hoon]                              ::
-              [%ktls p=hoon q=hoon]                       ::
-              [%ktdt p=hoon q=hoon]                       ::
-              [%kthp p=hoon q=hoon]                       ::
-              [%ktpm p=hoon]                              ::
-              [%ktsg p=hoon]                              ::
-              [%ktts p=term q=hoon]                       ::
-              [%ktwt p=hoon]                              ::
-            ::                                            ::
-              [%sgbr p=hoon q=hoon]                       ::
-              [%sgcl p=[p=@ q=@] q=hoon]                  ::
-              [%sgcn p=chop q=hoon r=genu s=hoon]         ::
-              [%sgfs p=chop q=hoon]                       ::
-              [%sggl p=$|(term [p=term q=hoon]) q=hoon]   ::
-              [%sggr p=$|(term [p=term q=hoon]) q=hoon]   ::
-              [%sgbc p=term q=hoon]                       ::
-              [%sghx p=term q=hoon]                       ::
-              [%sgkt p=hoon q=hoon]                       ::
-              [%sgls p=@ q=hoon]                          ::
-              [%sgpm p=@ud q=hoon r=hoon]                 ::
-              [%sgts p=hoon q=hoon]                       ::
-              [%sgwt p=@ud q=hoon r=hoon s=hoon]          ::
-              [%sgzp p=hoon q=hoon]                       ::
-            ::                                            ::
-              [%smcb p=hoon q=hoon]                       ::
-              [%smcl p=hoon q=gens]                       ::
-              [%smcm p=hoon q=gens]                       ::
-              [%smcn p=gens]                              ::
-              [%smdt p=hoon q=gens]                       ::
-              [%smdq p=(list beer)]                       ::
-              [%smgl p=hoon q=hoon r=hoon]                ::
-              [%smgr p=hoon q=hoon r=hoon]                ::
-              [%smkt p=hoon q=hoon]                       ::
-              [%smhp p=hoon q=hoon]                       ::
-              [%smhx p=(list beer)]                       ::
-              [%smls p=hoon q=hoon]                       ::
-              [%smpm p=hoon q=gens]                       ::
-              [%smsg p=hoon q=gens]                       ::
-              [%smsm p=hoon q=hoon]                       ::
-              [%smtr p=hoon q=hoon]                       ::
-              [%smts p=hoon q=hoon]                       ::
-              [%smwt p=hoon q=hoon]                       ::
-            ::                                            ::
-              [%tsbr p=hoon q=hoon]                       ::
-              [%tscl p=gent q=hoon]                       ::
-              [%tsdt p=hoon q=hoon r=hoon]                ::
-              [%tsgl p=hoon q=hoon]                       ::
-              [%tsgr p=hoon q=hoon]                       ::
-              [%tskt p=hoon q=hoon r=hoon s=hoon]         ::
-              [%tsls p=hoon q=hoon]                       ::
-              [%tshp p=hoon q=hoon]                       ::
-              [%tssg p=gens]                              ::
-            ::                                            ::
-              [%wtbr p=gens]                              ::
-              [%wthp p=hoon q=gent]                       ::
-              [%wtcl p=hoon q=hoon r=hoon]                ::
-              [%wtcn p=hoon q=hoon]                       ::
-              [%wtdt p=hoon q=hoon r=hoon]                ::
-              [%wtkt p=hoon q=hoon r=hoon]                ::
-              [%wtgl p=hoon q=hoon]                       ::
-              [%wtgr p=hoon q=hoon]                       ::
-              [%wtls p=hoon q=hoon r=gent]                ::
-              [%wtpm p=gens]                              ::
-              [%wtpt p=hoon q=hoon r=hoon]                ::
-              [%wtsg p=hoon q=hoon r=hoon]                ::
-              [%wtts p=hoon q=hoon]                       ::
-              [%wtzp p=hoon]                              ::
-            ::                                            ::
-              [%zpcb p=spot q=hoon]                       ::
-              [%zpcm p=hoon q=hoon]                       ::
-              [%zpcn ~]                                   ::
-              [%zpfs p=hoon]                              ::
-              [%zpgr p=hoon]                              ::
-              [%zpsm p=hoon q=hoon]                       ::
-              [%zpts p=hoon]                              ::
-              [%zpzp ~]                                   ::
-            ==                                            ::
-  ++  limb  $|(term $%([&amp;amp; p=axis] [| p=@ud q=term]))      ::
-  ++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::
-  ++  spot  ,[p=path q=pint]                              ::
-  ++  term  ,@tas                                         ::
-  ++  wing  (list limb)                                   ::
-  --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;      |%                                                      ::
+      ++  axis  ,@                                            ::
+      ++  beer  $|(@ [~ p=hoon])                              ::
+      ++  foot  $%  [%ash p=hoon]                             ::
+                    [%elm p=hoon]                             ::
+                    [%oak ~]                                  ::
+                    [%yew p=(map term foot)]                  ::
+                ==                                            ::
+      ++  gens  (list hoon)                                   ::
+      ++  gent  (list ,[p=hoon q=hoon])                       ::
+      ++  genu  (list ,[p=term q=hoon])                       ::
+      ++  goon  (list (unit hoon))                            ::
+      ++  hoon  $&amp;amp;  [p=hoon q=hoon]                           ::
+                $%                                            ::
+                  [%$ p=axis]                                 ::
+                ::                                            ::
+                  [%bcbr p=hoon q=hoon]                       ::
+                  [%bccb p=hoon]                              ::
+                  [%bccl p=gens]                              ::
+                  [%bccn p=hoon q=gens]                       ::
+                  [%bccm p=hoon]                              ::
+                  [%bckt p=hoon]                              ::
+                  [%bcpm p=hoon q=hoon]                       ::
+                  [%bctr p=hoon]                              ::
+                  [%bcts p=bozo]                              ::
+                  [%bcwt p=hoon q=gens]                       ::
+                ::                                            ::
+                  [%brbr p=hoon q=hoon]                       ::
+                  [%brcb p=hoon q=(map term foot)]            ::
+                  [%brcl p=hoon q=(map term foot)]            ::
+                  [%brcn p=(map term foot)]                   ::
+                  [%brdt p=hoon]                              ::
+                  [%brkt p=hoon q=(map term foot)]            ::
+                  [%brhp p=hoon]                              ::
+                  [%brls p=hoon q=hoon]                       ::
+                  [%brtr p=hoon q=hoon]                       ::
+                  [%brts p=hoon q=hoon]                       ::
+                  [%brwt p=hoon]                              ::
+                ::                                            ::
+                  [%clcb p=hoon q=hoon]                       ::
+                  [%clcn p=gens]                              ::
+                  [%clfs p=hoon]                              ::
+                  [%clkt p=hoon q=hoon r=hoon s=hoon]         ::
+                  [%clhp p=hoon q=hoon]                       ::
+                  [%clls p=hoon q=hoon r=hoon]                ::
+                  [%clsg p=gens]                              ::
+                  [%cltr p=gens]                              ::
+                  [%clzp p=gens]                              ::
+                ::                                            ::
+                  [%cnbc p=term]                              ::
+                  [%cncb p=wing q=gent]                       ::
+                  [%cncl p=hoon q=hoon]                       ::
+                  [%cndt p=hoon q=hoon]                       ::
+                  [%cnhp p=hoon q=gens]                       ::
+                  [%cnhx p=wing]                              ::
+                  [%cntr p=wing q=hoon r=gent]                ::
+                  [%cnkt p=hoon q=hoon r=hoon s=hoon]         ::
+                  [%cnls p=hoon q=hoon r=hoon]                ::
+                  [%cnsg p=wing q=hoon r=hoon]                ::
+                  [%cnts p=wing q=gent]                       ::
+                ::                                            ::
+                  [%dtkt p=hoon]                              ::
+                  [%dtls p=hoon]                              ::
+                  [%dtpt p=term q=@]                          ::
+                  [%dtsg p=term q=*]                          ::
+                  [%dttr p=hoon q=hoon]                       ::
+                  [%dtts p=hoon q=hoon]                       ::
+                  [%dtwt p=hoon]                              ::
+                ::                                            ::
+                  [%hxgl p=gens]                              ::
+                  [%hxgr p=gens]                              ::
+                ::                                            ::
+                  [%ktbr p=hoon]                              ::
+                  [%ktls p=hoon q=hoon]                       ::
+                  [%ktdt p=hoon q=hoon]                       ::
+                  [%kthp p=hoon q=hoon]                       ::
+                  [%ktpm p=hoon]                              ::
+                  [%ktsg p=hoon]                              ::
+                  [%ktts p=term q=hoon]                       ::
+                  [%ktwt p=hoon]                              ::
+                ::                                            ::
+                  [%sgbr p=hoon q=hoon]                       ::
+                  [%sgcl p=[p=@ q=@] q=hoon]                  ::
+                  [%sgcn p=chop q=hoon r=genu s=hoon]         ::
+                  [%sgfs p=chop q=hoon]                       ::
+                  [%sggl p=$|(term [p=term q=hoon]) q=hoon]   ::
+                  [%sggr p=$|(term [p=term q=hoon]) q=hoon]   ::
+                  [%sgbc p=term q=hoon]                       ::
+                  [%sghx p=term q=hoon]                       ::
+                  [%sgkt p=hoon q=hoon]                       ::
+                  [%sgls p=@ q=hoon]                          ::
+                  [%sgpm p=@ud q=hoon r=hoon]                 ::
+                  [%sgts p=hoon q=hoon]                       ::
+                  [%sgwt p=@ud q=hoon r=hoon s=hoon]          ::
+                  [%sgzp p=hoon q=hoon]                       ::
+                ::                                            ::
+                  [%smcb p=hoon q=hoon]                       ::
+                  [%smcl p=hoon q=gens]                       ::
+                  [%smcm p=hoon q=gens]                       ::
+                  [%smcn p=gens]                              ::
+                  [%smdt p=hoon q=gens]                       ::
+                  [%smdq p=(list beer)]                       ::
+                  [%smgl p=hoon q=hoon r=hoon]                ::
+                  [%smgr p=hoon q=hoon r=hoon]                ::
+                  [%smkt p=hoon q=hoon]                       ::
+                  [%smhp p=hoon q=hoon]                       ::
+                  [%smhx p=(list beer)]                       ::
+                  [%smls p=hoon q=hoon]                       ::
+                  [%smpm p=hoon q=gens]                       ::
+                  [%smsg p=hoon q=gens]                       ::
+                  [%smsm p=hoon q=hoon]                       ::
+                  [%smtr p=hoon q=hoon]                       ::
+                  [%smts p=hoon q=hoon]                       ::
+                  [%smwt p=hoon q=hoon]                       ::
+                ::                                            ::
+                  [%tsbr p=hoon q=hoon]                       ::
+                  [%tscl p=gent q=hoon]                       ::
+                  [%tsdt p=hoon q=hoon r=hoon]                ::
+                  [%tsgl p=hoon q=hoon]                       ::
+                  [%tsgr p=hoon q=hoon]                       ::
+                  [%tskt p=hoon q=hoon r=hoon s=hoon]         ::
+                  [%tsls p=hoon q=hoon]                       ::
+                  [%tshp p=hoon q=hoon]                       ::
+                  [%tssg p=gens]                              ::
+                ::                                            ::
+                  [%wtbr p=gens]                              ::
+                  [%wthp p=hoon q=gent]                       ::
+                  [%wtcl p=hoon q=hoon r=hoon]                ::
+                  [%wtcn p=hoon q=hoon]                       ::
+                  [%wtdt p=hoon q=hoon r=hoon]                ::
+                  [%wtkt p=hoon q=hoon r=hoon]                ::
+                  [%wtgl p=hoon q=hoon]                       ::
+                  [%wtgr p=hoon q=hoon]                       ::
+                  [%wtls p=hoon q=hoon r=gent]                ::
+                  [%wtpm p=gens]                              ::
+                  [%wtpt p=hoon q=hoon r=hoon]                ::
+                  [%wtsg p=hoon q=hoon r=hoon]                ::
+                  [%wtts p=hoon q=hoon]                       ::
+                  [%wtzp p=hoon]                              ::
+                ::                                            ::
+                  [%zpcb p=spot q=hoon]                       ::
+                  [%zpcm p=hoon q=hoon]                       ::
+                  [%zpcn ~]                                   ::
+                  [%zpfs p=hoon]                              ::
+                  [%zpgr p=hoon]                              ::
+                  [%zpsm p=hoon q=hoon]                       ::
+                  [%zpts p=hoon]                              ::
+                  [%zpzp ~]                                   ::
+                ==                                            ::
+      ++  limb  $|(term $%([&amp;amp; p=axis] [| p=@ud q=term]))      ::
+      ++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::
+      ++  spot  ,[p=path q=pint]                              ::
+      ++  term  ,@tas                                         ::
+      ++  wing  (list limb)                                   ::
+      --&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Wha? Of course, we learned to use this subset of Hoon in the last chapter. We know that &lt;code&gt;++hoon&lt;/code&gt; is a function which normalizes an untyped noun into a hoon. (And Australians, really, you can stop laughing now.)&lt;/p&gt;
 
@@ -755,58 +2308,58 @@
 
 &lt;p&gt;But in the compiler core, &lt;code&gt;++ut&lt;/code&gt;, there are only three arms where we &lt;code&gt;?-&lt;/code&gt; on this giant clan of hoons. These are &lt;code&gt;++mint&lt;/code&gt;; &lt;code&gt;++play&lt;/code&gt;, an abbreviated mint that only does type inference; and &lt;code&gt;++mung&lt;/code&gt;, which implements generic polymorphism. Let&amp;#8217;s look at &lt;code&gt;++play&lt;/code&gt;, because it&amp;#8217;s the simplest.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;  |%
-  ++  play  
-    ~/  %play
-    =&amp;gt;  .(vet |)
-    |=  gen=hoon
-    ?-  gen
-      [^ *]      (cell $(gen p.gen) $(gen q.gen))
-      [%brcl *]  (heir(sut $(gen p.gen)) q.gen)
-      [%brcn *]  (core sut %gold sut [[%0 0] p.gen])
-      [%cnts *]  =+  lar=(foil (seek %read p.gen))
-                 =+  mew=(swab q.gen)
-                 =+  rag=q.q.lar
-                 %-  fire
-                 |-  ^-  (list ,[p=type q=foot])
-                 ?~  mew
-                   rag
-                 $(mew t.mew, rag q:(tock p.i.mew ^$(gen q.i.mew) rag))
-      [%dtkt *]  %noun
-      [%dtls *]  [%atom %$]
-      [%dtpt *]  ?:(=(%f p.gen) ?&amp;gt;((lte q.gen 1) bean) [%atom p.gen])
-      [%dtsg *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
-      [%dttr *]  %noun
-      [%dtts *]  bean
-      [%dtwt *]  bean
-      [%ktbr *]  (wrap(sut $(gen p.gen)) %iron)
-      [%ktdt *]  $(gen (snap(sut $(gen p.gen)) q.gen))
-      [%ktls *]  $(gen p.gen)
-      [%ktpm *]  (wrap(sut $(gen p.gen)) %zinc)
-      [%ktsg *]  $(gen p.gen)
-      [%ktts *]  (face p.gen $(gen q.gen))
-      [%ktwt *]  (wrap(sut $(gen p.gen)) %lead)
-      [%sggr *]  $(gen q.gen)
-      [%tsgr *]  $(gen q.gen, sut $(gen p.gen))
-      [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
-                 %+  fork
-                   ?:(=(%void fex) %void $(sut fex, gen q.gen))
-                 ?:(=(%void wux) %void $(sut wux, gen r.gen))
-      [%wtcn *]  bean
-      [%zpcb *]  ~!((show %o p.gen) $(gen q.gen))  
-      [%zpcm *]  (play p.gen)
-      [%zpcn ~]  p:seed
-      [%zpfs *]  %void
-      [%zpsm *]  (cell $(gen p.gen) $(gen q.gen))
-      [%zpts *]  %noun
-      [%zpzp ~]  %void
-      *          =+  doz=~(open ap gen) 
-                 ?:  =(doz gen)
-                   ~!  (show [%c &amp;#39;hoon&amp;#39;] [%q gen])
-                   ~|(%play-open !!)
-                 $(gen doz)
-    ==
-  --&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;    |%
+    ++  play  
+      ~/  %play
+      =&amp;gt;  .(vet |)
+      |=  gen=hoon
+      ?-  gen
+        [^ *]      (cell $(gen p.gen) $(gen q.gen))
+        [%brcl *]  (heir(sut $(gen p.gen)) q.gen)
+        [%brcn *]  (core sut %gold sut [[%0 0] p.gen])
+        [%cnts *]  =+  lar=(foil (seek %read p.gen))
+                   =+  mew=(swab q.gen)
+                   =+  rag=q.q.lar
+                   %-  fire
+                   |-  ^-  (list ,[p=type q=foot])
+                   ?~  mew
+                     rag
+                   $(mew t.mew, rag q:(tock p.i.mew ^$(gen q.i.mew) rag))
+        [%dtkt *]  %noun
+        [%dtls *]  [%atom %$]
+        [%dtpt *]  ?:(=(%f p.gen) ?&amp;gt;((lte q.gen 1) bean) [%atom p.gen])
+        [%dtsg *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
+        [%dttr *]  %noun
+        [%dtts *]  bean
+        [%dtwt *]  bean
+        [%ktbr *]  (wrap(sut $(gen p.gen)) %iron)
+        [%ktdt *]  $(gen (snap(sut $(gen p.gen)) q.gen))
+        [%ktls *]  $(gen p.gen)
+        [%ktpm *]  (wrap(sut $(gen p.gen)) %zinc)
+        [%ktsg *]  $(gen p.gen)
+        [%ktts *]  (face p.gen $(gen q.gen))
+        [%ktwt *]  (wrap(sut $(gen p.gen)) %lead)
+        [%sggr *]  $(gen q.gen)
+        [%tsgr *]  $(gen q.gen, sut $(gen p.gen))
+        [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
+                   %+  fork
+                     ?:(=(%void fex) %void $(sut fex, gen q.gen))
+                   ?:(=(%void wux) %void $(sut wux, gen r.gen))
+        [%wtcn *]  bean
+        [%zpcb *]  ~!((show %o p.gen) $(gen q.gen))  
+        [%zpcm *]  (play p.gen)
+        [%zpcn ~]  p:seed
+        [%zpfs *]  %void
+        [%zpsm *]  (cell $(gen p.gen) $(gen q.gen))
+        [%zpts *]  %noun
+        [%zpzp ~]  %void
+        *          =+  doz=~(open ap gen) 
+                   ?:  =(doz gen)
+                     ~!  (show [%c &amp;#39;hoon&amp;#39;] [%q gen])
+                     ~|(%play-open !!)
+                   $(gen doz)
+      ==
+    --&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The first thing we notice about this code, which almost fits on a page but doesn&amp;#8217;t quite, is that there are only 28 runes we evaluate directly. The rest go into &lt;code&gt;++open&lt;/code&gt; in &lt;code&gt;++ut&lt;/code&gt;, where they are expanded as macros.&lt;/p&gt;
 
@@ -820,18 +2373,18 @@
 
 &lt;p&gt;So how do we infer type through it? Since both &lt;code&gt;q&lt;/code&gt; and &lt;code&gt;r&lt;/code&gt; are applied to the same subject as the original hoon, you might think the code would be&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;      [%wtcl *]  [%fork $(gen q.gen) $(gen r.gen)]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;    [%wtcl *]  [%fork $(gen q.gen) $(gen r.gen)]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But in fact, it&amp;#8217;s&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;      [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
-                 %+  fork
-                   ?:(=(%void fex) %void $(sut fex, gen q.gen))
-                 ?:(=(%void wux) %void $(sut wux, gen r.gen))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;    [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
+               %+  fork
+                 ?:(=(%void fex) %void $(sut fex, gen q.gen))
+               ?:(=(%void wux) %void $(sut wux, gen r.gen))&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What&amp;#8217;s going on here is that we analyze &lt;code&gt;p.gen&lt;/code&gt;, the test in the if, to refine the subject type. On either branch, we&amp;#8217;ve learned something about the subject, so we should have a new type - created by &lt;code&gt;++gain&lt;/code&gt; for the yes branch, &lt;code&gt;++lose&lt;/code&gt; for the no. Then, the product type is the union of both branches.&lt;/p&gt;
 
-&lt;p&gt;The power of &lt;code&gt;+gain&lt;/code&gt; and &lt;code&gt;++lose&lt;/code&gt; shouldn&amp;#8217;t be overstated. It can analyze boolean logic (but is not a SAT solver) and can use the results of &lt;code&gt;?%&lt;/code&gt; (which is normally used through the macro &lt;code&gt;?=&lt;/code&gt;, testing if a noun matches a type.&lt;/p&gt;
+&lt;p&gt;The power of &lt;code&gt;+gain&lt;/code&gt; and &lt;code&gt;++lose&lt;/code&gt; shouldn&amp;#8217;t be overstated. It can analyze simple boolean logic (but is not a SAT solver) and can use the results of &lt;code&gt;?%&lt;/code&gt; (which is normally used through the macro &lt;code&gt;?=&lt;/code&gt;, testing if a noun matches a type.&lt;/p&gt;
 
 &lt;p&gt;Moreover, this is not enforced in &lt;code&gt;++play&lt;/code&gt;, but when the type system figures out that a path isn&amp;#8217;t taken, that&amp;#8217;s an error - you&amp;#8217;ll see &lt;code&gt;mint-vain&lt;/code&gt;, meaning that your code is in vain.&lt;/p&gt;
 
@@ -857,11 +2410,19 @@
 
 &lt;p&gt;means &amp;#8220;+3 in foo in bar in +7 in moo&amp;#8221; - ie, the opposite of the &amp;#8220;object.attribute&amp;#8221; order you&amp;#8217;re used to from Earth languages.&lt;/p&gt;
 
-&lt;p&gt;Obviously, &lt;code&gt;+3&lt;/code&gt; is always a leg. Whereas &lt;code&gt;moo&lt;/code&gt; can resolve either when it finds a &lt;code&gt;%face&lt;/code&gt;, or when it finds a &lt;code&gt;%core&lt;/code&gt;. When searching in a type, the search stops at a &lt;code&gt;%face&lt;/code&gt; that conflicts with the term we&amp;#8217;re looking for, but continues into the payload of a &lt;code&gt;%core&lt;/code&gt; that doesn&amp;#8217;t have an arm that matches the term we&amp;#8217;re looking for. Moreover, a term limb has a numeric parameter that lets us skip the first &lt;code&gt;p&lt;/code&gt; matches; so, &lt;code&gt;moo&lt;/code&gt; means the first &lt;code&gt;moo&lt;/code&gt; we find, but &lt;code&gt;^^moo&lt;/code&gt; means &amp;#8220;skip over the first 2 &lt;code&gt;moo&lt;/code&gt;s we find and accept the third.&amp;#8221;&lt;/p&gt;
+&lt;p&gt;Obviously, &lt;code&gt;+3&lt;/code&gt; is always a leg. Whereas &lt;code&gt;moo&lt;/code&gt; can resolve either when it finds a &lt;code&gt;%face&lt;/code&gt;, or when it finds a &lt;code&gt;%core&lt;/code&gt;. When searching in a type, the search stops at a &lt;code&gt;%face&lt;/code&gt; that conflicts with the term we&amp;#8217;re looking for, but continues into the payload of a &lt;code&gt;%core&lt;/code&gt; that doesn&amp;#8217;t have an arm that matches the term we&amp;#8217;re looking for.&lt;/p&gt;
+
+&lt;p&gt;Moreover, a term limb has a numeric parameter that lets us skip the first &lt;code&gt;p&lt;/code&gt; matches; so, &lt;code&gt;moo&lt;/code&gt; means the first &lt;code&gt;moo&lt;/code&gt; we find, but &lt;code&gt;^^moo&lt;/code&gt; means &amp;#8220;skip over the first 2 &lt;code&gt;moo&lt;/code&gt;s we find and accept the third.&amp;#8221;&lt;/p&gt;
 
 &lt;p&gt;This explains mysterious usages like &lt;code&gt;^^$&lt;/code&gt;. &lt;code&gt;$&lt;/code&gt; is just a syntax for the empty symbol - &lt;code&gt;$&lt;/code&gt; compares to &lt;code&gt;%$&lt;/code&gt; as &lt;code&gt;moo&lt;/code&gt; to %moo. The one is a limb, the other a constant. In practice, &lt;code&gt;$&lt;/code&gt; is used for &amp;#8220;the nameless function or loop we&amp;#8217;re inside.&amp;#8221;&lt;/p&gt;
 
 &lt;p&gt;So &lt;code&gt;^$&lt;/code&gt; gives us the functional equivalent of multi-level break. Indeed, if there is one practical problem with most functional languages, it&amp;#8217;s the inability to refer to anonymous functions that you&amp;#8217;re inside.&lt;/p&gt;
+
+&lt;p&gt;Finally, what happens if you resolve to an arm midway through the wing? Eg,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    foo.bar.moo.baz&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where &lt;code&gt;moo.baz&lt;/code&gt; is an arm? As you might expect, &lt;code&gt;moo.baz&lt;/code&gt; resolves to the core containing &lt;code&gt;++moo&lt;/code&gt;, and &lt;code&gt;foo.bar&lt;/code&gt; references into it. This explains bizarre tokens like &lt;code&gt;..$&lt;/code&gt;; the simplest limb is &lt;code&gt;.&lt;/code&gt;, meaning &lt;code&gt;+1&lt;/code&gt;, so &lt;code&gt;..$&lt;/code&gt; means &lt;code&gt;+1.$&lt;/code&gt; - ie, it refers to the nameless function we&amp;#8217;re inside, without actually calling it.&lt;/p&gt;
 
 &lt;p&gt;Then we have the changes. Actually, Hoon in Hoon is relatively old code, and done right it would be&lt;/p&gt;
 
@@ -873,13 +2434,119 @@
 
 &lt;pre&gt;&lt;code&gt;    [formula [sample context]]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;and evaluate the formula (typically named &lt;code&gt;$&lt;/code&gt;) with the sample, (&lt;code&gt;+6&lt;/code&gt;), replaced with your actual argument. Hence, the code for this, supposing you have your gate in &lt;code&gt;moo&lt;/code&gt;, and your argument is &lt;code&gt;bar&lt;/code&gt;, would look like&lt;/p&gt;
+&lt;p&gt;and evaluate the formula (typically the single arm &lt;code&gt;$&lt;/code&gt;) with the sample, (&lt;code&gt;+6&lt;/code&gt;), replaced with your actual argument. Hence, the code for this, supposing you have your gate in &lt;code&gt;moo&lt;/code&gt;, and your argument is &lt;code&gt;bar&lt;/code&gt;, would look like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;    %=  $.moo
       +6  bar
     ==&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;and &lt;code&gt;centis&lt;/code&gt; in this case means &amp;#8220;replace the sample with the argument, and execute the function body.&amp;#8221;&lt;/p&gt;</content>
+&lt;p&gt;and &lt;code&gt;centis&lt;/code&gt; in this case means &amp;#8220;replace the sample with the argument, and execute the function body.&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;And with &lt;code&gt;?:&lt;/code&gt; and &lt;code&gt;%=&lt;/code&gt;, we&amp;#8217;ve actually explained all the really interesting hoons. The rest are boring. But let&amp;#8217;s go through them anyway.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %brcl |: &amp;quot;barcol&amp;quot; [%brcl p=hoon q=(map term foot)]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;barcol&lt;/code&gt; does inheritance. This isn&amp;#8217;t used in Hoon or Arvo now, so don&amp;#8217;t use it or expect it to work.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %brcn |% &amp;quot;barcen&amp;quot; [%brcn p=(map term foot)]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;barcen&lt;/code&gt; is the way we create cores. For any subject type &lt;code&gt;sut&lt;/code&gt;, &lt;code&gt;barcen&lt;/code&gt; produces the core type &lt;code&gt;[%core sut %gold ~ p.gen]&lt;/code&gt;. If the subject noun is &lt;code&gt;ctx&lt;/code&gt;, the product is &lt;code&gt;[bat ctx]&lt;/code&gt;, where &lt;code&gt;bat&lt;/code&gt; is the battery generated by &lt;code&gt;p.gen&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %dtkt .^ &amp;quot;dotket&amp;quot; [%dtkt p=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;dotket&lt;/code&gt; dereferences the global namespace, generating Nock operator 11. &amp;#8220;But there is no Nock operator 11,&amp;#8221; you protest. That&amp;#8217;s right - but your Arvo code runs not in Nock, but in a &lt;em&gt;superset&lt;/em&gt; of it, &lt;code&gt;++mock&lt;/code&gt;, in which there is an operator 11.&lt;br /&gt;Its operand is an untyped noun and so is its product.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %dtls .+ &amp;quot;dotlus&amp;quot; [%dtls p=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock increment. Requires and produces an atom, obviously.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %dtpt .@ &amp;quot;dotpat&amp;quot; [%dtpt p=term q=@] &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Constant atom. &lt;code&gt;p&lt;/code&gt; is the odor. Just generated by the parser - you won&amp;#8217;t see any &lt;code&gt;.@&lt;/code&gt; runes in your Hoon file. The type is &lt;code&gt;[%atom p.gen]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %dtsg .~ &amp;quot;dotsig&amp;quot; [%dtsg p=term q=*] &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Constant atom or cell. You might think this is redundant with &lt;code&gt;%dtpt&lt;/code&gt;, but the type it produces is a &lt;code&gt;%cube&lt;/code&gt;, typed as a constant - eg, if &lt;code&gt;q&lt;/code&gt; is an atom, &lt;code&gt;[%cube [%atom p.gen] q.gen]&lt;/code&gt;. Still, there is something confusing and ugly here.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %dttr .* &amp;quot;dottar&amp;quot; [%dttr p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock &lt;code&gt;2&lt;/code&gt;. If you want to run Nock from Hoon without another layer of virtualization, this is what you use. Needless to say, the product is an untyped noun.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %dtts .= &amp;quot;dottis&amp;quot; [%dtts p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock &lt;code&gt;5&lt;/code&gt;, ie, equals. &lt;code&gt;0&lt;/code&gt; is yes, &lt;code&gt;1&lt;/code&gt; is no.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %dtwt .? &amp;quot;dotwut&amp;quot; [%dtwt p=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nock &lt;code&gt;3&lt;/code&gt; - &lt;code&gt;0&lt;/code&gt; (yes, &lt;code&gt;&amp;amp;&lt;/code&gt;) for cell, &lt;code&gt;1&lt;/code&gt; (false, &lt;code&gt;|&lt;/code&gt;) for atom.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %ktbr ^| &amp;quot;ketbar&amp;quot; [%ktbr p=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ketbar&lt;/code&gt; converts a gold core to &lt;code&gt;%iron&lt;/code&gt;, ie, contravariant.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %ktdt ^. &amp;quot;ketdot&amp;quot; [%ktdt p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ketdot&lt;/code&gt; - snap. This takes the superficial namespace of &lt;code&gt;p&lt;/code&gt; and applies it to &lt;code&gt;q&lt;/code&gt;. You will never use this; it appears only in the bowels of macros; and if we had to explain why it exists at all, we&amp;#8217;d be embarrassed. So we won&amp;#8217;t.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %ktpm ^&amp;amp; &amp;quot;ketpam&amp;quot; [%ktpm p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ketpam&lt;/code&gt; converts a gold core to &lt;code&gt;%zinc&lt;/code&gt;, ie, covariant.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %ktls ^+ &amp;quot;ketlus&amp;quot; [%ktls p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ketlus&lt;/code&gt; casts &lt;code&gt;q.gen&lt;/code&gt; to &lt;code&gt;p.gen&lt;/code&gt;, so long as &lt;code&gt;q.gen&lt;/code&gt; is geometrically compatible with &lt;code&gt;p.gen&lt;/code&gt; (ie, any product of &lt;code&gt;q.gen&lt;/code&gt; with the present subject can be used as if it was the product of &lt;code&gt;p.gen&lt;/code&gt; with the present subject).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %ktsg ^~ &amp;quot;ketsig&amp;quot; [%ktsg p=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ketsig&lt;/code&gt; tries to execute &lt;code&gt;p.gen&lt;/code&gt; statically at compile time. If it fails, it just leaves the dynamic expression.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %ktts ^= &amp;quot;kettis&amp;quot; [%ktts p=term q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;kettis&lt;/code&gt; wraps a &lt;code&gt;%face&lt;/code&gt; around &lt;code&gt;q.gen&lt;/code&gt;, ie, names it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %ktwt ^? &amp;quot;ketwut&amp;quot; [%ktwt p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ketwut&lt;/code&gt; converts any core to &lt;code&gt;%lead&lt;/code&gt;, ie, bivariant.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %sggr ~&amp;gt; &amp;quot;siggar&amp;quot; [%sggr p=$|(term [p=term q=hoon]) q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;siggar&lt;/code&gt; is a hint - any hint (Nock &lt;code&gt;10&lt;/code&gt;). There are many hints, all semantically transparent.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %tsgr =&amp;gt; &amp;quot;tisgar&amp;quot; [%tsgr p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;tisgar&lt;/code&gt; uses the product of &lt;code&gt;p&lt;/code&gt; as the subject of &lt;code&gt;q&lt;/code&gt;. The code from &lt;code&gt;++play&lt;/code&gt; should say it all: &lt;code&gt;$(gen q.gen, sut $(gen p.gen))&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %wtcn ?% &amp;quot;wutcen&amp;quot; [%wtcn p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;wutcen&lt;/code&gt;, normally used only through the macro &lt;code&gt;?=&lt;/code&gt;, is true if and only if the dynamic product of &lt;code&gt;q&lt;/code&gt; is in the range of &lt;code&gt;p&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %zpcb !_ &amp;quot;zapcab&amp;quot; [%zpcb p=spot q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;zapcab&lt;/code&gt; is only generated by the parser, within a &lt;code&gt;!:&lt;/code&gt; hoon, to produce debugging traces.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %zpcm !, &amp;quot;zapcom&amp;quot; [%zpcm p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;zapcom&lt;/code&gt; produces the literal hoon &lt;code&gt;q&lt;/code&gt; as a constant, casting it to the type of &lt;code&gt;p&lt;/code&gt; - which had better be &lt;code&gt;++hoon&lt;/code&gt;. This should be enforced, but isn&amp;#8217;t right now.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %zpcn !% &amp;quot;zapcen&amp;quot; [%zpcn ~]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;zapcen&lt;/code&gt; is obsolete but used to help with booting.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %zpfs !/ &amp;quot;zapfas&amp;quot; [%zpfs p=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;zapfas&lt;/code&gt;, only generated by the parser, indicates a path that should never be taken.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %zpsm !; &amp;quot;zapsem&amp;quot; [%zpsm p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;zapsem&lt;/code&gt; produces a &lt;code&gt;[type value]&lt;/code&gt; pair, sometimes known as a &lt;code&gt;vase&lt;/code&gt;. &lt;code&gt;p&lt;/code&gt; should be &lt;code&gt;++type&lt;/code&gt;. This should be checked, but isn&amp;#8217;t.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %zpts != &amp;quot;zaptis&amp;quot; [%zpts p=hoon]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;zaptis&lt;/code&gt; produces the Nock formula generated by &lt;code&gt;p&lt;/code&gt; as an untyped noun.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    %zpzp !! &amp;quot;zapzap&amp;quot; [%zpzp ~]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;zapzap&lt;/code&gt; always exits, and of course produces void.&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -936,7 +2603,7 @@
 
 &lt;pre&gt;&lt;code&gt;?(%atom %cell %core %cube %face %fork %hold)&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;and its tail is the corresponding tuple. Maw always said if you can milk a cow, you can understand &lt;code&gt;bucbar&lt;/code&gt; and &lt;code&gt;bucwut&lt;/code&gt;. Also, in a &amp;#8220;tagged noun&amp;#8221; or &lt;code&gt;%kelp&lt;/code&gt; of the form &lt;code&gt;[%cell p=type q=type]&lt;/code&gt;, &lt;code&gt;%atom&lt;/code&gt; is called the &lt;code&gt;%stem&lt;/code&gt; and &lt;code&gt;[p=type q=type]&lt;/code&gt; the &lt;code&gt;%bulb&lt;/code&gt;. Hoon&amp;#8217;s doxology thus combines two of our great interests out here in the real America, plants and four-letter words.&lt;/p&gt;
+&lt;p&gt;and its tail is the corresponding tuple. Maw always said if you can milk a cow, you can understand &lt;code&gt;bucbar&lt;/code&gt; and &lt;code&gt;buccen&lt;/code&gt;. Also, in a &amp;#8220;tagged noun&amp;#8221; or &lt;code&gt;%kelp&lt;/code&gt; of the form &lt;code&gt;[%cell p=type q=type]&lt;/code&gt;, &lt;code&gt;%cell&lt;/code&gt; is called the &lt;code&gt;%stem&lt;/code&gt; and &lt;code&gt;[p=type q=type]&lt;/code&gt; the &lt;code&gt;%bulb&lt;/code&gt;. Hoon&amp;#8217;s doxology thus combines two of our great interests out here in the real America, plants and four-letter words.&lt;/p&gt;
 
 &lt;p&gt;What&amp;#8217;s extremely strange and confusing, however, is that there is actually no Hoon syntax which is converted directly, as an AST or something like it, to one of these &lt;code&gt;++type&lt;/code&gt; nouns.&lt;/p&gt;
 
@@ -944,7 +2611,7 @@
 
 &lt;p&gt;When you do all this &lt;code&gt;bucbar&lt;/code&gt; manure, you are actually defining not a type, but a function - specifically, a function whose &lt;em&gt;sample&lt;/em&gt; (Hoon is a single-argument language) is &lt;code&gt;%noun&lt;/code&gt;. Ie, it&amp;#8217;s a function which converts an untyped noun to a typed noun, if possible identical with the argument - but in the general case, a normalizer.&lt;/p&gt;
 
-&lt;p&gt;What this means is that if you have some function which needs a &lt;code&gt;bar&lt;/code&gt;, and some fool from two counties down sends you a big binary blob (an &lt;code&gt;%atom&lt;/code&gt;), &lt;code&gt;foo&lt;/code&gt;, he can call &lt;code&gt;(bar (cue foo))&lt;/code&gt; to deserialize, validate and type this totally untrusted input. If poorly formed, it will end up as a default. Or, if normalization is not desired, use &lt;code&gt;((hard bar) (cue foo))&lt;/code&gt;, and you&amp;#8217;ll exit (Hoon is big into &amp;#8220;crash-only&amp;#8221;) if anything is wrong.&lt;/p&gt;
+&lt;p&gt;What this means is that if you have some function which needs a &lt;code&gt;bar&lt;/code&gt;, and some fool from two counties down sends you a big binary blob (an &lt;code&gt;%atom&lt;/code&gt;), &lt;code&gt;foo&lt;/code&gt;, you can call &lt;code&gt;(bar (cue foo))&lt;/code&gt; to deserialize, validate and type this totally untrusted input. If poorly formed, it will end up as a default. Or, if normalization is not desired, use &lt;code&gt;((hard bar) (cue foo))&lt;/code&gt;, and you&amp;#8217;ll exit (Hoon is big into &amp;#8220;crash-only&amp;#8221;) if anything is wrong.&lt;/p&gt;
 
 &lt;p&gt;Validating external data - a lot of your slick city type systems have trouble with this basic job we do every day down on the farm. We guess Haskell is a pretty cool language if you&amp;#8217;re more interested in proving some theorem, than making sure cowpox don&amp;#8217;t get into the hogpen. Some of us never proved a theorem in our lives and we feel just fine.&lt;/p&gt;
 
@@ -992,7 +2659,7 @@
 &lt;p&gt;Let&amp;#8217;s look at the structure again:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;  ++  type  $|  ?(%noun %void)
-            $%  [%atom p=@ta]
+            $%  [%atom p=@tas]
                 [%cell p=type q=type]
                 [%core p=type q=coil]
                 [%cube p=* q=type]
@@ -1103,7 +2770,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
                 r=[p=?(~ ^) q=(map ,@tas foot)]
             ==
   ++  foot  $%  [%ash p=hoon]
-                [%elm p=hoon`
+                [%elm p=hoon]
                 [%oak ~]
                 [%yew p=(map ,@tas foot)]
             ==
@@ -1194,7 +2861,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
    <id>http://urbit.org/2013/08/22/Chapter-4-syntax</id>
    <content type="html">&lt;p&gt;Now, let&amp;#8217;s actually look at Hoon. Really, try not to recoil in horror. It&amp;#8217;s actually not anything like line noise.&lt;/p&gt;
 
-&lt;p&gt;Open the Hoon kernel - &lt;code&gt;urb/zod/arvo/hoon.hoon&lt;/code&gt;. Let&amp;#8217;s look at the full, official decrement function (line 551):&lt;/p&gt;
+&lt;p&gt;Open the Hoon kernel - &lt;code&gt;urb/zod/arvo/hoon.hoon&lt;/code&gt;. Let&amp;#8217;s look at the full, official decrement function (line 553):&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;++  dec
       ~/  %dec
@@ -1261,20 +2928,20 @@ $  buc    factory macros (ie, type definitions)
 &lt;pre&gt;&lt;code&gt;%brts  |=  &amp;quot;bartis&amp;quot;
 
   define:
-    [%brts p=gene q=gene]
+    [%brts p=hoon q=hoon]
 
   expand:
     [%brts *]  [%brcb p.gen (~(put by *(map term foot)) %% [%ash q.gen])]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;There should be some actual discussion, but there isn&amp;#8217;t. Still, &lt;code&gt;brts.txt&lt;/code&gt; is quite complete as a definition of &lt;code&gt;|=&lt;/code&gt;. How? We need to step back a little.&lt;/p&gt;
 
-&lt;p&gt;When the Hoon parser parses a source file, it generates a noun called a &lt;code&gt;gene&lt;/code&gt;. If you know what an AST is, a gene is an AST node. If you don&amp;#8217;t, don&amp;#8217;t worry about it.&lt;/p&gt;
+&lt;p&gt;When the Hoon parser parses a source file, it generates a noun called a &lt;code&gt;hoon&lt;/code&gt;. If you know what an abstract syntax tree is, a hoon is an AST node. If you don&amp;#8217;t, don&amp;#8217;t worry about it.&lt;/p&gt;
 
-&lt;p&gt;Search the current kernel for &lt;code&gt;++  gene&lt;/code&gt; - note double space. This code is both the type declaration for type &lt;code&gt;gene&lt;/code&gt;, and a function that maps an untyped noun to a typed gene. In it you&amp;#8217;ll see the above definition,&lt;/p&gt;
+&lt;p&gt;Search the current kernel for &lt;code&gt;++  hoon&lt;/code&gt; - note double space. This code is both the type declaration for type &lt;code&gt;hoon&lt;/code&gt;, and a function that maps an untyped noun to a typed hoon. In it you&amp;#8217;ll see the above definition,&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[%brts p=gene q=gene]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[%brts p=hoon q=hoon]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Ie, one kind of gene is a triple whose head is the constant &lt;code&gt;%brts&lt;/code&gt;, and whose tail is a pair of genes, &lt;code&gt;p&lt;/code&gt; and &lt;code&gt;q&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Ie, one kind of hoon is a triple whose head is the constant &lt;code&gt;%brts&lt;/code&gt;, and whose tail is a pair of hoons, &lt;code&gt;p&lt;/code&gt; and &lt;code&gt;q&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;We also see the semantics of this rune: it expands to&lt;/p&gt;
 
@@ -1333,21 +3000,21 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;?:(=(a +(b)) b $(b +(b)))&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;It&amp;#8217;s usually best to use the wide form if your gene fits on the line, but this is obviously an aesthetic choice. If your gene does not fit your margin (which should always be 80 columns), you have no choice but to go tall. For reasons that should be obvious, a tall gene can contain wide subgenes, but a wide gene cannot contain tall subgenes - just as, in procedural languages, a statement can contain expressions but not vice versa.&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s usually best to use the wide form if your hoon fits on the line, but this is obviously an aesthetic choice. If your hoon does not fit your margin (which should always be 80 columns), you have no choice but to go tall. For reasons that should be obvious, a tall hoon can contain wide subhoons, but a wide hoon cannot contain tall subhoons - just as, in procedural languages, a statement can contain expressions but not vice versa.&lt;/p&gt;
 
-&lt;p&gt;In the wide normal form, the rune is followed immediately (no whitespace) by a left paren (&amp;#8220;pel&amp;#8221;), then the subgenes with a &lt;em&gt;single&lt;/em&gt; space between them, then a right paren (&amp;#8220;per&amp;#8221;) as terminator. If the rune was inside the parens rather than a prefix, this would be the Lisp syntax.&lt;/p&gt;
+&lt;p&gt;In the wide normal form, the rune is followed immediately (no whitespace) by a left paren (&amp;#8220;pel&amp;#8221;), then the subhoons with a &lt;em&gt;single&lt;/em&gt; space between them, then a right paren (&amp;#8220;per&amp;#8221;) as terminator. If the rune was inside the parens rather than a prefix, this would be the Lisp syntax.&lt;/p&gt;
 
-&lt;p&gt;In the tall normal form, any quantity of whitespace follows the rune, and separates the subgenes from each other. Where is the terminator? There is no terminator - in most cases.&lt;/p&gt;
+&lt;p&gt;In the tall normal form, any quantity of whitespace follows the rune, and separates the subhoons from each other. Where is the terminator? There is no terminator - in most cases.&lt;/p&gt;
 
 &lt;p&gt;Consider the &lt;code&gt;?:&lt;/code&gt; rune, &amp;#8220;wutcol,&amp;#8221; &lt;code&gt;%wtcl&lt;/code&gt;. This is&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[%wtcl p=gene q=gene r=gene]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[%wtcl p=hoon q=hoon r=hoon]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Why should we need a terminator? We know &lt;code&gt;%wtcl&lt;/code&gt;, whose semantics are if-then-else, has three subgenes. When the parser sees &lt;code&gt;?:&lt;/code&gt; followed by space, it simply parses the next three genes and fills the rune with them.&lt;/p&gt;
+&lt;p&gt;Why should we need a terminator? We know &lt;code&gt;%wtcl&lt;/code&gt;, whose semantics are if-then-else, has three subhoons. When the parser sees &lt;code&gt;?:&lt;/code&gt; followed by space, it simply parses the next three hoons and fills the rune with them.&lt;/p&gt;
 
 &lt;p&gt;This only works in runes with fixed tuple structure, which fortunately is most of them. A counterexample is &lt;code&gt;:*&lt;/code&gt;, ie,&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[%cltr p=(list gene)]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[%cltr p=(list hoon)]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;which is of variable length and needs a terminator. But we have no dangling parens, but an attractive tall closure:&lt;/p&gt;
 
@@ -1371,11 +3038,11 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The second law of Hoon indentation is that everything in the kernel is good indentation style. Or at least if it&amp;#8217;s not, it needs changed. The kernel shall be lapidary, noble, ideal and above all suspicion - a Doric column, a Tlingit totem pole, an Egyptian obelisk.&lt;/p&gt;
 
-&lt;p&gt;Tallness matters. The third law of Hoon indentation is that large genes should flow &lt;em&gt;down&lt;/em&gt; and not &lt;em&gt;across&lt;/em&gt; - like the decrement example above. The right margin is a precious resource not to be wasted. It&amp;#8217;s this law, when properly applied, that makes casual readers wonder if Hoon is a functional language at all. It doesn&amp;#8217;t have a program counter, but it looks like it does - at least when written right.&lt;/p&gt;
+&lt;p&gt;Tallness matters. The third law of Hoon indentation is that large hoons should flow &lt;em&gt;down&lt;/em&gt; and not &lt;em&gt;across&lt;/em&gt; - like the decrement example above. The right margin is a precious resource not to be wasted. It&amp;#8217;s this law, when properly applied, that makes casual readers wonder if Hoon is a functional language at all. It doesn&amp;#8217;t have a program counter, but it looks like it does - at least when written right.&lt;/p&gt;
 
 &lt;p&gt;In list-structured runes, like the &lt;code&gt;:*&lt;/code&gt; above, there is no choice but to lose right margin. Fortunately, most runes are tuples, and most have limited &amp;#8220;fanout&amp;#8221; - 1, 2, 3 or at most 4.&lt;/p&gt;
 
-&lt;p&gt;Both of our above examples - &lt;code&gt;|=&lt;/code&gt; and &lt;code&gt;?:&lt;/code&gt; - use &amp;#8220;backstep&amp;#8221; indentation which takes advantage of this tuple structure. For instance, &lt;code&gt;|=&lt;/code&gt; has two subgenes, &lt;code&gt;p&lt;/code&gt; and &lt;code&gt;q.&lt;/code&gt; We put &lt;code&gt;p&lt;/code&gt; on the same line as &lt;code&gt;|=&lt;/code&gt;, set off by two spaces, losing 4 characters of margin. We put &lt;code&gt;q&lt;/code&gt; &lt;em&gt;directly below&lt;/em&gt;, losing no margin at all.&lt;/p&gt;
+&lt;p&gt;Both of our above examples - &lt;code&gt;|=&lt;/code&gt; and &lt;code&gt;?:&lt;/code&gt; - use &amp;#8220;backstep&amp;#8221; indentation which takes advantage of this tuple structure. For instance, &lt;code&gt;|=&lt;/code&gt; has two subhoons, &lt;code&gt;p&lt;/code&gt; and &lt;code&gt;q.&lt;/code&gt; We put &lt;code&gt;p&lt;/code&gt; on the same line as &lt;code&gt;|=&lt;/code&gt;, set off by two spaces, losing 4 characters of margin. We put &lt;code&gt;q&lt;/code&gt; &lt;em&gt;directly below&lt;/em&gt;, losing no margin at all.&lt;/p&gt;
 
 &lt;p&gt;It so happens that in almost every actual case of &lt;code&gt;|=&lt;/code&gt;, &lt;code&gt;p&lt;/code&gt; (the function&amp;#8217;s argument) is relatively light, whereas &lt;code&gt;q&lt;/code&gt; (the function&amp;#8217;s body) will be much heavier. Thus, with this pattern of indentation, we lose no margin and our code flows &lt;em&gt;down&lt;/em&gt;.&lt;/p&gt;
 
@@ -1443,46 +3110,46 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;1. Structures&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;A noun is an atom or a cell.  An atom is any natural number.  
-A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;A noun is an atom or a cell.  An atom is a natural number.  
+A cell is an ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;2. Pseudocode&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;1  ::    nock(a)           *a
-2  ::    [a b c]           [a [b c]]
-3  ::
-4  ::    ?[a b]            0
-5  ::    ?a                1
-6  ::    +[a b]            +[a b]
-7  ::    +a                1 + a
-8  ::    =[a a]            0
-9  ::    =[a b]            1
-10 ::    =a                =a	
-11 ::
-12 ::    /[1 a]            a
-13 ::    /[2 a b]          a
-14 ::    /[3 a b]          b
-15 ::    /[(a + a) b]      /[2 /[a b]]
-16 ::    /[(a + a + 1) b]  /[3 /[a b]]
-17 ::    /a                /a
-18 ::
-19 ::    *[a [b c] d]      [*[a b c] *[a d]]
-20 ::
-21 ::    *[a 0 b]          /[b a]
-22 ::    *[a 1 b]          b
-23 ::    *[a 2 b c]        *[*[a b] *[a c]]
-24 ::    *[a 3 b]          ?*[a b]
-25 ::    *[a 4 b]          +*[a b]
-26 ::    *[a 5 b]          =*[a b]
-27 ::
-28 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
-29 ::    *[a 7 b c]        *[a 2 b 1 c]
-30 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
-31 ::    *[a 9 b c]        *[a 7 c 2 [0 1] 0 b]
-32 ::    *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
-33 ::    *[a 10 b c]       *[a c]
-34 ::
-35 ::    *a                *a&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;    1  ::    nock(a)             *a
+    2  ::    [a b c]             [a [b c]]
+    3  ::
+    4  ::    ?[a b]              0
+    5  ::    ?a                  1
+    6  ::    +[a b]              +[a b]
+    7  ::    +a                  1 + a
+    8  ::    =[a a]              0
+    9  ::    =[a b]              1
+    10 ::    =a                  =a
+    11 ::
+    12 ::    /[1 a]              a
+    13 ::    /[2 [a b]]          a
+    14 ::    /[3 [a b]]          b
+    15 ::    /[(a + a) b]        /[2 /[a b]]
+    16 ::    /[(a + a + 1) b]    /[3 /[a b]]
+    17 ::    /a                  /a
+    18 ::
+    19 ::    *[a [[b c] d]]      [*[a [b c]] *[a d]]
+    20 ::
+    21 ::    *[a [0 b]]          /[b a]
+    22 ::    *[a [1 b]]          b
+    23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
+    24 ::    *[a [3 b]]          ?*[a b]
+    25 ::    *[a [4 b]]          +*[a b]
+    26 ::    *[a [5 b]]          =*[a b]
+    27 ::
+    28 ::    *[a [6 [b [c d]]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+    29 ::    *[a [7 [b c]]]      *[a 2 b 1 c]
+    30 ::    *[a [8 [b c]]]      *[a 7 [[7 [0 1] b] 0 1] c]
+    31 ::    *[a [9 [b c]]]      *[a 7 c 2 [0 1] 0 b]
+    32 ::    *[a [10 [[b c] d]]] *[a 8 c 7 [0 3] d]
+    33 ::    *[a [10 [b c]]]     *[a c]
+    34 ::
+    35 ::    *a                  *a&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Your interpreter should be no more than a page of code in any language. For extra credit, &lt;code&gt;6&lt;/code&gt;-&lt;code&gt;10&lt;/code&gt; are macros; implement them directly. For extra extra credit, optimize tail calls. To test your code, write a decrement formula b such that &lt;code&gt;*[a b]&lt;/code&gt; is &lt;code&gt;a - 1&lt;/code&gt; for any atomic nonzero &lt;code&gt;a&lt;/code&gt;.&lt;/p&gt;
 
@@ -1553,7 +3220,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Let&amp;#8217;s move on to the axiomatic functions.&lt;/p&gt;
 
-&lt;h2 id=&#39;lines_49&#39;&gt;Lines 4-9:&lt;/h2&gt;
+&lt;h2 id=&#39;lines_410&#39;&gt;Lines 4-10:&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;4  ::    ?[a b]            0
 5  ::    ?a                1
@@ -1627,11 +3294,11 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;[14 15]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Even stupider is line 22:&lt;/p&gt;
+&lt;p&gt;Even stupider is line 21:&lt;/p&gt;
 
-&lt;h2 id=&#39;line_22&#39;&gt;Line 22:&lt;/h2&gt;
+&lt;h2 id=&#39;line_21&#39;&gt;Line 21:&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;22 ::    *[a 1 b]          b&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;21 ::    *[a 1 b]          b&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;1&lt;/code&gt; is the constant operator. It produces its argument without reference to the subject. So&lt;/p&gt;
 
@@ -1645,7 +3312,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;23 ::    *[a 2 b c]        *[*[a b] *[a c]]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Line 23 brings us the essential magic of recursion. &lt;code&gt;2&lt;/code&gt; is the Nock operator. If you can compute a subject and a formula, you can evaluate them in the interpreter. In most fundamental languages, like Lisp, &lt;code&gt;eval&lt;/code&gt; is a curiosity. But Nock has no &lt;code&gt;apply&lt;/code&gt; - so all our work gets done with &lt;code&gt;2&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Line 22 brings us the essential magic of recursion. &lt;code&gt;2&lt;/code&gt; is the Nock operator. If you can compute a subject and a formula, you can evaluate them in the interpreter. In most fundamental languages, like Lisp, &lt;code&gt;eval&lt;/code&gt; is a curiosity. But Nock has no &lt;code&gt;apply&lt;/code&gt; - so all our work gets done with &lt;code&gt;2&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s convert the previous example into a stupid use of &lt;code&gt;2&lt;/code&gt;:&lt;/p&gt;
 
@@ -1659,7 +3326,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;*[77 [2 [1 42] [1 1 153 218]]]
 
-23 ::    *[a 2 b c]        *[*[a b] *[a c]]
+22 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
 *[*[77 [1 42]] *[77 [1 1 153 218]]]
 
@@ -1671,13 +3338,13 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 
 [153 218]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#39;lines_2425&#39;&gt;Lines 24-25:&lt;/h2&gt;
+&lt;h2 id=&#39;lines_2426&#39;&gt;Lines 24-26:&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;24 ::    *[a 3 b]          ?*[a b]
 25 ::    *[a 4 b]          +*[a b]
 26 ::    *[a 5 b]          =*[a b]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;In lines 25-26, we meet our axiomatic functions again:&lt;/p&gt;
+&lt;p&gt;In lines 23-25, we meet our axiomatic functions again:&lt;/p&gt;
 
 &lt;p&gt;For instance, if &lt;code&gt;x&lt;/code&gt; is a formula that calculates some product, &lt;code&gt;[4 x]&lt;/code&gt; calculates that product plus one. Hence:&lt;/p&gt;
 
@@ -1699,7 +3366,7 @@ A cell is any ordered pair of nouns.&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;~tasfyn-partyv&amp;gt; .*([132 19] [4 0 3])
 20&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;If this seems obvious, you&amp;#8217;re doin&amp;#8217; good. Finally, we jump back up to line 19, the trickiest in the spec:&lt;/p&gt;
+&lt;p&gt;If this seems obvious, you&amp;#8217;re doin&amp;#8217; good. Finally, we jump back up to line 18, the trickiest in the spec:&lt;/p&gt;
 
 &lt;h2 id=&#39;line_19&#39;&gt;Line 19:&lt;/h2&gt;
 
@@ -2856,14 +4523,14 @@ rest: old 0v16.5un6m, new 0v1i.il78t
 
 &lt;p&gt;Let&amp;#8217;s try it with some data:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~waclyx-tomwyc/try=&amp;gt; (mul 10 ^:@/~zod/try/beta/doc/fortytwo/noun)
+&lt;pre&gt;&lt;code&gt;~waclyx-tomwyc/try=&amp;gt; (mul 10 ^:@/~wolnum-sorleb/try/beta/doc/fortytwo/noun)
 [waiting...]
 
 ~wolnum-sorleb/try=&amp;gt; :ram /===/doc/fortytwo/noun; (mul 6 7)
 + /~wolnum-sorleb/try/3/doc/fortytwo/noun
 ~wolnum-sorleb/try=&amp;gt; :label %try %beta
   
-~waclyx-tomwyc/try=&amp;gt; (mul 10 ^:@/~zod/try/beta/doc/fortytwo/noun)
+~waclyx-tomwyc/try=&amp;gt; (mul 10 ^:@/~wolnum-sorleb/try/beta/doc/fortytwo/noun)
 420&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;So not only can you use any data in Urbit, on the command line or in a program, as if it were a constant - if the data isn&amp;#8217;t available yet, your task will block until it is.&lt;/p&gt;
@@ -2894,10 +4561,10 @@ rest: old 0v16.5un6m, new 0v1i.il78t
 &lt;p&gt;Hit &lt;code&gt;^C&lt;/code&gt; on the task when you&amp;#8217;re done. Try editing the page or the application:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;/=try=/bin/game/hoon
-$URBIT_HOME/waclux-tomwyc/bin/game.hoon
+$URBIT_HOME/waclux-tomwyc/try/bin/game.hoon
 
-/=try=/doc/web/game/fun/hoon
-$URBIT_HOME/waclux-tomwyc/doc/web/game/fun.hoon&lt;/code&gt;&lt;/pre&gt;
+/=try=/web/game/fun/hoon
+$URBIT_HOME/waclux-tomwyc/try/web/game/fun.hoon&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and then hitting reload. You&amp;#8217;ll see that you need to restart the server to change the app, but not to change the page.&lt;/p&gt;
 
