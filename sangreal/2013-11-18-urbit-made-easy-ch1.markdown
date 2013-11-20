@@ -80,10 +80,10 @@ way, when we know what the atom is we'll just write the number: `1`, `2`, `3`, `
 (Note: Nock, and Urbit as a whole, use a period instead of a comma for long numbers.  You'll see why much later on.)
 
 The second way we write atoms is with single letters. We do this when we don't
-know what the atom is, so we use letters (`a`, `b`, `c`, `d` etc.) as placeholders or
-variables. This isn't actually part of Nock and we only do it in the rules that
-make up Nock, so we can describe what those rules are. In real Nock code, there
-are no letters. 
+know what the atom is, so we use letters (`a`, `b`, `c`, `d` etc.) as
+placeholders or variables. This isn't actually part of Nock and we only do it
+in the rules that make up Nock, so we can describe what those rules are. In
+real Nock code, there are no letters. 
 
 This is actually a really important point to keep in mind: The formal
 definition of Nock isn't written in Nock, but is actually written in English.
@@ -282,9 +282,9 @@ Turn letters to nouns (`a` is `2`, `b` is `6`, `c` is `[14 15]`):
 
 	[2 [6 [14 15]]]
 
-Which is our final output, with all the brackets added back to the noun 
-`[2 6 14 15]`. For even more complicated nouns, like `[2 6 14 30 31]` or 
-`[2 [12 26 27] 14 15]`, you would have to apply the rule from line 2 even more times.
+Which is our final output, with all the brackets added back to the noun `[2 6
+14 15]`. For even more complicated nouns, like `[2 6 14 30 31]` or `[2 [12 26
+27] 14 15]`, you would have to apply the rule from line 2 even more times.
 Every time you transform a noun using a rule in Nock, you have to take the
 output of that transformation and run it through Nock again until no more
 patterns in the left-hand column match. Nock has further rules that describe

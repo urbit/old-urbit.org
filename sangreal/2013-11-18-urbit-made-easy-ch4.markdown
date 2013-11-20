@@ -10,7 +10,7 @@ Let's say we have an atom 42. In Nock, incrementing 42 is easy: `*[42 4 0 1]`
 returns 43. But what if instead of adding 1 to 42 we wanted to subtract 1 and
 get 41?
 
-As you may have noticed, Nock has an increment operator ("+", Nock 4) but no
+As you may have noticed, Nock has an increment operator ("+", Nock `4`) but no
 decrement operator. This means that we'll have to build one. 
 
 Our criteria for a decrement function in Nock is that it has to be some formula
@@ -19,7 +19,7 @@ that when given any atomic subject a, produces a - 1.
 The first piece of decrement that we'll need is a test for whether an atom b is
 equal to one less than an atom a. In other words, is b equal to a decremented.
 Which is equivalent to testing whether a is equal to b incremented. Of course,
-to test whether two things are equal, we'll use Nock 5. 
+to test whether two things are equal, we'll use Nock `5`. 
 
 	*[[a b] 5 0 1]
 	=*[[a b] 0 1]
@@ -96,7 +96,7 @@ which would test "yes" and our if statement would return41.
 
 That's roughly going to be the structure of our decrement algorithm. We take an
 atom a, create the cell [0 a], run the cell through the above if statement, and
-then keep looping through Nock 6 (output turning into input etc. etc.) until
+then keep looping through Nock `6` (output turning into input etc. etc.) until
 the 0 in [0 a] counts up to a - 1. Simply,  We're calculating a minus one by
 counting up from 0. At which point, we exit the loop and end.
 
@@ -108,7 +108,7 @@ problem of looping. Remember that our decrement criteria specificied that our
 Nock code has to accept an atom, unlike our decrement test, which accepts only
 cells.
 
-Fortunately, we've got Nock 8,
+Fortunately, we've got Nock `8`,
 
 	8r ::     *[a 8 b c]        *[[*[a b] a] c]
 
@@ -122,7 +122,8 @@ big blob this looks like:
 
 We want to figure out what to set b as in order to turn `[*[a b] a]] into [0 a]`.
 
-We'll use Nock 1, which produces an argument without reference to the subject.
+We'll use Nock `1`, which produces an argument without reference to the
+subject.
 
 	22 ::    *[a [1 b]]          b
 
@@ -132,8 +133,8 @@ Which means that with:
 
 	*[a 8 b [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
 
-If we set our first formula for Nock 8 as [1 0], `[*[a b] a]]` will simply turn
-into [0 a], which is what we wanted.
+If we set our first formula for Nock `8` as [1 0], `[*[a b] a]]` will simply
+turn into [0 a], which is what we wanted.
 
 Walking through it:
 
@@ -153,7 +154,7 @@ Now let's figure out how to loop:
 
 	*[42 8 [1 0] [6 [5 [4 0 2] 0 3] [0 2] [[4 0 2] 0 3]]]
 
-to make this easier to read, we'll replace our Nock 6 decrement test with
+to make this easier to read, we'll replace our Nock `6` decrement test with
 "test"
 
 	*[42 8 [1 0] test]
@@ -192,7 +193,7 @@ To do this, we're going to do something we've never done before, we're going to
 put code, in this case "test" into our subject and we're going to build a
 formula "sel" that will allow us to select our test and apply it .
 
-We'll use Nock 8 for this:
+We'll use Nock `8` for this:
 
 	*[[0 42] 8 [1 test] sel]
 
@@ -200,7 +201,7 @@ We'll use Nock 8 for this:
 
 	*[[*[[0 42] [1 test]] [0 42]] sel]
 
-And then Nock 1:
+And then Nock `1`:
 
 	*[[test [0 42]] sel]
 
@@ -222,7 +223,8 @@ test returns "no.
 
 Okay, so for sel, 
 
-Nock 0, [0 2] allows us to refer to "test" which is in the head of our subject.
+Nock `0`, [0 2] allows us to refer to "test" which is in the head of our
+subject.
 
 However, simply doing:
 
@@ -237,7 +239,7 @@ get:
 
 	*[[test [0 42]] test]
 
-Let's try adding Nock 2, with formula-b set as [0 1] and formula-c set as [0
+Let's try adding Nock `2`, with formula-b set as [0 1] and formula-c set as [0
 2]:
 
 	23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
@@ -299,8 +301,8 @@ and over again. we've got a loop alright, it's an infinite loop.
 
 So let's add to sel so that it actually implements [[4 0 6] 0 7].
 
-We'll use Nock 7, since we want to apply [[4 0 6] 0 7] and sel `(2 [0 1] [0 2]]`)
-to [test [0 42]] in order. 
+We'll use Nock `7`, since we want to apply [[4 0 6] 0 7] and sel `(2 [0 1] [0
+2]]`) to [test [0 42]] in order. 
 
 
 	[test [0 42]] [7 [[4 0 6] 0 7] 2 [0 1] [0 2]]
@@ -377,12 +379,12 @@ We start with an atom a:
 
 	[a
 
-we use Nock 8 to turn it into the cell [0 a]
+we use Nock `8` to turn it into the cell [0 a]
 
 	[8 
 		[1 0]
 
-we'll use another Nock 8 and our test to produce a core:
+we'll use another Nock `8` and our test to produce a core:
 
 	[8 1
 	[6 
@@ -422,10 +424,10 @@ And all together:
 
 And that's decrement in Nock. 
 
-However, we can actually simplify this, by using Nock 9. Now that you know
-decrement, Nock 9 is trivially simple:
+However, we can actually simplify this, by using Nock `9`. Now that you know
+decrement, Nock `9` is trivially simple:
 
-Nock 9:
+Nock `9`:
 
 ##`9` Reduction:##
 
@@ -452,7 +454,7 @@ Looking at the line 31 in Nock:
 
 	31 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
 
-We notice that the definition on Nock 9 is exactly the same structure as our
+We notice that the definition on Nock `9` is exactly the same structure as our
 else formula:
 
 	[7 [0 2] [[4 0 6] 0 7] 2 [0 1] 0 2] 
@@ -463,9 +465,9 @@ Which we could rewrite as:
 
 Really, that's a lot cleaner, don't you think?
 
-Nock 9 is designed to do operations on cores.
+Nock `9` is designed to do operations on cores.
 
-We can also replace our old friend sel with Nock 9:
+We can also replace our old friend sel with Nock `9`:
 
 	[2 [0 1] 0 2]   
 
