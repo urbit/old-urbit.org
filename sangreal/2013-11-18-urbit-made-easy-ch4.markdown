@@ -283,7 +283,7 @@ So we want to do pretty much exactly what we already did with sel:
 
 Let's try just setting our else formula to sel
 
-	*[[test [0 42]] [6 [5 [4 0 2] 0 3] [0 2] [2 [0 1] 0 2]]]
+	*[[test [0 42]] [6 [5 [4 0 6] 0 7] [0 2] [2 [0 1] 0 2]]]
 
 if our test returns "no":
 
@@ -386,7 +386,7 @@ we'll use another Nock 8 and our test to produce a core:
 
 	[8 1
 	[6 
-		[5 [4 0 2] 0 3]                      ::if =[+b a]
+		[5 [4 0 6] 0 7]                      ::if =[+b a]
 		[0 6]                                ::then b
 		[7 [0 2] [[4 0 6] 0 7] 2 [0 1] 0 2]  ::else [[test [+b a]] test]
 	]
@@ -408,7 +408,7 @@ And all together:
 	        [8 1                                         ::build core
 
 		   [6                                        ::if    
-			[5 [4 0 2] 0 3]                      ::=[+b a]
+			[5 [4 0 6] 0 7]                      ::=[+b a]
 			[0 6]                                ::then b
 			[7 [0 2] [[4 0 6] 0 7] 2 [0 1] 0 2]  ::else [[test [+b a]] test]
 		   ]
@@ -474,6 +474,26 @@ turns into:
 	[9 2 0 1]
 
 Not a whole lot simpler, but still simpler.
+
+Simplified, Decrement looks like this:
+
+
+	[a
+	   [8 
+		[1 0]                                       ::declare variable b
+
+	        [8 1                                        ::build core
+
+		   [6                                       ::if    
+			[5 [4 0 6] 0 7]                     ::=[+b a]
+			[0 6]                               ::then b
+			[9 2 [4 0 6] 0 7]                   ::else loop		   ]
+
+	        ]
+
+		[9 2 0 1]                                   :: activate core
+	   ]
+	]
 
 
 And that's the whole Nock specification. Nothing more, nothing less. If you
