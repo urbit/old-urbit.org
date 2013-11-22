@@ -1,74 +1,139 @@
 ---
 layout: post
 category: doc
-title: Urbit Made Easy &#58; Chapter I
+title: Urbit Is Easy &#58; Chapter I
 ---
 
 #"What one fool can do, another can"#
 
-A lot of people think that Urbit is complicated. A lot of people are wrong. Urbit was designed to be stupid. 
+Now that we've installed Arvo, let's learn Nock.
 
-This guide assumes no prior knowledge of programming, computer science or math.
+Think of Nock as a kind of assembly language.  It's not like
+assembly language in that it's directly executed by the hardware.
+It is like assembly language in that (a) everything in Urbit
+executes at the Nock layer (no exceptions, callouts to C, etc);
+(b) you wouldn't want to program directly in assembly language;
+and (c) learning to program in assembly language is a great way
+to learn how a computer works.
+
+You could try to learn Hoon without learning Nock.  But just as C
+is a thin wrapper over the the physical CPU, Hoon is a thin
+wrapper over the Nock virtual machine.  It makes a lot more sense
+to learn the stack a layer at a time.
+
+Furthermore, unlike most fundamental models of computing, there's
+really nothing smart or interesting about Nock.  Of course, in a
+strictly formal sense, all of computing is math.  But that
+doesn't mean it needs to feel like math.  Nock is a simple
+mechanical device and it's meant to feel that way.
 
 #Chapter I: What is Nock?#
 
-Let's start with the formal specification of Nock. Don't worry, it's much less
-scary than it looks. 
+Let's start with the Nock spec.  It may look slightly
+intimidating, but at least it isn't long.
+
+No, you can't just look at this and tell what it's doing.
+We'll figure it out step by step.
 
 **1. Structures**
 
-	A noun is an atom or a cell.  An atom is any natural number. 
- 	A cell is any ordered pair of nouns.
+    A noun is an atom or a cell.  An atom is a natural number. 
+    A cell is a ordered pair of nouns.
 
 **2. Pseudocode**
 
-	1  ::    nock(a)           *a
-	2  ::     a b c]           a [b c]]
-	3  ::
-	4  ::    ?[a b]            0
-	5  ::    ?a                1
-	6  ::    +[a b]            +[a b]
-	7  ::    +a                1 + a
-	8  ::    =[a a]            0
-	9  ::    =[a b]            1
-	10 ::    =a                =a	
-	11 ::
-	12 ::    /[1 a]            a
-	13 ::    /[2 [a b]]          a
-	14 ::    /[3 [a b]]          b
-	15 ::    /[(a + a) b]      /[2 /[a b]]
-	16 ::    /[(a + a + 1) b]  /[3 /[a b]]
-	17 ::    /a                /a
-	18 ::
-	19 ::    *[a [[b c] d]]      [*[a [b c]] *[a d]]
-	20 ::
-	21 ::    *[a [0 b]]          /[b a]
-	22 ::    *[a [1 b]]          b
-	23 ::    *[a [2 [b c]]]      *[*[a b] *[a c]]
-	24 ::    *[a [3 b]]          ?*[a b]
-	25 ::    *[a [4 b]]          +*[a b]
-	26 ::    *[a [5 b]]          =*[a b]
-	27 ::
-	28 ::    *[a 6 [b [c d]]]    *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
-	29 ::    *[a 7 [b c]]        *[a 2 b 1 c]
-	30 ::    *[a 8 [b c]]        *[a 7 [[7 [0 1] b] 0 1] c]
-	31 ::    *[a 9 [b c]]        *[a 7 c 2 [0 1] 0 b]
-	32 ::    *[a 10 [[b c] d]]   *[a 8 c 7 [0 3] d]
-	33 ::    *[a 10 [b c]]       *[a c]
-	34 ::
-	35 ::    *a                *a
+    1  ::    nock(a)           *a
+    2  ::    [a b c]           [a [b c]]
+    3  ::
+    4  ::    ?[a b]            0
+    5  ::    ?a                1
+    6  ::    +[a b]            +[a b]
+    7  ::    +a                1 + a
+    8  ::    =[a a]            0
+    9  ::    =[a b]            1
+    10 ::    =a                =a	
+    11 ::
+    12 ::    /[1 a]            a
+    13 ::    /[2 [a b]]        a
+    14 ::    /[3 [a b]]        b
+    15 ::    /[(a + a) b]      /[2 /[a b]]
+    16 ::    /[(a + a + 1) b]  /[3 /[a b]]
+    17 ::    /a                /a
+    18 ::
+    19 ::    *[a [[b c] d]]    [*[a [b c]] *[a d]]
+    20 ::
+    21 ::    *[a [0 b]]        /[b a]
+    22 ::    *[a [1 b]]        b
+    23 ::    *[a [2 [b c]]]    *[*[a b] *[a c]]
+    24 ::    *[a [3 b]]        ?*[a b]
+    25 ::    *[a [4 b]]        +*[a b]
+    26 ::    *[a [5 b]]        =*[a b]
+    27 ::
+    28 ::    *[a 6 [b [c d]]]  *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+    29 ::    *[a 7 [b c]]      *[a 2 b 1 c]
+    30 ::    *[a 8 [b c]]      *[a 7 [[7 [0 1] b] 0 1] c]
+    31 ::    *[a 9 [b c]]      *[a 7 c 2 [0 1] 0 b]
+    32 ::    *[a 10 [[b c] d]] *[a 8 c 7 [0 3] d]
+    33 ::    *[a 10 [b c]]     *[a c]
+    34 ::
+    35 ::    *a                *a
 
-As you're going through the first part of this guide, it will be helpful to
-have a copy of the specification that you can quickly refer to.
+Bear in mind that this is pseudocode.  It is neither Nock nor
+Hoon.  Strictly speaking, it's really just English.  All formal
+systems resolve to informal language at the very bottom.  What's
+important is just that no two reasonable people can read this
+spec to mean two different things.
 
-Nock may look intimidating now, but by the end of this guide, you will have
-utterly mastered it. 
+##Nouns##
 
-Nock is what some fancy people call a "computational automaton." All that means
-is it's a list of rules about how to turn symbols into other symbols. You put
-some symbols in, you follow the rules, and you get some symbols out. 
+Let's look at the data model first.  Ideally, you *can* look at
+this and just tell what it's doing.  But let's explain it a
+little anyway.
 
-##Atoms & Cells##
+An atom is a natural number - ie, an unsigned integer.  Nock does
+not limit the size of atoms, or know what an atom means.  For
+instance, the atom 97 might mean the number 97, or it might mean
+the letter 'a' (ASCII 97).  A very large atom might be the number
+of grains of sand on the beach - or it might be a GIF of your
+children playing on the beach.  Typically when we represent
+strings or files as atoms, the first byte is the low byte, but
+even this is just a convention.
+
+A cell is an ordered pair of any two nouns - cell or atom.  We
+group cells with square brackets: 
+
+    [1 1] 
+    [34 45] 
+    [[3 42] 12]
+    [[1 0] [0 [1 99]]]
+
+To keep our keyboards from wearing out, brackets group to the
+right - so instead of writing
+ 
+    [2 3]
+    [2 [6 7]]
+    [2 [6 [14 15]]]
+    [2 [6 [[28 29] [30 31]]]]
+    [2 [6 [[28 29] [30 [62 63]]]]]
+
+we can write
+
+    [2 3]
+    [2 6 7]
+    [2 6 14 15]
+    [2 6 [28 29] 30 31]
+    [2 6 [28 29] 30 62 63]
+
+##Reductions##
+
+Nock's semantics are defined as a reduction algebra.  To compute
+`nock(a)`, where `a` is any noun, we step through the rules from
+the top down, find the first left-hand side that matches `a`, and
+reduce it to the right-hand side.  For instance, we immediately
+see the operator syntax for `nock(a)`, `*[a]`.
+
+What does `*[a]` reduce to?  Obviously, it depends on `a`.
+Depending on `a`, any of the lines `19` through `35` 
 
 The symbols that go into Nock are called nouns, which are just numbers and
 pairs of numbers (and pairs of those pairs, but we'll get to that). The numbers
@@ -92,16 +157,16 @@ Albeit a really funky kind of English (called "pseudocode")
 Pairs of atoms are written using square brackets, and we separate the pairs
 with a space. Like so:
 
-	[1 1] 
-	[34 45] 
-	[123.456.789 987.654.321]
+        [1 1] 
+        [34 45] 
+        [123.456.789 987.654.321]
 
 A pair of atoms is called a cell. If we wanted to write pseudocode Nock, we
 could write:
 
-	[a 1] 
-	[34 b] 
-	[c d] 
+        [a 1] 
+        [34 b] 
+        [c d] 
 
 Where `a`, `b`, `c` and `d` all are standing in for atoms.
 
@@ -114,8 +179,8 @@ definition:
 
 **1. Structures**
 
-	A noun is an atom or a cell.  An atom is a natural number.  
-	A cell is any ordered pair of nouns.
+        A noun is an atom or a cell.  An atom is a natural number.  
+        A cell is any ordered pair of nouns.
 
 The first two sentences we've covered. The third sentence adds a new concept:
 Cells can go inside other cells. 
@@ -123,23 +188,23 @@ Cells can go inside other cells.
 Remember that since a noun is either an atom or a cell (a number or a pair),
 then a pair of nouns can be a pair of atoms, a pair of cells, or the pair of an atom and a cell. Like so:
 
-	[1 1] 
-	[1 [2 3]] 
-	[[1 1] [2 3]]
+        [1 1] 
+        [1 [2 3]] 
+        [[1 1] [2 3]]
 
 Any cell in Nock, you can put inside another cell. This means that the cells
 can get arbitrarily long (or nest arbitrarily deep). All of the following are
 valid cells:
 
-	[2 3]
-	[2 [6 7]]
-	[2 [6 [14 15]]]
-	[2 [6 [14 [30 31]]]]
-	[2 [6 [14 [30 [62 63]]]]]
-	[[4 5] 3]
-	[[[8 9] 5] 3]
-	[2 [[12 13] 7]]
-	[2 [[12 13] [14 15]]]
+        [2 3]
+        [2 [6 7]]
+        [2 [6 [14 15]]]
+        [2 [6 [14 [30 31]]]]
+        [2 [6 [14 [30 [62 63]]]]]
+        [[4 5] 3]
+        [[[8 9] 5] 3]
+        [2 [[12 13] 7]]
+        [2 [[12 13] [14 15]]]
 
 As you can see, the brackets start to pile up, making this somewhat difficult
 to read.
@@ -150,33 +215,33 @@ Fortunately, there's a rule in Nock that helps make things more legible: We can
 leave out all the brackets that group to the right, because Nock will just add
 them back in. That means instead of writing:
 
-	[[2 3]
-	[2 [6 7]]
-	[2 [6 [14 15]]]
-	[2 [6 [14 [30 31]]]]
-	[2 [6 [14 [30 [62 63]]]]]
-	[[4 5] 3]
-	[[[8 9] 5] 3]
-	[[2 [[12 13] 7]]
-	[2 [[12 13] [14 15]]]
+        [[2 3]
+        [2 [6 7]]
+        [2 [6 [14 15]]]
+        [2 [6 [14 [30 31]]]]
+        [2 [6 [14 [30 [62 63]]]]]
+        [[4 5] 3]
+        [[[8 9] 5] 3]
+        [[2 [[12 13] 7]]
+        [2 [[12 13] [14 15]]]
 
 We can just write:
 
-	[2 3]
-	[2 6 7]
-	[2 6 14 15]
-	[2 6 14 30 31]
-	[2 6 14 30 62 63]
-	[[4 5] 3]
-	[[[8 9] 5] 3]
-	[2 [12 13] 7]
-	[2 [12 13] [14 15]]
+        [2 3]
+        [2 6 7]
+        [2 6 14 15]
+        [2 6 14 30 31]
+        [2 6 14 30 62 63]
+        [[4 5] 3]
+        [[[8 9] 5] 3]
+        [2 [12 13] 7]
+        [2 [12 13] [14 15]]
 
 The brackets haven't gone away, we've just decided not to write them.
 
 We can do this because of `line 2` of Nock, which puts the brackets back in.
 
-	2  ::    a b c]          a [b c]]
+        2  ::    a b c]          a [b c]]
 
 Simply speaking, line 2 says that brackets always group to the right.Before we
 go into this, we need to quickly cover two things:
@@ -196,7 +261,7 @@ We'll walk you through how this works:
 
 Let's say that we have the noun `[2 6 7]`. `Line 2` says:
 
-	2  ::   a b c]           a [b c]]
+        2  ::   a b c]           a [b c]]
 
 We can match `[2 6 7]` to `a b c]`, because they have the same structure. `a` is the
 placeholder for `2`, `b` for `6` and `c` for 7, and the right bracket in `a b c]` matches
@@ -207,56 +272,56 @@ when we actually go through the mechanics of applying `line 2`).
 
 Let's line up `[2 6 7]` and `a b c]` so that the right-brackets align.
 
-	[2 6 7] 
-	 a b c]
+        [2 6 7] 
+         a b c]
 
 Pretty clearly, `a` is `2`, `b` is `6` and `c` is `7`. So you could rewrite our noun `[2 6 7]` as `[a b c]`.
 
 The right-hand side of `line 2` says:
 
-	a [b c]]
+        a [b c]]
 
 Meaning we need to insert a left-bracket before `b`, and a right bracket after `c`.
 
 Our input noun:
 
-	[2 6 7]
+        [2 6 7]
 
 We replace nouns with the matching letters (`a` is `2`, `b` is `6`, `c` is `7`):
 
-	[a b c]
+        [a b c]
 
 We do the transformation (putting the left-bracket and right-bracket in):
 
-	[a [b c]]
+        [a [b c]]
 
 And finally we turn the letters back to nouns
 
-	[2 [6 7]]
+        [2 [6 7]]
 
 And that's our output. We've just done our very first Nock reduction! `[2 6 7]`
 goes into Nock, and `[2 [6 7]]` comes out.
 
 Let's try putting the more complicated noun `[2 6 14 15]` into `line 2`:
 
-	2  ::    a b c]           a [b c]]
+        2  ::    a b c]           a [b c]]
 
 We start on the inside, because the right-brackets have to align. 
 
-	[2 6 14 15] 
-	   a  b  c]
+        [2 6 14 15] 
+           a  b  c]
 
 Like we did before, we replace nouns with their matching letters. `a` is `6`, `b` is `14` and `c` is `15`.
 
-	[2 a b c]
+        [2 a b c]
 
 We do the transformation and add in the brackets
 
-	[2 a [b c]]
+        [2 a [b c]]
 
 And finally we replace our placeholder letters with their corresponding nouns.
 
-	[2 6 [14 15]]
+        [2 6 [14 15]]
 
 But we're not done yet! We still have another pair of brackets to add. Unlike
 what we did before with the noun `[2 6 7]`, the noun `[2 6 14 15]` has to go
@@ -267,20 +332,20 @@ We'll go through it a bit faster this time, but the process is still exactly
 the same.
 
 Align expressions (remember that letters can be either atoms or cells): 
-	[2 6 [14 15]] 
-	 a b    c   ]
+        [2 6 [14 15]] 
+         a b    c   ]
 
 Turn nouns to letters: 
 
-	[a b c]
+        [a b c]
 
 Transform noun according to the right-hand side:
 
-	[a [b c]]
+        [a [b c]]
 
 Turn letters to nouns (`a` is `2`, `b` is `6`, `c` is `[14 15]`): 
 
-	[2 [6 [14 15]]]
+        [2 [6 [14 15]]]
 
 Which is our final output, with all the brackets added back to the noun `[2 6
 14 15]`. For even more complicated nouns, like `[2 6 14 30 31]` or `[2 [12 26
