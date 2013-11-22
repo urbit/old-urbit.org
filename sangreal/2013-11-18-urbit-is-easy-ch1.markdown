@@ -5,6 +5,7 @@ title: Urbit Is Easy &#58; Chapter I
 ---
 
 #"What one fool can do, another can"#
+###(Ancient Simian Proverb)##
 
 Now that we've installed Arvo, let's learn Nock.
 
@@ -137,22 +138,30 @@ Depending on `a`, any of the lines `19` through `35`
 
 The symbols that go into Nock are called nouns, which are just numbers and
 pairs of numbers (and pairs of those pairs, but we'll get to that). The numbers
-that go into Nock are called "atoms" and are always positive whole numbers. In
-math, these are called "natural numbers," because they're the set of numbers
-used for counting. In Nock, we'll write atoms in two different ways. The first
-way, when we know what the atom is we'll just write the number: `1`, `2`, `3`, `4`... `424`, `9.904` etc. 
+that go into Nock are called "atoms".  The term "atom" implies that it's the 
+smallest possible element.
+
+Atoms are always positive whole numbers.  In math, these are called "natural 
+numbers," because they're the set of numbers used for counting. In Nock, we'll 
+write atoms in two different ways. The first way, when we know what the atom is 
+we'll just write the number: `1`, `2`, `3`, `4`... `424`, `9.904` etc. 
 
 (Note: Nock, and Urbit as a whole, use a period instead of a comma for long numbers.  You'll see why much later on.)
 
-The second way we write atoms is with single letters. We do this when we don't
-know what the atom is, so we use letters (`a`, `b`, `c`, `d` etc.) as
-placeholders or variables. This isn't actually part of Nock and we only do it
-in the rules that make up Nock, so we can describe what those rules are. In
-real Nock code, there are no letters. 
+There is a second way to write out atoms.  When we are describing Nock, we use 
+letters (`a`, `b`, `c`, `d` etc.) as
+placeholders for nouns.  These are called "variables", since they can vary depending on what number they stand in for.  When you come across these, you can 
+read them as "any noun called `a`", or just `a` for short.
 
-This is actually a really important point to keep in mind: The formal
-definition of Nock isn't written in Nock, but is actually written in English.
-Albeit a really funky kind of English (called "pseudocode")
+Since atoms are nouns, we can use these variables, in their place.  
+
+Note that there are no letters in actual Nock.  But since a noun can be an atom
+or a cell, and an atom can be any whole number, it would be hard to define what
+precisely is supposed to happen unless we can make rules that cover all the
+kinds of atoms we might come across.  
+
+We call this "pseudocode", since it looks kind of like code and tells you how
+actual code would work, but it isn't actually code.
 
 Pairs of atoms are written using square brackets, and we separate the pairs
 with a space. Like so:
@@ -215,15 +224,15 @@ Fortunately, there's a rule in Nock that helps make things more legible: We can
 leave out all the brackets that group to the right, because Nock will just add
 them back in. That means instead of writing:
 
-        [[2 3]
-        [2 [6 7]]
-        [2 [6 [14 15]]]
-        [2 [6 [14 [30 31]]]]
-        [2 [6 [14 [30 [62 63]]]]]
-        [[4 5] 3]
-        [[[8 9] 5] 3]
-        [[2 [[12 13] 7]]
-        [2 [[12 13] [14 15]]]
+	[2 3]
+	[2 [6 7]]
+	[2 [6 [14 15]]]
+	[2 [6 [14 [30 31]]]]
+	[2 [6 [14 [30 [62 63]]]]]
+	[[4 5] 3]
+	[[[8 9] 5] 3]
+	[[2 [[12 13] 7]]
+	[2 [[12 13] [14 15]]]
 
 We can just write:
 
@@ -243,13 +252,12 @@ We can do this because of `line 2` of Nock, which puts the brackets back in.
 
         2  ::    a b c]          a [b c]]
 
-Simply speaking, line 2 says that brackets always group to the right.Before we
-go into this, we need to quickly cover two things:
+Simply speaking, line 2 says that when you have a series of nouns and start adding brackets, you go right to left. 
 
-First, we need to extend our understanding of letters being placeholders for
-atoms. Letters can also stand in for cells. A letter represents a noun. So
-whenever you see a letter, all that that means is "Noun goes here." And that
-noun can be, of course, either an atom or a cell.
+Before we go into this, we need to quickly cover two things:
+
+Recall that letters stand in for nouns.  This means that letters can either be
+atoms or cells.
 
 Second, we need to explain how to read the Nock's rules. Nock has a left-hand
 column, and a right-hand column. The left-hand column is for inputs, the
@@ -325,15 +333,18 @@ And finally we replace our placeholder letters with their corresponding nouns.
 
 But we're not done yet! We still have another pair of brackets to add. Unlike
 what we did before with the noun `[2 6 7]`, the noun `[2 6 14 15]` has to go
-through `line 2` twice before its reduction is complete. We do this by taking 
-the output noun from our first time through `line 2` (`[2 6 [14 15]]`) and then putting that noun back in to Nock as input.
+through `line 2` twice before its reduction is complete. 
 
-We'll go through it a bit faster this time, but the process is still exactly
-the same.
+As you will recall, all the letters can stand for atoms or cells.  So if we 
+examine the rule, c can either be an atom or a cell.  In the case of our output
+above, c can be `[14 15]`.
+
+So we need to run this through `line 2` again.  Let's do it a bit faster this
+time.
 
 Align expressions (remember that letters can be either atoms or cells): 
-        [2 6 [14 15]] 
-         a b    c   ]
+> [2 6 [14 15]] 
+>  a b    c   ]
 
 Turn nouns to letters: 
 
