@@ -371,7 +371,7 @@ and
 	20
 
 If this seems obvious, you're doin' good.  Finally, we jump back up
-to line 18, the trickiest in the spec:
+to line 19, the trickiest in the spec:
 
 ##Line 19:##
 
