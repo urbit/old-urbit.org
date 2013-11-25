@@ -1,8 +1,48 @@
 ---
 layout: post
 category: doc
-title: Urbit Made Easy&#58;  Chapter IV
+title: Urbit Is Easy&#58; Chapter IV (Using Nock)
 ---
+
+#*"But are you crazy enough?"*#
+###(Point Break)###
+
+##Using Nock##
+
+Now we're going to actually do some cool stuff with Nock.
+
+Fortunately, we have an entire OS, Arvo, which is built on Nock.
+Unfortunately, there's really no practical reason to work
+directly in Nock when you're using Arvo - except for learning
+Nock, which you do once and never again.  So the things we'll
+have to do are a little bit cumbersome.
+
+What Arvo is good at is evaluating Hoon.  And it's possible to
+evaluate Nock from Hoon, much the way you can put inline assembly
+in C.  Through this indirection, we have two ways to run Nock in
+Hoon: on the command line and via an app file.
+
+###Command line###
+
+From the Arvo command line, you can run one-liners with the Hoon
+rune `.*`:
+
+    ~zod/try=> .*(42 [4 0 1])
+    43
+
+###Application file###
+
+Unfortunately, the Arvo command line doesn't do multiline input
+well, and if there's any hope of writing complex Nock formulas
+it's by using plenty of whitespace and linebreaks.
+
+So we've constructed a template for writing Nock formulas as Arvo
+applications.  Unfortunately Arvo is a young OS and has no way to
+edit a file.  But Arvo runs on Unix and Unix is a very old OS.
+So, you can edit Arvo files in Unix and they are automagically
+synced in.
+
+Assuming your $URBIT_HOME 
 
 #Chapter IV: Decrement#
 

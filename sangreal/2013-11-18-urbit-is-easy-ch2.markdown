@@ -1,299 +1,299 @@
 ---
 layout: post
 category: doc
-title: Urbit Made Easy&#58; Chapter II
+title: Urbit Is Easy &#58; Chapter II (Introduction to Nock)
 ---
 
-#Chapter II: Starting, Stopping and Reading Reductions# 
+#*"What one fool can do, another can"*#
+###(Ancient Simian proverb)###
 
-##Some Basic Notation##
+Now that we've installed Arvo, let's learn Nock.
 
-In the last chapter, we reduced the noun `[2 6 14 15]` to the noun `[2 [6 [14 15]]]` using `line 2` of Nock. 
+Think of Nock as a kind of functional assembly language.  It's
+not like assembly language in that it's directly executed by the
+hardware.  It is like assembly language in that (a) everything in
+Urbit executes as Nock; (b) you wouldn't want to program directly
+in Nock; and (c) learning to program directly in Nock is a great
+way to start understanding Urbit from the ground up.
 
-In proper notation, we could write this as 
+Just as Unix runs C programs by compiling them to assembler,
+Urbit runs Hoon programs by compiling them to Nock.  You could
+try to learn Hoon without learning Nock.  But just as C is a thin
+wrapper over the the physical CPU, Hoon is a thin wrapper over
+the Nock virtual machine.  It's a tall stack made of thin layers,
+which is much easier to learn a layer at a time.
 
-	nock([2 6 14 15])
-		[2 [6 [14 15]]]
+And unlike most fundamental theories of computing, there's really
+nothing smart or interesting about Nock.  Of course, in a
+strictly formal sense, all of computing is math.  But that
+doesn't mean it needs to feel like math.  Nock is a simple
+mechanical device and it's meant to feel that way.
 
-Where nock(noun) means "Apply Nock to this noun" and the new line signifies
-equals or outputs.
+##Specification##
 
-If you'll remember from the previous section a noun can be represented by a
-letter and we can rewrite nock(noun) as nock(a). Which brings us to the first
-line of the Nock specification:
+Let's start with the Nock spec.  It may look slightly
+intimidating, but at least it isn't long.
 
-	1  ::    nock(a)             *a
+No, you can't just look at this and tell what it's doing.
+But at least there are only 39 lines of it.
 
-This line is actually very simple. It's just giving as a new piece of notation.
-All says is that the asterisk (\*) means the same thing as nock(a).
+    1  ::    A noun is an atom or a cell.  
+    2  ::    An atom is a natural number. 
+    3  ::    A cell is a ordered pair of nouns.
+    4  ::
+    5  ::    Nock(a)          *a
+    6  ::    [a b c]          [a [b c]]
+    7  ::
+    8  ::    ?[a b]           0
+    9  ::    ?a               1
+    10 ::    +[a b]           +[a b]
+    11 ::    +a               1 + a
+    12 ::    =[a a]           0
+    13 ::    =[a b]           1
+    14 ::    =a               =a
+    15 ::
+    16 ::    /[1 a]           a
+    17 ::    /[2 a b]         a
+    18 ::    /[3 a b]         b
+    19 ::    /[(a + a) b]     /[2 /[a b]]
+    20 ::    /[(a + a + 1) b] /[3 /[a b]]
+    21 ::    /a               /a
+    22 ::
+    23 ::    *[a [b c] d]     [*[a b c] *[a d]]
+    24 ::
+    25 ::    *[a 0 b]         /[b a]
+    26 ::    *[a 1 b]         b
+    27 ::    *[a 2 b c]       *[*[a b] *[a c]]
+    28 ::    *[a 3 b]         ?*[a b]
+    29 ::    *[a 4 b]         +*[a b]
+    30 ::    *[a 5 b]         =*[a b]
+    31 ::
+    32 ::    *[a 6 b c d]     *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+    33 ::    *[a 7 b c]       *[a 2 b 1 c]
+    34 ::    *[a 8 b c]       *[a 7 [[7 [0 1] b] 0 1] c]
+    35 ::    *[a 9 b c]       *[a 7 c 2 [0 1] 0 b]
+    36 ::    *[a 10 [b c] d]  *[a 8 c 7 [0 3] d]
+    37 ::    *[a 10 b c]      *[a c]
+    38 ::
+    39 ::    *a               *a
 
-So we can write our previous reduction as 
+Bear in mind: this is pseudocode.  It is neither Nock nor Hoon.
+Strictly speaking, it's really just English.  All formal systems
+resolve to informal language at the very bottom.  What's
+important is just that no two reasonable people can read the spec
+to mean two different things.
 
-	*[2 6 14 15] 
-	*[2 [6 [14 15]]]
+##Sounds##
 
-Or if we wanted to fill in the intermediate steps, with labels for the rules we
-used, we could write
+In characteristic Urbit style, we got tired of three or
+four-syllable pronunciations of ASCII punctuation characters and
+assigned them all standard one-syllable names.  We'll meet the
+rest later, but the ones we use in Nock:
 
-	*[2 6 14 15] 
-	
-		2  ::    a b c]           a [b c]]
-	
-		*[2 6 [14 15]]
-	
-		2  ::    a b c]           a [b c]]
-	
-		*[2 [6 [14 15]]]
+    `$`   buc
+    `/`   fas
+    `+`   lus
+    `(`   pel
+    `)`   per
+    `[`   sel
+    `]`   ser
+    `*`   tar
+    `=`   tis
+    `?`   wut
 
+##Nouns##
 
-We could also, if we really wanted to, write it this way:
+Let's look at the data model first - lines 1-3 above.  Ideally,
+you *can* look at this and just tell what it's doing.  But let's
+explain it a little anyway.
 
-	nock([2 6 14 15])
-	
-		1  ::    nock(a)             *a
-	
-		*[2 6 14 15]
-	
-		2  ::    a b c]           a [b c]]
-	
-		*[2 6 [14 15]]
-		
-		2  ::    a b c]           a [b c]]
-	
-		*[2 [6 [14 15]]]
+An atom is a natural number - ie, an unsigned integer.  Nock does
+not limit the size of atoms, or know what an atom means.  
 
-This is actually the most complete way to describe a reduction, but since
-reductions can grow very big and cumbersome, we'll often skip a lot of the
-mechanical steps as we get further on and rely more on our intuitive
-understanding of the system.
+For instance, the atom 97 might mean the number 97, or it might
+mean the letter 'a' (ASCII 97).  A very large atom might be the
+number of grains of sand on the beach - or it might be a GIF of
+your children playing on the beach.  Typically when we represent
+strings or files as atoms, the first byte is the low byte.  But
+even this is just a convention.  An atom is an atom.
 
-You might also have noticed that we've added the asterisk (`*`) to our outputs.
-The reductions we did in the last section didn't have them because that likely
-would have been an unnecessary level of detail too soon. Practically speaking,
-the `*` is necessary, because it tells you that you need to run your noun 
-through Nock again, but because all lines in a reduction will start with a `*`, we'll often remove it for the sake of minimalism.
+A cell is an ordered pair of any two nouns - cell or atom.  We
+group cells with square brackets: 
 
-But now, you're probably asking yourself, "If * means run the noun through
-Nock, why does our final output have a `*`? I thought we had finished our
-reduction."
+    [1 1] 
+    [34 45] 
+    [[3 42] 12]
+    [[1 0] [0 [1 99]]]
 
-Excellent question! This brings us right to the topic of how a Nock reduction
-ends. Like many things in Urbit the answer is short and stupid: They don't. 
+To keep our keyboards from wearing out, line 6 tells us that 
+brackets group to the right:
 
-##A Nock that Never Ends##
+    6  ::    [a b c]           [a [b c]]
 
-Actually this isn't true, there are some operations that do terminate, but most of them, and nearly all the interesting ones, don't.
-
-To see why they don't let's take a look at lines 6, 10, 17 and 35:
-
-        6  ::    +[a b]              +[a b]
-        10 ::    =a                  =a
-        17 ::    /a                  /a
-        35 ::    *a                  *a
-
-On these lines, the input is the same as the output. Which means that the
-reduction never ends and continues forever in a stream of something like: 
-
-	35 :: *a
-	35 :: *a
-	35 :: *a
-	35 :: *a
-
-And so on. Of course in practice, you'll hopefully notice that this is occuring
-and stop typing. The same principle is true when it's not you doing the
-reduction by hand, but rather a computer program called an "interpreter".
-Whether it's you or the interpreter, detecting an infinite loop and stopping is
-known as an "out of band error." The good news is that this is how you know
-when your reduction is done. your interpreter (either human or machine)
-crashes, you look at the last thing it did and that's your final output.
-
-Another question you probably have is how Nock avoids getting caught in an
-infinite loop before the reduction is supposed to be done. Why can't you have a
-loop that looks like this? :
-
-	35 :: *[2 6 [14 15]]
-	35 :: *[2 6 [14 15]]
-	35 :: *[2 6 [14 15]]
-	35 :: *[2 6 [14 15]]
-
-The answer is something that we briefly mentioned earlier, you have to try and
-apply the rules of Nock to your noun in the top-down order they appear in the
-specification. You'll never get a loop that looks like the above, because
-you're forced to try and apply lines 1 through 34 to your noun before you get
-to try line 35. In practice with the above, since you can apply line 2 (our
-bracket rule, if you remember), you have to apply line 2.
-
-But line 35 isn't the only line that puts us into an infinite loop! We have
-three more, lines 6, 10 and 17. (we call them "crash defaults"):
-
-        6  ::    +[a b]              +[a b]
-        10 ::    =a                  =a
-        17 ::    /a                  /a
-
-Actually these are not the only possible way to put Nock into an infinite loop
-(Halting problem), but they are the only ones we care about for now. 
-
-To read these lines, we'll have to learn the rest of our Nock pseudocode
-notation. 
-
-##More Notation, `+` `=` `?`##
-
-Let's start with "+":
-
-        6  ::    +[a b]              +[a b]
-        7  ::    +a                  1 + a
+So instead of writing
  
-"+" is very simple. It just means add 1 (or "increment"). Obviously you can
-only add 1 to a number, so line 6 says that if you try to add 1 to a cell
-you'll loop forever and crash. Line 6 comes before line 7 in the specification
-to catch all cases of trying to add a number to a cell.
+    [2 3]
+    [2 [6 7]]
+    [2 [6 [14 15]]]
+    [2 [6 [[28 29] [30 31]]]]
+    [2 [6 [[28 29] [30 [62 63]]]]]
 
-The next symbol to learn is "=":
+we can write
 
-	8  ::    =[a a]              0
-	9  ::    =[a b]              1
-	10 ::    =a                  =a
-        
-"=" means equals, or, more specifically, "Does the following cell contain a
-pair of identical nouns?" If the cell does, then  "=[a a]" gets transformed
-into the atom 0, or "yes" (line 8). If not, "=[a b]" gets transformed into the
-atom 1, or "no" (line 9). If you try and do an equality test on an atom, you'll
-loop forever and crash (line 10).
+    [2 3]
+    [2 6 7]
+    [2 6 14 15]
+    [2 6 [28 29] 30 31]
+    [2 6 [28 29] 30 62 63]
 
-Before we cover our final crash default (line 17, and "/"), we should go over
-the what "?" means, since it's pretty easy.
+While this notational convenience is hardly rocket science, it's
+surprising how confusing it can be, especially if you have a Lisp
+background.  Lisp's "S-expressions" are very similar to nouns,
+except that Lisp has multiple types of atom, and Lisp's syntax
+automatically adds list terminators to groups.  So in Lisp
 
-        4  ::    ?[a b]              0
-        5  ::    ?a                  1
+    '(2 6 7)
 
-As with "=", "?" is just another test that produces "yes" or "no."
-Specifically, "?" tests whether a noun is a cell. 
+is a shorthand for
 
-And now for the trickiest piece of notation, the "/", which we call the "slot"
-operator:
+    '(2 6 7 . nil)
 
-The Slot Operator
+and the equivalent noun is
 
-	12 ::    /[1 a]              a
-	13 ::    /[2 [a b]]          a
-	14 ::    /[3 [a b]]          b
-	15 ::    /[(a + a) b]        /[2 /[a b]]
-	16 ::    /[(a + a + 1) b]    /[3 /[a b]]
-	17 ::    /a                  /a
+    [2 6 7 0]
 
-Since this is fairly complicated, we'll explain it in two ways. First, we'll
-describe what the slot operator ("/") does at an intuitive level (what it's
-intended to do). And then we'll dive into the mechanics of how it actually
-works.
+or, of course,
 
-Intuitively, the slot operator is how we refer to individual nouns that are
-inside of a larger cell. It's how we pull things out of the big tree-like cell
-structure. Each noun in the tree gets a number and when we do /[b a], where b
-is the number that corresponds to the noun and a is the larger cell that
-contains the noun, we produce just the noun we referred to. Think of it as an
-index or an address for a noun.
+    [2 [6 [7 0]]]
 
-Since all cells are pairs of nouns that break down into other pairs, the
-structure of our tree looks like this:
+##Rules##
 
-	            1
-	       2          3
-	    4    5     6     7
-	   8 9 10 11 12 13 14 15
-	
-	[2 [6 [14 15]]]
+Nock's semantics are defined as a reduction algebra.  To compute
+`nock(x)`, where `x` is any noun, we step through the rules from
+the top down, find the first left-hand side that matches `x`, and
+reduce it to the right-hand side.  
 
-1 is the slot address that matches the entire original cell (the root). 2
-refers to the first noun of that cell (the head) and 3 refers to the second
-noun of that pair (the tail).
+Right away we see line 5:
 
-Let's build some example nouns where every atom is equal to its slot address:
+    5  ::    nock(a)           *a
 
-	1
-	[2 3]
-	[2 [6 7]]
-	[[4 5] [6 7]]
-	[[4 5] [6 [14 15]]]
-	[[4 5] [[12 13] [14 15]]]
-	[[4 [10 11]] [[12 13] [14 15]]]
-	[[8 9] [10 11] [[12 13] [14 15]]]
+So `nock(x)` is `*x`, for any noun `x`.  And how do we reduce
+`*x`?  Looking up, we see that lines 23 through 39 reduce `*x` -
+for different patterns of `x`.
 
-Actually, all the examples we used earlier when we explained the line 2 bracket
-rule follow this same pattern. 
+For example, suppose our `x` is `[5 1 6]`.  Stepping downward
+through the rules, the first one that matches is line 26:
 
-Another way to think about this is that if you replace any atom with a value
-"n" in the above tree with a cell, the atom at head of the cell will be equal
-to two times "n" (2n) and the tail of the cell will be 2n + 1. Heads are even,
-tails are odd.
+    26 ::    *[a 1 b]        b
 
-Let's go into the mechanics of how this works with some more examples:
+Line 26 tells us that when reducing any noun of the form `[a 1
+b]`, the result is just `b`.  So `*[5 1 6]` is `6`.
 
-Say you have a noun [[100 101] 102 103]]. We'll use this noun to show how the
-actual Nock rules produce what they're supposed to.
+For a more complicated example, try 
 
-	12 ::    /[1 a]              a
-	13 ::    /[2 [a b]]          a
-	14 ::    /[3 [a b]]          b
-	15 ::    /[(a + a) b]        /[2 /[a b]]
-	16 ::    /[(a + a + 1) b]    /[3 /[a b]]
-	17 ::    /a                  /a
+    *[[19 42] [0 3] 0 2]
 
-Using addresses 1, 2, and 3 with the slot operator is fairly straightforward.
+The first rule it matches is line 23:
 
-	/[1 [[100 101] 102 103]]
-	
-		 12 ::    /[1 a]             a
-	
-		 [[100 101] 102 103]
-	
-	/[2 [[100 101] 102 103]
-	
-		13 ::    /[2 [a b]]          a
-	
-		[100 101]
-	
-	/[3 [[100 101] 102 103]]
-	
-		14 ::    /[3 [a b]]          b
-	
-		[102 103]
+    23 ::    *[a [b c] d]     [*[a b c] *[a d]]
 
-(We've skipped the step of using line 2 to add brackets back in. The aspiring
-Nock programmer needs to learn to do line 2 in their head.)
+since `a` is `[19 42]`, `b` is `0`, `c` is `3`, and `d` is `[0 2]`.
+So this reduces to a new computation
 
-So now what about addresses that are greater than 3?
+    [*[[19 42] 0 3] *[[19 42] 0 2]]
 
-	/[4 [[100 101] 102 103]]
-	
-		15 ::    /[(a + a) b]        /[2 /[a b]]
-	
-		/[2 /[2 [[100 101] 102 103]]]
-	
-		13 ::    /[2 [a b]]          a   
-	
-		/[2 [100 101]]
-	
-		13 ::    /[2 [a b]]          a   
-	
-		100
+Each side of this matches rule 25:
 
-We see that the (a + a) in line 15 is doing the same thing as saying that every
-cell with an address n has a head with an address that's 2n.
+    25 ::    *[a 0 b]         /[b a]
 
-	/[5 [[100 101] 102 103]]
-	
-		16 ::    /[(a + a + 1) b]    /[3 /[a b]]
-	
-		/[3 /[2 [[100 101] 102 103]]]
-	
-		13 ::    /[2 [a b]]          a   
-	
-		/[3 [100 101]]
-	
-		14 ::    /[3 [a b]]          b
-	
-		101
+So we have
 
-As an exercise, do `/[6 [[[100 101] 102 103]]` and `/[7 [[[100 101] 102 103]]` on your own.
+    [/[3 [19 42]] /[2 [19 42]]]
 
-In Chapter 3, we'll get into the real meat and bones of Nock: the Operators. 
+When we explain `/`, we'll see that this is `[42 19]`.
+
+Finally, suppose our `x` is just `42`.  The first rule that
+matches is the last:
+
+    39 ::    *a               *a
+
+So `*42` is `*42`, which is... `*42`.  Logically, Nock goes into
+an infinite reduction loop and never terminates.
+
+In practice, this is just a clever CS way to specify the simple
+reality that `*42` is an error and makes no sense.  An actual
+interpreter will not spin forever - it will throw an exception
+outside the computation.
+
+##Functions##
+
+We've already seen the `*` function (pronounced "tar"), which
+just means `nock`.  This is the main show and we'll work through
+it soon, but first let's explain the functions it uses - `=`, `?`,
+`+` and `/`.
+
+###`=`###
+
+`=` (pronounced "tis", or sometimes "is") tests a cell for
+equality.  `0` means yes, `1` means no:
+
+    12 ::    =[a a]           0
+    13 ::    =[a b]           1
+    14 ::    =a               =a
+
+Again, testing an atom for equality makes no sense and logically
+fails to terminate.
+
+###`?`###
+
+`?` (pronounced "wut") tests whether is a noun is a cell.  Again, 
+`0` means yes, `1` means no:
+
+    8  ::    ?[a b]           0
+    9  ::    ?a               1
+
+(This convention is the opposite of old-fashioned booleans, so we
+try hard to say "yes" and "no" instead of "true" and "false.")
+
+###`+`###
+
+`+` (pronounced "lus", or sometimes "plus") adds 1 to an atom:
+
+    10 ::    +[a b]           +[a b]
+    11 ::    +a               1 + a
+
+Because `+` works only for atoms, whereas `=` works only for
+cells, the error rule matches first for `+` and last for `=`.
+
+###`/`###
+
+`/` (pronounced "fas") is a tree traversal function:
+
+    16 ::    /[1 a]           a
+    17 ::    /[2 a b]         a
+    18 ::    /[3 a b]         b
+    19 ::    /[(a + a) b]     /[2 /[a b]]
+    20 ::    /[(a + a + 1) b] /[3 /[a b]]
+    21 ::    /a               /a
+
+This looks way more complicated than it is.  Essentially, we
+define a noun as a binary tree and assign an address, or *axis*,
+to every node in the tree.  The root of the tree is 1.  The left
+child of every node `n` is `2n`; the right child is `2n+1`.  For
+a complete tree of depth 3, the assignment looks like this:
+
+             1
+        2          3
+     4    5     6     7
+    8 9 10 11 12 13 14 15
+
+We can also build nouns in which every atom is its own axis: 
+
+    1
+    [2 3]
+    [2 6 7]
+    [[4 5] 6 7]
+    [[4 5] 6 14 15]
+    [[4 5] [12 13] 14 15]
+    [[4 [10 11]] [12 13] 14 15]
+    [[[8 9] [10 11]] [12 13] 14 30 31]
