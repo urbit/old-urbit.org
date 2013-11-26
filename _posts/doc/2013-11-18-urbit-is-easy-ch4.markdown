@@ -43,7 +43,7 @@ Arvo syncs its filesystem with your `$URBIT_HOME` directory,
 propagating changes on either side.
 
 Let's assume your `$URBIT_HOME` is `urb/`, and your ship is
-`~zod`.  The Nock application template is in
+`~waclux-tomwyc`.  The Nock application template is in
 
     urb/~waclux-tomwyc/try/bin/nock.hoon
 
@@ -128,11 +128,11 @@ Arvo:
 
 Whoops!  It crashed:
 
-    ! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:<[4 1].[13 2]>
-    ! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:<[4 8].[13 2]>
-    ! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:<[5 1].[13 2]>
-    ! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:<[6 1].[13 2]>
-    ! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:<[7 1].[13 2]>
+    ! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:<[4 1].[13 2]>
+    ! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:<[4 8].[13 2]>
+    ! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:<[5 1].[13 2]>
+    ! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:<[6 1].[13 2]>
+    ! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:<[7 1].[13 2]>
     ! exit
 
 What did we do wrong?  We forgot that the subject had changed.
