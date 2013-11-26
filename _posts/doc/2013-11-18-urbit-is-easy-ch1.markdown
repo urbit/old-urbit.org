@@ -8,13 +8,9 @@ title: Urbit is Easy&#58; Chapter I (Setup)
 by men, a labyrinth destined to be deciphered by men.*  
 **(Tlön, Uqbar, Orbis Tertius)**
 
-#Setting up Urbit#
+##Prepare your computer##
 
-First, build...
-
-###Prepare your computer:###
-
-Urbit depends on:
+Urbit runs on Unix machines only.  It depends on:
 
 + gmp
 + libsigsegv
@@ -22,15 +18,16 @@ Urbit depends on:
 + libssl-dev (Linux only)
 + ncurses (Linux only)
 
-Currently we support OSX, Linux (not all distributions have been tested) and BSD. Intrepid ninjas may attempt ports to other OSes. If you're not an intrepid ninja, try a VM (eg, VirtualBox).
+Currently we support OSX, Linux (not all distributions have been
+tested) and BSD. Intrepid ninjas may attempt ports to other OSes.
+If you're not an intrepid ninja, try a VM (eg, VirtualBox).
 
-
-**OS X:**
+###Configure OS X###
 
 1. Do you have XCode?  Type `gcc`.  If it says `no input files`, you have XCode.
 
    Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the 
-   Command Line tools.
+   command line tools.
 
 2. Install dependencies
    - Do you have Homebrew?  Type `brew`.  If it does something, you have Homebrew. 
@@ -51,16 +48,16 @@ Currently we support OSX, Linux (not all distributions have been tested) and BSD
      Enter your root password at the prompt.
 
 
-**Linux (e.g. Ubuntu or Debian):**
+###Configure Linux (Ubuntu or Debian)###
 
 1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags`
 
 
-**AWS Linux AMI**
+###Configure Linux (AWS)###
 
 1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags`
 
-###Get the source:###
+###Get the source###
 
 Either:
 
@@ -68,7 +65,7 @@ A. Download and unzip `https://github.com/urbit/urbit/archive/master.zip`.
 
 B. `git clone https://github.com/urbit/urbit.git`. 
 
-###Configure your build:###
+###Set up your enviroment###
 
 `cd` to the unpacked Urbit directory you just created.  If this works,
 `ls urb` should show:
@@ -87,11 +84,11 @@ To make sure this worked,
 
 should show `/urb` within the current directory.
 
-###make:###
+###Build###
 
 `make`.  Sometimes things are just easy.
 
-###vere:###
+###Run###
 
 Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this
@@ -131,50 +128,56 @@ is also a Hoon REPL):
 
     ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=> 
 
-Next, you need to decide whether a mere submarine is enough for you right now.
-This monicker is a mouthful.  You can stick with it (for now), but... you're
-going to need a wider xterm.
+###Register###
 
-Which might be fine!  However, please note that just by sending a simple email,
-you can get a much better ship - a `destroyer`, with a nice short name like
+Next, you need to decide whether a mere submarine is enough for
+you right now.  This monicker is a mouthful.  You can stick with
+it (for now), but... you're going to need a wider xterm.
+
+Which might be fine!  However, please note that just by sending a
+simple email, you can get a much better ship - a `destroyer`,
+with a nice short name like
 
     ~waclux-tomwyc
 
-Just email `urbit@urbit.org`, with your submarine in the subject.  We'll send you
-destroyers - not one, but _two_.  Yes, two!  Tell us something cool in the
-body, and we'll send you even more.
+Just email `urbit@urbit.org`, with your submarine in the subject.
+We'll send you destroyers - not one, but _two_.  Yes, two!  Tell
+us something cool in the body, and we'll send you even more.
 
-If you have a destroyer, you need to configure it.  Otherwise, just stretch
-that xterm wide and skip to section 1.2.
+If you have a destroyer, you need to configure it.  Otherwise,
+just stretch that xterm wide and skip to section 1.2.
 
-Your destroyers will arrive in the form of [ship ticket] pairs.  Let's say one
-of your ships is `~waclux-tomwyc` and its ticket is 
+Your destroyers will arrive in the form of [ship ticket] pairs.
+Let's say one of your ships is `~waclux-tomwyc` and its ticket is 
 
     ~ribdyr-famtem-larrun-figtyd
 
-(What are these strings, anyway?  Just random unsigned integers, rendered in
-Hoon's syllabic base, `@p`.)
+(What are these strings, anyway?  Just random unsigned integers,
+rendered in Hoon's syllabic base, `@p`.)
 
-A new life awaits you on the off-world colonies!  To begin, just type at the
-prompt:
+A new life awaits you on the off-world colonies!  To begin, just
+type at the prompt:
 
     :begin ~waclux-tomwyc
 
-and follow the directions.  When the script completes, hit return and you'll be
-the `~waclux-tomwyc` you wanted to be.
+and follow the directions.  When the script completes, hit return
+and you'll be the `~waclux-tomwyc` you wanted to be.
 
-##2. Taming Arvo##
+##Play with Arvo##
 
 If all went well, you now have a nice short prompt:
 
     ~waclux-tomwyc/try=>
 
-If all did not go well (send us another email), or you're just too impatient to
-wait for your destroyer, you have a big long prompt.  Which is fine, really,
-just ugly - and all these exercises will still work.
+If all did not go well (send us another email), or you're just
+too impatient to wait for your destroyer, you have a big long
+prompt.  Which is fine, really, just ugly - and all these
+exercises will still work.
 
-Let's try a few quick things to stretch your fingers.  Type these command lines
-and you should see the matching results:
+###Example commands###
+
+Let's try a few quick things to stretch your fingers.  Type these
+command lines and you should see the matching results:
 
     ~waclux-tomwyc/try=> "hello, world"
     "hello, world"
@@ -198,13 +201,13 @@ and you should see the matching results:
 
 What did you just do?  
 
-One, you used Arvo as a Hoon REPL to print the constant `"hello, world"`, which
-is a fancy way to write the Nock noun 
+One, you used Arvo as a Hoon REPL to print the constant `"hello,
+world"`, which is a fancy way to write the Nock noun 
 
     [104 101 108 108 111 44 32 119 111 114 108 100 0]
 
-Two, you called the Hoon `add` function to see that two plus two is four.  Math
-seems to work the same on the off-world colonies.
+Two, you called the Hoon `add` function to see that two plus two
+is four.  Math seems to work the same on the off-world colonies.
 
 Three, you ran the Arvo application `:hello` with the argument
 `%world`, which is just a fancy way to write the atom
@@ -228,16 +231,19 @@ seconds), is equivalent to the global path
 
     /~waclux-tomwyc/main/~2013.8.23..04.38.31..f259/bin/hello/hoon
 
-which anyone in Urbit can, see and even use - but we're getting ahead of
-ourselves.
+which anyone in Urbit can, see and even use - but we're getting
+ahead of ourselves.
 
-In any case, what we've seen is that Arvo is a dangerous and powerful operating
-system which if handled improperly can cause serious injury or loss of life.
-We exaggerate.  Slightly.
+###Control characters###
 
-The first thing you need to know is how to control this tool.  Try your arrow
-keys - you'll see that Arvo has traditional Unix history editing.  Up and down,
-left and right work, as do the simple emacs controls:
+In any case, what we've seen is that Arvo is a dangerous and
+powerful operating system which if handled improperly can cause
+serious injury or loss of life.  We exaggerate.  Slightly.
+
+The first thing you need to know is how to control this tool.
+Try your arrow keys - you'll see that Arvo has traditional Unix
+history editing.  Up and down, left and right work, as do the
+simple emacs controls:
 
     ^A  go to beginning of line
     ^B  left arrow
@@ -252,35 +258,44 @@ left and right work, as do the simple emacs controls:
 Don't expect any other emacs (or even readline - this is not readline, it's
 internal to Arvo) commands to work.
 
-There are also some special control keys specific to Arvo.  It's a good idea to
-learn these first so that you feel in, um, control.
+There are also some special control keys specific to Arvo.  It's
+a good idea to learn these first so that you feel in, um,
+control.
 
-First, we'll quit out of an infinite loop with ^C:
+First, we'll quit out of an infinite loop with `^C`:
 
     ~waclux-tomwyc/try=> :infinite
 
-When you hit return at the end of this line, Arvo will appear to hang.  Do not
-be alarmed!  This is not a bug - it means that we've started running our
-infinite loop before printing the next console prompt.  Simply hit ^C, and
-you'll see 
+When you hit return at the end of this line, Arvo will appear to
+hang.  Do not be alarmed!  This is not a bug - it means that
+we've started running our infinite loop before printing the next
+console prompt.  Simply hit `^C`, and you'll see 
 
     ! intr
     ~waclux-tomwyc/try=> :infinite
 
-Hit ^U to delete the line and escape from infinity.  Arvo is a deterministic
-OS; you interrupted it while processing an event that would never terminate.
-It returns to the state it was in before you hit return - as if nothing had
-ever happened.
+(There may be some stacktrace stuff before the `! intr`, depending
+on whether your kernel was compiled with debugging.)
 
-You're probably used to using nondeterministic, preemptive OSes, in which the
-difference between a waiting process and an executing event isn't apparent to
-the user.  Since Arvo is not preemptive, it has two very different states:
-waiting and working.
+Hit `^U` to delete the line and escape from infinity.  Arvo is a
+deterministic OS; you interrupted it while processing an event
+that would never terminate.  It returns to the state it was in
+before you hit return - as if nothing had ever happened.
 
-When Arvo is working, ^C cancels the event it's working on.  When Arvo is
-waiting, ^C ends the current task, which is the task that's currently prompting
-you - or showing the `[waiting...]` prompt, indicating that it's waiting for
-something else other than keyboard input.
+You're probably used to using nondeterministic, preemptive OSes,
+in which the difference between a waiting task and an
+executing event isn't apparent to the user.  Since Arvo is not
+preemptive, it has two very different states: waiting and
+working.  
+
+When Arvo is working, `^C` cancels the event it's working on.
+This event never happened.  Don't worry, nothing bad will happen
+to your computer.
+
+When Arvo is waiting, use `^D` to end the current task, which is
+the task that's currently prompting you.  If there is a live
+prompt and the cursor is not at the end, `^D` will delete the
+current character - as in Unix.  
 
 Try this by running
 
@@ -288,18 +303,20 @@ Try this by running
 
     Do you have a ship and a ticket? yes
 
-Then hit ^C and you'll be back to the command prompt (which, unlike in Unix, is
-not a task itself, but part of the OS).
+Then hit `^D` and you'll be back to the command prompt (which,
+unlike in Unix, is not a task itself, but part of the OS).
 
-We don't always want to kill the prompting task.  We often want to switch
-between tasks, or between tasks and the command line.  Sort of like switching
-between windows, except in a command line.  We do this with ^X.  Try
+We don't always want to kill the prompting task.  We often want
+to switch between tasks, or between tasks and the command line.
+Sort of like switching between windows, except in a command line.
+We do this with `^X`.  Try
 
     ~waclux-tomwyc/try=> :begin
 
     Do you have a ship and a ticket? yes
 
-But hit ^X instead of ^C.  You'll get a prompt again.  Use it:
+But hit `^X` instead of `^D`.  You'll get a prompt again.  Use
+it:
 
     ~waclux-tomwyc/try=> :begin
 
@@ -307,7 +324,7 @@ But hit ^X instead of ^C.  You'll get a prompt again.  Use it:
     "hello, world."
     ~waclux-tomwyc/try=> 
 
-Hit ^X again:
+Hit `^X` again:
 
     ~waclux-tomwyc/try=> :begin
 
@@ -315,26 +332,27 @@ Hit ^X again:
     "hello, world."
     Do you have a ship and a ticket? yes
 
-And finally, hit ^C to kill the task.
+And finally, hit `^C` to kill the task.
 
 There's one more magic control key that switches your whole
-reality.  This is ^W, which switches between the ships in a pier.
+reality.  This is `^W`, which switches between the ships in a pier.
 Do you have multiple ships in your pier?  Sure - you still have
-your old submarine.  Hit ^W:
+your old submarine.  Hit `^W`:
 
     ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=> 
 
-Hit ^W again:
+Hit `^W` again:
 
     ~waclux-tomwyc/try=>
 
 Finally, Arvo is a single-level store.  Since it's not the '70s
 anymore and disk is cheap, everything you do is saved for ever.
-(In fact, it's saved in two ways - as a memory image and an 
-event log - so you, or the government if they haz your filez, 
-can repeat every computation you've every performed.)
+(In fact, it's saved in two ways - as a memory image and an event
+log - so you, or the government if they haz your filez, can
+repeat every computation you've every performed.)
 
-As in Unix, hitting ^D on an empty line ends the program:
+If the current prompt is just the shell prompt, `^D` on an empty
+line will log out - as in Unix:
 
     ~waclux-tomwyc/try=> 
     oxford:~/urbit; pwd
@@ -359,10 +377,52 @@ run `vere` without `-c`:
 
 Use your arrow keys and you'll see your history is still there.
 Arvo is indestructible and can be shut down however you like
-without losing data.  Also, starting a new process while an old
-one is still running will kill the old one safely.  And, to leave
-a server running in the background, use `vere -d`.
+without losing data.  Also, starting a new task while an old
+one is still running will kill the old one safely.
 
 But don't try to operate the same ship on two Unix hosts at the
 same time.  This will confuse everyone, including yourself.
 
+###System administration###
+
+Sometimes we make changes to Hoon or Arvo (we never make changes
+to Nock) and you need to update your ship.
+
+There are two steps to updating.  You need to get the new files,
+and you need to install them.  To get them:
+
+    ~waclux-tomwyc/try=> :update
+    : /~waclux-tomwyc/arvo/2/hoon/hoon
+    : /~waclux-tomwyc/arvo/2/dill/hoon
+    : /~waclux-tomwyc/arvo/2/batz/hoon
+
+To install them (the simplest, slowest, most general way):
+
+    ~waclux-tomwyc/try=> :reset
+
+    %reset-start
+    %reset-parsed
+    %reset-compiled
+    %hoon-load
+    [%tang /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/zuse ~tirnux-latwex]
+    [%vane %a /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/ames ~tolryn-watret]
+    [%vane %b /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/batz ~donfex-ladsem]
+    [%vane %c /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/clay ~picsug-mitref]
+    [%vane %d /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/dill ~dilpex-laptug]
+    [%vane %e /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/eyre ~forbur-disben]
+
+All of your state, including running tasks, will be unchanged.
+
+###Chat###
+
+Okay, fine.  You're a long way from being an Arvo ninja.  But -
+you're ready for the two most important uses of Urbit right now.
+One, coding.  Two, chatting.
+
+To start coding, read the next chapter.  To start chatting,
+simply type
+
+    ~waclux-tomwyc/try=> :chat
+    &
+
+and type `?` for help. 
