@@ -27,7 +27,7 @@ Hoon: on the command line and via an app file.
 From the Arvo command line, you can run one-liners with the Hoon
 rune `.*`:
 
-    ~zod/try=> .*(42 [4 0 1])
+    ~waclux-tomwyc/try=> .*(42 [4 0 1])
     43
 
 ###Application file###
@@ -45,7 +45,7 @@ propagating changes on either side.
 Let's assume your `$URBIT_HOME` is `urb/`, and your ship is
 `~zod`.  The Nock application template is in
 
-    urb/zod/try/bin/nock.hoon
+    urb/~waclux-tomwyc/try/bin/nock.hoon
 
 Its text should be:
 
@@ -62,13 +62,13 @@ Its text should be:
 
 Test this by running:
 
-    ~zod/try=> :nock 42
+    ~waclux-tomwyc/try=> :nock 42
     43
 
 Our first complex example will be a decrement function.  With or 
 without `vere` running, copy the template from Unix:
 
-    $ cp urb/zod/try/bin/nock.hoon urb/zod/try/bin/dec.hoon
+    $ cp urb/~waclux-tomwyc/try/bin/nock.hoon urb/~waclux-tomwyc/try/bin/dec.hoon
 
 Then, use a Unix editor to change "Formula: increment" to
 "Formula: decrement" in `dec.hoon`.
@@ -76,11 +76,11 @@ Then, use a Unix editor to change "Formula: increment" to
 Either next time you start `vere`, or on your next keyboard event
 if you're already running it, you'll see something like
 
-    \+ /~zod/try/1/bin/dec/hoon
+     + /~waclux-tomwyc/try/1/bin/dec/hoon
 
 Arvo has slurped up dec.hoon from your filesystem.  To test it,
 
-    ~zod/try=> :dec 42
+    ~waclux-tomwyc/try=> :dec 42
     43
 
 Well, we didn't change the formula, so it still increments.  But
@@ -123,8 +123,8 @@ Note that for these tall bracket structures, the space after `[`
 is essential.  Then, you'll see the file automatically update in
 Arvo:
 
-    : /~zod/try/2/bin/dec/hoon
-    ~zod/try=> :dec 42
+    : /~waclux-tomwyc/try/2/bin/dec/hoon
+    ~waclux-tomwyc/try=> :dec 42
 
 Whoops!  It crashed:
 
@@ -145,8 +145,8 @@ actually at `/3`:
       [4 0 3]
     ]
 
-    : /~zod/try/3/bin/dec/hoon
-    ~zod/try=> :dec 42
+    : /~waclux-tomwyc/try/3/bin/dec/hoon
+    ~waclux-tomwyc/try=> :dec 42
     43
 
 Okay, at least it increments again.  (Constantly readjusting tree
@@ -170,10 +170,10 @@ fails, we shrug our shoulders and keep incrementing the argument.
       ]
     ]
 
-    : /~zod/try/4/bin/dec/hoon
-    ~zod/try=> :dec 42
+    : /~waclux-tomwyc/try/4/bin/dec/hoon
+    ~waclux-tomwyc/try=> :dec 42
     43
-    ~zod/try=> :dec 1
+    ~waclux-tomwyc/try=> :dec 1
     0
 
 We're getting closer.  But now, that loop...
@@ -209,10 +209,10 @@ is now `/7`:
 
 This does exactly the same thing as before:
 
-    : /~zod/try/5/bin/dec/hoon
-    ~zod/try=> :dec 42
+    : /~waclux-tomwyc/try/5/bin/dec/hoon
+    ~waclux-tomwyc/try=> :dec 42
     43
-    ~zod/try=> :dec 1
+    ~waclux-tomwyc/try=> :dec 1
     0
 
 But somehow, we feel it *could* do better.  Why?  Because where
@@ -255,8 +255,8 @@ If we put this into the decrement, it should actually work:
 
 And it does:
 
-    : /~zod/try/6/bin/dec/hoon
-    ~zod/try=> :dec 42
+    : /~waclux-tomwyc/try/6/bin/dec/hoon
+    ~waclux-tomwyc/try=> :dec 42
     43
 
 But there's one more step.  Remember operator `9`?
@@ -291,12 +291,12 @@ So we can rewrite our decrement to use `9`:
 
 Seems to work nicely:
 
-    : /~zod/try/6/bin/dec/hoon
-    ~zod/try=> :dec 42
+    : /~waclux-tomwyc/try/6/bin/dec/hoon
+    ~waclux-tomwyc/try=> :dec 42
     43
 
 Of course, there are limits:
 
-    ~zod/try=> :dec 0
+    ~waclux-tomwyc/try=> :dec 0
 
 You'll have to hit ^C, and you'll see a big ugly error stack.

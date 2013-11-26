@@ -169,15 +169,15 @@ or, of course,
 ##Rules##
 
 Nock's semantics are defined as a reduction algebra.  To compute
-`nock(x)`, where `x` is any noun, we step through the rules from
+`Nock(x)`, where `x` is any noun, we step through the rules from
 the top down, find the first left-hand side that matches `x`, and
 reduce it to the right-hand side.  
 
 Right away we see line 5:
 
-    5  ::    nock(a)           *a
+    5  ::    Nock(a)           *a
 
-So `nock(x)` is `*x`, for any noun `x`.  And how do we reduce
+So `Nock(x)` is `*x`, for any noun `x`.  And how do we reduce
 `*x`?  Looking up, we see that lines 23 through 39 reduce `*x` -
 for different patterns of `x`.
 
@@ -228,7 +228,7 @@ outside the computation.
 ##Functions##
 
 We've already seen the `*` function (pronounced "tar"), which
-just means `nock`.  This is the main show and we'll work through
+just means `Nock`.  This is the main show and we'll work through
 it soon, but first let's explain the functions it uses - `=`, `?`,
 `+` and `/`.
 

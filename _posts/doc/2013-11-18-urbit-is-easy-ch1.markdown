@@ -8,9 +8,6 @@ title: Urbit is Easy&#58; Chapter I (Setup)
 by men, a labyrinth destined to be deciphered by men.*  
 **(Tlön, Uqbar, Orbis Tertius)**
 
-
-
-
 #Setting up Urbit#
 
 First, build...
@@ -258,13 +255,13 @@ internal to Arvo) commands to work.
 There are also some special control keys specific to Arvo.  It's a good idea to
 learn these first so that you feel in, um, control.
 
-First, we'll quit out of an infinite loop with ^V:
+First, we'll quit out of an infinite loop with ^C:
 
     ~waclux-tomwyc/try=> :infinite
 
 When you hit return at the end of this line, Arvo will appear to hang.  Do not
 be alarmed!  This is not a bug - it means that we've started running our
-infinite loop before printing the next console prompt.  Simply hit ^V, and
+infinite loop before printing the next console prompt.  Simply hit ^C, and
 you'll see 
 
     ! intr
@@ -280,8 +277,8 @@ difference between a waiting process and an executing event isn't apparent to
 the user.  Since Arvo is not preemptive, it has two very different states:
 waiting and working.
 
-When Arvo is working, ^V cancels the event it's working on.  When Arvo is
-waiting, ^V ends the current task, which is the task that's currently prompting
+When Arvo is working, ^C cancels the event it's working on.  When Arvo is
+waiting, ^C ends the current task, which is the task that's currently prompting
 you - or showing the `[waiting...]` prompt, indicating that it's waiting for
 something else other than keyboard input.
 
@@ -291,7 +288,7 @@ Try this by running
 
     Do you have a ship and a ticket? yes
 
-Then hit ^V and you'll be back to the command prompt (which, unlike in Unix, is
+Then hit ^C and you'll be back to the command prompt (which, unlike in Unix, is
 not a task itself, but part of the OS).
 
 We don't always want to kill the prompting task.  We often want to switch

@@ -63,7 +63,7 @@ For instance, recall our computation from the last chapter:
 
     *[[19 42] [0 3] 0 2]
 
-`s` is [19 42], `f` is `[0 3]`, `g` is `[0 2]`, `h` is `[[0 3] 0
+`s` is `[19 42]`, `f` is `[0 3]`, `g` is `[0 2]`, `h` is `[[0 3] 0
 2]`.  `f(s)` is `42`; `g(s)` is `19`; so `h(s)` is `[42 19]`.
 
 Why?  We could have an operator `11`, `cons` to a Lisp veteran,
