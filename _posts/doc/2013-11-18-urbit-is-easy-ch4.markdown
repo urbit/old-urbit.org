@@ -257,7 +257,7 @@ And it does:
 
     : /~waclux-tomwyc/try/6/bin/dec/hoon
     ~waclux-tomwyc/try=> :dec 42
-    43
+    41
 
 But there's one more step.  Remember operator `9`?
 
@@ -288,7 +288,7 @@ Seems to work nicely:
 
     : /~waclux-tomwyc/try/6/bin/dec/hoon
     ~waclux-tomwyc/try=> :dec 42
-    43
+    41
 
 Of course, there are limits:
 
