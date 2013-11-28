@@ -19,8 +19,10 @@ Urbit runs on Unix machines only.  It depends on:
 + ncurses (Linux only)
 
 Currently we support OSX, Linux (not all distributions have been
-tested) and BSD. Intrepid ninjas may attempt ports to other OSes.
-If you're not an intrepid ninja, try a VM (eg, VirtualBox).
+tested) and \*BSD.  There are no instructions for BSD, because
+only people with a serious clue run BSD.  Intrepid ninjas may
+attempt ports to other OSes.  If you're not an intrepid ninja,
+try a VM (eg, VirtualBox).
 
 ###Configure OS X###
 

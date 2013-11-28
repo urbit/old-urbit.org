@@ -232,7 +232,7 @@ just means `Nock`.  This is the main show and we'll work through
 it soon, but first let's explain the functions it uses - `=`, `?`,
 `+` and `/`.
 
-###`=`###
+###Equals: `=`###
 
 `=` (pronounced "tis", or sometimes "is") tests a cell for
 equality.  `0` means yes, `1` means no:
@@ -244,7 +244,7 @@ equality.  `0` means yes, `1` means no:
 Again, testing an atom for equality makes no sense and logically
 fails to terminate.
 
-###`?`###
+###Depth: `?`###
 
 `?` (pronounced "wut") tests whether is a noun is a cell.  Again, 
 `0` means yes, `1` means no:
@@ -255,7 +255,7 @@ fails to terminate.
 (This convention is the opposite of old-fashioned booleans, so we
 try hard to say "yes" and "no" instead of "true" and "false.")
 
-###`+`###
+###Increment: `+`###
 
 `+` (pronounced "lus", or sometimes "plus") adds 1 to an atom:
 
@@ -265,9 +265,9 @@ try hard to say "yes" and "no" instead of "true" and "false.")
 Because `+` works only for atoms, whereas `=` works only for
 cells, the error rule matches first for `+` and last for `=`.
 
-###`/`###
+###Address: `/`###
 
-`/` (pronounced "fas") is a tree traversal function:
+`/` (pronounced "fas") is a tree address function:
 
     16 ::    /[1 a]           a
     17 ::    /[2 a b]         a
@@ -297,3 +297,6 @@ We can also build nouns in which every atom is its own axis:
     [[4 5] [12 13] 14 15]
     [[4 [10 11]] [12 13] 14 15]
     [[[8 9] [10 11]] [12 13] 14 30 31]
+
+Once you've spent enough time programming in Urbit, you'll know
+these tree axes in your dreams.

@@ -7,7 +7,7 @@ title: Urbit is Easy&#58; Chapter IV (Using Nock)
 *"But are you crazy enough?"*  
 **(Point Break)**
 
-##Using Nock##
+##Playing with Nock##
 
 Now we're going to actually do some cool stuff with Nock.
 
@@ -86,7 +86,7 @@ Arvo has slurped up dec.hoon from your filesystem.  To test it,
 Well, we didn't change the formula, so it still increments.  But
 it's a start.
 
-###Decrement###
+##Decrement##
 
 The only arithmetic operation in Nock is increment.  So how do we
 decrement?  The algorithm is obvious: to decrement `n`, start
@@ -266,12 +266,7 @@ But there's one more step.  Remember operator `9`?
 
 Suppose `c` is a formula that produces a core.  Then we see
 immediately what `9` does: it activates a core, using the formula
-at `[0 b]`.  
-
-(There's only one formula in our core.  So `b` is always `2`.  But
-in the general case, we could have an entire *battery* of
-formulas that all work on the same core.  Sort of like an
-object... hm...)
+at `/b` within the core.
 
 So we can rewrite our decrement to use `9`:
 
@@ -299,4 +294,226 @@ Of course, there are limits:
 
     ~waclux-tomwyc/try=> :dec 0
 
-You'll have to hit ^C, and you'll see a big ugly error stack.
+You'll have to hit `^C`, and you'll see a big ugly error stack.
+Nock can work wonders but it can't decrement 0.  (Yes, you can
+build signed integers in Hoon - they are represented as atoms
+with the sign bit low.)
+
+###A function###
+
+As we start to build up toward language-level primitives, it
+behooves us to do things the way a higher-level language would do
+them.  Well, more exactly, the way Hoon does things.
+
+Surprisingly, although a formula defines a function of the
+subject, a function - at the language level - is not the same
+thing as a formula.  Or rather, the argument is not the same
+thing as the subject.
+
+For instance, as we saw in decrement, the subject for the loop
+needs to contain the code itself.  If we apply a formula which
+can't call back into itself, our ability to loop is sorely
+diminished.  So at the very least, when we call a function,
+the subject can't just be `argument` - it has to be the cell 
+`[formula argument]`, so that the function can recurse.
+
+Actually, it's confusing to say `argument`, because this implies
+a special status for single and multiple arguments.  In Nock and 
+Hoon, we say `sample`, which is always one thing, but can be a
+cell for "functions of two arguments", a triple for three, etc.
+Eg, the sample for a decrement function is an atom; the sample
+for an add function is a cell of two atoms; etc.
+
+Furthermore, a function needs more data than just the argument -
+it might, for instance, want to call other functions.  Where's it
+going to get them?  There is no external environment in Nock.
+
+So the standard convention for a Nock function - or a Hoon
+function - is
+
+    [formula sample context]
+
+Where `formula` is the code, `sample` is the argument(s), and
+`context` is any other data and/or code that may be useful.
+
+It's a bit irregular that we are taking the external subject
+and using it directly from our formula.  Let's try to build a
+function with this convention and call it directly.  
+
+First, we'll build an increment function to keep things simple.
+We actually don't need anything in the context, so we'll put 0.
+
+    [ 8
+      [ 1
+        [4 0 6]                     ::  formula
+        0                           ::  sample
+        0                           ::  context
+      ]
+      [ 9 
+        2                           ::  axis of formula in core
+        [0 4] [0 3] [0 11]          ::  reconstructed core
+      ]
+    ]
+
+Why `[[0 4] [0 3] [0 11]]`?  Our goal in calling the function is
+to take the blank default core we've created at `/2`, and
+substitute in the original subject of the outer formula, which
+before the outer `8` was `/1` and is now `/3`.  Around this
+we wrap the formula from the default core, at `/4`, and the
+(dummy) context, at `/11` - that is, `/7` within `/2`.
+
+Let's fit our decrement into this framework:
+
+    [ 8
+      [ 1
+        [ 8 
+          [1 0] 
+          [ 8 
+            [ 1 
+              [ 6 
+                [5 [4 0 6] [0 30]] 
+                [0 6] 
+                [9 2 [0 2] [4 0 6] [0 7]]
+              ]
+            ]
+            [9 2 0 1]
+          ]
+        ]
+        0
+        0
+      ]
+      [ 9 
+        2
+        [0 4] [0 3] [0 11]
+      ]
+    ]
+
+Observe that nothing has changed from the way we called our
+increment function, and only one thing has changed within the
+decrement formula - the axis of the argument.  Now at `/7` is not
+the naked argument to decrement, but our outer core.  The sample
+is at `/6` within this `/7`, ie, at `/30`. 
+
+##A library##
+
+Frankly, this is getting close to the limits of anything you'd
+want to do in hand-generated Nock.  But why not press on?
+
+What we'd really like to do is build a library of functions that
+can call each other.  It's easy to guess that this library will
+be... a core.  But what does this core look like?
+
+A function core, `[formula sample context]`, is a very useful
+kind of core, but it's not the only kind of core.  (Actually,
+because the word "function" is too easy to throw around, we have 
+a special name for a function core: we call it a `gate`.  Compare
+to "lambda" or "closure.")
+
+But in general, a core is just `[code data]` - or, to use more
+lingo, `[battery payload]`.  The payload can be anything - it's
+just data.
+
+The battery can be one *or more* formulas, each of which is
+applied with the core as its subject.  This is why `9` takes the
+axis operand `b`.  If the core is a gate, the battery is just one
+formula; this is the head of the core, so `b` is 2.
+
+But not every core is a gate.  Suppose we want to build a
+library?  We could assemble a bundle of cores and put it in
+the context.  So, let's say we need to write subtract, which
+obviously is going to use decrement.  So, the context will be
+
+  [subtract-gate decrement-gate]
+
+But wait.  Each gate is [formula sample context].  So, because
+Nock doesn't do cycles, there's no way the subtract gate and the
+decrement gate can each reference each other through the context.
+It happens to be the case here that subtract needs decrement, but
+decrement doesn't need subtract.  But we're not looking for ugly
+at this point - we know Nock is more than capable of that.
+
+To support general mutual recursion, our library needs to be a
+battery in which each formula produces a gate.  The context of
+that gate is the library core.
+
+Let's repeat this again because it's so important.  Our library
+will be a battery in which each formula produces a gate.  The
+context of that gate is the library core.
+
+Let's build a trivial library core of this form, with one
+function, good old increment.  Then, we'll call it.
+
+    [ 8 
+      [ [ 1                         ::  battery
+          [ 1                       ::  formula
+            [4 0 6]
+          ]
+          [1 0]                     ::  sample
+          [0 1]                     ::  context
+        ]
+        [1 0]                       ::  payload
+      ]
+      [ 8
+        [9 2 0 2]                   ::  build function gate
+        [ 9                         ::  call the function
+          2
+          [0 4] [0 7] [0 11]
+        ]
+      ]
+    ]
+
+Compare this to the standalone increment above.  It's obviously
+more complex and it should be.
+
+First of all, what we put in the library core is not the function
+gate directly, but a formula that generates the gate.  This way,
+and only this way, we can put the library itself in the context.
+
+Second, what's the payload of the library core?  It's `0`,
+because the library doesn't depend on anything.  It certainly
+doesn't depend on the argument to our application.
+
+Third, now we can't just call the gate directly.  We have to
+actually build it.  So we need another `8` to "push it on the
+stack", and then we call it with the usual `9`.  Since the
+subject at this point is `[gate library argument]`, the sample we
+use is `[0 7]` rather than `[0 3]` - everything else is the same.
+
+But does it work?  C'mon, you know it works:
+
+    ~zod/try=> :dec 42
+    43
+
+Okay, let's go ahead and put our actual decrement function in
+the library:
+
+    [ 8 
+      [ [ 1 
+          [ 1 
+            [ 8 
+              [1 0] 
+              [ 8 
+                [ 1 
+                  [ 6 
+                    [5 [4 0 6] [0 30]] 
+                    [0 6] 
+                    [9 2 [0 2] [4 0 6] [0 7]]
+                  ]
+                ]
+                [9 2 0 1]
+              ]
+            ]
+          ]
+          [1 0]
+          [0 1]
+        ]
+        [1 0]
+      ]
+      [ 8
+        [9 2 0 2]
+        [ 9
+          2
+          [0 4] [0 7] [0 11]
+        ]
+      ]
+    ]
