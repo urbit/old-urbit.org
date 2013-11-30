@@ -521,52 +521,55 @@ the library:
 subtract:
 
     [ 8 
-      [ [ 1
-          [ [ 1                                    ::  subtract
-            [ 8
-              [9 2 0 7]                            ::  build gate
-                [ 6                                ::  if
-                 [5 [1 0] [0 29]]                 ::  =[0 b]
-                  [0 28]                           ::  then a
-                  [ 9                              ::  else
-                     4                             ::  loop 
-                     [0 4]                         ::  formula
-                     [ [9 5 [0 4] [0 28] [0 15]]   ::  replace a with (dec a)
-                       [9 5 [0 4] [0 29] [0 15]]   ::  replace b with (dec b)
-                     ]
-                    [0 11]                        ::  context
-                  ]                               
-                ]
-            ] 
-            ]
-
-            [ 1                                    ::  decrement
-            [ 8                                    ::  put b in subject
-              [1 0]                                ::  b = 0
-              [ 8                                 
-                [ 1 
-                  [ 6                              ::  if
-                    [5 [4 0 6] [0 30]]             ::  =[+b a]
-                    [0 6]                          ::  then b
-                    [9 2 [0 2] [4 0 6] [0 7]]      ::  else loop, replace b with +b
+      [ [ [ 1
+            [ 1
+              [ 8                                            ::  subtract
+                [9 5 0 7]                                    ::  build dec gate
+    
+                [ 6                                          ::  if
+                  [5 [1 0] [0 29]]                           ::  =[0 b]
+                  [0 28]                                     ::  then a
+                  [ 9                                        ::  else loop
+                    2
+                    [0 6]                                    ::  formula
+                    [ [9 2 [0 4] [0 28] [0 15]]              ::  replace a w/ dec a
+                        [9 2 [0 4] [0 29] [0 15]]            ::  replace b w/ dec b
+                    ]
+                    [0 15]                                   ::  context
                     ]
                 ]
-                  [9 2 0 1]                        ::  activate decrement
+              ] 
+            ]
+            [1 0]                                            ::  sample
+            [0 1]                                            ::  context
+            ]
+    
+            [ 1 
+                [ 1                                         ::  decrement
+                [ 8                                         ::  put b in subject
+                  [1 0]                                     ::  b = 0
+                  [ 8                                 
+                    [ 1 
+                      [ 6                                   ::  if
+                        [5 [4 0 6] [0 30]]                  ::  =[+b a]
+                        [0 6]                               ::  then b
+                        [9 2 [0 2] [4 0 6] [0 7]]           ::  else replace b w/ +b
+                    ]
+                ]
+                  [9 2 0 1]                                 ::  activate decrement
               ]
             ]
             ]
-            
-          ]
-          [1 0]                                    ::  sample
-          [0 1]                                    ::  context
+            [1 0]                                           ::  sample
+            [0 1]                                           ::  context
+            ]
         ]
-        [1 0]                                      ::  payload
-      ]
-    
+        [1 0]                                               ::  payload
+      ] 
       [ 8                                          
-        [9 2 0 2]                                  ::  build gate
-        [ 9                                        ::  activate gate
-          4                                        ::  with subtract
+        [9 4 0 2]                                           ::  build gate
+        [ 9                                                 ::  activate gate
+          2                                                 ::  with subtract
           [0 4] [0 7] [0 11]
         ]
       ]
