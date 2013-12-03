@@ -39,7 +39,7 @@ But at least there are only 39 lines of it.
 
     1  ::    A noun is an atom or a cell.  
     2  ::    An atom is a natural number. 
-    3  ::    A cell is a ordered pair of nouns.
+    3  ::    A cell is an ordered pair of nouns.
     4  ::
     5  ::    Nock(a)          *a
     6  ::    [a b c]          [a [b c]]
