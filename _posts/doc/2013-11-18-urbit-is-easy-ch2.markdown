@@ -173,9 +173,13 @@ Nock's semantics are defined as a reduction algebra.  To compute
 the top down, find the first left-hand side that matches `x`, and
 reduce it to the right-hand side.  
 
+
 Right away we see line 5:
 
     5  ::    Nock(a)           *a
+
+When we use variable names, like `a`, in the pseudocode spec, we
+simply mean that the rule fits for any noun `a`.
 
 So `Nock(x)` is `*x`, for any noun `x`.  And how do we reduce
 `*x`?  Looking up, we see that lines 23 through 39 reduce `*x` -
@@ -279,8 +283,11 @@ cells, the error rule matches first for `+` and last for `=`.
 This looks way more complicated than it is.  Essentially, we
 define a noun as a binary tree and assign an address, or *axis*,
 to every node in the tree.  The root of the tree is `/1`.  The
-left child of every node `n` is `/2n`; the right child is
-`/2n+1`.  For a complete tree of depth 3, the assignment looks
+left child of every node at `/a` is `/2n`; the right child is
+`/2a+1`.  (Writing `(a + a)` is just a clever way to write `2a`,
+while minimizing the number of pseudocode forms.)
+
+For a complete tree of depth 3, the assignment looks
 like this:
 
              1
