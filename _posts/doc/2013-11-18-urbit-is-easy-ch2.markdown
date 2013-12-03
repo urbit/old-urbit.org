@@ -41,7 +41,7 @@ But at least there are only 39 lines of it.
     2  ::    An atom is a natural number. 
     3  ::    A cell is an ordered pair of nouns.
     4  ::
-    5  ::    Nock(a)          *a
+    5  ::    nock(a)          *a
     6  ::    [a b c]          [a [b c]]
     7  ::
     8  ::    ?[a b]           0
@@ -278,14 +278,19 @@ cells, the error rule matches first for `+` and last for `=`.
 
 This looks way more complicated than it is.  Essentially, we
 define a noun as a binary tree and assign an address, or *axis*,
-to every node in the tree.  The root of the tree is 1.  The left
-child of every node `n` is `2n`; the right child is `2n+1`.  For
-a complete tree of depth 3, the assignment looks like this:
+to every node in the tree.  The root of the tree is `/1`.  The
+left child of every node `n` is `/2n`; the right child is
+`/2n+1`.  For a complete tree of depth 3, the assignment looks
+like this:
 
              1
         2          3
      4    5     6     7
     8 9 10 11 12 13 14 15
+
+For instance, suppose your noun is `[[97 2] [1 42 0]]`.  Then,
+`/2` is `[97 2]`; `/3` is `[1 42 0]`; `/6` is `1`; `/7` is `[42
+0]`; `/5` is `2`; etc.
 
 We can also build nouns in which every atom is its own axis: 
 
@@ -299,4 +304,4 @@ We can also build nouns in which every atom is its own axis:
     [[[8 9] [10 11]] [12 13] 14 30 31]
 
 Once you've spent enough time programming in Urbit, you'll know
-these tree axes in your dreams.
+these axes in your dreams.
