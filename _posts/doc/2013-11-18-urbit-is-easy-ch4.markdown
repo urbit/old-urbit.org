@@ -45,7 +45,7 @@ propagating changes on either side.
 Let's assume your `$URBIT_HOME` is `urb/`, and your ship is
 `~waclux-tomwyc`.  The Nock application template is in
 
-    urb/~waclux-tomwyc/try/bin/nock.hoon
+    urb/waclux-tomwyc/try/bin/nock.hoon
 
 Its text should be:
 
@@ -77,7 +77,7 @@ Test this by running:
 Our first complex example will be a decrement function.  With or 
 without `vere` running, copy the template from Unix:
 
-    $ cp urb/~waclux-tomwyc/try/bin/nock.hoon urb/~waclux-tomwyc/try/bin/dec.hoon
+    $ cp urb/waclux-tomwyc/try/bin/nock.hoon urb/waclux-tomwyc/try/bin/dec.hoon
 
 Then, use a Unix editor to change "Formula: increment" to
 "Formula: decrement" in `dec.hoon`.
