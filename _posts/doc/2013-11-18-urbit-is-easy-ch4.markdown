@@ -45,7 +45,7 @@ propagating changes on either side.
 Let's assume your `$URBIT_HOME` is `urb/`, and your ship is
 `~waclux-tomwyc`.  The Nock application template is in
 
-    urb/~waclux-tomwyc/try/bin/nock.hoon
+    urb/waclux-tomwyc/try/bin/nock.hoon
 
 Its text should be:
 
@@ -60,6 +60,15 @@ Its text should be:
                    ::  Formula: increment
     [4 0 1]
 
+For the rest of this document we'll simply assume you can copy
+boilerplate, and write the rest of the file:
+
+    [4 0 1]                           ::    bump /1
+
+(The pseudocode in the comments is not in any way described.  If
+you have trouble figuring it out, that's okay, but you may not be
+tall enough for the ride.)
+
 Test this by running:
 
     ~waclux-tomwyc/try=> :nock 42
@@ -68,7 +77,7 @@ Test this by running:
 Our first complex example will be a decrement function.  With or 
 without `vere` running, copy the template from Unix:
 
-    $ cp urb/~waclux-tomwyc/try/bin/nock.hoon urb/~waclux-tomwyc/try/bin/dec.hoon
+    $ cp urb/waclux-tomwyc/try/bin/nock.hoon urb/waclux-tomwyc/try/bin/dec.hoon
 
 Then, use a Unix editor to change "Formula: increment" to
 "Formula: decrement" in `dec.hoon`.
@@ -114,10 +123,10 @@ put this counter in the subject, and then increment as usual.
 
 Edit `dec.hoon` so that the formula reads
 
-    [ 8
-      [1 0]
-      [4 0 1]
-    ]
+    [ 8                               ::  push
+      [1 0]                           ::    just 0
+      [4 0 1]                         ::    bump /1
+    ]                                 ::
 
 Note that for these tall bracket structures, the space after `[`
 is essential.  Then, you'll see the file automatically update in
@@ -140,10 +149,10 @@ When we get to `[4 0 1]`, the subject is not `42`, but `[0 42]` -
 the counter is there.  So our original argument, `42`, is
 actually at `/3`: 
 
-    [ 8
-      [1 0]
-      [4 0 3]
-    ]
+    [ 8                               ::  push
+      [1 0]                           ::   just 0
+      [4 0 3]                         ::   bump /3
+    ]                                 ::
 
     : /~waclux-tomwyc/try/3/bin/dec/hoon
     ~waclux-tomwyc/try=> :dec 42
@@ -161,14 +170,14 @@ is at `/3`, and the counter is at `/2`; we use the if operator,
 `6`, and the equality test operator `5`.  If the comparison
 fails, we shrug our shoulders and keep incrementing the argument.
 
-    [ 8
-      [1 0]
-      [ 6
-        [5 [4 0 2] [0 3]]
-        [0 2]
-        [4 0 3]
-      ]
-    ]
+    [ 8                               ::  push
+      [1 0]                           ::   just 0
+      [ 6                             ::   pick
+        [5 [4 0 2] [0 3]]             ::    same (bump /2) /3
+        [0 2]                         ::    /2
+        [4 0 3]                       ::    bump /3
+      ]                               ::   |
+    ]                                 ::  |
 
     : /~waclux-tomwyc/try/4/bin/dec/hoon
     ~waclux-tomwyc/try=> :dec 42
@@ -193,19 +202,19 @@ Of course, since the subject has changed again, we need to change
 the addresses again.  The counter is now `/6` and the argument
 is now `/7`:
 
-    [ 8
-      [1 0]
-      [ 8
-        [ 1 
-          [ 6
-            [5 [4 0 6] [0 7]]
-            [0 6]
-            [4 0 7]
-          ]
-        ]
-        [2 [0 1] [0 2]]
-      ]
-    ]
+    [ 8                               ::  push
+      [1 0]                           ::   just 0
+      [ 8                             ::   push
+        [ 1                           ::    quid
+          [ 6                         ::     pick
+            [5 [4 0 6] [0 7]]         ::      same (bump /6) /7
+            [0 6]                     ::      /6
+            [4 0 7]                   ::      bump /7
+          ]                           ::     |
+        ]                             ::    |
+        [2 [0 1] [0 2]]               ::    nock /1 /2
+      ]                               ::   |
+    ]                                 ::  |
 
 This does exactly the same thing as before:
 
@@ -227,31 +236,34 @@ So, `formula` is `[0 2]`, `counter` is `[0 6]`, and `argument` is
 `[0 7]`.  With autocons, we can just put them together to make a
 (superfluous) formula for `[formula counter argument]` - ie, 
 
-    [[0 2] [0 6] [0 7]]
+    [[0 2] [0 6] [0 7]]               ::  cons /2 /6 /7
 
 But we actually want to increment the counter:
 
-    [[0 2] [4 0 6] [0 7]]
+    [[0 2] [4 0 6] [0 7]]             ::  cons /2 (bump /6) /7
 
 And to invoke our formula on this modified core:
 
-    [2 [[0 2] [4 0 6] [0 7]] [0 2]]
+    [2 [[0 2] [4 0 6] [0 7]] [0 2]]   ::  nock (cons /2 (bump /6) /7) /2
 
 If we put this into the decrement, it should actually work:
 
-    [ 8
-      [1 0]
-      [ 8
-        [ 1 
-          [ 6
-            [5 [4 0 6] [0 7]]
-            [0 6]
-            [2 [[0 2] [4 0 6] [0 7]] [0 2]]
-          ]
-        ]
-        [2 [0 1] [0 2]]
-      ]
-    ]
+    [ 8                               ::  push
+      [1 0]                           ::   just 0
+      [ 8                             ::   push
+        [ 1                           ::    quid
+          [ 6                         ::     pick
+            [5 [4 0 6] [0 7]]         ::      same (bump /6) /7
+            [0 6]                     ::      /6
+            [2                        ::      nock
+               [[0 2] [4 0 6] [0 7]]  ::       (cons /2 (bump /6) /7)
+               [0 2]                  ::       /2
+            ]                         ::      |
+          ]                           ::     |
+        ]                             ::    |
+        [2 [0 1] [0 2]]               ::    nock /1 /2
+      ]                               ::   |
+    ]                                 ::  |
 
 And it does:
 
@@ -270,19 +282,19 @@ at `/b` within the core.
 
 So we can rewrite our decrement to use `9`:
 
-    [ 8 
-      [1 0] 
-      [ 8 
-        [ 1 
-          [ 6 
-            [5 [4 0 6] [0 7]] 
-            [0 6] 
-            [9 2 [0 2] [4 0 6] [0 7]]
-          ]
-        ]
-        [9 2 0 1]
-      ]
-    ]
+    [ 8                               ::  push
+      [1 0]                           ::   just 0
+      [ 8                             ::   push
+        [ 1                           ::    quid
+          [ 6                         ::     pick 
+            [5 [4 0 6] [0 7]]         ::      same (bump /6) /7
+            [0 6]                     ::      /6
+            [9 2 [0 2] [4 0 6] [0 7]] ::      call.2 (cons /2 (bump /6) /7)
+          ]                           ::     |
+        ]                             ::    |
+        [9 2 0 1]                     ::    call.2 /1
+      ]                               ::   |
+    ]                                 ::  |
 
 Seems to work nicely:
 
@@ -343,17 +355,17 @@ function with this convention and call it directly.
 First, we'll build an increment function to keep things simple.
 We actually don't need anything in the context, so we'll put 0.
 
-    [ 8
-      [ 1
-        [4 0 6]                     ::  formula
-        0                           ::  sample
-        0                           ::  context
-      ]
-      [ 9 
-        2                           ::  axis of formula in core
-        [0 4] [0 3] [0 11]          ::  reconstructed core
-      ]
-    ]
+    [ 8                               ::  push
+      [                               ::   cons
+        [1 [4 0 6]]                   ::    quid bump /6  ::  formula
+        [1 0]                         ::    just 0        ::  sample
+        [1 0]                         ::    just 0        ::  context
+      ]                               ::   |
+      [ 9                             ::   call
+        2                             ::    .2
+        [0 4] [0 3] [0 11]            ::    cons /4 /3 /11
+      ]                               ::   |
+    ]                                 ::  |
 
 Why `[[0 4] [0 3] [0 11]]`?  Our goal in calling the function is
 to take the blank default core we've created at `/2`, and
@@ -364,29 +376,28 @@ we wrap the formula from the default core, at `/4`, and the
 
 Let's fit our decrement into this framework:
 
-    [ 8
-      [ 1
-        [ 8 
-          [1 0] 
-          [ 8 
-            [ 1 
-              [ 6 
-                [5 [4 0 6] [0 30]] 
-                [0 6] 
-                [9 2 [0 2] [4 0 6] [0 7]]
-              ]
-            ]
-            [9 2 0 1]
-          ]
-        ]
-        0
-        0
-      ]
-      [ 9 
-        2
-        [0 4] [0 3] [0 11]
-      ]
-    ]
+    [ 8                                     ::  push
+      [                                     ::   cons
+        [ 1                                 ::    quid    ::  formula
+          [ 8                               ::     push
+            [1 0]                           ::      just 0
+            [ 8                             ::      push
+              [ 1                           ::       quid
+                [ 6                         ::        pick
+                  [5 [4 0 6] [0 30]]        ::         same /6 /30
+                  [0 6]                     ::         /6
+                  [9 2 [0 2] [4 0 6] [0 7]] ::         call.2 /2 (bump /6) /11
+                ]                           ::        |
+              ]                             ::       |
+              [9 2 0 1]                     ::       call.2 /1
+            ]                               ::      |
+          ]                                 ::     |
+        ]                                   ::    |
+        [1 0]                               ::    just 0  ::  sample
+        [1 0]                               ::    just 0  ::  context
+      ]                                     ::   |
+      [9 2 [0 4] [0 3] [0 11]]              ::   call.2 /4 /3 /11
+    ]                                       ::  |
 
 Observe that nothing has changed from the way we called our
 increment function, and only one thing has changed within the
@@ -443,24 +454,20 @@ context of that gate is the library core.
 Let's build a trivial library core of this form, with one
 function, good old increment.  Then, we'll call it.
 
-    [ 8 
-      [ [ 1                         ::  battery
-          [ 1                       ::  formula
-            [4 0 6]
-          ]
-          [1 0]                     ::  sample
-          [0 1]                     ::  context
-        ]
-        [1 0]                       ::  payload
-      ]
-      [ 8
-        [9 2 0 2]                   ::  build function gate
-        [ 9                         ::  call the function
-          2
-          [0 4] [0 7] [0 11]
-        ]
-      ]
-    ]
+    [ 8                               ::  push
+      [                               ::   cons
+        [ 1                           ::    quid          ::  battery
+          [1 [4 0 6]]                 ::     quid bump /6
+          [1 0]                       ::     just 0
+          [0 1]                       ::     /1
+        ]                             ::    |
+        [1 0]                         ::    just 0        ::  payload
+      ]                               ::   |
+      [ 8                             ::   push
+        [9 2 0 2]                     ::    call.2 /2
+        [9 2 [0 4] [0 7] [0 11]]      ::    call.2 /4 /7 /11
+      ]                               ::   |
+    ]                                 ::  |
 
 Compare this to the standalone increment above.  It's obviously
 more complex and it should be.
@@ -481,14 +488,16 @@ use is `[0 7]` rather than `[0 3]` - everything else is the same.
 
 But does it work?  C'mon, you know it works:
 
-    ~zod/try=> :dec 42
+    ~waclux-tomwyc/try=> :dec 42
     43
 
 Okay, let's go ahead and put our actual decrement function in
-the library:
+the library.  We won't write the pseudocode here, because it's an
+excellent exercise to add it - see below.
 
     [ 8 
-      [ [ 1 
+      [ 
+        [ 1 
           [ 1 
             [ 8 
               [1 0] 
@@ -518,59 +527,93 @@ the library:
       ]
     ]
 
-subtract:
+    ~waclux-tomwyc/try=> :dec 42
+    43
+
+Then, let's go crazy and add a subtract function, which calls
+decrement.
 
     [ 8 
-      [ [ [ 1
+      [ 
+        [ 
+          [ 1
             [ 1
-              [ 8                                            ::  subtract
-                [9 5 0 7]                                    ::  build dec gate
-    
-                [ 6                                          ::  if
-                  [5 [1 0] [0 29]]                           ::  =[0 b]
-                  [0 28]                                     ::  then a
-                  [ 9                                        ::  else loop
+              [ 8
+                [9 5 0 7]
+                [ 6
+                  [5 [1 0] [0 29]]
+                  [0 28]
+                  [ 9
                     2
-                    [0 6]                                    ::  formula
-                    [ [9 2 [0 4] [0 28] [0 15]]              ::  replace a w/ dec a
-                        [9 2 [0 4] [0 29] [0 15]]            ::  replace b w/ dec b
+                    [0 6]
+                    [ [9 2 [0 4] [0 28] [0 15]]
+                      [9 2 [0 4] [0 29] [0 15]]
                     ]
-                    [0 15]                                   ::  context
-                    ]
+                    [0 15]
+                  ]
                 ]
               ] 
             ]
-            [1 0]                                            ::  sample
-            [0 1]                                            ::  context
-            ]
-    
-            [ 1 
-                [ 1                                         ::  decrement
-                [ 8                                         ::  put b in subject
-                  [1 0]                                     ::  b = 0
-                  [ 8                                 
-                    [ 1 
-                      [ 6                                   ::  if
-                        [5 [4 0 6] [0 30]]                  ::  =[+b a]
-                        [0 6]                               ::  then b
-                        [9 2 [0 2] [4 0 6] [0 7]]           ::  else replace b w/ +b
+            [1 0]
+            [0 1]
+          ]
+          [ 1 
+            [ 1
+              [ 8
+                [1 0]
+                [ 8                                 
+                  [ 1 
+                    [ 6
+                      [5 [4 0 6] [0 30]]
+                      [0 6]
+                      [9 2 [0 2] [4 0 6] [0 7]]
                     ]
+                  ]
+                  [9 2 0 1]
                 ]
-                  [9 2 0 1]                                 ::  activate decrement
               ]
             ]
-            ]
-            [1 0]                                           ::  sample
-            [0 1]                                           ::  context
-            ]
+            [1 0]
+            [0 1]
+          ]
         ]
-        [1 0]                                               ::  payload
+        [1 0]
       ] 
       [ 8                                          
-        [9 4 0 2]                                           ::  build gate
-        [ 9                                                 ::  activate gate
-          2                                                 ::  with subtract
+        [9 4 0 2]
+        [ 9
+          2
           [0 4] [0 7] [0 11]
         ]
       ]
     ]
+
+Note that the call to build the gate is `[9 4 0 2]`, because the
+subtract arm is the head of the battery, which is the head of the
+core - ie, `/2` within `/2` - ie, `/4`.
+
+Does this work?  Really?
+
+    ~waclux-tomwyc/try=> :dec [42 12]
+    30
+
+##Exercises##
+
+Do you actually know Nock now?  Well, possibly.  
+
+A good exercise is to add more simple math functions to this
+battery.  Try add, multiply, and divide.  One way to start is by
+walking through the uncommented routines above, putting
+pseudocode comments on them, and figuring out what they're doing.
+
+Computing axes is slightly arduous (which is why we use Hoon,
+generally).  We are torturing ourselves by using Nock, but we
+might as well use Hoon to calculate axes:
+
+    ~zod/try=> (peg 3 3)
+    7
+    ~zod/try=> (peg 3 5)
+    13
+
+Ie, `(peg a b)` is `/b` within `/a`.  Writing Nock without this
+would be pretty tough... 
