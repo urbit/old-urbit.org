@@ -11,8 +11,9 @@ title: Urbit is Easy&#58; Chapter V (Hoon Attacks)
 
 By working through the Nock tutorial, you've actually come closer
 than you know to knowing Hoon.  Hoon is actually not much more
-than a fancy wrapper around Nock, more or less the way C is a
-fancy wrapper around machine code.
+than a fancy wrapper around Nock. People who know C can think of
+Hoon as the C to Urbit's Nock - just a sprinkling of syntax,
+wrapped around machine code and memory.
 
 For instance, it's easy to imagine how instead of calculating
 tree axes by hand, we could actually assign *names* to different
@@ -22,13 +23,15 @@ pushed more data on the subject.  It can't hurt to dream, right?
 The way we're going to do this is by associating something called
 a `type` with the subject.  You may have heard of types before.
 Technically, Hoon is a statically typed language, which just
-means that the type is a data structure the compiler has when it
-turns your Hoon into Nock; it's not in your program as it runs.
+means that the type isn't a part of your program: it's just a
+piece of data the compiler keeps around as it turns your Hoon
+into Nock.
 
 In some languages, especially functional languages, types are
 dangerous scary concepts that involve a lot of math.  For those
 who like this sort of thing, that's the sort of thing they like.
-Hoon is a functional language, but not one of those scary ones.
+For the rest of us, there's Hoon. It's a functional language, but
+not one of those scary ones.
 
 A lot of other languages use dynamic types, in which the type of
 a value is carried along with the data as you use it.  Even
@@ -67,8 +70,8 @@ for constructing hoons.  Types are always produced by inference.
 
 Let's start looking at types with the simplest possible kind of
 hoon - an atomic constant, which ignores the subject and its
-type, and just produces its own.  Here's everyone's favorite
-atomic constant:
+type, and just produces its own subject.  Here's everyone's
+favorite atomic constant:
 
     ~waclux-tomwyc/try=> 42
     42
@@ -235,7 +238,7 @@ Odors are a weak type system because the programmer often knows,
 at a logical level not at all available to the type system, that
 (for example) `(add 'u' (mul 256 'd'))` produces an ASCII span.
 We want to keep the programmer from accidentally using a date as
-if was text, but we don't want to keep her from intentionally
+if it were text, but we don't want to keep her from intentionally
 converting between odors or ascribing odor to the result of an
 arbitrary computation.
 
