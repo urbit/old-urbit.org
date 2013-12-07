@@ -5,7 +5,7 @@ title: Urbit is Easy&#58; Chapter I (Setup)
 ---
 
 *Tlön is surely a labyrinth, but it is a labyrinth devised
-by men, a labyrinth destined to be deciphered by men.*  
+by men, a labyrinth destined to be deciphered by men.*
 **(Tlön, Uqbar, Orbis Tertius)**
 
 ##Prepare your computer##
@@ -28,13 +28,13 @@ try a VM (eg, VirtualBox).
 
 1. Do you have XCode?  Type `gcc`.  If it says `no input files`, you have XCode.
 
-   Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the 
+   Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the
    command line tools.
 
 2. Install dependencies
-   - Do you have Homebrew?  Type `brew`.  If it does something, you have Homebrew. 
-     
-     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` 
+   - Do you have Homebrew?  Type `brew`.  If it does something, you have Homebrew.
+
+     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
      will install it.
 
      And follow up with `sudo brew install gmp libsigsegv openssl`
@@ -65,7 +65,7 @@ Either:
 
 A. Download and unzip `https://github.com/urbit/urbit/archive/master.zip`.
 
-B. `git clone https://github.com/urbit/urbit.git`. 
+B. `git clone https://github.com/urbit/urbit.git`.
 
 ###Set up your enviroment###
 
@@ -80,7 +80,7 @@ If you know what this is doing, feel free to do it right.  Otherwise:
     echo "export URBIT_HOME=`pwd`/urb" >>~/.bash_profile
     source ~/.bash_profile
 
-To make sure this worked, 
+To make sure this worked,
 
     echo $URBIT_HOME
 
@@ -128,7 +128,7 @@ and the like.  You'll see a couple pages of this stuff.  Don't worry too much
 about the details right now.  Finally, you'll get the Arvo shell prompt (which
 is also a Hoon REPL):
 
-    ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=> 
+    ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=>
 
 ###Register###
 
@@ -150,7 +150,7 @@ If you have a destroyer, you need to configure it.  Otherwise,
 just stretch that xterm wide and skip to section 1.2.
 
 Your destroyers will arrive in the form of [ship ticket] pairs.
-Let's say one of your ships is `~waclux-tomwyc` and its ticket is 
+Let's say one of your ships is `~waclux-tomwyc` and its ticket is
 
     ~ribdyr-famtem-larrun-figtyd
 
@@ -201,10 +201,10 @@ command lines and you should see the matching results:
     :-  %%
     !>("hello, {(trip planet)}.")
 
-What did you just do?  
+What did you just do?
 
 One, you used Arvo as a Hoon REPL to print the constant `"hello,
-world"`, which is a fancy way to write the Nock noun 
+world"`, which is a fancy way to write the Nock noun
 
     [104 101 108 108 111 44 32 119 111 114 108 100 0]
 
@@ -271,7 +271,7 @@ First, we'll quit out of an infinite loop with `^C`:
 When you hit return at the end of this line, Arvo will appear to
 hang.  Do not be alarmed!  This is not a bug - it means that
 we've started running our infinite loop before printing the next
-console prompt.  Simply hit `^C`, and you'll see 
+console prompt.  Simply hit `^C`, and you'll see
 
     ! intr
     ~waclux-tomwyc/try=> :infinite
@@ -288,7 +288,7 @@ You're probably used to using nondeterministic, preemptive OSes,
 in which the difference between a waiting task and an
 executing event isn't apparent to the user.  Since Arvo is not
 preemptive, it has two very different states: waiting and
-working.  
+working.
 
 When Arvo is working, `^C` cancels the event it's working on.
 This event never happened.  Don't worry, nothing bad will happen
@@ -297,7 +297,7 @@ to your computer.
 When Arvo is waiting, use `^D` to end the current task, which is
 the task that's currently prompting you.  If there is a live
 prompt and the cursor is not at the end, `^D` will delete the
-current character - as in Unix.  
+current character - as in Unix.
 
 Try this by running
 
@@ -324,7 +324,7 @@ it:
 
     ~waclux-tomwyc/try=> :hello %world
     "hello, world."
-    ~waclux-tomwyc/try=> 
+    ~waclux-tomwyc/try=>
 
 Hit `^X` again:
 
@@ -341,7 +341,7 @@ reality.  This is `^W`, which switches between the ships in a pier.
 Do you have multiple ships in your pier?  Sure - you still have
 your old submarine.  Hit `^W`:
 
-    ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=> 
+    ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=>
 
 Hit `^W` again:
 
@@ -356,12 +356,12 @@ repeat every computation you've every performed.)
 If the current prompt is just the shell prompt, `^D` on an empty
 line will log out - as in Unix:
 
-    ~waclux-tomwyc/try=> 
+    ~waclux-tomwyc/try=>
     oxford:~/urbit; pwd
     /Users/cyarvin/urbit
     oxford:~/urbit; echo "hello, world"
     hello, world
-    oxford:~/urbit; 
+    oxford:~/urbit;
 
 Then you can restart and be right back where you were - just
 run `vere` without `-c`:
@@ -375,7 +375,7 @@ run `vere` without `-c`:
     rest: checkpoint to event 383
     rest: old 0v1c.gkr1o, new 0v10.m4gdu
     ---------------- playback complete----------------
-    waclux-tomwyc/try=> 
+    waclux-tomwyc/try=>
 
 Use your arrow keys and you'll see your history is still there.
 Arvo is indestructible and can be shut down however you like
@@ -427,4 +427,4 @@ simply type
     ~waclux-tomwyc/try=> :chat
     &
 
-and type `?` for help. 
+and type `?` for help.

@@ -4,7 +4,7 @@ category: doc
 title: Urbit is Easy&#58; Chapter V (Hoon Attacks)
 ---
 
-*"Like all men in Babylon, I have been proconsul; like all, a slave."*  
+*"Like all men in Babylon, I have been proconsul; like all, a slave."*
 **(The Lottery in Babylon)**
 
 ##Principles of type##
@@ -91,10 +91,10 @@ and/or Arvo levels.  This is not the place to explain black
 magic - we'll get to that.
 
 But a type, like everything else in Hoon, is a noun.  Suffice it
-to say that `-:!>(42)` is just printing this noun, whereas 
+to say that `-:!>(42)` is just printing this noun, whereas
 `:type; 42` is rendering it intelligently as a string.  In this
 case, the rendering is actually Hoon syntax, but in general it's
-just a string. 
+just a string.
 
 In this case, looking directly at the type noun is preferable.
 But for a core, the type actually contains the entire codebase.
@@ -199,7 +199,7 @@ our construction of `'ud'`.  Let's look at the type:
     'u'
     @ta
 
-    ~zod/try=> :type; 256 
+    ~zod/try=> :type; 256
     256
     @ud
 
@@ -260,7 +260,7 @@ casts in Hoon do not evade type enforcement.  When you write
 
     `@dr`25.717
 
-the parser actually produces the equivalent of 
+the parser actually produces the equivalent of
 
     `@dr``@`25.717
 
