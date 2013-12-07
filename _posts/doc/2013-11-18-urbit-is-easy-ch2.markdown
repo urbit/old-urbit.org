@@ -168,7 +168,7 @@ or, of course,
 
 ##Rules##
 
-Nock's semantics are defined as a reduction algebra.  To compute
+A Nock program is given meaning by a process of reduction.  To compute
 `Nock(x)`, where `x` is any noun, we step through the rules from
 the top down, find the first left-hand side that matches `x`, and
 reduce it to the right-hand side.

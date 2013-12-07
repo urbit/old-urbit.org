@@ -146,9 +146,9 @@ Operators `6` through `10` are all essentially macros:
     36 ::    *[a 10 [b c] d]  *[a 8 c 7 [0 3] d]
     37 ::    *[a 10 b c]      *[a c]
 
-Each of these cases just resolves to another nock computation, in
+Each of these cases just resolves to another Nock computation, in
 which each pattern matched on the left appears no more than once
-on the right.  Ie, it's a macro.  But what do the macros do?
+on the right.  I.e., it's a macro.  But what do the macros do?
 Let's work through them, from easiest to hardest.
 
 ###`10` (37)###

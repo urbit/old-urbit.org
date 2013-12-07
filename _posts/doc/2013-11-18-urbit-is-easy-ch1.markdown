@@ -254,6 +254,7 @@ simple emacs controls:
     ^F  right arrow
     ^K  kill to end of line
     ^L  clear the screen
+    ^R  search through history
     ^U  kill the whole line
     ^Y  yank (restore from kill ring)
 

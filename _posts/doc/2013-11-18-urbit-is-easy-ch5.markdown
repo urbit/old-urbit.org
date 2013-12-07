@@ -277,8 +277,8 @@ mechanism is weak - it is not enforced and trivially evaded.
 An odor span contains two parts, both optional: a lowercase
 prefix and an uppercase suffix.  The suffix, if present, is a
 single character A-Z `c` which indicates an atom less than `n`,
-where `n` is `(1 + c - 'A')`.  Thus, `@tD` is a single UTF-8
-byte; `@tN` is a kilobyte or less of UTF-8.
+where `n` is `(1 + c - 'A')`.  Thus, `@tD` is a UTF-8 glyph that
+fits in a byte, `@tN` is a kilobyte or less of UTF-8.
 
 When enforcing conversions, `@t` has no size information and can
 be used as `@tD`; and `@tD`, of course, can be used as `@t`.  But
@@ -417,23 +417,23 @@ Lorem ipsum.
 
 Lorem ipsum.
 
-###Unsigned binary, `@sb`###
+###Unsigned binary, `@ub`###
 
 Lorem ipsum.
 
-###Unsigned decimal, `@sd`###
+###Unsigned decimal, `@ud`###
 
 Lorem ipsum.
 
-###Unsigned base32, `@sv`###
+###Unsigned base32, `@uv`###
 
 Lorem ipsum.
 
-###Unsigned base64, `@sw`###
+###Unsigned base64, `@uw`###
 
 Lorem ipsum.
 
-###Unsigned hexadecimal, `@sx`###
+###Unsigned hexadecimal, `@ux`###
 
 Lorem ipsum.
 
