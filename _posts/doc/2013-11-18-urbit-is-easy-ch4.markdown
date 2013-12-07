@@ -255,7 +255,7 @@ If we put this into the decrement, it should actually work:
           [ 6                         ::     pick
             [5 [4 0 6] [0 7]]         ::      same (bump /6) /7
             [0 6]                     ::      /6
-            [2                        ::      nock
+            [ 2                       ::      nock
                [[0 2] [4 0 6] [0 7]]  ::       (cons /2 (bump /6) /7)
                [0 2]                  ::       /2
             ]                         ::      |
