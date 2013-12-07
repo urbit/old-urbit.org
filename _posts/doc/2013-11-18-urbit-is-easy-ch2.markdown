@@ -282,22 +282,53 @@ cells, the error rule matches first for `+` and last for `=`.
 
 This looks way more complicated than it is.  Essentially, we
 define a noun as a binary tree and assign an address, or *axis*,
-to every node in the tree.  The root of the tree is `/1`.  The
-left child of every node at `/a` is `/2a`; the right child is
-`/2a+1`.  (Writing `(a + a)` is just a clever way to write `2a`,
-while minimizing the number of pseudocode forms.)
+to every node in the tree.  The root of the tree has the address `/1`.  The left child of every node at `/n` is `/2n`; the right child is
+`/2n+1`.  (Writing `(a + a)` is just a clever way to write `2n`, while minimizing the number of pseudocode forms.)
 
-For a complete tree of depth 3, the assignment looks
-like this:
+A complete tree of depth 3 would have the following addresses:
 
              1
         2          3
      4    5     6     7
     8 9 10 11 12 13 14 15
 
-For instance, suppose your noun is `[[97 2] [1 42 0]]`.  Then,
-`/2` is `[97 2]`; `/3` is `[1 42 0]`; `/6` is `1`; `/7` is `[42
-0]`; `/5` is `2`; etc.
+Let's practice actually addressing a tree. As an example, let's use
+`[[97 2] [1 42 0]]` as our initial cell. In our addressing system, the initial cell itself is always the root node of our binary tree, and thus always is always assigned the axis `\1`. So in this case:
+
+    \1 -> [[97 2] [1 42 0]]
+
+This cell, like all cells in Nock, can be represented as `[a b]`,
+where `a` is the left subtree and `b` is the right So. The left subtree is the leftmost noun, and the right subtree is the list of all other nouns. In this case, `a` is `[97 2]` and `b` is `[1 42 0]`.
+
+Next let's find the axis of each subtree. As per our binary tree, for any cell with the axis `\1` (the root cell), the axis of its left subtree is always `\2` and the axis of the right subtree is always `\3`. Since our left subtree was `[97 2]`, this means that:
+
+    \2 -> [97 2]
+
+And since our right subtree was `[1 42 0]`, this means that:
+
+    \3 -> [1 42 0]
+
+Of course the nodes at the axes `\2` and `\3` can also be cells that take the form of `[a b]`, as is the case in this example. Thus each node can be broken down into its own subtrees. As per our binary tree diagram, the left noun of the cell at axis `\2` has the axis `\4`:
+
+    \4 -> 97
+
+And the right subtree of the cell at axis `\2` receives the axis `\5`:
+
+    \5 -> 2
+
+The general rule is that for any cell `n`, the axis of the left
+subtree is `2n` and the axis of the right subtree is `2n + 1`. So
+for our cell with axis `\3`, this means the left and right subtrees have the respective axes:
+
+    \6 -> 1
+    \7 -> [42 0]
+
+The reason why the node at axis `\7` has the value `[42 0]` rather than `[42]` is because brackets right associate, so `[1 42 0]` is really `[1 [42 0]]`. This means that our last two nodes receive the axes:
+
+    \14 -> 42
+    \15 -> 0
+
+What happens in Arvo when we ask the interpreter to find a noun in a slot that doesn't exist, e.g. 8 through 13 in our example? The answer is that interpreter simply throws an error.
 
 We can also build nouns in which every atom is its own axis:
 
