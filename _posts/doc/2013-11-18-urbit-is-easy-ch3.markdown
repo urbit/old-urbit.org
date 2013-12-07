@@ -4,10 +4,10 @@ category: doc
 title: Urbit is Easy&#58; Chapter III (Nock Is Easy)
 ---
 
-*"You get used to it. I don’t even see the code. All I see is blonde, brunette, redhead."*  
+*"You get used to it. I don’t even see the code. All I see is blonde, brunette, redhead."*
 **(The Matrix)**
 
-  
+
 ##Fundamentals##
 
 Now that we have all the tools, let's learn Nock from scratch.
@@ -146,9 +146,9 @@ Operators `6` through `10` are all essentially macros:
     36 ::    *[a 10 [b c] d]  *[a 8 c 7 [0 3] d]
     37 ::    *[a 10 b c]      *[a c]
 
-Each of these cases just resolves to another nock computation, in
+Each of these cases just resolves to another Nock computation, in
 which each pattern matched on the left appears no more than once
-on the right.  Ie, it's a macro.  But what do the macros do?
+on the right.  I.e., it's a macro.  But what do the macros do?
 Let's work through them, from easiest to hardest.
 
 ###`10` (37)###
@@ -180,17 +180,17 @@ Informally, the formula `[7 b c]` composes the formulas `b` and
     d(a) == c(b(a))
 
 Let's see how this works by applying some reductions to the
-definition of `7`, and producing a simpler definition that 
+definition of `7`, and producing a simpler definition that
 doesn't look like a macro:
 
     *[a 2 b 1 c]
 
         <<27 ::    *[a 2 b c]       *[*[a b] *[a c]]>>
-    
+
     *[*[a b] *[a 1 c]]
 
         <<26 ::    *[a 1 b]         b>>
-    
+
     *[*[a b] c]
 
 So we can write a revised line 33, perhaps slightly clearer:
@@ -235,7 +235,7 @@ formula `c` with the cell of `*[a b]` and the original subject
     d(a) == c([b(a) a])
 
 But why?  Suppose, for the purposes of `c`, we need not just `a`,
-but some intermediate noun computed from `a` that will be useful 
+but some intermediate noun computed from `a` that will be useful
 in `c`'s calculation.  We apply `c` with a new subject that's a
 cell of the intermediate value and the old subject - not at all
 unlike pushing a new variable on the stack.
@@ -275,7 +275,7 @@ is just `a`.  And it seems to be - given the semantics of 8 as
 we've explained them.
 
 But there's a problem, which is that `c` might not terminate.
-If `c` terminates, this reduction is correct.  Otherwise... 
+If `c` terminates, this reduction is correct.  Otherwise...
 it's not.  So the best we can do is:
 
     36r::    *[a 10 [b c] d]  *[*[[*[a c] a] 0 3] d]
@@ -303,7 +303,7 @@ one.  Instead, let's invent another operator which makes `6` easy:
 Then we can restate `6` quite compactly:
 
     32r::    *[a 6 b c d]     *[a $[*[a b] c d]]
-    
+
 `6` stands revealed as the humble if-then-else.  Nock *is* easy.
 
 This excuse for an explanation may not satisfy everyone.  A good
@@ -312,7 +312,7 @@ properties - and can't be simplified.
 
 ###`9`###
 
-`9` is an audacious mystery:  
+`9` is an audacious mystery:
 
     35 ::    *[a 9 b c]       *[a 7 c 2 [0 1] 0 b]
 
@@ -320,7 +320,7 @@ We'll reduce `9` but not explain it.  When we use it in an
 example, it'll be obvious what it is.
 
     *[a 7 c 2 [0 1] 0 b]]
-    
+
       <<33r::    *[a 7 b c]       *[*[a b] c]>>
 
     *[*[a c] 2 [0 1] 0 b]]
@@ -328,14 +328,14 @@ example, it'll be obvious what it is.
       <<27 ::    *[a 2 b c]       *[*[a b] *[a c]]>>
 
     *[*[*[a c] [0 1]] *[*[a c] 0 b]]
-    
+
       <<25 ::    *[a 0 b]         /[b a]>>
 
-    *[*[a c] *[*[a c] 0 b]] 
+    *[*[a c] *[*[a c] 0 b]]
 
 So we have:
 
-    35r::    *[a 9 b c]       *[*[a c] *[*[a c] 0 b]] 
+    35r::    *[a 9 b c]       *[*[a c] *[*[a c] 0 b]]
 
 If you have a really fine instinctive sense of Nock, you might
 understand what `9` is for.  Otherwise, don't worry for now.

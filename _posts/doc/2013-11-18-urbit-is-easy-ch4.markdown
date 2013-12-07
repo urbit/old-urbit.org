@@ -4,7 +4,7 @@ category: doc
 title: Urbit is Easy&#58; Chapter IV (Using Nock)
 ---
 
-*"But are you crazy enough?"*  
+*"But are you crazy enough?"*
 **(Point Break)**
 
 ##Playing with Nock##
@@ -74,7 +74,7 @@ Test this by running:
     ~waclux-tomwyc/try=> :nock 42
     43
 
-Our first complex example will be a decrement function.  With or 
+Our first complex example will be a decrement function.  With or
 without `vere` running, copy the template from Unix:
 
     $ cp urb/waclux-tomwyc/try/bin/nock.hoon urb/waclux-tomwyc/try/bin/dec.hoon
@@ -111,14 +111,14 @@ our subject is just the atom we're trying to decrement - `/1`,
 referenced with the formula `[0 1]`.  Thus, to increment it,
 the formula is `[4 0 1]`.
 
-Let's try to put the counter into the subject with one of our 
+Let's try to put the counter into the subject with one of our
 macros operators, `8`.  Recall our revised rule for `8`:
 
     34r::    *[a 8 b c]       *[[*[a b] a] c]
 
 The formula `c` is applied to the subject `[*[a b] a]`.  What is
 our `b`?  It should just produce our initial counter value - 0.
-So, use operator `1` to produce a constant - `[1 0]`.  Let's 
+So, use operator `1` to produce a constant - `[1 0]`.  Let's
 put this counter in the subject, and then increment as usual.
 
 Edit `dec.hoon` so that the formula reads
@@ -147,7 +147,7 @@ Whoops!  It crashed:
 What did we do wrong?  We forgot that the subject had changed.
 When we get to `[4 0 1]`, the subject is not `42`, but `[0 42]` -
 the counter is there.  So our original argument, `42`, is
-actually at `/3`: 
+actually at `/3`:
 
     [ 8                               ::  push
       [1 0]                           ::   just 0
@@ -234,7 +234,7 @@ need `[formula (counter + 1) argument]`.
 
 So, `formula` is `[0 2]`, `counter` is `[0 6]`, and `argument` is
 `[0 7]`.  With autocons, we can just put them together to make a
-(superfluous) formula for `[formula counter argument]` - ie, 
+(superfluous) formula for `[formula counter argument]` - ie,
 
     [[0 2] [0 6] [0 7]]               ::  cons /2 /6 /7
 
@@ -286,7 +286,7 @@ So we can rewrite our decrement to use `9`:
       [1 0]                           ::   just 0
       [ 8                             ::   push
         [ 1                           ::    quid
-          [ 6                         ::     pick 
+          [ 6                         ::     pick
             [5 [4 0 6] [0 7]]         ::      same (bump /6) /7
             [0 6]                     ::      /6
             [9 2 [0 2] [4 0 6] [0 7]] ::      call.2 (cons /2 (bump /6) /7)
@@ -326,11 +326,11 @@ For instance, as we saw in decrement, the subject for the loop
 needs to contain the code itself.  If we apply a formula which
 can't call back into itself, our ability to loop is sorely
 diminished.  So at the very least, when we call a function,
-the subject can't just be `argument` - it has to be the cell 
+the subject can't just be `argument` - it has to be the cell
 `[formula argument]`, so that the function can recurse.
 
 Actually, it's confusing to say `argument`, because this implies
-a special status for single and multiple arguments.  In Nock and 
+a special status for single and multiple arguments.  In Nock and
 Hoon, we say `sample`, which is always one thing, but can be a
 cell for "functions of two arguments", a triple for three, etc.
 Eg, the sample for a decrement function is an atom; the sample
@@ -350,7 +350,7 @@ Where `formula` is the code, `sample` is the argument(s), and
 
 It's a bit irregular that we are taking the external subject
 and using it directly from our formula.  Let's try to build a
-function with this convention and call it directly.  
+function with this convention and call it directly.
 
 First, we'll build an increment function to keep things simple.
 We actually don't need anything in the context, so we'll put 0.
@@ -403,7 +403,7 @@ Observe that nothing has changed from the way we called our
 increment function, and only one thing has changed within the
 decrement formula - the axis of the argument.  Now at `/7` is not
 the naked argument to decrement, but our outer core.  The sample
-is at `/6` within this `/7`, ie, at `/30`. 
+is at `/6` within this `/7`, ie, at `/30`.
 
 ##A library##
 
@@ -416,7 +416,7 @@ be... a core.  But what does this core look like?
 
 A function core, `[formula sample context]`, is a very useful
 kind of core, but it's not the only kind of core.  (Actually,
-because the word "function" is too easy to throw around, we have 
+because the word "function" is too easy to throw around, we have
 a special name for a function core: we call it a `gate`.  Compare
 to "lambda" or "closure.")
 
@@ -495,17 +495,17 @@ Okay, let's go ahead and put our actual decrement function in
 the library.  We won't write the pseudocode here, because it's an
 excellent exercise to add it - see below.
 
-    [ 8 
-      [ 
-        [ 1 
-          [ 1 
-            [ 8 
-              [1 0] 
-              [ 8 
-                [ 1 
-                  [ 6 
-                    [5 [4 0 6] [0 30]] 
-                    [0 6] 
+    [ 8
+      [
+        [ 1
+          [ 1
+            [ 8
+              [1 0]
+              [ 8
+                [ 1
+                  [ 6
+                    [5 [4 0 6] [0 30]]
+                    [0 6]
                     [9 2 [0 2] [4 0 6] [0 7]]
                   ]
                 ]
@@ -533,9 +533,9 @@ excellent exercise to add it - see below.
 Then, let's go crazy and add a subtract function, which calls
 decrement.
 
-    [ 8 
-      [ 
-        [ 
+    [ 8
+      [
+        [
           [ 1
             [ 1
               [ 8
@@ -552,17 +552,17 @@ decrement.
                     [0 15]
                   ]
                 ]
-              ] 
+              ]
             ]
             [1 0]
             [0 1]
           ]
-          [ 1 
+          [ 1
             [ 1
               [ 8
                 [1 0]
-                [ 8                                 
-                  [ 1 
+                [ 8
+                  [ 1
                     [ 6
                       [5 [4 0 6] [0 30]]
                       [0 6]
@@ -578,8 +578,8 @@ decrement.
           ]
         ]
         [1 0]
-      ] 
-      [ 8                                          
+      ]
+      [ 8
         [9 4 0 2]
         [ 9
           2
@@ -599,7 +599,7 @@ Does this work?  Really?
 
 ##Exercises##
 
-Do you actually know Nock now?  Well, possibly.  
+Do you actually know Nock now?  Well, possibly.
 
 A good exercise is to add more simple math functions to this
 battery.  Try add, multiply, and divide.  One way to start is by
@@ -616,4 +616,4 @@ might as well use Hoon to calculate axes:
     13
 
 Ie, `(peg a b)` is `/b` within `/a`.  Writing Nock without this
-would be pretty tough... 
+would be pretty tough...
