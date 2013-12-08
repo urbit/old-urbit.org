@@ -312,3 +312,6 @@ We can also build nouns in which every atom is its own axis:
 
 Once you've spent enough time programming in Urbit, you'll know
 these axes in your dreams.
+
+
+[**Next**: Nock is Easy](urbit-is-easy-ch3.html)
