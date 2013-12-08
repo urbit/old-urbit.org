@@ -285,9 +285,9 @@ define a noun as a binary tree and assign an address, or *axis*,
 to every node in the tree.  The root of the tree is `/1`.  The
 left child of every node at `/a` is `/2a`; the right child is
 `/2a+1`.  (Writing `(a + a)` is just a clever way to write `2a`,
-while minimizing the number of pseudocode forms.)
+while minimizing the set of pseudocode forms.)
 
-For a complete tree of depth 3, the assignment looks
+For a complete tree of depth 3, the axis address space looks
 like this:
 
              1

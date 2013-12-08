@@ -75,17 +75,16 @@ atomic constant:
 
 Let's also print its type - in two different ways:
 
-    ~zod/try=> :type; 42
+    ~waclux-tomwyc/try=> :type; 42
     42
     @ud
 
-    ~zod/try=> -:!>(42)
+    ~waclux-tomwyc/try=> -:!>(42)
     [%atom p='ud']
 
 W-what?  Since types are of course static, printing them out
 dynamically involves a little bit of black magic at the Hoon
-and/or Arvo levels.  This is not the place to explain black
-magic - we'll get to that.
+and/or Arvo levels.  All will be revealed in due course.
 
 But a type, like everything else in Hoon, is a noun.  Suffice it
 to say that `-:!>(42)` is just printing this noun, whereas 
@@ -102,46 +101,46 @@ without scrolling more or less to infinity.
 
 Let's look at some more of these atoms:
 
-    ~zod/try=> :type; 0x42
+    ~waclux-tomwyc/try=> :type; 0x42
     0x42
     @ux
 
-    ~zod/try=> :type; 'foo'
+    ~waclux-tomwyc/try=> :type; 'foo'
     'foo'
     @ta
 
-    ~zod/try=> :type; ~2013.12.6
+    ~waclux-tomwyc/try=> :type; ~2013.12.6
     ~2013.12.6
     @da
 
-    ~zod/try=> :type; .127.0.0.1
+    ~waclux-tomwyc/try=> :type; .127.0.0.1
     .127.0.0.1
     @if
 
-    ~zod/try=> :type; ~m45
+    ~waclux-tomwyc/try=> :type; ~m45
     ~m45
     @dr
 
-    ~zod/try=> :type; `@da`(add ~2013.12.6 ~m45)
+    ~waclux-tomwyc/try=> :type; `@da`(add ~2013.12.6 ~m45)
     ~2013.12.6..00.45.00
     @da
 
-Okay, we got a little out of control with that last one.  But
-the point should be clear.
+Okay, we got a little out of control with that last one.  But the
+point should be clear.
 
 Note again that there is no dynamic type here.  All these values
 are atoms.  Let's cast them all to decimals to see (don't worry
 about the cast syntax - we'll cover that later):
 
-    ~zod/try=> `@ud`0x42
+    ~waclux-tomwyc/try=> `@ud`0x42
     66
-    ~zod/try=> `@ud`'foo'
+    ~waclux-tomwyc/try=> `@ud`'foo'
     7.303.014
-    ~zod/try=> `@ud`.127.0.0.1
+    ~waclux-tomwyc/try=> `@ud`.127.0.0.1
     2.130.706.433
-    ~zod/try=> `@ud`~2013.12.6
+    ~waclux-tomwyc/try=> `@ud`~2013.12.6
     170.141.184.500.724.667.905.957.736.036.171.776.000
-    ~zod/try=> `@ud`~m45
+    ~waclux-tomwyc/try=> `@ud`~m45
     49.806.208.999.015.789.363.200
 
 (Yes, 45 minutes is actually quite a large number when your unit
@@ -150,28 +149,28 @@ of time is 2^-64 seconds.)
 What are these atoms, anyway?  Let's look at the actual type noun
 (which, without magic, exists only at compile time):
 
-    ~zod/try=> -:!>(42)
+    ~waclux-tomwyc/try=> -:!>(42)
     [%atom p='ud']
 
 `p` is called the `odor` of the atom.  In this case, it's `'ud'`,
 ie, unsigned decimal:
 
-    ~zod/try=> `@ud`'ud'
+    ~waclux-tomwyc/try=> `@ud`'ud'
     25.717
 
 That's an unsigned-decimal interpretation of the atom 'ud', which
 without a cast is an atom of odor `@ta`:
 
-    ~zod/try=> :type; 'ud'
+    ~waclux-tomwyc/try=> :type; 'ud'
     'ud'
     @ta
 
-    ~zod/try=> -:!>('ud')
+    ~waclux-tomwyc/try=> -:!>('ud')
     [%atom p='ta']
 
 In case this is at all mysterious, we note:
 
-    ~zod/try=> (add 'u' (mul 256 'd'))
+    ~waclux-tomwyc/try=> (add 'u' (mul 256 'd'))
     25.717
 
 As a general convention, when we represent UTF-8/ASCII text as an
@@ -192,15 +191,15 @@ parser itself will only generate a `@ta` for an actual ASCII
 span, but not every atom is a constant.  For instance, consider
 our construction of `'ud'`.  Let's look at the type:
 
-    ~zod/try=> :type; 'u'
+    ~waclux-tomwyc/try=> :type; 'u'
     'u'
     @ta
 
-    ~zod/try=> :type; 256 
+    ~waclux-tomwyc/try=> :type; 256 
     256
     @ud
 
-    ~zod/try=> :type; (add 'u' (mul 256 'd'))
+    ~waclux-tomwyc/try=> :type; (add 'u' (mul 256 'd'))
     25.717
     @
 
@@ -208,7 +207,7 @@ Not only are we mixing atoms of different odors in our
 arithmetic, but the result appears to be... odorless.  It is
 odorless.  But we can cast it back:
 
-    ~zod/try=> :type; `@ta`(add 'u' (mul 256 'd'))
+    ~waclux-tomwyc/try=> :type; `@ta`(add 'u' (mul 256 'd'))
     'ud'
     @ta
 
@@ -217,10 +216,10 @@ by no means smart enough to evaluate your arithmetic and conclude
 that it produces a valid ASCII span.  We can convert any atom to
 any other odor of atom, without any sanity checks:
 
-    ~zod/try=> `@dr`25.717
+    ~waclux-tomwyc/try=> `@dr`25.717
     ~.s0..0000.0000.0000.6475
 
-    ~zod/try=> `@if`25.717
+    ~waclux-tomwyc/try=> `@if`25.717
     .0.0.100.117
 
 It so happens that `25.717` is a valid amount of time, and also a
@@ -229,7 +228,8 @@ values of every odor.  We're not going to annoy you by stressing
 out the console printer with bad ASCII, but we could.
 
 (And why do we say `25.717` rather than `25,717`?  Are we...
-Germans?  No, but we want all atom syntaxes to be URL-safe.)
+Germans?  No, but we want all atom syntaxes to be URL-safe.
+See below.)
 
 Odors are a weak type system because the programmer often knows,
 at a logical level not at all available to the type system, that
@@ -241,9 +241,9 @@ arbitrary computation.
 
 An odor is exactly what it looks like - an ASCII span.  This span
 is a taxonomy which grows more specific to the right.  For
-instance, `@t` for UTF-8 text, `@ta` for ASCII text, `@tas` for a
-symbol; or `@u` for an unsigned integer, `@ux` for an unsigned
-integer formatted as hexadecimal.
+instance, `@t` for UTF-8 text, `@ta` for URL-safe ASCII text,
+`@tas` for a Hoon symbol; or `@u` for an unsigned integer, `@ux`
+for an unsigned integer formatted as hexadecimal.
 
 The general principle of type enforcement is that atoms change
 freely either up or down the taxonomy, but not across.  For
@@ -274,17 +274,50 @@ mechanism is weak - it is not enforced and trivially evaded.
 An odor span contains two parts, both optional: a lowercase
 prefix and an uppercase suffix.  The suffix, if present, is a
 single character A-Z `c` which indicates an atom less than `n`,
-where `n` is `(1 + c - 'A')`.  Thus, `@tD` is a single UTF-8
-byte; `@tN` is a kilobyte or less of UTF-8.
+where `n` is `(1 + c - 'A')`.  Thus, `@tD` is one UTF-8 byte
+(whatever that means); `@tN` is a kilobyte or less of UTF-8.
 
 When enforcing conversions, `@t` has no size information and can
 be used as `@tD`; and `@tD`, of course, can be used as `@t`.  But
 using `@tN` as `@tD` is an error.  There is no way to generate
-the smell of size from a constant without a cast, and of course
+the smell of size from a constant without a cast.  And of course
 arithmetic results have no odor at all.
 
 While the utility of this mechanism is debatable, at worst it
 serves as a comment which documents the programmer's intentions.
+
+A full table - for convenience, not because you're stupid:
+
+    A   1 bit
+    B   2 bits
+    C   4 bits
+    D   1 byte
+    E   2 bytes
+    F   4 bytes
+    G   8 bytes
+    H   16 bytes
+    I   32 bytes
+    J   64 bytes
+    K   128 bytes
+    L   256 bytes
+    M   512 bytes
+    N   1K
+    O   2K
+    P   4K
+    Q   8K
+    R   16K
+    S   32K
+    T   64K
+    U   128K
+    V   256K
+    W   512K
+    X   1MB
+    Y   2MB
+    Z   4MB
+
+You of course can build an atom larger than 4MB, though whether
+you should is another question entirely.  But the type system
+cannot express a size odor above 4MB.
 
 ##Known and unknown odors##
 
@@ -297,9 +330,9 @@ But within your program, nothing stops you from using the odor
 system to distinguish a number of miles from, for instance, a
 number of kilometers:
 
-    ~zod/try=> `@udm`25.717
+    ~waclux-tomwyc/try=> `@udm`25.717
     25.717
-    ~zod/try=> `@udk`25.717
+    ~waclux-tomwyc/try=> `@udk`25.717
     25.717
 
 The printer has no idea what a `@udm` is, but it knows what a
@@ -307,6 +340,9 @@ The printer has no idea what a `@udm` is, but it knows what a
 which expects a `@udm` and you try to pass it a `@udk`, it will
 fail.  The feature seems banal, but spacecraft have been laid low
 by less.
+
+This is clearly a crude mechanism.  If you don't like it, you
+don't have to use it.
 
 ##Known odors##
 
@@ -340,97 +376,432 @@ Hoon knows about the following odors, with defined meanings:
       @uw           unsigned base64
       @ux           unsigned hexadecimal
 
-Each of these forms has a URL-safe syntax:
+Each of these forms has a URL-safe syntax, which we'll get to.
+Each parses as an atomic constant in Hoon, and each is printed
+by the Hoon prettyprinter.
 
-###Codepoint, `@c`###
+But first, a little more Hoonology.
 
-Lorem ipsum.
+##The humble type##
+
+What is a Hoon type, anyway?  We know a type is a noun.  So is 
+everything.  What are the semantics of this noun?
+
+Regardless of what this highly overloaded word may and does and
+does mean in every other system of computation that has deployed
+it, a type in Hoon has two roles.  
+
+One, it defines a set of nouns.  Any finite noun is either in 
+this set, or not in it.
+
+Two, it ascribes semantics to all nouns in this set.  For
+example, a Hoon type exports a semantic namespace.
+
+With this settled, let's start by introducing, purely in an
+informal and totally friendly way, the `tile` syntax in which 
+`type` itself is defined in `/=main=/arvo/hoon/hoon`.  This is
+not the full definition of `type`, just a simple subset:
+
+    ++  type  $|  ?(%noun %void)
+              $%  [%atom p=term]
+                  [%cell p=type q=type]
+              ==
+
+Again, never mind the syntax.  We can easily describe this subset
+of `type` in plain English.
+
+It can be `%noun` (ie, the atom `1.853.189.998`).  Set:
+all nouns.  Examples:
+
+    ~waclux-tomwyc/try=> :type; *
+    0
+    *
+
+    ~waclux-tomwyc/try=> -:!>(*)
+    %noun
+
+    ~waclux-tomwyc/try=> :type; `*`%noun
+    1.853.189.998
+    *
+
+    ~waclux-tomwyc/try=> -:!>(`*`%noun)
+    %noun
+
+It can be the atom `%void`.  Set: no nouns.  We can't show any
+examples producing `%void` - by definition, none of them would
+terminate.  Because that's what `%void` means.
+
+It can be the cell `[%atom p]`, where `p` is a `term` (`@tas`),
+possibly empty (ie, `0`).  Set: all atoms.  Examples: above.
+
+It can be the triple `[%cell p q]` (ie, `[%cell [p q]]`), where
+each of `p` and `q` is itself a `type`.  Set: all cells of `p`
+and `q`.  Examples:
+
+    ~waclux-tomwyc/try=> :type; [3 4]
+    [3 4]
+    [@ud @ud]
+
+    ~waclux-tomwyc/try=> -:!>([3 4])
+    [%cell p=[%atom p=%ud] q=[%atom p=%ud]]
+
+###The noble cube###
+
+Let's introduce another kind of type here, because we'll need it
+to talk about constant syntax:
+
+    ++  type  $|  ?(%noun %void)
+              $%  [%atom p=term]
+                  [%cell p=type q=type]
+                  [%cube p=* q=type]
+              ==
+
+Note that when we enter an ordinary constant, like `42`, its type
+`[%atom %ud]` is the set of all atoms (with odor `@ud`, but any
+atom can have that or any odor).  Its type is certainly not the
+set consisting exclusively of the value `42`.
+
+But here's how we produce this "cubical" constant:
+
+    ~waclux-tomwyc/try=> :type; %42
+    %42
+    %42
+
+    ~waclux-tomwyc/try=> -:!>(%42)
+    [%cube p=42 q=[%atom p=%ud]]
+
+In general, a `%cube` type contains `p`, a single noun, and `q`,
+a base type which provides semantics.
+
+Syntactically, any atomic constant can be preceded by `%` to
+generate a cube.  The exception is `@tas`, which always needs `%`
+and is always cubical.
+
+##Canonical atom syntaxes##
+
+Let's briefly cover the syntax of each built-in odor.  It would
+be counterproductive to specify them exactly here; first, this is
+a tutorial rather than a spec, and second the spec is the code.
+For the exact semantics, consult `++so` in `hoon.hoon`.  Rather,
+we'll explain the form and run through some examples.
+
+If some of these syntaxes seem contrived or odd, bear in mind:
+none of them collides with any of the others, and they are all
+URL-safe and more.  The canonical atom forms use only lowercase 
+characters, `.`, `-`, and `~`.  A cell form adds `_`.
+
+###Unsigned decimal, `@ud`###
+
+Unsigned decimal is the common or neutral atom representation.
+It's not very compact and in many cases conveys no intelligible
+information at all, but it's impossible to screw up.  `@ud` is
+the default print format for both `@u` and `@` - ie, unsigned
+numbers with no printing preference, and opaque atoms.
+
+Hoon's unsigned decimal format is the normal Continental syntax.
+It differs from the Anglo-American only in the use of periods,
+rather than commas, between groups of 3:
+
+    ~waclux-tomwyc/try=> 0
+    0
+    ~waclux-tomwyc/try=> 19
+    19
+    ~waclux-tomwyc/try=> 1.024
+    1.024
+    ~waclux-tomwyc/try=> 65.536
+    65.536
+    ~waclux-tomwyc/try=> (bex 20)
+    1.048.576
+
+An unsigned decimal not broken into groups is a syntax error.
+Also, whitespace or even linebreaks can appear between the dot
+and the next group. 
+
+    ~waclux-tomwyc/try=> 65.  536
+    65.536
+
+###Unsigned hexadecimal, `@ux`###
+
+`@ux` has the same syntax as `@ud`, except that it's prefixed by 
+`0x` and uses groups of four.  Hex digits are lowercase only.
+
+    ~waclux-tomwyc/try=> 0x0
+    0x0
+    ~waclux-tomwyc/try=> `@ud`0x17
+    23
+    ~waclux-tomwyc/try=> `@ux`(bex 20)
+    0x10.0000
+    ~waclux-tomwyc/try=> 0x10.  0000
+    0x10.0000
+
+###Unsigned base64, `@uw`###
+###Unsigned base32, `@uv`###
+
+The prefix is `0w` for base64 and `0v` for base32.  The digits
+for `@uw` are, in order: `0-9`, `a-z`, `A-Z`, -, ~:
+
+    ~waclux-tomwyc/try=> `@ud`0w-
+    62
+
+For `@uv`, the digits are `0-9`, `a-v`.
+
+###Signed decimal, `@sd`###
+###Signed hexadecimal, `@sx`###
+###Signed base64, `@sw`###
+###Signed base32, `@sv`###
+###Signed binary, `@sb`###
+
+Obviously, without finite-sized integers, the sign extension
+trick does not work.  A signed integer in Hoon is a different way
+to use atoms than an unsigned integer; even for positive numbers,
+the signed integer cannot equal the unsigned.
+
+The prefix for a negative signed integer is a single `-` before
+the unsigned syntax.  The prefix for a *positive* signed integer
+is `--`.  The sign bit is the low bit:  
+
+    ~waclux-tomwyc/try=> -1
+    -1
+    ~waclux-tomwyc/try=> --1
+    --1
+    ~waclux-tomwyc/try=> `@ud`-1
+    1
+    ~waclux-tomwyc/try=> `@ud`--1
+    2
+    ~waclux-tomwyc/try=> `@ud`-2
+    3
+    ~waclux-tomwyc/try=> `@ud`--2
+    4
+    ~waclux-tomwyc/try=> `@ux`-0x10
+    0x1f
+    ~waclux-tomwyc/try=> `@ux`--0x10
+    0x20
+    ~waclux-tomwyc/try=> `@ud`--0w-
+    124
+    ~waclux-tomwyc/try=> `@sw`124
+    --0w-
 
 ###Absolute date, `@da`###
 
-Lorem ipsum.
+Urbit dates represent 128-bit chronological time, with 2^64
+seconds from the start of the universe to the end.  2^127 is
+3:30:08 PM on 226 AD, for reasons not clear or relevant:
+
+    ~waclux-tomwyc/try=> `@da`(bex 127)
+    ~226.12.5..15.30.08
+
+    ~waclux-tomwyc/try=> `@da`(dec (bex 127))
+    ~226.12.5..15.30.08
+
+    ~waclux-tomwyc/try=> `@da`(dec (bex 127))
+    ~226.12.5..15.30.07..ffff.ffff.ffff.ffff
+
+The time of day and/or second fragment is optional:
+
+    ~waclux-tomwyc/try=> `@ux`~2013.12.7
+    0x8000.000d.2140.7280.0000.0000.0000.0000
+
+    ~waclux-tomwyc/try=> `@ux`~2013.12.7..15.30.07
+    0x8000.000d.2141.4c7f.0000.0000.0000.0000
+
+    ~waclux-tomwyc/try=> `@ux`~2013.12.7..15.30.07..1234
+    0x8000.000d.2141.4c7f.1234.0000.0000.0000
+
+We also do BC:
+
+    ~waclux-tomwyc/try=> `@ux`~226-.12.5
+    0x7fff.fffc.afb1.b800.0000.0000.0000.0000
+
+The semantics of the time system are that UGT (Urbit Galactic
+Time) is GMT/UTC as of leap second 25.  UGT is chronological and
+will never add leap seconds, even if UTC continues this mistake.
+If a gap appears, it must be resolved in the presentation layer, 
+with timezones and other human curiosities.
 
 ###Relative date, `@dr`###
 
-Lorem ipsum.
+It's also nice to have a syntax for basic time intervals:
+
+    ~waclux-tomwyc/try=> `@ux`~s1
+    0x1.0000.0000.0000.0000
+
+    ~waclux-tomwyc/try=> `@ux`~m1
+    0x3c.0000.0000.0000.0000
+
+    ~waclux-tomwyc/try=> (div ~m1 ~s1)
+    60
+  
+    ~waclux-tomwyc/try=> (div ~h1 ~m1)
+    60
+
+    ~waclux-tomwyc/try=> (div ~h1 ~s1)
+    3.600
+
+    ~waclux-tomwyc/try=> (div ~d1 ~h1)
+    24
+
+    ~waclux-tomwyc/try=> `@da`(add ~2013.11.30 ~d1)
+    ~2013.12.1
+
+There are no `@dr` intervals under a second or over a day.
 
 ###Loobean, `@f`###
 
-Lorem ipsum.
+A loobean, or just `bean`, is 0 or 1.  `0` is yes, `1` is no:
+
+    ~waclux-tomwyc/try=> `@ud`.y
+    0
+    ~waclux-tomwyc/try=> `@ud`.n
+    1
+
+People who find this strange are probably strange themselves.
 
 ###Nil, `@n`###
 
-Lorem ipsum.
+Nil indicates an absence of information, as in a list terminator.
+The only value is `~`, `0`.
+
+    ~waclux-tomwyc/try=> `@ud`~
+    0
+
+###Unicode text, `@t`###
+
+`@t` is a sequence of UTF-8 bytes, LSB first - sometimes called a
+`cord`.  For lowercase numbers and letters, the canonical syntax 
+is `~~text`:
+
+    ~waclux-tomwyc/try=> ~~foo
+    'foo'
+
+Note that the prettyprinter makes an unprincipled exception and 
+prints the text in a noncanonical format:
+
+    ~waclux-tomwyc/try=> `@ux`~~foo
+    0x6f.6f66
+
+We want to be able to encode an arbitrary Unicode string as a
+single URL-safe token, using no punctuation but `.~-`, in `@t`.
+Space is `.`, `.` is `~.`, `~` is `~~`, `-` is `-`:
+
+    ~waclux-tomwyc/try=> ~~foo.bar
+    'foo bar'
+    ~waclux-tomwyc/try=> ~~foo.bar~.baz~~moo-hoo
+    'foo bar.baz~moo-hoo'
+
+For all other ASCII/Unicode characters, insert the Unicode
+codepoint in lower-case hexadecimal, followed by `.`.  For
+example, for U+2605 "BLACK STAR", write:
+
+    ~waclux-tomwyc/try=> ~~foo~2605.bar
+    'foo★bar'
+
+This UTF-32 codepoint is of course converted to UTF-8:
+
+    ~zod/try=> `@ux`~~foo~2605.bar
+    0x72.6162.8598.e26f.6f66
+
+###URL-safe ASCII text, `@ta`###
+
+`@ta` encodes the ASCII subset that all canonical atom syntaxes
+restrict themselves to.  The prefix is `~.`.  There are no escape
+sequences except `~~`, which means `~`, and `~-`, which means
+`\_`.  `-` and `.` encode themselves.  No other characters
+besides numbers and lowercase letters need apply.
+
+Let's cast these to `@t` to see them quoted:
+
+    ~zod/try=> `@t`~.foo
+    'foo'
+    ~zod/try=> `@t`~.foo.bar
+    'foo.bar'
+    ~zod/try=> `@t`~.foo~~bar
+    'foo~bar'
+    ~zod/try=> `@t`~.foo~-bar
+    'foo_bar'
+    ~zod/try=> `@t`~.foo-bar
+    'foo-bar'
+
+A `@ta` atom is called a `span`.
+
+###Hoon symbol, `@tas`###
+
+`@tas`, a `term`, is our most exclusive odor.  The only
+characters permitted are lowercase ASCII, `-` except as the first
+or last character, and `0-9` except as the first character.
+
+The syntax for `@tas` is the text itself, always preceded by `%`.
+This means a term is always cubical.  You can cast it to `@tas`
+if you like, but we just about always want the cube:
+
+    ~waclux-tomwyc/try=> %dead-fish9
+    %dead-fish9
+
+    ~zod/try=> -:!>(%dead-fish9)
+    [%cube p=271.101.667.197.767.630.546.276 q=[%atom p=%tas]]
+
+A term without `%` is not a constant, but a name:
+
+    ~waclux-tomwyc/try=> dead-fish9
+    ! -find-limb.dead-fish9
+    ! find-none
+    ! exit
+
+###Codepoint, `@c`###
+
+Normally when we build atoms of Unicode text, we use a UTF-8
+bytestream, LSB first.  But sometimes it's useful to build atoms
+of one or more UTF-32 words.
+
+The codepoint syntax is the same as `@t`, except with a `~-`
+prefix.  Let's repeat our examples, with hex display:
+
+    ~zod/try=> `@ux`~-foo
+    0x6f.0000.006f.0000.0066
+
+    ~zod/try=> `@ux`~-foo.bar
+    0x72.0000.0061.0000.0062.0000.0020.0000.006f.0000.006f.0000.0066
+
+    ~waclux-tomwyc/try=> ~~foo.bar
+    'foo bar'
+    ~waclux-tomwyc/try=> ~~foo.bar~.baz~~moo-hoo
+    'foo bar.baz~moo-hoo'
+
+For all other ASCII/Unicode characters, insert the Unicode
+codepoint in lower-case hexadecimal, followed by `.`.  For
+example, for U+2605 "BLACK STAR", write:
+
+    ~waclux-tomwyc/try=> ~~foo~2605.bar
+    'foo★bar'
+
+This UTF-32 codepoint is of course converted to UTF-8:
+
+    ~zod/try=> `@ux`~~foo~2605.bar
+    0x72.6162.8598.e26f.6f66
+
+
+The syntax is just the text, with a `~-` prefix.  For simple
+characters:
+
+    ~waclux-tomwyc/try=> ~-urbit
+    ~-urbit
+
+    ~waclux-tomwyc/try=> -:!>(~-urbit)
+    [%atom p=%c]
+
+    ~waclux-tomwyc/try=> `@ux`~-urbit
+    0x74.0000.0069.0000.0062.0000.0072.0000.0075
+
+For interesting characters, `@c` uses the same `woad` syntax as
+`@t`, below.  Scroll down...
 
 ###Phonemic, `@p`###
 
-Lorem ipsum.
+The phonemic base 
 
-###Double, `@rd`###
-
-Lorem ipsum.
-
-###Half, `@rh`###
-
-Lorem ipsum.
-
-###Quad, `@rq`###
-
-Lorem ipsum.
-
-###Single, `@rs`###
-
-Lorem ipsum.
-
-###Signed binary, `@sb`###
-
-Lorem ipsum.
-
-###Signed decimal, `@sd`###
-
-Lorem ipsum.
-
-###Signed base32, `@sv`###
-
-Lorem ipsum.
-
-###Signed base64, `@sw`###
-
-Lorem ipsum.
-
-###Signed hexadecimal, `@sx`###
-
-Lorem ipsum.
-
-###UTF-8 text, `@t` (cord)###
-
-Lorem ipsum.
-
-###ASCII text, `@ta` (span)###
-
-Lorem ipsum.
-
-###Symbol text, `@tas` (term)###
-
-Lorem ipsum.
-
-###Unsigned binary, `@sb`###
-
-Lorem ipsum.
-
-###Unsigned decimal, `@sd`###
-
-Lorem ipsum.
-
-###Unsigned base32, `@sv`###
-
-Lorem ipsum.
-
-###Unsigned base64, `@sw`###
-
-Lorem ipsum.
-
-###Unsigned hexadecimal, `@sx`###
+###IEEE single-precision, `@rs`###
+###IEEE double-precision, `@rd`###
+###IEEE quad-precision, `@rq`###
+###IEEE half-precision `@rh`###
 
 Lorem ipsum.
 
@@ -438,3 +809,8 @@ Lorem ipsum.
 
 Lorem ipsum.
 
+
+    ~waclux-tomwyc/try=> `@ud`&
+    0
+    ~waclux-tomwyc/try=> `@ud`|
+    1
