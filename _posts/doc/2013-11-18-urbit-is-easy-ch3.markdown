@@ -341,4 +341,4 @@ If you have a really fine instinctive sense of Nock, you might
 understand what `9` is for.  Otherwise, don't worry for now.
 
 
-[Next: Using Nock](urbit-is-easy-ch4.html)
+[**Next**: Using Nock](urbit-is-easy-ch4.html)
