@@ -4,15 +4,16 @@ category: doc
 title: Urbit is Easy&#58; Chapter V (Hoon Attacks)
 ---
 
-*"Like all men in Babylon, I have been proconsul; like all, a slave."*  
+*"Like all men in Babylon, I have been proconsul; like all, a slave."*
 **(The Lottery in Babylon)**
 
 ##Principles of type##
 
 By working through the Nock tutorial, you've actually come closer
 than you know to knowing Hoon.  Hoon is actually not much more
-than a fancy wrapper around Nock, more or less the way C is a
-fancy wrapper around machine code.
+than a fancy wrapper around Nock. People who know C can think of
+Hoon as the C to Urbit's Nock - just a sprinkling of syntax,
+wrapped around machine code and memory.
 
 For instance, it's easy to imagine how instead of calculating
 tree axes by hand, we could actually assign *names* to different
@@ -22,13 +23,15 @@ pushed more data on the subject.  It can't hurt to dream, right?
 The way we're going to do this is by associating something called
 a `type` with the subject.  You may have heard of types before.
 Technically, Hoon is a statically typed language, which just
-means that the type is a data structure the compiler has when it
-turns your Hoon into Nock; it's not in your program as it runs.
+means that the type isn't a part of your program: it's just a
+piece of data the compiler keeps around as it turns your Hoon
+into Nock.
 
 In some languages, especially functional languages, types are
 dangerous scary concepts that involve a lot of math.  For those
 who like this sort of thing, that's the sort of thing they like.
-Hoon is a functional language, but not one of those scary ones.
+For the rest of us, there's Hoon. It's a functional language, but
+not one of those scary ones.
 
 A lot of other languages use dynamic types, in which the type of
 a value is carried along with the data as you use it.  Even
@@ -67,8 +70,8 @@ for constructing hoons.  Types are always produced by inference.
 
 Let's start looking at types with the simplest possible kind of
 hoon - an atomic constant, which ignores the subject and its
-type, and just produces its own.  Here's everyone's favorite
-atomic constant:
+type, and just produces its own subject.  Here's everyone's
+favorite atomic constant:
 
     ~waclux-tomwyc/try=> 42
     42
@@ -87,10 +90,10 @@ dynamically involves a little bit of black magic at the Hoon
 and/or Arvo levels.  All will be revealed in due course.
 
 But a type, like everything else in Hoon, is a noun.  Suffice it
-to say that `-:!>(42)` is just printing this noun, whereas 
+to say that `-:!>(42)` is just printing this noun, whereas
 `:type; 42` is rendering it intelligently as a string.  In this
 case, the rendering is actually Hoon syntax, but in general it's
-just a string. 
+just a string.
 
 In this case, looking directly at the type noun is preferable.
 But for a core, the type actually contains the entire codebase.
@@ -235,7 +238,7 @@ Odors are a weak type system because the programmer often knows,
 at a logical level not at all available to the type system, that
 (for example) `(add 'u' (mul 256 'd'))` produces an ASCII span.
 We want to keep the programmer from accidentally using a date as
-if was text, but we don't want to keep her from intentionally
+if it were text, but we don't want to keep her from intentionally
 converting between odors or ascribing odor to the result of an
 arbitrary computation.
 
@@ -257,7 +260,7 @@ casts in Hoon do not evade type enforcement.  When you write
 
     `@dr`25.717
 
-the parser actually produces the equivalent of 
+the parser actually produces the equivalent of
 
     `@dr``@`25.717
 
@@ -276,6 +279,12 @@ prefix and an uppercase suffix.  The suffix, if present, is a
 single character A-Z `c` which indicates an atom less than `n`,
 where `n` is `(1 + c - 'A')`.  Thus, `@tD` is one UTF-8 byte
 (whatever that means); `@tN` is a kilobyte or less of UTF-8.
+
+(It's easy to complain from a standards perspective that "UTF-8"
+defines a format for bytestreams, not bytes, and at a strict
+level it means no more to say "one UTF-8 byte" than to say, say,
+"one GIF byte."  But odors are not a strict type system.  It is
+possible for a byte to *smell* of UTF-8 - or even of GIF.)
 
 When enforcing conversions, `@t` has no size information and can
 be used as `@tD`; and `@tD`, of course, can be used as `@t`.  But
@@ -488,7 +497,7 @@ we'll explain the form and run through some examples.
 If some of these syntaxes seem contrived or odd, bear in mind:
 none of them collides with any of the others, and they are all
 URL-safe and more.  The canonical atom forms use only lowercase 
-characters, `.`, `-`, and `~`.  A cell form adds `_`.
+characters, numbers, `.`, `-`, and `~`.  A cell form adds `_`.
 
 ###Unsigned decimal, `@ud`###
 
@@ -643,7 +652,9 @@ It's also nice to have a syntax for basic time intervals:
     ~waclux-tomwyc/try=> `@da`(add ~2013.11.30 ~d1)
     ~2013.12.1
 
-There are no `@dr` intervals under a second or over a day.
+There are no `@dr` intervals under a second or over a day.  Since
+the resolution is so high, though, `(div ~s1 1.000.000)` produces
+a pretty accurate microsecond.
 
 ###Loobean, `@f`###
 
@@ -697,7 +708,7 @@ example, for U+2605 "BLACK STAR", write:
 
 This UTF-32 codepoint is of course converted to UTF-8:
 
-    ~zod/try=> `@ux`~~foo~2605.bar
+    ~waclux-tomwyc/try=> `@ux`~~foo~2605.bar
     0x72.6162.8598.e26f.6f66
 
 ###URL-safe ASCII text, `@ta`###
@@ -710,18 +721,152 @@ besides numbers and lowercase letters need apply.
 
 Let's cast these to `@t` to see them quoted:
 
-    ~zod/try=> `@t`~.foo
+    ~waclux-tomwyc/try=> `@t`~.foo
     'foo'
-    ~zod/try=> `@t`~.foo.bar
+    ~waclux-tomwyc/try=> `@t`~.foo.bar
     'foo.bar'
-    ~zod/try=> `@t`~.foo~~bar
+    ~waclux-tomwyc/try=> `@t`~.foo~~bar
     'foo~bar'
-    ~zod/try=> `@t`~.foo~-bar
+    ~waclux-tomwyc/try=> `@t`~.foo~-bar
     'foo_bar'
-    ~zod/try=> `@t`~.foo-bar
+    ~waclux-tomwyc/try=> `@t`~.foo-bar
     'foo-bar'
 
 A `@ta` atom is called a `span`.
+
+
+###Codepoint, `@c`###
+
+Normally when we build atoms of Unicode text, we use a UTF-8
+bytestream, LSB first.  But sometimes it's useful to build atoms
+of one or more UTF-32 words.
+
+The codepoint syntax is the same as `@t`, except with a `~-`
+prefix.  Let's repeat our examples, with hex display:
+
+    ~waclux-tomwyc/try=> `@ux`~-foo
+    0x6f.0000.006f.0000.0066
+
+    ~waclux-tomwyc/try=> `@ux`~-foo.bar
+    0x72.0000.0061.0000.0062.0000.0020.0000.006f.0000.006f.0000.0066
+
+###Phonemic, `@p`###
+
+We've seen `@p` used for ships, of course.  But it's not just for
+ships - it's for any short number optimized for memorability, not
+for arithmetic.  `@p` is great for checksums, for instance.
+
+That said, `@p` is subtly customized for the sociopolitical
+design of Urbit as a digital republic.  For example, one feature
+we *don't* want is the ability to see at a glance which carrier
+and cruiser issued a destroyer.  Consider the carrier `0x21`:
+
+    ~waclux-tomwyc/try=> `@p`0x21
+    ~mep
+
+It issues `255` cruisers, including `0x4321`:
+
+    ~waclux-tomwyc/try=> `@p`0x4321
+    ~pasnut
+
+Which issues `65.535` destroyers, including `0x8765.4321` and
+several successors:
+
+    ~waclux-tomwyc/try=> `@p`0x8765.4321
+    ~famsyr-dirwes
+    ~waclux-tomwyc/try=> `@p`0x8766.4321
+    ~lidlug-maprec
+    ~waclux-tomwyc/try=> `@p`0x8767.4321
+    ~tidlus-roplen
+    ~waclux-tomwyc/try=> `@p`0x8768.4321
+    ~lisnel-lonbet
+
+Of course, anyone who can juggle bits can see that
+`~famsyr-dirwes` is a close cousin of `~lidlug-maprec`.  But she
+actually has to juggle bits to do it.  Obfuscation does not
+prevent calculated associations, just automatic ones.
+
+But at the yacht level, we actually want to see a uniform 32-bit
+space of yachts directly associated with the destroyer:
+
+    ~waclux-tomwyc/try=> `@p`0x9.8765.4321
+    ~talfes-sibwaclux-tomwyc-famsyr-dirwes
+    ~waclux-tomwyc/try=> `@p`0xba9.8765.4321
+    ~tacbep-ronreg-famsyr-dirwes
+    ~waclux-tomwyc/try=> `@p`0xd.cba9.8765.4321
+    ~bicsub-ritbyt-famsyr-dirwes
+    ~waclux-tomwyc/try=> `@p`0xfed.cba9.8765.4321
+    ~sivrep-hadfeb-famsyr-dirwes
+
+###IPv4 address, `@if`###
+###IPv6 address, `@is`###
+
+Urbit lives atop IP and would be very foolish to not support
+a syntax for the large atoms that are IPv4 and IPv6 addresses.
+
+`@if` is the standard IPv4 syntax, prefixed with `.`:
+
+    ~waclux-tomwyc/try=> `@ux`.127.0.0.1
+    0x7f00.0001
+
+`@is` is the same as `@if`, but with 8 groups of 4 hex digits:
+
+    ~waclux-tomwyc/try=> `@ux`.dead.beef.0.cafe.42.babe.dead.beef
+    0xdead.beef.0000.cafe.0042.babe.dead.beef
+
+###IEEE single-precision, `@rs`###
+###IEEE double-precision, `@rd`###
+###IEEE quad-precision, `@rq`###
+###IEEE half-precision, `@rh`###
+
+Hoon does not yet support floating point, so these syntaxes
+don't actually work.  But the syntax for a single-precision
+float is the normal English syntax, with a `.` prefix:
+
+    .6.2832             ::  τ as @rs
+    .-6.2832            ::  -τ as @
+    .~6.2832            ::  τ as @rd
+    .~-6.2832           ::  -τ as @rd
+    .~~6.2832           ::  τ as @rh
+    .~~~6.2832          ::  τ as @rq
+
+(Hoon is a Tauist language and promotes International Tau Day.)
+
+###Transparent cell syntax###
+
+By adding `_`, we can encode arbitrary nouns in our safe subset.
+The prefix to a canonical cell is `._`; the separator is `_`;
+the terminator is `__`.  Thus:
+
+    ~waclux-tomwyc/try=> ._3_4__
+    [3 4]
+
+    ~waclux-tomwyc/try=> :type; ._.127.0.0.1_._0x12_19___~tasfyn-partyv__
+    [.127.0.0.1 [0x12 19] ~tasfyn-partyv]
+    [@if [@ux @ud] @p]
+
+Those who don't see utility in this strange feature have
+perhaps never needed to jam a data structure into a URL.
+
+###Opaque noun syntax###
+
+Speaking of jam, sometimes we really don't care what's inside our
+noun.  Then, the syntax to use is a variant of `@uw` prefixed by
+`~`, which incorporates the built-in `jam` and `cue` marshallers:
+
+    ~waclux-tomwyc/try=> (jam [3 4])
+    78.241
+    ~waclux-tomwyc/try=> `@uw`(jam [3 4])
+    0wj6x
+    ~waclux-tomwyc/try=> (cue 0wj6x)
+    [3 4]
+    ~waclux-tomwyc/try=> ~0wj6x
+    [3 4]
+
+##Noncanonical syntaxes##
+
+These are syntaxes for constants which don't fit the canonical
+character-set constraints.
 
 ###Hoon symbol, `@tas`###
 
@@ -736,8 +881,13 @@ if you like, but we just about always want the cube:
     ~waclux-tomwyc/try=> %dead-fish9
     %dead-fish9
 
-    ~zod/try=> -:!>(%dead-fish9)
+    ~waclux-tomwyc/try=> -:!>(%dead-fish9)
     [%cube p=271.101.667.197.767.630.546.276 q=[%atom p=%tas]]
+
+The empty `@tas` has a special syntax, `$`:
+
+    ~waclux-tomwyc/try=> %$
+    %$
 
 A term without `%` is not a constant, but a name:
 
@@ -746,71 +896,57 @@ A term without `%` is not a constant, but a name:
     ! find-none
     ! exit
 
-###Codepoint, `@c`###
+###Loobeans, `@f`###
 
-Normally when we build atoms of Unicode text, we use a UTF-8
-bytestream, LSB first.  But sometimes it's useful to build atoms
-of one or more UTF-32 words.
-
-The codepoint syntax is the same as `@t`, except with a `~-`
-prefix.  Let's repeat our examples, with hex display:
-
-    ~zod/try=> `@ux`~-foo
-    0x6f.0000.006f.0000.0066
-
-    ~zod/try=> `@ux`~-foo.bar
-    0x72.0000.0061.0000.0062.0000.0020.0000.006f.0000.006f.0000.0066
-
-    ~waclux-tomwyc/try=> ~~foo.bar
-    'foo bar'
-    ~waclux-tomwyc/try=> ~~foo.bar~.baz~~moo-hoo
-    'foo bar.baz~moo-hoo'
-
-For all other ASCII/Unicode characters, insert the Unicode
-codepoint in lower-case hexadecimal, followed by `.`.  For
-example, for U+2605 "BLACK STAR", write:
-
-    ~waclux-tomwyc/try=> ~~foo~2605.bar
-    'foo★bar'
-
-This UTF-32 codepoint is of course converted to UTF-8:
-
-    ~zod/try=> `@ux`~~foo~2605.bar
-    0x72.6162.8598.e26f.6f66
-
-
-The syntax is just the text, with a `~-` prefix.  For simple
-characters:
-
-    ~waclux-tomwyc/try=> ~-urbit
-    ~-urbit
-
-    ~waclux-tomwyc/try=> -:!>(~-urbit)
-    [%atom p=%c]
-
-    ~waclux-tomwyc/try=> `@ux`~-urbit
-    0x74.0000.0069.0000.0062.0000.0072.0000.0075
-
-For interesting characters, `@c` uses the same `woad` syntax as
-`@t`, below.  Scroll down...
-
-###Phonemic, `@p`###
-
-The phonemic base 
-
-###IEEE single-precision, `@rs`###
-###IEEE double-precision, `@rd`###
-###IEEE quad-precision, `@rq`###
-###IEEE half-precision `@rh`###
-
-Lorem ipsum.
-
-##Other constant forms##
-
-Lorem ipsum.
-
+`.y` is a little cumbersome, so we can say `&` and `|`.
+The `%` prefix cubes as usual.
 
     ~waclux-tomwyc/try=> `@ud`&
     0
     ~waclux-tomwyc/try=> `@ud`|
     1
+
+###Cords, `@t`###
+
+The canonical `~~` syntax for `@t`, while it has its place, 
+is intolerable in a number of ways - especially when it comes to
+escaping capitals.  So `@t` is both printed and parsed in a
+conventional-looking single-quote syntax:
+
+    ~waclux-tomwyc/try=> 'foo bar'
+    'foo bar'
+    ~waclux-tomwyc/try=> `@ux`'foo bar'
+    0x72.6162.206f.6f66
+
+Escape `'` with `\`:
+
+    ~waclux-tomwyc/try=> 'Foo \'bar'
+    'Foo \'bar'
+    ~waclux-tomwyc/try=> `@ux`'\''
+    0x27
+
+###Strings###
+
+Text in Hoon is generally manipulated in two ways, depending on
+what you're doing: as an atomic cord/span/term, or as a `tape`
+which is a list of bytes (_not_ codepoints).
+
+To generate a tape, use double quotes:
+
+    ~waclux-tomwyc/try=> "foo"
+    "foo"
+    ~waclux-tomwyc/try=> `*`"foo"
+    [102 111 111 0]
+
+We're getting off the constant reservation, but strings also
+interpolate with curly-braces:
+
+    ~waclux-tomwyc/try=> "hello {(weld "wor" "ld")} is a fun thing to say"
+    "hello world is a fun thing to say"
+
+And they can be joined across space or lines with a `.`:
+
+    ~waclux-tomwyc/try=> "hello"."world"
+    "helloworld"
+    ~waclux-tomwyc/try=> "hello". "world"
+    "helloworld"

@@ -4,7 +4,7 @@ category: doc
 title: Urbit is Easy&#58; Chapter II (Intro to Nock)
 ---
 
-*"What one fool can do, another can"*  
+*"What one fool can do, another can"*
 **(Ancient Simian proverb)**
 
 Now that we've installed Arvo, let's learn Nock.
@@ -37,8 +37,8 @@ intimidating, but at least it isn't long.
 No, you can't just look at this and tell what it's doing.
 But at least there are only 39 lines of it.
 
-    1  ::    A noun is an atom or a cell.  
-    2  ::    An atom is a natural number. 
+    1  ::    A noun is an atom or a cell.
+    2  ::    An atom is a natural number.
     3  ::    A cell is an ordered pair of nouns.
     4  ::
     5  ::    nock(a)          *a
@@ -108,7 +108,7 @@ you *can* look at this and just tell what it's doing.  But let's
 explain it a little anyway.
 
 An atom is a natural number - ie, an unsigned integer.  Nock does
-not limit the size of atoms, or know what an atom means.  
+not limit the size of atoms, or know what an atom means.
 
 For instance, the atom 97 might mean the number 97, or it might
 mean the letter 'a' (ASCII 97).  A very large atom might be the
@@ -118,20 +118,20 @@ strings or files as atoms, the first byte is the low byte.  But
 even this is just a convention.  An atom is an atom.
 
 A cell is an ordered pair of any two nouns - cell or atom.  We
-group cells with square brackets: 
+group cells with square brackets:
 
-    [1 1] 
-    [34 45] 
+    [1 1]
+    [34 45]
     [[3 42] 12]
     [[1 0] [0 [1 99]]]
 
-To keep our keyboards from wearing out, line 6 tells us that 
+To keep our keyboards from wearing out, line 6 tells us that
 brackets group to the right:
 
     6  ::    [a b c]           [a [b c]]
 
 So instead of writing
- 
+
     [2 3]
     [2 [6 7]]
     [2 [6 [14 15]]]
@@ -168,10 +168,10 @@ or, of course,
 
 ##Rules##
 
-Nock's semantics are defined as a reduction algebra.  To compute
+A Nock program is given meaning by a process of reduction.  To compute
 `Nock(x)`, where `x` is any noun, we step through the rules from
 the top down, find the first left-hand side that matches `x`, and
-reduce it to the right-hand side.  
+reduce it to the right-hand side.
 
 
 Right away we see line 5:
@@ -193,7 +193,7 @@ through the rules, the first one that matches is line 26:
 Line 26 tells us that when reducing any noun of the form `[a 1
 b]`, the result is just `b`.  So `*[5 1 6]` is `6`.
 
-For a more complicated example, try 
+For a more complicated example, try
 
     *[[19 42] [0 3] 0 2]
 
@@ -250,7 +250,7 @@ fails to terminate.
 
 ###Depth: `?`###
 
-`?` (pronounced "wut") tests whether is a noun is a cell.  Again, 
+`?` (pronounced "wut") tests whether is a noun is a cell.  Again,
 `0` means yes, `1` means no:
 
     8  ::    ?[a b]           0
@@ -299,7 +299,7 @@ For instance, suppose your noun is `[[97 2] [1 42 0]]`.  Then,
 `/2` is `[97 2]`; `/3` is `[1 42 0]`; `/6` is `1`; `/7` is `[42
 0]`; `/5` is `2`; etc.
 
-We can also build nouns in which every atom is its own axis: 
+We can also build nouns in which every atom is its own axis:
 
     1
     [2 3]
@@ -312,3 +312,6 @@ We can also build nouns in which every atom is its own axis:
 
 Once you've spent enough time programming in Urbit, you'll know
 these axes in your dreams.
+
+
+[**Next**: Nock is Easy](urbit-is-easy-ch3.html)
