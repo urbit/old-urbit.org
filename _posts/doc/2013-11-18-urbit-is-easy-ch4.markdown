@@ -617,3 +617,6 @@ might as well use Hoon to calculate axes:
 
 Ie, `(peg a b)` is `/b` within `/a`.  Writing Nock without this
 would be pretty tough...
+
+
+[Next: Hoon Attacks](urbit-is-easy-ch5.html)

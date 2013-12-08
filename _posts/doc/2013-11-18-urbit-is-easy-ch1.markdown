@@ -429,3 +429,5 @@ simply type
     &
 
 and type `?` for help.
+
+[**Next**: Intro to Nock](urbit-is-easy-ch2.html)
