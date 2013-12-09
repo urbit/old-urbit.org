@@ -1,8 +1,10 @@
 ---
 layout: post
 category: doc
-title: Urbit is Easy&#58; Chapter II (Intro to Nock)
+title: Urbit Is Easy&#58; Chapter II (Intro To Nock)
 ---
+[**Prev**: Setup](urbit-is-easy-ch1.html)
+[**Next**: Nock Is Easy](urbit-is-easy-ch3.html)
 
 *"What one fool can do, another can"*
 **(Ancient Simian proverb)**
@@ -295,11 +297,28 @@ like this:
      4    5     6     7
     8 9 10 11 12 13 14 15
 
-For instance, suppose your noun is `[[97 2] [1 42 0]]`.  Then,
-`/2` is `[97 2]`; `/3` is `[1 42 0]`; `/6` is `1`; `/7` is `[42
-0]`; `/5` is `2`; etc.
+Let's use the example `[[97 2] [1 42 0]]`.  So
 
-We can also build nouns in which every atom is its own axis:
+    /[1 [97 2] [1 42 0]]      [[97 2] [1 42 0]]
+
+because `/1` is the root of the tree, ie, the whole noun.  Then
+its left child is `/2` (ie, `(1 + 1)`):
+
+    /[2 [97 2] [1 42 0]]      [97 2]
+
+And its right child is `/3` (ie, `(1 + 1 + 1)`):
+
+    /[3 [97 2] [1 42 0]]      [1 42 0]
+
+And delving into `/3`, we see `/(3 + 3)` and `(3 + 3 + 1)`:
+
+    /[6 [97 2] [1 42 0]]      1
+    /[7 [97 2] [1 42 0]]      [42 0]
+
+If this seems like rocket science, the problem may be that you're
+too smart to understand Nock.  Drink some lead.
+
+It's also fun to build nouns in which every atom is its own axis:
 
     1
     [2 3]
@@ -311,7 +330,7 @@ We can also build nouns in which every atom is its own axis:
     [[[8 9] [10 11]] [12 13] 14 30 31]
 
 Once you've spent enough time programming in Urbit, you'll know
-these axes in your dreams.
+these axes in your dreams.  No - really...
 
-
-[**Next**: Nock is Easy](urbit-is-easy-ch3.html)
+[**Prev**: Setup](urbit-is-easy-ch1.html)
+[**Next**: Nock Is Easy](urbit-is-easy-ch3.html)

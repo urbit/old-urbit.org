@@ -3,6 +3,8 @@ layout: post
 category: doc
 title: Urbit is Easy&#58; Chapter IV (Using Nock)
 ---
+[**Prev**: Nock Is Easy](urbit-is-easy-ch3.html)
+[**Next**: Hoon Attacks](urbit-is-easy-ch5.html)
 
 *"But are you crazy enough?"*
 **(Point Break)**
@@ -618,5 +620,5 @@ might as well use Hoon to calculate axes:
 Ie, `(peg a b)` is `/b` within `/a`.  Writing Nock without this
 would be pretty tough...
 
-
+[**Prev**: Nock Is Easy](urbit-is-easy-ch3.html)
 [**Next**: Hoon Attacks](urbit-is-easy-ch5.html)

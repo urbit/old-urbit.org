@@ -1,8 +1,11 @@
 ---
 layout: post
 category: doc
-title: Urbit is Easy&#58; Chapter I (Setup)
+title: Urbit Is Easy&#58; Chapter I (Setup)
 ---
+[**Prev**: Setup](urbit-is-easy-ch1.html)
+[**Next**: Intro To Nock](urbit-is-easy-ch2.html)
+
 
 *Tlön is surely a labyrinth, but it is a labyrinth devised
 by men, a labyrinth destined to be deciphered by men.*
