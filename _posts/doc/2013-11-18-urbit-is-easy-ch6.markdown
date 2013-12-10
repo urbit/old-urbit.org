@@ -204,3 +204,5 @@ But we can also use axes directly from Hoon.  For instance:
 
 Note the difference between these two...
 
+Lorem ipsum!
+
