@@ -31,11 +31,11 @@ Any branching computation in which different branches produce
 different types will generate a fork.  For example, without
 worrying too much about what this expression means:
 
-    ~zod/try=> :type; ?:(& %foo [13 10])
+    ~waclux-tomwyc/try=> :type; ?:(& %foo [13 10])
     %foo
     {%foo [@ud @ud]}
 
-    ~zod/try=> -:!>(?:(& %foo [13 10]))
+    ~waclux-tomwyc/try=> -:!>(?:(& %foo [13 10]))
     [ %fork
       p=[%cube p=7.303.014 q=[%atom p=%tas]]
       q=[%cell p=[%atom p=%ud] q=[%atom p=%ud]]
@@ -59,19 +59,19 @@ that set.  In practice, this means a namespace.
 
 Let's use this feature:
 
-    ~zod/try=> foo=42
+    ~waclux-tomwyc/try=> foo=42
     foo=42
-    ~zod/try=> :type; foo=42
+    ~waclux-tomwyc/try=> :type; foo=42
     foo=42
     foo=@ud
-    ~zod/try=> -:!>(foo=42)
+    ~waclux-tomwyc/try=> -:!>(foo=42)
     [%face p=%foo q=[%atom p=%ud]]
 
 With `%face`, we've simply wrapped a label around another type.
 Note that this doesn't impair our ability to compute with the
 value, which is of course the same noun it always was:
 
-    ~zod/try=> (add 17 foo=42)
+    ~waclux-tomwyc/try=> (add 17 foo=42)
     59
 
 But how do we use this namespace?
@@ -80,10 +80,10 @@ To play comfortably with names, it'll help if we introduce some
 Arvo shell syntax.  As in Unix, you can bind variables in the
 Arvo shell:
 
-    ~zod/try=> =test 42
-    ~zod/try=> test
+    ~waclux-tomwyc/try=> =test 42
+    ~waclux-tomwyc/try=> test
     42
-    ~zod/try=> (add 17 test)
+    ~waclux-tomwyc/try=> (add 17 test)
     59
 
 (`=variable expression` is *not* in any way Hoon syntax - any
@@ -92,38 +92,38 @@ command is a Hoon expression.)
 
 Let's put a `%face` inside this shell variable and try to use it:
 
-    ~zod/try=> =test foo=42
-    ~zod/try=> test
+    ~waclux-tomwyc/try=> =test foo=42
+    ~waclux-tomwyc/try=> test
     foo=42
-    ~zod/try=> foo.test
+    ~waclux-tomwyc/try=> foo.test
     42
 
 You probably expected it to be `test.foo`.  This disoriented
 feeling should vanish in a few minutes.  Let's go further:
 
-    ~zod/try=> =test foo=42
-    ~zod/try=> test
+    ~waclux-tomwyc/try=> =test foo=42
+    ~waclux-tomwyc/try=> test
     foo=42
-    ~zod/try=> foo.test
+    ~waclux-tomwyc/try=> foo.test
     42
 
-    ~zod/try=> =test bar=foo=42
-    ~zod/try=> test
+    ~waclux-tomwyc/try=> =test bar=foo=42
+    ~waclux-tomwyc/try=> test
     bar=foo=42
-    ~zod/try=> -:!>(test)
+    ~waclux-tomwyc/try=> -:!>(test)
     [%face p=%bar q=[%face p=%foo q=[%atom p=%ud]]]
 
-    ~zod/try=> bar.test
+    ~waclux-tomwyc/try=> bar.test
     foo=42
-    ~zod/try=> -:!>(bar.test)
+    ~waclux-tomwyc/try=> -:!>(bar.test)
     [%face p=%foo q=[%atom p=%ud]]
 
-    ~zod/try=> foo.bar.test
+    ~waclux-tomwyc/try=> foo.bar.test
     42
-    ~zod/try=> -:!>(foo.bar.test)
+    ~waclux-tomwyc/try=> -:!>(foo.bar.test)
     [%atom p=%ud]
 
-    ~zod/try=> foo.test
+    ~waclux-tomwyc/try=> foo.test
     ! -find-limb.foo
     ! find-none
     ! exit
@@ -137,20 +137,20 @@ test" is an error.
 
 Let's try some cells:
 
-    ~zod/try=> =test [cat=3 dog=4]
-    ~zod/try=> cat.test
+    ~waclux-tomwyc/try=> =test [cat=3 dog=4]
+    ~waclux-tomwyc/try=> cat.test
     3
-    ~zod/try=> =test [cat=3 dog=[pig=9 rat=12]]
-    ~zod/try=> rat.dog.test
+    ~waclux-tomwyc/try=> =test [cat=3 dog=[pig=9 rat=12]]
+    ~waclux-tomwyc/try=> rat.dog.test
     12
 
 We see that name resolution seeks into cells.  This solves one of
 the problems we had when programming in Nock.  For example:
 
-    ~zod/try=> =test [cow=97 test]
-    ~zod/try=> cow.test
+    ~waclux-tomwyc/try=> =test [cow=97 test]
+    ~waclux-tomwyc/try=> cow.test
     97
-    ~zod/try=> rat.dog.test
+    ~waclux-tomwyc/try=> rat.dog.test
     12
 
 By replacing `test` with `[cow=97 test]`, we've done exactly the
@@ -161,10 +161,10 @@ Even though `dog` is now at a different axis within `test`.
 
 Interesting cases tell us more about the search algorithm:
 
-    ~zod/try=> =test [cat=3 cat=[pig=9 rat=12]]
-    ~zod/try=> cat.test
+    ~waclux-tomwyc/try=> =test [cat=3 cat=[pig=9 rat=12]]
+    ~waclux-tomwyc/try=> cat.test
     3
-    ~zod/try=> pig.cat.test
+    ~waclux-tomwyc/try=> pig.cat.test
     ! -find-limb.pig
     ! find-none
     ! exit
@@ -173,9 +173,9 @@ We see that when we search a cell, we search the head first.  It
 is not in any way an error to have two faces with the same name.
 And in fact, we can even work with this constraint:
 
-    ~zod/try=> ^cat.test
+    ~waclux-tomwyc/try=> ^cat.test
     [pig=9 rat=12]
-    ~zod/try=> pig.^cat.test
+    ~waclux-tomwyc/try=> pig.^cat.test
     9
 
 A `limb` to resolve is not just a name - it takes a prefix which
@@ -183,8 +183,8 @@ is an arbitrary number of `^` characters.  This count is the
 number of name instances to ignore before matching.  For
 instance: 
 
-    ~zod/try=> =test [cat=3 cat=[pig=9 rat=12] cat=42]
-    ~zod/try=> ^^cat.test
+    ~waclux-tomwyc/try=> =test [cat=3 cat=[pig=9 rat=12] cat=42]
+    ~waclux-tomwyc/try=> ^^cat.test
     42
 
 We're actually ready to describe the full resolution model...
@@ -197,12 +197,11 @@ limb - the name, with `^` prefixes.
 
 But we can also use axes directly from Hoon.  For instance:
 
-    ~zod/try=> +3.test
+    ~waclux-tomwyc/try=> +3.test
     dog=[pig=9 rat=12]
-    ~zod/try=> dog.test
+    ~waclux-tomwyc/try=> dog.test
     [pig=9 rat=12]
 
 Note the difference between these two...
 
 Lorem ipsum!
-

@@ -282,12 +282,13 @@ cells, the error rule matches first for `+` and last for `=`.
     20 ::    /[(a + a + 1) b] /[3 /[a b]]
     21 ::    /a               /a
 
-This looks way more complicated than it is.  Essentially, we
-define a noun as a binary tree and assign an address, or *axis*,
-to every node in the tree.  The root of the tree is `/1`.  The
-left child of every node at `/a` is `/2a`; the right child is
-`/2a+1`.  (Writing `(a + a)` is just a clever way to write `2a`,
-while minimizing the set of pseudocode forms.)
+This looks way more complicated than it is.  Essentially, we define a
+noun as a binary tree - where each node branches to a left and right
+child - and assign an address, or *axis*, to every element in the
+tree.  The root of the tree is `/1`, or "slot one".  The left child of
+every node at `/a` is `/2a`; the right child is `/2a+1`.  (Writing `(a
++ a)` is just a clever way to write `2*a`, while minimizing the set of
+pseudocode forms.)
 
 For a complete tree of depth 3, the axis address space looks
 like this:
@@ -316,7 +317,8 @@ And delving into `/3`, we see `/(3 + 3)` and `(3 + 3 + 1)`:
     /[7 [97 2] [1 42 0]]      [42 0]
 
 If this seems like rocket science, the problem may be that you're
-too smart to understand Nock.  Drink some lead.
+too smart to understand Nock.  Forget everything you learned in
+school and start over from line 1.
 
 It's also fun to build nouns in which every atom is its own axis:
 
