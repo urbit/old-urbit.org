@@ -33,7 +33,7 @@ worrying too much about what this expression means:
 
     ~zod/try=> :type; ?:(& %foo [13 10])
     %foo
-    {%foo [@ud @ud]}
+    { %foo [@ud @ud] }
 
     ~zod/try=> -:!>(?:(& %foo [13 10]))
     [ %fork
@@ -42,7 +42,7 @@ worrying too much about what this expression means:
     ]
 
 Here we start to understand why the type renderer is useful, as
-`{%foo [@ud @ud]}` (which is *not* in any way Hoon syntax) is a
+`{ %foo [@ud @ud] }` (which is *not* in any way Hoon syntax) is a
 little easier to read than the actual type noun.
 
 (Readers of a mathematical bent may ask: since Hoon has a union

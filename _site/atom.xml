@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2013-11-25T18:17:50-08:00</updated>
+ <updated>2013-12-09T21:15:10-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -13,298 +13,923 @@
 
  
  <entry>
-   <title>Urbit is Easy&#58; Chapter V (Advanced Nock)</title>
+   <title>Urbit Is Easy&#58; Chapter VI (Hoon Goes Wild)</title>
+   <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch6.html"/>
+   <updated>2013-11-18T00:00:00-08:00</updated>
+   <id>http://urbit.org/2013/11/18/urbit-is-easy-ch6</id>
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch5.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Attacks&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;#8220;What good is a phone call if you&amp;#8217;re unable to speak?&amp;#8221;&lt;/em&gt; &lt;strong&gt;(The Matrix)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#39;more_simple_types&#39;&gt;More simple types&lt;/h2&gt;
+
+&lt;p&gt;Before we actually do some programming with Hoon, let&amp;#8217;s meet two more kinds of type - &lt;code&gt;%face&lt;/code&gt; and &lt;code&gt;%fork&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;++  type  $|  ?(%noun %void)
+          $%  [%atom p=term]
+              [%cell p=type q=type]
+              [%cube p=* q=type]  
+              [%face p=term q=type]
+              [%fork p=type q=type]
+          ==&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;id28&#39;&gt;&lt;code&gt;%fork&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;%fork&lt;/code&gt; is simply a union type. A type is a set of nouns - &lt;code&gt;[%fork p q]&lt;/code&gt; means &amp;#8220;it could be a p, or maybe a q.&amp;#8221;&lt;/p&gt;
+
+&lt;p&gt;Any branching computation in which different branches produce different types will generate a fork. For example, without worrying too much about what this expression means:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; :type; ?:(&amp;amp; %foo [13 10])
+%foo
+{ %foo [@ud @ud] }
+
+~zod/try=&amp;gt; -:!&amp;gt;(?:(&amp;amp; %foo [13 10]))
+[ %fork
+  p=[%cube p=7.303.014 q=[%atom p=%tas]]
+  q=[%cell p=[%atom p=%ud] q=[%atom p=%ud]]
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we start to understand why the type renderer is useful, as &lt;code&gt;{ %foo [@ud @ud] }&lt;/code&gt; (which is &lt;em&gt;not&lt;/em&gt; in any way Hoon syntax) is a little easier to read than the actual type noun.&lt;/p&gt;
+
+&lt;p&gt;(Readers of a mathematical bent may ask: since Hoon has a union type, where is the intersection type? There is none. Hoon is not one of these languages whose goal is to be as mathematically powerful as possible. Since a programming language is a UI for programmers, and programmers are not mathematicians, Hoon is designed to be as powerful as it has to be - and no more.)&lt;/p&gt;
+
+&lt;h3 id=&#39;id29&#39;&gt;&lt;code&gt;%face&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;A type is not just a set of nouns - it&amp;#8217;s also a semantics for that set. In practice, this means a namespace.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s use this feature:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; foo=42
+foo=42
+~zod/try=&amp;gt; :type; foo=42
+foo=42
+foo=@ud
+~zod/try=&amp;gt; -:!&amp;gt;(foo=42)
+[%face p=%foo q=[%atom p=%ud]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With &lt;code&gt;%face&lt;/code&gt;, we&amp;#8217;ve simply wrapped a label around another type. Note that this doesn&amp;#8217;t impair our ability to compute with the value, which is of course the same noun it always was:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; (add 17 foo=42)
+59&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But how do we use this namespace?&lt;/p&gt;
+
+&lt;p&gt;To play comfortably with names, it&amp;#8217;ll help if we introduce some Arvo shell syntax. As in Unix, you can bind variables in the Arvo shell:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test 42
+~zod/try=&amp;gt; test
+42
+~zod/try=&amp;gt; (add 17 test)
+59&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(&lt;code&gt;=variable expression&lt;/code&gt; is &lt;em&gt;not&lt;/em&gt; in any way Hoon syntax - any Hoon expression is a valid Arvo command, but not every Arvo command is a Hoon expression.)&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s put a &lt;code&gt;%face&lt;/code&gt; inside this shell variable and try to use it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test foo=42
+~zod/try=&amp;gt; test
+foo=42
+~zod/try=&amp;gt; foo.test
+42&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You probably expected it to be &lt;code&gt;test.foo&lt;/code&gt;. This disoriented feeling should vanish in a few minutes. Let&amp;#8217;s go further:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test foo=42
+~zod/try=&amp;gt; test
+foo=42
+~zod/try=&amp;gt; foo.test
+42
+
+~zod/try=&amp;gt; =test bar=foo=42
+~zod/try=&amp;gt; test
+bar=foo=42
+~zod/try=&amp;gt; -:!&amp;gt;(test)
+[%face p=%bar q=[%face p=%foo q=[%atom p=%ud]]]
+
+~zod/try=&amp;gt; bar.test
+foo=42
+~zod/try=&amp;gt; -:!&amp;gt;(bar.test)
+[%face p=%foo q=[%atom p=%ud]]
+
+~zod/try=&amp;gt; foo.bar.test
+42
+~zod/try=&amp;gt; -:!&amp;gt;(foo.bar.test)
+[%atom p=%ud]
+
+~zod/try=&amp;gt; foo.test
+! -find-limb.foo
+! find-none
+! exit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;name_resolution&#39;&gt;Name resolution&lt;/h3&gt;
+
+&lt;p&gt;We&amp;#8217;re starting to learn a little about name resolution in Hoon. We&amp;#8217;ve seen that &lt;code&gt;foo.bar.test&lt;/code&gt; means &amp;#8220;foo in bar in test.&amp;#8221; We&amp;#8217;ve seen that faces have to be unwrapped a layer at a time, so &amp;#8220;foo in test&amp;#8221; is an error.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s try some cells:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test [cat=3 dog=4]
+~zod/try=&amp;gt; cat.test
+3
+~zod/try=&amp;gt; =test [cat=3 dog=[pig=9 rat=12]]
+~zod/try=&amp;gt; rat.dog.test
+12&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We see that name resolution seeks into cells. This solves one of the problems we had when programming in Nock. For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test [cow=97 test]
+~zod/try=&amp;gt; cow.test
+97
+~zod/try=&amp;gt; rat.dog.test
+12&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By replacing &lt;code&gt;test&lt;/code&gt; with &lt;code&gt;[cow=97 test]&lt;/code&gt;, we&amp;#8217;ve done exactly the same thing as nock &lt;code&gt;8&lt;/code&gt;. (And we&amp;#8217;ll do more of it.) Note that because we didn&amp;#8217;t wrap a face around &lt;code&gt;test&lt;/code&gt;, we seek into it when looking for &lt;code&gt;dog&lt;/code&gt;, and &lt;code&gt;rat.dog.test&lt;/code&gt; works just the same way. Even though &lt;code&gt;dog&lt;/code&gt; is now at a different axis within &lt;code&gt;test&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Interesting cases tell us more about the search algorithm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test [cat=3 cat=[pig=9 rat=12]]
+~zod/try=&amp;gt; cat.test
+3
+~zod/try=&amp;gt; pig.cat.test
+! -find-limb.pig
+! find-none
+! exit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We see that when we search a cell, we search the head first. It is not in any way an error to have two faces with the same name. And in fact, we can even work with this constraint:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; ^cat.test
+[pig=9 rat=12]
+~zod/try=&amp;gt; pig.^cat.test
+9&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A &lt;code&gt;limb&lt;/code&gt; to resolve is not just a name - it takes a prefix which is an arbitrary number of &lt;code&gt;^&lt;/code&gt; characters. This count is the number of name instances to ignore before matching. For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test [cat=3 cat=[pig=9 rat=12] cat=42]
+~zod/try=&amp;gt; ^^cat.test
+42&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;#8217;re actually ready to describe the full resolution model&amp;#8230;&lt;/p&gt;
+
+&lt;h3 id=&#39;wing_resolution&#39;&gt;Wing resolution&lt;/h3&gt;
+
+&lt;p&gt;A &lt;code&gt;wing&lt;/code&gt; is a dot-separated list, reading outside to in from right to left. Each element is a &lt;code&gt;limb&lt;/code&gt;. We&amp;#8217;ve seen one kind of limb - the name, with &lt;code&gt;^&lt;/code&gt; prefixes.&lt;/p&gt;
+
+&lt;p&gt;But we can also use axes directly from Hoon. For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; +3.test
+dog=[pig=9 rat=12]
+~zod/try=&amp;gt; dog.test
+[pig=9 rat=12]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note the difference between these two&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;Lorem ipsum!&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Urbit is Easy&#58; Chapter V (Hoon Attacks)</title>
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch5.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch5</id>
-   <content type="html">&lt;h1 id=&#39;basic_math_in_nock&#39;&gt;Basic Math in Nock&lt;/h1&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;In the last chapter we wrote Decrement,&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&amp;#8220;Like all men in Babylon, I have been proconsul; like all, a slave.&amp;#8221;&lt;/em&gt; &lt;strong&gt;(The Lottery in Babylon)&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[a
-   [8 
-	[1 0]                                       ::declare variable b
+&lt;h2 id=&#39;principles_of_type&#39;&gt;Principles of type&lt;/h2&gt;
 
-        8 [1                                        ::build core
+&lt;p&gt;By working through the Nock tutorial, you&amp;#8217;ve actually come closer than you know to knowing Hoon. Hoon is actually not much more than a fancy wrapper around Nock. People who know C can think of Hoon as the C to Urbit&amp;#8217;s Nock - just a sprinkling of syntax, wrapped around machine code and memory.&lt;/p&gt;
 
-	   [6                                       ::if    
-		[5 [4 0 6] 0 7]                     ::=[+b a]
-		[0 6]                               ::then b
-		[9 2 [0 2] [4 0 6] 0 7]             ::else loop		   
-	   ]
-          ]
+&lt;p&gt;For instance, it&amp;#8217;s easy to imagine how instead of calculating tree axes by hand, we could actually assign &lt;em&gt;names&lt;/em&gt; to different parts of the tree - and those names would stay the same as we pushed more data on the subject. It can&amp;#8217;t hurt to dream, right?&lt;/p&gt;
 
-	[9 2 0 1]                                   :: activate core
+&lt;p&gt;The way we&amp;#8217;re going to do this is by associating something called a &lt;code&gt;type&lt;/code&gt; with the subject. You may have heard of types before. Technically, Hoon is a statically typed language, which just means that the type isn&amp;#8217;t a part of your program: it&amp;#8217;s just a piece of data the compiler keeps around as it turns your Hoon into Nock.&lt;/p&gt;
 
-        ]
-       ]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In some languages, especially functional languages, types are dangerous scary concepts that involve a lot of math. For those who like this sort of thing, that&amp;#8217;s the sort of thing they like. For the rest of us, there&amp;#8217;s Hoon. It&amp;#8217;s a functional language, but not one of those scary ones.&lt;/p&gt;
 
-&lt;p&gt;On one line:&lt;/p&gt;
+&lt;p&gt;A lot of other languages use dynamic types, in which the type of a value is carried along with the data as you use it. Even languages like Lisp, which are nominally typeless, look rather typed from the Hoon perspective. For example, a Lisp atom knows dynamically whether it&amp;#8217;s a symbol or an integer. A Hoon atom is just a Nock atom, which is just a number. So without a static type, Hoon doesn&amp;#8217;t even know how to print an atom properly.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When we parse a Hoon expression, file, etc, we produce what we call a &lt;code&gt;hoon&lt;/code&gt;, which (if you know the CS jargon) is an AST. A hoon is a noun that&amp;#8217;s converted into a Nock formula, with the assistance of a type which describes the subject of the formula:&lt;/p&gt;
 
-&lt;p&gt;Now we&amp;#8217;re going to write Add.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[subject-type hoon] =&amp;gt; formula&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Add takes a cell &lt;span&gt;a b&lt;/span&gt; and returns an atom a + b.&lt;/p&gt;
+&lt;p&gt;But actually this isn&amp;#8217;t quite right, because Hoon does something called &amp;#8220;type inference.&amp;#8221; When we have a type that describes the subject for the formula we&amp;#8217;re trying to generate, as we generate that formula we want to also generate a type for the product of that formula on that subject. So our compiler computes:&lt;/p&gt;
 
-&lt;p&gt;Let&amp;#8217;s describe our algorithm in english:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[subject-type hoon] =&amp;gt; [product-type formula]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Just like decrement counted up from 0 to a - 1, add is going to count up from a to a + b.&lt;/p&gt;
+&lt;p&gt;As long as &lt;code&gt;subject-type&lt;/code&gt; is a correct description of some subject, you can take any &lt;code&gt;hoon&lt;/code&gt; and compile it against &lt;code&gt;subject-type&lt;/code&gt;, producing a &lt;code&gt;formula&lt;/code&gt; such that &lt;code&gt;*(subject
+formula)&lt;/code&gt; is a product correctly described by &lt;code&gt;product-type&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;We&amp;#8217;ll create a new variable c (with Nock 8) and set that to 0.&lt;/p&gt;
+&lt;p&gt;Actually, this works well enough that in Hoon there is no direct syntax for defining or declaring a type. There is only a syntax for constructing hoons. Types are always produced by inference.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[0 [a b]] &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#39;printing_types&#39;&gt;Printing types&lt;/h2&gt;
 
-&lt;p&gt;And then we&amp;#8217;ll test whether c is equal to b, if not we&amp;#8217;ll increment c and a, and if it is, we&amp;#8217;ll produce a. That way we should loop through b cycles of incrementing c, and if for b cycles, we add one to a, we&amp;#8217;re effectively adding b times one, or just b to a.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s start looking at types with the simplest possible kind of hoon - an atomic constant, which ignores the subject and its type, and just produces its own subject. Here&amp;#8217;s everyone&amp;#8217;s favorite atomic constant:&lt;/p&gt;
 
-&lt;p&gt;So our add function is going to have a lot of the same pieces as decrement. Let&amp;#8217;s write some code comments:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; 42
+42&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;:: declare c = 0 
-:: build core [0 [a b]]
-		
-::if    
-::=[c b]
-::then a
-::else +a, +c and loop	
+&lt;p&gt;Let&amp;#8217;s also print its type - in two different ways:&lt;/p&gt;
 
-:: activate core&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; 42
+42
+@ud
 
-&lt;p&gt;The first two lines are easy, exactly like decrement&lt;/p&gt;
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(42)
+[%atom p=&amp;#39;ud&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;[[a b]
+&lt;p&gt;W-what? Since types are of course static, printing them out dynamically involves a little bit of black magic at the Hoon and/or Arvo levels. All will be revealed in due course.&lt;/p&gt;
 
-    [8                                              :: declare c = 0 
-	[1 0]                                       :: [0 [a b]]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But a type, like everything else in Hoon, is a noun. Suffice it to say that &lt;code&gt;-:!&amp;gt;(42)&lt;/code&gt; is just printing this noun, whereas &lt;code&gt;:type; 42&lt;/code&gt; is rendering it intelligently as a string. In this case, the rendering is actually Hoon syntax, but in general it&amp;#8217;s just a string.&lt;/p&gt;
 
-&lt;p&gt;And making our core (&lt;span&gt;test subject&lt;/span&gt;):&lt;/p&gt;
+&lt;p&gt;In this case, looking directly at the type noun is preferable. But for a core, the type actually contains the entire codebase. It is no problem to compute with this, but we can&amp;#8217;t look at it without scrolling more or less to infinity.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt; 		8 [1  &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#39;atom_examples&#39;&gt;Atom examples&lt;/h2&gt;
 
-&lt;p&gt;Our if statement is a little different. We have a little work to do to keep our tree addresses straight. Remember that our subject &lt;span&gt;c &lt;span&gt;a b&lt;/span&gt;&lt;/span&gt; is in the tail of our core with an address of 3. c is at 6, a is at 14 (2 times 7) and b is at 15.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s look at some more of these atoms:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;	   [6                                       ::if    
-		[5 [0 6] 0 15]                      ::=[c b]
-		[0 14]                              ::then a&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; 0x42
+0x42
+@ux
 
-&lt;p&gt;Pretty easy so far. Our else formula is a little trickier. But there&amp;#8217;s really not a huge leap between &lt;code&gt;[+c [+a b]]&lt;/code&gt;, (where c is at &lt;span&gt;0 6&lt;/span&gt;, a is at &lt;span&gt;0 14&lt;/span&gt; and b is at &lt;span&gt;0 15&lt;/span&gt;), and the following:&lt;/p&gt;
+~waclux-tomwyc/try=&amp;gt; :type; &amp;#39;foo&amp;#39;
+&amp;#39;foo&amp;#39;
+@ta
 
-&lt;pre&gt;&lt;code&gt;		[9 2 [0 2] [4 0 6] [[4 0 14] 0 15]]                ::else +a, +c and loop				&lt;/code&gt;&lt;/pre&gt;
+~waclux-tomwyc/try=&amp;gt; :type; ~2013.12.6
+~2013.12.6
+@da
 
-&lt;p&gt;And finally we activate our core:&lt;/p&gt;
+~waclux-tomwyc/try=&amp;gt; :type; .127.0.0.1
+.127.0.0.1
+@if
 
-&lt;p&gt;] ]&lt;/p&gt;
+~waclux-tomwyc/try=&amp;gt; :type; ~m45
+~m45
+@dr
 
-&lt;pre&gt;&lt;code&gt;	[9 2 0 1]                                   :: activate core
-   ]
-]&lt;/code&gt;&lt;/pre&gt;
+~waclux-tomwyc/try=&amp;gt; :type; `@da`(add ~2013.12.6 ~m45)
+~2013.12.6..00.45.00
+@da&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;All together:&lt;/p&gt;
+&lt;p&gt;Okay, we got a little out of control with that last one. But the point should be clear.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[[a b]
+&lt;p&gt;Note again that there is no dynamic type here. All these values are atoms. Let&amp;#8217;s cast them all to decimals to see (don&amp;#8217;t worry about the cast syntax - we&amp;#8217;ll cover that later):&lt;/p&gt;
 
-    [8                                              :: declare c = 0 
-	[1 0]                                       :: build subject [0 [a b]]
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ud`0x42
+66
+~waclux-tomwyc/try=&amp;gt; `@ud`&amp;#39;foo&amp;#39;
+7.303.014
+~waclux-tomwyc/try=&amp;gt; `@ud`.127.0.0.1
+2.130.706.433
+~waclux-tomwyc/try=&amp;gt; `@ud`~2013.12.6
+170.141.184.500.724.667.905.957.736.036.171.776.000
+~waclux-tomwyc/try=&amp;gt; `@ud`~m45
+49.806.208.999.015.789.363.200&lt;/code&gt;&lt;/pre&gt;
 
- 		8 [1                                        :: build core
+&lt;p&gt;(Yes, 45 minutes is actually quite a large number when your unit of time is 2^-64 seconds.)&lt;/p&gt;
 
-	   [6                                       ::if    
-		[5 [0 6] 0 15]                      ::=[c b]
-		[0 14]                              ::then a
-		[9 2 [0 2] [4 0 6] [[4 0 14] 0 15]] ::else +a, +c and loop				
-	   ]
+&lt;p&gt;What are these atoms, anyway? Let&amp;#8217;s look at the actual type noun (which, without magic, exists only at compile time):&lt;/p&gt;
 
-	[9 2 0 1]                                   :: activate core
-   ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(42)
+[%atom p=&amp;#39;ud&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;And that&amp;#8217;s add in Nock. Easy peasy.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;p&lt;/code&gt; is called the &lt;code&gt;odor&lt;/code&gt; of the atom. In this case, it&amp;#8217;s &lt;code&gt;&amp;#39;ud&amp;#39;&lt;/code&gt;, ie, unsigned decimal:&lt;/p&gt;
 
-&lt;p&gt;On one line:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ud`&amp;#39;ud&amp;#39;
+25.717&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;[8 [1 0] 8 [1 6 [5 [0 6] 0 15] [0 14] 9 2 [0 2] [4 0 6] [4 0 14] 0 15] 9 2 0 1]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That&amp;#8217;s an unsigned-decimal interpretation of the atom &amp;#8216;ud&amp;#8217;, which without a cast is an atom of odor &lt;code&gt;@ta&lt;/code&gt;:&lt;/p&gt;
 
-&lt;p&gt;Now let&amp;#8217;s do subtraction. Subtract (or &amp;#8220;sub&amp;#8221;) is exactly like add, except instead of counting up from a to a + b, we count down from a to a - b. How do we count down? Simple, we just wrote a handy decrement function (&amp;#8220;dec&amp;#8221;). The only different thing about sub is that we&amp;#8217;ve now got two loops, one nested inside the other.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; &amp;#39;ud&amp;#39;
+&amp;#39;ud&amp;#39;
+@ta
 
-&lt;p&gt;Here&amp;#8217;s add:&lt;/p&gt;
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(&amp;#39;ud&amp;#39;)
+[%atom p=&amp;#39;ta&amp;#39;]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;[[a b]
+&lt;p&gt;In case this is at all mysterious, we note:&lt;/p&gt;
 
-    [8                                              :: declare c = 0 
-	[1 0]                                       :: build subject [0 [a b]]
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; (add &amp;#39;u&amp;#39; (mul 256 &amp;#39;d&amp;#39;))
+25.717&lt;/code&gt;&lt;/pre&gt;
 
- 		8 [1                                        :: build core
+&lt;p&gt;As a general convention, when we represent UTF-8/ASCII text as an atom, we store it LSB first. A text atom is generally called a &lt;code&gt;cord&lt;/code&gt;; if it is ASCII only, a &lt;code&gt;span&lt;/code&gt;; if it is ASCII restricted to the Hoon symbol subset (lowercase with hyphens), a &lt;code&gt;term&lt;/code&gt;.&lt;/p&gt;
 
-	   [6                                       ::if    
-		[5 [0 6] 0 15]                      ::=[c b]
-		[0 14]                              ::then a
-		[9 2 [0 2] [4 0 6] [[4 0 14] 0 15]] ::else +c, +a and loop				
-	   ]
-        ]
+&lt;h2 id=&#39;the_logic_of_smell&#39;&gt;The logic of smell&lt;/h2&gt;
 
-	[9 2 0 1]                                   :: activate core
-   ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What is an odor, anyway? We&amp;#8217;ve seen that the type of an atom constant gets an odor which is a function of its syntax. We&amp;#8217;ve also seen that when we print atoms on the console, the printer is (in some black-magic way) aware of the odor, and can print the atom in roughly the same syntax we originally entered it.&lt;/p&gt;
 
-&lt;p&gt;And we&amp;#8217;ll just swap out our else formula&lt;/p&gt;
+&lt;p&gt;Hoon&amp;#8217;s type system is generally strong, but odors are weak. The parser itself will only generate a &lt;code&gt;@ta&lt;/code&gt; for an actual ASCII span, but not every atom is a constant. For instance, consider our construction of &lt;code&gt;&amp;#39;ud&amp;#39;&lt;/code&gt;. Let&amp;#8217;s look at the type:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[9 2 [0 2] [4 0 6] [[4 0 14] 0 15]] &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; &amp;#39;u&amp;#39;
+&amp;#39;u&amp;#39;
+@ta
 
-&lt;p&gt;with&lt;/p&gt;
+~waclux-tomwyc/try=&amp;gt; :type; 256 
+256
+@ud
 
-&lt;pre&gt;&lt;code&gt;[9 2 [0 2] [4 0 6] [[dec (0 14)] 0 15]] &lt;/code&gt;&lt;/pre&gt;
+~waclux-tomwyc/try=&amp;gt; :type; (add &amp;#39;u&amp;#39; (mul 256 &amp;#39;d&amp;#39;))
+25.717
+@&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Decrement on a single line:&lt;/p&gt;
+&lt;p&gt;Not only are we mixing atoms of different odors in our arithmetic, but the result appears to be&amp;#8230; odorless. It is odorless. But we can cast it back:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; `@ta`(add &amp;#39;u&amp;#39; (mul 256 &amp;#39;d&amp;#39;))
+&amp;#39;ud&amp;#39;
+@ta&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;And now our new else statement. We&amp;#8217;ll apply dec to &lt;span&gt;0 14&lt;/span&gt; using Nock 7, since we want to apply them sequentially to the subject.&lt;/p&gt;
+&lt;p&gt;While Hoon&amp;#8217;s type system is quite intelligent in some ways, it is by no means smart enough to evaluate your arithmetic and conclude that it produces a valid ASCII span. We can convert any atom to any other odor of atom, without any sanity checks:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[9 2 [0 2] [4 0 6] [7 [0 14] [8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]] [0 15]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@dr`25.717
+~.s0..0000.0000.0000.6475
 
-&lt;p&gt;It looks a little bulky, but it gets the job done.&lt;/p&gt;
+~waclux-tomwyc/try=&amp;gt; `@if`25.717
+.0.0.100.117&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;[[a b]
+&lt;p&gt;It so happens that &lt;code&gt;25.717&lt;/code&gt; is a valid amount of time, and also a valid IPv4 address. But obviously not all atoms are meaningful values of every odor. We&amp;#8217;re not going to annoy you by stressing out the console printer with bad ASCII, but we could.&lt;/p&gt;
 
-    [8                                              :: declare c = 0 
-	[1 0]                                       :: build subject [0 [a b]]
+&lt;p&gt;(And why do we say &lt;code&gt;25.717&lt;/code&gt; rather than &lt;code&gt;25,717&lt;/code&gt;? Are we&amp;#8230; Germans? No, but we want all atom syntaxes to be URL-safe. See below.)&lt;/p&gt;
 
- 		[8 1                                        :: build core
+&lt;p&gt;Odors are a weak type system because the programmer often knows, at a logical level not at all available to the type system, that (for example) &lt;code&gt;(add &amp;#39;u&amp;#39; (mul 256 &amp;#39;d&amp;#39;))&lt;/code&gt; produces an ASCII span. We want to keep the programmer from accidentally using a date as if it were text, but we don&amp;#8217;t want to keep her from intentionally converting between odors or ascribing odor to the result of an arbitrary computation.&lt;/p&gt;
 
-	   [6                                       ::if    
-		[5 [0 6] 0 15]                      ::=[c b]
-		[0 14]                              ::then a
-		[9 2 [0 2] [4 0 6]                  ::else, +c, dec a and loop
+&lt;p&gt;An odor is exactly what it looks like - an ASCII span. This span is a taxonomy which grows more specific to the right. For instance, &lt;code&gt;@t&lt;/code&gt; for UTF-8 text, &lt;code&gt;@ta&lt;/code&gt; for URL-safe ASCII text, &lt;code&gt;@tas&lt;/code&gt; for a Hoon symbol; or &lt;code&gt;@u&lt;/code&gt; for an unsigned integer, &lt;code&gt;@ux&lt;/code&gt; for an unsigned integer formatted as hexadecimal.&lt;/p&gt;
 
-			[7 [0 14]                             
+&lt;p&gt;The general principle of type enforcement is that atoms change freely either up or down the taxonomy, but not across. For instance, you can treat a &lt;code&gt;@tas&lt;/code&gt; as a &lt;code&gt;@t&lt;/code&gt;, as in a strong type system; but you can also treat a &lt;code&gt;@t&lt;/code&gt; as a &lt;code&gt;@tas&lt;/code&gt;, or an &lt;code&gt;@&lt;/code&gt; as anything. However, passing a &lt;code&gt;@t&lt;/code&gt; to a function that expects an &lt;code&gt;@ux&lt;/code&gt; is a type error.&lt;/p&gt;
 
-    		 [8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]
-		 ] 
+&lt;p&gt;Even the ability to cast a &lt;code&gt;@ud&lt;/code&gt; to a &lt;code&gt;@dr&lt;/code&gt; is a syntactic hack; casts in Hoon do not evade type enforcement. When you write&lt;/p&gt;
 
-		[0 15]			
-	  	]
-        ]
+&lt;pre&gt;&lt;code&gt;`@dr`25.717&lt;/code&gt;&lt;/pre&gt;
 
-	[9 2 0 1]                                   :: activate core
-   ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;the parser actually produces the equivalent of&lt;/p&gt;
 
-&lt;p&gt;On one line:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;`@dr``@`25.717&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;[8 [1 0] 8 [1 6 [5 [0 6] 0 15] [0 14] 9 2 [0 2] [4 0 6] [7 [0 14] [8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]] 0 15] 9 2 0 1]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;because we can&amp;#8217;t turn &lt;code&gt;@ud&lt;/code&gt; directly into &lt;code&gt;@dr&lt;/code&gt;, but we can turn &lt;code&gt;@ud&lt;/code&gt; into &lt;code&gt;@&lt;/code&gt; and &lt;code&gt;@&lt;/code&gt; into &lt;code&gt;@dr&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Works perfectly well, but isn&amp;#8217;t really very elegant. Instead, let&amp;#8217;s try putting decrement in our core:&lt;/p&gt;
+&lt;h2 id=&#39;the_smell_of_size&#39;&gt;The smell of size&lt;/h2&gt;
 
-&lt;p&gt;&lt;span&gt;&lt;span&gt;sub dec&lt;/span&gt; subject&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Besides these prefixes, which indicate the rendering and/or meaning of atoms, the odor system has another orthogonal mechanism to restrict the size of atoms. Like the prefix, this mechanism is weak - it is not enforced and trivially evaded.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[[a b]
+&lt;p&gt;An odor span contains two parts, both optional: a lowercase prefix and an uppercase suffix. The suffix, if present, is a single character A-Z &lt;code&gt;c&lt;/code&gt; which indicates an atom less than &lt;code&gt;n&lt;/code&gt;, where &lt;code&gt;n&lt;/code&gt; is &lt;code&gt;(1 + c - &amp;#39;A&amp;#39;)&lt;/code&gt;. Thus, &lt;code&gt;@tD&lt;/code&gt; is one UTF-8 byte (whatever that means); &lt;code&gt;@tN&lt;/code&gt; is a kilobyte or less of UTF-8.&lt;/p&gt;
 
-    [8                                              :: declare c = 0 
-	[1 0]                                       :: build subject [0 [a b]]
+&lt;p&gt;(It&amp;#8217;s easy to complain from a standards perspective that &amp;#8220;UTF-8&amp;#8221; defines a format for bytestreams, not bytes, and at a strict level it means no more to say &amp;#8220;one UTF-8 byte&amp;#8221; than to say, say, &amp;#8220;one GIF byte.&amp;#8221; But odors are not a strict type system. It is possible for a byte to &lt;em&gt;smell&lt;/em&gt; of UTF-8 - or even of GIF.)&lt;/p&gt;
 
- 		8 [1                                        :: build core
-	   
-	   [6                                       ::sub  
-		[5 [0 6] 0 15]                      ::=[c b]
-		[0 14]                              ::then a
-		[9 4                                ::else
-			[0 2] 
-			[4 0 6]                     ::+c
-			[2 [0 14] [0 5]]            ::dec a
-			[0 15]                      ::b
-                    ]
-	
-	   ]
-                                                        ::decrement in core
-	[8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]
-	   		  ]
+&lt;p&gt;When enforcing conversions, &lt;code&gt;@t&lt;/code&gt; has no size information and can be used as &lt;code&gt;@tD&lt;/code&gt;; and &lt;code&gt;@tD&lt;/code&gt;, of course, can be used as &lt;code&gt;@t&lt;/code&gt;. But using &lt;code&gt;@tN&lt;/code&gt; as &lt;code&gt;@tD&lt;/code&gt; is an error. There is no way to generate the smell of size from a constant without a cast. And of course arithmetic results have no odor at all.&lt;/p&gt;
 
+&lt;p&gt;While the utility of this mechanism is debatable, at worst it serves as a comment which documents the programmer&amp;#8217;s intentions.&lt;/p&gt;
 
-	[9 4 0 1]                                   :: activate core with sub
-   ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A full table - for convenience, not because you&amp;#8217;re stupid:&lt;/p&gt;
 
-&lt;p&gt;We&amp;#8217;ve had to change some tree addresses, because our core now is &lt;code&gt;[[sub dec] [0 [a b]]]&lt;/code&gt; instead of &lt;code&gt;[sub [0 [a b]]]&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;A   1 bit
+B   2 bits
+C   4 bits
+D   1 byte
+E   2 bytes
+F   4 bytes
+G   8 bytes
+H   16 bytes
+I   32 bytes
+J   64 bytes
+K   128 bytes
+L   256 bytes
+M   512 bytes
+N   1K
+O   2K
+P   4K
+Q   8K
+R   16K
+S   32K
+T   64K
+U   128K
+V   256K
+W   512K
+X   1MB
+Y   2MB
+Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;On one line:&lt;/p&gt;
+&lt;p&gt;You of course can build an atom larger than 4MB, though whether you should is another question entirely. But the type system cannot express a size odor above 4MB.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[8 [1 0] 8 [1 [6 [5 [0 6] 0 15] [0 14] 9 4 [0 2] [4 0 6] [2 [0 14] [0 5]] 0 15] [8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]] 9 4 0 1]&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#39;known_and_unknown_odors&#39;&gt;Known and unknown odors&lt;/h2&gt;
 
-&lt;p&gt;Which is a little better, but not much.&lt;/p&gt;
+&lt;p&gt;The variety of units and formats which an atom can represent is essentially infinite. The set of syntaxes which Hoon can parse and print is fundamentally limited.&lt;/p&gt;
 
-&lt;p&gt;However now that we have dec in our core we can use it in multiple places in our code. Which means we can restructure our subtraction function:&lt;/p&gt;
+&lt;p&gt;For instance, Hoon has no syntax which means &amp;#8220;number of miles.&amp;#8221; But within your program, nothing stops you from using the odor system to distinguish a number of miles from, for instance, a number of kilometers:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[[a b]                                              ::suject [a b]
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@udm`25.717
+25.717
+~waclux-tomwyc/try=&amp;gt; `@udk`25.717
+25.717&lt;/code&gt;&lt;/pre&gt;
 
- 		[8                                          :: build core
-	   [1
-	   [6                                       ::sub  
-		[5 [1 0] 0 7]                       ::=[0 b]
-		[0 6]                               ::then a
-		[9 4                                ::else
-			[0 2] 
-			[2 [0 6] [0 5]]             ::dec a
-			[2 [0 7] [0 5]]             ::dec b
-                    ]
-	
-	   ]
-                                                        ::decrement in core
+&lt;p&gt;The printer has no idea what a &lt;code&gt;@udm&lt;/code&gt; is, but it knows what a &lt;code&gt;@ud&lt;/code&gt; and can print accordingly. Then, if you have a function which expects a &lt;code&gt;@udm&lt;/code&gt; and you try to pass it a &lt;code&gt;@udk&lt;/code&gt;, it will fail. The feature seems banal, but spacecraft have been laid low by less.&lt;/p&gt;
 
-	   [8 [1 0] 8 1 6 [5 [4 0 6] 0 7] [0 6] [9 2 [0 2] [4 0 6] [9 2 0 1]]] 
-	  ]
+&lt;p&gt;This is clearly a crude mechanism. If you don&amp;#8217;t like it, you don&amp;#8217;t have to use it.&lt;/p&gt;
 
-	[9 4 0 1]                                   :: activate core with sub
-   ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#39;known_odors&#39;&gt;Known odors&lt;/h2&gt;
 
-&lt;p&gt;We&amp;#8217;ve now gotten rid of our variable c, and are just counting down from b to 0. We decrement a and b together and when b equals 0, a will equal a - b. This required some more tree address changes because our core here is now &lt;code&gt;[[sub dec] [a b]]&lt;/code&gt;, meaning a is at &lt;code&gt;[0 6]&lt;/code&gt; and b is at &lt;code&gt;[0 7]&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Hoon knows about the following odors, with defined meanings:&lt;/p&gt;
 
-&lt;p&gt;On one line:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@c              UTF-32 codepoint
+@d              date
+  @da           absolute date
+  @dr           relative date (ie, timespan)
+@f              yes or no (inverse boolean)
+@n              nil
+@p              phonemic base
+@r              IEEE floating-point
+  @rd           double precision  (64 bits)
+  @rh           half precision (16 bits)
+  @rq           quad precision (128 bits)
+  @rs           single precision (32 bits)
+@s              signed integer, sign bit low
+  @sb           signed binary
+  @sd           signed decimal
+  @sv           signed base32
+  @sw           signed base64
+  @sx           signed hexadecimal
+@t              UTF-8 text (cord)
+  @ta           ASCII text (span)
+    @tas        ASCII symbol (term)
+@u              unsigned integer
+  @ub           unsigned binary
+  @ud           unsigned decimal
+  @uv           unsigned base32
+  @uw           unsigned base64
+  @ux           unsigned hexadecimal&lt;/code&gt;&lt;/pre&gt;
 
-&lt;pre&gt;&lt;code&gt;[8 [1 [6 [5 [1 0] 0 7] [0 6] 9 4 [0 2] [2 [0 6] [0 5]] [2 [0 7] [0 5]]] [8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]] 9 4 0 1]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Each of these forms has a URL-safe syntax, which we&amp;#8217;ll get to. Each parses as an atomic constant in Hoon, and each is printed by the Hoon prettyprinter.&lt;/p&gt;
 
-&lt;p&gt;Putting multiple formulas in a core is a useful technique to simplify our Nock. Effectively, we can now assemble a library of functions in our core and then pick and choose which ones we want to run.&lt;/p&gt;
+&lt;p&gt;But first, a little more Hoonology.&lt;/p&gt;
 
-&lt;p&gt;Cool? Cool. Now let&amp;#8217;s do multiply:&lt;/p&gt;
+&lt;h2 id=&#39;the_humble_type&#39;&gt;The humble type&lt;/h2&gt;
 
-&lt;p&gt;It&amp;#8217;s a lot like our multi-formula subtract, except we need our variable c again, and we have to include add as well as dec in our core. Our core will now be &lt;code&gt;[[mul [dec add]] [0 [a b]]]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;What is a Hoon type, anyway? We know a type is a noun. So is everything. What are the semantics of this noun?&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[[a b]                                              ::suject [a b]
+&lt;p&gt;Regardless of what this highly overloaded word may and does and does mean in every other system of computation that has deployed it, a type in Hoon has two roles.&lt;/p&gt;
 
-    [8                                              :: declare c = 0 
-	[1 0]                                       :: build subject [0 [a b]]
+&lt;p&gt;One, it defines a set of nouns. Any finite noun is either in this set, or not in it.&lt;/p&gt;
 
- 		[8                                          :: build core
-	   [1
-	   [6                                       ::mul  
-		[5 [1 0] 0 15]                      ::=[0 b]
-		[0 6]                               ::then c
-		[9 4                                ::else
-			[0 2]
-			[2 [[0 6] [0 14]] [0 11]]   ::$(c (add a c))
-			[0 14]                      ::a
-			[2 [0 15] [0 10]]           ::$(b (dec b))
-                        ]
-	
-	   ]
-                                                        ::decrement in core
+&lt;p&gt;Two, it ascribes semantics to all nouns in this set. For example, a Hoon type exports a semantic namespace.&lt;/p&gt;
 
-[8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]
+&lt;p&gt;With this settled, let&amp;#8217;s start by introducing, purely in an informal and totally friendly way, the &lt;code&gt;tile&lt;/code&gt; syntax in which &lt;code&gt;type&lt;/code&gt; itself is defined in &lt;code&gt;/=main=/arvo/hoon/hoon&lt;/code&gt;. This is not the full definition of &lt;code&gt;type&lt;/code&gt;, just a simple subset:&lt;/p&gt;
 
-					            ::add in core
+&lt;pre&gt;&lt;code&gt;++  type  $|  ?(%noun %void)
+          $%  [%atom p=term]
+              [%cell p=type q=type]
+          ==&lt;/code&gt;&lt;/pre&gt;
 
-[8 [1 0] 8 [1 6 [5 [0 6] 0 15] [0 14] 9 2 [0 2] [4 0 6] [4 0 14] 0 15] 9 2 0 1]
+&lt;p&gt;Again, never mind the syntax. We can easily describe this subset of &lt;code&gt;type&lt;/code&gt; in plain English.&lt;/p&gt;
 
-	  ]
+&lt;p&gt;It can be &lt;code&gt;%noun&lt;/code&gt; (ie, the atom &lt;code&gt;1.853.189.998&lt;/code&gt;). Set: all nouns. Examples:&lt;/p&gt;
 
-	[9 4 0 1]                                   :: activate core with sub
-   ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; *
+0
+*
 
-&lt;p&gt;On one line:&lt;/p&gt;
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(*)
+%noun
 
-&lt;pre&gt;&lt;code&gt;[8 [1 0] 8 [1 [6 [5 [1 0] 0 15] [0 6] [9 4 [0 2] [2 [[0 6] [0 14]] [0 11]] [0 14] [2 [0 15] [0 10]]]] [8 [1 0] 8 [1 6 [5 [4 0 6] 0 7] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1] [8 [1 0] 8 [1 6 [5 [0 6] 0 15] [0 14] 9 2 [0 2] [4 0 6] [4 0 14] 0 15] 9 2 0 1]] 9 4 0 1]&lt;/code&gt;&lt;/pre&gt;
+~waclux-tomwyc/try=&amp;gt; :type; `*`%noun
+1.853.189.998
+*
 
-&lt;p&gt;If you followed all that, you likely now know Nock to the point of frustration. Next chapter we&amp;#8217;ll start to introduce Hoon, a language built on top of Nock to make Nock practical.&lt;/p&gt;</content>
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(`*`%noun)
+%noun&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It can be the atom &lt;code&gt;%void&lt;/code&gt;. Set: no nouns. We can&amp;#8217;t show any examples producing &lt;code&gt;%void&lt;/code&gt; - by definition, none of them would terminate. Because that&amp;#8217;s what &lt;code&gt;%void&lt;/code&gt; means.&lt;/p&gt;
+
+&lt;p&gt;It can be the cell &lt;code&gt;[%atom p]&lt;/code&gt;, where &lt;code&gt;p&lt;/code&gt; is a &lt;code&gt;term&lt;/code&gt; (&lt;code&gt;@tas&lt;/code&gt;), possibly empty (ie, &lt;code&gt;0&lt;/code&gt;). Set: all atoms. Examples: above.&lt;/p&gt;
+
+&lt;p&gt;It can be the triple &lt;code&gt;[%cell p q]&lt;/code&gt; (ie, &lt;code&gt;[%cell [p q]]&lt;/code&gt;), where each of &lt;code&gt;p&lt;/code&gt; and &lt;code&gt;q&lt;/code&gt; is itself a &lt;code&gt;type&lt;/code&gt;. Set: all cells of &lt;code&gt;p&lt;/code&gt; and &lt;code&gt;q&lt;/code&gt;. Examples:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; [3 4]
+[3 4]
+[@ud @ud]
+
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;([3 4])
+[%cell p=[%atom p=%ud] q=[%atom p=%ud]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;the_noble_cube&#39;&gt;The noble cube&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;#8217;s introduce another kind of type here, because we&amp;#8217;ll need it to talk about constant syntax:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;++  type  $|  ?(%noun %void)
+          $%  [%atom p=term]
+              [%cell p=type q=type]
+              [%cube p=* q=type]
+          ==&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that when we enter an ordinary constant, like &lt;code&gt;42&lt;/code&gt;, its type &lt;code&gt;[%atom %ud]&lt;/code&gt; is the set of all atoms (with odor &lt;code&gt;@ud&lt;/code&gt;, but any atom can have that or any odor). Its type is certainly not the set consisting exclusively of the value &lt;code&gt;42&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;But here&amp;#8217;s how we produce this &amp;#8220;cubical&amp;#8221; constant:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; %42
+%42
+%42
+
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(%42)
+[%cube p=42 q=[%atom p=%ud]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In general, a &lt;code&gt;%cube&lt;/code&gt; type contains &lt;code&gt;p&lt;/code&gt;, a single noun, and &lt;code&gt;q&lt;/code&gt;, a base type which provides semantics.&lt;/p&gt;
+
+&lt;p&gt;Syntactically, any atomic constant can be preceded by &lt;code&gt;%&lt;/code&gt; to generate a cube. The exception is &lt;code&gt;@tas&lt;/code&gt;, which always needs &lt;code&gt;%&lt;/code&gt; and is always cubical.&lt;/p&gt;
+
+&lt;h2 id=&#39;canonical_atom_syntaxes&#39;&gt;Canonical atom syntaxes&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#8217;s briefly cover the syntax of each built-in odor. It would be counterproductive to specify them exactly here; first, this is a tutorial rather than a spec, and second the spec is the code. For the exact semantics, consult &lt;code&gt;++so&lt;/code&gt; in &lt;code&gt;hoon.hoon&lt;/code&gt;. Rather, we&amp;#8217;ll explain the form and run through some examples.&lt;/p&gt;
+
+&lt;p&gt;If some of these syntaxes seem contrived or odd, bear in mind: none of them collides with any of the others, and they are all URL-safe and more. The canonical atom forms use only lowercase characters, numbers, &lt;code&gt;.&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, and &lt;code&gt;~&lt;/code&gt;. A cell form adds &lt;code&gt;_&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#39;unsigned_decimal_&#39;&gt;Unsigned decimal, &lt;code&gt;@ud&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Unsigned decimal is the common or neutral atom representation. It&amp;#8217;s not very compact and in many cases conveys no intelligible information at all, but it&amp;#8217;s impossible to screw up. &lt;code&gt;@ud&lt;/code&gt; is the default print format for both &lt;code&gt;@u&lt;/code&gt; and &lt;code&gt;@&lt;/code&gt; - ie, unsigned numbers with no printing preference, and opaque atoms.&lt;/p&gt;
+
+&lt;p&gt;Hoon&amp;#8217;s unsigned decimal format is the normal Continental syntax. It differs from the Anglo-American only in the use of periods, rather than commas, between groups of 3:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; 0
+0
+~waclux-tomwyc/try=&amp;gt; 19
+19
+~waclux-tomwyc/try=&amp;gt; 1.024
+1.024
+~waclux-tomwyc/try=&amp;gt; 65.536
+65.536
+~waclux-tomwyc/try=&amp;gt; (bex 20)
+1.048.576&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;An unsigned decimal not broken into groups is a syntax error. Also, whitespace or even linebreaks can appear between the dot and the next group.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; 65.  536
+65.536&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;unsigned_hexadecimal_&#39;&gt;Unsigned hexadecimal, &lt;code&gt;@ux&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;@ux&lt;/code&gt; has the same syntax as &lt;code&gt;@ud&lt;/code&gt;, except that it&amp;#8217;s prefixed by &lt;code&gt;0x&lt;/code&gt; and uses groups of four. Hex digits are lowercase only.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; 0x0
+0x0
+~waclux-tomwyc/try=&amp;gt; `@ud`0x17
+23
+~waclux-tomwyc/try=&amp;gt; `@ux`(bex 20)
+0x10.0000
+~waclux-tomwyc/try=&amp;gt; 0x10.  0000
+0x10.0000&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;unsigned_base64_&#39;&gt;Unsigned base64, &lt;code&gt;@uw&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;unsigned_base32_&#39;&gt;Unsigned base32, &lt;code&gt;@uv&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;The prefix is &lt;code&gt;0w&lt;/code&gt; for base64 and &lt;code&gt;0v&lt;/code&gt; for base32. The digits for &lt;code&gt;@uw&lt;/code&gt; are, in order: &lt;code&gt;0-9&lt;/code&gt;, &lt;code&gt;a-z&lt;/code&gt;, &lt;code&gt;A-Z&lt;/code&gt;, -, ~:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ud`0w-
+62&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For &lt;code&gt;@uv&lt;/code&gt;, the digits are &lt;code&gt;0-9&lt;/code&gt;, &lt;code&gt;a-v&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#39;signed_decimal_&#39;&gt;Signed decimal, &lt;code&gt;@sd&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;signed_hexadecimal_&#39;&gt;Signed hexadecimal, &lt;code&gt;@sx&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;signed_base64_&#39;&gt;Signed base64, &lt;code&gt;@sw&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;signed_base32_&#39;&gt;Signed base32, &lt;code&gt;@sv&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;signed_binary_&#39;&gt;Signed binary, &lt;code&gt;@sb&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Obviously, without finite-sized integers, the sign extension trick does not work. A signed integer in Hoon is a different way to use atoms than an unsigned integer; even for positive numbers, the signed integer cannot equal the unsigned.&lt;/p&gt;
+
+&lt;p&gt;The prefix for a negative signed integer is a single &lt;code&gt;-&lt;/code&gt; before the unsigned syntax. The prefix for a &lt;em&gt;positive&lt;/em&gt; signed integer is &lt;code&gt;--&lt;/code&gt;. The sign bit is the low bit:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; -1
+-1
+~waclux-tomwyc/try=&amp;gt; --1
+--1
+~waclux-tomwyc/try=&amp;gt; `@ud`-1
+1
+~waclux-tomwyc/try=&amp;gt; `@ud`--1
+2
+~waclux-tomwyc/try=&amp;gt; `@ud`-2
+3
+~waclux-tomwyc/try=&amp;gt; `@ud`--2
+4
+~waclux-tomwyc/try=&amp;gt; `@ux`-0x10
+0x1f
+~waclux-tomwyc/try=&amp;gt; `@ux`--0x10
+0x20
+~waclux-tomwyc/try=&amp;gt; `@ud`--0w-
+124
+~waclux-tomwyc/try=&amp;gt; `@sw`124
+--0w-&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;absolute_date_&#39;&gt;Absolute date, &lt;code&gt;@da&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Urbit dates represent 128-bit chronological time, with 2^64 seconds from the start of the universe to the end. 2^127 is 3:30:08 PM on 226 AD, for reasons not clear or relevant:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@da`(bex 127)
+~226.12.5..15.30.08
+
+~waclux-tomwyc/try=&amp;gt; `@da`(dec (bex 127))
+~226.12.5..15.30.08
+
+~waclux-tomwyc/try=&amp;gt; `@da`(dec (bex 127))
+~226.12.5..15.30.07..ffff.ffff.ffff.ffff&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The time of day and/or second fragment is optional:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ux`~2013.12.7
+0x8000.000d.2140.7280.0000.0000.0000.0000
+
+~waclux-tomwyc/try=&amp;gt; `@ux`~2013.12.7..15.30.07
+0x8000.000d.2141.4c7f.0000.0000.0000.0000
+
+~waclux-tomwyc/try=&amp;gt; `@ux`~2013.12.7..15.30.07..1234
+0x8000.000d.2141.4c7f.1234.0000.0000.0000&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We also do BC:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ux`~226-.12.5
+0x7fff.fffc.afb1.b800.0000.0000.0000.0000&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The semantics of the time system are that UGT (Urbit Galactic Time) is GMT/UTC as of leap second 25. UGT is chronological and will never add leap seconds, even if UTC continues this mistake. If a gap appears, it must be resolved in the presentation layer, with timezones and other human curiosities.&lt;/p&gt;
+
+&lt;h3 id=&#39;relative_date_&#39;&gt;Relative date, &lt;code&gt;@dr&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;It&amp;#8217;s also nice to have a syntax for basic time intervals:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ux`~s1
+0x1.0000.0000.0000.0000
+
+~waclux-tomwyc/try=&amp;gt; `@ux`~m1
+0x3c.0000.0000.0000.0000
+
+~waclux-tomwyc/try=&amp;gt; (div ~m1 ~s1)
+60
+
+~waclux-tomwyc/try=&amp;gt; (div ~h1 ~m1)
+60
+
+~waclux-tomwyc/try=&amp;gt; (div ~h1 ~s1)
+3.600
+
+~waclux-tomwyc/try=&amp;gt; (div ~d1 ~h1)
+24
+
+~waclux-tomwyc/try=&amp;gt; `@da`(add ~2013.11.30 ~d1)
+~2013.12.1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are no &lt;code&gt;@dr&lt;/code&gt; intervals under a second or over a day. Since the resolution is so high, though, &lt;code&gt;(div ~s1 1.000.000)&lt;/code&gt; produces a pretty accurate microsecond.&lt;/p&gt;
+
+&lt;h3 id=&#39;loobean_&#39;&gt;Loobean, &lt;code&gt;@f&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;A loobean, or just &lt;code&gt;bean&lt;/code&gt;, is 0 or 1. &lt;code&gt;0&lt;/code&gt; is yes, &lt;code&gt;1&lt;/code&gt; is no:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ud`.y
+0
+~waclux-tomwyc/try=&amp;gt; `@ud`.n
+1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;People who find this strange are probably strange themselves.&lt;/p&gt;
+
+&lt;h3 id=&#39;nil_&#39;&gt;Nil, &lt;code&gt;@n&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Nil indicates an absence of information, as in a list terminator. The only value is &lt;code&gt;~&lt;/code&gt;, &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ud`~
+0&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;unicode_text_&#39;&gt;Unicode text, &lt;code&gt;@t&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;@t&lt;/code&gt; is a sequence of UTF-8 bytes, LSB first - sometimes called a &lt;code&gt;cord&lt;/code&gt;. For lowercase numbers and letters, the canonical syntax is &lt;code&gt;~~text&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; ~~foo
+&amp;#39;foo&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the prettyprinter makes an unprincipled exception and prints the text in a noncanonical format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ux`~~foo
+0x6f.6f66&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We want to be able to encode an arbitrary Unicode string as a single URL-safe token, using no punctuation but &lt;code&gt;.~-&lt;/code&gt;, in &lt;code&gt;@t&lt;/code&gt;. Space is &lt;code&gt;.&lt;/code&gt;, &lt;code&gt;.&lt;/code&gt; is &lt;code&gt;~.&lt;/code&gt;, &lt;code&gt;~&lt;/code&gt; is &lt;code&gt;~~&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt; is &lt;code&gt;-&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; ~~foo.bar
+&amp;#39;foo bar&amp;#39;
+~waclux-tomwyc/try=&amp;gt; ~~foo.bar~.baz~~moo-hoo
+&amp;#39;foo bar.baz~moo-hoo&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For all other ASCII/Unicode characters, insert the Unicode codepoint in lower-case hexadecimal, followed by &lt;code&gt;.&lt;/code&gt;. For example, for U+2605 &amp;#8220;BLACK STAR&amp;#8221;, write:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; ~~foo~2605.bar
+&amp;#39;foo★bar&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This UTF-32 codepoint is of course converted to UTF-8:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ux`~~foo~2605.bar
+0x72.6162.8598.e26f.6f66&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;urlsafe_ascii_text_&#39;&gt;URL-safe ASCII text, &lt;code&gt;@ta&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;@ta&lt;/code&gt; encodes the ASCII subset that all canonical atom syntaxes restrict themselves to. The prefix is &lt;code&gt;~.&lt;/code&gt;. There are no escape sequences except &lt;code&gt;~~&lt;/code&gt;, which means &lt;code&gt;~&lt;/code&gt;, and &lt;code&gt;~-&lt;/code&gt;, which means &lt;code&gt;\_&lt;/code&gt;. &lt;code&gt;-&lt;/code&gt; and &lt;code&gt;.&lt;/code&gt; encode themselves. No other characters besides numbers and lowercase letters need apply.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s cast these to &lt;code&gt;@t&lt;/code&gt; to see them quoted:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@t`~.foo
+&amp;#39;foo&amp;#39;
+~waclux-tomwyc/try=&amp;gt; `@t`~.foo.bar
+&amp;#39;foo.bar&amp;#39;
+~waclux-tomwyc/try=&amp;gt; `@t`~.foo~~bar
+&amp;#39;foo~bar&amp;#39;
+~waclux-tomwyc/try=&amp;gt; `@t`~.foo~-bar
+&amp;#39;foo_bar&amp;#39;
+~waclux-tomwyc/try=&amp;gt; `@t`~.foo-bar
+&amp;#39;foo-bar&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A &lt;code&gt;@ta&lt;/code&gt; atom is called a &lt;code&gt;span&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#39;codepoint_&#39;&gt;Codepoint, &lt;code&gt;@c&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Normally when we build atoms of Unicode text, we use a UTF-8 bytestream, LSB first. But sometimes it&amp;#8217;s useful to build atoms of one or more UTF-32 words.&lt;/p&gt;
+
+&lt;p&gt;The codepoint syntax is the same as &lt;code&gt;@t&lt;/code&gt;, except with a &lt;code&gt;~-&lt;/code&gt; prefix. Let&amp;#8217;s repeat our examples, with hex display:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ux`~-foo
+0x6f.0000.006f.0000.0066
+
+~waclux-tomwyc/try=&amp;gt; `@ux`~-foo.bar
+0x72.0000.0061.0000.0062.0000.0020.0000.006f.0000.006f.0000.0066&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;phonemic_&#39;&gt;Phonemic, &lt;code&gt;@p&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;We&amp;#8217;ve seen &lt;code&gt;@p&lt;/code&gt; used for ships, of course. But it&amp;#8217;s not just for ships - it&amp;#8217;s for any short number optimized for memorability, not for arithmetic. &lt;code&gt;@p&lt;/code&gt; is great for checksums, for instance.&lt;/p&gt;
+
+&lt;p&gt;That said, &lt;code&gt;@p&lt;/code&gt; is subtly customized for the sociopolitical design of Urbit as a digital republic. For example, one feature we &lt;em&gt;don&amp;#8217;t&lt;/em&gt; want is the ability to see at a glance which carrier and cruiser issued a destroyer. Consider the carrier &lt;code&gt;0x21&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@p`0x21
+~mep&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It issues &lt;code&gt;255&lt;/code&gt; cruisers, including &lt;code&gt;0x4321&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@p`0x4321
+~pasnut&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which issues &lt;code&gt;65.535&lt;/code&gt; destroyers, including &lt;code&gt;0x8765.4321&lt;/code&gt; and several successors:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@p`0x8765.4321
+~famsyr-dirwes
+~waclux-tomwyc/try=&amp;gt; `@p`0x8766.4321
+~lidlug-maprec
+~waclux-tomwyc/try=&amp;gt; `@p`0x8767.4321
+~tidlus-roplen
+~waclux-tomwyc/try=&amp;gt; `@p`0x8768.4321
+~lisnel-lonbet&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, anyone who can juggle bits can see that &lt;code&gt;~famsyr-dirwes&lt;/code&gt; is a close cousin of &lt;code&gt;~lidlug-maprec&lt;/code&gt;. But she actually has to juggle bits to do it. Obfuscation does not prevent calculated associations, just automatic ones.&lt;/p&gt;
+
+&lt;p&gt;But at the yacht level, we actually want to see a uniform 32-bit space of yachts directly associated with the destroyer:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@p`0x9.8765.4321
+~talfes-sibwaclux-tomwyc-famsyr-dirwes
+~waclux-tomwyc/try=&amp;gt; `@p`0xba9.8765.4321
+~tacbep-ronreg-famsyr-dirwes
+~waclux-tomwyc/try=&amp;gt; `@p`0xd.cba9.8765.4321
+~bicsub-ritbyt-famsyr-dirwes
+~waclux-tomwyc/try=&amp;gt; `@p`0xfed.cba9.8765.4321
+~sivrep-hadfeb-famsyr-dirwes&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;ipv4_address_&#39;&gt;IPv4 address, &lt;code&gt;@if&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;ipv6_address_&#39;&gt;IPv6 address, &lt;code&gt;@is&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Urbit lives atop IP and would be very foolish to not support a syntax for the large atoms that are IPv4 and IPv6 addresses.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;@if&lt;/code&gt; is the standard IPv4 syntax, prefixed with &lt;code&gt;.&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ux`.127.0.0.1
+0x7f00.0001&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;@is&lt;/code&gt; is the same as &lt;code&gt;@if&lt;/code&gt;, but with 8 groups of 4 hex digits:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ux`.dead.beef.0.cafe.42.babe.dead.beef
+0xdead.beef.0000.cafe.0042.babe.dead.beef&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;ieee_singleprecision_&#39;&gt;IEEE single-precision, &lt;code&gt;@rs&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;ieee_doubleprecision_&#39;&gt;IEEE double-precision, &lt;code&gt;@rd&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;ieee_quadprecision_&#39;&gt;IEEE quad-precision, &lt;code&gt;@rq&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&#39;ieee_halfprecision_&#39;&gt;IEEE half-precision, &lt;code&gt;@rh&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Hoon does not yet support floating point, so these syntaxes don&amp;#8217;t actually work. But the syntax for a single-precision float is the normal English syntax, with a &lt;code&gt;.&lt;/code&gt; prefix:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.6.2832             ::  τ as @rs
+.-6.2832            ::  -τ as @
+.~6.2832            ::  τ as @rd
+.~-6.2832           ::  -τ as @rd
+.~~6.2832           ::  τ as @rh
+.~~~6.2832          ::  τ as @rq&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(Hoon is a Tauist language and promotes International Tau Day.)&lt;/p&gt;
+
+&lt;h3 id=&#39;transparent_cell_syntax&#39;&gt;Transparent cell syntax&lt;/h3&gt;
+
+&lt;p&gt;By adding &lt;code&gt;_&lt;/code&gt;, we can encode arbitrary nouns in our safe subset. The prefix to a canonical cell is &lt;code&gt;._&lt;/code&gt;; the separator is &lt;code&gt;_&lt;/code&gt;; the terminator is &lt;code&gt;__&lt;/code&gt;. Thus:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; ._3_4__
+[3 4]
+
+~waclux-tomwyc/try=&amp;gt; :type; ._.127.0.0.1_._0x12_19___~tasfyn-partyv__
+[.127.0.0.1 [0x12 19] ~tasfyn-partyv]
+[@if [@ux @ud] @p]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Those who don&amp;#8217;t see utility in this strange feature have perhaps never needed to jam a data structure into a URL.&lt;/p&gt;
+
+&lt;h3 id=&#39;opaque_noun_syntax&#39;&gt;Opaque noun syntax&lt;/h3&gt;
+
+&lt;p&gt;Speaking of jam, sometimes we really don&amp;#8217;t care what&amp;#8217;s inside our noun. Then, the syntax to use is a variant of &lt;code&gt;@uw&lt;/code&gt; prefixed by &lt;code&gt;~&lt;/code&gt;, which incorporates the built-in &lt;code&gt;jam&lt;/code&gt; and &lt;code&gt;cue&lt;/code&gt; marshallers:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; (jam [3 4])
+78.241
+~waclux-tomwyc/try=&amp;gt; `@uw`(jam [3 4])
+0wj6x
+~waclux-tomwyc/try=&amp;gt; (cue 0wj6x)
+[3 4]
+~waclux-tomwyc/try=&amp;gt; ~0wj6x
+[3 4]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#39;noncanonical_syntaxes&#39;&gt;Noncanonical syntaxes&lt;/h2&gt;
+
+&lt;p&gt;These are syntaxes for constants which don&amp;#8217;t fit the canonical character-set constraints.&lt;/p&gt;
+
+&lt;h3 id=&#39;hoon_symbol_&#39;&gt;Hoon symbol, &lt;code&gt;@tas&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;@tas&lt;/code&gt;, a &lt;code&gt;term&lt;/code&gt;, is our most exclusive odor. The only characters permitted are lowercase ASCII, &lt;code&gt;-&lt;/code&gt; except as the first or last character, and &lt;code&gt;0-9&lt;/code&gt; except as the first character.&lt;/p&gt;
+
+&lt;p&gt;The syntax for &lt;code&gt;@tas&lt;/code&gt; is the text itself, always preceded by &lt;code&gt;%&lt;/code&gt;. This means a term is always cubical. You can cast it to &lt;code&gt;@tas&lt;/code&gt; if you like, but we just about always want the cube:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; %dead-fish9
+%dead-fish9
+
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(%dead-fish9)
+[%cube p=271.101.667.197.767.630.546.276 q=[%atom p=%tas]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The empty &lt;code&gt;@tas&lt;/code&gt; has a special syntax, &lt;code&gt;$&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; %$
+%$&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A term without &lt;code&gt;%&lt;/code&gt; is not a constant, but a name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; dead-fish9
+! -find-limb.dead-fish9
+! find-none
+! exit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;loobeans_&#39;&gt;Loobeans, &lt;code&gt;@f&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;.y&lt;/code&gt; is a little cumbersome, so we can say &lt;code&gt;&amp;amp;&lt;/code&gt; and &lt;code&gt;|&lt;/code&gt;. The &lt;code&gt;%&lt;/code&gt; prefix cubes as usual.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@ud`&amp;amp;
+0
+~waclux-tomwyc/try=&amp;gt; `@ud`|
+1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;cords_&#39;&gt;Cords, &lt;code&gt;@t&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;The canonical &lt;code&gt;~~&lt;/code&gt; syntax for &lt;code&gt;@t&lt;/code&gt;, while it has its place, is intolerable in a number of ways - especially when it comes to escaping capitals. So &lt;code&gt;@t&lt;/code&gt; is both printed and parsed in a conventional-looking single-quote syntax:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; &amp;#39;foo bar&amp;#39;
+&amp;#39;foo bar&amp;#39;
+~waclux-tomwyc/try=&amp;gt; `@ux`&amp;#39;foo bar&amp;#39;
+0x72.6162.206f.6f66&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Escape &lt;code&gt;&amp;#39;&lt;/code&gt; with &lt;code&gt;\&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; &amp;#39;Foo \&amp;#39;bar&amp;#39;
+&amp;#39;Foo \&amp;#39;bar&amp;#39;
+~waclux-tomwyc/try=&amp;gt; `@ux`&amp;#39;\&amp;#39;&amp;#39;
+0x27&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;strings&#39;&gt;Strings&lt;/h3&gt;
+
+&lt;p&gt;Text in Hoon is generally manipulated in two ways, depending on what you&amp;#8217;re doing: as an atomic cord/span/term, or as a &lt;code&gt;tape&lt;/code&gt; which is a list of bytes (_not_ codepoints).&lt;/p&gt;
+
+&lt;p&gt;To generate a tape, use double quotes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; &amp;quot;foo&amp;quot;
+&amp;quot;foo&amp;quot;
+~waclux-tomwyc/try=&amp;gt; `*`&amp;quot;foo&amp;quot;
+[102 111 111 0]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We&amp;#8217;re getting off the constant reservation, but strings also interpolate with curly-braces:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; &amp;quot;hello {(weld &amp;quot;wor&amp;quot; &amp;quot;ld&amp;quot;)} is a fun thing to say&amp;quot;
+&amp;quot;hello world is a fun thing to say&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And they can be joined across space or lines with a &lt;code&gt;.&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; &amp;quot;hello&amp;quot;.&amp;quot;world&amp;quot;
+&amp;quot;helloworld&amp;quot;
+~waclux-tomwyc/try=&amp;gt; &amp;quot;hello&amp;quot;. &amp;quot;world&amp;quot;
+&amp;quot;helloworld&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -312,9 +937,11 @@
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch4.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch4</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;&amp;#8220;But are you crazy enough?&amp;#8221;&lt;/em&gt;&lt;br /&gt;&lt;strong&gt;(Point Break)&lt;/strong&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch3.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Nock Is Easy&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch5.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Hoon Attacks&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#39;using_nock&#39;&gt;Using Nock&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;&amp;#8220;But are you crazy enough?&amp;#8221;&lt;/em&gt; &lt;strong&gt;(Point Break)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#39;playing_with_nock&#39;&gt;Playing with Nock&lt;/h2&gt;
 
 &lt;p&gt;Now we&amp;#8217;re going to actually do some cool stuff with Nock.&lt;/p&gt;
 
@@ -326,7 +953,7 @@
 
 &lt;p&gt;From the Arvo command line, you can run one-liners with the Hoon rune &lt;code&gt;.*&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; .*(42 [4 0 1])
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; .*(42 [4 0 1])
 43&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#39;application_file&#39;&gt;Application file&lt;/h3&gt;
@@ -335,9 +962,9 @@
 
 &lt;p&gt;So we&amp;#8217;ve constructed a template for writing Nock formulas as Arvo applications. Unfortunately Arvo is a young OS and has no way to edit a file. But Arvo runs on Unix and Unix is a very old OS. Arvo syncs its filesystem with your &lt;code&gt;$URBIT_HOME&lt;/code&gt; directory, propagating changes on either side.&lt;/p&gt;
 
-&lt;p&gt;Let&amp;#8217;s assume your &lt;code&gt;$URBIT_HOME&lt;/code&gt; is &lt;code&gt;urb/&lt;/code&gt;, and your ship is &lt;code&gt;~zod&lt;/code&gt;. The Nock application template is in&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s assume your &lt;code&gt;$URBIT_HOME&lt;/code&gt; is &lt;code&gt;urb/&lt;/code&gt;, and your ship is &lt;code&gt;~waclux-tomwyc&lt;/code&gt;. The Nock application template is in&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;urb/zod/try/bin/nock.hoon&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;urb/waclux-tomwyc/try/bin/nock.hoon&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Its text should be:&lt;/p&gt;
 
@@ -352,29 +979,35 @@
                ::  Formula: increment
 [4 0 1]&lt;/code&gt;&lt;/pre&gt;
 
+&lt;p&gt;For the rest of this document we&amp;#8217;ll simply assume you can copy boilerplate, and write the rest of the file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[4 0 1]                           ::    bump /1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(The pseudocode in the comments is not in any way described. If you have trouble figuring it out, that&amp;#8217;s okay, but you may not be tall enough for the ride.)&lt;/p&gt;
+
 &lt;p&gt;Test this by running:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; :nock 42
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :nock 42
 43&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Our first complex example will be a decrement function. With or without &lt;code&gt;vere&lt;/code&gt; running, copy the template from Unix:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ cp urb/zod/try/bin/nock.hoon urb/zod/try/bin/dec.hoon&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;$ cp urb/waclux-tomwyc/try/bin/nock.hoon urb/waclux-tomwyc/try/bin/dec.hoon&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then, use a Unix editor to change &amp;#8220;Formula: increment&amp;#8221; to &amp;#8220;Formula: decrement&amp;#8221; in &lt;code&gt;dec.hoon&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Either next time you start &lt;code&gt;vere&lt;/code&gt;, or on your next keyboard event if you&amp;#8217;re already running it, you&amp;#8217;ll see something like&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;\+ /~zod/try/1/bin/dec/hoon&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt; + /~waclux-tomwyc/try/1/bin/dec/hoon&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Arvo has slurped up dec.hoon from your filesystem. To test it,&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; :dec 42
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :dec 42
 43&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Well, we didn&amp;#8217;t change the formula, so it still increments. But it&amp;#8217;s a start.&lt;/p&gt;
 
-&lt;h3 id=&#39;decrement&#39;&gt;Decrement&lt;/h3&gt;
+&lt;h2 id=&#39;decrement&#39;&gt;Decrement&lt;/h2&gt;
 
 &lt;p&gt;The only arithmetic operation in Nock is increment. So how do we decrement? The algorithm is obvious: to decrement &lt;code&gt;n&lt;/code&gt;, start from &lt;code&gt;0&lt;/code&gt;, and count up to &lt;code&gt;n-1&lt;/code&gt;. Or rather, count up to a number &lt;code&gt;m&lt;/code&gt; such that &lt;code&gt;m+1&lt;/code&gt; equals &lt;code&gt;n&lt;/code&gt;.&lt;/p&gt;
 
@@ -390,53 +1023,53 @@
 
 &lt;p&gt;Edit &lt;code&gt;dec.hoon&lt;/code&gt; so that the formula reads&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[ 8
-  [1 0]
-  [4 0 1]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[ 8                               ::  push
+  [1 0]                           ::    just 0
+  [4 0 1]                         ::    bump /1
+]                                 ::&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Note that for these tall bracket structures, the space after &lt;code&gt;[&lt;/code&gt; is essential. Then, you&amp;#8217;ll see the file automatically update in Arvo:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;: /~zod/try/2/bin/dec/hoon
-~zod/try=&amp;gt; :dec 42&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;: /~waclux-tomwyc/try/2/bin/dec/hoon
+~waclux-tomwyc/try=&amp;gt; :dec 42&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Whoops! It crashed:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[4 1].[13 2]&amp;gt;
-! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[4 8].[13 2]&amp;gt;
-! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[5 1].[13 2]&amp;gt;
-! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[6 1].[13 2]&amp;gt;
-! /~zod/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[7 1].[13 2]&amp;gt;
+&lt;pre&gt;&lt;code&gt;! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[4 1].[13 2]&amp;gt;
+! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[4 8].[13 2]&amp;gt;
+! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[5 1].[13 2]&amp;gt;
+! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[6 1].[13 2]&amp;gt;
+! /~waclux-tomwyc/try/~2013.11.26..00.01.38..499b/bin/dec/:&amp;lt;[7 1].[13 2]&amp;gt;
 ! exit&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What did we do wrong? We forgot that the subject had changed. When we get to &lt;code&gt;[4 0 1]&lt;/code&gt;, the subject is not &lt;code&gt;42&lt;/code&gt;, but &lt;code&gt;[0 42]&lt;/code&gt; - the counter is there. So our original argument, &lt;code&gt;42&lt;/code&gt;, is actually at &lt;code&gt;/3&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[ 8
-  [1 0]
-  [4 0 3]
-]
+&lt;pre&gt;&lt;code&gt;[ 8                               ::  push
+  [1 0]                           ::   just 0
+  [4 0 3]                         ::   bump /3
+]                                 ::
 
-: /~zod/try/3/bin/dec/hoon
-~zod/try=&amp;gt; :dec 42
+: /~waclux-tomwyc/try/3/bin/dec/hoon
+~waclux-tomwyc/try=&amp;gt; :dec 42
 43&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Okay, at least it increments again. (Constantly readjusting tree addresses by hand is one good reason to use a higher-level language, like Hoon.) But now, perhaps, we can build a decrement that works for at least one input value - &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Obviously at some point we&amp;#8217;ll have to build a loop. But for now, all we need is an if statement that compares the incremented counter to the original argument. We know the original argument is at &lt;code&gt;/3&lt;/code&gt;, and the counter is at &lt;code&gt;/2&lt;/code&gt;; we use the if operator, &lt;code&gt;6&lt;/code&gt;, and the equality test operator &lt;code&gt;5&lt;/code&gt;. If the comparison fails, we shrug our shoulders and keep incrementing the argument.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[ 8
-  [1 0]
-  [ 6
-    [5 [4 0 2] [0 3]]
-    [0 2]
-    [4 0 3]
-  ]
-]
+&lt;pre&gt;&lt;code&gt;[ 8                               ::  push
+  [1 0]                           ::   just 0
+  [ 6                             ::   pick
+    [5 [4 0 2] [0 3]]             ::    same (bump /2) /3
+    [0 2]                         ::    /2
+    [4 0 3]                       ::    bump /3
+  ]                               ::   |
+]                                 ::  |
 
-: /~zod/try/4/bin/dec/hoon
-~zod/try=&amp;gt; :dec 42
+: /~waclux-tomwyc/try/4/bin/dec/hoon
+~waclux-tomwyc/try=&amp;gt; :dec 42
 43
-~zod/try=&amp;gt; :dec 1
+~waclux-tomwyc/try=&amp;gt; :dec 1
 0&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We&amp;#8217;re getting closer. But now, that loop&amp;#8230;&lt;/p&gt;
@@ -447,26 +1080,26 @@
 
 &lt;p&gt;Of course, since the subject has changed again, we need to change the addresses again. The counter is now &lt;code&gt;/6&lt;/code&gt; and the argument is now &lt;code&gt;/7&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[ 8
-  [1 0]
-  [ 8
-    [ 1 
-      [ 6
-        [5 [4 0 6] [0 7]]
-        [0 6]
-        [4 0 7]
-      ]
-    ]
-    [2 [0 1] [0 2]]
-  ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[ 8                               ::  push
+  [1 0]                           ::   just 0
+  [ 8                             ::   push
+    [ 1                           ::    quid
+      [ 6                         ::     pick
+        [5 [4 0 6] [0 7]]         ::      same (bump /6) /7
+        [0 6]                     ::      /6
+        [4 0 7]                   ::      bump /7
+      ]                           ::     |
+    ]                             ::    |
+    [2 [0 1] [0 2]]               ::    nock /1 /2
+  ]                               ::   |
+]                                 ::  |&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This does exactly the same thing as before:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;: /~zod/try/5/bin/dec/hoon
-~zod/try=&amp;gt; :dec 42
+&lt;pre&gt;&lt;code&gt;: /~waclux-tomwyc/try/5/bin/dec/hoon
+~waclux-tomwyc/try=&amp;gt; :dec 42
 43
-~zod/try=&amp;gt; :dec 1
+~waclux-tomwyc/try=&amp;gt; :dec 1
 0&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But somehow, we feel it &lt;em&gt;could&lt;/em&gt; do better. Why? Because where we do the useless &lt;code&gt;[4 0 7]&lt;/code&gt;, we have a subject containing the code we want to invoke. It&amp;#8217;s just that the counter is wrong.&lt;/p&gt;
@@ -475,74 +1108,308 @@
 
 &lt;p&gt;So, &lt;code&gt;formula&lt;/code&gt; is &lt;code&gt;[0 2]&lt;/code&gt;, &lt;code&gt;counter&lt;/code&gt; is &lt;code&gt;[0 6]&lt;/code&gt;, and &lt;code&gt;argument&lt;/code&gt; is &lt;code&gt;[0 7]&lt;/code&gt;. With autocons, we can just put them together to make a (superfluous) formula for &lt;code&gt;[formula counter argument]&lt;/code&gt; - ie,&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[[0 2] [0 6] [0 7]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[[0 2] [0 6] [0 7]]               ::  cons /2 /6 /7&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But we actually want to increment the counter:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[[0 2] [4 0 6] [0 7]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[[0 2] [4 0 6] [0 7]]             ::  cons /2 (bump /6) /7&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And to invoke our formula on this modified core:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[2 [[0 2] [4 0 6] [0 7]] [0 2]]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[2 [[0 2] [4 0 6] [0 7]] [0 2]]   ::  nock (cons /2 (bump /6) /7) /2&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If we put this into the decrement, it should actually work:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[ 8
-  [1 0]
-  [ 8
-    [ 1 
-      [ 6
-        [5 [4 0 6] [0 7]]
-        [0 6]
-        [2 [[0 2] [4 0 6] [0 7]] [0 2]]
-      ]
-    ]
-    [2 [0 1] [0 2]]
-  ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[ 8                               ::  push
+  [1 0]                           ::   just 0
+  [ 8                             ::   push
+    [ 1                           ::    quid
+      [ 6                         ::     pick
+        [5 [4 0 6] [0 7]]         ::      same (bump /6) /7
+        [0 6]                     ::      /6
+        [ 2                       ::      nock
+           [[0 2] [4 0 6] [0 7]]  ::       (cons /2 (bump /6) /7)
+           [0 2]                  ::       /2
+        ]                         ::      |
+      ]                           ::     |
+    ]                             ::    |
+    [2 [0 1] [0 2]]               ::    nock /1 /2
+  ]                               ::   |
+]                                 ::  |&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And it does:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;: /~zod/try/6/bin/dec/hoon
-~zod/try=&amp;gt; :dec 42
-43&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;: /~waclux-tomwyc/try/6/bin/dec/hoon
+~waclux-tomwyc/try=&amp;gt; :dec 42
+41&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But there&amp;#8217;s one more step. Remember operator &lt;code&gt;9&lt;/code&gt;?&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;35 ::    *[a 9 b c]       *[a 7 c 2 [0 1] 0 b]
 35r::    *[a 9 b c]       *[*[a c] *[*[a c] 0 b]]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Suppose &lt;code&gt;c&lt;/code&gt; is a formula that produces a core. Then we see immediately what &lt;code&gt;9&lt;/code&gt; does: it activates a core, using the formula at &lt;code&gt;[0 b]&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;(There&amp;#8217;s only one formula in our core. So &lt;code&gt;b&lt;/code&gt; is always &lt;code&gt;2&lt;/code&gt;. But in the general case, we could have an entire &lt;em&gt;battery&lt;/em&gt; of formulas that all work on the same core. Sort of like an object&amp;#8230; hm&amp;#8230;)&lt;/p&gt;
+&lt;p&gt;Suppose &lt;code&gt;c&lt;/code&gt; is a formula that produces a core. Then we see immediately what &lt;code&gt;9&lt;/code&gt; does: it activates a core, using the formula at &lt;code&gt;/b&lt;/code&gt; within the core.&lt;/p&gt;
 
 &lt;p&gt;So we can rewrite our decrement to use &lt;code&gt;9&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[ 8 
-  [1 0] 
-  [ 8 
-    [ 1 
-      [ 6 
-        [5 [4 0 6] [0 7]] 
-        [0 6] 
-        [9 2 [0 2] [4 0 6] [0 7]]
-      ]
-    ]
-    [9 2 0 1]
-  ]
-]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[ 8                               ::  push
+  [1 0]                           ::   just 0
+  [ 8                             ::   push
+    [ 1                           ::    quid
+      [ 6                         ::     pick
+        [5 [4 0 6] [0 7]]         ::      same (bump /6) /7
+        [0 6]                     ::      /6
+        [9 2 [0 2] [4 0 6] [0 7]] ::      call.2 (cons /2 (bump /6) /7)
+      ]                           ::     |
+    ]                             ::    |
+    [9 2 0 1]                     ::    call.2 /1
+  ]                               ::   |
+]                                 ::  |&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Seems to work nicely:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;: /~zod/try/6/bin/dec/hoon
-~zod/try=&amp;gt; :dec 42
-43&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;: /~waclux-tomwyc/try/6/bin/dec/hoon
+~waclux-tomwyc/try=&amp;gt; :dec 42
+41&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Of course, there are limits:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; :dec 0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :dec 0&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You&amp;#8217;ll have to hit ^C, and you&amp;#8217;ll see a big ugly error stack.&lt;/p&gt;</content>
+&lt;p&gt;You&amp;#8217;ll have to hit &lt;code&gt;^C&lt;/code&gt;, and you&amp;#8217;ll see a big ugly error stack. Nock can work wonders but it can&amp;#8217;t decrement 0. (Yes, you can build signed integers in Hoon - they are represented as atoms with the sign bit low.)&lt;/p&gt;
+
+&lt;h3 id=&#39;a_function&#39;&gt;A function&lt;/h3&gt;
+
+&lt;p&gt;As we start to build up toward language-level primitives, it behooves us to do things the way a higher-level language would do them. Well, more exactly, the way Hoon does things.&lt;/p&gt;
+
+&lt;p&gt;Surprisingly, although a formula defines a function of the subject, a function - at the language level - is not the same thing as a formula. Or rather, the argument is not the same thing as the subject.&lt;/p&gt;
+
+&lt;p&gt;For instance, as we saw in decrement, the subject for the loop needs to contain the code itself. If we apply a formula which can&amp;#8217;t call back into itself, our ability to loop is sorely diminished. So at the very least, when we call a function, the subject can&amp;#8217;t just be &lt;code&gt;argument&lt;/code&gt; - it has to be the cell &lt;code&gt;[formula argument]&lt;/code&gt;, so that the function can recurse.&lt;/p&gt;
+
+&lt;p&gt;Actually, it&amp;#8217;s confusing to say &lt;code&gt;argument&lt;/code&gt;, because this implies a special status for single and multiple arguments. In Nock and Hoon, we say &lt;code&gt;sample&lt;/code&gt;, which is always one thing, but can be a cell for &amp;#8220;functions of two arguments&amp;#8221;, a triple for three, etc. Eg, the sample for a decrement function is an atom; the sample for an add function is a cell of two atoms; etc.&lt;/p&gt;
+
+&lt;p&gt;Furthermore, a function needs more data than just the argument - it might, for instance, want to call other functions. Where&amp;#8217;s it going to get them? There is no external environment in Nock.&lt;/p&gt;
+
+&lt;p&gt;So the standard convention for a Nock function - or a Hoon function - is&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[formula sample context]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;formula&lt;/code&gt; is the code, &lt;code&gt;sample&lt;/code&gt; is the argument(s), and &lt;code&gt;context&lt;/code&gt; is any other data and/or code that may be useful.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#8217;s a bit irregular that we are taking the external subject and using it directly from our formula. Let&amp;#8217;s try to build a function with this convention and call it directly.&lt;/p&gt;
+
+&lt;p&gt;First, we&amp;#8217;ll build an increment function to keep things simple. We actually don&amp;#8217;t need anything in the context, so we&amp;#8217;ll put 0.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ 8                               ::  push
+  [                               ::   cons
+    [1 [4 0 6]]                   ::    quid bump /6  ::  formula
+    [1 0]                         ::    just 0        ::  sample
+    [1 0]                         ::    just 0        ::  context
+  ]                               ::   |
+  [ 9                             ::   call
+    2                             ::    .2
+    [0 4] [0 3] [0 11]            ::    cons /4 /3 /11
+  ]                               ::   |
+]                                 ::  |&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Why &lt;code&gt;[[0 4] [0 3] [0 11]]&lt;/code&gt;? Our goal in calling the function is to take the blank default core we&amp;#8217;ve created at &lt;code&gt;/2&lt;/code&gt;, and substitute in the original subject of the outer formula, which before the outer &lt;code&gt;8&lt;/code&gt; was &lt;code&gt;/1&lt;/code&gt; and is now &lt;code&gt;/3&lt;/code&gt;. Around this we wrap the formula from the default core, at &lt;code&gt;/4&lt;/code&gt;, and the (dummy) context, at &lt;code&gt;/11&lt;/code&gt; - that is, &lt;code&gt;/7&lt;/code&gt; within &lt;code&gt;/2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s fit our decrement into this framework:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ 8                                     ::  push
+  [                                     ::   cons
+    [ 1                                 ::    quid    ::  formula
+      [ 8                               ::     push
+        [1 0]                           ::      just 0
+        [ 8                             ::      push
+          [ 1                           ::       quid
+            [ 6                         ::        pick
+              [5 [4 0 6] [0 30]]        ::         same /6 /30
+              [0 6]                     ::         /6
+                [9 2 [0 2] [4 0 6] [0 7]] ::         call.2 /2 (bump /6) /11
+            ]                           ::        |
+          ]                             ::       |
+          [9 2 0 1]                     ::       call.2 /1
+        ]                               ::      |
+      ]                                 ::     |
+    ]                                   ::    |
+    [1 0]                               ::    just 0  ::  sample
+    [1 0]                               ::    just 0  ::  context
+  ]                                     ::   |
+  [9 2 [0 4] [0 3] [0 11]]              ::   call.2 /4 /3 /11
+]                                       ::  |&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Observe that nothing has changed from the way we called our increment function, and only one thing has changed within the decrement formula - the axis of the argument. Now at &lt;code&gt;/7&lt;/code&gt; is not the naked argument to decrement, but our outer core. The sample is at &lt;code&gt;/6&lt;/code&gt; within this &lt;code&gt;/7&lt;/code&gt;, ie, at &lt;code&gt;/30&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#39;a_library&#39;&gt;A library&lt;/h2&gt;
+
+&lt;p&gt;Frankly, this is getting close to the limits of anything you&amp;#8217;d want to do in hand-generated Nock. But why not press on?&lt;/p&gt;
+
+&lt;p&gt;What we&amp;#8217;d really like to do is build a library of functions that can call each other. It&amp;#8217;s easy to guess that this library will be&amp;#8230; a core. But what does this core look like?&lt;/p&gt;
+
+&lt;p&gt;A function core, &lt;code&gt;[formula sample context]&lt;/code&gt;, is a very useful kind of core, but it&amp;#8217;s not the only kind of core. (Actually, because the word &amp;#8220;function&amp;#8221; is too easy to throw around, we have a special name for a function core: we call it a &lt;code&gt;gate&lt;/code&gt;. Compare to &amp;#8220;lambda&amp;#8221; or &amp;#8220;closure.&amp;#8221;)&lt;/p&gt;
+
+&lt;p&gt;But in general, a core is just &lt;code&gt;[code data]&lt;/code&gt; - or, to use more lingo, &lt;code&gt;[battery payload]&lt;/code&gt;. The payload can be anything - it&amp;#8217;s just data.&lt;/p&gt;
+
+&lt;p&gt;The battery can be one &lt;em&gt;or more&lt;/em&gt; formulas, each of which is applied with the core as its subject. This is why &lt;code&gt;9&lt;/code&gt; takes the axis operand &lt;code&gt;b&lt;/code&gt;. If the core is a gate, the battery is just one formula; this is the head of the core, so &lt;code&gt;b&lt;/code&gt; is 2.&lt;/p&gt;
+
+&lt;p&gt;But not every core is a gate. Suppose we want to build a library? We could assemble a bundle of cores and put it in the context. So, let&amp;#8217;s say we need to write subtract, which obviously is going to use decrement. So, the context will be&lt;/p&gt;
+
+&lt;p&gt;&lt;span&gt;subtract-gate decrement-gate&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;But wait. Each gate is &lt;span&gt;formula sample context&lt;/span&gt;. So, because Nock doesn&amp;#8217;t do cycles, there&amp;#8217;s no way the subtract gate and the decrement gate can each reference each other through the context. It happens to be the case here that subtract needs decrement, but decrement doesn&amp;#8217;t need subtract. But we&amp;#8217;re not looking for ugly at this point - we know Nock is more than capable of that.&lt;/p&gt;
+
+&lt;p&gt;To support general mutual recursion, our library needs to be a battery in which each formula produces a gate. The context of that gate is the library core.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s repeat this again because it&amp;#8217;s so important. Our library will be a battery in which each formula produces a gate. The context of that gate is the library core.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s build a trivial library core of this form, with one function, good old increment. Then, we&amp;#8217;ll call it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ 8                               ::  push
+  [                               ::   cons
+    [ 1                           ::    quid          ::  battery
+      [1 [4 0 6]]                 ::     quid bump /6
+      [1 0]                       ::     just 0
+      [0 1]                       ::     /1
+    ]                             ::    |
+    [1 0]                         ::    just 0        ::  payload
+  ]                               ::   |
+  [ 8                             ::   push
+    [9 2 0 2]                     ::    call.2 /2
+    [9 2 [0 4] [0 7] [0 11]]      ::    call.2 /4 /7 /11
+  ]                               ::   |
+]                                 ::  |&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Compare this to the standalone increment above. It&amp;#8217;s obviously more complex and it should be.&lt;/p&gt;
+
+&lt;p&gt;First of all, what we put in the library core is not the function gate directly, but a formula that generates the gate. This way, and only this way, we can put the library itself in the context.&lt;/p&gt;
+
+&lt;p&gt;Second, what&amp;#8217;s the payload of the library core? It&amp;#8217;s &lt;code&gt;0&lt;/code&gt;, because the library doesn&amp;#8217;t depend on anything. It certainly doesn&amp;#8217;t depend on the argument to our application.&lt;/p&gt;
+
+&lt;p&gt;Third, now we can&amp;#8217;t just call the gate directly. We have to actually build it. So we need another &lt;code&gt;8&lt;/code&gt; to &amp;#8220;push it on the stack&amp;#8221;, and then we call it with the usual &lt;code&gt;9&lt;/code&gt;. Since the subject at this point is &lt;code&gt;[gate library argument]&lt;/code&gt;, the sample we use is &lt;code&gt;[0 7]&lt;/code&gt; rather than &lt;code&gt;[0 3]&lt;/code&gt; - everything else is the same.&lt;/p&gt;
+
+&lt;p&gt;But does it work? C&amp;#8217;mon, you know it works:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :dec 42
+43&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Okay, let&amp;#8217;s go ahead and put our actual decrement function in the library. We won&amp;#8217;t write the pseudocode here, because it&amp;#8217;s an excellent exercise to add it - see below.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ 8
+  [
+    [ 1
+      [ 1
+        [ 8
+          [1 0]
+          [ 8
+            [ 1
+              [ 6
+                [5 [4 0 6] [0 30]]
+                [0 6]
+                [9 2 [0 2] [4 0 6] [0 7]]
+              ]
+            ]
+            [9 2 0 1]
+          ]
+        ]
+      ]
+      [1 0]
+      [0 1]
+    ]
+    [1 0]
+  ]
+  [ 8
+    [9 2 0 2]
+    [ 9
+      2
+      [0 4] [0 7] [0 11]
+    ]
+  ]
+]
+
+~waclux-tomwyc/try=&amp;gt; :dec 42
+43&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, let&amp;#8217;s go crazy and add a subtract function, which calls decrement.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ 8
+  [
+    [
+      [ 1
+        [ 1
+          [ 8
+            [9 5 0 7]
+            [ 6
+              [5 [1 0] [0 29]]
+              [0 28]
+              [ 9
+                2
+                [0 6]
+                [ [9 2 [0 4] [0 28] [0 15]]
+                  [9 2 [0 4] [0 29] [0 15]]
+                ]
+                [0 15]
+              ]
+            ]
+          ]
+        ]
+        [1 0]
+        [0 1]
+      ]
+      [ 1
+        [ 1
+          [ 8
+            [1 0]
+            [ 8
+              [ 1
+                [ 6
+                  [5 [4 0 6] [0 30]]
+                  [0 6]
+                  [9 2 [0 2] [4 0 6] [0 7]]
+                ]
+              ]
+              [9 2 0 1]
+            ]
+          ]
+        ]
+        [1 0]
+        [0 1]
+      ]
+    ]
+    [1 0]
+  ]
+  [ 8
+    [9 4 0 2]
+    [ 9
+      2
+      [0 4] [0 7] [0 11]
+    ]
+  ]
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the call to build the gate is &lt;code&gt;[9 4 0 2]&lt;/code&gt;, because the subtract arm is the head of the battery, which is the head of the core - ie, &lt;code&gt;/2&lt;/code&gt; within &lt;code&gt;/2&lt;/code&gt; - ie, &lt;code&gt;/4&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Does this work? Really?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :dec [42 12]
+30&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#39;exercises&#39;&gt;Exercises&lt;/h2&gt;
+
+&lt;p&gt;Do you actually know Nock now? Well, possibly.&lt;/p&gt;
+
+&lt;p&gt;A good exercise is to add more simple math functions to this battery. Try add, multiply, and divide. One way to start is by walking through the uncommented routines above, putting pseudocode comments on them, and figuring out what they&amp;#8217;re doing.&lt;/p&gt;
+
+&lt;p&gt;Computing axes is slightly arduous (which is why we use Hoon, generally). We are torturing ourselves by using Nock, but we might as well use Hoon to calculate axes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; (peg 3 3)
+7
+~zod/try=&amp;gt; (peg 3 5)
+13&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ie, &lt;code&gt;(peg a b)&lt;/code&gt; is &lt;code&gt;/b&lt;/code&gt; within &lt;code&gt;/a&lt;/code&gt;. Writing Nock without this would be pretty tough&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch3.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Nock Is Easy&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch5.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Hoon Attacks&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -550,7 +1417,9 @@
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch3.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch3</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;&amp;#8220;You get used to it. I don’t even see the code. All I see is blonde, brunette, redhead.&amp;#8221;&lt;/em&gt;&lt;br /&gt;&lt;strong&gt;(The Matrix)&lt;/strong&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch1.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Intro To Nock&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;#8220;You get used to it. I don’t even see the code. All I see is blonde, brunette, redhead.&amp;#8221;&lt;/em&gt; &lt;strong&gt;(The Matrix)&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&#39;fundamentals&#39;&gt;Fundamentals&lt;/h2&gt;
 
@@ -597,7 +1466,7 @@
 
 &lt;pre&gt;&lt;code&gt;*[[19 42] [0 3] 0 2]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;s&lt;/code&gt; is &lt;span&gt;19 42&lt;/span&gt;, &lt;code&gt;f&lt;/code&gt; is &lt;code&gt;[0 3]&lt;/code&gt;, &lt;code&gt;g&lt;/code&gt; is &lt;code&gt;[0 2]&lt;/code&gt;, &lt;code&gt;h&lt;/code&gt; is &lt;code&gt;[[0 3] 0
+&lt;p&gt;&lt;code&gt;s&lt;/code&gt; is &lt;code&gt;[19 42]&lt;/code&gt;, &lt;code&gt;f&lt;/code&gt; is &lt;code&gt;[0 3]&lt;/code&gt;, &lt;code&gt;g&lt;/code&gt; is &lt;code&gt;[0 2]&lt;/code&gt;, &lt;code&gt;h&lt;/code&gt; is &lt;code&gt;[[0 3] 0
 2]&lt;/code&gt;. &lt;code&gt;f(s)&lt;/code&gt; is &lt;code&gt;42&lt;/code&gt;; &lt;code&gt;g(s)&lt;/code&gt; is &lt;code&gt;19&lt;/code&gt;; so &lt;code&gt;h(s)&lt;/code&gt; is &lt;code&gt;[42 19]&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Why? We could have an operator &lt;code&gt;11&lt;/code&gt;, &lt;code&gt;cons&lt;/code&gt; to a Lisp veteran, with the operands &lt;code&gt;f&lt;/code&gt; and &lt;code&gt;g&lt;/code&gt; - so instead of writing&lt;/p&gt;
@@ -623,7 +1492,7 @@
 
 &lt;p&gt;Let&amp;#8217;s run through them one by one.&lt;/p&gt;
 
-&lt;h3 id=&#39;id1039&#39;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id21&#39;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;0&lt;/code&gt; just applies the &lt;code&gt;/&lt;/code&gt; function:&lt;/p&gt;
 
@@ -635,13 +1504,13 @@
 
 &lt;p&gt;is &lt;code&gt;/[3 19 42]&lt;/code&gt;, which is &lt;code&gt;42&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#39;id1040&#39;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id22&#39;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;1&lt;/code&gt; just ignores its subject and produces its operand:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;26 ::    *[a 1 b]         b&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id1041&#39;&gt;&lt;code&gt;2&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id23&#39;&gt;&lt;code&gt;2&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;2&lt;/code&gt; is the only interesting basic operator:&lt;/p&gt;
 
@@ -669,7 +1538,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 36 ::    *[a 10 [b c] d]  *[a 8 c 7 [0 3] d]
 37 ::    *[a 10 b c]      *[a c]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Each of these cases just resolves to another nock computation, in which each pattern matched on the left appears no more than once on the right. Ie, it&amp;#8217;s a macro. But what do the macros do? Let&amp;#8217;s work through them, from easiest to hardest.&lt;/p&gt;
+&lt;p&gt;Each of these cases just resolves to another Nock computation, in which each pattern matched on the left appears no more than once on the right. I.e., it&amp;#8217;s a macro. But what do the macros do? Let&amp;#8217;s work through them, from easiest to hardest.&lt;/p&gt;
 
 &lt;h3 id=&#39;_37&#39;&gt;&lt;code&gt;10&lt;/code&gt; (37)&lt;/h3&gt;
 
@@ -681,7 +1550,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;The answer is that &lt;code&gt;10&lt;/code&gt; is a hint to the interpreter. It&amp;#8217;s true that &lt;code&gt;[10 b c]&lt;/code&gt; has to be &lt;em&gt;semantically&lt;/em&gt; equivalent to &lt;code&gt;c&lt;/code&gt;, but it doesn&amp;#8217;t have to be &lt;em&gt;practically&lt;/em&gt; equivalent. Since whatever information is in &lt;code&gt;b&lt;/code&gt; is discarded, a practical interpreter is free to ignore it, or to use it in any way that does not affect the results of the computation.&lt;/p&gt;
 
-&lt;h3 id=&#39;id1042&#39;&gt;&lt;code&gt;7&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id24&#39;&gt;&lt;code&gt;7&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;7&lt;/code&gt; is our next easiest macro:&lt;/p&gt;
 
@@ -707,7 +1576,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;pre&gt;&lt;code&gt;33r::    *[a 7 b c]       *[*[a b] c]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id1043&#39;&gt;&lt;code&gt;8&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id25&#39;&gt;&lt;code&gt;8&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;8&lt;/code&gt; looks slightly horrible but you shouldn&amp;#8217;t fear it at all:&lt;/p&gt;
 
@@ -781,7 +1650,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;Effectively, this mechanism lets us feed both static and dynamic information into the interpreter&amp;#8217;s hint mechanism.&lt;/p&gt;
 
-&lt;h3 id=&#39;id1044&#39;&gt;&lt;code&gt;6&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id26&#39;&gt;&lt;code&gt;6&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;6&lt;/code&gt; certainly looks intimidating:&lt;/p&gt;
 
@@ -800,7 +1669,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;This excuse for an explanation may not satisfy everyone. A good exercise is to check that &lt;code&gt;6&lt;/code&gt; as defined &lt;em&gt;actually&lt;/em&gt; has these properties - and can&amp;#8217;t be simplified.&lt;/p&gt;
 
-&lt;h3 id=&#39;id1045&#39;&gt;&lt;code&gt;9&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id27&#39;&gt;&lt;code&gt;9&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;9&lt;/code&gt; is an audacious mystery:&lt;/p&gt;
 
@@ -820,21 +1689,25 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
   &amp;lt;&amp;lt;25 ::    *[a 0 b]         /[b a]&amp;gt;&amp;gt;
 
-*[*[a c] *[*[a c] 0 b]] &lt;/code&gt;&lt;/pre&gt;
+*[*[a c] *[*[a c] 0 b]]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;So we have:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;35r::    *[a 9 b c]       *[*[a c] *[*[a c] 0 b]] &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;35r::    *[a 9 b c]       *[*[a c] *[*[a c] 0 b]]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;If you have a really fine instinctive sense of Nock, you might understand what &lt;code&gt;9&lt;/code&gt; is for. Otherwise, don&amp;#8217;t worry for now.&lt;/p&gt;</content>
+&lt;p&gt;If you have a really fine instinctive sense of Nock, you might understand what &lt;code&gt;9&lt;/code&gt; is for. Otherwise, don&amp;#8217;t worry for now.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch1.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Intro To Nock&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
-   <title>Urbit is Easy&#58; Chapter II (Intro to Nock)</title>
+   <title>Urbit Is Easy&#58; Chapter II (Intro To Nock)</title>
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch2.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch2</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;&amp;#8220;What one fool can do, another can&amp;#8221;&lt;/em&gt;&lt;br /&gt;&lt;strong&gt;(Ancient Simian proverb)&lt;/strong&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch1.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Setup&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch3.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Nock Is Easy&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;#8220;What one fool can do, another can&amp;#8221;&lt;/em&gt; &lt;strong&gt;(Ancient Simian proverb)&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Now that we&amp;#8217;ve installed Arvo, let&amp;#8217;s learn Nock.&lt;/p&gt;
 
@@ -850,11 +1723,11 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;No, you can&amp;#8217;t just look at this and tell what it&amp;#8217;s doing. But at least there are only 39 lines of it.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;1  ::    A noun is an atom or a cell.  
-2  ::    An atom is a natural number. 
-3  ::    A cell is a ordered pair of nouns.
+&lt;pre&gt;&lt;code&gt;1  ::    A noun is an atom or a cell.
+2  ::    An atom is a natural number.
+3  ::    A cell is an ordered pair of nouns.
 4  ::
-5  ::    Nock(a)          *a
+5  ::    nock(a)          *a
 6  ::    [a b c]          [a [b c]]
 7  ::
 8  ::    ?[a b]           0
@@ -917,8 +1790,8 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;A cell is an ordered pair of any two nouns - cell or atom. We group cells with square brackets:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[1 1] 
-[34 45] 
+&lt;pre&gt;&lt;code&gt;[1 1]
+[34 45]
 [[3 42] 12]
 [[1 0] [0 [1 99]]]&lt;/code&gt;&lt;/pre&gt;
 
@@ -960,13 +1833,15 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;h2 id=&#39;rules&#39;&gt;Rules&lt;/h2&gt;
 
-&lt;p&gt;Nock&amp;#8217;s semantics are defined as a reduction algebra. To compute &lt;code&gt;nock(x)&lt;/code&gt;, where &lt;code&gt;x&lt;/code&gt; is any noun, we step through the rules from the top down, find the first left-hand side that matches &lt;code&gt;x&lt;/code&gt;, and reduce it to the right-hand side.&lt;/p&gt;
+&lt;p&gt;A Nock program is given meaning by a process of reduction. To compute &lt;code&gt;Nock(x)&lt;/code&gt;, where &lt;code&gt;x&lt;/code&gt; is any noun, we step through the rules from the top down, find the first left-hand side that matches &lt;code&gt;x&lt;/code&gt;, and reduce it to the right-hand side.&lt;/p&gt;
 
 &lt;p&gt;Right away we see line 5:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;5  ::    nock(a)           *a&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;5  ::    Nock(a)           *a&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;So &lt;code&gt;nock(x)&lt;/code&gt; is &lt;code&gt;*x&lt;/code&gt;, for any noun &lt;code&gt;x&lt;/code&gt;. And how do we reduce &lt;code&gt;*x&lt;/code&gt;? Looking up, we see that lines 23 through 39 reduce &lt;code&gt;*x&lt;/code&gt; - for different patterns of &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When we use variable names, like &lt;code&gt;a&lt;/code&gt;, in the pseudocode spec, we simply mean that the rule fits for any noun &lt;code&gt;a&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So &lt;code&gt;Nock(x)&lt;/code&gt; is &lt;code&gt;*x&lt;/code&gt;, for any noun &lt;code&gt;x&lt;/code&gt;. And how do we reduce &lt;code&gt;*x&lt;/code&gt;? Looking up, we see that lines 23 through 39 reduce &lt;code&gt;*x&lt;/code&gt; - for different patterns of &lt;code&gt;x&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;For example, suppose our &lt;code&gt;x&lt;/code&gt; is &lt;code&gt;[5 1 6]&lt;/code&gt;. Stepping downward through the rules, the first one that matches is line 26:&lt;/p&gt;
 
@@ -1007,9 +1882,9 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 
 &lt;h2 id=&#39;functions&#39;&gt;Functions&lt;/h2&gt;
 
-&lt;p&gt;We&amp;#8217;ve already seen the &lt;code&gt;*&lt;/code&gt; function (pronounced &amp;#8220;tar&amp;#8221;), which just means &lt;code&gt;nock&lt;/code&gt;. This is the main show and we&amp;#8217;ll work through it soon, but first let&amp;#8217;s explain the functions it uses - &lt;code&gt;=&lt;/code&gt;, &lt;code&gt;?&lt;/code&gt;, &lt;code&gt;+&lt;/code&gt; and &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We&amp;#8217;ve already seen the &lt;code&gt;*&lt;/code&gt; function (pronounced &amp;#8220;tar&amp;#8221;), which just means &lt;code&gt;Nock&lt;/code&gt;. This is the main show and we&amp;#8217;ll work through it soon, but first let&amp;#8217;s explain the functions it uses - &lt;code&gt;=&lt;/code&gt;, &lt;code&gt;?&lt;/code&gt;, &lt;code&gt;+&lt;/code&gt; and &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#39;id1035&#39;&gt;&lt;code&gt;=&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;equals_&#39;&gt;Equals: &lt;code&gt;=&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;=&lt;/code&gt; (pronounced &amp;#8220;tis&amp;#8221;, or sometimes &amp;#8220;is&amp;#8221;) tests a cell for equality. &lt;code&gt;0&lt;/code&gt; means yes, &lt;code&gt;1&lt;/code&gt; means no:&lt;/p&gt;
 
@@ -1019,7 +1894,7 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 
 &lt;p&gt;Again, testing an atom for equality makes no sense and logically fails to terminate.&lt;/p&gt;
 
-&lt;h3 id=&#39;id1036&#39;&gt;&lt;code&gt;?&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;depth_&#39;&gt;Depth: &lt;code&gt;?&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;?&lt;/code&gt; (pronounced &amp;#8220;wut&amp;#8221;) tests whether is a noun is a cell. Again, &lt;code&gt;0&lt;/code&gt; means yes, &lt;code&gt;1&lt;/code&gt; means no:&lt;/p&gt;
 
@@ -1028,7 +1903,7 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 
 &lt;p&gt;(This convention is the opposite of old-fashioned booleans, so we try hard to say &amp;#8220;yes&amp;#8221; and &amp;#8220;no&amp;#8221; instead of &amp;#8220;true&amp;#8221; and &amp;#8220;false.&amp;#8221;)&lt;/p&gt;
 
-&lt;h3 id=&#39;id1037&#39;&gt;&lt;code&gt;+&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;increment_&#39;&gt;Increment: &lt;code&gt;+&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;+&lt;/code&gt; (pronounced &amp;#8220;lus&amp;#8221;, or sometimes &amp;#8220;plus&amp;#8221;) adds 1 to an atom:&lt;/p&gt;
 
@@ -1037,9 +1912,9 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 
 &lt;p&gt;Because &lt;code&gt;+&lt;/code&gt; works only for atoms, whereas &lt;code&gt;=&lt;/code&gt; works only for cells, the error rule matches first for &lt;code&gt;+&lt;/code&gt; and last for &lt;code&gt;=&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#39;id1038&#39;&gt;&lt;code&gt;/&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;address_&#39;&gt;Address: &lt;code&gt;/&lt;/code&gt;&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;/&lt;/code&gt; (pronounced &amp;#8220;fas&amp;#8221;) is a tree traversal function:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/&lt;/code&gt; (pronounced &amp;#8220;fas&amp;#8221;) is a tree address function:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;16 ::    /[1 a]           a
 17 ::    /[2 a b]         a
@@ -1048,14 +1923,35 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 20 ::    /[(a + a + 1) b] /[3 /[a b]]
 21 ::    /a               /a&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This looks way more complicated than it is. Essentially, we define a noun as a binary tree and assign an address, or &lt;em&gt;axis&lt;/em&gt;, to every node in the tree. The root of the tree is 1. The left child of every node &lt;code&gt;n&lt;/code&gt; is &lt;code&gt;2n&lt;/code&gt;; the right child is &lt;code&gt;2n+1&lt;/code&gt;. For a complete tree of depth 3, the assignment looks like this:&lt;/p&gt;
+&lt;p&gt;This looks way more complicated than it is. Essentially, we define a noun as a binary tree and assign an address, or &lt;em&gt;axis&lt;/em&gt;, to every node in the tree. The root of the tree is &lt;code&gt;/1&lt;/code&gt;. The left child of every node at &lt;code&gt;/a&lt;/code&gt; is &lt;code&gt;/2a&lt;/code&gt;; the right child is &lt;code&gt;/2a+1&lt;/code&gt;. (Writing &lt;code&gt;(a + a)&lt;/code&gt; is just a clever way to write &lt;code&gt;2a&lt;/code&gt;, while minimizing the set of pseudocode forms.)&lt;/p&gt;
+
+&lt;p&gt;For a complete tree of depth 3, the axis address space looks like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;         1
     2          3
  4    5     6     7
 8 9 10 11 12 13 14 15&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;We can also build nouns in which every atom is its own axis:&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s use the example &lt;code&gt;[[97 2] [1 42 0]]&lt;/code&gt;. So&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/[1 [97 2] [1 42 0]]      [[97 2] [1 42 0]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;because &lt;code&gt;/1&lt;/code&gt; is the root of the tree, ie, the whole noun. Then its left child is &lt;code&gt;/2&lt;/code&gt; (ie, &lt;code&gt;(1 + 1)&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/[2 [97 2] [1 42 0]]      [97 2]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And its right child is &lt;code&gt;/3&lt;/code&gt; (ie, &lt;code&gt;(1 + 1 + 1)&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/[3 [97 2] [1 42 0]]      [1 42 0]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And delving into &lt;code&gt;/3&lt;/code&gt;, we see &lt;code&gt;/(3 + 3)&lt;/code&gt; and &lt;code&gt;(3 + 3 + 1)&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/[6 [97 2] [1 42 0]]      1
+/[7 [97 2] [1 42 0]]      [42 0]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If this seems like rocket science, the problem may be that you&amp;#8217;re too smart to understand Nock. Drink some lead.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#8217;s also fun to build nouns in which every atom is its own axis:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;1
 [2 3]
@@ -1064,23 +1960,25 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 [[4 5] 6 14 15]
 [[4 5] [12 13] 14 15]
 [[4 [10 11]] [12 13] 14 15]
-[[[8 9] [10 11]] [12 13] 14 30 31]&lt;/code&gt;&lt;/pre&gt;</content>
+[[[8 9] [10 11]] [12 13] 14 30 31]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once you&amp;#8217;ve spent enough time programming in Urbit, you&amp;#8217;ll know these axes in your dreams. No - really&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch1.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Setup&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch3.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Nock Is Easy&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
-   <title>Urbit is Easy&#58; Chapter I (Setup)</title>
+   <title>Urbit Is Easy&#58; Chapter I (Setup)</title>
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch1.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch1</id>
-   <content type="html">&lt;p&gt;&lt;em&gt;Tlön is surely a labyrinth, but it is a labyrinth devised by men, a labyrinth destined to be deciphered by men.&lt;/em&gt;&lt;br /&gt;&lt;strong&gt;(Tlön, Uqbar, Orbis Tertius)&lt;/strong&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch1.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Setup&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch2.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Intro To Nock&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&#39;setting_up_urbit&#39;&gt;Setting up Urbit&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Tlön is surely a labyrinth, but it is a labyrinth devised by men, a labyrinth destined to be deciphered by men.&lt;/em&gt; &lt;strong&gt;(Tlön, Uqbar, Orbis Tertius)&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;First, build&amp;#8230;&lt;/p&gt;
+&lt;h2 id=&#39;prepare_your_computer&#39;&gt;Prepare your computer&lt;/h2&gt;
 
-&lt;h3 id=&#39;prepare_your_computer&#39;&gt;Prepare your computer:&lt;/h3&gt;
-
-&lt;p&gt;Urbit depends on:&lt;/p&gt;
+&lt;p&gt;Urbit runs on Unix machines only. It depends on:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;gmp&lt;/li&gt;
@@ -1094,15 +1992,15 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 &lt;li&gt;ncurses (Linux only)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Currently we support OSX, Linux (not all distributions have been tested) and BSD. Intrepid ninjas may attempt ports to other OSes. If you&amp;#8217;re not an intrepid ninja, try a VM (eg, VirtualBox).&lt;/p&gt;
+&lt;p&gt;Currently we support OSX, Linux (not all distributions have been tested) and *BSD. There are no instructions for BSD, because only people with a serious clue run BSD. Intrepid ninjas may attempt ports to other OSes. If you&amp;#8217;re not an intrepid ninja, try a VM (eg, VirtualBox).&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;OS X:&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#39;configure_os_x&#39;&gt;Configure OS X&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Do you have XCode? Type &lt;code&gt;gcc&lt;/code&gt;. If it says &lt;code&gt;no input files&lt;/code&gt;, you have XCode.&lt;/p&gt;
 
-&lt;p&gt;Otherwise, install XCode: &lt;code&gt;https://developer.apple.com/xcode/&lt;/code&gt;, with the Command Line tools.&lt;/p&gt;
+&lt;p&gt;Otherwise, install XCode: &lt;code&gt;https://developer.apple.com/xcode/&lt;/code&gt;, with the command line tools.&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -1128,19 +2026,19 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;strong&gt;Linux (e.g. Ubuntu or Debian):&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#39;configure_linux_ubuntu_or_debian&#39;&gt;Configure Linux (Ubuntu or Debian)&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;strong&gt;AWS Linux AMI&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#39;configure_linux_aws&#39;&gt;Configure Linux (AWS)&lt;/h3&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#39;get_the_source&#39;&gt;Get the source:&lt;/h3&gt;
+&lt;h3 id=&#39;get_the_source&#39;&gt;Get the source&lt;/h3&gt;
 
 &lt;p&gt;Either:&lt;/p&gt;
 
@@ -1148,7 +2046,7 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 
 &lt;p&gt;B. &lt;code&gt;git clone https://github.com/urbit/urbit.git&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#39;configure_your_build&#39;&gt;Configure your build:&lt;/h3&gt;
+&lt;h3 id=&#39;set_up_your_enviroment&#39;&gt;Set up your enviroment&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;cd&lt;/code&gt; to the unpacked Urbit directory you just created. If this works, &lt;code&gt;ls urb&lt;/code&gt; should show:&lt;/p&gt;
 
@@ -1165,11 +2063,11 @@ source ~/.bash_profile&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;should show &lt;code&gt;/urb&lt;/code&gt; within the current directory.&lt;/p&gt;
 
-&lt;h3 id=&#39;make&#39;&gt;make:&lt;/h3&gt;
+&lt;h3 id=&#39;build&#39;&gt;Build&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;make&lt;/code&gt;. Sometimes things are just easy.&lt;/p&gt;
 
-&lt;h3 id=&#39;vere&#39;&gt;vere:&lt;/h3&gt;
+&lt;h3 id=&#39;run&#39;&gt;Run&lt;/h3&gt;
 
 &lt;p&gt;Run &lt;code&gt;bin/vere -c mypier&lt;/code&gt;, where &lt;code&gt;mypier&lt;/code&gt; is a directory that doesn&amp;#8217;t yet exist. All your state (an append-only log and a memory checkpoint) will live in this directory. Its name doesn&amp;#8217;t matter and is not visible internally.&lt;/p&gt;
 
@@ -1199,7 +2097,9 @@ generating 2048-bit RSA pair...&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and the like. You&amp;#8217;ll see a couple pages of this stuff. Don&amp;#8217;t worry too much about the details right now. Finally, you&amp;#8217;ll get the Arvo shell prompt (which is also a Hoon REPL):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=&amp;gt; &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#39;register&#39;&gt;Register&lt;/h3&gt;
 
 &lt;p&gt;Next, you need to decide whether a mere submarine is enough for you right now. This monicker is a mouthful. You can stick with it (for now), but&amp;#8230; you&amp;#8217;re going to need a wider xterm.&lt;/p&gt;
 
@@ -1223,13 +2123,15 @@ generating 2048-bit RSA pair...&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;and follow the directions. When the script completes, hit return and you&amp;#8217;ll be the &lt;code&gt;~waclux-tomwyc&lt;/code&gt; you wanted to be.&lt;/p&gt;
 
-&lt;h2 id=&#39;2_taming_arvo&#39;&gt;2. Taming Arvo&lt;/h2&gt;
+&lt;h2 id=&#39;play_with_arvo&#39;&gt;Play with Arvo&lt;/h2&gt;
 
 &lt;p&gt;If all went well, you now have a nice short prompt:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If all did not go well (send us another email), or you&amp;#8217;re just too impatient to wait for your destroyer, you have a big long prompt. Which is fine, really, just ugly - and all these exercises will still work.&lt;/p&gt;
+
+&lt;h3 id=&#39;example_commands&#39;&gt;Example commands&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;#8217;s try a few quick things to stretch your fingers. Type these command lines and you should see the matching results:&lt;/p&gt;
 
@@ -1255,7 +2157,8 @@ generating 2048-bit RSA pair...&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What did you just do?&lt;/p&gt;
 
-&lt;p&gt;One, you used Arvo as a Hoon REPL to print the constant &lt;code&gt;&amp;quot;hello, world&amp;quot;&lt;/code&gt;, which is a fancy way to write the Nock noun&lt;/p&gt;
+&lt;p&gt;One, you used Arvo as a Hoon REPL to print the constant &lt;code&gt;&amp;quot;hello,
+world&amp;quot;&lt;/code&gt;, which is a fancy way to write the Nock noun&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[104 101 108 108 111 44 32 119 111 114 108 100 0]&lt;/code&gt;&lt;/pre&gt;
 
@@ -1279,6 +2182,8 @@ generating 2048-bit RSA pair...&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;which anyone in Urbit can, see and even use - but we&amp;#8217;re getting ahead of ourselves.&lt;/p&gt;
 
+&lt;h3 id=&#39;control_characters&#39;&gt;Control characters&lt;/h3&gt;
+
 &lt;p&gt;In any case, what we&amp;#8217;ve seen is that Arvo is a dangerous and powerful operating system which if handled improperly can cause serious injury or loss of life. We exaggerate. Slightly.&lt;/p&gt;
 
 &lt;p&gt;The first thing you need to know is how to control this tool. Try your arrow keys - you&amp;#8217;ll see that Arvo has traditional Unix history editing. Up and down, left and right work, as do the simple emacs controls:&lt;/p&gt;
@@ -1290,6 +2195,7 @@ generating 2048-bit RSA pair...&lt;/code&gt;&lt;/pre&gt;
 ^F  right arrow
 ^K  kill to end of line
 ^L  clear the screen
+^R  search through history
 ^U  kill the whole line
 ^Y  yank (restore from kill ring)&lt;/code&gt;&lt;/pre&gt;
 
@@ -1297,20 +2203,24 @@ generating 2048-bit RSA pair...&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;There are also some special control keys specific to Arvo. It&amp;#8217;s a good idea to learn these first so that you feel in, um, control.&lt;/p&gt;
 
-&lt;p&gt;First, we&amp;#8217;ll quit out of an infinite loop with ^V:&lt;/p&gt;
+&lt;p&gt;First, we&amp;#8217;ll quit out of an infinite loop with &lt;code&gt;^C&lt;/code&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :infinite&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;When you hit return at the end of this line, Arvo will appear to hang. Do not be alarmed! This is not a bug - it means that we&amp;#8217;ve started running our infinite loop before printing the next console prompt. Simply hit ^V, and you&amp;#8217;ll see&lt;/p&gt;
+&lt;p&gt;When you hit return at the end of this line, Arvo will appear to hang. Do not be alarmed! This is not a bug - it means that we&amp;#8217;ve started running our infinite loop before printing the next console prompt. Simply hit &lt;code&gt;^C&lt;/code&gt;, and you&amp;#8217;ll see&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;! intr
 ~waclux-tomwyc/try=&amp;gt; :infinite&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Hit ^U to delete the line and escape from infinity. Arvo is a deterministic OS; you interrupted it while processing an event that would never terminate. It returns to the state it was in before you hit return - as if nothing had ever happened.&lt;/p&gt;
+&lt;p&gt;(There may be some stacktrace stuff before the &lt;code&gt;! intr&lt;/code&gt;, depending on whether your kernel was compiled with debugging.)&lt;/p&gt;
 
-&lt;p&gt;You&amp;#8217;re probably used to using nondeterministic, preemptive OSes, in which the difference between a waiting process and an executing event isn&amp;#8217;t apparent to the user. Since Arvo is not preemptive, it has two very different states: waiting and working.&lt;/p&gt;
+&lt;p&gt;Hit &lt;code&gt;^U&lt;/code&gt; to delete the line and escape from infinity. Arvo is a deterministic OS; you interrupted it while processing an event that would never terminate. It returns to the state it was in before you hit return - as if nothing had ever happened.&lt;/p&gt;
 
-&lt;p&gt;When Arvo is working, ^V cancels the event it&amp;#8217;s working on. When Arvo is waiting, ^V ends the current task, which is the task that&amp;#8217;s currently prompting you - or showing the &lt;code&gt;[waiting...]&lt;/code&gt; prompt, indicating that it&amp;#8217;s waiting for something else other than keyboard input.&lt;/p&gt;
+&lt;p&gt;You&amp;#8217;re probably used to using nondeterministic, preemptive OSes, in which the difference between a waiting task and an executing event isn&amp;#8217;t apparent to the user. Since Arvo is not preemptive, it has two very different states: waiting and working.&lt;/p&gt;
+
+&lt;p&gt;When Arvo is working, &lt;code&gt;^C&lt;/code&gt; cancels the event it&amp;#8217;s working on. This event never happened. Don&amp;#8217;t worry, nothing bad will happen to your computer.&lt;/p&gt;
+
+&lt;p&gt;When Arvo is waiting, use &lt;code&gt;^D&lt;/code&gt; to end the current task, which is the task that&amp;#8217;s currently prompting you. If there is a live prompt and the cursor is not at the end, &lt;code&gt;^D&lt;/code&gt; will delete the current character - as in Unix.&lt;/p&gt;
 
 &lt;p&gt;Try this by running&lt;/p&gt;
 
@@ -1318,23 +2228,23 @@ generating 2048-bit RSA pair...&lt;/code&gt;&lt;/pre&gt;
 
 Do you have a ship and a ticket? yes&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then hit ^V and you&amp;#8217;ll be back to the command prompt (which, unlike in Unix, is not a task itself, but part of the OS).&lt;/p&gt;
+&lt;p&gt;Then hit &lt;code&gt;^D&lt;/code&gt; and you&amp;#8217;ll be back to the command prompt (which, unlike in Unix, is not a task itself, but part of the OS).&lt;/p&gt;
 
-&lt;p&gt;We don&amp;#8217;t always want to kill the prompting task. We often want to switch between tasks, or between tasks and the command line. Sort of like switching between windows, except in a command line. We do this with ^X. Try&lt;/p&gt;
+&lt;p&gt;We don&amp;#8217;t always want to kill the prompting task. We often want to switch between tasks, or between tasks and the command line. Sort of like switching between windows, except in a command line. We do this with &lt;code&gt;^X&lt;/code&gt;. Try&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :begin
 
 Do you have a ship and a ticket? yes&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;But hit ^X instead of ^C. You&amp;#8217;ll get a prompt again. Use it:&lt;/p&gt;
+&lt;p&gt;But hit &lt;code&gt;^X&lt;/code&gt; instead of &lt;code&gt;^D&lt;/code&gt;. You&amp;#8217;ll get a prompt again. Use it:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :begin
 
 ~waclux-tomwyc/try=&amp;gt; :hello %world
 &amp;quot;hello, world.&amp;quot;
-~waclux-tomwyc/try=&amp;gt; &lt;/code&gt;&lt;/pre&gt;
+~waclux-tomwyc/try=&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Hit ^X again:&lt;/p&gt;
+&lt;p&gt;Hit &lt;code&gt;^X&lt;/code&gt; again:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :begin
 
@@ -1342,26 +2252,26 @@ Do you have a ship and a ticket? yes&lt;/code&gt;&lt;/pre&gt;
 &amp;quot;hello, world.&amp;quot;
 Do you have a ship and a ticket? yes&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;And finally, hit ^C to kill the task.&lt;/p&gt;
+&lt;p&gt;And finally, hit &lt;code&gt;^C&lt;/code&gt; to kill the task.&lt;/p&gt;
 
-&lt;p&gt;There&amp;#8217;s one more magic control key that switches your whole reality. This is ^W, which switches between the ships in a pier. Do you have multiple ships in your pier? Sure - you still have your old submarine. Hit ^W:&lt;/p&gt;
+&lt;p&gt;There&amp;#8217;s one more magic control key that switches your whole reality. This is &lt;code&gt;^W&lt;/code&gt;, which switches between the ships in a pier. Do you have multiple ships in your pier? Sure - you still have your old submarine. Hit &lt;code&gt;^W&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=&amp;gt; &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Hit ^W again:&lt;/p&gt;
+&lt;p&gt;Hit &lt;code&gt;^W&lt;/code&gt; again:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Finally, Arvo is a single-level store. Since it&amp;#8217;s not the &amp;#8217;70s anymore and disk is cheap, everything you do is saved for ever. (In fact, it&amp;#8217;s saved in two ways - as a memory image and an event log - so you, or the government if they haz your filez, can repeat every computation you&amp;#8217;ve every performed.)&lt;/p&gt;
 
-&lt;p&gt;As in Unix, hitting ^D on an empty line ends the program:&lt;/p&gt;
+&lt;p&gt;If the current prompt is just the shell prompt, &lt;code&gt;^D&lt;/code&gt; on an empty line will log out - as in Unix:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; 
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt;
 oxford:~/urbit; pwd
 /Users/cyarvin/urbit
 oxford:~/urbit; echo &amp;quot;hello, world&amp;quot;
 hello, world
-oxford:~/urbit; &lt;/code&gt;&lt;/pre&gt;
+oxford:~/urbit;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Then you can restart and be right back where you were - just run &lt;code&gt;vere&lt;/code&gt; without &lt;code&gt;-c&lt;/code&gt;:&lt;/p&gt;
 
@@ -1374,11 +2284,52 @@ http: live on 8080
 rest: checkpoint to event 383
 rest: old 0v1c.gkr1o, new 0v10.m4gdu
 ---------------- playback complete----------------
-waclux-tomwyc/try=&amp;gt; &lt;/code&gt;&lt;/pre&gt;
+waclux-tomwyc/try=&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Use your arrow keys and you&amp;#8217;ll see your history is still there. Arvo is indestructible and can be shut down however you like without losing data. Also, starting a new process while an old one is still running will kill the old one safely. And, to leave a server running in the background, use &lt;code&gt;vere -d&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Use your arrow keys and you&amp;#8217;ll see your history is still there. Arvo is indestructible and can be shut down however you like without losing data. Also, starting a new task while an old one is still running will kill the old one safely.&lt;/p&gt;
 
-&lt;p&gt;But don&amp;#8217;t try to operate the same ship on two Unix hosts at the same time. This will confuse everyone, including yourself.&lt;/p&gt;</content>
+&lt;p&gt;But don&amp;#8217;t try to operate the same ship on two Unix hosts at the same time. This will confuse everyone, including yourself.&lt;/p&gt;
+
+&lt;h3 id=&#39;system_administration&#39;&gt;System administration&lt;/h3&gt;
+
+&lt;p&gt;Sometimes we make changes to Hoon or Arvo (we never make changes to Nock) and you need to update your ship.&lt;/p&gt;
+
+&lt;p&gt;There are two steps to updating. You need to get the new files, and you need to install them. To get them:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :update
+: /~waclux-tomwyc/arvo/2/hoon/hoon
+: /~waclux-tomwyc/arvo/2/dill/hoon
+: /~waclux-tomwyc/arvo/2/batz/hoon&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To install them (the simplest, slowest, most general way):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :reset
+
+%reset-start
+%reset-parsed
+%reset-compiled
+%hoon-load
+[%tang /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/zuse ~tirnux-latwex]
+[%vane %a /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/ames ~tolryn-watret]
+[%vane %b /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/batz ~donfex-ladsem]
+[%vane %c /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/clay ~picsug-mitref]
+[%vane %d /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/dill ~dilpex-laptug]
+[%vane %e /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/eyre ~forbur-disben]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All of your state, including running tasks, will be unchanged.&lt;/p&gt;
+
+&lt;h3 id=&#39;chat&#39;&gt;Chat&lt;/h3&gt;
+
+&lt;p&gt;Okay, fine. You&amp;#8217;re a long way from being an Arvo ninja. But - you&amp;#8217;re ready for the two most important uses of Urbit right now. One, coding. Two, chatting.&lt;/p&gt;
+
+&lt;p&gt;To start coding, read the next chapter. To start chatting, simply type&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :chat
+&amp;amp;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and type &lt;code&gt;?&lt;/code&gt; for help.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch2.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Intro to Nock&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -1829,7 +2780,7 @@ waclux-tomwyc/try=&amp;gt; &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This does not make it trivial for the forces of light to hunt you down and render you into processed meat clippings. But it sure as heck evens the game. Who will win? I guess we&amp;#8217;ll see.&lt;/p&gt;
 
-&lt;p&gt;So do you want an Urbit destroyer? Read the &lt;a href=&#39;/2013/08/22/Chapter-1-arvo.html&#39;&gt;documentation&lt;/a&gt; for instructions. Come on, they&amp;#8217;re free&amp;#8230;&lt;/p&gt;</content>
+&lt;p&gt;So do you want an Urbit destroyer? Read the &lt;a href=&#39;/2013/11/18/urbit-is-easy-ch1.html&#39;&gt;documentation&lt;/a&gt; for instructions. Come on, they&amp;#8217;re free&amp;#8230;&lt;/p&gt;</content>
  </entry>
  
  
