@@ -29,7 +29,7 @@ more kinds of type - `%face` and `%fork`:
 
 Any branching computation in which different branches produce
 different types will generate a fork.  For example, without
-worrying too much about what this expression means:
+worrying too much about the mysterious `?:`:
 
     ~waclux-tomwyc/try=> :type; ?:(& %foo [13 10])
     %foo
@@ -128,7 +128,7 @@ feeling should vanish in a few minutes.  Let's go further:
     ! find-none
     ! exit
 
-###Name resolution###
+##Name resolution##
 
 We're starting to learn a little about name resolution in Hoon.
 We've seen that `foo.bar.test` means "foo in bar in test."  We've
@@ -159,7 +159,14 @@ because we didn't wrap a face around `test`, we seek into it when
 looking for `dog`, and `rat.dog.test` works just the same way.
 Even though `dog` is now at a different axis within `test`.
 
-Interesting cases tell us more about the search algorithm:
+For reasons we'll see soon, we often want empty names.  As we saw
+before, the syntax for an empty name is `$`.
+
+    ~waclux-tomwyc/try=> =test $=42
+    ~waclux-tomwyc/try=> $.test
+    42
+
+And interesting cases tell us more about the search algorithm:
 
     ~waclux-tomwyc/try=> =test [cat=3 cat=[pig=9 rat=12]]
     ~waclux-tomwyc/try=> cat.test
@@ -202,6 +209,138 @@ But we can also use axes directly from Hoon.  For instance:
     ~waclux-tomwyc/try=> dog.test
     [pig=9 rat=12]
 
-Note the difference between these two...
+Note the difference between these two.  The noun is the same -
+they are both `[9 12]`.  But the type is different:
+ 
+    ~waclux-tomwyc/try=> -:!>(+3.test)
+    [ %face
+      p=%dog
+        q
+      [ %cell
+        p=[%face p=%pig q=[%atom p=%ud]]
+        q=[%face p=%rat q=[%atom p=%ud]]
+      ]
+    ]
 
-Lorem ipsum!
+    ~waclux-tomwyc/try=> -:!>(dog.test)
+    [ %cell
+      p=[%face p=%pig q=[%atom p=%ud]]
+      q=[%face p=%rat q=[%atom p=%ud]]
+    ]
+
+The axis gets us to the %dog face; the name actually removes it.
+So we can write
+
+    ~waclux-tomwyc/try=> pig.dog.+3.test
+    9
+    ~waclux-tomwyc/try=> pig.dog.test
+    9
+    ~waclux-tomwyc/try=> pig.+3.test
+    ! -find-limb.pig
+    ! find-none
+    ! exit
+
+Perhaps this is obvious.  Perhaps it's not.
+
+###Axis syntax###
+
+This may seem like overkill.  Perhaps it *is* overkill.  But Hoon
+has five syntaxes for an axis limb.
+
+The first we've seen already: the axis itself as a decimal, eg,
+`+3`.  The second is a simple dot, meaning `+1`:
+
+    ~waclux-tomwyc/try=> =test 42
+    ~waclux-tomwyc/try=> ..test
+    42
+ 
+Yes, that's the limb `.`, as applied (with `.`), to `test`.  Have
+we gone crazy?  Perhaps - but in fact, this one gets used a lot.
+
+Then we have an list-indexing syntax for constant offsets in
+lists that (as is the Hoon convention) flow to the right.
+Indices start at 1.  `&` produces the list element, `|` produces
+the suffix:
+
+    ~waclux-tomwyc/try=> =test [1 2 3 4 ~]
+    ~waclux-tomwyc/try=> &2.test
+    2
+    ~waclux-tomwyc/try=> |2.test
+    [3 4 ~]
+    ~waclux-tomwyc/try=> &1.test
+    1
+    ~waclux-tomwyc/try=> |1.test
+    [2 3 4 ~]
+
+This mechanism - which essentially just converts the list index
+into an axis for `+` - is not used much, but nice when needed.
+It applies only to constant indices, though, which is odd.  (For
+non-constant indices, use the Hoon function `snag`.)
+
+Finally, we have a graphical binary syntax which reads from left
+to right, alternating the pairs `-`/`+` and `<`/`>` to mean head
+and tail respectively.  For example:
+
+    ~waclux-tomwyc/try=> =test [[[8 9] [10 11]] [12 13] 14 30 31]
+    ~waclux-tomwyc/try=> -.test
+    [[8 9] 10 11]
+    ~waclux-tomwyc/try=> +.test
+    [[12 13] 14 30 31]
+    ~waclux-tomwyc/try=> -<.test
+    [8 9]
+    ~waclux-tomwyc/try=> +>.test
+    [14 30 31]
+    ~waclux-tomwyc/try=> +>-.test
+    14
+    ~waclux-tomwyc/try=> ->-.test
+    10
+    ~waclux-tomwyc/try=> +>+<.test
+    30
+
+The alternating glyphs create pleasant graphical patterns which
+are moderately memorable when used in moderation.  Of course, in
+general, when we have names we should use them.
+
+###Resolving forks###
+
+What happens when we resolve a name in a fork?  Yikes.  The
+general principle is that name resolution across a fork works if,
+and only if, the names resolve to the same axis on both branches.
+
+For instance:
+
+    ~waclux-tomwyc/try=> =test ?:(& [pig=3 dog=4] [pig=%pig dog=%dog cat=%cat])
+    ~waclux-tomwyc/try=> -:!>(test)
+    [ %fork
+        p
+      [ %cell
+        p=[%face p=%pig q=[%atom p=%ud]]
+        q=[%face p=%dog q=[%atom p=%ud]]
+      ]
+        q
+      [ %cell
+        p=[%face p=%pig q=[%cube p=6.777.200 q=[%atom p=%tas]]]
+          q
+        [ %cell
+          p=[%face p=%dog q=[%cube p=6.778.724 q=[%atom p=%tas]]]
+          q=[%face p=%cat q=[%cube p=7.627.107 q=[%atom p=%tas]]]
+        ]
+      ]
+    ]
+    ~waclux-tomwyc/try=> pig.test
+    3
+    ~waclux-tomwyc/try=> -:!>(pig.test)
+    [%fork p=[%atom p=%ud] q=[%cube p=6.777.200 q=[%atom p=%tas]]]
+
+And yet:
+
+    ~waclux-tomwyc/try=> dog.test
+    ! -find-limb.dog
+    ! find-fork
+    ! exit
+
+Why?  Because `dog` is at `+3` on one side of the fork, `+6` on
+the other.
+
+Frighteningly enough, we now have all the tools we need to really
+start programming in Hoon...
