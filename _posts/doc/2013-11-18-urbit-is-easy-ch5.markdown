@@ -278,9 +278,10 @@ mechanism is weak - it is not enforced and trivially evaded.
 
 An odor span contains two parts, both optional: a lowercase
 prefix and an uppercase suffix.  The suffix, if present, is a
-single character A-Z `c` which indicates an atom less than `n`,
-where `n` is `(1 + c - 'A')`.  Thus, `@tD` is one UTF-8 byte
-(whatever that means); `@tN` is a kilobyte or less of UTF-8.
+single character A-Z `c` which indicates an atom of size less
+than or equal to `n` bits, where `n` is `1 << (c - 'A')`.
+Thus, `@tD` is one UTF-8 byte (whatever that means); `@tN`
+is a kilobyte or less of UTF-8.
 
 (It's easy to complain from a standards perspective that "UTF-8"
 defines a format for bytestreams, not bytes, and at a strict
