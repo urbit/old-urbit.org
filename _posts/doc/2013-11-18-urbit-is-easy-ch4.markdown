@@ -68,8 +68,8 @@ boilerplate, and write the rest of the file:
     [4 0 1]                           ::    bump /1
 
 (The pseudocode in the comments is not in any way described.  If
-you have trouble figuring it out, that's okay, but you may not be
-tall enough for the ride.)
+you have trouble figuring it out, that's okay, because it should
+make itself obvious by the end of the document.)
 
 Test this by running:
 
