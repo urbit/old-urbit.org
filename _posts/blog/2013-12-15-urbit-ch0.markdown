@@ -74,9 +74,9 @@ In the end, Urbit is a single global computer. Think "Cyberspace" from
 _Neuromancer_, or "The Metaverse" from _Snow Crash_. If you're really
 early, think of Haflinger's worm from _The Shockwave Rider_. But don't
 think of it as the Internet --- the internet is a single global
-_network_, and it only follows two rules: you are either a UNIX machine
-(or you're pretending to be one), and you speak TCP/IP. Anyone can see
-what you're saying, and most people can understand it. There are gaps in
+_network_, and it only follows two rules: you can act like a UNIX
+machine when prompted, and you speak TCP/IP. Anyone can see what
+you're saying, and most people can understand it. There are gaps in
 the network, too: _The Great Firewall Of China_, anyone? "Encryption",
 or as I might call it, _privacy_, is an afterthought, and people who
 Never Say Anything can read a lot of supposedly "private" things, just
