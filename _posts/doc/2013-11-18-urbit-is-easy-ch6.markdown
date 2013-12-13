@@ -204,6 +204,7 @@ limb - the name, with `^` prefixes.
 
 But we can also use axes directly from Hoon.  For instance:
 
+    ~waclux-tomwyc/try=> =test [cat=3 dog=[pig=9 rat=12]]
     ~waclux-tomwyc/try=> +3.test
     dog=[pig=9 rat=12]
     ~waclux-tomwyc/try=> dog.test
