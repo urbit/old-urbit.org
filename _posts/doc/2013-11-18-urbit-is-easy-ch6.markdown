@@ -54,8 +54,10 @@ designed to be as powerful as it has to be - and no more.)
 
 ###`%face`###
 
-A type is not just a set of nouns - it's also a semantics for
-that set.  In practice, this means a namespace.
+A type is not just a set of nouns - it's also a semantics for that
+set.  In practice, this means a namespace. To avoid using "semantics",
+you could say that we give the parts a meaning by putting a name on
+each part.
 
 Let's use this feature:
 
@@ -76,9 +78,11 @@ value, which is of course the same noun it always was:
 
 But how do we use this namespace?
 
-To play comfortably with names, it'll help if we introduce some
-Arvo shell syntax.  As in Unix, you can bind variables in the
-Arvo shell:
+To play comfortably with names, it'll help if we introduce some Arvo
+shell syntax.  As in Unix, you can bind variables in the Arvo shell.
+As in Windows, you can set variables from the command prompt. As in
+real life, you can take a yellow sticky note `=` from the Minnesota
+Mining and Manufacturing (MMM, or 3M) company and post it on a value:
 
     ~waclux-tomwyc/try=> =test 42
     ~waclux-tomwyc/try=> test
@@ -86,9 +90,9 @@ Arvo shell:
     ~waclux-tomwyc/try=> (add 17 test)
     59
 
-(`=variable expression` is *not* in any way Hoon syntax - any
-Hoon expression is a valid Arvo command, but not every Arvo
-command is a Hoon expression.)
+(`=name value` is *not* in any way Hoon syntax - any Hoon expression
+is a valid Arvo command, but not every Arvo command is a Hoon
+expression.)
 
 Let's put a `%face` inside this shell variable and try to use it:
 
@@ -99,7 +103,8 @@ Let's put a `%face` inside this shell variable and try to use it:
     42
 
 You probably expected it to be `test.foo`.  This disoriented
-feeling should vanish in a few minutes.  Let's go further:
+feeling should vanish in a few minutes. (It's backwards for a
+reason.) Let's go further:
 
     ~waclux-tomwyc/try=> =test foo=42
     ~waclux-tomwyc/try=> test
