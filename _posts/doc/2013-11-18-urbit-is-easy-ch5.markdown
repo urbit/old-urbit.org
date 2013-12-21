@@ -603,9 +603,6 @@ seconds from the start of the universe to the end.  2^127 is
     ~226.12.5..15.30.08
 
     ~waclux-tomwyc/try=> `@da`(dec (bex 127))
-    ~226.12.5..15.30.08
-
-    ~waclux-tomwyc/try=> `@da`(dec (bex 127))
     ~226.12.5..15.30.07..ffff.ffff.ffff.ffff
 
 The time of day and/or second fragment is optional:
