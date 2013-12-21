@@ -597,7 +597,7 @@ is `--`.  The sign bit is the low bit:
 
 Urbit dates represent 128-bit chronological time, with 2^64
 seconds from the start of the universe to the end.  2^127 is
-3:30:08 PM on 226 AD, for reasons not clear or relevant:
+3:30:08 PM on December 5, AD 226, for reasons not clear or relevant:
 
     ~waclux-tomwyc/try=> `@da`(bex 127)
     ~226.12.5..15.30.08
