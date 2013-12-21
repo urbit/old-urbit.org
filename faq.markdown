@@ -20,7 +20,7 @@ This occurs when something on ~doznec or ~zod has (essentially) gone awry, and a
 
 ###Why can't that stop happening?###
 
-It will, total continuity is expected on October 4th, 2013. 
+It will, the quest for total continuity was begun on October 4th, 2013. Continuity breaches are no longer a part of our ordinary development process and will only be performed for extraordinary reasons. Eventually, they will completely stop. 
 
 
 

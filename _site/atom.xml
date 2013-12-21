@@ -4,13 +4,63 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2013-12-09T21:15:10-08:00</updated>
+ <updated>2013-12-20T20:30:29-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
    <email>urbit@urbit.org</email>
  </author>
 
+ 
+ <entry>
+   <title>Urbit Is &#58; Chapter 0</title>
+   <link href="http://urbit.org/2013/12/15/urbit-ch0.html"/>
+   <updated>2013-12-15T16:20:00-08:00</updated>
+   <id>http://urbit.org/2013/12/15/urbit-ch0</id>
+   <content type="html">&lt;h1 id=&#39;introduction&#39;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Greetings from the off-world colonies! I&amp;#8217;m your guide and scribe, &lt;code&gt;atax1a&lt;/code&gt;, a character from a book that hasn&amp;#8217;t been written yet. Every great book has a Chapter 0, though, and you are reading mine.&lt;/p&gt;
+
+&lt;p&gt;I am often asked&amp;#8230;&lt;/p&gt;
+
+&lt;h1 id=&#39;what_is_urbit&#39;&gt;What Is Urbit?&lt;/h1&gt;
+
+&lt;p&gt;Urbit could be a way of sharing your data in a way that makes it live forever. Maybe it&amp;#8217;s a Facebook of memories, 140 Twitters of words, or an Instagram for when you&amp;#8217;re a grandpa. It could be anything - right now, it&amp;#8217;s a program, running on a network of computers. These computers are given the knowledge and ability to hear things, and act upon them.&lt;/p&gt;
+
+&lt;p&gt;Of course, Urbit is hard to define precisely, because it isn&amp;#8217;t finished yet. So in reality, Urbit is a labyrinth of code, written as a book, running on a virtual machine (possibly running on another virtual machine, and so on), built out of physical parts, and it&amp;#8217;s read and written by human mammals on a planet called Earth. A lot of Earthlings call it an art project, which isn&amp;#8217;t far off. Sometime it&amp;#8217;s Dada, other times it&amp;#8217;s baroque, but it always has a precise scientific backing in the form of &lt;em&gt;Nock&lt;/em&gt;, which are the fundamental axioms (rules) of the Urbiverse.&lt;/p&gt;
+
+&lt;p&gt;Urbit is also a programming language. We call that &lt;em&gt;Hoon&lt;/em&gt;, for reasons I&amp;#8217;m still not quite clear on. Most &amp;#8220;real&amp;#8221; programmers I know take one look at something like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|=(x=@ ?:((lth x 2) 1 (add $(x (dec x)) $(x (sub x 2)))))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and go pale around the gills. Myself, I grew up speaking a language called &lt;code&gt;perl&lt;/code&gt;, which has an even bigger love-affair with special characters, so reading this doesn&amp;#8217;t faze me.&lt;/p&gt;
+
+&lt;p&gt;An earlier version of Urbit (when Hoon was still called Watt) was rejected from a real scientific conference because the judges felt vaguely insulted by the nonstandard language. The Urbit you&amp;#8217;re looking at now has had a few years to cool down and mature, and right now it&amp;#8217;s so cool at the core that it&amp;#8217;s well below -400 Fahrenheit. Thankfully, there is an entire planet built up around its icy core, and on the surface of that planet, it&amp;#8217;s a balmy 25 degrees Celsius, and the water is like glass.&lt;/p&gt;
+
+&lt;p&gt;Urbit is currently only usable by a hyperliterate set of people &amp;#8212; it&amp;#8217;s immersed in the culture of the word, and it&amp;#8217;s struggling for a glimpse of air, the sound of music, and a taste of freedom. Really, though, it&amp;#8217;s easy to teach yourself, if you work through it with a dedicated mind. Having a friend along for the ride is definitely recommended. People with prior programming experience are welcome, but be warned: your existing biases and expectations are wrong. We&amp;#8217;ll try and be gentle about breaking them.&lt;/p&gt;
+
+&lt;h1 id=&#39;why_should_i_care_the_buried_lede&#39;&gt;Why should I care? (the buried lede)&lt;/h1&gt;
+
+&lt;p&gt;In the end, Urbit is a single global computer. Think &amp;#8220;Cyberspace&amp;#8221; from &lt;em&gt;Neuromancer&lt;/em&gt;, or &amp;#8220;The Metaverse&amp;#8221; from &lt;em&gt;Snow Crash&lt;/em&gt;. If you&amp;#8217;re really early, think of Haflinger&amp;#8217;s worm from &lt;em&gt;The Shockwave Rider&lt;/em&gt;. Urbit enables secure computing, in a way that nobody else can, because we are &amp;#8220;semantically isolated&amp;#8221; &amp;#8212; the meaning of every program is independent of the outside world.&lt;/p&gt;
+
+&lt;p&gt;Urbit works like an Internet should. If you know someone&amp;#8217;s address, you can send them a message. It will either reliably be delivered, or get rejected. Likewise with requesting something: if you ask for tomorrow&amp;#8217;s newspaper headline &lt;em&gt;today&lt;/em&gt;, Urbit will gladly give it to you&amp;#8230; tomorrow. Your ship just waits for it to come in, and when it does, everything proceeds like normal. &amp;#8220;HTTP 404 Not Found&amp;#8221;? What the &lt;code&gt;!^&amp;amp;#&lt;/code&gt; does THAT mean?&lt;/p&gt;
+
+&lt;h2 id=&#39;who_are_you_people&#39;&gt;Who ARE you people?&lt;/h2&gt;
+
+&lt;p&gt;We&amp;#8217;re dreamers, but the dream escaped and is slowly consuming the real world. We&amp;#8217;re programmers with a sense of humor and an overload of whimsy. At the end of the day, though, we&amp;#8217;re just people just like you. People who want to change the world. Everyone wants to change the world, right?&lt;/p&gt;
+
+&lt;h2 id=&#39;and_what_is_with_all_of_the_weird_words&#39;&gt;And what is with all of the weird words?&lt;/h2&gt;
+
+&lt;p&gt;Urbit is a piece of technology. Unfortunately, technology is hard to explain, and it gets harder when the words we use to explain it are misunderstood. If you&amp;#8217;re used to speaking about your computers in terms of a Unix (or Windows) workstation, it&amp;#8217;s a bit of a leap to think in terms of Urbit ships in a pier.&lt;/p&gt;
+
+&lt;p&gt;In short, we use weird words to force a change in how our technology is perceived. Without that, readers are likely to gloss over important details, thinking that they understand more than they really do. It&amp;#8217;s why we redefine everything, change the pronunciaton of the symbols you&amp;#8217;re used to, and even have our own number system. Count with me:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod ~nec ~bud ~wes ~sev ~per ~sut ~let ~ful ~pen&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#39;introductions&#39;&gt;Introductions&lt;/h1&gt;
+
+&lt;p&gt;You can get in touch with me on Urbit, of course. Join up to &lt;code&gt;:chat&lt;/code&gt; and use &lt;code&gt;=&lt;/code&gt; to see who&amp;#8217;s in the room. On the old internet, I go by many names, but on this one I try to stick with &lt;code&gt;~rigryx-sovrus&lt;/code&gt;.&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>Urbit Is Easy&#58; Chapter VI (Hoon Goes Wild)</title>
@@ -33,17 +83,17 @@
               [%fork p=type q=type]
           ==&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id28&#39;&gt;&lt;code&gt;%fork&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id268&#39;&gt;&lt;code&gt;%fork&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;%fork&lt;/code&gt; is simply a union type. A type is a set of nouns - &lt;code&gt;[%fork p q]&lt;/code&gt; means &amp;#8220;it could be a p, or maybe a q.&amp;#8221;&lt;/p&gt;
 
-&lt;p&gt;Any branching computation in which different branches produce different types will generate a fork. For example, without worrying too much about what this expression means:&lt;/p&gt;
+&lt;p&gt;Any branching computation in which different branches produce different types will generate a fork. For example, without worrying too much about the mysterious &lt;code&gt;?:&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; :type; ?:(&amp;amp; %foo [13 10])
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; :type; ?:(&amp;amp; %foo [13 10])
 %foo
 { %foo [@ud @ud] }
 
-~zod/try=&amp;gt; -:!&amp;gt;(?:(&amp;amp; %foo [13 10]))
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(?:(&amp;amp; %foo [13 10]))
 [ %fork
   p=[%cube p=7.303.014 q=[%atom p=%tas]]
   q=[%cell p=[%atom p=%ud] q=[%atom p=%ud]]
@@ -53,118 +103,124 @@
 
 &lt;p&gt;(Readers of a mathematical bent may ask: since Hoon has a union type, where is the intersection type? There is none. Hoon is not one of these languages whose goal is to be as mathematically powerful as possible. Since a programming language is a UI for programmers, and programmers are not mathematicians, Hoon is designed to be as powerful as it has to be - and no more.)&lt;/p&gt;
 
-&lt;h3 id=&#39;id29&#39;&gt;&lt;code&gt;%face&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id269&#39;&gt;&lt;code&gt;%face&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;A type is not just a set of nouns - it&amp;#8217;s also a semantics for that set. In practice, this means a namespace.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s use this feature:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; foo=42
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; foo=42
 foo=42
-~zod/try=&amp;gt; :type; foo=42
+~waclux-tomwyc/try=&amp;gt; :type; foo=42
 foo=42
 foo=@ud
-~zod/try=&amp;gt; -:!&amp;gt;(foo=42)
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(foo=42)
 [%face p=%foo q=[%atom p=%ud]]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;With &lt;code&gt;%face&lt;/code&gt;, we&amp;#8217;ve simply wrapped a label around another type. Note that this doesn&amp;#8217;t impair our ability to compute with the value, which is of course the same noun it always was:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; (add 17 foo=42)
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; (add 17 foo=42)
 59&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But how do we use this namespace?&lt;/p&gt;
 
 &lt;p&gt;To play comfortably with names, it&amp;#8217;ll help if we introduce some Arvo shell syntax. As in Unix, you can bind variables in the Arvo shell:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test 42
-~zod/try=&amp;gt; test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test 42
+~waclux-tomwyc/try=&amp;gt; test
 42
-~zod/try=&amp;gt; (add 17 test)
+~waclux-tomwyc/try=&amp;gt; (add 17 test)
 59&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;(&lt;code&gt;=variable expression&lt;/code&gt; is &lt;em&gt;not&lt;/em&gt; in any way Hoon syntax - any Hoon expression is a valid Arvo command, but not every Arvo command is a Hoon expression.)&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s put a &lt;code&gt;%face&lt;/code&gt; inside this shell variable and try to use it:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test foo=42
-~zod/try=&amp;gt; test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test foo=42
+~waclux-tomwyc/try=&amp;gt; test
 foo=42
-~zod/try=&amp;gt; foo.test
+~waclux-tomwyc/try=&amp;gt; foo.test
 42&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;You probably expected it to be &lt;code&gt;test.foo&lt;/code&gt;. This disoriented feeling should vanish in a few minutes. Let&amp;#8217;s go further:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test foo=42
-~zod/try=&amp;gt; test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test foo=42
+~waclux-tomwyc/try=&amp;gt; test
 foo=42
-~zod/try=&amp;gt; foo.test
+~waclux-tomwyc/try=&amp;gt; foo.test
 42
 
-~zod/try=&amp;gt; =test bar=foo=42
-~zod/try=&amp;gt; test
+~waclux-tomwyc/try=&amp;gt; =test bar=foo=42
+~waclux-tomwyc/try=&amp;gt; test
 bar=foo=42
-~zod/try=&amp;gt; -:!&amp;gt;(test)
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(test)
 [%face p=%bar q=[%face p=%foo q=[%atom p=%ud]]]
 
-~zod/try=&amp;gt; bar.test
+~waclux-tomwyc/try=&amp;gt; bar.test
 foo=42
-~zod/try=&amp;gt; -:!&amp;gt;(bar.test)
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(bar.test)
 [%face p=%foo q=[%atom p=%ud]]
 
-~zod/try=&amp;gt; foo.bar.test
+~waclux-tomwyc/try=&amp;gt; foo.bar.test
 42
-~zod/try=&amp;gt; -:!&amp;gt;(foo.bar.test)
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(foo.bar.test)
 [%atom p=%ud]
 
-~zod/try=&amp;gt; foo.test
+~waclux-tomwyc/try=&amp;gt; foo.test
 ! -find-limb.foo
 ! find-none
 ! exit&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;name_resolution&#39;&gt;Name resolution&lt;/h3&gt;
+&lt;h2 id=&#39;name_resolution&#39;&gt;Name resolution&lt;/h2&gt;
 
 &lt;p&gt;We&amp;#8217;re starting to learn a little about name resolution in Hoon. We&amp;#8217;ve seen that &lt;code&gt;foo.bar.test&lt;/code&gt; means &amp;#8220;foo in bar in test.&amp;#8221; We&amp;#8217;ve seen that faces have to be unwrapped a layer at a time, so &amp;#8220;foo in test&amp;#8221; is an error.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s try some cells:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test [cat=3 dog=4]
-~zod/try=&amp;gt; cat.test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test [cat=3 dog=4]
+~waclux-tomwyc/try=&amp;gt; cat.test
 3
-~zod/try=&amp;gt; =test [cat=3 dog=[pig=9 rat=12]]
-~zod/try=&amp;gt; rat.dog.test
+~waclux-tomwyc/try=&amp;gt; =test [cat=3 dog=[pig=9 rat=12]]
+~waclux-tomwyc/try=&amp;gt; rat.dog.test
 12&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We see that name resolution seeks into cells. This solves one of the problems we had when programming in Nock. For example:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test [cow=97 test]
-~zod/try=&amp;gt; cow.test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test [cow=97 test]
+~waclux-tomwyc/try=&amp;gt; cow.test
 97
-~zod/try=&amp;gt; rat.dog.test
+~waclux-tomwyc/try=&amp;gt; rat.dog.test
 12&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;By replacing &lt;code&gt;test&lt;/code&gt; with &lt;code&gt;[cow=97 test]&lt;/code&gt;, we&amp;#8217;ve done exactly the same thing as nock &lt;code&gt;8&lt;/code&gt;. (And we&amp;#8217;ll do more of it.) Note that because we didn&amp;#8217;t wrap a face around &lt;code&gt;test&lt;/code&gt;, we seek into it when looking for &lt;code&gt;dog&lt;/code&gt;, and &lt;code&gt;rat.dog.test&lt;/code&gt; works just the same way. Even though &lt;code&gt;dog&lt;/code&gt; is now at a different axis within &lt;code&gt;test&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Interesting cases tell us more about the search algorithm:&lt;/p&gt;
+&lt;p&gt;For reasons we&amp;#8217;ll see soon, we often want empty names. As we saw before, the syntax for an empty name is &lt;code&gt;$&lt;/code&gt;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test [cat=3 cat=[pig=9 rat=12]]
-~zod/try=&amp;gt; cat.test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test $=42
+~waclux-tomwyc/try=&amp;gt; $.test
+42&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And interesting cases tell us more about the search algorithm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test [cat=3 cat=[pig=9 rat=12]]
+~waclux-tomwyc/try=&amp;gt; cat.test
 3
-~zod/try=&amp;gt; pig.cat.test
+~waclux-tomwyc/try=&amp;gt; pig.cat.test
 ! -find-limb.pig
 ! find-none
 ! exit&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We see that when we search a cell, we search the head first. It is not in any way an error to have two faces with the same name. And in fact, we can even work with this constraint:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; ^cat.test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; ^cat.test
 [pig=9 rat=12]
-~zod/try=&amp;gt; pig.^cat.test
+~waclux-tomwyc/try=&amp;gt; pig.^cat.test
 9&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;A &lt;code&gt;limb&lt;/code&gt; to resolve is not just a name - it takes a prefix which is an arbitrary number of &lt;code&gt;^&lt;/code&gt; characters. This count is the number of name instances to ignore before matching. For instance:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; =test [cat=3 cat=[pig=9 rat=12] cat=42]
-~zod/try=&amp;gt; ^^cat.test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test [cat=3 cat=[pig=9 rat=12] cat=42]
+~waclux-tomwyc/try=&amp;gt; ^^cat.test
 42&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We&amp;#8217;re actually ready to describe the full resolution model&amp;#8230;&lt;/p&gt;
@@ -175,14 +231,128 @@ foo=42
 
 &lt;p&gt;But we can also use axes directly from Hoon. For instance:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; +3.test
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test [cat=3 dog=[pig=9 rat=12]]
+~waclux-tomwyc/try=&amp;gt; +3.test
 dog=[pig=9 rat=12]
-~zod/try=&amp;gt; dog.test
+~waclux-tomwyc/try=&amp;gt; dog.test
 [pig=9 rat=12]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Note the difference between these two&amp;#8230;&lt;/p&gt;
+&lt;p&gt;Note the difference between these two. The noun is the same - they are both &lt;code&gt;[9 12]&lt;/code&gt;. But the type is different:&lt;/p&gt;
 
-&lt;p&gt;Lorem ipsum!&lt;/p&gt;</content>
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(+3.test)
+[ %face
+  p=%dog
+    q
+  [ %cell
+    p=[%face p=%pig q=[%atom p=%ud]]
+    q=[%face p=%rat q=[%atom p=%ud]]
+  ]
+]
+
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(dog.test)
+[ %cell
+  p=[%face p=%pig q=[%atom p=%ud]]
+  q=[%face p=%rat q=[%atom p=%ud]]
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The axis gets us to the %dog face; the name actually removes it. So we can write&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; pig.dog.+3.test
+9
+~waclux-tomwyc/try=&amp;gt; pig.dog.test
+9
+~waclux-tomwyc/try=&amp;gt; pig.+3.test
+! -find-limb.pig
+! find-none
+! exit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Perhaps this is obvious. Perhaps it&amp;#8217;s not.&lt;/p&gt;
+
+&lt;h3 id=&#39;axis_syntax&#39;&gt;Axis syntax&lt;/h3&gt;
+
+&lt;p&gt;This may seem like overkill. Perhaps it &lt;em&gt;is&lt;/em&gt; overkill. But Hoon has five syntaxes for an axis limb.&lt;/p&gt;
+
+&lt;p&gt;The first we&amp;#8217;ve seen already: the axis itself as a decimal, eg, &lt;code&gt;+3&lt;/code&gt;. The second is a simple dot, meaning &lt;code&gt;+1&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test 42
+~waclux-tomwyc/try=&amp;gt; ..test
+42&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yes, that&amp;#8217;s the limb &lt;code&gt;.&lt;/code&gt;, as applied (with &lt;code&gt;.&lt;/code&gt;), to &lt;code&gt;test&lt;/code&gt;. Have we gone crazy? Perhaps - but in fact, this one gets used a lot.&lt;/p&gt;
+
+&lt;p&gt;Then we have an list-indexing syntax for constant offsets in lists that (as is the Hoon convention) flow to the right. Indices start at 1. &lt;code&gt;&amp;amp;&lt;/code&gt; produces the list element, &lt;code&gt;|&lt;/code&gt; produces the suffix:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test [1 2 3 4 ~]
+~waclux-tomwyc/try=&amp;gt; &amp;amp;2.test
+2
+~waclux-tomwyc/try=&amp;gt; |2.test
+[3 4 ~]
+~waclux-tomwyc/try=&amp;gt; &amp;amp;1.test
+1
+~waclux-tomwyc/try=&amp;gt; |1.test
+[2 3 4 ~]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This mechanism - which essentially just converts the list index into an axis for &lt;code&gt;+&lt;/code&gt; - is not used much, but nice when needed. It applies only to constant indices, though, which is odd. (For non-constant indices, use the Hoon function &lt;code&gt;snag&lt;/code&gt;.)&lt;/p&gt;
+
+&lt;p&gt;Finally, we have a graphical binary syntax which reads from left to right, alternating the pairs &lt;code&gt;-&lt;/code&gt;/&lt;code&gt;+&lt;/code&gt; and &lt;code&gt;&amp;lt;&lt;/code&gt;/&lt;code&gt;&amp;gt;&lt;/code&gt; to mean head and tail respectively. For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test [[[8 9] [10 11]] [12 13] 14 30 31]
+~waclux-tomwyc/try=&amp;gt; -.test
+[[8 9] 10 11]
+~waclux-tomwyc/try=&amp;gt; +.test
+[[12 13] 14 30 31]
+~waclux-tomwyc/try=&amp;gt; -&amp;lt;.test
+[8 9]
+~waclux-tomwyc/try=&amp;gt; +&amp;gt;.test
+[14 30 31]
+~waclux-tomwyc/try=&amp;gt; +&amp;gt;-.test
+14
+~waclux-tomwyc/try=&amp;gt; -&amp;gt;-.test
+10
+~waclux-tomwyc/try=&amp;gt; +&amp;gt;+&amp;lt;.test
+30&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The alternating glyphs create pleasant graphical patterns which are moderately memorable when used in moderation. Of course, in general, when we have names we should use them.&lt;/p&gt;
+
+&lt;h3 id=&#39;resolving_forks&#39;&gt;Resolving forks&lt;/h3&gt;
+
+&lt;p&gt;What happens when we resolve a name in a fork? Yikes. The general principle is that name resolution across a fork works if, and only if, the names resolve to the same axis on both branches.&lt;/p&gt;
+
+&lt;p&gt;For instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test ?:(&amp;amp; [pig=3 dog=4] [pig=%pig dog=%dog cat=%cat])
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(test)
+[ %fork
+    p
+  [ %cell
+    p=[%face p=%pig q=[%atom p=%ud]]
+    q=[%face p=%dog q=[%atom p=%ud]]
+  ]
+    q
+  [ %cell
+    p=[%face p=%pig q=[%cube p=6.777.200 q=[%atom p=%tas]]]
+      q
+    [ %cell
+      p=[%face p=%dog q=[%cube p=6.778.724 q=[%atom p=%tas]]]
+      q=[%face p=%cat q=[%cube p=7.627.107 q=[%atom p=%tas]]]
+    ]
+  ]
+]
+~waclux-tomwyc/try=&amp;gt; pig.test
+3
+~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(pig.test)
+[%fork p=[%atom p=%ud] q=[%cube p=6.777.200 q=[%atom p=%tas]]]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And yet:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; dog.test
+! -find-limb.dog
+! find-fork
+! exit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Why? Because &lt;code&gt;dog&lt;/code&gt; is at &lt;code&gt;+3&lt;/code&gt; on one side of the fork, &lt;code&gt;+6&lt;/code&gt; on the other.&lt;/p&gt;
+
+&lt;p&gt;Frighteningly enough, we now have all the tools we need to really start programming in Hoon&amp;#8230;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -368,7 +538,7 @@ formula)&lt;/code&gt; is a product correctly described by &lt;code&gt;product-ty
 
 &lt;p&gt;Besides these prefixes, which indicate the rendering and/or meaning of atoms, the odor system has another orthogonal mechanism to restrict the size of atoms. Like the prefix, this mechanism is weak - it is not enforced and trivially evaded.&lt;/p&gt;
 
-&lt;p&gt;An odor span contains two parts, both optional: a lowercase prefix and an uppercase suffix. The suffix, if present, is a single character A-Z &lt;code&gt;c&lt;/code&gt; which indicates an atom less than &lt;code&gt;n&lt;/code&gt;, where &lt;code&gt;n&lt;/code&gt; is &lt;code&gt;(1 + c - &amp;#39;A&amp;#39;)&lt;/code&gt;. Thus, &lt;code&gt;@tD&lt;/code&gt; is one UTF-8 byte (whatever that means); &lt;code&gt;@tN&lt;/code&gt; is a kilobyte or less of UTF-8.&lt;/p&gt;
+&lt;p&gt;An odor span contains two parts, both optional: a lowercase prefix and an uppercase suffix. The suffix, if present, is a single character A-Z &lt;code&gt;c&lt;/code&gt; which indicates an atom of size less than or equal to &lt;code&gt;n&lt;/code&gt; bits, where &lt;code&gt;n&lt;/code&gt; is &lt;code&gt;1 &amp;lt;&amp;lt; (c - &amp;#39;A&amp;#39;)&lt;/code&gt;. Thus, &lt;code&gt;@tD&lt;/code&gt; is one UTF-8 byte (whatever that means); &lt;code&gt;@tN&lt;/code&gt; is a kilobyte or less of UTF-8.&lt;/p&gt;
 
 &lt;p&gt;(It&amp;#8217;s easy to complain from a standards perspective that &amp;#8220;UTF-8&amp;#8221; defines a format for bytestreams, not bytes, and at a strict level it means no more to say &amp;#8220;one UTF-8 byte&amp;#8221; than to say, say, &amp;#8220;one GIF byte.&amp;#8221; But odors are not a strict type system. It is possible for a byte to &lt;em&gt;smell&lt;/em&gt; of UTF-8 - or even of GIF.)&lt;/p&gt;
 
@@ -983,7 +1153,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;[4 0 1]                           ::    bump /1&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;(The pseudocode in the comments is not in any way described. If you have trouble figuring it out, that&amp;#8217;s okay, but you may not be tall enough for the ride.)&lt;/p&gt;
+&lt;p&gt;(The pseudocode in the comments is not in any way described. If you have trouble figuring it out, that&amp;#8217;s okay, because it should make itself obvious by the end of the document.)&lt;/p&gt;
 
 &lt;p&gt;Test this by running:&lt;/p&gt;
 
@@ -1055,7 +1225,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Okay, at least it increments again. (Constantly readjusting tree addresses by hand is one good reason to use a higher-level language, like Hoon.) But now, perhaps, we can build a decrement that works for at least one input value - &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Obviously at some point we&amp;#8217;ll have to build a loop. But for now, all we need is an if statement that compares the incremented counter to the original argument. We know the original argument is at &lt;code&gt;/3&lt;/code&gt;, and the counter is at &lt;code&gt;/2&lt;/code&gt;; we use the if operator, &lt;code&gt;6&lt;/code&gt;, and the equality test operator &lt;code&gt;5&lt;/code&gt;. If the comparison fails, we shrug our shoulders and keep incrementing the argument.&lt;/p&gt;
+&lt;p&gt;Obviously at some point we&amp;#8217;ll have to build a loop. But for now, all we need is an &lt;code&gt;if&lt;/code&gt; statement that compares the incremented counter to the original argument. We know the original argument is at &lt;code&gt;/3&lt;/code&gt;, and the counter is at &lt;code&gt;/2&lt;/code&gt;; we use the if operator, &lt;code&gt;6&lt;/code&gt;, and the equality test operator &lt;code&gt;5&lt;/code&gt;. If the comparison fails, we shrug our shoulders and keep incrementing the argument.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[ 8                               ::  push
   [1 0]                           ::   just 0
@@ -1402,9 +1572,9 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Computing axes is slightly arduous (which is why we use Hoon, generally). We are torturing ourselves by using Nock, but we might as well use Hoon to calculate axes:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; (peg 3 3)
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; (peg 3 3)
 7
-~zod/try=&amp;gt; (peg 3 5)
+~waclux-tomwyc/try=&amp;gt; (peg 3 5)
 13&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Ie, &lt;code&gt;(peg a b)&lt;/code&gt; is &lt;code&gt;/b&lt;/code&gt; within &lt;code&gt;/a&lt;/code&gt;. Writing Nock without this would be pretty tough&amp;#8230;&lt;/p&gt;
@@ -1492,7 +1662,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Let&amp;#8217;s run through them one by one.&lt;/p&gt;
 
-&lt;h3 id=&#39;id21&#39;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id261&#39;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;0&lt;/code&gt; just applies the &lt;code&gt;/&lt;/code&gt; function:&lt;/p&gt;
 
@@ -1504,13 +1674,13 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;is &lt;code&gt;/[3 19 42]&lt;/code&gt;, which is &lt;code&gt;42&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#39;id22&#39;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id262&#39;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;1&lt;/code&gt; just ignores its subject and produces its operand:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;26 ::    *[a 1 b]         b&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id23&#39;&gt;&lt;code&gt;2&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id263&#39;&gt;&lt;code&gt;2&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;2&lt;/code&gt; is the only interesting basic operator:&lt;/p&gt;
 
@@ -1550,7 +1720,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;The answer is that &lt;code&gt;10&lt;/code&gt; is a hint to the interpreter. It&amp;#8217;s true that &lt;code&gt;[10 b c]&lt;/code&gt; has to be &lt;em&gt;semantically&lt;/em&gt; equivalent to &lt;code&gt;c&lt;/code&gt;, but it doesn&amp;#8217;t have to be &lt;em&gt;practically&lt;/em&gt; equivalent. Since whatever information is in &lt;code&gt;b&lt;/code&gt; is discarded, a practical interpreter is free to ignore it, or to use it in any way that does not affect the results of the computation.&lt;/p&gt;
 
-&lt;h3 id=&#39;id24&#39;&gt;&lt;code&gt;7&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id264&#39;&gt;&lt;code&gt;7&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;7&lt;/code&gt; is our next easiest macro:&lt;/p&gt;
 
@@ -1576,7 +1746,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;pre&gt;&lt;code&gt;33r::    *[a 7 b c]       *[*[a b] c]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id25&#39;&gt;&lt;code&gt;8&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id265&#39;&gt;&lt;code&gt;8&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;8&lt;/code&gt; looks slightly horrible but you shouldn&amp;#8217;t fear it at all:&lt;/p&gt;
 
@@ -1650,7 +1820,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;Effectively, this mechanism lets us feed both static and dynamic information into the interpreter&amp;#8217;s hint mechanism.&lt;/p&gt;
 
-&lt;h3 id=&#39;id26&#39;&gt;&lt;code&gt;6&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id266&#39;&gt;&lt;code&gt;6&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;6&lt;/code&gt; certainly looks intimidating:&lt;/p&gt;
 
@@ -1669,7 +1839,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;This excuse for an explanation may not satisfy everyone. A good exercise is to check that &lt;code&gt;6&lt;/code&gt; as defined &lt;em&gt;actually&lt;/em&gt; has these properties - and can&amp;#8217;t be simplified.&lt;/p&gt;
 
-&lt;h3 id=&#39;id27&#39;&gt;&lt;code&gt;9&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id267&#39;&gt;&lt;code&gt;9&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;9&lt;/code&gt; is an audacious mystery:&lt;/p&gt;
 
@@ -1923,7 +2093,8 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 20 ::    /[(a + a + 1) b] /[3 /[a b]]
 21 ::    /a               /a&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This looks way more complicated than it is. Essentially, we define a noun as a binary tree and assign an address, or &lt;em&gt;axis&lt;/em&gt;, to every node in the tree. The root of the tree is &lt;code&gt;/1&lt;/code&gt;. The left child of every node at &lt;code&gt;/a&lt;/code&gt; is &lt;code&gt;/2a&lt;/code&gt;; the right child is &lt;code&gt;/2a+1&lt;/code&gt;. (Writing &lt;code&gt;(a + a)&lt;/code&gt; is just a clever way to write &lt;code&gt;2a&lt;/code&gt;, while minimizing the set of pseudocode forms.)&lt;/p&gt;
+&lt;p&gt;This looks way more complicated than it is. Essentially, we define a noun as a binary tree - where each node branches to a left and right child - and assign an address, or &lt;em&gt;axis&lt;/em&gt;, to every element in the tree. The root of the tree is &lt;code&gt;/1&lt;/code&gt;, or &amp;#8220;slot one&amp;#8221;. The left child of every node at &lt;code&gt;/a&lt;/code&gt; is &lt;code&gt;/2a&lt;/code&gt;; the right child is &lt;code&gt;/2a+1&lt;/code&gt;. (Writing &lt;code&gt;(a
++ a)&lt;/code&gt; is just a clever way to write &lt;code&gt;2*a&lt;/code&gt;, while minimizing the set of pseudocode forms.)&lt;/p&gt;
 
 &lt;p&gt;For a complete tree of depth 3, the axis address space looks like this:&lt;/p&gt;
 
@@ -1949,7 +2120,7 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 &lt;pre&gt;&lt;code&gt;/[6 [97 2] [1 42 0]]      1
 /[7 [97 2] [1 42 0]]      [42 0]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;If this seems like rocket science, the problem may be that you&amp;#8217;re too smart to understand Nock. Drink some lead.&lt;/p&gt;
+&lt;p&gt;If this seems like rocket science, the problem may be that you&amp;#8217;re too smart to understand Nock. Forget everything you learned in school and start over from line 1.&lt;/p&gt;
 
 &lt;p&gt;It&amp;#8217;s also fun to build nouns in which every atom is its own axis:&lt;/p&gt;
 
