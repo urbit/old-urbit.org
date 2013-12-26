@@ -5,6 +5,22 @@ title: Documentation
 
 <div id="home">
 <iframe src="//player.vimeo.com/video/75312418" width="640" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p></p>
+  
+  <h2>Last Continuity Breach: December 20th, 2013 </h2>
+  <hr/>
+  <p> A continuity breach occurs when the entire Urbit network gets recreated (usually for development reasons). All ships and pier prior to the breach will no longer work with the new network. </p>
+  <p> 
+What does this mean for the Urbit user? If you built your ships and piers before December 20th, you need to run the following: </p>
+
+<ol>
+  <li> git pull origin master </li>
+  <li> make clean; make </li>
+  <li> rm -rf $URBIT_HOME/$ships (except for /zod and urbit.pill) </li>
+  <li> rm -rf $piers </li>
+  <li> vere -c $mypier and create your submarine/destroyer </li>
+  <li> :chat to chat </li>
+</ol>
+  <hr/>
   <h2><i class="icon-bookmark"></i> Documentation</h2>
   <ul id="blog-posts" class="posts">
 {% for post in site.posts reversed %}

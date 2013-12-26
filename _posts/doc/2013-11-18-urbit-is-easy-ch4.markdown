@@ -68,8 +68,8 @@ boilerplate, and write the rest of the file:
     [4 0 1]                           ::    bump /1
 
 (The pseudocode in the comments is not in any way described.  If
-you have trouble figuring it out, that's okay, but you may not be
-tall enough for the ride.)
+you have trouble figuring it out, that's okay, because it should
+make itself obvious by the end of the document.)
 
 Test this by running:
 
@@ -166,7 +166,7 @@ language, like Hoon.) But now, perhaps, we can build a decrement
 that works for at least one input value - `1`.
 
 Obviously at some point we'll have to build a loop.  But for now,
-all we need is an if statement that compares the incremented
+all we need is an `if` statement that compares the incremented
 counter to the original argument.  We know the original argument
 is at `/3`, and the counter is at `/2`; we use the if operator,
 `6`, and the equality test operator `5`.  If the comparison
@@ -612,9 +612,9 @@ Computing axes is slightly arduous (which is why we use Hoon,
 generally).  We are torturing ourselves by using Nock, but we
 might as well use Hoon to calculate axes:
 
-    ~zod/try=> (peg 3 3)
+    ~waclux-tomwyc/try=> (peg 3 3)
     7
-    ~zod/try=> (peg 3 5)
+    ~waclux-tomwyc/try=> (peg 3 5)
     13
 
 Ie, `(peg a b)` is `/b` within `/a`.  Writing Nock without this

@@ -40,7 +40,7 @@ try a VM (eg, VirtualBox).
      Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
      will install it.
 
-     And follow up with `sudo brew install gmp libsigsegv openssl`
+     And follow up with `brew install gmp libsigsegv openssl`
 
      This will ask you for the root password, which ideally you know.
 
