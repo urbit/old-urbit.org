@@ -44,12 +44,12 @@ just a Nock atom, which is just a number.  So without a static
 type, Hoon doesn't even know how to print an atom properly.
 
 When we parse a Hoon expression, file, etc, we produce what we
-call a `hoon`, which (if you know the CS jargon) is an AST.  A
-hoon is a noun that's converted into a Nock formula, with
+call a `twig`, which (if you know the CS jargon) is an AST.  A
+twig is a noun that's converted into a Nock formula, with
 the assistance of a type which describes the subject of the
 formula:
 
-    [subject-type hoon] => formula
+    [subject-type twig] => formula
 
 But actually this isn't quite right, because Hoon does something
 called "type inference."  When we have a type that describes the
@@ -57,16 +57,16 @@ subject for the formula we're trying to generate, as we generate
 that formula we want to also generate a type for the product of
 that formula on that subject.  So our compiler computes:
 
-    [subject-type hoon] => [product-type formula]
+    [subject-type twig] => [product-type formula]
 
 As long as `subject-type` is a correct description of some
-subject, you can take any `hoon` and compile it against
+subject, you can take any twig and compile it against
 `subject-type`, producing a `formula` such that `*(subject
 formula)` is a product correctly described by `product-type`.
 
 Actually, this works well enough that in Hoon there is no direct
 syntax for defining or declaring a type.  There is only a syntax
-for constructing hoons.  Types are always produced by inference.
+for constructing twigs.  Types are always produced by inference.
 
 ##Printing types##
 
@@ -99,8 +99,14 @@ just a string.
 
 In this case, looking directly at the type noun is preferable.
 But for a core, the type actually contains the entire codebase.
-It is no problem to compute with this, but we can't look at it
-without scrolling more or less to infinity.
+For example, if you type
+
+    ~waclux-tomwyc/try=> -:!>("string")
+
+you'll have to press ^C to rescue yourself, or wait until you've
+printed out more or less the entire Arvo kernel.  Black magic is
+evil magic - it must exact its evil price.  But someday, you'll 
+be more the sorcerer and less his apprentice.
 
 ##Atom examples##
 

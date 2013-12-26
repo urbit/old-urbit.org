@@ -388,7 +388,7 @@ Let's fit our decrement into this framework:
                 [ 6                         ::        pick
                   [5 [4 0 6] [0 30]]        ::         same /6 /30
                   [0 6]                     ::         /6
-                    [9 2 [0 2] [4 0 6] [0 7]] ::         call.2 /2 (bump /6) /11
+                  [9 2 [0 2] [4 0 6] [0 7]] ::         call.2 /2 (bump /6) /11
                 ]                           ::        |
               ]                             ::       |
               [9 2 0 1]                     ::       call.2 /1
