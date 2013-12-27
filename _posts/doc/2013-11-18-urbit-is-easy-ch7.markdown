@@ -250,8 +250,3 @@ Like most natural languages, Hoon has both regular and irregular
 forms - for both twigs and tiles. 
 
 [...]
-The regular 
-
-Wing reduction:
-
-
