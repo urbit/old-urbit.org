@@ -32,14 +32,14 @@ This clearly it is not for the little boys and girls.  But wait -
 is Hoon any less formidable?  The Hoon equivalent:
 
           |=  a=@
-          =+  b=@
+          =|  b=@
           |-  ?:  =(a +(b))
                 b
               $(b +(b))
 
 Whaa?  We can also write the exact same decrement as:
 
-    |=(a=@ =+(b=@ |-(?:(=(a +(b)) b $(b +(b))))))
+    |=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b))))))
 
 for instance:
   
