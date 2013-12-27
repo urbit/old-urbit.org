@@ -43,12 +43,12 @@ Whaa?  We can also write the exact same decrement as:
 
 for instance:
   
-    ~zod/try=> (|=(a=@ =+(b=@ |-(?:(=(a +(b)) b $(b +(b)))))) 42)
+    ~zod/try=> (|=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))) 42)
     41
 
 or even more cryptically, 
 
-    ~zod/try=> %.(42 |=(a=@ =+(b=@ |-(?:(=(a +(b)) b $(b +(b)))))))
+    ~zod/try=> %.(42 |=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))))
     41
 
 And I showed this to my daughter, who ran away in tears.  Dear
