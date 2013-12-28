@@ -32,7 +32,7 @@ This clearly it is not for the little boys and girls.  But wait -
 is Hoon any less formidable?  The Hoon equivalent:
 
           |=  a=@
-          =+  b=@
+          =|  b=@
           |-  ?:  =(a +(b))
                 b
               $(b +(b))
@@ -65,7 +65,7 @@ Our mutual hope is that by the time you do know Hoon, you will
 simply be able to *see* a twig like
 
           |=  a=@
-          =+  b=@
+          =|  b=@
           |-  ?:  =(a +(b))
                 b
               $(b +(b))
@@ -129,13 +129,13 @@ humans, benign indolence soon rounds off any rough edges.
 Let's look at that decrement gate again:
 
           |=  a=@
-          =+  b=@
+          =|  b=@
           |-  ?:  =(a +(b))
                 b
               $(b +(b))
 
 If we had to read this twig, omitting the spaces (which only a
-real purist would pronounce), we'd say: "bartis a is pat barlus b
+real purist would pronounce), we'd say: "bartis a is pat tisbar b
 is pat barhep wutcol tispel a luspel b perper b bucpel b luspel b
 perper."  The authorities would then arrive, and drag us out in a
 big net. Definitely don't do this at the airport.
