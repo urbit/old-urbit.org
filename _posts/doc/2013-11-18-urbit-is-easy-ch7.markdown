@@ -250,3 +250,5 @@ Like most natural languages, Hoon has both regular and irregular
 forms - for both twigs and tiles. 
 
 [...]
+
+[**Prev**: Hoon Goes Wild](urbit-is-easy-ch6.html)

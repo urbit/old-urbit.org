@@ -5,6 +5,7 @@ title: Urbit Is Easy&#58; Chapter VI (Hoon Goes Wild)
 ---
 
 [**Prev**: Hoon Attacks](urbit-is-easy-ch5.html)
+[**Next**: Hoon Bites Back](urbit-is-easy-ch7.html)
 
 *"What good is a phone call if you're unable to speak?"*
 **(The Matrix)**
@@ -350,3 +351,6 @@ the other.
 
 Frighteningly enough, we now have all the tools we need to really
 start programming in Hoon...
+
+[**Prev**: Hoon Attacks](urbit-is-easy-ch5.html)
+[**Next**: Hoon Bites Back](urbit-is-easy-ch7.html)
