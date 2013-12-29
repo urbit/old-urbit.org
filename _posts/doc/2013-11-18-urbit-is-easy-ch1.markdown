@@ -3,7 +3,6 @@ layout: post
 category: doc
 title: Urbit Is Easy&#58; Chapter I (Setup)
 ---
-[**Prev**: Setup](urbit-is-easy-ch1.html)
 [**Next**: Intro To Nock](urbit-is-easy-ch2.html)
 
 

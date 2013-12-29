@@ -5,6 +5,7 @@ title: Urbit is Easy&#58; Chapter V (Hoon Attacks)
 ---
 
 [**Prev**: Using Nock](urbit-is-easy-ch4.html)
+[**Next**: Hoon Goes Wild](urbit-is-easy-ch6.html)
 
 *"Like all men in Babylon, I have been proconsul; like all, a slave."*
 **(The Lottery in Babylon)**
@@ -961,3 +962,4 @@ And they can be joined across space or lines with a `.`:
     "helloworld"
 
 [**Prev**: Using Nock](urbit-is-easy-ch4.html)
+[**Next**: Hoon Goes Wild](urbit-is-easy-ch6.html)

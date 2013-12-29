@@ -3,7 +3,7 @@ layout: post
 category: doc
 title: Urbit is Easy&#58; Chapter III (Nock Is Easy)
 ---
-[**Prev**: Intro To Nock](urbit-is-easy-ch1.html)
+[**Prev**: Intro To Nock](urbit-is-easy-ch2.html)
 [**Next**: Using Nock](urbit-is-easy-ch4.html)
 
 *"You get used to it. I don’t even see the code. All I see is blonde, brunette, redhead."*
@@ -342,5 +342,5 @@ So we have:
 If you have a really fine instinctive sense of Nock, you might
 understand what `9` is for.  Otherwise, don't worry for now.
 
-[**Prev**: Intro To Nock](urbit-is-easy-ch1.html)
+[**Prev**: Intro To Nock](urbit-is-easy-ch2.html)
 [**Next**: Using Nock](urbit-is-easy-ch4.html)
