@@ -83,7 +83,7 @@ implies testing hypotheses whereas we generally just wing it.)
 
 Think of learning Hoon as learning to program all over again.  If
 nothing else, it's a sort of eccentric adventure sport.  Or even
-a mystery - can an language be esoteric, yet useful?  Click here
+a mystery - can a language be esoteric, yet useful?  Click here
 to find out more.
 
 ###Glyphs###
@@ -187,7 +187,7 @@ never contain twigs.  Except that both are ways of producing a
 Nock formula, the semantics and purpose of a twig and a tile are 
 more or less orthogonal.  Just to warn ya.
 
-In general, when you see a hoon in `$`, like `$:`, you are
+In general, when you see a hoon in `$`, like `$:`, you area
 looking at a tile.  Unless it's `$,` `$_`, `$@`, `$*` or `$!` -
 that is, `buccom`, `buccab`, `bucpat`, `buctar` or `buczap` -
 in which case you are looking at a twig wrapped around a tile.
