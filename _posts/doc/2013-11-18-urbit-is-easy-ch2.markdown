@@ -21,7 +21,7 @@ way to start understanding Urbit from the ground up.
 Just as Unix runs C programs by compiling them to assembler,
 Urbit runs Hoon programs by compiling them to Nock.  You could
 try to learn Hoon without learning Nock.  But just as C is a thin
-wrapper over the the physical CPU, Hoon is a thin wrapper over
+wrapper over the physical CPU, Hoon is a thin wrapper over
 the Nock virtual machine.  It's a tall stack made of thin layers,
 which is much easier to learn a layer at a time.
 
