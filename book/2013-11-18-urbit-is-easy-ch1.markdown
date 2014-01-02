@@ -35,10 +35,10 @@ Currently we support OSX, Linux (not all distributions have been tested) and BSD
 2. Install dependencies
    - Do you have Homebrew?  Type `brew`.  If it does something, you have Homebrew. 
      
-     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"` 
-     will install it.
+     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`
+     and follow all the instructions.
 
-     And follow up with `sudo brew install gmp libsigsegv openssl`
+     Follow that up with `sudo brew install gmp libsigsegv openssl`
 
      This will ask you for the root password, which ideally you know.
 
