@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2013-12-20T20:30:29-08:00</updated>
+ <updated>2014-01-07T17:33:38-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -13,10 +13,902 @@
 
  
  <entry>
+   <title>Urbit chat~2014.1.6</title>
+   <link href="http://urbit.org/2014/01/07/sedchat.html"/>
+   <updated>2014-01-07T00:00:00-08:00</updated>
+   <id>http://urbit.org/2014/01/07/sedchat</id>
+   <content type="html">&lt;p&gt;Urbit works now. For some values of &amp;#8220;work.&amp;#8221; To be exact, it&amp;#8217;s a pretty decent replacement for IRC. And since it&amp;#8217;s a pretty decent replacement for IRC, and bored geeks are what they are, we use it as a replacement for IRC.&lt;/p&gt;
+
+&lt;p&gt;Unlike IRC, the Urbit chat server (:room) logs everything. We thought we&amp;#8217;d turn this vice into a virtue and start posting our daily chat logs.&lt;/p&gt;
+
+&lt;p&gt;Without further ado: Urbit, &lt;code&gt;~2014.1.6&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~tasfyn-partyv [Curtis Yarvin] is in the building
+~tasfyn-partyv [Curtis Yarvin] is happy to announce that (his private branch
+                of) Hoon is now frozen
+~ligfed-famsef &amp;quot;γίδα βραστή&amp;quot;: hooray!
+~ligfed-famsef &amp;quot;γίδα βραστή&amp;quot;: what temperature?
+~tasfyn-partyv [Curtis Yarvin]: 164 I think
+~tasfyn-partyv [Curtis Yarvin]: still working on the version numbers
+~tasfyn-partyv [Curtis Yarvin]: we will then have, sigh, another continuity
+                breach...
+~sivbud-barnel [Bruce Schwartz] is in the building
+~nibweg-sivnex is in the building
+~tasfyn-partyv [Curtis Yarvin]: sivbud, is this hoon stuff making more sense
+                to you?
+~patsec-rigreb [Benedikt Gerhard (Hanfer) Kleiner] is in the building
+~tasfyn-partyv [Curtis Yarvin]: welcome patsec-rigreb
+~patsec-rigreb [Benedikt Gerhard (Hanfer) Kleiner]: Hi
+~tasfyn-partyv [Curtis Yarvin]: we will have a continuity breach (reboot the
+                world) soon, don&amp;#39;t worry it&amp;#39;s not something we do often :-)
+~tasfyn-partyv [Curtis Yarvin] strongly recommends working through the Nock
+                doc for all new users
+~tasfyn-partyv [Curtis Yarvin]: and old users as well
+~patsec-rigreb [Benedikt Gerhard (Hanfer) Kleiner]: i just started .... im
+                about to read the nock part...
+~ligfed-famsef &amp;quot;γίδα βραστή&amp;quot;: if I were writing Nock doc for five-year-olds,
+                it would have a lot of explosions
+~ligfed-famsef &amp;quot;γίδα βραστή&amp;quot;: somehow it just feels like the formula is...
+                *detonating* the subject
+~tasfyn-partyv [Curtis Yarvin]: ideally they would be animated with lots of
+                noise as well
+~tasfyn-partyv [Curtis Yarvin] has a five-year-old girl for which this
+                treatment may not be ideal
+~tasfyn-partyv [Curtis Yarvin] needs to find a way to make the subject be a
+                princess.
+~ligfed-famsef &amp;quot;γίδα βραστή&amp;quot;: we&amp;#39;ll have an explosions version and a
+                princesses version
+~ligfed-famsef &amp;quot;γίδα βραστή&amp;quot;: and an explosions-and-princesses version for
+                %punks
+~tasfyn-partyv [Curtis Yarvin] &amp;#39;s daughter might go for the
+                explosions-and-princesses
+~patsec-rigreb [Benedikt Gerhard (Hanfer) Kleiner]: i might go for the
+                explosions-and-princesses version :D
+~tasfyn-partyv [Curtis Yarvin]: no princesses can explode, that would scare
+                her
+~tasfyn-partyv [Curtis Yarvin]: they would have to be very sparkly
+                explosions...
+~malmec-libsev [Allen (dash) Short]: hello martians
+~tasfyn-partyv [Curtis Yarvin]: good morning malmec-libsev
+~tasfyn-partyv [Curtis Yarvin]: are you surprised that this just works?
+~nibweg-sivnex has left the building
+~sivbud-barnel [Bruce Schwartz] has left the building
+~malmec-libsev [Allen (dash) Short]: I understand now what you meant by
+                building an identity abstraction layer being like zoo 
+                design, I think. Identities aren&amp;#39;t commensurable across 
+                systems. Urbit ships, email addresses, ssh keys, and 
+                passports all express different concepts that can&amp;#39;t
+                be abstracted away.
+~malmec-libsev [Allen (dash) Short]: I am less surprised that this works
+                than, say, XMPP working.
+~tasfyn-partyv [Curtis Yarvin]: it still surprises me if XMPP works :-)
+~tasfyn-partyv [Curtis Yarvin] forgets whether Google has federation turned
+                on or turned off at the moment
+~malmec-libsev [Allen (dash) Short]: I worked on a SIP-based VoIP stack a
+                few years ago. My metric for surprise has been calibrated a
+                little differently ever since.
+~tasfyn-partyv [Curtis Yarvin]: but yes, it&amp;#39;s very difficult to imagine any
+                kind of app that treats~tasfyn-partyv and curtis@tlon.io as
+                instances of the same thing
+~tasfyn-partyv [Curtis Yarvin]: was SIP ever really a functioning standard?
+                I mean, if your stack spoke SIP and mine did too, did that 
+                just mean we could chat?
+~malmec-libsev [Allen (dash) Short]: Yes! If there was no NAT involved. :)
+~tasfyn-partyv [Curtis Yarvin]: did SIP for instance have a standard
+                required codec that everyone could fall back to?
+~tasfyn-partyv [Curtis Yarvin]: urbit will actually do TURN, effectively, if
+                your NAT is too sucky
+~tasfyn-partyv [Curtis Yarvin]: all the packets will be forwarded through
+                ~zod
+~malmec-libsev [Allen (dash) Short]: well, SIP was just signalling, it
+                didn&amp;#39;t handle media. RTP was the media stream, and I don&amp;#39;t 
+                think there was a required codec.
+~tasfyn-partyv [Curtis Yarvin]: but this only happens if &amp;quot;bad NAT&amp;quot; is
+                talking to &amp;quot;bad NAT&amp;quot; - then there&amp;#39;s no way around TURN.
+~tasfyn-partyv [Curtis Yarvin]: I do know this about SIP
+~tasfyn-partyv [Curtis Yarvin]: the separation of media and streaming into
+                two protocol categories - both of which have to work if you
+                want to talk -
+~tasfyn-partyv [Curtis Yarvin]: is good IETF politics, but that&amp;#39;s about it
+~malmec-libsev [Allen (dash) Short]: Right. Some bad NATs will work if you
+                can get both sides to start talking to each other 
+                simultaneously. But that&amp;#39;s sort of a fine shade of 
+                difference
+~tasfyn-partyv [Curtis Yarvin]: because it will reuse the same port anyway?
+                yicks.
+~tasfyn-partyv [Curtis Yarvin]: we haven&amp;#39;t had any apparent NAT problems on
+                urbit for a little while, knock on wood
+~tasfyn-partyv [Curtis Yarvin]: here, I&amp;#39;ll use private messaging to send you
+                a packet directly...
+~malmec-libsev [Allen (dash) Short]: yeah. as a result of our experience
+                with that, we started on a generalized NAT-holepunching 
+                library (after noticing it was impossible to send a file 
+                over the internet), but ran out of time and money.
+~tasfyn-partyv [Curtis Yarvin]: ha, I spoke too soon, my client is still
+                trying to punch a hole to you
+~malmec-libsev [Allen (dash) Short]: anyway SIP was the only thing that did
+                that AFAIK. H.323 and IAX both had in-band signalling
+~malmec-libsev [Allen (dash) Short]: oh, now I see &amp;quot;&amp;lt; doznec:&amp;quot;
+~patsec-rigreb [Benedikt Gerhard (Hanfer) Kleiner] has left the building
+~tasfyn-partyv [Curtis Yarvin]: ah, now my communication reached you
+~malmec-libsev [Allen (dash) Short]: yep
+~tasfyn-partyv [Curtis Yarvin]: we are neighbors, we&amp;#39;ve exchagned keys
+~malmec-libsev [Allen (dash) Short]: nice.
+~tasfyn-partyv [Curtis Yarvin]: have to figure out why it took so long
+                though
+~tasfyn-partyv [Curtis Yarvin]: for one thing, my congestion control is
+                utter sh*t
+~tasfyn-partyv [Curtis Yarvin]: but in any case, the whole effort at
+                producing IETF standards was really doomed
+~tasfyn-partyv [Curtis Yarvin]: what do people use to talk on the internets
+                today?  proprietary clients
+~malmec-libsev [Allen (dash) Short]: well, supposedly the separation meant
+                you could do things like third-party call control, where the
+                signalling went through a controller host but the media 
+                stream went between clients directly
+~tasfyn-partyv [Curtis Yarvin]: why?  basically in my book because IP
+                chickened out on the identity problem
+~tasfyn-partyv [Curtis Yarvin]: that&amp;#39;s a case of features pursuing a problem
+~tasfyn-partyv [Curtis Yarvin]: or more precisely, that&amp;#39;s a case of people
+                who sell legacy PBXes imposing their requirements on an 
+                internet standard
+~malmec-libsev [Allen (dash) Short]: SIP is still used in VoIP desk phones,
+                and I think that was the original use case
+~tasfyn-partyv [Curtis Yarvin]  hasn&amp;#39;t seen a desk phone, VoIP or otherwise,
+                in a while
+~tasfyn-partyv [Curtis Yarvin]: the new cool-kid companies don&amp;#39;t have
+                internal phone systems at all...
+~malmec-libsev [Allen (dash) Short]: yeah. Generals fighting the last war.
+~tasfyn-partyv [Curtis Yarvin]: you just can&amp;#39;t deploy a new standard on the
+                internets these days, in any case
+~tasfyn-partyv [Curtis Yarvin]  is really not even quite sure why IETF still
+                exists.
+~malmec-libsev [Allen (dash) Short]: well, it&amp;#39;s nice to still have a
+                standards body that isn&amp;#39;t the W3C
+~malmec-libsev [Allen (dash) Short]: (as a reminder of how things could have
+                gone)
+~tasfyn-partyv [Curtis Yarvin]  is also not sure why the W3C exists :-)
+~tasfyn-partyv [Curtis Yarvin]: there was real greatness in the IETF, but
+                not as much as there could have been
+~tasfyn-partyv [Curtis Yarvin]: the whole DNA of IP networking incorporates
+                the assumption that basically it&amp;#39;s a network of trusted 
+                parties, way too deeply
+~tasfyn-partyv [Curtis Yarvin]: if you expose a new service it will simply
+                get spammed to death
+~tasfyn-partyv [Curtis Yarvin]: the only reason we have port 25 is that
+                email existed before spam, so it was worth saving
+~malmec-libsev [Allen (dash) Short]: yeah.
+~tasfyn-partyv [Curtis Yarvin]: so, that&amp;#39;s basically why we&amp;#39;re shipping a
+                new layer, not a new service on the old layer.
+~malmec-libsev [Allen (dash) Short]: sure. I think my tolerance for
+                compatibility with old crap is greater than yours; perhaps 
+                as much greater
+                as your tolerance for engineering compromise is over 
+                Stanislav&amp;#39;s. :)
+~malmec-libsev [Allen (dash) Short]: A complementary approach to the spam
+                problem, I think, is to build services that can function 
+                with bounded levels of trust --
+~tasfyn-partyv [Curtis Yarvin]: there are different ways of doing
+                compatibility with old crap
+~tasfyn-partyv [Curtis Yarvin]: your ship, for instance, is actually a
+                pretty decent HTTP server...
+~tasfyn-partyv [Curtis Yarvin]: the basic principle is that the old crap can
+                depend on us, but we can&amp;#39;t depend on the old crap
+~malmec-libsev [Allen (dash) Short]: Right, I do remember that part. Makes
+                sense.
+~tasfyn-partyv [Curtis Yarvin]: also, the minimum level of trust is
+                essentially the knowledge that an identity is a unique or at 
+                least identifiable individual
+~tasfyn-partyv [Curtis Yarvin]: or at least, a *finite* individual in some
+                sense.
+~tasfyn-partyv [Curtis Yarvin]: you really can&amp;#39;t do anything with an
+                infinite-identity system.
+~tasfyn-partyv [Curtis Yarvin]: IPv4 addresses come really close to being an
+                excellent finite-identity system, but they are too wrapped up 
+                in routing topology.
+~malmec-libsev [Allen (dash) Short]: For some values of anything. There are
+                still things that make sense as coin-operated services, I think
+~tasfyn-partyv [Curtis Yarvin]: then you have the knowledge that someone has
+                paid a coin - again, finite in some sense.
+~malmec-libsev [Allen (dash) Short]: Right. But not strongly tied to
+                identity.
+~tasfyn-partyv [Curtis Yarvin]: right.  but you know what identity paid a
+                coin.  so even in an infinite space, it enters the subspace of 
+                coin-paying identities.
+~tasfyn-partyv [Curtis Yarvin]: but it&amp;#39;s moot, as IPv4 never established a
+                payment model either.
+~tasfyn-partyv [Curtis Yarvin]: easy to imagine what the Internet would have
+                been if BTC had been part of it from the beginning :-)
+~malmec-libsev [Allen (dash) Short]: Sure. It&amp;#39;s almost moot to talk about IP
+                these days; the set of hosts you can exchange IP packets with 
+                is much smaller than the set you can establish a TCP (or HTTP!)
+                connection with
+~tasfyn-partyv [Curtis Yarvin]: yes.  this is all part of the general
+                pattern of &amp;quot;use the internets as a modem.&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: it is a fairly good modem... but...
+~malmec-libsev [Allen (dash) Short]: Bryan Ford and friends have been
+                thinking about how to cope with this: 
+                http://dedis.cs.yale.edu/2009/tng/
+~tasfyn-partyv [Curtis Yarvin]: well, that&amp;#39;s a nice publication.
+~tasfyn-partyv [Curtis Yarvin]: good luck with your chicken-and-egg
+                problem...
+~malmec-libsev [Allen (dash) Short]: heh yes
+~tasfyn-partyv [Curtis Yarvin]: you can always publish something in the
+                &amp;quot;Journal of Herculean Solutions to Problems Everyone Stopped 
+                Trying To Fix Many Years Ago&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: this is why I left academic CS, they are
+                always making up problems which sound real but aren&amp;#39;t, then 
+                solving them
+~tasfyn-partyv [Curtis Yarvin]: I am now capable of skimming a paper in 30
+                seconds and finding the unrealistic assumption which makes the
+                problem interesting
+~malmec-libsev [Allen (dash) Short]: Certainly. Worse, when they do find a
+                real problem, it still has to be couched in the same language 
+                and format
+~tasfyn-partyv [Curtis Yarvin]: in this case that would be, &amp;quot;we can get
+                everyone to install flow boxes for our new transport protocol 
+                in their DMZs&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: this is what I call the &amp;quot;City Lights
+                problem&amp;quot;
+~sivbud-barnel [Bruce Schwartz] is in the building
+~nibweg-sivnex is in the building
+~tasfyn-partyv [Curtis Yarvin]: you can see it if you go upstairs to the
+                poetry room at City Lights bookstore in SF
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: As a fan of Ferlinghetti, I
+                approve this analogy
+~tasfyn-partyv [Curtis Yarvin]: on the walls are probably about 7,000 works
+                of modern poetry, perhaps 20 or 30 of which are worth reading
+~tasfyn-partyv [Curtis Yarvin]: but they all look the same on the outside...
+~tasfyn-partyv [Curtis Yarvin]: Ferlinghetti had it easy, he did his thing
+                before the legion of Ferlinghetti imitators arrived
+~malmec-libsev [Allen (dash) Short]: well, the stuff they were working on is
+                getting new transport protocols to fit through old ones, as I
+                understand it
+~malmec-libsev [Allen (dash) Short]: since installing new boxes is
+                infeasible
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: I admit imitating him
+                shamelessly in grade school
+~malmec-libsev [Allen (dash) Short]: the argument basically being &amp;quot;TCP is
+                the new bottom layer of the interwebz&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: when something is too easy to imitate,
+                social cues determine who succeeds
+~tasfyn-partyv [Curtis Yarvin]: I take exception to this, I do believe UDP
+                can be made to work
+~tasfyn-partyv [Curtis Yarvin]: but your home isn&amp;#39;t really part of the
+                interwebz, still less your cell phone
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: If only the new documentary on
+                him didn&amp;#39;t suck (I don&amp;#39;t know, I just assume it will)
+~malmec-libsev [Allen (dash) Short]: I would like UDP to work. But as you
+                say, it&amp;#39;s hard to get into your home and harder to get into 
+                your cellphone
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Isn&amp;#39;t that just as much due to
+                widespread natting?
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Which UDP seems to punch
+                through with less issue
+~malmec-libsev [Allen (dash) Short]: On a first-world home internet
+                connection yes.
+~tasfyn-partyv [Curtis Yarvin]: exactly, but not even on a cellphone
+                internet connection
+~tasfyn-partyv [Curtis Yarvin]: these are typically not full-cone AFAIK
+~tasfyn-partyv [Curtis Yarvin]: but on a cellphone, you should only be
+                talking to your ship in the cloud
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Intriguing (I had to look up
+                full cone)
+~tasfyn-partyv [Curtis Yarvin]: and running your urbit ship at home is only
+                for those who truly fear the NSA/CIA/FBI etc
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: I&amp;#39;d feel safer running an
+                Urbit ship on a cloud VPS than I would a Linux distro
+~tasfyn-partyv [Curtis Yarvin]: I would too, but I don&amp;#39;t fear the NSA
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: *to clarify, &amp;quot;than I would
+                running a Linux distro on a cloud VPS&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: I fear machine outages - nb, we are putting
+                Raft in the event logging system to create a genuinely 
+                reliable server
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: I fear the NSA less than the
+                local cops, and data loss on a par with anything that threatens
+                my physical safety
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Raft? Another
+                Stephenson-inspired naming?
+~tasfyn-partyv [Curtis Yarvin]: this is Ousterhout&amp;#39;s replacement for Paxos
+~tasfyn-partyv [Curtis Yarvin]: don&amp;#39;t know the origin of the name...
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Wow (reading RAFT)
+~tasfyn-partyv [Curtis Yarvin]: once zod/doznec are protected by this, and
+                we have conquered the continuity issues, dataz will never be 
+                lost
+~tasfyn-partyv [Curtis Yarvin] now feels reasonably confident he could
+                change the type of type type, without losing continuity
+~tasfyn-partyv [Curtis Yarvin]: continuity breach warning is flashing RED
+~tasfyn-partyv [Curtis Yarvin]: Happy New Year!  And welcome to Hoon 164.
+~tasfyn-partyv [Curtis Yarvin]: Hoon is now frozen for the reasonably
+                short-term future.
+~tasfyn-partyv [Curtis Yarvin]: More documentation is coming soon...
+~roppec-sampyx &amp;quot;Lysergic Spooner&amp;quot; is in the building
+~roppec-sampyx &amp;quot;Lysergic Spooner&amp;quot;: Apparently I am immortal, having proven I
+                have no life
+~difryt-dapdeg [Ian Michael (imrowan) Rowan] is in the building
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Yep, that&amp;#39;s the shortest chat
+                backlog I&amp;#39;ve seen yet *g*
+~tasfyn-partyv [Curtis Yarvin] has left the building
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin] is in the building
+~tasfyn-partyv [Curtis Yarvin]: yes we seem to exist again, gentlemen
+~tasfyn-partyv [Curtis Yarvin]: I always worry that the breach instructions
+                are not as accessible as they should be
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: with a significantly cooler hoon. :D
+~tasfyn-partyv [Curtis Yarvin]: yes it is, better wear at least some
+                underwear before you go outside at 164
+~dilnem-nodfun &amp;quot;cmm&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin]: always nice to see the core group show up
+                when we reboot the world
+~dilnem-nodfun &amp;quot;cmm&amp;quot; just happens to procrastinate on going to sleep every
+                time you do that :)
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: well, we are well-versed in the ritual of the
+                continuity breach.
+~tasfyn-partyv [Curtis Yarvin]: fortunately it&amp;#39;s a ritual that is becoming
+                rarer and rarer
+~tasfyn-partyv [Curtis Yarvin]: but my concern is for those with weaker
+                attachment
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: I was expecting doznec to be herd-thundered into
+                unresponsiveness in those first minutes, but go figure
+~tasfyn-partyv [Curtis Yarvin]: one thing we&amp;#39;re going to do is put a live
+                chat window on urbit.org, output only...
+~tasfyn-partyv [Curtis Yarvin]: none of us was chatting much over the
+                christmas break, it helped keep the numbers down
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; can only imagine what it&amp;#39;s like to breach continuity
+                on~zod. &amp;quot;It must be one step hairier than doing~doznec, eh?&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: no, it&amp;#39;s really very simple, you just run
+                with -c.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: make an RSS feed of that chat window, while at it
+~tasfyn-partyv [Curtis Yarvin]: I think I&amp;#39;ll also start posting regular
+                dumps to the urbit blog.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: ...or that, yeah
+~tasfyn-partyv [Curtis Yarvin]: including only %white discourse, of course.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: still, I picked the right time to go %punk
+~tasfyn-partyv [Curtis Yarvin]: I really want to eventually enforce a
+                one-face rule on people
+~tasfyn-partyv [Curtis Yarvin]: so that the shipname gets remembered better
+~tasfyn-partyv [Curtis Yarvin]: this will be easier when sh*t isn&amp;#39;t
+                constantly breaking
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: one-face as in once chatty ship per person or same
+                name on all ships the person is using to chat?
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: s/once/one/
+~tasfyn-partyv [Curtis Yarvin]: one chatty ship per person.
+~tasfyn-partyv [Curtis Yarvin]: enforced only with weak social pressure.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: and how would you enforce that?
+~tasfyn-partyv [Curtis Yarvin]: hardly at all.  well, new users get only one
+                destroyer.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: gah, you type faster than I think
+~tasfyn-partyv [Curtis Yarvin]: the point is to have one ship, one user be
+                normal
+~tasfyn-partyv [Curtis Yarvin]: of course not everyone has to be normal.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: so yachts don&amp;#39;t get to chat?
+~tasfyn-partyv [Curtis Yarvin]: certainly not directly.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: ah
+~tasfyn-partyv [Curtis Yarvin]: there are only 2^32 reputations.  so even if
+                :room accepted messages from a yacht they&amp;#39;d be listed under 
+                its destroyer.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; understands yachts to be pleasure vessels.
+                Destroyers are... something else entirely.
+~tasfyn-partyv [Curtis Yarvin]: don&amp;#39;t sail away with the metaphor!
+~tasfyn-partyv [Curtis Yarvin]: yachts are client ids.  destroyers are
+                servers.
+~tasfyn-partyv [Curtis Yarvin]: actually I think we&amp;#39;ll change it to &amp;quot;yawls.&amp;quot;
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: destruction can bring pleasure!  as can cruising and
+                carrying, of course
+~tasfyn-partyv [Curtis Yarvin]: so, for instance, a yacht is tied to a
+                browser persona via cookies
+~tasfyn-partyv [Curtis Yarvin]: well, you can pack a yawl with explosives.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; is suitably re-metaphored.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: explosive cookies
+~tasfyn-partyv [Curtis Yarvin] has no actual plans to do jihad.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; snickers.
+~tasfyn-partyv [Curtis Yarvin] explains that &amp;quot;Urbit is the greater jihad.&amp;quot;
+~tasfyn-partyv [Curtis Yarvin] exhorts all jihadis to cancel their
+                pressure-cooker orders and learn Nock.
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: oh, the proper term is &amp;quot;pop rocks&amp;quot;
+~tasfyn-partyv [Curtis Yarvin] used to smuggle pop rocks into Singapore,
+                double-sealed in a rectal condom.
+~dilnem-nodfun &amp;quot;cmm&amp;quot; &amp;#39;m mind is now hung, trying to decide whether &amp;quot;rectal&amp;quot;
+                refers to type of product, placement thereof, or both
+~tasfyn-partyv [Curtis Yarvin]: but one day the latex broke and... let&amp;#39;s
+                just say it was embarrassing.
+~tasfyn-partyv [Curtis Yarvin]: so he became a programmer instead.
+~tasfyn-partyv [Curtis Yarvin] was just thinking of
+                http://en.wikipedia.org/wiki/Abdullah_Hassan_Al_Aseery.
+~tasfyn-partyv [Curtis Yarvin]: an old buddy of mine, Abdul, he should have
+                stuck with the pop rocks
+~dilnem-nodfun &amp;quot;cmm&amp;quot;: who knows perhaps he did.  amount matters
+~tasfyn-partyv [Curtis Yarvin]: well, it&amp;#39;s a fact that Prince Nayef wasn&amp;#39;t
+                that badly injured...
+~tasfyn-partyv [Curtis Yarvin] imagines missions deep into the secret heart
+                of Yemen, convincing the local explosives engineers that pop 
+                rocks are really PETN
+~tasfyn-partyv [Curtis Yarvin]: in other news, does anyone know why lldb on
+                Mavericks thinks all my corefiles are corrupt?
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: not offhand
+~tasfyn-partyv [Curtis Yarvin]: error: core.88781 is a corrupt mach-o file:
+                load command 440 LC_SEGMENT_64 has a fileoff + filesize 
+                (0x5a438000) that extends beyond the end of the file 
+                (0x5a437000), the segment will be truncated
+~tasfyn-partyv [Curtis Yarvin]: it could be the result of our mmap abuse,
+                perhaps...
+~malmec-libsev [Allen (dash) Short] is in the building
+~tasfyn-partyv [Curtis Yarvin]: any difficulty with the continuity breach,
+                malmec?
+~malmec-libsev [Allen (dash) Short]: there was a slight hiccup i think?
+                after :begin, I got &amp;quot;request approved&amp;quot;, a... martian file 
+                listing, i guess,
+                then a &amp;quot;save: gc:&amp;quot; line, then it stopped at &amp;quot;waiting&amp;quot; until 
+                I hit ^D
+~malmec-libsev [Allen (dash) Short]: but then i got the usual try prompt
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; remembers that bug being around for a while, but
+                isn&amp;#39;t sure what to do to fix it.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot; is in the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot; is The Ship that Shouted Ahoy at the Heart of the
+                Urth.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Some humor for the new continuity era:
+                https://research.microsoft.com/en-us/people/mickens/
+                thenightwatch.pdf
+~malmec-libsev [Allen (dash) Short]: i have to wonder about that guy
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; has a copy of that in a &amp;quot;recently read&amp;quot; stack. If I
+                wanted to be completely derivative, I could ape his style...
+~malmec-libsev [Allen (dash) Short]: after reading
+                http://research.microsoft.com/en-us/people/mickens/
+                thisworldofours.pdf I started to get suspicious
+~malmec-libsev [Allen (dash) Short]: &amp;#39;I’ll look at the abstract for the
+                talk, and it will say something like this: “It is well-known 
+                that five-way secret sharing has been illegal since the 
+                Protestant Reformation [Luther1517].&amp;#39;
+~racbes-solmun &amp;quot;kpm&amp;quot; is in the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: It reads like a clean, academic version of
+                cracked.com to me.
+~tasfyn-partyv [Curtis Yarvin]: malmec, your update was slow because our
+                network only gets about 20k/s
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: &amp;quot;Interestingly, a mobile phone
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: should be able
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: to make phone calls while it moves through time and
+                space
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: .
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: I derived this provocative concept from basic notions
+                of
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: adjectives and nouns&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: combination of an interpreted protocol and
+                poorly optimized congestion control
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Sorry for the line spam.
+~tasfyn-partyv [Curtis Yarvin]: that&amp;#39;s okay, we have no shortage of at the
+                present time
+~tasfyn-partyv [Curtis Yarvin]: every month or two I&amp;#39;ll head out to Costco
+                and buy a 1024-pak
+~dilnem-nodfun &amp;quot;cmm&amp;quot; has left the building
+~sarlug-picwep &amp;quot;ikari&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin]: they&amp;#39;re cheaper without the carriage return.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Yes, I used FN-SHIFT-INSERT in an attempt to paste a
+                highlighted snippet of a .pdf, and apparently caught the line 
+                breaks as well.
+~sarlug-picwep &amp;quot;ikari&amp;quot; has left the building
+~tasfyn-partyv [Curtis Yarvin] would probably be appalled if he ever had a
+                look at what&amp;#39;s inside a pdf
+~tasfyn-partyv [Curtis Yarvin]: at least I don&amp;#39;t think it&amp;#39;s turing complete,
+                unlike postscript
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: It&amp;#39;s still pretty horrifying, as evidenced by the
+                linebreaks of earlier.
+~difryt-dapdeg [Ian Michael (imrowan) Rowan] has left the building
+~roppec-sampyx &amp;quot;Lysergic Spooner&amp;quot; has left the building
+~tasfyn-partyv [Curtis Yarvin]: I think he does have a point, but it is
+                somewhat obscured by the style
+~tasfyn-partyv [Curtis Yarvin]: maybe with slightly less acid in the
+                spaghetti?
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~sarlug-picwep &amp;quot;ikari&amp;quot; is in the building
+~tomsyt-balsen [John Burnham] is in the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: We might then have been deprived of the author&amp;#39;s
+                insights into the putatively prototypical life of Ted, the 
+                Poorly Paid Datacenter Operator
+~sarlug-picwep &amp;quot;ikari&amp;quot; has left the building
+~tasfyn-partyv [Curtis Yarvin]: Stan Kelly-Bootle also never grows old...
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: who will gladly sacrifice your POST request for his
+                &amp;#39;80s cartoon collection.
+~tasfyn-partyv [Curtis Yarvin] &amp;#39;s ambition is to make computers work so well
+                they are NO LONGER FUNNY.
+~ramdun-mirpec [Tom (alethiophile) Hunt] is in the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Yet another pathology of Hedonistic Utilitarianism:
+                what if the net pleasure gained through humor at the expense 
+                of faulty computing outweighs the utilons gained from 
+                well-functioning computers?
+~tasfyn-partyv [Curtis Yarvin]: ideally we&amp;#39;ll use our well-functioning
+                computers to create great new works of funny
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: And now we must calculate the discount ratio of
+                future humor to see if its worth the costs.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: This sounds complicated to do deductively, however
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: ,so perhaps we should set up a &amp;quot;Future Human Humor
+                Production&amp;quot; betting market.
+~tomsyt-balsen [John Burnham]: we&amp;#39;ll have to calculate a net present value
+                for future humor
+~tomsyt-balsen [John Burnham]: how many 2014 hedons is 1 2015 hedon worth?
+~divsem-misdef &amp;quot;xulrunner42&amp;quot;: :~novrud-hanweb/try=/bin/chat lives again
+~tomsyt-balsen [John Burnham]: clearly a lending market is required
+~tomsyt-balsen [John Burnham]: you tell me a funny joke now
+~tomsyt-balsen [John Burnham]: and in exchange i&amp;#39;ll tell you a funnier one
+                next year
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: But humor can only be consumed at an approximately
+                fixed rate (assuming spoken word jokes)
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: so expected longevity begins to play a role.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Unless I&amp;#39;m investing in humor for my estate
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: and even then, laughter has positive health benefits
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: so I&amp;#39;ll need to find a function from funniness-&amp;gt;years
+                of life added
+~tasfyn-partyv [Curtis Yarvin] somehow broke his ability to send requests
+                that wait for a response.  again.
+~tasfyn-partyv [Curtis Yarvin]: that is, filesystem requests.  so, if update
+                isn&amp;#39;t working for you, it&amp;#39;s because your clock is skewed ahead.
+~tasfyn-partyv [Curtis Yarvin]: of course if update isn&amp;#39;t working for you,
+                you&amp;#39;re not here...
+~malmec-libsev [Allen (dash) Short]: urbit cannot be considered complete
+                until it is used to generate and share cat pictures, of course
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: &amp;quot;/~fantyv-ralpen/try/2/web/Turkish_Van_Cat/jpg&amp;quot;
+~difryt-dapdeg [Ian Michael (imrowan) Rowan] is in the building
+~roppec-sampyx &amp;quot;Lysergic Spooner&amp;quot; is in the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: If you are able to :cat that, you could write the
+                terminal output to another file perhaps, and open it in Unix.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Of course, I get a syntax error when I try &amp;quot;:ls
+                /=try/2/web/Turkish_Van_Cat/jpg&amp;quot;
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: *&amp;quot;:cat /=try/2/web/Turkish_Van_Cat/jpg&amp;quot;
+~sarlug-picwep &amp;quot;ikari&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin] finds that his latest executable totally
+                flips out when compiled with -g.
+~tasfyn-partyv [Curtis Yarvin]: hey Apple, basic toolchain principles:
+~tasfyn-partyv [Curtis Yarvin]: (1) -g always has the same result as -O, and
+                vice versa.
+~tasfyn-partyv [Curtis Yarvin]: (2) the program always does the same thing
+                in the debugger as plain.
+~tasfyn-partyv [Curtis Yarvin] feels this LLVM gcc toolchain is not ready
+                for prime time.
+~tasfyn-partyv [Curtis Yarvin]: yes, the repeated key exchange thing is
+                definitely a problem
+~tasfyn-partyv [Curtis Yarvin]: apart from anything, it effectively leaks
+                memory
+~tasfyn-partyv [Curtis Yarvin]: I do see the repeated key exchange bug
+~tasfyn-partyv [Curtis Yarvin]: &amp;quot;~doznec is your neighbor&amp;quot; all too often
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; is not seeing this.
+~divsem-misdef &amp;quot;xulrunner42&amp;quot;:  OK, I&amp;#39;m fine with that
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; was in~pm
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; amends: i saw~doznec become my neigbor more than
+                once.
+~tasfyn-partyv [Curtis Yarvin]: I will fix this.  but, I have to fix the
+                delayed request bug first.  what&amp;#39;s irritating is, I feel like 
+                I already fixed this bug and git lost my change.
+~tasfyn-partyv [Curtis Yarvin]: but then, I looked at the fix location and
+                the fix seems to be there.  so...
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: doznec just became my neighbor again.
+~tasfyn-partyv [Curtis Yarvin]: it&amp;#39;s a little too neighborly for my taste
+~tasfyn-partyv [Curtis Yarvin]: I mean give it a rest, doznec...
+~divsem-misdef &amp;quot;xulrunner42&amp;quot;: at least he doesn&amp;#39;t stomp on your ceiling like
+                my other neighbor
+~divsem-misdef &amp;quot;xulrunner42&amp;quot;: every time i hear their baby cry I think the
+                sound that comes after must be the baby getting dropkicked
+~malmec-libsev [Allen (dash) Short]: oh. yes I got 23 &amp;quot;~doznec is your
+                neighbor&amp;quot; messages after :begin
+~tasfyn-partyv [Curtis Yarvin]: yes, that&amp;#39;s 23 key exchanges, decidedly
+                suboptimal
+~tasfyn-partyv [Curtis Yarvin] is sure he did something to break that...
+~malmec-libsev [Allen (dash) Short]: but i did go off and leave it for half
+                an hour
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Prior to this latest breach I
+                was getting %route timeouts between myself and doznec quite 
+                often
+~tasfyn-partyv [Curtis Yarvin]: it&amp;#39;s the same thing I think, I just deleted
+                the route timeout message
+~tasfyn-partyv [Curtis Yarvin]: but I also thought I&amp;#39;d scaled back on the
+                excess key exchanges... hm
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;:
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~malmec-libsev [Allen (dash) Short]: last time i worked with a udp-based
+                protocol that needed congestion control, we just went with a 
+                literal reimplementation of TCP
+~malmec-libsev [Allen (dash) Short]: (with some different header fields)
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~malmec-libsev [Allen (dash) Short]: I have to wonder how well congestion
+                control is working out for CCNx
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin]: don&amp;#39;t know CCNx&amp;#39;s congestion control
+                problem, but I know it&amp;#39;s more focused on multicast
+~tasfyn-partyv [Curtis Yarvin]: that seems harder...
+~tasfyn-partyv [Curtis Yarvin]: as for reimplementing TCP, there are of
+                course several TCP algs to choose from
+~tasfyn-partyv [Curtis Yarvin]: we have the additional complication that our
+                acks are end-to-end
+~tasfyn-partyv [Curtis Yarvin]: the ack is sent only after the packet is
+                fully processed and committed
+~tasfyn-partyv [Curtis Yarvin]: it is the same congestion control problem,
+                but with a lot more variance because the internal round trip 
+                is treated as part of the pathway
+~tasfyn-partyv [Curtis Yarvin]: but also, I just winged it with something
+                crude that works
+~tasfyn-partyv [Curtis Yarvin]: certainly not the way to get good CC
+                results...
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: If you want to look like a P2P filesharing app,
+                there&amp;#39;s always the congestion-control algorithm from 
+                BitTorrent!
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin]: yes I considered that one as well, though it
+                prioritizes against interactive traffic
+~tasfyn-partyv [Curtis Yarvin]: it&amp;#39;s really the perfect project for a bright
+                intern to spend a week on
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: Two weeks, if one didn&amp;#39;t know Hoon that well.
+~tasfyn-partyv [Curtis Yarvin]: we&amp;#39;ll develop a Matrix style chip for
+                learning Hoon.
+~tasfyn-partyv [Curtis Yarvin]: like doc but better...
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; would settle for doc.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: I also have a friend who did a Chicago
+                implementation.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; knows we&amp;#39;re partial to raving with dj djb here...
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Chicago implementation?
+~tasfyn-partyv [Curtis Yarvin]: Chicago implementation?
+~tasfyn-partyv [Curtis Yarvin] wants to know if that&amp;#39;s a euphemism.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Dan Bernstein, perhaps.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: aka djb.
+~tasfyn-partyv [Curtis Yarvin]: I know that part.  But not the Chicago.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: He&amp;#39;s at the University of Illinois at Chicago, but I
+                don&amp;#39;t know what exactly is being implemented...
+~tasfyn-partyv [Curtis Yarvin] somehow assumed it was UIUC.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: Chicago, the congestion control algorithm specified
+                somewhere around CurveCP. :)
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: From Wikipedia: &amp;quot;Bernstein explained, in 2005, that
+                he is pursuing a strategy to &amp;quot;produce invulnerable computer 
+                systems&amp;quot;. He plans to achieve this by putting the vast majority
+                of computer software into an &amp;quot;extreme sandbox&amp;quot; that only allows
+                it to transform input into output.&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: ah.
+~tasfyn-partyv [Curtis Yarvin]: Urbit is a sort of extreme sandbox...
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: http://curvecp.org/decongestion.html
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Thank you, atax1a.
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin] will take a look.
+~tasfyn-partyv [Curtis Yarvin]: looks pretty reasonable, like most of the
+                djb stuff
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; goes to read through the new, cooler, hoon.hoon.
+~tasfyn-partyv [Curtis Yarvin]: the changes are all subtle... but...
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: any HEADSUP for the experienced reader?
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin]: hoons are now divided into twigs and tiles -
+                this division used to be very unclear
+~tasfyn-partyv [Curtis Yarvin]: I guess that was in the previous checkin,
+                but...
+~tasfyn-partyv [Curtis Yarvin]: in this one we have aliases, =*
+~tasfyn-partyv [Curtis Yarvin]: you can bind an alias as you pattern-match
+                it
+~monder-navryx &amp;quot;LarryH&amp;quot; is in the building
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: How would i use tistar?
+~tasfyn-partyv [Curtis Yarvin]: if you say &amp;quot;=*  a  b&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: it&amp;#39;s like &amp;quot;=+  a  b&amp;quot;
+~tasfyn-partyv [Curtis Yarvin]: except that b has to be a wing (resolve to
+                an axis, not a computed expression)
+~tasfyn-partyv [Curtis Yarvin]: and the subject noun is unchanged
+~tasfyn-partyv [Curtis Yarvin]: also, when you pattern-match on your alias a
+~tasfyn-partyv [Curtis Yarvin]: what you learn about an alias stays on the
+                alias
+~tasfyn-partyv [Curtis Yarvin]: this eliminates a common problem where you
+                know a type in too much detail
+~tasfyn-partyv [Curtis Yarvin]: and can&amp;#39;t for example bind something more
+                general back into it
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: that clarifies matters a bit more.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; still doesn&amp;#39;t quite grok /===/try/app/hoon, except
+                in broad strokes. At last check, fapp in batz launched an app 
+                from the filesystem.
+~tasfyn-partyv [Curtis Yarvin]: it does that...
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: the app... tisgar centis dot lus tisgar lus...
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: &amp;quot;given the current subject, tack this core on&amp;quot;?
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: &amp;quot;and invoke&amp;quot;??
+~tasfyn-partyv [Curtis Yarvin]: you&amp;#39;re deep in the heart of the funk my man
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; cannot tell if that&amp;#39;s a good thing.
+~divsem-misdef &amp;quot;xulrunner42&amp;quot;: gotta have that funk!
+~tasfyn-partyv [Curtis Yarvin]: it is a good thing.  but, it is probably not
+                the best use of my time to explain ++fapp at the moment.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: sur.
+~novrud-hanweb &amp;quot;yebyen&amp;quot; is in the building
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: +e.
+~tasfyn-partyv [Curtis Yarvin]: hey, can everyone do a :reset?
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: now? no :update?
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: just :reset, no :update?
+~tasfyn-partyv [Curtis Yarvin]: I am starting to suspect that some old code
+                slipped in to the last urbit.pill.
+~tasfyn-partyv [Curtis Yarvin]: an :update can&amp;#39;t hurt.
+~tasfyn-partyv [Curtis Yarvin]: but what I notice is that when I start
+                reloading to find the bugs, the bugs go away.
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~malmec-libsev [Allen (dash) Short] has left the building
+~monder-navryx &amp;quot;LarryH&amp;quot; has left the building
+~malmec-libsev [Allen (dash) Short] is in the building
+~monder-navryx &amp;quot;LarryH&amp;quot; is in the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: :update and :reset complete
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; got a %clay update and successfully reset.
+~tasfyn-partyv [Curtis Yarvin]: it certainly can&amp;#39;t hurt yo.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: my computer is not as fast
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: got the same update on divsem-misdef, still doing
+                :reset
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: what the %duce
+~tasfyn-partyv [Curtis Yarvin]: sorry about that %duce
+~tasfyn-partyv [Curtis Yarvin]: doznec is going up and down, update again
+~tasfyn-partyv [Curtis Yarvin]: the duce will be gone
+~hidsup-donsyn &amp;quot;UWTB&amp;quot; is in the building
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: thats better
+~difryt-dapdeg [Ian Michael (imrowan) Rowan] has left the building
+~malmec-libsev [Allen (dash) Short] has left the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot; has left the building
+~roppec-sampyx &amp;quot;Lysergic Spooner&amp;quot;: Huh, this destroyer got the char restart
+                on its own, the other was still trying. I update and reset this
+                one and got it back already, the other&amp;#39;s still [waiting...] on 
+                the :update.
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: Updated, reloaded %clay.
+~tasfyn-partyv [Curtis Yarvin]: still waiting on that update?  who&amp;#39;s
+                waiting?
+~roppec-sampyx &amp;quot;Lysergic Spooner&amp;quot;: waiting is~difryt-dapdeg
+~tasfyn-partyv [Curtis Yarvin]: hang on ....
+~sarlug-picwep &amp;quot;ikari&amp;quot;: Not on the :update, but~fantyv-ralpen is waiting
+                for~doznec.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: it worked here,~divsem-misdef is still doing
+                :reset but it did get the update, second time I tried
+~tasfyn-partyv [Curtis Yarvin]: hm... I see some unacknowledged messages...
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: first time it was just hanging having a hard time
+~tasfyn-partyv [Curtis Yarvin]: tell you what - I have to go and pick up my
+                kids
+~tasfyn-partyv [Curtis Yarvin]: did you kill it, yebyen?
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: ^D
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: tried again, worked, should be back any second
+~tasfyn-partyv [Curtis Yarvin]: hm, I do prefer not working around things
+                that are working badly...
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: at %vane %e
+~tasfyn-partyv [Curtis Yarvin]: report the crime, don&amp;#39;t solve the crime
+~tasfyn-partyv [Curtis Yarvin]: but I encourage everyone with a waiting
+                destroyer to leave it waiting for right now
+~tasfyn-partyv [Curtis Yarvin]: and if it keeps waiting, the drydock is the
+                place for it...
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; is in the building
+~tasfyn-partyv [Curtis Yarvin]: possible that doznec lost some events in my
+                power cycle, though I kind of doubt it
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: sorry I didn&amp;#39;t save it for you, this device is an
+                android tegra3
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: so it was pretty slow
+~tasfyn-partyv [Curtis Yarvin]: I can use a pier from an android tegra3,
+                it&amp;#39;s all the same pier man
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: i thought it might just be slowness or intermittent
+                network issue
+~tasfyn-partyv [Curtis Yarvin]: that is possible as well...
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: i&amp;#39;m sure you could use it
+~tasfyn-partyv [Curtis Yarvin]: anyway, catch you guys later...
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: cheers!
+~sarlug-picwep &amp;quot;ikari&amp;quot;: Vale.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: I noticed some weirdness with the ! quit the other
+                day before the breach
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: i never tried ! to quit before, but it didn&amp;#39;t quit
+                how I hoped at all
+~divsem-misdef &amp;quot;xulrunner42&amp;quot; has left the building
+~tasfyn-partyv [Curtis Yarvin] has left the building
+~difryt-dapdeg [Ian Michael (imrowan) Rowan] is in the building
+~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Looks like quitting and
+                restarting the pier unhosed me
+~fantyv-ralpen &amp;quot;jpt4&amp;quot; is in the building
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot; was unaware that ! was supposed to quit.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Reboot fixed the~doznec hang here too.
+~hidsup-donsyn &amp;quot;UWTB&amp;quot; has left the building
+~ramhes-wisbyt is in the building
+~ramhes-wisbyt has left the building
+~rigryx-sovrus &amp;quot;atax2a&amp;quot; is in the building
+~tomsyt-balsen [John Burnham] has left the building
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: well, that tegra3 went defunct
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: my faith in the TF700T is very thin
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: i&amp;#39;ve actually had a much better time with the tf100
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: i don&amp;#39;t know what happens to these two extra cores
+                or that extra ram
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: but the tf100 performs much better with 2.6
+                kernel/katkiss than this faster machine with 3.1 and 
+                cyanogenmod
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: vere is basically unusable for divsem-misdef, too
+                bad
+~monder-navryx &amp;quot;LarryH&amp;quot; has left the building
+~monder-navryx &amp;quot;LarryH&amp;quot; is in the building
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: hey, auction!
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: anyone out there?
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Present.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Though not for the auction.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: That was supposed to be today, wasn&amp;#39;t it?
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: It is today, it is happening now.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: I just heard it reported that the bid is at 7.1BTC
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: which is~0.1BTC more than I have
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: I don&amp;#39;t know if just anyone can bid, or only those
+                on the list
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: hackernews is back up, that&amp;#39;s good news
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: fantyv-ralpen: there&amp;#39;s also
+                :~novrud-hanweb/try=/bin/chat now!
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Testing immediately.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: if you&amp;#39;re in both rooms, you get all messages twice
+~novrud-hanweb &amp;quot;yebyen&amp;quot; has left the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: This is~doznec :chat.
+~hidsup-donsyn &amp;quot;UWTB&amp;quot; is in the building
+~fantyv-ralpen &amp;quot;jpt4&amp;quot; has left the building
+~novrud-hanweb &amp;quot;yebyen&amp;quot; is in the building
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: hmm, that didn&amp;#39;t work
+~fantyv-ralpen &amp;quot;jpt4&amp;quot; is in the building
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: fantyv
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: maybe :room changes too
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: How did you alter line 97?
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: changed all yo to oy, zo to oz
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: err...
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: you know
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: then I did the same in room, and it seems to have
+                fixed everything without a reload
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Copy.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Test
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Should I make similar modifications?
+~hatteb-mitlyd &amp;quot;atax1a&amp;quot;: i found this internet numbers station reading a
+                totally random file: http://unified.cf.gs:8000/listen.pls
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: you aren&amp;#39;t reading any of that are you
+                fantyv-ralpen
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Nothing, sorry.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: you need to ^D my chat and start it again from
+                :~novrud-hanweb/try=/bin/chat
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: you&amp;#39;ll get try/3
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Yes, expected as much. Doing so now.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: i&amp;#39;m running a main/2/bin/room/hoon now, that fixed
+                everything
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: but you need a client that listens on the right
+                ports
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Just sent a test string. What port needs changing?
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: if you run~novrud-hanweb/try=/bin/chat you get the
+                new version
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Just did.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: i changed %yo to %zo and %oy to %oz
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: still nothing huh
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: maybe your old client needs to timeout first
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: you know, i&amp;#39;m not sure it worked
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Second test sent.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: it&amp;#39;s harder because I don&amp;#39;t know what channel I
+                received that message on
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: fantyv-ralpen &amp;quot;jpt4&amp;quot;: Second test sent.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: That was in~doznec chat.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Just tried another yebyen-chat message.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: yeah so it must not have worked
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: my = still doesn&amp;#39;t work
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Trying to connect to yy-chat with a second destroyer.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: [waiting...]
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: I guess it did not work.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: something must still look for %yo or %oy
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: but nothing in either of these files, room.hoon or
+                chat.hoon
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: hello there ikari
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Sending messages to yy-chat from alternate destroyer.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: i see sarlug-picwep is my neighbor, but that&amp;#39;s it
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: no messages
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: My ships can&amp;#39;t see each other inside yy-chat either.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Messages are only visible to the ship that transmits.
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: I changed yo in room.hoon
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: line 163, [/zo [%lq %zo]]
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: and 187, and 153 had %oy, turned into %oz
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: don&amp;#39;t know why it didn&amp;#39;t work
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: but it&amp;#39;s late here on the east coast!
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: gotta work tomorrow, unless cold snap
+~novrud-hanweb &amp;quot;yebyen&amp;quot;: peace ^_^
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Auf wiedersehen.
+~fantyv-ralpen &amp;quot;jpt4&amp;quot;: Thanks for the lessons.&lt;/code&gt;&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
    <title>Urbit Is &#58; Chapter 0</title>
-   <link href="http://urbit.org/2013/12/15/urbit-ch0.html"/>
-   <updated>2013-12-15T16:20:00-08:00</updated>
-   <id>http://urbit.org/2013/12/15/urbit-ch0</id>
+   <link href="http://urbit.org/2013/12/13/urbit-ch0.html"/>
+   <updated>2013-12-13T17:23:00-08:00</updated>
+   <id>http://urbit.org/2013/12/13/urbit-ch0</id>
    <content type="html">&lt;h1 id=&#39;introduction&#39;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;Greetings from the off-world colonies! I&amp;#8217;m your guide and scribe, &lt;code&gt;atax1a&lt;/code&gt;, a character from a book that hasn&amp;#8217;t been written yet. Every great book has a Chapter 0, though, and you are reading mine.&lt;/p&gt;
@@ -25,15 +917,15 @@
 
 &lt;h1 id=&#39;what_is_urbit&#39;&gt;What Is Urbit?&lt;/h1&gt;
 
-&lt;p&gt;Urbit could be a way of sharing your data in a way that makes it live forever. Maybe it&amp;#8217;s a Facebook of memories, 140 Twitters of words, or an Instagram for when you&amp;#8217;re a grandpa. It could be anything - right now, it&amp;#8217;s a program, running on a network of computers. These computers are given the knowledge and ability to hear things, and act upon them.&lt;/p&gt;
+&lt;p&gt;Urbit could be a way of sharing your data in a way that makes it live forever. Maybe it&amp;#8217;s a Facebook of memories, 140 Twitters of words, or an Instagram for when you&amp;#8217;re a grandpa. Maybe you send Urbit an email. You can hit it with your web browser right now, but that&amp;#8217;s a bit rough around the edges. (Given time, it could even be that BBS or MUD that you wanted, but could never have&amp;#8230;) It could be anything &amp;#8212; right now, we use it as a glorified chat program, but one that never loses messages. Well, almost never. Sometimes we have to reboot the Universe, and everything we haven&amp;#8217;t backed up is lost.&lt;/p&gt;
 
-&lt;p&gt;Of course, Urbit is hard to define precisely, because it isn&amp;#8217;t finished yet. So in reality, Urbit is a labyrinth of code, written as a book, running on a virtual machine (possibly running on another virtual machine, and so on), built out of physical parts, and it&amp;#8217;s read and written by human mammals on a planet called Earth. A lot of Earthlings call it an art project, which isn&amp;#8217;t far off. Sometime it&amp;#8217;s Dada, other times it&amp;#8217;s baroque, but it always has a precise scientific backing in the form of &lt;em&gt;Nock&lt;/em&gt;, which are the fundamental axioms (rules) of the Urbiverse.&lt;/p&gt;
+&lt;p&gt;You may be getting the idea that Urbit is hard to define precisely. It is, because it isn&amp;#8217;t finished yet. In reality, Urbit is just a labyrinth of code, written as a book, running on a virtual machine (possibly running on another virtual machine, and so on), built out of physical parts, and it&amp;#8217;s read and written )and edited( by human mammals on a planet called Earth. (The Urbit computer follows a &amp;#8220;Hears, knows, does&amp;#8221; model, which I can explain later.) A lot of Earthlings call it an art project, which isn&amp;#8217;t far off. Sometime it&amp;#8217;s Dada, other times it&amp;#8217;s baroque, but it always has a precise scientific backing in the form of &lt;em&gt;Nock&lt;/em&gt;, which are the fundamental axioms (rules) of the Urbiverse. Nock is all numbers, tho, and it&amp;#8217;s tiring.&lt;/p&gt;
 
-&lt;p&gt;Urbit is also a programming language. We call that &lt;em&gt;Hoon&lt;/em&gt;, for reasons I&amp;#8217;m still not quite clear on. Most &amp;#8220;real&amp;#8221; programmers I know take one look at something like&lt;/p&gt;
+&lt;p&gt;Urbit is also a programming language. We call that &lt;em&gt;Hoon&lt;/em&gt;, for reasons I&amp;#8217;m still not quite clear on. It takes Nock&amp;#8217;s numbers and puts symbols on them. They&amp;#8217;re kinda weird symbols, and most &amp;#8220;real&amp;#8221; programmers I know (and work with) take one look at something like&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;|=(x=@ ?:((lth x 2) 1 (add $(x (dec x)) $(x (sub x 2)))))&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;and go pale around the gills. Myself, I grew up speaking a language called &lt;code&gt;perl&lt;/code&gt;, which has an even bigger love-affair with special characters, so reading this doesn&amp;#8217;t faze me.&lt;/p&gt;
+&lt;p&gt;and go pale around the gills. Myself, I grew up speaking a language called &lt;code&gt;perl&lt;/code&gt;, which has an even bigger love-affair with special characters, so reading this doesn&amp;#8217;t faze me (Hoon uses its special characters judiciously, so please don&amp;#8217;t think of &lt;code&gt;perl&lt;/code&gt; unless you like that sort of thing).&lt;/p&gt;
 
 &lt;p&gt;An earlier version of Urbit (when Hoon was still called Watt) was rejected from a real scientific conference because the judges felt vaguely insulted by the nonstandard language. The Urbit you&amp;#8217;re looking at now has had a few years to cool down and mature, and right now it&amp;#8217;s so cool at the core that it&amp;#8217;s well below -400 Fahrenheit. Thankfully, there is an entire planet built up around its icy core, and on the surface of that planet, it&amp;#8217;s a balmy 25 degrees Celsius, and the water is like glass.&lt;/p&gt;
 
@@ -41,7 +933,7 @@
 
 &lt;h1 id=&#39;why_should_i_care_the_buried_lede&#39;&gt;Why should I care? (the buried lede)&lt;/h1&gt;
 
-&lt;p&gt;In the end, Urbit is a single global computer. Think &amp;#8220;Cyberspace&amp;#8221; from &lt;em&gt;Neuromancer&lt;/em&gt;, or &amp;#8220;The Metaverse&amp;#8221; from &lt;em&gt;Snow Crash&lt;/em&gt;. If you&amp;#8217;re really early, think of Haflinger&amp;#8217;s worm from &lt;em&gt;The Shockwave Rider&lt;/em&gt;. Urbit enables secure computing, in a way that nobody else can, because we are &amp;#8220;semantically isolated&amp;#8221; &amp;#8212; the meaning of every program is independent of the outside world.&lt;/p&gt;
+&lt;p&gt;In the end, Urbit is a single global computer. Think &amp;#8220;Cyberspace&amp;#8221; from &lt;em&gt;Neuromancer&lt;/em&gt;, or &amp;#8220;The Metaverse&amp;#8221; from &lt;em&gt;Snow Crash&lt;/em&gt;. If you&amp;#8217;re really early, think of Haflinger&amp;#8217;s worm from &lt;em&gt;The Shockwave Rider&lt;/em&gt;. But don&amp;#8217;t think of it as the Internet &amp;#8212; the internet is a single global &lt;em&gt;network&lt;/em&gt;, and it only follows two rules: you can act like a UNIX machine when prompted, and you speak TCP/IP. Anyone can see what you&amp;#8217;re saying, and most people can understand it. There are gaps in the network, too: &lt;em&gt;The Great Firewall Of China&lt;/em&gt;, anyone? &amp;#8220;Encryption&amp;#8221;, or as I might call it, &lt;em&gt;privacy&lt;/em&gt;, is an afterthought, and people who Never Say Anything can read a lot of supposedly &amp;#8220;private&amp;#8221; things, just by doing the right math. &lt;em&gt;Urbit isn&amp;#8217;t like that&lt;/em&gt;. It enables secure, private, computing, in a way that nobody else can, because it is &amp;#8220;semantically isolated&amp;#8221; &amp;#8212; the meaning of the Urbit program is independent of the outside world (in this case, the Internet).&lt;/p&gt;
 
 &lt;p&gt;Urbit works like an Internet should. If you know someone&amp;#8217;s address, you can send them a message. It will either reliably be delivered, or get rejected. Likewise with requesting something: if you ask for tomorrow&amp;#8217;s newspaper headline &lt;em&gt;today&lt;/em&gt;, Urbit will gladly give it to you&amp;#8230; tomorrow. Your ship just waits for it to come in, and when it does, everything proceeds like normal. &amp;#8220;HTTP 404 Not Found&amp;#8221;? What the &lt;code&gt;!^&amp;amp;#&lt;/code&gt; does THAT mean?&lt;/p&gt;
 
@@ -53,13 +945,193 @@
 
 &lt;p&gt;Urbit is a piece of technology. Unfortunately, technology is hard to explain, and it gets harder when the words we use to explain it are misunderstood. If you&amp;#8217;re used to speaking about your computers in terms of a Unix (or Windows) workstation, it&amp;#8217;s a bit of a leap to think in terms of Urbit ships in a pier.&lt;/p&gt;
 
-&lt;p&gt;In short, we use weird words to force a change in how our technology is perceived. Without that, readers are likely to gloss over important details, thinking that they understand more than they really do. It&amp;#8217;s why we redefine everything, change the pronunciaton of the symbols you&amp;#8217;re used to, and even have our own number system. Count with me:&lt;/p&gt;
+&lt;p&gt;In short, we use weird words to force a change in how our technology is perceived. Without that, readers are likely to gloss over important details, thinking that they understand more than they really do. It&amp;#8217;s why we redefine everything, change the pronunciation of the symbols you&amp;#8217;re used to, and even have our own number system. Count with me, and feel free to scribble in the margins:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;~zod ~nec ~bud ~wes ~sev ~per ~sut ~let ~ful ~pen&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;~zod 0   (also &amp;#39;yes&amp;#39;)                 if i were rewriting this
+~nec 1   (no)                            i would put &amp;#39;can&amp;#39; b4
+~bud 2   [the rest of the numberz        &amp;#39;change meaning…&amp;#39;
+~wes 3        change meaning
+~sev 4    according to context]
+~per 5   ---
+~sut 6   &amp;lt;but that&amp;#39;s 0kay&amp;gt;
+~let 7   
+~ful 8   
+~pen 9   ¡you can figure it out!&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Saying them out loud helps. You and your friend can agree on the pronunciation.&lt;/p&gt;
 
 &lt;h1 id=&#39;introductions&#39;&gt;Introductions&lt;/h1&gt;
 
-&lt;p&gt;You can get in touch with me on Urbit, of course. Join up to &lt;code&gt;:chat&lt;/code&gt; and use &lt;code&gt;=&lt;/code&gt; to see who&amp;#8217;s in the room. On the old internet, I go by many names, but on this one I try to stick with &lt;code&gt;~rigryx-sovrus&lt;/code&gt;.&lt;/p&gt;</content>
+&lt;p&gt;You can get in touch with me on Urbit, of course. Join up to &lt;code&gt;:chat&lt;/code&gt; and use &lt;code&gt;=&lt;/code&gt; to see who&amp;#8217;s in the room. On the old internet, I go by many names, but on this one I try to stick with &lt;code&gt;~hatteb-mitlyd&lt;/code&gt;.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Urbit Is Easy&#58; Chapter VII (Hoon Bites Back)</title>
+   <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch7.html"/>
+   <updated>2013-11-18T00:00:00-08:00</updated>
+   <id>http://urbit.org/2013/11/18/urbit-is-easy-ch7</id>
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch6.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Goes Wild&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;#8221;I&amp;#8217;ve only been in love with a beer bottle and a mirror.&amp;#8221;&lt;/em&gt; &lt;strong&gt;(Sid Vicious)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#39;syntax&#39;&gt;Syntax&lt;/h2&gt;
+
+&lt;p&gt;Is Hoon actually an improvement on Nock? The jury holds out. Here is our old decrement function, from the Nock battery:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ 8
+  [1 0]
+  [ 8
+    [ 1
+      [ 6
+        [5 [4 0 6] [0 30]]
+        [0 6]
+        [9 2 [0 2] [4 0 6] [0 7]]
+      ]
+    ]
+    [9 2 0 1]
+  ]
+]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This clearly it is not for the little boys and girls. But wait - is Hoon any less formidable? The Hoon equivalent:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      |=  a=@
+      =|  b=@
+      |-  ?:  =(a +(b))
+            b
+          $(b +(b))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Whaa? We can also write the exact same decrement as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b))))))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;for instance:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; (|=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))) 42)
+41&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or even more cryptically,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; %.(42 |=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))))
+41&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And I showed this to my daughter, who ran away in tears. Dear reader, I hope you&amp;#8217;re not tempted to do the same.&lt;/p&gt;
+
+&lt;p&gt;Hoon actually is easy! It&amp;#8217;s much easier than Nock. Nock really isn&amp;#8217;t that hard itself, unless you want to do something useful with it. But to learn Hoon, you just have to accept that it&amp;#8217;s really quite orthogonal to any or all of those &lt;em&gt;20th-century&lt;/em&gt; languages you knew already. Even the functional ones, mostly. If anything, this knowledge makes it harder to learn Hoon.&lt;/p&gt;
+
+&lt;p&gt;Our mutual hope is that by the time you do know Hoon, you will simply be able to &lt;em&gt;see&lt;/em&gt; a twig like&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      |=  a=@
+      =|  b=@
+      |-  ?:  =(a +(b))
+            b
+          $(b +(b))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and, far from merely able to follow this code, &lt;em&gt;actually observe in your mind&amp;#8217;s eye the function itself&lt;/em&gt; - not unlike Keanu with kung fu. You will simply look at this strange collection of squiggles and &lt;em&gt;see decrement&lt;/em&gt;. Trust me, man - it&amp;#8217;s heavy.&lt;/p&gt;
+
+&lt;p&gt;(Our feeling is that the use of reserved words in most languages, by instead activating the verbal lobes, disrupts this sense of directly, or at least visually, perceiving the program itself. If you object that this sounds too much like Science, Science implies testing hypotheses whereas we generally just wing it.)&lt;/p&gt;
+
+&lt;p&gt;Think of learning Hoon as learning to program all over again. If nothing else, it&amp;#8217;s a sort of eccentric adventure sport. Or even a mystery - can a language be esoteric, yet useful? Click here to find out more.&lt;/p&gt;
+
+&lt;h3 id=&#39;glyphs&#39;&gt;Glyphs&lt;/h3&gt;
+
+&lt;p&gt;It&amp;#8217;s actually worse than that - learning Hoon is learning to &lt;em&gt;read&lt;/em&gt; all over again. Again, Hoon is a reserved-word-free language - any text in the program is part of the program.&lt;/p&gt;
+
+&lt;p&gt;We use so many of these ASCII glyphs that we like to be able to read them out loud. A language is meant to be &lt;em&gt;said&lt;/em&gt;. The squiggles have conventional names, sort of, some of them easy to say, others not so much. So we&amp;#8217;ve renamed them:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ace  space      gal  &amp;lt;          per  )
+bar  |          gar  &amp;gt;          sel  [
+bas  \          hax  #          sem  ;
+buc  $          hep  -          ser  ]
+cab  _          kel  {          sig  ~
+cen  %          ker  }          soq  &amp;#39;
+col  :          ket  ^          tar  *
+com  ,          lus  +          tec  `
+doq  &amp;quot;          pam  &amp;amp;          tis  =
+dot  .          pat  @          wut  ?
+fas  /          pel  (          zap  !&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You just have to memorize these names. Sorry. We accept that they are vile, barbaric and loathsome.&lt;/p&gt;
+
+&lt;h3 id=&#39;runes&#39;&gt;Runes&lt;/h3&gt;
+
+&lt;p&gt;But is this at least enough symbols? Alas, nowhere near. ASCII&amp;#8217;s glyph supply is not the greatest, but we can make all the squiggles we need by forming digraphs, or &lt;em&gt;runes&lt;/em&gt;. For example: &lt;code&gt;bartis&lt;/code&gt;, ie, &lt;code&gt;|=&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To pronounce a rune, concatenate the glyph names, stressing the first syllable and softening the second vowel into a &amp;#8220;schwa.&amp;#8221; Hence, to say &lt;code&gt;~.&lt;/code&gt;, say &amp;#8220;sigdot.&amp;#8221; To say &lt;code&gt;|=&lt;/code&gt;, say &amp;#8220;bartis.&amp;#8221; Which has an inevitable tendency to turn into &amp;#8220;barts&amp;#8221; - a sin to be encouraged. In any language actually spoken by actual humans, benign indolence soon rounds off any rough edges.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#8217;s look at that decrement gate again:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      |=  a=@
+      =|  b=@
+      |-  ?:  =(a +(b))
+            b
+          $(b +(b))&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If we had to read this twig, omitting the spaces (which only a real purist would pronounce), we&amp;#8217;d say: &amp;#8220;bartis a is pat tisbar b is pat barhep wutcol tispel a luspel b perper b bucpel b luspel b perper.&amp;#8221; The authorities would then arrive, and drag us out in a big net. Definitely don&amp;#8217;t do this at the airport.&lt;/p&gt;
+
+&lt;p&gt;Hoon has almost 90 digraphic runes. Worse, &amp;#8220;Hoon runes&amp;#8221; are inevitably shortened to &amp;#8220;hoons&amp;#8221; - a ridiculous non-English word due originally to Wallace Stevens, which also has the unique property of reducing Australians to convulsions.&lt;/p&gt;
+
+&lt;p&gt;None of this should scare you. First, this is not a lot compared to, say, Chinese. Second, they are easier than you&amp;#8217;d expect to organize in your head, because the choice of glyph is not random.&lt;br /&gt;Third, no one lives in Australia and nobody cares.&lt;/p&gt;
+
+&lt;p&gt;The second glyph in a hoon means little or nothing, but the first defines a rough semantic category. These categories are:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;|  bar    core construction
+$  buc    tiles and tiling
+%  cen    invocations
+:  col    tuples
+.  dot    nock operators
+^  ket    type conversions
+;  sem    miscellaneous macros
+~  sig    hints
+=  tis    compositions
+?  wut    conditionals, booleans, tests
+!  zap    special operations&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#39;twigs_and_tiles&#39;&gt;Twigs and tiles&lt;/h2&gt;
+
+&lt;p&gt;Earlier, we said a block of Hoon parses into a &lt;code&gt;twig&lt;/code&gt;. While this remains true, it is true only for certain values of &amp;#8220;true.&amp;#8221; Unfortunately, Hoon is more complicated than that.&lt;/p&gt;
+
+&lt;p&gt;One of the nice features of Lisp is that Lisp is both homoiconic (can be represented in its own data structures) and homogeneous (every complex node in the tree is the same thing, ie, a Lisp function). Hoon is homoiconic but not homogeneous. (It also has its &lt;code&gt;++homo&lt;/code&gt; gate - whose function, naturally, is to homogenize.)&lt;/p&gt;
+
+&lt;p&gt;When parsed, a Hoon file becomes a strange hodgepodge of &lt;code&gt;++twig&lt;/code&gt; and &lt;code&gt;++tile&lt;/code&gt; nouns. (Pro tip: when we write &lt;code&gt;++tile&lt;/code&gt;, we point to a twig preceded by the search string &amp;#8220;lus lus ace ace tile&amp;#8221; - to use the vile jargon we just defined above.)&lt;/p&gt;
+
+&lt;p&gt;We cannot even say that twigs never contain twigs - or that tiles never contain twigs. Except that both are ways of producing a Nock formula, the semantics and purpose of a twig and a tile are more or less orthogonal. Just to warn ya.&lt;/p&gt;
+
+&lt;p&gt;In general, when you see a hoon in &lt;code&gt;$&lt;/code&gt;, like &lt;code&gt;$:&lt;/code&gt;, you area looking at a tile. Unless it&amp;#8217;s &lt;code&gt;$,&lt;/code&gt; &lt;code&gt;$_&lt;/code&gt;, &lt;code&gt;$@&lt;/code&gt;, &lt;code&gt;$*&lt;/code&gt; or &lt;code&gt;$!&lt;/code&gt; - that is, &lt;code&gt;buccom&lt;/code&gt;, &lt;code&gt;buccab&lt;/code&gt;, &lt;code&gt;bucpat&lt;/code&gt;, &lt;code&gt;buctar&lt;/code&gt; or &lt;code&gt;buczap&lt;/code&gt; - in which case you are looking at a twig wrapped around a tile. This will one day make sense and even more if you&amp;#8217;re drunk.&lt;/p&gt;
+
+&lt;h3 id=&#39;the_noble_twig&#39;&gt;The noble twig&lt;/h3&gt;
+
+&lt;p&gt;We have already defined the noble twig - in chapter 5. But let&amp;#8217;s simply &lt;em&gt;reprint&lt;/em&gt; that text:&lt;/p&gt;
+
+&lt;p&gt;When we parse a Hoon expression, file, etc, we produce what we call a &lt;code&gt;twig&lt;/code&gt;, which (if you know the CS jargon) is an AST. A twig is a noun that&amp;#8217;s converted into a Nock formula, with the assistance of a type which describes the subject of the formula:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[subject-type twig] =&amp;gt; formula&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But actually this isn&amp;#8217;t quite right, because Hoon does something called &amp;#8220;type inference.&amp;#8221; When we have a type that describes the subject for the formula we&amp;#8217;re trying to generate, as we generate that formula we want to also generate a type for the product of that formula on that subject. So our compiler computes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[subject-type twig] =&amp;gt; [product-type formula]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As long as &lt;code&gt;subject-type&lt;/code&gt; is a correct description of some subject, you can take any twig and compile it against &lt;code&gt;subject-type&lt;/code&gt;, producing a &lt;code&gt;formula&lt;/code&gt; such that &lt;code&gt;*(subject
+formula)&lt;/code&gt; is a product correctly described by &lt;code&gt;product-type&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Actually, this works well enough that in Hoon there is no direct syntax for defining or declaring a type. There is only a syntax for constructing twigs. Types are exclusively formed by inference.&lt;/p&gt;
+
+&lt;p&gt;Is this a macro system? Yes - it&amp;#8217;s a macro system without user-defined macros. (This may be a future feature.)&lt;/p&gt;
+
+&lt;h3 id=&#39;the_savage_tile&#39;&gt;The savage tile&lt;/h3&gt;
+
+&lt;p&gt;Perhaps the most confusing aspect of Hoon is the difference between a type (the data structure formed by type inference) and a tile. In normal languages these concepts are seldom distinct. In Hoon they are very distinct.&lt;/p&gt;
+
+&lt;p&gt;A tile is actually a proto-twig. Precisely, a tile is the input to a suite of functions which convert it, in various styles, to produce a twig. This twig is then used to construct or handle well-typed data given the Hoon inference algorithm (not at all an intelligent algorithm, at least as type inference goes).&lt;/p&gt;
+
+&lt;p&gt;So a tile, while it looks like a type, goes through multiple layers of indirection before it generates a type. It has to be turned into a twig, which has to be applied to a subject type, producing both a product type and a formula.&lt;/p&gt;
+
+&lt;h2 id=&#39;irregular_and_regular_syntax&#39;&gt;Irregular and regular syntax&lt;/h2&gt;
+
+&lt;p&gt;Like most natural languages, Hoon has both regular and irregular forms - for both twigs and tiles.&lt;/p&gt;
+
+&lt;p&gt;&lt;span&gt;&amp;#8230;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch6.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Goes Wild&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -67,7 +1139,7 @@
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch6.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch6</id>
-   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch5.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Attacks&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch5.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Attacks&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch7.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Hoon Bites Back&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;&amp;#8220;What good is a phone call if you&amp;#8217;re unable to speak?&amp;#8221;&lt;/em&gt; &lt;strong&gt;(The Matrix)&lt;/strong&gt;&lt;/p&gt;
 
@@ -83,7 +1155,7 @@
               [%fork p=type q=type]
           ==&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id268&#39;&gt;&lt;code&gt;%fork&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id328&#39;&gt;&lt;code&gt;%fork&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;%fork&lt;/code&gt; is simply a union type. A type is a set of nouns - &lt;code&gt;[%fork p q]&lt;/code&gt; means &amp;#8220;it could be a p, or maybe a q.&amp;#8221;&lt;/p&gt;
 
@@ -103,9 +1175,9 @@
 
 &lt;p&gt;(Readers of a mathematical bent may ask: since Hoon has a union type, where is the intersection type? There is none. Hoon is not one of these languages whose goal is to be as mathematically powerful as possible. Since a programming language is a UI for programmers, and programmers are not mathematicians, Hoon is designed to be as powerful as it has to be - and no more.)&lt;/p&gt;
 
-&lt;h3 id=&#39;id269&#39;&gt;&lt;code&gt;%face&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id329&#39;&gt;&lt;code&gt;%face&lt;/code&gt;&lt;/h3&gt;
 
-&lt;p&gt;A type is not just a set of nouns - it&amp;#8217;s also a semantics for that set. In practice, this means a namespace.&lt;/p&gt;
+&lt;p&gt;A type is not just a set of nouns - it&amp;#8217;s also a semantics for that set. In practice, this means a namespace. To avoid using &amp;#8220;semantics&amp;#8221;, you could say that we give the parts a meaning by putting a name on each part.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s use this feature:&lt;/p&gt;
 
@@ -124,7 +1196,7 @@ foo=@ud
 
 &lt;p&gt;But how do we use this namespace?&lt;/p&gt;
 
-&lt;p&gt;To play comfortably with names, it&amp;#8217;ll help if we introduce some Arvo shell syntax. As in Unix, you can bind variables in the Arvo shell:&lt;/p&gt;
+&lt;p&gt;To play comfortably with names, it&amp;#8217;ll help if we introduce some Arvo shell syntax. As in Unix, you can bind variables in the Arvo shell. As in Windows, you can set variables from the command prompt. As in real life, you can take a yellow sticky note &lt;code&gt;=&lt;/code&gt; from the Minnesota Mining and Manufacturing (MMM, or 3M) company and post it on a value:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test 42
 ~waclux-tomwyc/try=&amp;gt; test
@@ -132,7 +1204,7 @@ foo=@ud
 ~waclux-tomwyc/try=&amp;gt; (add 17 test)
 59&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;(&lt;code&gt;=variable expression&lt;/code&gt; is &lt;em&gt;not&lt;/em&gt; in any way Hoon syntax - any Hoon expression is a valid Arvo command, but not every Arvo command is a Hoon expression.)&lt;/p&gt;
+&lt;p&gt;(&lt;code&gt;=name value&lt;/code&gt; is &lt;em&gt;not&lt;/em&gt; in any way Hoon syntax - any Hoon expression is a valid Arvo command, but not every Arvo command is a Hoon expression.)&lt;/p&gt;
 
 &lt;p&gt;Let&amp;#8217;s put a &lt;code&gt;%face&lt;/code&gt; inside this shell variable and try to use it:&lt;/p&gt;
 
@@ -142,7 +1214,7 @@ foo=42
 ~waclux-tomwyc/try=&amp;gt; foo.test
 42&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You probably expected it to be &lt;code&gt;test.foo&lt;/code&gt;. This disoriented feeling should vanish in a few minutes. Let&amp;#8217;s go further:&lt;/p&gt;
+&lt;p&gt;You probably expected it to be &lt;code&gt;test.foo&lt;/code&gt;. This disoriented feeling should vanish in a few minutes. (It&amp;#8217;s backwards for a reason.) Let&amp;#8217;s go further:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; =test foo=42
 ~waclux-tomwyc/try=&amp;gt; test
@@ -352,7 +1424,9 @@ dog=[pig=9 rat=12]
 
 &lt;p&gt;Why? Because &lt;code&gt;dog&lt;/code&gt; is at &lt;code&gt;+3&lt;/code&gt; on one side of the fork, &lt;code&gt;+6&lt;/code&gt; on the other.&lt;/p&gt;
 
-&lt;p&gt;Frighteningly enough, we now have all the tools we need to really start programming in Hoon&amp;#8230;&lt;/p&gt;</content>
+&lt;p&gt;Frighteningly enough, we now have all the tools we need to really start programming in Hoon&amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch5.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Attacks&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch7.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Hoon Bites Back&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -360,7 +1434,7 @@ dog=[pig=9 rat=12]
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch5.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch5</id>
-   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Using Nock&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch6.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Hoon Goes Wild&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;&amp;#8220;Like all men in Babylon, I have been proconsul; like all, a slave.&amp;#8221;&lt;/em&gt; &lt;strong&gt;(The Lottery in Babylon)&lt;/strong&gt;&lt;/p&gt;
 
@@ -376,18 +1450,18 @@ dog=[pig=9 rat=12]
 
 &lt;p&gt;A lot of other languages use dynamic types, in which the type of a value is carried along with the data as you use it. Even languages like Lisp, which are nominally typeless, look rather typed from the Hoon perspective. For example, a Lisp atom knows dynamically whether it&amp;#8217;s a symbol or an integer. A Hoon atom is just a Nock atom, which is just a number. So without a static type, Hoon doesn&amp;#8217;t even know how to print an atom properly.&lt;/p&gt;
 
-&lt;p&gt;When we parse a Hoon expression, file, etc, we produce what we call a &lt;code&gt;hoon&lt;/code&gt;, which (if you know the CS jargon) is an AST. A hoon is a noun that&amp;#8217;s converted into a Nock formula, with the assistance of a type which describes the subject of the formula:&lt;/p&gt;
+&lt;p&gt;When we parse a Hoon expression, file, etc, we produce what we call a &lt;code&gt;twig&lt;/code&gt;, which (if you know the CS jargon) is an AST. A twig is a noun that&amp;#8217;s converted into a Nock formula, with the assistance of a type which describes the subject of the formula:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[subject-type hoon] =&amp;gt; formula&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[subject-type twig] =&amp;gt; formula&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But actually this isn&amp;#8217;t quite right, because Hoon does something called &amp;#8220;type inference.&amp;#8221; When we have a type that describes the subject for the formula we&amp;#8217;re trying to generate, as we generate that formula we want to also generate a type for the product of that formula on that subject. So our compiler computes:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;[subject-type hoon] =&amp;gt; [product-type formula]&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[subject-type twig] =&amp;gt; [product-type formula]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;As long as &lt;code&gt;subject-type&lt;/code&gt; is a correct description of some subject, you can take any &lt;code&gt;hoon&lt;/code&gt; and compile it against &lt;code&gt;subject-type&lt;/code&gt;, producing a &lt;code&gt;formula&lt;/code&gt; such that &lt;code&gt;*(subject
+&lt;p&gt;As long as &lt;code&gt;subject-type&lt;/code&gt; is a correct description of some subject, you can take any twig and compile it against &lt;code&gt;subject-type&lt;/code&gt;, producing a &lt;code&gt;formula&lt;/code&gt; such that &lt;code&gt;*(subject
 formula)&lt;/code&gt; is a product correctly described by &lt;code&gt;product-type&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Actually, this works well enough that in Hoon there is no direct syntax for defining or declaring a type. There is only a syntax for constructing hoons. Types are always produced by inference.&lt;/p&gt;
+&lt;p&gt;Actually, this works well enough that in Hoon there is no direct syntax for defining or declaring a type. There is only a syntax for constructing twigs. Types are always produced by inference.&lt;/p&gt;
 
 &lt;h2 id=&#39;printing_types&#39;&gt;Printing types&lt;/h2&gt;
 
@@ -409,7 +1483,11 @@ formula)&lt;/code&gt; is a product correctly described by &lt;code&gt;product-ty
 
 &lt;p&gt;But a type, like everything else in Hoon, is a noun. Suffice it to say that &lt;code&gt;-:!&amp;gt;(42)&lt;/code&gt; is just printing this noun, whereas &lt;code&gt;:type; 42&lt;/code&gt; is rendering it intelligently as a string. In this case, the rendering is actually Hoon syntax, but in general it&amp;#8217;s just a string.&lt;/p&gt;
 
-&lt;p&gt;In this case, looking directly at the type noun is preferable. But for a core, the type actually contains the entire codebase. It is no problem to compute with this, but we can&amp;#8217;t look at it without scrolling more or less to infinity.&lt;/p&gt;
+&lt;p&gt;In this case, looking directly at the type noun is preferable. But for a core, the type actually contains the entire codebase. For example, if you type&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; -:!&amp;gt;(&amp;quot;string&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you&amp;#8217;ll have to press ^C to rescue yourself, or wait until you&amp;#8217;ve printed out more or less the entire Arvo kernel. Black magic is evil magic - it must exact its evil price. But someday, you&amp;#8217;ll be more the sorcerer and less his apprentice.&lt;/p&gt;
 
 &lt;h2 id=&#39;atom_examples&#39;&gt;Atom examples&lt;/h2&gt;
 
@@ -790,12 +1868,9 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#39;absolute_date_&#39;&gt;Absolute date, &lt;code&gt;@da&lt;/code&gt;&lt;/h3&gt;
 
-&lt;p&gt;Urbit dates represent 128-bit chronological time, with 2^64 seconds from the start of the universe to the end. 2^127 is 3:30:08 PM on 226 AD, for reasons not clear or relevant:&lt;/p&gt;
+&lt;p&gt;Urbit dates represent 128-bit chronological time, with 2^64 seconds from the start of the universe to the end. 2^127 is 3:30:08 PM on December 5, AD 226, for reasons not clear or relevant:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~waclux-tomwyc/try=&amp;gt; `@da`(bex 127)
-~226.12.5..15.30.08
-
-~waclux-tomwyc/try=&amp;gt; `@da`(dec (bex 127))
 ~226.12.5..15.30.08
 
 ~waclux-tomwyc/try=&amp;gt; `@da`(dec (bex 127))
@@ -1099,7 +2174,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 ~waclux-tomwyc/try=&amp;gt; &amp;quot;hello&amp;quot;. &amp;quot;world&amp;quot;
 &amp;quot;helloworld&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Using Nock&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch6.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Hoon Goes Wild&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -1396,7 +2471,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
             [ 6                         ::        pick
               [5 [4 0 6] [0 30]]        ::         same /6 /30
               [0 6]                     ::         /6
-                [9 2 [0 2] [4 0 6] [0 7]] ::         call.2 /2 (bump /6) /11
+              [9 2 [0 2] [4 0 6] [0 7]] ::         call.2 /2 (bump /6) /11
             ]                           ::        |
           ]                             ::       |
           [9 2 0 1]                     ::       call.2 /1
@@ -1587,7 +2662,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch3.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch3</id>
-   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch1.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Intro To Nock&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch2.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Intro To Nock&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;&amp;#8220;You get used to it. I don’t even see the code. All I see is blonde, brunette, redhead.&amp;#8221;&lt;/em&gt; &lt;strong&gt;(The Matrix)&lt;/strong&gt;&lt;/p&gt;
 
@@ -1662,7 +2737,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Let&amp;#8217;s run through them one by one.&lt;/p&gt;
 
-&lt;h3 id=&#39;id261&#39;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id321&#39;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;0&lt;/code&gt; just applies the &lt;code&gt;/&lt;/code&gt; function:&lt;/p&gt;
 
@@ -1674,13 +2749,13 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;is &lt;code&gt;/[3 19 42]&lt;/code&gt;, which is &lt;code&gt;42&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#39;id262&#39;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id322&#39;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;1&lt;/code&gt; just ignores its subject and produces its operand:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;26 ::    *[a 1 b]         b&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id263&#39;&gt;&lt;code&gt;2&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id323&#39;&gt;&lt;code&gt;2&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;2&lt;/code&gt; is the only interesting basic operator:&lt;/p&gt;
 
@@ -1720,7 +2795,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;The answer is that &lt;code&gt;10&lt;/code&gt; is a hint to the interpreter. It&amp;#8217;s true that &lt;code&gt;[10 b c]&lt;/code&gt; has to be &lt;em&gt;semantically&lt;/em&gt; equivalent to &lt;code&gt;c&lt;/code&gt;, but it doesn&amp;#8217;t have to be &lt;em&gt;practically&lt;/em&gt; equivalent. Since whatever information is in &lt;code&gt;b&lt;/code&gt; is discarded, a practical interpreter is free to ignore it, or to use it in any way that does not affect the results of the computation.&lt;/p&gt;
 
-&lt;h3 id=&#39;id264&#39;&gt;&lt;code&gt;7&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id324&#39;&gt;&lt;code&gt;7&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;7&lt;/code&gt; is our next easiest macro:&lt;/p&gt;
 
@@ -1746,7 +2821,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;pre&gt;&lt;code&gt;33r::    *[a 7 b c]       *[*[a b] c]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id265&#39;&gt;&lt;code&gt;8&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id325&#39;&gt;&lt;code&gt;8&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;8&lt;/code&gt; looks slightly horrible but you shouldn&amp;#8217;t fear it at all:&lt;/p&gt;
 
@@ -1820,7 +2895,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;Effectively, this mechanism lets us feed both static and dynamic information into the interpreter&amp;#8217;s hint mechanism.&lt;/p&gt;
 
-&lt;h3 id=&#39;id266&#39;&gt;&lt;code&gt;6&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id326&#39;&gt;&lt;code&gt;6&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;6&lt;/code&gt; certainly looks intimidating:&lt;/p&gt;
 
@@ -1839,7 +2914,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;This excuse for an explanation may not satisfy everyone. A good exercise is to check that &lt;code&gt;6&lt;/code&gt; as defined &lt;em&gt;actually&lt;/em&gt; has these properties - and can&amp;#8217;t be simplified.&lt;/p&gt;
 
-&lt;h3 id=&#39;id267&#39;&gt;&lt;code&gt;9&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id327&#39;&gt;&lt;code&gt;9&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;9&lt;/code&gt; is an audacious mystery:&lt;/p&gt;
 
@@ -1867,7 +2942,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;If you have a really fine instinctive sense of Nock, you might understand what &lt;code&gt;9&lt;/code&gt; is for. Otherwise, don&amp;#8217;t worry for now.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch1.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Intro To Nock&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch2.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Intro To Nock&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch4.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Using Nock&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -1883,7 +2958,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;Think of Nock as a kind of functional assembly language. It&amp;#8217;s not like assembly language in that it&amp;#8217;s directly executed by the hardware. It is like assembly language in that (a) everything in Urbit executes as Nock; (b) you wouldn&amp;#8217;t want to program directly in Nock; and (c) learning to program directly in Nock is a great way to start understanding Urbit from the ground up.&lt;/p&gt;
 
-&lt;p&gt;Just as Unix runs C programs by compiling them to assembler, Urbit runs Hoon programs by compiling them to Nock. You could try to learn Hoon without learning Nock. But just as C is a thin wrapper over the the physical CPU, Hoon is a thin wrapper over the Nock virtual machine. It&amp;#8217;s a tall stack made of thin layers, which is much easier to learn a layer at a time.&lt;/p&gt;
+&lt;p&gt;Just as Unix runs C programs by compiling them to assembler, Urbit runs Hoon programs by compiling them to Nock. You could try to learn Hoon without learning Nock. But just as C is a thin wrapper over the physical CPU, Hoon is a thin wrapper over the Nock virtual machine. It&amp;#8217;s a tall stack made of thin layers, which is much easier to learn a layer at a time.&lt;/p&gt;
 
 &lt;p&gt;And unlike most fundamental theories of computing, there&amp;#8217;s really nothing smart or interesting about Nock. Of course, in a strictly formal sense, all of computing is math. But that doesn&amp;#8217;t mean it needs to feel like math. Nock is a simple mechanical device and it&amp;#8217;s meant to feel that way.&lt;/p&gt;
 
@@ -2143,7 +3218,7 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch1.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch1</id>
-   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch1.html&#39;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Setup&lt;/a&gt; &lt;a href=&#39;urbit-is-easy-ch2.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Intro To Nock&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&#39;urbit-is-easy-ch2.html&#39;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Intro To Nock&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Tlön is surely a labyrinth, but it is a labyrinth devised by men, a labyrinth destined to be deciphered by men.&lt;/em&gt; &lt;strong&gt;(Tlön, Uqbar, Orbis Tertius)&lt;/strong&gt;&lt;/p&gt;
 
@@ -2179,7 +3254,7 @@ b]&lt;/code&gt;, the result is just &lt;code&gt;b&lt;/code&gt;. So &lt;code&gt;*
 
 &lt;p&gt;Otherwise, &lt;code&gt;ruby -e &amp;quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&amp;quot;&lt;/code&gt; will install it.&lt;/p&gt;
 
-&lt;p&gt;And follow up with &lt;code&gt;sudo brew install gmp libsigsegv openssl&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;And follow up with &lt;code&gt;brew install gmp libsigsegv openssl&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;This will ask you for the root password, which ideally you know.&lt;/p&gt;
 
@@ -2691,7 +3766,7 @@ waclux-tomwyc/try=&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;A hymn can be full of love, or hate. And the quality of Urbit&amp;#8217;s haters is absurdly high. We cherish each and every one of them. There&amp;#8217;s something sublime about being hit with a perfectly-formed jab. So we&amp;#8217;d like to serve some of the choicest examples for you here, names redacted (we don&amp;#8217;t want to embarrass anyone). Here they are:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.mcclatchydc.com/2013/09/24/203134/exclusive-john-mcafee-vows-to.html#.UkS1bryoWqk&quot;&gt;&lt;img alt=&#39;It&#39;s an image. It&#39;s a link&#39; src=&#39;/assets/tweets.png&#39; /&gt;&lt;/a&gt; Sadly, though we&amp;#8217;re avid followers of the &lt;a href=&quot;http://www.mcclatchydc.com/2013/09/24/203134/exclusive-john-mcafee-vows-to.html#.UkS1bryoWqk&quot;&gt;adventures&lt;/a&gt; of John McAfee, he&amp;#8217;s not involved.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://web.archive.org/web/20130925195007/http://www.mcclatchydc.com/2013/09/24/203134/exclusive-john-mcafee-vows-to.html&quot;&gt;&lt;img alt=&#39;It&#39;s an image. It&#39;s a link&#39; src=&#39;/assets/tweets.png&#39; /&gt;&lt;/a&gt; Sadly, though we&amp;#8217;re avid followers of the &lt;a href=&quot;http://www.mercurynews.com/business/ci_24168403/exclusive-john-mcafee-vows-make-internet-impossible-hack&quot;&gt;adventures&lt;/a&gt; of John McAfee, he&amp;#8217;s not involved.&lt;/p&gt;
 
 &lt;p&gt;Yet.&lt;/p&gt;
 
