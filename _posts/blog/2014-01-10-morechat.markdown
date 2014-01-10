@@ -3,7 +3,7 @@ layout: post
 category: blog 
 author: cgy 
 title: Urbit chat~2014.1.10
-date: 2014-01-07 
+date: 2014-01-10 
 ---
 
 Urbit, `~2014.1.10`:
