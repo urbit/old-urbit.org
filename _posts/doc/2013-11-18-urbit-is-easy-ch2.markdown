@@ -285,7 +285,7 @@ cells, the error rule matches first for `+` and last for `=`.
 This looks way more complicated than it is.  Essentially, we define a
 noun as a binary tree - where each node branches to a left and right
 child - and assign an address, or *axis*, to every element in the
-tree.  The root of the tree is `/1`, or "slot one".  The left child of
+tree.  The root of the tree is `/1`.  The left child of
 every node at `/a` is `/2a`; the right child is `/2a+1`.  (Writing `(a
 + a)` is just a clever way to write `2*a`, while minimizing the set of
 pseudocode forms.)

@@ -54,10 +54,9 @@ designed to be as powerful as it has to be - and no more.)
 
 ###`%face`###
 
-A type is not just a set of nouns - it's also a semantics for that
-set.  In practice, this means a namespace. To avoid using "semantics",
-you could say that we give the parts a meaning by putting a name on
-each part.
+A type is not just a set of nouns - it's also a *meaning* which
+makes sense of any noun in that set.  The typed noun exports a
+namespace - give it a name, and it gives you another noun.
 
 Let's use this feature:
 
@@ -71,7 +70,7 @@ Let's use this feature:
 
 With `%face`, we've simply wrapped a label around another type.
 Note that this doesn't impair our ability to compute with the
-value, which is of course the same noun it always was:
+value.  Computationally, `foo=42` is just `42`: 
 
     ~waclux-tomwyc/try=> (add 17 foo=42)
     59
@@ -80,9 +79,6 @@ But how do we use this namespace?
 
 To play comfortably with names, it'll help if we introduce some Arvo
 shell syntax.  As in Unix, you can bind variables in the Arvo shell.
-As in Windows, you can set variables from the command prompt. As in
-real life, you can take a yellow sticky note `=` from the Minnesota
-Mining and Manufacturing (MMM, or 3M) company and post it on a value:
 
     ~waclux-tomwyc/try=> =test 42
     ~waclux-tomwyc/try=> test
@@ -103,8 +99,7 @@ Let's put a `%face` inside this shell variable and try to use it:
     42
 
 You probably expected it to be `test.foo`.  This disoriented
-feeling should vanish in a few minutes. (It's backwards for a
-reason.) Let's go further:
+feeling should vanish in a few minutes.  Let's go further:
 
     ~waclux-tomwyc/try=> =test foo=42
     ~waclux-tomwyc/try=> test
@@ -348,5 +343,7 @@ And yet:
 Why?  Because `dog` is at `+3` on one side of the fork, `+6` on
 the other.
 
-Frighteningly enough, we now have all the tools we need to really
-start programming in Hoon...
+We've left only one major kind of type undefined - the
+mysterious, frightening `%core`.  We made a core in Nock, but
+that was a little while ago.  We'll explain them in Hoon when we
+make one.

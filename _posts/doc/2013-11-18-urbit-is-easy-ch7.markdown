@@ -29,7 +29,7 @@ Here is our old decrement function, from the Nock battery:
     ]
 
 This clearly it is not for the little boys and girls.  But wait -
-is Hoon any less formidable?  The Hoon equivalent:
+is Hoon any less formidable?  The equivalent Hoon twig:
 
           |=  a=@
           =|  b=@
@@ -43,12 +43,12 @@ Whaa?  We can also write the exact same decrement as:
 
 for instance:
   
-    ~zod/try=> (|=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))) 42)
+    ~waclux-tomwyc/try=> (|=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))) 42)
     41
 
 or even more cryptically, 
 
-    ~zod/try=> %.(42 |=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))))
+    ~waclux-tomwyc/try=> %.(42 |=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))))
     41
 
 And I showed this to my daughter, who ran away in tears.  Dear
@@ -73,7 +73,7 @@ simply be able to *see* a twig like
 and, far from merely able to follow this code, *actually observe
 in your mind's eye the function itself* - not unlike Keanu with
 kung fu.  You will simply look at this strange collection of
-squiggles and *see decrement*.  Trust me, man - it's heavy.
+squiggles and *see decrement*.
 
 (Our feeling is that the use of reserved words in most languages,
 by instead activating the verbal lobes, disrupts this sense of
@@ -110,7 +110,7 @@ say, others not so much.  So we've renamed them:
     fas  /          pel  (          zap  !
 
 You just have to memorize these names.  Sorry.  We accept
-that they are vile, barbaric and loathsome.
+that they are vile, barbaric and loathsome.  So is life.
 
 ###Runes###
 
@@ -126,7 +126,7 @@ Which has an inevitable tendency to turn into "barts" - a sin
 to be encouraged.  In any language actually spoken by actual
 humans, benign indolence soon rounds off any rough edges.
 
-Let's look at that decrement gate again:
+Let's look at that decrement twig again:
 
           |=  a=@
           =|  b=@
@@ -145,10 +145,10 @@ inevitably shortened to "hoons" - a ridiculous non-English word
 due originally to Wallace Stevens, which also has the unique
 property of reducing Australians to convulsions.
 
-None of this should scare you.  First, this is not a lot compared
-to, say, Chinese.  Second, they are easier than you'd expect to
-organize in your head, because the choice of glyph is not random.  
-Third, no one lives in Australia and nobody cares.
+None of this should scare you.  First, 90 symbols is not a lot
+compared to, say, Chinese.  Second, hoons are easier than you'd
+expect to organize in your head, because the choice of glyph is
+not random.  Third, no one lives in Australia and nobody cares.
 
 The second glyph in a hoon means little or nothing, but the first
 defines a rough semantic category.   These categories are:
@@ -165,38 +165,242 @@ defines a rough semantic category.   These categories are:
     ?  wut    conditionals, booleans, tests
     !  zap    special operations
 
-##Twigs and tiles##
+###Regular forms###
 
-Earlier, we said a block of Hoon parses into a `twig`.  While
-this remains true, it is true only for certain values of "true."
-Unfortunately, Hoon is more complicated than that.
+Like natural languages, Hoon wraps a blanket of funky, irregular,
+easy-to-type abbreviations around a comforting but verbose
+regular core.  Let's explain the regular core first.
 
-One of the nice features of Lisp is that Lisp is both homoiconic
-(can be represented in its own data structures) and homogeneous
-(every complex node in the tree is the same thing, ie, a Lisp
-function).  Hoon is homoiconic but not homogeneous.  (It also has
-its `++homo` gate - whose function, naturally, is to homogenize.)
+Consider a very simple twig in completely regular form:
 
-When parsed, a Hoon file becomes a strange hodgepodge of `++twig`
-and `++tile` nouns.  (Pro tip: when we write `++tile`, we point
-to a twig preceded by the search string "lus lus ace ace tile" -
-to use the vile jargon we just defined above.)
+      ?:  &
+        47
+      52
 
-We cannot even say that twigs never contain twigs - or that tiles
-never contain twigs.  Except that both are ways of producing a
-Nock formula, the semantics and purpose of a twig and a tile are 
-more or less orthogonal.  Just to warn ya.
+We observe the rune `?:`, which happens to mean the same thing it
+means in C.  In C, though, we don't call it `wutcol`.
 
-In general, when you see a hoon in `$`, like `$:`, you are
-looking at a tile.  Unless it's `$,` `$_`, `$@`, `$*` or `$!` -
-that is, `buccom`, `buccab`, `bucpat`, `buctar` or `buczap` -
-in which case you are looking at a twig wrapped around a tile.
-This will one day make sense and even more if you're drunk.
+`%wutcol` as a noun has a problem - it doesn't fit in 32 bits.
+Efficiency is important to us, so we disemvowel: `%wtcl`.  We
+can find this defined in `hoon.hoon`:
 
-###The noble twig###
+      [%wtcl p=twig q=twig r=twig]
 
-We have already defined the noble twig - in chapter 5.  But
-let's simply *reprint* that text:
+So `?:` has three sub-twigs: the test, the yes case, and the no
+case.  Again, as in C.  But why do we write it in this strange
+triangular way?
+
+###Tall forms###
+
+When all is said and done, the programmer is formatting a big
+wall of text.  This canvas has a curious but essential property -
+it is indefinitely tall, but finitely wide.  We strongly
+encourage an 80-column standard.
+
+So the programmer's task as a visual designer is to persuade her
+code to flow *down*, not *across*.  The usual way to lay out a
+tree which does not fit on one line is to indent the subtrees
+and enclose them in parens, brackets or braces.  Which might look
+like this (*not* Hoon syntax):
+
+    ?:  {
+      &
+      47
+      52
+    }
+
+Hoon, like other functional languages, has very deep expression
+trees.  In this simple, classic syntax model, a functional
+language develops huge piles of closing parens at the end of
+large blocks, which is manageable but ugly.  Less manageably, as
+each subtree is indented to the right, the width of the text
+window bounds the depth of the expression tree.
+
+Other languages skip the braces and parse whitespace, using
+indentation to express tree depth.  This actually is valid (but
+ugly) Hoon:
+
+    ?:
+      &
+      47
+      52
+
+This gets rid of the terminator problem, but keeps the width
+problem.  And parsing whitespace is horrible.  Whitespace in Hoon
+is not significant, though its presence or absence is.  (Note
+also that hard TAB characters are *zutiefst verboten*).
+
+Hoon notices a couple of things about this problem.  First, most
+Hoon twigs have small constant fanout.  A parser shouldn't need
+either significant whitespace or a terminator to figure out how
+many twigs follow `?:` - the answer is always 3.
+
+Second, our goal is to descend into a deep tree without losing
+right margin.  With the *backstep* pattern
+
+    ?:  &
+      47
+    52
+
+or
+
+    =+  a=3
+    b
+
+we step two spaces backward at each subtwig, till the last one is
+at the same indentation as its parent.
+
+This preserves your right margin in one and only one case - where
+the bottom twig is the heaviest.  For example, if we write
+
+    ?:  &
+      47
+    ?:  |
+      52
+    ?:  &
+      97
+    =+  35
+    b
+
+we see a tree that flows neatly down the screen.  It's obviously
+much nicer than, say (*not* Hoon syntax):
+
+    ?:  {
+      &
+      47
+      ?:  {
+        |
+        52
+        ?:  {
+          97
+          =+  {
+            35
+            b
+          }
+        }
+      }
+    }
+
+or any similar abortion.  But its downward flow depends on the
+coincidence of the bottom twig being the heavy one:
+
+    ?:  &
+      ?:  |
+        52
+      ?:  &
+        97
+      =+  35
+      b
+    47
+
+To handle this, Hoon has a reasonable selection of reverse hoons,
+which have the same semantics but inverse order.  For instance,
+if `?:` is "if," `?.` (`wutdot`) is "unless":
+
+    ?.  &
+      47
+    ?:  |
+      52
+    ?:  &
+      97
+    =+  35
+    b
+
+###Wide forms###
+
+Observe that in the tall syntax, there are always at least *two*
+spaces (or one newline) between tokens.  Other than this, nothing
+requires anything to be tall.  For instance, it is normal and
+only slightly aggressive to write:
+
+    ?.  &  47
+    ?:  |  52
+    ?:  &  97
+    =+  35
+    b
+
+But we could even go so far as:
+
+    ?.  &  47  ?:  |  52  ?:  &  97  =+  35  b
+
+Few would find this readable, which is why Hoon also has a *wide*
+syntax:
+
+    ?.(& 47 ?:(| 52 ?:(& 97 =+(35 b))))
+
+On a single line, the parentheses - while a parser could get away
+with skipping them - are needed to actually read the expression.
+The hoon attaches directly to the left paren (`pel`), and a
+double space or a newline is a syntax error.
+
+The semantics of tall and wide syntax are identical, of course.
+The choice is entirely up to the programmer.  Some languages can
+be formatted automatically - turning an abstract syntax tree into
+a tall, handsome Hoon file is an art form.  We won't say a
+program could never do it - but it'd be work.
+
+Wide forms are also nice because our immature and incomplete
+command-line shell can't process multi-line input.
+
+###Irregular forms###
+
+For a very large set of primitives, neither tall nor wide form is
+tight enough.  If you go to `++scat` in `hoon.hoon`, you can see
+them all, organized by initial character.
+
+This isn't the place to go over the irregular forms directly -
+we'll introduce them when we talk about individual runes, or
+when we run into them and we can't go around.
+
+##Semantics##
+
+We're finally ready to write our first Hoon program.  But...
+
+###A new testbed###
+
+Since we're going to have to write multi-line Hoon programs, the
+command line is no longer enough.  We'll need another toy
+testbed, this one in `urb/waclux-tomwyc/try/bin/toy.hoon`.
+Its text should be:
+
+    !:             ::  To write a trivial Hoon program
+    |=  *          ::
+    |=  [x=@ ~]    ::  For educational purposes only
+    :_  ~  :_  ~   ::
+    :-  %$         ::  Preserve this mysterious boilerplate square
+    !>             ::
+    :::::::::::::::::  Produce a value below
+    (add 2 x)
+
+Test that it works: 
+
+    ~waclux-tomwyc/try=> :toy 3
+    5
+
+Copy it into `try/bin/hec.hoon`, where we'll write our Hoon decrement.
+
+    + /~waclux-tomwyc/try/7/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 3
+    5
+
+Replace `(add 2 x)` with our decrement twig:
+
+    %.  x
+    |=  a=@
+    =|  b=@
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
+
+    ~waclux-tomwyc/try=> :hec 42
+    41
+
+It works.  But, why does it work?  What are these twigs, anyway?
+
+###Twigs###
+
+We have already defined the noble twig - in chapter 5.  Let's
+just *reprint* that text - odds are you've forgotten it already.
 
 When we parse a Hoon expression, file, etc, we produce what we
 call a `twig`, which (if you know the CS jargon) is an AST.  A
@@ -221,32 +425,495 @@ formula)` is a product correctly described by `product-type`.
 
 Actually, this works well enough that in Hoon there is no direct
 syntax for defining or declaring a type.  There is only a syntax
-for constructing twigs.  Types are exclusively formed by inference.
+for constructing twigs.  Types are exclusively formed by
+inference.
 
-Is this a macro system?  Yes - it's a macro system without
-user-defined macros.  (This may be a future feature.)
+###Fundamental and synthetic hoons###
 
-###The savage tile###
+Fortunately, most kinds of hoons are *synthetic* hoons - in a word,
+macros.  Synthetic hoons evaluate by reducing to other twigs,
+eventually down to direct ones.  Hoon could do without all its
+synthetic hoons, though it would be awfully cumbersome.
 
-Perhaps the most confusing aspect of Hoon is the difference
-between a type (the data structure formed by type inference) and
-a tile.  In normal languages these concepts are seldom distinct.
-In Hoon they are very distinct.
+For example, as we've seen with `?:` and `?.`, when we compile
+`wutdot` - `[%wtdt p q r]` - we turn it into `[%wtcl p r q]`.
+It's all just syntactic sugar.
 
-A tile is actually a proto-twig.  Precisely, a tile is the input
-to a suite of functions which convert it, in various styles, to 
-produce a twig.  This twig is then used to construct or handle
-well-typed data given the Hoon inference algorithm (not at all
-an intelligent algorithm, at least as type inference goes).
+In fact, at the risk of scaring you further, here is the entire
+Hoon type-inference function from `hoon.hoon`.  `++play` is a 
+serviceable list of the *fundamental* hoons - the axioms, as it
+were.  Understand all these, and the rest are just... macros.
 
-So a tile, while it looks like a type, goes through multiple
-layers of indirection before it generates a type.  It has to be
-turned into a twig, which has to be applied to a subject type,
-producing both a product type and a formula.
+  ++  play
+    ~/  %play
+    =>  .(vet |)
+    |=  gen=twig
+    ^-  type
+    ?-  gen
+      [^ *]      (cell $(gen p.gen) $(gen q.gen))
+      [%bcpt *]  $(gen (~(whip al q.gen) p:(seep %read p.gen)))
+      [%brcn *]  (core sut %gold sut [[%0 0] p.gen])
+      [%cnts *]  =+  lar=(foil (seek %read p.gen))
+                 =+  mew=(snub q.gen)
+                 =+  rag=q.q.lar
+                 %-  fire
+                 |-  ^-  (list ,[p=type q=foot])
+                 ?@  mew
+                   rag
+                 $(mew t.mew, rag q:(tock p.i.mew ^$(gen q.i.mew) rag))
+      [%dtkt *]  %noun
+      [%dtls *]  [%atom %$]
+      [%dtzy *]  ?:(=(%f p.gen) ?>((lte q.gen 1) bean) [%atom p.gen])
+      [%dtzz *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
+      [%dttr *]  %noun
+      [%dtts *]  bean
+      [%dtwt *]  bean
+      [%ktbr *]  (wrap(sut $(gen p.gen)) %iron)
+      [%ktls *]  $(gen p.gen)
+      [%ktpm *]  (wrap(sut $(gen p.gen)) %zinc)
+      [%ktsg *]  $(gen p.gen)
+      [%ktts *]  (conk(sut $(gen q.gen)) p.gen)
+      [%ktwt *]  (wrap(sut $(gen p.gen)) %lead)
+      [%sgzp *]  ~_(duck(sut ^$(gen p.gen)) $(gen q.gen))
+      [%sggr *]  $(gen q.gen)
+      [%tsgr *]  $(gen q.gen, sut $(gen p.gen))
+      [%tstr *]  $(gen r.gen, sut (busk p.gen q.gen))
+      [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
+                 %+  fork
+                   ?:(=(%void fex) %void $(sut fex, gen q.gen))
+                 ?:(=(%void wux) %void $(sut wux, gen r.gen))
+      [%zpcb *]  ~_((show %o p.gen) $(gen q.gen))
+      [%zpcm *]  (play p.gen)
+      [%zpcn ~]  p:seed
+      [%zpfs *]  %void
+      [%zpsm *]  (cell $(gen p.gen) $(gen q.gen))
+      [%zpts *]  %noun
+      [%zpzp ~]  %void
+      *          =+  doz=~(open ap gen)
+                 ?:  =(doz gen)
+                   ~_  (show [%c 'hoon'] [%q gen])
+                   ~|(%play-open !!)
+                 $(gen doz)
+    ==
 
-##Irregular and regular syntax##
+Well, it's a little intimidating.  But not bad for a whole
+language, perhaps.
 
-Like most natural languages, Hoon has both regular and irregular
-forms - for both twigs and tiles. 
+Let's start by working through the hoons we'll need to make 
+decrement work.
 
-[...]
+###Cores###
+
+To build decrement, we'll need a loop.  To write a loop, we'll
+need a core.  This adds another to the kinds of types we know:
+
+    ++  type  $|  ?(%noun %void)                            ::
+              $%  [%atom p=term]                            ::
+                  [%cell p=type q=type]                     ::
+                  [%core p=type q=coil]                     ::
+                  [%cube p=* q=type]                        ::
+                  [%face p=term q=type]                     ::
+                  [%fork p=type q=type]                     ::
+                  [%hold p=(list ,[p=type q=twig])]         ::
+              ==                                            ::
+    ++  coil  $:  p=?(%gold %iron %lead %zinc)              ::
+                  q=type                                    ::
+                  r=[p=?(~ ^) q=(map term foot)]            ::
+              ==                                            ::
+    ++  foot  $%  [%ash p=twig]                             ::
+                  [%elm p=twig]                             ::
+              ==                                            ::
+
+Aha, you say.  I knew there had to be something complicated in
+here.  Well, fact is, I'm just a simple country mouse and so are
+you, but Hoon is a polymorphic higher-order typed functional
+language with genericity and stuff, and you don't get that
+without a little bit of urban funk.
+
+But we want to keep it simple for now, so let's imagine it said
+
+    [%core p=type q=(map term twig)]
+
+As we recall from chapter 4, a core is a `[code data]` cell -
+`[battery payload]`.  Essentially, an object.  The battery, at
+the Nock level, is a tree of formulas, each of whose subject 
+is the core itself.
+
+Let's change our test file to produce a core.  The whole file:
+
+    !:             ::  To write a trivial Hoon program
+    |=  *          ::
+    |=  [a=@ ~]    ::  For educational purposes only
+    :_  ~  :_  ~   ::
+    :-  %$         ::  Preserve this mysterious boilerplate square
+    !>             ::
+    :::::::::::::::::  Produce a value below
+    |%
+    ++  hello
+      "hello, world."
+    --
+
+The syntax for a basic core is `|%` (`barcen`, or `%brcn`),
+followed by any number of arms `++` (`luslus`, or just `lul`),
+followed by a terminator `--` (`hephep`, or just `pep`).  The arm
+is a symbol and a twig.  The subject of the twig is the core.
+
+Let's try this puppy out:
+
+    : /~waclux-tomwyc/try/9/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec
+    ! type-fail
+    ! exit
+
+Whoops!  We forgot that Arvo is a *typed* command-line.  Because
+it's parsed as an open-ended list, it always has the terminator
+(`~`, which is just `@n`0) on the end.  But it needs an atom:
+
+    |=  [a=@ ~]    ::  For educational purposes only
+
+Hence:
+
+    ~waclux-tomwyc/try=> :hec 42
+    < 1.ivl
+      1.hfd
+      [ [a=@ %~]
+        <1.vpy [* [@p /] <218.tvj 18.olk 323.uvl 81.wza 1.xlc %164>]>
+      ]
+    >
+
+That's a core.  Or it's how we print a core, anyway.  This is
+actually a giant noun full of all kinds of formulas, and it would
+be kind of lame to dump a megabyte of nock on your screen.  The
+print format is:
+
+    <number-of-arms.checksum payload>
+
+So we wrapped our new `1.ivl` core, with its `++hello` arm,
+around the `1.hfd` core (which is the `|=  [a=@ ~]` thingy),
+around a stack of cores ultimately terminating in the giant
+kernel with hundreds of arms (like `218.tvj`).
+
+Okay.  But we built a core because we wanted to use it.  So,
+let's do that:
+
+    =>  |%
+        ++  hello
+          "hello, world."
+        --
+    hello
+
+What is this `=>`, `tisgar`, `%tsgr`?  You remember Nock 7.  `=>`
+is Nock 7.  `=>(a b)` means "use a as the subject of b."  So, we
+are resolving the limb `hello` against our `1.ivl` core.
+
+So when we try it:
+
+    : /~waclux-tomwyc/try/11/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    "hello, world."
+
+Let's observe a couple of things.  First, an arm is not a method
+in the OO sense.  You don't see any arguments on `++hello`.
+Rather, the arm is a computed expression - a synthetic attribute,
+as it were.  (Can we build a method?  We'll get to that.)
+
+Second, when we're searching for a name in a core, we search the
+payload if we don't find an arm.  For example:
+
+    =>  |%
+        ++  hello
+          "hello, world."
+        --
+    a
+
+    : /~waclux-tomwyc/try/12/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    42
+
+Our command-line argument, `a`, is still in there.  We can also
+use it from within the arm.  With some string-interpolation black
+magic:
+
+    =>  |%
+        ++  hello
+          "hello, world - a is {(scow %ud a)}."
+        --
+    hello
+
+    : /~waclux-tomwyc/try/13/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    "hello, world - a is 42."
+
+Finally, this is a classic case in which the twig needs to be
+reversed to make it flow downward.  We need the opposite of `=>`:
+`=<`, `tisgal`, `%tsgl`:
+
+    =<  hello
+    |%
+    ++  hello
+      "hello, world - a is {(scow %ud a)}."
+    --
+
+    : /~waclux-tomwyc/try/14/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    "hello, world - a is 42."
+
+###Preparing to decrement###
+
+To do some decrementing, we'll need a counter.  Let's continue
+our pattern of using only fundamental hoons:
+
+    =>  :-  ^=  b
+            0
+        .
+    =<  decrement
+    |%
+    ++  decrement
+      b
+    --
+
+    : /~waclux-tomwyc/try/16/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    0
+
+We introduce a couple of new hoons.  First, `^=`, `kettis`,
+`%ktts` - is a hoon we've already seen.  We've seen it only in
+its irregular form - not `^=(b 0)`, but, of course, `b=0`.
+(Pronounced not "b tis zero," but, of course, "b is zero.")
+
+We've also seen `:-` in its irregular form - it just makes a
+cell.  `:-(a b)` is just `[a b]`.  We have a set of these hoons,
+which let us build cells in classic Hoon fashion:
+
+    :-(a b)       [a b]
+    :+(a b c)     [a b c]
+    :^(a b c d)   [a b c d]
+    :_(a b)       [b a]
+
+So we might as well say
+
+    =>  [b=0 .]
+    =<  decrement
+    |%
+    ++  decrement
+      b
+    --
+
+In other words - enter our core not with the original subject,
+`.`, but with the cell `[b=0 .]`.  
+
+You might remember this as nock `8` - and in fact (it is a
+synthetic hoon, but the compiler sees what you're doing and turns
+it into nock `8` anyway) there's a hoon for that: `=+`, `tislus`,
+`%tsls`:
+
+    =+  b=0
+    =<  decrement
+    |%
+    ++  decrement
+      b
+    --
+
+###Actually decrementing###
+
+As you may remember, to decrement `a` we need to count up to it.
+The first step is incrementing, which we do with `.+` - `dotlus`, 
+`%dtls`:
+
+    =+  b=0
+    =<  decrement
+    |%
+    ++  decrement
+      .+(b)
+    --
+
+    : /~waclux-tomwyc/try/19/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    1
+    ~waclux-tomwyc/try=> 
+
+Well, it's not decrement but it's a start.  What we really have
+to do is see if `+(b)` equals `a`:
+
+    =+  b=0
+    =<  decrement
+    |%
+    ++  decrement
+      ?:  .=(a +(b))
+        b
+      99
+    --
+
+We've met a new hoon, `.=`, `dottis`, `%dtts`.  It too has an
+irregular form, not surprisingly different:
+
+    =+  b=0
+    =<  decrement
+    |%
+    ++  decrement
+      ?:  =(a +(b))
+        b
+      99
+    --
+
+And `?:` was of course one of our first examples.  We can test
+this, for what it's worth:
+
+    ~waclux-tomwyc/try=> :hec 42
+    99
+    ~waclux-tomwyc/try=> :hec 1
+    0
+
+Well, it works.  For one case of "works."
+
+You know, gosh, instead of `99` - which is obviously just wrong -
+what we'd actually like to do is, if `+(b)` isn't equal to `a`,
+compute `decrement` again, but with `b` set to `+(b)`.
+
+There's a way to do that:
+
+    =+  b=0
+    =<  decrement
+    |%
+    ++  decrement
+      ?:  =(a +(b))
+        b
+      %=  decrement
+          b  +(b)
+      ==
+    --
+
+Meet `%=`, `centis`, `%cnts` - the world's most important hoon.
+Actually, *everything* that references a limb/wing turns into
+`%=`.  Let's look at its definition:
+
+    ++  twig  $%  [%cnts p=wing q=tray]
+              ==
+    ++  tray  (list ,[p=wing q=twig])
+
+`%=` means "resolve with changes."  If `q` is empty, `%=` just 
+pulls wing `p` with no changes.  Otherwise, we get `p` with the
+wings in `q` set to the provided twigs.
+
+A wing, of course, can resolve to a leg or an arm - a fragment of
+the subject, or a computed attribute like `++decrement` above.
+When `p` resolves to an arm, we compute based on the changes
+defined in `q`.  (When one of the wings in `q` resolves to an
+arm, the change is to the core that contains the arm.)
+
+So, this should do exactly what we want - it should replace `b`
+with `+(b)`, and recompute.  But does it?  Amazingly...
+
+    : /~waclux-tomwyc/try/21/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    41
+
+###Making it pretty###
+
+The first thing we notice is that `%=` is pretty important, and
+being pretty important it ought to have an irregular form:
+
+    =+  b=0
+    =<  decrement
+    |%
+    ++  decrement
+      ?:  =(a +(b))
+        b
+      decrement(b +(b))
+    --
+
+The second thing we notice is this heavy word, `decrement`, which
+we are dragging around everywhere.  Actually, we know we're
+writing a decrement program.  So why do we keep saying decrement,
+decrement, decrement?
+
+Naming things is one of the most annoying and difficult problems
+in programming.  Nobody should have to name anything, especially
+if its only job is to call itself.
+
+Fortunately, a unique feature of Hoon is *the empty name*, `$` -
+pronounced `buc`.  Its value is simply 0, as we can see when we
+write it as a term:
+
+    ~waclux-tomwyc/try=> `@ux`%foo
+    0x6f.6f66
+    ~waclux-tomwyc/try=> `@ux`%$
+    0x0
+
+When we use `$` as a name, our decrement gets cleaner - or
+shorter, anyway:
+
+    =+  b=0
+    =<  $
+    |%
+    ++  $
+      ?:  =(a +(b))
+        b
+      $(b +(b))
+    --
+
+The third thing we notice is that this pattern of "have one arm
+and do it again with some changes" is... well, it has a name.
+So we might expect to see a more convenient hoon - and indeed
+we do:
+
+    =+  b=0
+    =<  $
+    |.
+    ?:  =(a +(b))
+      b
+    $(b +(b))
+
+What is `|.`, `bardot`, `%brdt`?  It's easy to see what a
+synthetic hoon does - we just look at its line in `++open`
+(in `hoon.hoon`).  For example:
+
+    [%tsgl *]  [%tsgr q.gen p.gen]
+
+and, more to the point:
+
+    [%brdt *]  [%brcn (~(put by *(map term foot)) %$ [%ash p.gen])]
+
+Moreover, it seems like we might want to activate one of these
+strange repeating computations automagically.  Indeed there's a
+hoon for that - `|-`, `barhep`, `%brhp`:
+
+    [%brhp *]  [%tsgl [%cnzy %$] [%brdt p.gen]]
+
+Notice that we just did that.  `%cnzy` is an internal hoon which
+doesn't have a syntax, and just makes macros smaller:
+
+    [%cnzy *]  [%cnts [p.gen ~] ~]
+
+Aha, good old `%cnts` - aka, `%=`.  But wait - does it work?
+We get:
+
+    =+  b=0
+    |-
+    ?:  =(a +(b))
+      b
+    $(b +(b))
+
+Or, to indent this a little more aggressively, our final result.
+It isn't exactly what we started with - but we'll get there in 
+a minute:
+
+    !:             ::  To write a trivial Hoon program
+    |=  *          ::
+    |=  [a=@ ~]    ::  For educational purposes only
+    :_  ~  :_  ~   ::
+    :-  %$         ::  Preserve this mysterious boilerplate square
+    !>             ::
+    :::::::::::::::::  Produce a value below
+    =+  b=0
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
+
+Let's try it...
+
+  : /~waclux-tomwyc/try/22/bin/hec/hoon
+  ~waclux-tomwyc/try=> :hec 42
+  41
+
+It works!
