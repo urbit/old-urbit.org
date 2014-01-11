@@ -604,13 +604,13 @@ kernel with hundreds of arms (like `218.tvj`).
 
 Okay.  But we built a core because we wanted to use it.  So,
 let's do that:
-
-        =>  |%
-            ++  hello
-              "hello, world."
-            --
-        hello
-
+```
+=>  |%
+    ++  hello
+      "hello, world."
+    --
+hello
+```
 What is this `=>`, `tisgar`, `%tsgr`?  You remember Nock 7.  `=>`
 is Nock 7.  `=>(a b)` means "use a as the subject of b."  So, we
 are resolving the limb `hello` against our `1.ivl` core.
