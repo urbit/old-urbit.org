@@ -1,10 +1,10 @@
 ---
 layout: post
 category: doc
-title: Urbit Is Easy&#58; Chapter VII (Hoon Bites Back)
+title: Urbit Is Easy&#58; Chapter VII (Hoon Computes)
 ---
 
-[**Prev**: Hoon Goes Wild](urbit-is-easy-ch6.html)
+[**Prev**: Moar Hoon Types](urbit-is-easy-ch6.html)
 
 *"I've only been in love with a beer bottle and a mirror."*
 **(Sid Vicious)**
@@ -929,4 +929,4 @@ Let's try it...
 
 It works!
 
-[**Prev**: Hoon Goes Wild](urbit-is-easy-ch6.html)
+[**Prev**: Moar Hoon Types](urbit-is-easy-ch6.html)

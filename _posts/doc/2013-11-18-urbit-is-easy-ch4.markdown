@@ -621,4 +621,4 @@ Ie, `(peg a b)` is `/b` within `/a`.  Writing Nock without this
 would be pretty tough.
 
 [**Prev**: Nock Is Easy](urbit-is-easy-ch3.html)
-[**Next**: Hoon Attacks](urbit-is-easy-ch5.html)
+[**Next**: Intro To Hoon](urbit-is-easy-ch5.html)

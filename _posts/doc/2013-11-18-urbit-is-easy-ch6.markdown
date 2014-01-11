@@ -1,11 +1,11 @@
 ---
 layout: post
 category: doc
-title: Urbit Is Easy&#58; Chapter VI (Hoon Goes Wild)
+title: Urbit Is Easy&#58; Chapter VI (Moar Hoon Types)
 ---
 
-[**Prev**: Hoon Attacks](urbit-is-easy-ch5.html)
-[**Next**: Hoon Bites Back](urbit-is-easy-ch7.html)
+[**Prev**: Intro To Hoon](urbit-is-easy-ch5.html)
+[**Next**: Hoon Computes](urbit-is-easy-ch7.html)
 
 *"What good is a phone call if you're unable to speak?"*
 **(The Matrix)**
@@ -349,5 +349,5 @@ mysterious, frightening `%core`.  We made a core in Nock, but
 that was a little while ago.  We'll explain them in Hoon when we
 make one.
 
-[**Prev**: Hoon Attacks](urbit-is-easy-ch5.html)
-[**Next**: Hoon Bites Back](urbit-is-easy-ch7.html)
+[**Prev**: Intro To Hoon](urbit-is-easy-ch5.html)
+[**Next**: Hoon Computes](urbit-is-easy-ch7.html)
