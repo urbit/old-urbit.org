@@ -5,6 +5,7 @@ title: Urbit is Easy&#58; Chapter V (Hoon Attacks)
 ---
 
 [**Prev**: Using Nock](urbit-is-easy-ch4.html)
+[**Next**: Hoon Goes Wild](urbit-is-easy-ch6.html)
 
 *"Like all men in Babylon, I have been proconsul; like all, a slave."*
 **(The Lottery in Babylon)**
@@ -603,12 +604,9 @@ is `--`.  The sign bit is the low bit:
 
 Urbit dates represent 128-bit chronological time, with 2^64
 seconds from the start of the universe to the end.  2^127 is
-3:30:08 PM on 226 AD, for reasons not clear or relevant:
+3:30:08 PM on December 5, AD 226, for reasons not clear or relevant:
 
     ~waclux-tomwyc/try=> `@da`(bex 127)
-    ~226.12.5..15.30.08
-
-    ~waclux-tomwyc/try=> `@da`(dec (bex 127))
     ~226.12.5..15.30.08
 
     ~waclux-tomwyc/try=> `@da`(dec (bex 127))
@@ -961,3 +959,4 @@ And they can be joined across space or lines with a `.`:
     "helloworld"
 
 [**Prev**: Using Nock](urbit-is-easy-ch4.html)
+[**Next**: Hoon Goes Wild](urbit-is-easy-ch6.html)

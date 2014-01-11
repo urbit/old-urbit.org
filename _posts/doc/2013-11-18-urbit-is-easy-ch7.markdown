@@ -83,7 +83,7 @@ implies testing hypotheses whereas we generally just wing it.)
 
 Think of learning Hoon as learning to program all over again.  If
 nothing else, it's a sort of eccentric adventure sport.  Or even
-a mystery - can an language be esoteric, yet useful?  Click here
+a mystery - can a language be esoteric, yet useful?  Click here
 to find out more.
 
 ###Glyphs###
@@ -383,7 +383,15 @@ Copy it into `try/bin/hec.hoon`, where we'll write our Hoon decrement.
     ~waclux-tomwyc/try=> :hec 3
     5
 
+<<<<<<< HEAD
 Replace `(add 2 x)` with our decrement twig:
+=======
+In general, when you see a hoon in `$`, like `$:`, you area
+looking at a tile.  Unless it's `$,` `$_`, `$@`, `$*` or `$!` -
+that is, `buccom`, `buccab`, `bucpat`, `buctar` or `buczap` -
+in which case you are looking at a twig wrapped around a tile.
+This will one day make sense and even more if you're drunk.
+>>>>>>> 149d061ee4410c01281d5695ba5fddc7c84f58ff
 
     %.  x
     |=  a=@
@@ -808,6 +816,7 @@ with `+(b)`, and recompute.  But does it?  Amazingly...
     ~waclux-tomwyc/try=> :hec 42
     41
 
+<<<<<<< HEAD
 ###Making it pretty###
 
 The first thing we notice is that `%=` is pretty important, and
@@ -917,3 +926,5 @@ Let's try it...
   41
 
 It works!
+
+[**Prev**: Hoon Goes Wild](urbit-is-easy-ch6.html)
