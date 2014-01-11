@@ -547,17 +547,19 @@ is the core itself.
 
 Let's change our test file to produce a core.  The whole file:
 
-    !:             ::  To write a trivial Hoon program
-    |=  *          ::
-    |=  [a=@ ~]    ::  For educational purposes only
-    :_  ~  :_  ~   ::
-    :-  %$         ::  Preserve this mysterious boilerplate square
-    !>             ::
-    :::::::::::::::::  Produce a value below
-    |%
-    ++  hello
-      "hello, world."
-    --
+```
+<!:             ::  To write a trivial Hoon program
+|=  *          ::
+|=  [a=@ ~]    ::  For educational purposes only
+:_  ~  :_  ~   ::
+:-  %$         ::  Preserve this mysterious boilerplate square
+!>             ::
+:::::::::::::::::  Produce a value below
+|%
+++  hello
+  "hello, world."
+--
+```
 
 The syntax for a basic core is `|%` (`barcen`, or `%brcn`),
 followed by any number of arms `++` (`luslus`, or just `lul`),
@@ -579,14 +581,15 @@ it's parsed as an open-ended list, it always has the terminator
 
 Hence:
 
-    ~waclux-tomwyc/try=> :hec 42
-    < 1.ivl
-      1.hfd
-      [ [a=@ %~]
-        <1.vpy [* [@p /] <218.tvj 18.olk 323.uvl 81.wza 1.xlc %164>]>
-      ]
-    >
-
+```
+<~waclux-tomwyc/try=> :hec 42
+< 1.ivl
+  1.hfd
+  [ [a=@ %~]
+    <1.vpy [* [@p /] <218.tvj 18.olk 323.uvl 81.wza 1.xlc %164>]>
+  ]
+>
+```
 That's a core.  Or it's how we print a core, anyway.  This is
 actually a giant noun full of all kinds of formulas, and it would
 be kind of lame to dump a megabyte of nock on your screen.  The
@@ -669,18 +672,20 @@ reversed to make it flow downward.  We need the opposite of `=>`:
 To do some decrementing, we'll need a counter.  Let's continue
 our pattern of using only fundamental hoons:
 
-    =>  :-  ^=  b
-            0
-        .
-    =<  decrement
-    |%
-    ++  decrement
-      b
-    --
+```
+=>  :-  ^=  b
+        0
+    .
+=<  decrement
+|%
+++  decrement
+  b
+--
 
-    : /~waclux-tomwyc/try/16/bin/hec/hoon
-    ~waclux-tomwyc/try=> :hec 42
-    0
+: /~waclux-tomwyc/try/16/bin/hec/hoon
+~waclux-tomwyc/try=> :hec 42
+0
+```
 
 We introduce a couple of new hoons.  First, `^=`, `kettis`,
 `%ktts` - is a hoon we've already seen.  We've seen it only in
@@ -697,14 +702,14 @@ which let us build cells in classic Hoon fashion:
     :_(a b)       [b a]
 
 So we might as well say
-
+```
     =>  [b=0 .]
     =<  decrement
     |%
     ++  decrement
       b
     --
-
+```
 In other words - enter our core not with the original subject,
 `.`, but with the cell `[b=0 .]`.  
 
@@ -712,20 +717,20 @@ You might remember this as nock `8` - and in fact (it is a
 synthetic hoon, but the compiler sees what you're doing and turns
 it into nock `8` anyway) there's a hoon for that: `=+`, `tislus`,
 `%tsls`:
-
+```
     =+  b=0
     =<  decrement
     |%
     ++  decrement
       b
     --
-
+```
 ###Actually decrementing###
 
 As you may remember, to decrement `a` we need to count up to it.
 The first step is incrementing, which we do with `.+` - `dotlus`, 
 `%dtls`:
-
+```
     =+  b=0
     =<  decrement
     |%
@@ -737,10 +742,10 @@ The first step is incrementing, which we do with `.+` - `dotlus`,
     ~waclux-tomwyc/try=> :hec 42
     1
     ~waclux-tomwyc/try=> 
-
+```
 Well, it's not decrement but it's a start.  What we really have
 to do is see if `+(b)` equals `a`:
-
+```
     =+  b=0
     =<  decrement
     |%
@@ -749,10 +754,10 @@ to do is see if `+(b)` equals `a`:
         b
       99
     --
-
+```
 We've met a new hoon, `.=`, `dottis`, `%dtts`.  It too has an
 irregular form, not surprisingly different:
-
+```
     =+  b=0
     =<  decrement
     |%
@@ -761,7 +766,7 @@ irregular form, not surprisingly different:
         b
       99
     --
-
+```
 And `?:` was of course one of our first examples.  We can test
 this, for what it's worth:
 
@@ -777,7 +782,7 @@ what we'd actually like to do is, if `+(b)` isn't equal to `a`,
 compute `decrement` again, but with `b` set to `+(b)`.
 
 There's a way to do that:
-
+```
     =+  b=0
     =<  decrement
     |%
@@ -788,7 +793,7 @@ There's a way to do that:
           b  +(b)
       ==
     --
-
+```
 Meet `%=`, `centis`, `%cnts` - the world's most important hoon.
 Actually, *everything* that references a limb/wing turns into
 `%=`.  Let's look at its definition:
@@ -818,7 +823,7 @@ with `+(b)`, and recompute.  But does it?  Amazingly...
 
 The first thing we notice is that `%=` is pretty important, and
 being pretty important it ought to have an irregular form:
-
+```
     =+  b=0
     =<  decrement
     |%
@@ -827,7 +832,7 @@ being pretty important it ought to have an irregular form:
         b
       decrement(b +(b))
     --
-
+```
 The second thing we notice is this heavy word, `decrement`, which
 we are dragging around everywhere.  Actually, we know we're
 writing a decrement program.  So why do we keep saying decrement,
@@ -848,7 +853,7 @@ write it as a term:
 
 When we use `$` as a name, our decrement gets cleaner - or
 shorter, anyway:
-
+```
     =+  b=0
     =<  $
     |%
@@ -857,7 +862,7 @@ shorter, anyway:
         b
       $(b +(b))
     --
-
+```
 The third thing we notice is that this pattern of "have one arm
 and do it again with some changes" is... well, it has a name.
 So we might expect to see a more convenient hoon - and indeed
