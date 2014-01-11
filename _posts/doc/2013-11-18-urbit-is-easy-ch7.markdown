@@ -605,11 +605,11 @@ kernel with hundreds of arms (like `218.tvj`).
 Okay.  But we built a core because we wanted to use it.  So,
 let's do that:
 
-    =>  |%
-        ++  hello
-          "hello, world."
-        --
-    hello
+        =>  |%
+            ++  hello
+              "hello, world."
+            --
+        hello
 
 What is this `=>`, `tisgar`, `%tsgr`?  You remember Nock 7.  `=>`
 is Nock 7.  `=>(a b)` means "use a as the subject of b."  So, we
@@ -824,14 +824,14 @@ with `+(b)`, and recompute.  But does it?  Amazingly...
 The first thing we notice is that `%=` is pretty important, and
 being pretty important it ought to have an irregular form:
 ```
-    =+  b=0
-    =<  decrement
-    |%
-    ++  decrement
-      ?:  =(a +(b))
-        b
-      decrement(b +(b))
-    --
+=+  b=0
+=<  decrement
+|%
+++  decrement
+  ?:  =(a +(b))
+    b
+  decrement(b +(b))
+--
 ```
 The second thing we notice is this heavy word, `decrement`, which
 we are dragging around everywhere.  Actually, we know we're
@@ -854,14 +854,14 @@ write it as a term:
 When we use `$` as a name, our decrement gets cleaner - or
 shorter, anyway:
 ```
-    =+  b=0
-    =<  $
-    |%
-    ++  $
-      ?:  =(a +(b))
-        b
-      $(b +(b))
-    --
+=+  b=0
+=<  $
+|%
+++  $
+  ?:  =(a +(b))
+    b
+  $(b +(b))
+--
 ```
 The third thing we notice is that this pattern of "have one arm
 and do it again with some changes" is... well, it has a name.
