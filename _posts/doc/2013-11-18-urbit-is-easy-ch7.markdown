@@ -31,11 +31,11 @@ Here is our old decrement function, from the Nock battery:
 This clearly it is not for the little boys and girls.  But wait -
 is Hoon any less formidable?  The equivalent Hoon twig:
 
-          |=  a=@
-          =|  b=@
-          |-  ?:  =(a +(b))
-                b
-              $(b +(b))
+    |=  a=@
+    =|  b=@
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
 
 Whaa?  We can also write the exact same decrement as:
 
@@ -64,11 +64,11 @@ If anything, this knowledge makes it harder to learn Hoon.
 Our mutual hope is that by the time you do know Hoon, you will
 simply be able to *see* a twig like
 
-          |=  a=@
-          =|  b=@
-          |-  ?:  =(a +(b))
-                b
-              $(b +(b))
+    |=  a=@
+    =|  b=@
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
 
 and, far from merely able to follow this code, *actually observe
 in your mind's eye the function itself* - not unlike Keanu with
@@ -128,11 +128,11 @@ humans, benign indolence soon rounds off any rough edges.
 
 Let's look at that decrement twig again:
 
-          |=  a=@
-          =|  b=@
-          |-  ?:  =(a +(b))
-                b
-              $(b +(b))
+      |=  a=@
+      =|  b=@
+      |-  ?:  =(a +(b))
+            b
+          $(b +(b))
 
 If we had to read this twig, omitting the spaces (which only a
 real purist would pronounce), we'd say: "bartis a is pat tisbar b
@@ -173,9 +173,9 @@ regular core.  Let's explain the regular core first.
 
 Consider a very simple twig in completely regular form:
 
-      ?:  &
-        47
-      52
+    ?:  &
+      47
+    52
 
 We observe the rune `?:`, which happens to mean the same thing it
 means in C.  In C, though, we don't call it `wutcol`.
@@ -184,7 +184,7 @@ means in C.  In C, though, we don't call it `wutcol`.
 Efficiency is important to us, so we disemvowel: `%wtcl`.  We
 can find this defined in `hoon.hoon`:
 
-      [%wtcl p=twig q=twig r=twig]
+    [%wtcl p=twig q=twig r=twig]
 
 So `?:` has three sub-twigs: the test, the yes case, and the no
 case.  Again, as in C.  But why do we write it in this strange
@@ -628,45 +628,45 @@ as it were.  (Can we build a method?  We'll get to that.)
 
 Second, when we're searching for a name in a core, we search the
 payload if we don't find an arm.  For example:
+```
+=>  |%
+    ++  hello
+      "hello, world."
+    --
+a
 
-    =>  |%
-        ++  hello
-          "hello, world."
-        --
-    a
-
-    : /~waclux-tomwyc/try/12/bin/hec/hoon
-    ~waclux-tomwyc/try=> :hec 42
-    42
-
+: /~waclux-tomwyc/try/12/bin/hec/hoon
+~waclux-tomwyc/try=> :hec 42
+42
+```
 Our command-line argument, `a`, is still in there.  We can also
 use it from within the arm.  With some string-interpolation black
 magic:
-
-    =>  |%
-        ++  hello
-          "hello, world - a is { (scow %ud a) }."
-        --
-    hello
-
-    : /~waclux-tomwyc/try/13/bin/hec/hoon
-    ~waclux-tomwyc/try=> :hec 42
-    "hello, world - a is 42."
-
-Finally, this is a classic case in which the twig needs to be
-reversed to make it flow downward.  We need the opposite of `=>`:
-`=<`, `tisgal`, `%tsgl`:
-
-    =<  hello
-    |%
+```
+=>  |%
     ++  hello
       "hello, world - a is { (scow %ud a) }."
     --
+hello
 
-    : /~waclux-tomwyc/try/14/bin/hec/hoon
-    ~waclux-tomwyc/try=> :hec 42
-    "hello, world - a is 42."
+: /~waclux-tomwyc/try/13/bin/hec/hoon
+~waclux-tomwyc/try=> :hec 42
+"hello, world - a is 42."
+```
+Finally, this is a classic case in which the twig needs to be
+reversed to make it flow downward.  We need the opposite of `=>`:
+`=<`, `tisgal`, `%tsgl`:
+```
+=<  hello
+|%
+++  hello
+  "hello, world - a is { (scow %ud a) }."
+--
 
+: /~waclux-tomwyc/try/14/bin/hec/hoon
+~waclux-tomwyc/try=> :hec 42
+"hello, world - a is 42."
+```
 ###Preparing to decrement###
 
 To do some decrementing, we'll need a counter.  Let's continue
