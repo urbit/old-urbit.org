@@ -547,17 +547,17 @@ is the core itself.
 
 Let's change our test file to produce a core.  The whole file:
 
-    !:             ::  To write a trivial Hoon program
-    |=  *          ::
-    |=  [a=@ ~]    ::  For educational purposes only
-    :_  ~  :_  ~   ::
-    :-  %$         ::  Preserve this mysterious boilerplate square
-    !>             ::
-    :::::::::::::::::  Produce a value below
-    |%
-    ++  hello
-      "hello, world."
-    --
+      !:             ::  To write a trivial Hoon program
+      |=  *          ::
+      |=  [a=@ ~]    ::  For educational purposes only
+      :_  ~  :_  ~   ::
+      :-  %$         ::  Preserve this mysterious boilerplate square
+      !>             ::
+      :::::::::::::::::  Produce a value below
+      |%
+      ++  hello
+        "hello, world."
+      --
 
 The syntax for a basic core is `|%` (`barcen`, or `%brcn`),
 followed by any number of arms `++` (`luslus`, or just `lul`),
@@ -602,11 +602,11 @@ kernel with hundreds of arms (like `218.tvj`).
 Okay.  But we built a core because we wanted to use it.  So,
 let's do that:
 
-    =>  |%
-        ++  hello
-          "hello, world."
-        --
-    hello
+      =>  |%
+          ++  hello
+            "hello, world."
+          --
+      hello
 
 What is this `=>`, `tisgar`, `%tsgr`?  You remember Nock 7.  `=>`
 is Nock 7.  `=>(a b)` means "use a as the subject of b."  So, we

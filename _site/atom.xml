@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2014-01-10T18:58:17-08:00</updated>
+ <updated>2014-01-11T12:06:13-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -3225,17 +3225,17 @@ formula)&lt;/code&gt; is a product correctly described by &lt;code&gt;product-ty
 
 &lt;p&gt;Let&amp;#8217;s change our test file to produce a core. The whole file:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;!:             ::  To write a trivial Hoon program
-|=  *          ::
-|=  [a=@ ~]    ::  For educational purposes only
-:_  ~  :_  ~   ::
-:-  %$         ::  Preserve this mysterious boilerplate square
-!&amp;gt;             ::
-:::::::::::::::::  Produce a value below
-|%
-++  hello
-  &amp;quot;hello, world.&amp;quot;
---&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  !:             ::  To write a trivial Hoon program
+  |=  *          ::
+  |=  [a=@ ~]    ::  For educational purposes only
+  :_  ~  :_  ~   ::
+  :-  %$         ::  Preserve this mysterious boilerplate square
+  !&amp;gt;             ::
+  :::::::::::::::::  Produce a value below
+  |%
+  ++  hello
+    &amp;quot;hello, world.&amp;quot;
+  --&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The syntax for a basic core is &lt;code&gt;|%&lt;/code&gt; (&lt;code&gt;barcen&lt;/code&gt;, or &lt;code&gt;%brcn&lt;/code&gt;), followed by any number of arms &lt;code&gt;++&lt;/code&gt; (&lt;code&gt;luslus&lt;/code&gt;, or just &lt;code&gt;lul&lt;/code&gt;), followed by a terminator &lt;code&gt;--&lt;/code&gt; (&lt;code&gt;hephep&lt;/code&gt;, or just &lt;code&gt;pep&lt;/code&gt;). The arm is a symbol and a twig. The subject of the twig is the core.&lt;/p&gt;
 
@@ -3268,11 +3268,11 @@ formula)&lt;/code&gt; is a product correctly described by &lt;code&gt;product-ty
 
 &lt;p&gt;Okay. But we built a core because we wanted to use it. So, let&amp;#8217;s do that:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;=&amp;gt;  |%
-    ++  hello
-      &amp;quot;hello, world.&amp;quot;
-    --
-hello&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;  =&amp;gt;  |%
+      ++  hello
+        &amp;quot;hello, world.&amp;quot;
+      --
+  hello&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;What is this &lt;code&gt;=&amp;gt;&lt;/code&gt;, &lt;code&gt;tisgar&lt;/code&gt;, &lt;code&gt;%tsgr&lt;/code&gt;? You remember Nock 7. &lt;code&gt;=&amp;gt;&lt;/code&gt; is Nock 7. &lt;code&gt;=&amp;gt;(a b)&lt;/code&gt; means &amp;#8220;use a as the subject of b.&amp;#8221; So, we are resolving the limb &lt;code&gt;hello&lt;/code&gt; against our &lt;code&gt;1.ivl&lt;/code&gt; core.&lt;/p&gt;
 
@@ -3560,7 +3560,7 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
               [%fork p=type q=type]
           ==&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id48&#39;&gt;&lt;code&gt;%fork&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id28&#39;&gt;&lt;code&gt;%fork&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;%fork&lt;/code&gt; is simply a union type. A type is a set of nouns - &lt;code&gt;[%fork p q]&lt;/code&gt; means &amp;#8220;it could be a p, or maybe a q.&amp;#8221;&lt;/p&gt;
 
@@ -3580,7 +3580,7 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;(Readers of a mathematical bent may ask: since Hoon has a union type, where is the intersection type? There is none. Hoon is not one of these languages whose goal is to be as mathematically powerful as possible. Since a programming language is a UI for programmers, and programmers are not mathematicians, Hoon is designed to be as powerful as it has to be - and no more.)&lt;/p&gt;
 
-&lt;h3 id=&#39;id49&#39;&gt;&lt;code&gt;%face&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id29&#39;&gt;&lt;code&gt;%face&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;A type is not just a set of nouns - it&amp;#8217;s also a &lt;em&gt;meaning&lt;/em&gt; which makes sense of any noun in that set. The typed noun exports a namespace - give it a name, and it gives you another noun.&lt;/p&gt;
 
@@ -5142,7 +5142,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Let&amp;#8217;s run through them one by one.&lt;/p&gt;
 
-&lt;h3 id=&#39;id41&#39;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id21&#39;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;0&lt;/code&gt; just applies the &lt;code&gt;/&lt;/code&gt; function:&lt;/p&gt;
 
@@ -5154,13 +5154,13 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;is &lt;code&gt;/[3 19 42]&lt;/code&gt;, which is &lt;code&gt;42&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#39;id42&#39;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id22&#39;&gt;&lt;code&gt;1&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;1&lt;/code&gt; just ignores its subject and produces its operand:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;26 ::    *[a 1 b]         b&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id43&#39;&gt;&lt;code&gt;2&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id23&#39;&gt;&lt;code&gt;2&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;2&lt;/code&gt; is the only interesting basic operator:&lt;/p&gt;
 
@@ -5200,7 +5200,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;The answer is that &lt;code&gt;10&lt;/code&gt; is a hint to the interpreter. It&amp;#8217;s true that &lt;code&gt;[10 b c]&lt;/code&gt; has to be &lt;em&gt;semantically&lt;/em&gt; equivalent to &lt;code&gt;c&lt;/code&gt;, but it doesn&amp;#8217;t have to be &lt;em&gt;practically&lt;/em&gt; equivalent. Since whatever information is in &lt;code&gt;b&lt;/code&gt; is discarded, a practical interpreter is free to ignore it, or to use it in any way that does not affect the results of the computation.&lt;/p&gt;
 
-&lt;h3 id=&#39;id44&#39;&gt;&lt;code&gt;7&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id24&#39;&gt;&lt;code&gt;7&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;7&lt;/code&gt; is our next easiest macro:&lt;/p&gt;
 
@@ -5226,7 +5226,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;pre&gt;&lt;code&gt;33r::    *[a 7 b c]       *[*[a b] c]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#39;id45&#39;&gt;&lt;code&gt;8&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id25&#39;&gt;&lt;code&gt;8&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;8&lt;/code&gt; looks slightly horrible but you shouldn&amp;#8217;t fear it at all:&lt;/p&gt;
 
@@ -5300,7 +5300,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;Effectively, this mechanism lets us feed both static and dynamic information into the interpreter&amp;#8217;s hint mechanism.&lt;/p&gt;
 
-&lt;h3 id=&#39;id46&#39;&gt;&lt;code&gt;6&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id26&#39;&gt;&lt;code&gt;6&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;6&lt;/code&gt; certainly looks intimidating:&lt;/p&gt;
 
@@ -5319,7 +5319,7 @@ b c]&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt; is a formula for generating the ne
 
 &lt;p&gt;This excuse for an explanation may not satisfy everyone. A good exercise is to check that &lt;code&gt;6&lt;/code&gt; as defined &lt;em&gt;actually&lt;/em&gt; has these properties - and can&amp;#8217;t be simplified.&lt;/p&gt;
 
-&lt;h3 id=&#39;id47&#39;&gt;&lt;code&gt;9&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&#39;id27&#39;&gt;&lt;code&gt;9&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;9&lt;/code&gt; is an audacious mystery:&lt;/p&gt;
 
