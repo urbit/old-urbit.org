@@ -113,7 +113,7 @@ First you'll see a string of messages like:
     ames: on localhost, UDP 63908.
     generating 2048-bit RSA pair...
 
-and then it'll pause a little, 'cause this is slow... and then
+and then it'll pause a little, 'cause this is slow, and then
 
     saving passcode in /Users/cyarvin/.urbit/~magsut-hopful.txt
     (for real security, write it down and delete the file...)
@@ -136,7 +136,7 @@ is also a Hoon REPL):
 
 Next, you need to decide whether a mere submarine is enough for
 you right now.  This monicker is a mouthful.  You can stick with
-it (for now), but... you're going to need a wider xterm.
+it (for now), but you're going to need a wider xterm.
 
 Which might be fine!  However, please note that just by sending a
 simple email, you can get a much better ship - a `destroyer`,
@@ -151,7 +151,7 @@ us something cool in the body, and we'll send you even more.
 If you have a destroyer, you need to configure it.  Otherwise,
 just stretch that xterm wide and skip to section 1.2.
 
-Your destroyers will arrive in the form of [ship ticket] pairs.
+Your destroyers will arrive in the form of `[ship ticket]` pairs.
 Let's say one of your ships is `~waclux-tomwyc` and its ticket is
 
     ~ribdyr-famtem-larrun-figtyd

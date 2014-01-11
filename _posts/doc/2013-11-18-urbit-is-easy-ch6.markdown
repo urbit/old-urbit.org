@@ -195,7 +195,7 @@ instance:
     ~waclux-tomwyc/try=> ^^cat.test
     42
 
-We're actually ready to describe the full resolution model...
+We're actually ready to describe the full resolution model.
 
 ###Wing resolution###
 

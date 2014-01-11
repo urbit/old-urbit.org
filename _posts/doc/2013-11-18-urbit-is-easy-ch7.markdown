@@ -383,15 +383,13 @@ Copy it into `try/bin/hec.hoon`, where we'll write our Hoon decrement.
     ~waclux-tomwyc/try=> :hec 3
     5
 
-<<<<<<< HEAD
 Replace `(add 2 x)` with our decrement twig:
-=======
-In general, when you see a hoon in `$`, like `$:`, you area
+
+In general, when you see a hoon in `$`, like `$:`, you are
 looking at a tile.  Unless it's `$,` `$_`, `$@`, `$*` or `$!` -
 that is, `buccom`, `buccab`, `bucpat`, `buctar` or `buczap` -
 in which case you are looking at a twig wrapped around a tile.
 This will one day make sense and even more if you're drunk.
->>>>>>> 149d061ee4410c01281d5695ba5fddc7c84f58ff
 
     %.  x
     |=  a=@
@@ -452,57 +450,57 @@ Hoon type-inference function from `hoon.hoon`.  `++play` is a
 serviceable list of the *fundamental* hoons - the axioms, as it
 were.  Understand all these, and the rest are just... macros.
 
-  ++  play
-    ~/  %play
-    =>  .(vet |)
-    |=  gen=twig
-    ^-  type
-    ?-  gen
-      [^ *]      (cell $(gen p.gen) $(gen q.gen))
-      [%bcpt *]  $(gen (~(whip al q.gen) p:(seep %read p.gen)))
-      [%brcn *]  (core sut %gold sut [[%0 0] p.gen])
-      [%cnts *]  =+  lar=(foil (seek %read p.gen))
-                 =+  mew=(snub q.gen)
-                 =+  rag=q.q.lar
-                 %-  fire
-                 |-  ^-  (list ,[p=type q=foot])
-                 ?@  mew
-                   rag
-                 $(mew t.mew, rag q:(tock p.i.mew ^$(gen q.i.mew) rag))
-      [%dtkt *]  %noun
-      [%dtls *]  [%atom %$]
-      [%dtzy *]  ?:(=(%f p.gen) ?>((lte q.gen 1) bean) [%atom p.gen])
-      [%dtzz *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
-      [%dttr *]  %noun
-      [%dtts *]  bean
-      [%dtwt *]  bean
-      [%ktbr *]  (wrap(sut $(gen p.gen)) %iron)
-      [%ktls *]  $(gen p.gen)
-      [%ktpm *]  (wrap(sut $(gen p.gen)) %zinc)
-      [%ktsg *]  $(gen p.gen)
-      [%ktts *]  (conk(sut $(gen q.gen)) p.gen)
-      [%ktwt *]  (wrap(sut $(gen p.gen)) %lead)
-      [%sgzp *]  ~_(duck(sut ^$(gen p.gen)) $(gen q.gen))
-      [%sggr *]  $(gen q.gen)
-      [%tsgr *]  $(gen q.gen, sut $(gen p.gen))
-      [%tstr *]  $(gen r.gen, sut (busk p.gen q.gen))
-      [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
-                 %+  fork
-                   ?:(=(%void fex) %void $(sut fex, gen q.gen))
-                 ?:(=(%void wux) %void $(sut wux, gen r.gen))
-      [%zpcb *]  ~_((show %o p.gen) $(gen q.gen))
-      [%zpcm *]  (play p.gen)
-      [%zpcn ~]  p:seed
-      [%zpfs *]  %void
-      [%zpsm *]  (cell $(gen p.gen) $(gen q.gen))
-      [%zpts *]  %noun
-      [%zpzp ~]  %void
-      *          =+  doz=~(open ap gen)
-                 ?:  =(doz gen)
-                   ~_  (show [%c 'hoon'] [%q gen])
-                   ~|(%play-open !!)
-                 $(gen doz)
-    ==
+    ++  play
+      ~/  %play
+      =>  .(vet |)
+      |=  gen=twig
+      ^-  type
+      ?-  gen
+        [^ *]      (cell $(gen p.gen) $(gen q.gen))
+        [%bcpt *]  $(gen (~(whip al q.gen) p:(seep %read p.gen)))
+        [%brcn *]  (core sut %gold sut [[%0 0] p.gen])
+        [%cnts *]  =+  lar=(foil (seek %read p.gen))
+                   =+  mew=(snub q.gen)
+                   =+  rag=q.q.lar
+                   %-  fire
+                   |-  ^-  (list ,[p=type q=foot])
+                   ?@  mew
+                     rag
+                   $(mew t.mew, rag q:(tock p.i.mew ^$(gen q.i.mew) rag))
+        [%dtkt *]  %noun
+        [%dtls *]  [%atom %$]
+        [%dtzy *]  ?:(=(%f p.gen) ?>((lte q.gen 1) bean) [%atom p.gen])
+        [%dtzz *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
+        [%dttr *]  %noun
+        [%dtts *]  bean
+        [%dtwt *]  bean
+        [%ktbr *]  (wrap(sut $(gen p.gen)) %iron)
+        [%ktls *]  $(gen p.gen)
+        [%ktpm *]  (wrap(sut $(gen p.gen)) %zinc)
+        [%ktsg *]  $(gen p.gen)
+        [%ktts *]  (conk(sut $(gen q.gen)) p.gen)
+        [%ktwt *]  (wrap(sut $(gen p.gen)) %lead)
+        [%sgzp *]  ~_(duck(sut ^$(gen p.gen)) $(gen q.gen))
+        [%sggr *]  $(gen q.gen)
+        [%tsgr *]  $(gen q.gen, sut $(gen p.gen))
+        [%tstr *]  $(gen r.gen, sut (busk p.gen q.gen))
+        [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
+                   %+  fork
+                     ?:(=(%void fex) %void $(sut fex, gen q.gen))
+                   ?:(=(%void wux) %void $(sut wux, gen r.gen))
+        [%zpcb *]  ~_((show %o p.gen) $(gen q.gen))
+        [%zpcm *]  (play p.gen)
+        [%zpcn ~]  p:seed
+        [%zpfs *]  %void
+        [%zpsm *]  (cell $(gen p.gen) $(gen q.gen))
+        [%zpts *]  %noun
+        [%zpzp ~]  %void
+        *          =+  doz=~(open ap gen)
+                   ?:  =(doz gen)
+                     ~_  (show [%c 'hoon'] [%q gen])
+                     ~|(%play-open !!)
+                   $(gen doz)
+      ==
 
 Well, it's a little intimidating.  But not bad for a whole
 language, perhaps.
@@ -644,7 +642,7 @@ magic:
 
     =>  |%
         ++  hello
-          "hello, world - a is {(scow %ud a)}."
+          "hello, world - a is { (scow %ud a) }."
         --
     hello
 
@@ -659,7 +657,7 @@ reversed to make it flow downward.  We need the opposite of `=>`:
     =<  hello
     |%
     ++  hello
-      "hello, world - a is {(scow %ud a)}."
+      "hello, world - a is { (scow %ud a) }."
     --
 
     : /~waclux-tomwyc/try/14/bin/hec/hoon
@@ -816,7 +814,6 @@ with `+(b)`, and recompute.  But does it?  Amazingly...
     ~waclux-tomwyc/try=> :hec 42
     41
 
-<<<<<<< HEAD
 ###Making it pretty###
 
 The first thing we notice is that `%=` is pretty important, and

@@ -223,7 +223,7 @@ matches is the last:
 
     39 ::    *a               *a
 
-So `*42` is `*42`, which is... `*42`.  Logically, Nock goes into
+So `*42` is `*42`, which is `*42`.  Logically, Nock goes into
 an infinite reduction loop and never terminates.
 
 In practice, this is just a clever CS way to specify the simple
@@ -332,7 +332,7 @@ It's also fun to build nouns in which every atom is its own axis:
     [[[8 9] [10 11]] [12 13] 14 30 31]
 
 Once you've spent enough time programming in Urbit, you'll know
-these axes in your dreams.  No - really...
+these axes in your dreams.  No - really. 
 
 [**Prev**: Setup](urbit-is-easy-ch1.html)
 [**Next**: Nock Is Easy](urbit-is-easy-ch3.html)

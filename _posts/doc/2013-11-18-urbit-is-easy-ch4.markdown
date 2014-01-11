@@ -187,7 +187,7 @@ fails, we shrug our shoulders and keep incrementing the argument.
     ~waclux-tomwyc/try=> :dec 1
     0
 
-We're getting closer.  But now, that loop...
+We're getting closer.  But now, that loop:
 
 Up till now, our subject has contained only data.  If we want to
 loop, we're obviously going to have to bite the bullet and put
@@ -414,7 +414,7 @@ want to do in hand-generated Nock.  But why not press on?
 
 What we'd really like to do is build a library of functions that
 can call each other.  It's easy to guess that this library will
-be... a core.  But what does this core look like?
+be a core.  But what does this core look like?
 
 A function core, `[formula sample context]`, is a very useful
 kind of core, but it's not the only kind of core.  (Actually,
@@ -436,9 +436,9 @@ library?  We could assemble a bundle of cores and put it in
 the context.  So, let's say we need to write subtract, which
 obviously is going to use decrement.  So, the context will be
 
-  [subtract-gate decrement-gate]
+    [subtract-gate decrement-gate]
 
-But wait.  Each gate is [formula sample context].  So, because
+But wait.  Each gate is `[formula sample context]`.  So, because
 Nock doesn't do cycles, there's no way the subtract gate and the
 decrement gate can each reference each other through the context.
 It happens to be the case here that subtract needs decrement, but
@@ -618,7 +618,7 @@ might as well use Hoon to calculate axes:
     13
 
 Ie, `(peg a b)` is `/b` within `/a`.  Writing Nock without this
-would be pretty tough...
+would be pretty tough.
 
 [**Prev**: Nock Is Easy](urbit-is-easy-ch3.html)
 [**Next**: Hoon Attacks](urbit-is-easy-ch5.html)

@@ -216,7 +216,7 @@ our construction of `'ud'`.  Let's look at the type:
     @
 
 Not only are we mixing atoms of different odors in our
-arithmetic, but the result appears to be... odorless.  It is
+arithmetic, but the result appears to be odorless.  It is
 odorless.  But we can cast it back:
 
     ~waclux-tomwyc/try=> :type; `@ta`(add 'u' (mul 256 'd'))
@@ -239,7 +239,7 @@ valid IPv4 address.  But obviously not all atoms are meaningful
 values of every odor.  We're not going to annoy you by stressing
 out the console printer with bad ASCII, but we could.
 
-(And why do we say `25.717` rather than `25,717`?  Are we...
+(And why do we say `25.717` rather than `25,717`?  Are we
 Germans?  No, but we want all atom syntaxes to be URL-safe.
 See below.)
 

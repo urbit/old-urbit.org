@@ -160,7 +160,7 @@ The second case of 10 is so easy it's puzzling:
     37 ::    *[a 10 b c]      *[a c]
 
 For any `b`, the formula `[10 b c]` seems to be perfectly
-equivalent to the formula... `c`.  But why?  Why would we say
+equivalent to the formula `c`.  But why?  Why would we say
 `[10 b c]` when we could just say `c`?
 
 The answer is that `10` is a hint to the interpreter.  It's true
@@ -277,8 +277,8 @@ is just `a`.  And it seems to be - given the semantics of 8 as
 we've explained them.
 
 But there's a problem, which is that `c` might not terminate.
-If `c` terminates, this reduction is correct.  Otherwise...
-it's not.  So the best we can do is:
+If `c` terminates, this reduction is correct.  Otherwise it's not. 
+So the best we can do is:
 
     36r::    *[a 10 [b c] d]  *[*[[*[a c] a] 0 3] d]
 
