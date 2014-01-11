@@ -582,7 +582,7 @@ it's parsed as an open-ended list, it always has the terminator
 Hence:
 
 ```
-<~waclux-tomwyc/try=> :hec 42
+~waclux-tomwyc/try=> :hec 42
 < 1.ivl
   1.hfd
   [ [a=@ %~]
@@ -703,12 +703,12 @@ which let us build cells in classic Hoon fashion:
 
 So we might as well say
 ```
-    =>  [b=0 .]
-    =<  decrement
-    |%
-    ++  decrement
-      b
-    --
+=>  [b=0 .]
+=<  decrement
+|%
+++  decrement
+  b
+--
 ```
 In other words - enter our core not with the original subject,
 `.`, but with the cell `[b=0 .]`.  
@@ -718,12 +718,12 @@ synthetic hoon, but the compiler sees what you're doing and turns
 it into nock `8` anyway) there's a hoon for that: `=+`, `tislus`,
 `%tsls`:
 ```
-    =+  b=0
-    =<  decrement
-    |%
-    ++  decrement
-      b
-    --
+=+  b=0
+=<  decrement
+|%
+++  decrement
+  b
+--
 ```
 ###Actually decrementing###
 
@@ -731,41 +731,41 @@ As you may remember, to decrement `a` we need to count up to it.
 The first step is incrementing, which we do with `.+` - `dotlus`, 
 `%dtls`:
 ```
-    =+  b=0
-    =<  decrement
-    |%
-    ++  decrement
-      .+(b)
-    --
+=+  b=0
+=<  decrement
+|%
+++  decrement
+  .+(b)
+--
 
-    : /~waclux-tomwyc/try/19/bin/hec/hoon
-    ~waclux-tomwyc/try=> :hec 42
-    1
-    ~waclux-tomwyc/try=> 
+: /~waclux-tomwyc/try/19/bin/hec/hoon
+~waclux-tomwyc/try=> :hec 42
+1
+~waclux-tomwyc/try=> 
 ```
 Well, it's not decrement but it's a start.  What we really have
 to do is see if `+(b)` equals `a`:
 ```
-    =+  b=0
-    =<  decrement
-    |%
-    ++  decrement
-      ?:  .=(a +(b))
-        b
-      99
-    --
+=+  b=0
+=<  decrement
+|%
+++  decrement
+  ?:  .=(a +(b))
+    b
+  99
+--
 ```
 We've met a new hoon, `.=`, `dottis`, `%dtts`.  It too has an
 irregular form, not surprisingly different:
 ```
-    =+  b=0
-    =<  decrement
-    |%
-    ++  decrement
-      ?:  =(a +(b))
-        b
-      99
-    --
+=+  b=0
+=<  decrement
+|%
+++  decrement
+  ?:  =(a +(b))
+    b
+  99
+--
 ```
 And `?:` was of course one of our first examples.  We can test
 this, for what it's worth:
@@ -783,16 +783,16 @@ compute `decrement` again, but with `b` set to `+(b)`.
 
 There's a way to do that:
 ```
-    =+  b=0
-    =<  decrement
-    |%
-    ++  decrement
-      ?:  =(a +(b))
-        b
-      %=  decrement
-          b  +(b)
-      ==
-    --
+=+  b=0
+=<  decrement
+|%
+++  decrement
+  ?:  =(a +(b))
+    b
+  %=  decrement
+      b  +(b)
+  ==
+--
 ```
 Meet `%=`, `centis`, `%cnts` - the world's most important hoon.
 Actually, *everything* that references a limb/wing turns into
@@ -923,9 +923,9 @@ a minute:
 
 Let's try it...
 
-  : /~waclux-tomwyc/try/22/bin/hec/hoon
-  ~waclux-tomwyc/try=> :hec 42
-  41
+    : /~waclux-tomwyc/try/22/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    41
 
 It works!
 
