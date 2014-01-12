@@ -548,7 +548,7 @@ is the core itself.
 Let's change our test file to produce a core.  The whole file:
 
 ```
-<!:             ::  To write a trivial Hoon program
+!:             ::  To write a trivial Hoon program
 |=  *          ::
 |=  [a=@ ~]    ::  For educational purposes only
 :_  ~  :_  ~   ::
