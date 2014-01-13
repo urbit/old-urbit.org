@@ -556,7 +556,7 @@ is the core itself.
 
 Let's change our test file to produce a core.  The whole file:
 ```
-<!:             ::  To write a trivial Hoon program
+!:             ::  To write a trivial Hoon program
 |=  *          ::
 |=  [a=@ ~]    ::  For educational purposes only
 :_  ~  :_  ~   ::
@@ -589,7 +589,7 @@ it's parsed as an open-ended list, it always has the terminator
 Hence:
 
 ```
-<~waclux-tomwyc/try=> :hec 42
+~waclux-tomwyc/try=> :hec 42
 < 1.ivl
   1.hfd
   [ [a=@ %~]
@@ -708,12 +708,12 @@ which let us build cells in classic Hoon fashion:
 ```
 So we might as well say
 ```
-    =>  [b=0 .]
-    =<  decrement
-    |%
-    ++  decrement
-      b
-    --
+=>  [b=0 .]
+=<  decrement
+|%
+++  decrement
+  b
+--
 ```
 In other words - enter our core not with the original subject,
 `.`, but with the cell `[b=0 .]`.  
@@ -723,12 +723,12 @@ synthetic hoon, but the compiler sees what you're doing and turns
 it into nock `8` anyway) there's a hoon for that: `=+`, `tislus`,
 `%tsls`:
 ```
-    =+  b=0
-    =<  decrement
-    |%
-    ++  decrement
-      b
-    --
+=+  b=0
+=<  decrement
+|%
+++  decrement
+  b
+--
 ```
 ###Actually decrementing###
 
