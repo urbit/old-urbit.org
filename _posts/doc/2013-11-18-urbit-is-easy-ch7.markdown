@@ -13,44 +13,44 @@ title: Urbit Is Easy&#58; Chapter VII (Hoon Computes)
 
 Is Hoon actually an improvement on Nock?  The jury holds out.
 Here is our old decrement function, from the Nock battery:
-```
-[ 8
-  [1 0]
-  [ 8
-    [ 1
-      [ 6
-        [5 [4 0 6] [0 30]]
-        [0 6]
-        [9 2 [0 2] [4 0 6] [0 7]]
+
+    [ 8
+      [1 0]
+      [ 8
+        [ 1
+          [ 6
+            [5 [4 0 6] [0 30]]
+            [0 6]
+            [9 2 [0 2] [4 0 6] [0 7]]
+          ]
+        ]
+        [9 2 0 1]
       ]
     ]
-    [9 2 0 1]
-  ]
-]
-```
+
 This clearly it is not for the little boys and girls.  But wait -
 is Hoon any less formidable?  The equivalent Hoon twig:
-```
-|=  a=@
-=|  b=@
-|-  ?:  =(a +(b))
-      b
-    $(b +(b))
-```
+
+    |=  a=@
+    =|  b=@
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
+
 Whaa?  We can also write the exact same decrement as:
-```
-|=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b))))))
-```
+
+    |=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b))))))
+
 for instance:
-```  
-~waclux-tomwyc/try=> (|=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))) 42)
-41
-```
+  
+    ~waclux-tomwyc/try=> (|=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))) 42)
+    41
+
 or even more cryptically, 
-```
-~waclux-tomwyc/try=> %.(42 |=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))))
-41
-```
+
+    ~waclux-tomwyc/try=> %.(42 |=(a=@ =|(b=@ |-(?:(=(a +(b)) b $(b +(b)))))))
+    41
+
 And I showed this to my daughter, who ran away in tears.  Dear
 reader, I hope you're not tempted to do the same.
 
@@ -63,13 +63,13 @@ If anything, this knowledge makes it harder to learn Hoon.
 
 Our mutual hope is that by the time you do know Hoon, you will
 simply be able to *see* a twig like
-```
-|=  a=@
-=|  b=@
-|-  ?:  =(a +(b))
-      b
-    $(b +(b))
-```
+
+    |=  a=@
+    =|  b=@
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
+
 and, far from merely able to follow this code, *actually observe
 in your mind's eye the function itself* - not unlike Keanu with
 kung fu.  You will simply look at this strange collection of
@@ -96,19 +96,19 @@ We use so many of these ASCII glyphs that we like to be able
 to read them out loud.  A language is meant to be _said_.  The
 squiggles have conventional names, sort of, some of them easy to
 say, others not so much.  So we've renamed them:
-``` 
-ace  space      gal  <          per  )
-bar  |          gar  >          sel  [
-bas  \          hax  #          sem  ;
-buc  $          hep  -          ser  ]
-cab  _          kel  {          sig  ~
-cen  %          ker  }          soq  '
-col  :          ket  ^          tar  *
-com  ,          lus  +          tec  `
-doq  "          pam  &          tis  =
-dot  .          pat  @          wut  ?
-fas  /          pel  (          zap  !
-```
+ 
+    ace  space      gal  <          per  )
+    bar  |          gar  >          sel  [
+    bas  \          hax  #          sem  ;
+    buc  $          hep  -          ser  ]
+    cab  _          kel  {          sig  ~
+    cen  %          ker  }          soq  '
+    col  :          ket  ^          tar  *
+    com  ,          lus  +          tec  `
+    doq  "          pam  &          tis  =
+    dot  .          pat  @          wut  ?
+    fas  /          pel  (          zap  !
+
 You just have to memorize these names.  Sorry.  We accept
 that they are vile, barbaric and loathsome.  So is life.
 
@@ -127,28 +127,28 @@ to be encouraged.  In any language actually spoken by actual
 humans, benign indolence soon rounds off any rough edges.
 
 There are a few runes with irregular special pronunciations:
-```
---    hephep    phep    
-+-    lushep    slep
-++    luslus    slus
-==    tistis    stet
-+<    lusgal    glus
-+>    lusgar    gras
--<    hepgal    gelp
-->    hepgar    garp      
-```
+
+    --    hephep    phep    
+    +-    lushep    slep
+    ++    luslus    slus
+    ==    tistis    stet
+    +<    lusgal    glus
+    +>    lusgar    gras
+    -<    hepgal    gelp
+    ->    hepgar    garp     
+
 Let's look at that decrement twig again:
-```
-|=  a=@
-=|  b=@
-|-  ?:  =(a +(b))
-      b
-    $(b +(b))
-```
+
+    |=  a=@
+    =|  b=@
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
+
 If we had to read this twig, omitting the spaces (which only a
 real purist would pronounce), we'd say: "bartis A is pat tisbar B
 is pat barhep wutcol tis pel A lus pel B perper B bucpel B luspel B
-perper."  The authorities would then arrive, and drag us out in a
+perper." The authorities would then arrive, and drag us out in a
 big net. Definitely don't do this at the airport.
 
 Hoon has almost 90 digraphic runes.  Worse, "Hoon runes" are
@@ -163,19 +163,19 @@ not random.  Third, no one lives in Australia and nobody cares.
 
 The second glyph in a hoon means little or nothing, but the first
 defines a rough semantic category.   These categories are:
-```
-|  bar    core construction
-$  buc    tiles and tiling
-%  cen    invocations
-:  col    tuples
-.  dot    nock operators
-^  ket    type conversions
-;  sem    miscellaneous macros
-~  sig    hints
-=  tis    compositions
-?  wut    conditionals, booleans, tests
-!  zap    special operations
-```
+
+    |  bar    core construction
+    $  buc    tiles and tiling
+    %  cen    invocations
+    :  col    tuples
+    .  dot    nock operators
+    ^  ket    type conversions
+    ;  sem    miscellaneous macros
+    ~  sig    hints
+    =  tis    compositions
+    ?  wut    conditionals, booleans, tests
+    !  zap    special operations
+
 ###Regular forms###
 
 Like natural languages, Hoon wraps a blanket of funky, irregular,
@@ -183,11 +183,11 @@ easy-to-type abbreviations around a comforting but verbose
 regular core.  Let's explain the regular core first.
 
 Consider a very simple twig in completely regular form:
-```
-?:  &
-  47
-52
-```
+
+    ?:  &
+      47
+    52
+
 We observe the rune `?:`, which happens to mean the same thing it
 means in C.  In C, though, we don't call it `wutcol`.
 
@@ -198,9 +198,9 @@ produces `47`, not that it matters.)
 `%wutcol` as a noun has a problem - it doesn't fit in 32 bits.
 Efficiency is important to us, so we disemvowel: `%wtcl`.  We
 can find this defined in `hoon.hoon`:
-```
-[%wtcl p=twig q=twig r=twig]
-```
+
+    [%wtcl p=twig q=twig r=twig]
+
 So `?:` has three legs: the test, the yes case, and the no
 case.  Again, as in C.  But why do we write it in this strange
 triangular indentation?
@@ -217,13 +217,13 @@ code to flow *down*, not *across*.  The usual way to lay out a
 tree which does not fit on one line is to indent the subtrees
 and enclose them in parens, brackets or braces.  Which might look
 like this (*not* Hoon syntax):
-```
-?:  {
-  &
-  47
-  52
-}
-```
+
+    ?:  {
+      &
+      47
+      52
+    }
+
 Hoon, like other functional languages, has very deep expression
 trees.  In this simple, classic syntax model, a functional
 language develops huge piles of closing parens at the end of
@@ -234,12 +234,12 @@ window bounds the depth of the expression tree.
 Other languages skip the braces and parse whitespace, using
 indentation to express tree depth.  This actually is valid (but
 ugly) Hoon:
-```
-?:
-  &
-  47
-  52
-```
+
+    ?:
+      &
+      47
+      52
+
 This gets rid of the terminator problem, but keeps the width
 problem.  And parsing whitespace is horrible.  Whitespace in Hoon
 is not significant, though its presence or absence is.  (Note
@@ -252,97 +252,98 @@ many twigs follow `?:` - the answer is always 3.
 
 Second, our goal is to descend into a deep tree without losing
 right margin.  With the *backstep* pattern
-```
-?:  &
-  47
-52
-```
+
+    ?:  &
+      47
+    52
+
 or
-```
-=+  a=3
-b
-```
+
+    =+  a=3
+    b
+
 we step two spaces backward at each subtwig, till the last one is
 at the same indentation as its parent.
 
 This preserves your right margin in one and only one case - where
 the bottom twig is the heaviest.  For example, if we write
-```
-?:  &
-  47
-?:  |
-  52
-?:  &
-  97
-=+  35
-b
-```
+
+    ?:  &
+      47
+    ?:  |
+      52
+    ?:  &
+      97
+    =+  35
+    b
+
 we see a tree that flows neatly down the screen.  It's obviously
 much nicer than, say (*not* Hoon syntax):
-```
-?:  {
-  &
-  47
-  ?:  {
-    |
-    52
+
     ?:  {
-      97
-      =+  {
-        35
-        b
+      &
+      47
+      ?:  {
+        |
+        52
+        ?:  {
+          &
+          97
+          =+  {
+            35
+            b
+          }
+        }
       }
     }
-  }
-}
-```
+
 or any similar abortion.  But its downward flow depends on the
 coincidence of the bottom twig being the heavy one:
-```
-?:  &
-  ?:  |
-    52
-  ?:  &
-    97
-  =+  35
-  b
-47
-```
+
+    ?:  &
+      ?:  |
+        52
+      ?:  &
+        97
+      =+  35
+      b
+    47
+
 To handle this, Hoon has a reasonable selection of reverse hoons,
 which have the same semantics but inverse order.  For instance,
 if `?:` is "if," `?.` (`wutdot`) is "unless":
-```
-?.  &
-  47
-?:  |
-  52
-?:  &
-  97
-=+  35
-b
-```
+
+    ?.  &
+      47
+    ?:  |
+      52
+    ?:  &
+      97
+    =+  35
+    b
+
 ###Wide forms###
 
 Observe that in the tall syntax, there are always at least *two*
 spaces (or one newline) between tokens.  Other than this, nothing
 requires anything to be tall.  For instance, it is normal and
 only slightly aggressive to write:
-```
-?.  &  47
-?:  |  52
-?:  &  97
-=+  35
-b
-```
+
+    ?.  &  47
+    ?:  |  52
+    ?:  &  97
+    =+  35
+    b
+
 But we could even go so far as:
-```
-?.  &  47  ?:  |  52  ?:  &  97  =+  35  b
-```
+
+    ?.  &  47  ?:  |  52  ?:  &  97  =+  35  b
+
 Few would find this readable, which is why Hoon also has a *wide*
 syntax:
-```
-?.(& 47 ?:(| 52 ?:(& 97 =+(35 b))))
-```
+
+    ?.(& 47 ?:(| 52 ?:(& 97 =+(35 b))))
+
 On a single line, the parentheses - while a parser could get away
 with skipping them - are needed to actually read the expression.
 The hoon attaches directly to the left paren (`pel`), and a
@@ -377,39 +378,45 @@ Since we're going to have to write multi-line Hoon programs, the
 command line is no longer enough.  We'll need another toy
 testbed, this one in `urb/waclux-tomwyc/try/bin/toy.hoon`.
 Its text should be:
-```
-!:             ::  To write a trivial Hoon program
-|=  *          ::
-|=  [x=@ ~]    ::  For educational purposes only
-:_  ~  :_  ~   ::
-:-  %$         ::  Preserve this mysterious boilerplate square
-!>             ::
-:::::::::::::::::  Produce a value below
-(add 2 x)
-```
-Test that it works: 
-```
-~waclux-tomwyc/try=> :toy 3
-5
-```
-Copy it into `try/bin/hec.hoon`, where we'll write our Hoon decrement.
-```
-+ /~waclux-tomwyc/try/7/bin/hec/hoon
-~waclux-tomwyc/try=> :hec 3
-5
-```
-Replace `(add 2 x)` with our decrement twig:
-```
-%.  x
-|=  a=@
-=|  b=@
-|-  ?:  =(a +(b))
-      b
-    $(b +(b))
 
-~waclux-tomwyc/try=> :hec 42
-41
-```
+    !:             ::  To write a trivial Hoon program
+    |=  *          ::
+    |=  [x=@ ~]    ::  For educational purposes only
+    :_  ~  :_  ~   ::
+    :-  %$         ::  Preserve this mysterious boilerplate square
+    !>             ::
+    :::::::::::::::::  Produce a value below
+    (add 2 x)
+
+Test that it works: 
+
+    ~waclux-tomwyc/try=> :toy 3
+    5
+
+Copy it into `try/bin/hec.hoon`, where we'll write our Hoon decrement.
+
+    + /~waclux-tomwyc/try/7/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 3
+    5
+
+Replace `(add 2 x)` with our decrement twig:
+
+In general, when you see a hoon in `$`, like `$:`, you are
+looking at a tile.  Unless it's `$,` `$_`, `$@`, `$*` or `$!` -
+that is, `buccom`, `buccab`, `bucpat`, `buctar` or `buczap` -
+in which case you are looking at a twig wrapped around a tile.
+This will one day make sense and even more if you're drunk.
+
+    %.  x
+    |=  a=@
+    =|  b=@
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
+
+    ~waclux-tomwyc/try=> :hec 42
+    41
+
 It works.  But, why does it work?  What are these twigs, anyway?
 
 ###Twigs###
@@ -422,17 +429,17 @@ call a `twig`, which (if you know the CS jargon) is an AST.  A
 twig is a noun that's converted into a Nock formula, with
 the assistance of a type which describes the subject of the
 formula:
-```
-[subject-type twig] => formula
-```
+
+    [subject-type twig] => formula
+
 But actually this isn't quite right, because Hoon does something
 called "type inference."  When we have a type that describes the
 subject for the formula we're trying to generate, as we generate
 that formula we want to also generate a type for the product of
 that formula on that subject.  So our compiler computes:
-```
-[subject-type twig] => [product-type formula]
-```
+
+    [subject-type twig] => [product-type formula]
+
 As long as `subject-type` is a correct description of some
 subject, you can take any twig and compile it against
 `subject-type`, producing a `formula` such that `*(subject
@@ -458,59 +465,59 @@ In fact, at the risk of scaring you further, here is the entire
 Hoon type-inference function from `hoon.hoon`.  `++play` is a 
 serviceable list of the *natural* hoons - the axioms, as it
 were.  Understand all these, and the rest are just... macros.
-``` 
-++  play
-  ~/  %play
-  =>  .(vet |)
-  |=  gen=twig
-  ^-  type
-  ?-  gen
-    [^ *]      (cell $(gen p.gen) $(gen q.gen))
-    [%bcpt *]  $(gen (~(whip al q.gen) p:(seep %read p.gen)))
-    [%brcn *]  (core sut %gold sut [[%0 0] p.gen])
-    [%cnts *]  =+  lar=(foil (seek %read p.gen))
-               =+  mew=(snub q.gen)
-               =+  rag=q.q.lar
-               %-  fire
-               |-  ^-  (list ,[p=type q=foot])
-               ?@  mew
-                 rag
-               $(mew t.mew, rag q:(tock p.i.mew ^$(gen q.i.mew) rag))
-    [%dtkt *]  %noun
-    [%dtls *]  [%atom %$]
-    [%dtzy *]  ?:(=(%f p.gen) ?>((lte q.gen 1) bean) [%atom p.gen])
-    [%dtzz *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
-    [%dttr *]  %noun
-    [%dtts *]  bean
-    [%dtwt *]  bean
-    [%ktbr *]  (wrap(sut $(gen p.gen)) %iron)
-    [%ktls *]  $(gen p.gen)
-    [%ktpm *]  (wrap(sut $(gen p.gen)) %zinc)
-    [%ktsg *]  $(gen p.gen)
-    [%ktts *]  (conk(sut $(gen q.gen)) p.gen)
-    [%ktwt *]  (wrap(sut $(gen p.gen)) %lead)
-    [%sgzp *]  ~_(duck(sut ^$(gen p.gen)) $(gen q.gen))
-    [%sggr *]  $(gen q.gen)
-    [%tsgr *]  $(gen q.gen, sut $(gen p.gen))
-    [%tstr *]  $(gen r.gen, sut (busk p.gen q.gen))
-    [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
-               %+  fork
-                 ?:(=(%void fex) %void $(sut fex, gen q.gen))
-               ?:(=(%void wux) %void $(sut wux, gen r.gen))
-    [%zpcb *]  ~_((show %o p.gen) $(gen q.gen))
-    [%zpcm *]  (play p.gen)
-    [%zpcn ~]  p:seed
-    [%zpfs *]  %void
-    [%zpsm *]  (cell $(gen p.gen) $(gen q.gen))
-    [%zpts *]  %noun
-    [%zpzp ~]  %void
-    *          =+  doz=~(open ap gen)
-               ?:  =(doz gen)
-                 ~_  (show [%c 'hoon'] [%q gen])
-                 ~|(%play-open !!)
-               $(gen doz)
-  ==
-```
+
+    ++  play
+      ~/  %play
+      =>  .(vet |)
+      |=  gen=twig
+      ^-  type
+      ?-  gen
+        [^ *]      (cell $(gen p.gen) $(gen q.gen))
+        [%bcpt *]  $(gen (~(whip al q.gen) p:(seep %read p.gen)))
+        [%brcn *]  (core sut %gold sut [[%0 0] p.gen])
+        [%cnts *]  =+  lar=(foil (seek %read p.gen))
+                   =+  mew=(snub q.gen)
+                   =+  rag=q.q.lar
+                   %-  fire
+                   |-  ^-  (list ,[p=type q=foot])
+                   ?@  mew
+                     rag
+                   $(mew t.mew, rag q:(tock p.i.mew ^$(gen q.i.mew) rag))
+        [%dtkt *]  %noun
+        [%dtls *]  [%atom %$]
+        [%dtzy *]  ?:(=(%f p.gen) ?>((lte q.gen 1) bean) [%atom p.gen])
+        [%dtzz *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
+        [%dttr *]  %noun
+        [%dtts *]  bean
+        [%dtwt *]  bean
+        [%ktbr *]  (wrap(sut $(gen p.gen)) %iron)
+        [%ktls *]  $(gen p.gen)
+        [%ktpm *]  (wrap(sut $(gen p.gen)) %zinc)
+        [%ktsg *]  $(gen p.gen)
+        [%ktts *]  (conk(sut $(gen q.gen)) p.gen)
+        [%ktwt *]  (wrap(sut $(gen p.gen)) %lead)
+        [%sgzp *]  ~_(duck(sut ^$(gen p.gen)) $(gen q.gen))
+        [%sggr *]  $(gen q.gen)
+        [%tsgr *]  $(gen q.gen, sut $(gen p.gen))
+        [%tstr *]  $(gen r.gen, sut (busk p.gen q.gen))
+        [%wtcl *]  =+  [fex=(gain p.gen) wux=(lose p.gen)]
+                   %+  fork
+                     ?:(=(%void fex) %void $(sut fex, gen q.gen))
+                   ?:(=(%void wux) %void $(sut wux, gen r.gen))
+        [%zpcb *]  ~_((show %o p.gen) $(gen q.gen))
+        [%zpcm *]  (play p.gen)
+        [%zpcn ~]  p:seed
+        [%zpfs *]  %void
+        [%zpsm *]  (cell $(gen p.gen) $(gen q.gen))
+        [%zpts *]  %noun
+        [%zpzp ~]  %void
+        *          =+  doz=~(open ap gen)
+                   ?:  =(doz gen)
+                     ~_  (show [%c 'hoon'] [%q gen])
+                     ~|(%play-open !!)
+                   $(gen doz)
+      ==
+
 Well, it's a little intimidating.  But not bad for a whole
 language, perhaps.
 
@@ -521,24 +528,24 @@ decrement work.
 
 To build decrement, we'll need a loop.  To write a loop, we'll
 need a core.  This adds another to the kinds of types we know:
-```
-++  type  $|  ?(%noun %void)                            ::
-          $%  [%atom p=term]                            ::
-              [%cell p=type q=type]                     ::
-              [%core p=type q=coil]                     ::
-              [%cube p=* q=type]                        ::
-              [%face p=term q=type]                     ::
-              [%fork p=type q=type]                     ::
-              [%hold p=(list ,[p=type q=twig])]         ::
-          ==                                            ::
-++  coil  $:  p=?(%gold %iron %lead %zinc)              ::
-              q=type                                    ::
-              r=[p=?(~ ^) q=(map term foot)]            ::
-          ==                                            ::
-++  foot  $%  [%ash p=twig]                             ::
-              [%elm p=twig]                             ::
-          ==                                            ::
-```
+
+    ++  type  $|  ?(%noun %void)                            ::
+              $%  [%atom p=term]                            ::
+                  [%cell p=type q=type]                     ::
+                  [%core p=type q=coil]                     ::
+                  [%cube p=* q=type]                        ::
+                  [%face p=term q=type]                     ::
+                  [%fork p=type q=type]                     ::
+                  [%hold p=(list ,[p=type q=twig])]         ::
+              ==                                            ::
+    ++  coil  $:  p=?(%gold %iron %lead %zinc)              ::
+                  q=type                                    ::
+                  r=[p=?(~ ^) q=(map term foot)]            ::
+              ==                                            ::
+    ++  foot  $%  [%ash p=twig]                             ::
+                  [%elm p=twig]                             ::
+              ==                                            ::
+
 Aha, you say.  I knew there had to be something complicated in
 here.  Well, fact is, I'm just a simple country mouse and so are
 you, but Hoon is a polymorphic higher-order typed functional
@@ -546,15 +553,16 @@ language with genericity and stuff, and you don't get that
 without a little bit of urban funk.
 
 But we want to keep it simple for now, so let's imagine it said
-```
-[%core p=type q=(map term twig)]
-```
+
+    [%core p=type q=(map term twig)]
+
 As we recall from chapter 4, a core is a `[code data]` cell -
 `[battery payload]`.  Essentially, an object.  The battery, at
 the Nock level, is a tree of formulas, each of whose subject 
 is the core itself.
 
 Let's change our test file to produce a core.  The whole file:
+
 ```
 !:             ::  To write a trivial Hoon program
 |=  *          ::
@@ -568,18 +576,19 @@ Let's change our test file to produce a core.  The whole file:
   "hello, world."
 --
 ```
+
 The syntax for a basic core is `|%` (`barcen`, or `%brcn`),
 followed by any number of arms `++` (`luslus`, or just `slus`),
-followed by a terminator `--` (`hephep`, or just `phep`).  The
-arm is a symbol and a twig.  The subject of the twig is the core.
+followed by a terminator `--` (`hephep`, or just `phep`).  The arm
+is a symbol and a twig.  The subject of the twig is the core.
 
 Let's try this puppy out:
-```
-: /~waclux-tomwyc/try/9/bin/hec/hoon
-~waclux-tomwyc/try=> :hec
-! type-fail
-! exit
-```
+
+    : /~waclux-tomwyc/try/9/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec
+    ! type-fail
+    ! exit
+
 Whoops!  We forgot that Arvo is a *typed* command-line.  Because
 it's parsed as an open-ended list, it always has the terminator
 (`~`, which is just `@n`0) on the end.  But it needs an atom:
@@ -601,9 +610,9 @@ That's a core.  Or it's how we print a core, anyway.  This is
 actually a giant noun full of all kinds of formulas, and it would
 be kind of lame to dump a megabyte of nock on your screen.  The
 print format is:
-```
-<number-of-arms.checksum payload>
-```
+
+    <number-of-arms.checksum payload>
+
 So we wrapped our new `1.ivl` core, with its `++hello` arm,
 around the `1.hfd` core (which is the `|=  [a=@ ~]` thingy),
 around a stack of cores ultimately terminating in the giant
@@ -623,11 +632,11 @@ is Nock 7.  `=>(a b)` means "use a as the subject of b."  So, we
 are resolving the limb `hello` against our `1.ivl` core.
 
 So when we try it:
-```
+
     : /~waclux-tomwyc/try/11/bin/hec/hoon
     ~waclux-tomwyc/try=> :hec 42
     "hello, world."
-```
+
 Let's observe a couple of things.  First, an arm is not a method
 in the OO sense.  You don't see any arguments on `++hello`.
 Rather, the arm is a computed expression - a synthetic attribute,
@@ -678,6 +687,7 @@ reversed to make it flow downward.  We need the opposite of `=>`:
 
 To do some decrementing, we'll need a counter.  Let's continue
 our pattern of using only natural hoons:
+
 ```
 =>  :-  ^=  b
         0
@@ -692,6 +702,7 @@ our pattern of using only natural hoons:
 ~waclux-tomwyc/try=> :hec 42
 0
 ```
+
 We introduce a couple of new hoons.  First, `^=`, `kettis`,
 `%ktts` - is a hoon we've already seen.  We've seen it only in
 its irregular form - not `^=(b 0)`, but, of course, `b=0`.
@@ -700,12 +711,12 @@ its irregular form - not `^=(b 0)`, but, of course, `b=0`.
 We've also seen `:-` in its irregular form - it just makes a
 cell.  `:-(a b)` is just `[a b]`.  We have a set of these hoons,
 which let us build cells in classic Hoon fashion:
-```
+
     :-(a b)       [a b]
     :+(a b c)     [a b c]
     :^(a b c d)   [a b c d]
     :_(a b)       [b a]
-```
+
 So we might as well say
 ```
 =>  [b=0 .]
@@ -774,12 +785,12 @@ irregular form, not surprisingly different:
 ```
 And `?:` was of course one of our first examples.  We can test
 this, for what it's worth:
-```
-~waclux-tomwyc/try=> :hec 42
-99
-~waclux-tomwyc/try=> :hec 1
-0
-```
+
+    ~waclux-tomwyc/try=> :hec 42
+    99
+    ~waclux-tomwyc/try=> :hec 1
+    0
+
 Well, it works.  For one case of "works."
 
 You know, gosh, instead of `99` - which is obviously just wrong -
@@ -802,11 +813,11 @@ There's a way to do that:
 Meet `%=`, `centis`, `%cnts` - the world's most important hoon.
 Actually, *everything* that references a limb/wing turns into
 `%=`.  Let's look at its definition:
-```
-++  twig  $%  [%cnts p=wing q=tray]
-          ==
-++  tray  (list ,[p=wing q=twig])
-```
+
+    ++  twig  $%  [%cnts p=wing q=tray]
+              ==
+    ++  tray  (list ,[p=wing q=twig])
+
 `%=` means "resolve with changes."  If `q` is empty, `%=` just 
 pulls wing `p` with no changes.  Otherwise, we get `p` with the
 wings in `q` set to the provided twigs.
@@ -819,11 +830,11 @@ arm, the change is to the core that contains the arm.)
 
 So, this should do exactly what we want - it should replace `b`
 with `+(b)`, and recompute.  But does it?  Amazingly...
-```
-: /~waclux-tomwyc/try/21/bin/hec/hoon
-~waclux-tomwyc/try=> :hec 42
-41
-```
+
+    : /~waclux-tomwyc/try/21/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    41
+
 ###Making it pretty###
 
 The first thing we notice is that `%=` is pretty important, and
@@ -852,12 +863,12 @@ The character (the dollar sign) is pronounced `buc`; the value;
 (the empty term) is pronounced `blip`.  So you can say either.
 Or both - depends if you're money.  Either way, neighbor, `$`
 has a value and it ain't nothing but zero:
-```
-~waclux-tomwyc/try=> `@ux`%foo
-0x6f.6f66
-~waclux-tomwyc/try=> `@ux`%$
-0x0
-```
+
+    ~waclux-tomwyc/try=> `@ux`%foo
+    0x6f.6f66
+    ~waclux-tomwyc/try=> `@ux`%$
+    0x0
+
 When we use `$` as a name, our decrement gets cleaner - or
 shorter, anyway:
 ```
@@ -874,75 +885,78 @@ The third thing we notice is that this pattern of "have one arm
 and do it again with some changes" is... well, it has a name.
 So we might expect to see a more convenient hoon - and indeed
 we do:
-```
-=+  b=0
-=<  $
-|.
-?:  =(a +(b))
-  b
-$(b +(b))
-```
+
+    =+  b=0
+    =<  $
+    |.
+    ?:  =(a +(b))
+      b
+    $(b +(b))
+
 What is `|.`, `bardot`, `%brdt`?  It's easy to see what a
 synthetic hoon does - we just look at its line in `++open`
 (in `hoon.hoon`).  For example:
-```
-[%tsgl *]  [%tsgr q.gen p.gen]
-```
+
+    [%tsgl *]  [%tsgr q.gen p.gen]
+
 and, more to the point:
-```
-[%brdt *]  [%brcn (~(put by *(map term foot)) %$ [%ash p.gen])]
-```
+
+    [%brdt *]  [%brcn (~(put by *(map term foot)) %$ [%ash p.gen])]
+
 (Okay, this isn't exactly as pellucid as it might be.  All it
 means is that we create a `|%` with one arm, our `%$`.)
 
 Moreover, it seems like we might want to activate one of these
 strange repeating computations automagically.  Indeed there's a
 hoon for that - `|-`, `barhep`, `%brhp`:
-```
-[%brhp *]  [%tsgl [%cnzy %$] [%brdt p.gen]]
-```
+
+    [%brhp *]  [%tsgl [%cnzy %$] [%brdt p.gen]]
+
 Notice that we just did that.  `%cnzy` is an internal hoon which
 doesn't have a syntax, and just makes macros smaller:
-```
+
     [%cnzy *]  [%cnts [p.gen ~] ~]
-```
+
 Aha, good old `%cnts` - aka, `%=`.  But wait - does it work?
 We get:
-```
-=+  b=0
-|-
-?:  =(a +(b))
-  b
-$(b +(b))
-```
+
+    =+  b=0
+    |-
+    ?:  =(a +(b))
+      b
+    $(b +(b))
+
 Or, to indent this a little more aggressively, our final result.
 It isn't exactly what we started with - but we'll get there in 
 a minute:
-```
-!:             ::  To write a trivial Hoon program
-|=  *          ::
-|=  [a=@ ~]    ::  For educational purposes only
-:_  ~  :_  ~   ::
-:-  %$         ::  Preserve this mysterious boilerplate square
-!>             ::
-:::::::::::::::::  Produce a value below
-=+  b=0
-|-  ?:  =(a +(b))
-      b
-    $(b +(b))
-```
+
+    !:             ::  To write a trivial Hoon program
+    |=  *          ::
+    |=  [a=@ ~]    ::  For educational purposes only
+    :_  ~  :_  ~   ::
+    :-  %$         ::  Preserve this mysterious boilerplate square
+    !>             ::
+    :::::::::::::::::  Produce a value below
+    =+  b=0
+    |-  ?:  =(a +(b))
+          b
+        $(b +(b))
+
 Let's try it...
-```
-: /~waclux-tomwyc/try/22/bin/hec/hoon
-~waclux-tomwyc/try=> :hec 42
-41
-```
+
+    : /~waclux-tomwyc/try/22/bin/hec/hoon
+    ~waclux-tomwyc/try=> :hec 42
+    41
+
 It works!
 
+##Exercises##
+
 Exercise 1: write the entire expression under the boilerplate
-above, in one line as wide form.  Test it. 
+above, in one line as wide form.  Test it.
 
 Exercise 2: write a Hoon program :fib that instead computes the
 Fibonacci number at `n`.
 
 [**Prev**: Moar Hoon Types](urbit-is-easy-ch6.html)
+
