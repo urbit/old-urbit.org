@@ -401,12 +401,6 @@ Copy it into `try/bin/hec.hoon`, where we'll write our Hoon decrement.
 
 Replace `(add 2 x)` with our decrement twig:
 
-In general, when you see a hoon in `$`, like `$:`, you are
-looking at a tile.  Unless it's `$,` `$_`, `$@`, `$*` or `$!` -
-that is, `buccom`, `buccab`, `bucpat`, `buctar` or `buczap` -
-in which case you are looking at a twig wrapped around a tile.
-This will one day make sense and even more if you're drunk.
-
     %.  x
     |=  a=@
     =|  b=@
