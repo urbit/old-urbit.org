@@ -119,9 +119,9 @@ Or more conveniently:
 ```
 Does this work?
 
-: /~zod/try/25/bin/hec/hoon
-~zod/try=> :hec 42
-41
+    : /~zod/try/25/bin/hec/hoon
+    ~zod/try=> :hec 42
+    41
 
 But this doesn't mean we understand it.  
 
