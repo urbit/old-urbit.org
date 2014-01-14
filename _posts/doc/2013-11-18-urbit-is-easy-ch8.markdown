@@ -219,7 +219,7 @@ the decrement gate itself.  We'll see this in a little bit.
 
 Let's eschew synthetic runes and show the three cores as they
 really are:
-
+```
     =<  (deq a)
     |%
     ++  deq
@@ -236,7 +236,7 @@ really are:
         --
       --
     --
-
+```
 On the other hand, if we don't mind synthetics and lots of
 parentheses, our decrement gate can also be a one-liner.  This is
 perfectly legitimate Hoon style:
