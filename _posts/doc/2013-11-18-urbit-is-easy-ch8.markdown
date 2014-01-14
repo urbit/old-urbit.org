@@ -1,7 +1,7 @@
 ---
 layout: post
 category: doc
-title: Urbit Is Easy&#58; Chapter VII (Gates)
+title: Urbit Is Easy&#58; Chapter VIII (Gates)
 ---
 
 [**Prev**: Hoon Computes](urbit-is-easy-ch7.html)
@@ -174,7 +174,7 @@ Thus, it should be perfectly clear what the three `bar` runes -
 implying three cores - mean.  First, we have the `|%` which
 contains `++deq`.  (When referring to an arm in informal text,
 we use this syntax, though the actual language of course requires
-a double space - when searching in a file, `/++  arm` will always
+a double space - when searching in a file, "++  arm" will always
 find the definition of `arm` and nothing else.)
 
 This outer core defines *the library our decrement gate is in*.

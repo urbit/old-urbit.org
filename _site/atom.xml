@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2014-01-13T17:10:29-08:00</updated>
+ <updated>2014-01-13T18:37:11-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -4160,7 +4160,7 @@ them to use names. :)&lt;/code&gt;&lt;/pre&gt;</content>
  </entry>
  
  <entry>
-   <title>Urbit Is Easy&#58; Chapter VII (Gates)</title>
+   <title>Urbit Is Easy&#58; Chapter VIII (Gates)</title>
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch8.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch8</id>
@@ -4247,13 +4247,11 @@ them to use names. :)&lt;/code&gt;&lt;/pre&gt;</content>
 --
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;dl&gt;
-&lt;dt&gt;Does this work?&lt;/dt&gt;
+&lt;p&gt;Does this work?&lt;/p&gt;
 
-&lt;dd&gt;
-&lt;p&gt;/~zod/try/25/bin/hec/hoon ~zod/try=&amp;gt; :hec 42 41&lt;/p&gt;
-&lt;/dd&gt;
-&lt;/dl&gt;
+&lt;pre&gt;&lt;code&gt;: /~zod/try/25/bin/hec/hoon
+~zod/try=&amp;gt; :hec 42
+41&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But this doesn’t mean we understand it.&lt;/p&gt;
 
@@ -4287,7 +4285,7 @@ them to use names. :)&lt;/code&gt;&lt;/pre&gt;</content>
 
 &lt;p&gt;(It remains important not to profoundly abuse this magic power. Every layer of core you add, of course, puts you farther from some of the gates you want to use. A smart interpreter can smooth over this issue a little, but smart isn’t free either.)&lt;/p&gt;
 
-&lt;p&gt;Thus, it should be perfectly clear what the three &lt;code&gt;bar&lt;/code&gt; runes - implying three cores - mean. First, we have the &lt;code&gt;|%&lt;/code&gt; which contains &lt;code&gt;++deq&lt;/code&gt;. (When referring to an arm in informal text, we use this syntax, though the actual language of course requires a double space - when searching in a file, &lt;code&gt;/++  arm&lt;/code&gt; will always find the definition of &lt;code&gt;arm&lt;/code&gt; and nothing else.)&lt;/p&gt;
+&lt;p&gt;Thus, it should be perfectly clear what the three &lt;code&gt;bar&lt;/code&gt; runes - implying three cores - mean. First, we have the &lt;code&gt;|%&lt;/code&gt; which contains &lt;code&gt;++deq&lt;/code&gt;. (When referring to an arm in informal text, we use this syntax, though the actual language of course requires a double space - when searching in a file, “++ arm” will always find the definition of &lt;code&gt;arm&lt;/code&gt; and nothing else.)&lt;/p&gt;
 
 &lt;p&gt;This outer core defines &lt;em&gt;the library our decrement gate is in&lt;/em&gt;. Obviously, this library (an unscientific term for a multi-armed core containing only static code and data) can contain gate producers other than &lt;code&gt;deq&lt;/code&gt;.&lt;/p&gt;
 
@@ -4305,7 +4303,8 @@ them to use names. :)&lt;/code&gt;&lt;/pre&gt;</content>
 
 &lt;p&gt;Let’s eschew synthetic runes and show the three cores as they really are:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;=&amp;lt;  (deq a)
+&lt;pre&gt;&lt;code&gt;
+=&amp;lt;  (deq a)
 |%
 ++  deq
   =+  x=0
@@ -4317,8 +4316,12 @@ them to use names. :)&lt;/code&gt;&lt;/pre&gt;</content>
     ++  $
       ?:  =(x +(y))
         y
-      $(y +(y))&lt;/code&gt;&lt;/pre&gt;
-&lt;hr /&gt;&lt;hr /&gt;&lt;hr /&gt;
+      $(y +(y))
+    --
+  --
+--
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;On the other hand, if we don’t mind synthetics and lots of parentheses, our decrement gate can also be a one-liner. This is perfectly legitimate Hoon style:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;
