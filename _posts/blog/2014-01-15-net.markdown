@@ -1,0 +1,102 @@
+---
+layout: post
+category: blog
+author: atax1a
+title: claiming ~net
+date: 2014-1-15 06:59
+---
+
+The quoted material comes from an email sent by Curtis Yarvin-- my reply is in-line.
+
+> The general idea of Urbit has always been to use the potential value of the
+> namespace to drive its development.  Partly this involves doing what we've
+> done, which is to create a company and get funding from evil VCs.  But
+> fundamentally, Urbit remains an open-source project - for example, there is
+> no secret codebase - and we can't really succeed without public
+> contributions.
+
+Urbit is a labor of love, and I'd like to see it go far. Cosmic, even.
+I doubt anyone will begrudge you for acting within the guidelines of
+today's Corporations-Are-People mindset, especially since the entire
+operation has been transparent since the beginning.
+
+> Basically, as in all open-source projects, people have contributed and will
+> contribute to Urbit, because Urbit is cool and fun.  If they are in a sense
+> being paid, or expected to be paid, for this work, Urbit becomes less cool
+> and fun.  So we don't want to see the real estate as in any sense a bounty,
+> a payment, a prize, etc, etc.  A crucial element of the scheme is that
+> those who win, win without any prior expectation of winning.  This
+> preserves the fun factor.  I hope.
+
+The fun, for me, is in helping to create a virtual world, from scratch,
+using no more than some simple mechanical rules. Urbit is fun, and I'm
+pleased by how well my contributions have been accepted.  This is
+already rewarding, though, of course, I'm not saying 'no' to a carrier.
+
+> Owning an Urbit carrier is more than just a reward - it is also a duty.
+>  Urbit is a digital republic, and as a carrier owner you are literally a
+> senator of this republic.  For the moment, of course, the republic is tiny
+> and it does not need republican government - it needs a dictator.  As it
+> grows and succeeds, its governance must and will become not only
+> republican, but even democratic.  I hope this doesn't shock anyone.
+>
+> It seems clear that those who accept this duty (you can always decline)
+> should be defined by one word: virtue.  A virtuous republic is impossible
+> without virtuous governors.
+
+One time, I was talking about Urbit, and someone summarized it as "It
+sounds like you're kind of important in this imaginary world."  I
+shouldn't let this talk get to my head, but it gets difficult when you
+send out messages about how important my participation can be. ;)  Now I
+get to talk about being a Rear Admiral in the Urbit Republic, or
+something along those lines.
+
+> Therefore, I've decided to issue urbit.org carriers in the following way:
+> distribution is in rounds, each of which is defined by a previously
+> unannounced virtue.  For instance, in 2010, I committed to issuing carriers
+> to anyone who could write decrement in Nock.  I promised a prize to be
+> disclosed later.  I don't think anyone had any idea that this prize would
+> be something you could sell (please don't, though!) for over $10,000.
+
+"You can't even buy these for dollars," Y.T. says, of her skateboard.
+I'm humbled by this reward, and to sell it would be completely contrary
+to the virtue expected of us.  \`@udd\`10.000 is certainly a number, but
+its type isn't compatible with ++zeno.
+
+All this is to say that I'll take this duty seriously.  Sinking a
+carrier makes a large portion of the address space go dark, a
+complication we can all do without.  Urbit is easy, uncomplicated, and
+fun, but fun can't exist without some serious work behind it.
+
+> What was the virtue of the 2010 winners?  One of the classic virtues -
+> luck.  They did the right thing in the right place at the right time.
+>  Hence, in the carrier database their carriers are listed as "per fortuna."
+
+It still surprises me that Nock, as we know it, has been around this
+long.  We live in a culture where something from 3 months ago is
+considered old news, which makes the \`fortuna' carrier-holders ancient...
+
+> In this round we're celebrating a different virtue - loyalty to Urbit.
+>  Your carrier is "per fidelis."  This reflects the fact that for the last
+> three months, more or less, you have showed up, chatted, evangelized, sent
+> bug reports, worked through the doc, etc, etc, etc.  Without any
+> expectation of being rewarded for this, obviously.  It is the lack of
+> expectation that makes the reward genuinely effective, and not
+> overjustified.  I hope.
+
+The experience of poking around in this digital labyrinth is utterly
+addictive.  Even without the potential for reward, Urbit would hold my
+attention, so the reward is indeed effective.  (I hope.)
+
+> Unless you are a present carrier holder, feel free to look through ++zeno
+> and pick any carrier that is presently assigned to me or to Tlon, other
+> than ~zod of course.  We'll adjust the bindings as needed.
+
+I like the idea of holding carrier ~net, \`@p\`79. The associations for
+that number are mostly favorable, and I won't belabor the point by
+listing them all out.
+
+As a final note. I recognize that having a carrier means giving up most
+of the privacy I sought in the atax1a mask, but that privacy was
+illusory (and orthogonal to Urbit) anyway.  This is the price of living
+in our modern world.
