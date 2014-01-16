@@ -1,7 +1,7 @@
 ---
 layout: post
 category: doc
-title: Urbit Is Easy&#58; Chapter VII (Gates)
+title: Urbit Is Easy&#58; Chapter VIII (Gates)
 ---
 
 [**Prev**: Hoon Computes](urbit-is-easy-ch7.html)
@@ -175,23 +175,19 @@ a double space - when searching in a file, `/++  arm` will always
 find the definition of `arm` and nothing else.)
 
 This outer core defines *the library our decrement gate is in*.
-Obviously, this library (an unscientific term for a multi-armed
-core containing only static code and data) can contain gate
-producers other than `deq`.
+Actually, "library" (or `book` - defined as a core which
+contains only code and constant data) is not quite the right
+terminology here.  Even though we don't use it and it shouldn't
+in fact be there, the payload of this core contains dynamic
+information such as `a`.
 
-(Actually, "library" here is not quite correct, because the
-payload of this core contains dynamic information such as `a`.
-It is really a case of that even more unscientific term, the
-"object."  (If you have any better words than "library" and
-"object" for these concepts, preferably four-letter Scrabble
-words as is our wont, the author is all ears.)  This accidental
-object is a Hoon solecism - we are not actually using the dynamic
-state in `deq`.  We'll fix it in a later version of the app.)
+In actual fact our nascent integer math library  is really an
+"object" or `cart` - ie, a core containing dynamic state.  This
+is just wrong and we'll see later on how to do it right.
 
-For every arm in a library, the subject is the library core
-itself.  Naturally, the `|%` twig uses its own subject as the
-payload, creating the familiar reef effect as the stack of cores
-piles up.
+As in every core, the subject of every arm is the core itself.
+Naturally, the `|%` twig uses its own subject as the payload,
+creating the familiar reef effect as the stack of cores piles up.
 
 And this library is the `context` (or `+>`, `gras`) of our gate.
 Thus, the twig in the gate can use anything in the library - of
