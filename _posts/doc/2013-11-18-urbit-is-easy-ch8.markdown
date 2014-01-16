@@ -18,9 +18,9 @@ that now.
 While we can hardly stop you from saying "function," the proper
 Urbit terminology is `gate`.  You might remember our discussion
 in chapter 4.  A core is
-```
-[battery payload]
-```
+
+    [battery payload]
+
 The battery is one or more formulas; the payload is any noun.  
 
 In a gate, which is a special case of a core, there is exactly
@@ -72,11 +72,11 @@ Our goal this time is not just to build decrement - it's to build
 decrement *right*.  That is, as a decrement function - a gate.
 If this is called `deq` (there already being a perfectly usable 
 `dec`) and we want decrementing `a` to look like Lisp:
-```
+
     (deq a)
-```
+
 then we can expect our program to look something like 
-```
+
     !:             ::  To write a trivial Hoon program
     |=  *          ::
     |=  [a=@ ~]    ::  For educational purposes only
@@ -86,12 +86,13 @@ then we can expect our program to look something like
     :::::::::::::::::  Produce a value below
     =>  XXXXX      ::  some twig or other
     (deq a)
-```
+
 This XXXXX twig, whatever it is, must extend the subject to
 contain a core which includes an arm which produces our gate.
 
 Extend the subject to contain a core which includes an arm which
 produces our gate?  Sure:
+
 ```
 =>  |%
     ++  deq
@@ -104,6 +105,7 @@ produces our gate?  Sure:
 (deq a)
 ```
 Or more conveniently:
+
 ```
 =<  (deq a)
 |%
@@ -116,15 +118,15 @@ Or more conveniently:
 --
 ```
 Does this work?
-```
-: /~zod/try/25/bin/hec/hoon
-~zod/try=> :hec 42
-41
-```
+
+    : /~zod/try/25/bin/hec/hoon
+    ~zod/try=> :hec 42
+    41
+
 But this doesn't mean we understand it.  
 
 Sure, we read the last chapter.  So we understand how and why
-`|%`` turned into `|.`, which then turned into `|-`.  The loop.
+`|%` turned into `|.`, which then turned into `|-`.  The loop.
 But this strange beast seems to contain... *three* cores? 
 
 ###We understand a gate##
@@ -141,6 +143,7 @@ we are adding no more than a few decorative polyps to our reef.
 
 For example, we can just as well use the standard decrement,
 `dec` - it's in there too:
+
 ```
 =<  (dec a)
 |%
@@ -171,7 +174,7 @@ Thus, it should be perfectly clear what the three `bar` runes -
 implying three cores - mean.  First, we have the `|%` which
 contains `++deq`.  (When referring to an arm in informal text,
 we use this syntax, though the actual language of course requires
-a double space - when searching in a file, `/++  arm` will always
+a double space - when searching in a file, "++  arm" will always
 find the definition of `arm` and nothing else.)
 
 This outer core defines *the library our decrement gate is in*.
@@ -212,24 +215,24 @@ the decrement gate itself.  We'll see this in a little bit.
 
 Let's eschew synthetic runes and show the three cores as they
 really are:
-
-    =<  (deq a)
-    |%
-    ++  deq
-      =+  x=0
-      |%  
-      ++  $
-        =+  y=0
-        =<  $
-        |%  
-        ++  $
-          ?:  =(x +(y))
-            y
-          $(y +(y))
-        --
-      --
+```
+=<  (deq a)
+|%
+++  deq
+  =+  x=0
+  |%  
+  ++  $
+    =+  y=0
+    =<  $
+    |%  
+    ++  $
+      ?:  =(x +(y))
+        y
+      $(y +(y))
     --
-
+  --
+--
+```
 On the other hand, if we don't mind synthetics and lots of
 parentheses, our decrement gate can also be a one-liner.  This is
 perfectly legitimate Hoon style:
@@ -260,37 +263,37 @@ and do it the ugly way:
 --
 ```
 Does this work?  It's always nice to check...
-```
-: /~zod/try/28/bin/hec/hoon
-~zod/try=> :hec 42
-41
-```
+
+    : /~zod/try/28/bin/hec/hoon
+    ~zod/try=> :hec 42
+    41
+
 We don't actually need a separate `bar`:
-
-    =<  =+  foo=deq             ::  create the gate
-        $.foo(+< a)             ::  replace the sample and invoke
-    |%
-    ++  deq
-      =+  x=0
-      |.  =+  y=0
-          |-  ?:  =(x +(y))
-                y
-              $(y +(y))
-    --
-
+```
+=<  =+  foo=deq             ::  create the gate
+    $.foo(+< a)             ::  replace the sample and invoke
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+```
 But what we'd actually like to be able to get away with is...
 something that *won't* work - but that looks like it might:
-
-    =<  $.deq(+< a)             ::  create, replace and invoke
-    |%
-    ++  deq
-      =+  x=0
-      |.  =+  y=0
-          |-  ?:  =(x +(y))
-                y
-              $(y +(y))
-    --
-
+```
+=<  $.deq(+< a)             ::  create, replace and invoke
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+```
 We try it and - doh!
 
     : /~zod/try/31/bin/hec/hoon
@@ -322,18 +325,18 @@ to do it - because we can't edit the gate until we build it.
 
 Fortunately, we have a synthetic hoon to do this.  What hoon is
 (deq a), anyway?  It's `%-`, `cenhep`, `%cnhp`:
-
-    =<  %-  deq
-        a
-    |%
-    ++  deq
-      =+  x=0
-      |.  =+  y=0
-          |-  ?:  =(x +(y))
-                y
-              $(y +(y))
-    --
-
+```
+=<  %-  deq
+    a
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+```
 Let's look at the definition of `%cnhp`, our function caller.
 Here are the relevant clips from `hoon.hoon`:
  
@@ -366,7 +369,7 @@ Here are the relevant clips from `hoon.hoon`:
 You're not expected to understand this.  At least, not yet.  But
 we see that `%-`, so far from being a primitive, actually is a
 special case of `%:`, which is a special case of `%~`, which is a
-special case of `%\*`, which seems to do... something.
+special case of `%*`, which seems to do... something.
 
 Which probably makes you think `%cnhp` is insanely complicated.
 Actually it just shows what an interesting family of things
@@ -391,18 +394,18 @@ If we just wanted %cnhp to be simple, we'd define it this way:
 
 This also is not terribly readable.  Let's translate it into the
 code that we'd write if we were writing this macro out by hand:
-
-    =<  =+  deq               ::  create the gate
-        $.-(+< =>(+ a))       ::  replace the sample and invoke
-    |%
-    ++  deq
-      =+  x=0
-      |.  =+  y=0
-          |-  ?:  =(x +(y))
-                y
-              $(y +(y))
-    --
-
+```
+=<  =+  deq               ::  create the gate
+    $.-(+< =>(+ a))       ::  replace the sample and invoke
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+```
 Compare this to the working example above.  The main difference
 is that this is what a Lisp fan would call a "hygienic macro."
 It does not create private symbols of its own, or if it does they
@@ -422,6 +425,7 @@ can reach the gate with just `-`.
 But we cannot simply replace the sample with `a` - because the
 programmer who wrote `a` meant to write a twig against the
 original subject, not against the cell of gate and subject.
+
 Fortunately, `=>(+ a)` gets us our original subject back - and
 `%-` works exactly as if it was a natural hoon.  That's hygiene.
 
@@ -432,17 +436,17 @@ already have decrement)?  No - there is actually a hoon designed
 specifically for building gates.  
 
 The right code (which we saw earlier) is:
-
-    =<  (deq a)
-    |%
-    ++  deq
-      |=  x=@
-      =|  y=@
-      |-  ?:  =(x +(y))
-            y
-          $(y +(y))
-    --
-
+```
+=<  (deq a)
+|%
+++  deq
+  |=  x=@
+  =|  y=@
+  |-  ?:  =(x +(y))
+        y
+      $(y +(y))
+--
+```
 But this requires us to understand `x=@` - which *isn't even a
 twig*.  Rather, it's something else, called a `tile`.  We'll make
 friends with the tiles in the next chapter.
