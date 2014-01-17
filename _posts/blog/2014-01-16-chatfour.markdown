@@ -80,10 +80,9 @@ urbit, `~2014.1.16`:
     don't work very hard at it
     ~dolrux-nomlup "nydwracu": the arrow keys don't seem to work very well around
     line breaks
-    ~tomsyt-balsen [John Burnham]: welcome 
-    ~dolrux-nomlup
+    ~tomsyt-balsen [John Burnham]: welcome ~dolrux-nomlup
     ~tomsyt-balsen [John Burnham]: you should check out the banner system
-    ~tomsyt-balsen [John Burnham]: switch to your banner with 
+    ~tomsyt-balsen [John Burnham]: switch to your banner with | switch back with &
     ~tomsyt-balsen [John Burnham]: get help with ?
     ~tomsyt-balsen [John Burnham]: the line breaks are still slightly buggy
     ~tomsyt-balsen [John Burnham]: long lines delete past lines
@@ -441,6 +440,7 @@ urbit, `~2014.1.16`:
     ~dondep-radtud [Allen (dash) Short]: Anyway. The higher-level implications of
     capabilities are more debatable and less immediately interesting to me than the
     practical implica tions of having a secure, principled object model
+
     ~tasfyn-partyv [Curtis Yarvin] prefers namespaces to objects
     ~rovrel-bicmyl has left the building
     ~rovrel-bicmyl is in the building
@@ -513,6 +513,7 @@ urbit, `~2014.1.16`:
     ~satfex-difdyr [Steve Steve Dee Dee]: my roommate's friend mentioned that the
     site ought to have a concise "what is urbit?" on the front page somewhere. I'm
     almost certain tha t we've mentioned that already but thought I'd repeat it.
+
     ~tomsyt-balsen [John Burnham]: yes, this is very much a part of our site
     redesign
     ~tomsyt-balsen [John Burnham]: that galen and i are working on
@@ -560,11 +561,9 @@ urbit, `~2014.1.16`:
     ~dondep-radtud [Allen (dash) Short]: yes, i believe tasfyn-partyv was just
     noticing this deficiency in chat's implementation
     ~labfes-larzod [aidan longworth (raptros) coyne]: i wouldn't have seen 
-    ~tasfyn-partyv's req for info if i didn't have 
-    ~nolnym-bolnes running in ec2
-    ~hatteb-mitlyd "atax1a": 
-    ~tasfyn-partyv [Curtis Yarvin]: labfes-larzod, are you around?  if so, what is
-    the state of your destroyer?  ~doznec sees one-
+    ~tasfyn-partyv's req for info if i didn't have ~nolnym-bolnes running in ec2
+    ~hatteb-mitlyd "atax1a": & ~tasfyn-partyv [Curtis Yarvin]: labfes-larzod, are
+    you around?  if so, what is the state of your destroyer?  ~doznec sees one-
     ~hatteb-mitlyd "atax1a":   way connectivity.
     ~talsur-todres [Galen (galen) Wolfe-Pauly] is in the building
     ~hatteb-mitlyd "atax1a": you probably missed the rest of the chat log,
@@ -606,6 +605,7 @@ urbit, `~2014.1.16`:
     ~talsur-todres [Galen (galen) Wolfe-Pauly]: there's this scene in 'her' where
     j. phoenix admits to digitally stalking the girl he's on a first date with, and
     she says 'awe, th at's so sweet of you'
+
     ~talsur-todres [Galen (galen) Wolfe-Pauly]: seems a likely future to me
     ~rovrel-bicmyl has left the building
     ~talsur-todres [Galen (galen) Wolfe-Pauly]: being %white i tend to forget about
@@ -652,8 +652,7 @@ urbit, `~2014.1.16`:
     ~tomsyt-balsen [John Burnham] is in the building
     ~hiddem-lomder "atax3a": apologies for te bad PR from earlier!
     ~tognex-labmeb "Tiktalik": hello
-    ~fantyv-ralpen "jpt4": Ave, 
-    ~tognex-labmeb.
+    ~fantyv-ralpen "jpt4": Ave, ~tognex-labmeb.
     ~hiddem-lomder "atax3a": i was overeager with my edits
     ~hiddem-lomder "atax3a": hi tognex
     ~tognex-labmeb "Tiktalik": hello?
@@ -680,6 +679,7 @@ urbit, `~2014.1.16`:
     like all the words are the same, but mean something else entirely. felt like
     learning how to use c omputers for the first time, heh. so I decided "hey, why
     not try this thing out?"
+
     ~tognex-labmeb "Tiktalik": after all, the worst that can happen is I have to
     reinstall xubuntu
     ~fantyv-ralpen "jpt4": Have you ever read Stephenson's Anathem, ~tognex?
@@ -703,8 +703,7 @@ urbit, `~2014.1.16`:
     system
     ~tognex-labmeb "Tiktalik": hah! hopefully something similar to IRC.
     ~tognex-labmeb "Tiktalik": multiple channels and all that
-    ~fantyv-ralpen "jpt4": ... means your ship is waiting for a response from
-    ~doznec, the :room server.
+    ~fantyv-ralpen "jpt4": ... means your ship is waiting for a response from~doznec, the :room server.
     ~dondep-radtud [Allen (dash) Short]: I did expect vere to print "I am a
     prototype for a much larger system." when I started it.
     ~tognex-labmeb "Tiktalik": ah, okay.
@@ -717,12 +716,12 @@ urbit, `~2014.1.16`:
     ~fantyv-ralpen "jpt4": Conspiracy (behind banners).
     ~tognex-labmeb "Tiktalik": heh, how do banners work?
     ~fantyv-ralpen "jpt4": There are three prefixes
-    ~fantyv-ralpen "jpt4": "
+    ~fantyv-ralpen "jpt4": "|"
     ~fantyv-ralpen "jpt4": "&"
     ~fantyv-ralpen "jpt4": and ~$shipname
     ~fantyv-ralpen "jpt4": which switch the recipient of the messages which follow
     them
-    ~fantyv-ralpen "jpt4": "
+    ~fantyv-ralpen "jpt4": "|" is for members of your political banner.
     ~labfes-larzod [aidan longworth (raptros) coyne]: but the switch to and from
     banner at one point worked differently from the swtich to and from direct
     message
@@ -743,10 +742,10 @@ urbit, `~2014.1.16`:
     ~tognex-labmeb "Tiktalik": so how do you use the prefixes?
     ~dondep-radtud [Allen (dash) Short]: It's because they're usually about a
     smarter person saying stuff to confuse dumber people, and then hitting them.
-    ~fantyv-ralpen "jpt4": E.g. 
+    ~fantyv-ralpen "jpt4": E.g. |Greetings, banner-mate.
     ~tognex-labmeb "Tiktalik": 
     ~fantyv-ralpen "jpt4": Only %blue comrades would see this, and your prompt
-    would change from & to 
+    would change from & to |.
     ~tognex-labmeb "Tiktalik": alright, so just start a message with the prefix,
     and future messages will be sent to that one?
     ~dondep-radtud [Allen (dash) Short]: 
@@ -755,7 +754,7 @@ urbit, `~2014.1.16`:
     ~tognex-labmeb "Tiktalik": ok!
     ~labfes-larzod [aidan longworth (raptros) coyne]: i am still confused by
     prefixes
-    ~fantyv-ralpen "jpt4": There is no null message, so & or 
+    ~fantyv-ralpen "jpt4": There is no null message, so & or | alone sends a blank.
     ~fantyv-ralpen "jpt4": How so, ~labfes?
     ~fantyv-ralpen "jpt4": (Also, type ? for the help page.)
     ~labfes-larzod [aidan longworth (raptros) coyne]: now i am less confused
@@ -778,8 +777,8 @@ urbit, `~2014.1.16`:
     "don't just prefix the message"
     ~tognex-labmeb "Tiktalik": tognex kind of sounds like the name of some alien
     ~fantyv-ralpen "jpt4": Which still works, but give the entire routing path.
-    ~talsur-todres [Galen (galen) Wolfe-Pauly]: like, send a 
-    ~talsur-todres [Galen (galen) Wolfe-Pauly]: don't just prefix a message with 
+    ~talsur-todres [Galen (galen) Wolfe-Pauly]: like, send a | to switch modes
+    ~talsur-todres [Galen (galen) Wolfe-Pauly]: don't just prefix a message with |
     ~fantyv-ralpen "jpt4": Ah, but not too alien, for it still sounds like a name.
     ~tognex-labmeb "Tiktalik": better than fantyv.
     ~fantyv-ralpen "jpt4": talsur, but you do send a message - a blank message.
@@ -793,18 +792,15 @@ urbit, `~2014.1.16`:
     ~fantyv-ralpen "jpt4": talsur, yes, but the initial switch can also send a
     message.
     ~labfes-larzod [aidan longworth (raptros) coyne]: fantyv, you mean will
-    ~fantyv-ralpen "jpt4": I will now send: 
-    ~talsur-todres Ave.
+    ~fantyv-ralpen "jpt4": I will now send: ~talsur-todres Ave.
     ~labfes-larzod [aidan longworth (raptros) coyne]: right?
-    ~talsur-todres [Galen (galen) Wolfe-Pauly]: right, like 
+    ~talsur-todres [Galen (galen) Wolfe-Pauly]: right, like |bye, off to banner
+    land
     ~tognex-labmeb "Tiktalik": so fantyv, why aren't we calling you jpt4? :P
     ~racbes-solmun "kpm" has left the building
-    ~fantyv-ralpen "jpt4":  
-    ~talsur-todres Ave.
-    ~talsur-todres [Galen (galen) Wolfe-Pauly]: 
-    ~fantyv-ralpen
-    ~fantyv-ralpen "jpt4": Because I am 
-    ~fantyv-ralpen.
+    ~fantyv-ralpen "jpt4":  ~talsur-todres Ave.
+    ~talsur-todres [Galen (galen) Wolfe-Pauly]: ~fantyv-ralpen
+    ~fantyv-ralpen "jpt4": Because I am ~fantyv-ralpen.
     ~talsur-todres [Galen (galen) Wolfe-Pauly]: right, but the first message is
     sent publicly?
     ~tognex-labmeb "Tiktalik": so we all go by ship names, not our... usernamey
@@ -813,8 +809,7 @@ urbit, `~2014.1.16`:
     ~talsur-todres [Galen (galen) Wolfe-Pauly]: i think i did too, so no switch
     ~dondep-radtud [Allen (dash) Short]: I am not sure a strong convention has
     emerged. :)
-    ~talsur-todres [Galen (galen) Wolfe-Pauly]: 
-    ~fantyv-ralpen
+    ~talsur-todres [Galen (galen) Wolfe-Pauly]: ~fantyv-ralpen
     ~fantyv-ralpen "jpt4": We are still both public, ~talsur-san.
     ~tognex-labmeb "Tiktalik": dondep, ?
     ~talsur-todres [Galen (galen) Wolfe-Pauly]: confused, for the moment
@@ -932,8 +927,7 @@ urbit, `~2014.1.16`:
     ~tognex-labmeb "Tiktalik": and yeah labfes, olive oil works
     ~labfes-larzod [aidan longworth (raptros) coyne]: right now, the destroyer
     market is like this video: http://youtu.be/cd4-UnU8lWY
-    ~satfex-difdyr [Steve Steve Dee Dee] will shortly be making the switch to 
-    ~hobmed-hinrym
+    ~satfex-difdyr [Steve Steve Dee Dee] will shortly be making the switch to ~hobmed-hinrym
     ~fantyv-ralpen "jpt4": It's like the Metaverse in Snow Crash
     ~tognex-labmeb "Tiktalik": so destroyers are free and plentiful, but later on
     there'll be less of them avaliable, and they'll start being something that
@@ -991,6 +985,7 @@ urbit, `~2014.1.16`:
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Failing world domination or even
     mainstream recognition, I'd be satisfied with Urbit providing a useful
     alternative to the existi ng Internet.
+
     ~fantyv-ralpen "jpt4": And it will expand for as long as Czyarvin is alive.
     ~dondep-radtud [Allen (dash) Short]: I think it's too soon to tell
     ~dondep-radtud [Allen (dash) Short]: but if Urbit doesn't survive, it'll be
@@ -1019,11 +1014,13 @@ urbit, `~2014.1.16`:
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Just for PR's sake, once you have
     a "What Is Urbit" for public consumption, it'd be worth adding to the Archive
     Team's page at ht tp://fileformats.archiveteam.org/wiki/Hoon
+
     ~tognex-labmeb "Tiktalik": so where are the conspiracies
     ~dondep-radtud [Allen (dash) Short]: I think our gracious host is probably
     wrong about how far the concept of identity takes you, so I'm not putting all
     my technical eggs in t he Urbit basket -- the capability model of authority
     management has major benefits, from my perspective, over traditional ACLs
+
     ~fantyv-ralpen "jpt4": You're in one right now, ~tognex.
     ~tognex-labmeb "Tiktalik": any deeper layers?
     ~tognex-labmeb "Tiktalik": probably hidden under the non-blue banners
@@ -1060,8 +1057,7 @@ urbit, `~2014.1.16`:
     ~tognex-labmeb "Tiktalik": oh, like what I do in every irc channel I'm in. :P
     ~tognex-labmeb "Tiktalik": ah. is there a way to have private interactions?
     ~tomsyt-balsen [John Burnham]: yes, you start a message with ~shipname
-    ~tomsyt-balsen [John Burnham]: 
-    ~tognex-labmeb
+    ~tomsyt-balsen [John Burnham]: ~tognex-labmeb
     ~fantyv-ralpen "jpt4": The :hi ~$shipname "message" approach also works, from
     the command line.
     ~tognex-labmeb "Tiktalik": ah.
@@ -1123,7 +1119,7 @@ urbit, `~2014.1.16`:
     ~tognex-labmeb "Tiktalik": just so that you can stop existing?
     ~fantyv-ralpen "jpt4": It simply demands a very stringent cost-benefit
     analysis.
-    ~tognex-labmeb "Tiktalik": >:
+    ~tognex-labmeb "Tiktalik": >:|
     ~tomsyt-balsen [John Burnham]: deleting files from urb/$ship does nothing
     ~tomsyt-balsen [John Burnham]: other than change the latest version of that
     file
@@ -1143,8 +1139,8 @@ urbit, `~2014.1.16`:
     ~satfex-difdyr [Steve Steve Dee Dee]: in the meantime, hopefully you're less
     confused about missing the first parts of your own messages than you were about
     missing entire chu nks of other people's messages
-    ~fantyv-ralpen "jpt4": 
-    ~fantyv-ralpen
+
+    ~fantyv-ralpen "jpt4": ~fantyv-ralpen
     ~fantyv-ralpen "jpt4": Does it require restarting vere to take effect?
     ~satfex-difdyr [Steve Steve Dee Dee]: yeah, it's a C level hack
     ~fantyv-ralpen "jpt4": Thank you.
@@ -1183,7 +1179,7 @@ urbit, `~2014.1.16`:
     ~satfex-difdyr [Steve Steve Dee Dee]: that was quick
     ~fantyv-ralpen "jpt4": No, that's ~satfex's schtick.
     ~fantyv-ralpen "jpt4": The self-immolation part.
-    ~satfex-difdyr [Steve Steve Dee Dee]: :-
+    ~satfex-difdyr [Steve Steve Dee Dee]: :-|
     ~tognex-labmeb "Tiktalik": is potato a possible urbit ship name bit?
     ~dolrux-nomlup "nydwracu"  imagines a glorious cyberpunk future where all the
     cool kids are urbed in to their ships via raspberry-colored glasses
@@ -1205,6 +1201,7 @@ urbit, `~2014.1.16`:
     someone in the back -- there were like eight of us, with one guy hanging on the
     top -- decided t o fill up a gatorade bottle with gas. the bottle, sitting next
     to me, had its lid fall off at some point. I was pretty freaked for... a while.
+
     ~dondep-radtud [Allen (dash) Short]  scrolls a bit
     ~satfex-difdyr [Steve Steve Dee Dee]: minimal, jpt4
     ~tomsyt-balsen [John Burnham]: they're supposed to be pseudo-english
@@ -1245,11 +1242,13 @@ urbit, `~2014.1.16`:
     Urbit taps is "Picture the Internet, including the Web. Now imagine someone
     built a system like that on purpose, instead of it just happening over a few
     decades while people were pursung other goals."
+
     ~racbes-solmun "kpm" is in the building
     ~tognex-labmeb "Tiktalik": well dondep, maybe it'll even get built well. :P
     ~dondep-radtud [Allen (dash) Short]: I have some aesthetic disagreements about
     urbit's design choices. But I like its way of doing it better than everyone
     else's way of not do ing it.
+
     ~rigryx-sovrus "atax2a" has a few old Macs and an old NeXT slab.
     ~lidfeb-tabpub "graycoder" is in the building
     ~nosryl-tarpem [Justin LeBlanc] has left the building
@@ -1280,6 +1279,7 @@ urbit, `~2014.1.16`:
     doesn't gain traction, perhaps a fork of it might (though less likely IMO; more
     likely someone t akes Hoon/Nock and builds an OS better than Arvo, not just
     forking existing Arvo and generating their own keys.
+
     ~tognex-labmeb "Tiktalik": ok, so arvo is the os, hoon is the programming
     language, and nock is..?
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: The virtual machine
@@ -1302,6 +1302,7 @@ urbit, `~2014.1.16`:
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: I had suggested such a thing
     partly in jest, for the most part a hardware implementation of Nock would
     apparently be more trouble than it's worth (according to the experts)
+
     ~tognex-labmeb "Tiktalik": i mean, i can't even see the stuff i'm entering in
     real time
     ~tasfyn-partyv [Curtis Yarvin]: what are you on, tognex?  must be fairly slow
@@ -1315,7 +1316,7 @@ urbit, `~2014.1.16`:
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Only because it's not echoing
     back to you by default - when I type something on this destroyer, it shows up
     on my other one prett y instantly
-                                                                                                                                                                                     
+
     ~satfex-difdyr [Steve Steve Dee Dee] would be really happy to live in a world
     where Nock looked chunky and stupid
     ~tasfyn-partyv [Curtis Yarvin] likes to say, silence from the peanut gallery
@@ -1555,8 +1556,7 @@ urbit, `~2014.1.16`:
     neglected in our age
     ~tasfyn-partyv [Curtis Yarvin]: Loyalty - or, in Latin, fidelis
     ~tasfyn-partyv [Curtis Yarvin]: basically the people who received carriers
-    today re were, of course, political disagreements at the root of it..
-                                                                                                                                                                                     
+    today
     ~tasfyn-partyv [Curtis Yarvin]: are the people who have been showing up,
     dealing with bugs, chatting, programming, learning, etc, etc
     ~tasfyn-partyv [Curtis Yarvin]: for the past 3 months while everything has gone
@@ -1570,8 +1570,7 @@ urbit, `~2014.1.16`:
     ~tasfyn-partyv [Curtis Yarvin]: there have been some useful changes, amazingly,
     but not much
     ~tasfyn-partyv [Curtis Yarvin]: I cannot disclose of course the virtue that
-    will be rewarded in the next round have.
-                                                                                                                                                                                     
+    will be rewarded in the next round
     ~tasfyn-partyv [Curtis Yarvin]: but it will certainly involve doing Useful
     Stuff
     ~tasfyn-partyv [Curtis Yarvin]: in some sense of the word
@@ -1592,33 +1591,14 @@ urbit, `~2014.1.16`:
     ~tasfyn-partyv [Curtis Yarvin]: it is more decorous to do so by their destroyer
     names:
     ~novrud-hanweb "yebyen" is in the building
-    ~tasfyn-partyv [Curtis Yarvin]:   
-    ~difryt-dapdeg 
-    ~boswed-nibnyd 
-    ~racbes-solmun 
-    ~lontec-botrum 
-    ~rigryx-sovrus
-    ~tasfyn-partyv [Curtis Yarvin]:  
-    ~novrud-hanweb 
-    ~radred-bitlet 
-    ~bishus-namsum 
-    ~nimtep-dibteb 
-    ~hobmed-hinrym
-    ~tasfyn-partyv [Curtis Yarvin]:   
-    ~bitfer-worwyd 
-    ~talsur-todres 
-    ~tomsyt-balsen 
-    ~nocheb-talren 
-    ~rovsyp-hatbep
-    ~tasfyn-partyv [Curtis Yarvin]:  
-    ~nibbus-sivnex 
-    ~dovwyn-hobsub
+    ~tasfyn-partyv [Curtis Yarvin]:   ~difryt-dapdeg ~boswed-nibnyd ~racbes-solmun~lontec-botrum ~rigryx-sovrus
+    ~tasfyn-partyv [Curtis Yarvin]:  ~novrud-hanweb ~radred-bitlet ~bishus-namsum~nimtep-dibteb ~hobmed-hinrym
+    ~tasfyn-partyv [Curtis Yarvin]:   ~bitfer-worwyd ~talsur-todres ~tomsyt-balsen~nocheb-talren ~rovsyp-hatbep
+    ~tasfyn-partyv [Curtis Yarvin]:  ~nibbus-sivnex ~dovwyn-hobsub
     ~nocheb-talren is in the building
     ~tasfyn-partyv [Curtis Yarvin]: and these are the ranks of the faithful, etc,
     etc
     ~tasfyn-partyv [Curtis Yarvin]: which is not to say that others are faithless
-    equals."
-                                                                                                                                                                                     
     ~wacrel-ripwes "Salo" has left the building
     ~tasfyn-partyv [Curtis Yarvin]: it is simply that it is now too late to win a
     carrier for mere loyalty
@@ -1659,8 +1639,8 @@ urbit, `~2014.1.16`:
     ~tasfyn-partyv [Curtis Yarvin]: that's fine, y'all can learn!
     ~tognex-labmeb "Tiktalik": i'm in the same boat as dolrux, metaphorically
     speaking
-    ~nimsup-losseb "DMT": Speaking for 
-    ~lontec-botrum, who is with us in spirit, thanks!
+    ~nimsup-losseb "DMT": Speaking for ~lontec-botrum, who is with us in spirit,
+    thanks!
     ~tasfyn-partyv [Curtis Yarvin]: our great advantage here is that there is
     nothing to unlearn
     ~tasfyn-partyv [Curtis Yarvin]: those who can code basically have to unlearn
@@ -1872,7 +1852,7 @@ urbit, `~2014.1.16`:
     ~dondep-radtud [Allen (dash) Short]: and your android device is both short of
     battery and intermittent of connection, and you usually want some service
     running on your behalf on something further from the network edge.
-                                                                                                                                                                                     
+
     ~satfex-difdyr [Steve Steve Dee Dee] is interested in doing the cloud on your
     phone, some day...
     ~tasfyn-partyv [Curtis Yarvin]: the first step is to take advantage of the
@@ -1910,7 +1890,7 @@ urbit, `~2014.1.16`:
     ~dolrux-nomlup "nydwracu": there was a guy in the pre-compuserve days who said
     he'd figure that the whole modem thing was useful when he could go on his
     computer and look up a nything he might want to know about manatees
-                                                                                                                                                                                     
+
     ~tasfyn-partyv [Curtis Yarvin]: how could we be easier?
     ~labfes-larzod [aidan longworth (raptros) coyne]: well for one: screw html
     ~tasfyn-partyv [Curtis Yarvin]: in any case, I don't expect to attract pirates
@@ -1978,7 +1958,7 @@ urbit, `~2014.1.16`:
     ~nimsup-losseb "DMT"  is reminded of the scene from the American "Office" where
     Creed Bratton allows as how cults are fun -- being a leader is good, but a lot
     of work, and bei ng a member has its good points too, or words to that effect.
-                                                                                                                                                                                     
+
     ~labfes-larzod [aidan longworth (raptros) coyne]: dolrux, once we come up with
     a way to build native UIs easily
     ~tasfyn-partyv [Curtis Yarvin]: this will be the next doc output, give me a day
@@ -2032,7 +2012,7 @@ urbit, `~2014.1.16`:
     disgorge the work his team has been working on for the past few years, he's
     basically been doing for graphics/UIs what Urbit is doing for
     cloud/distributed/server stuff
-                                                                                                                                                                                     
+
     ~tasfyn-partyv [Curtis Yarvin] is going to go home, put his kids to bed and ice
     his wrists :-)
     ~dondep-radtud [Allen (dash) Short]: (i.e., a rewrite from foundations)
@@ -2105,7 +2085,7 @@ urbit, `~2014.1.16`:
     ~fantyv-ralpen "jpt4": The one where dinosaurs stalk your church and you have
     to run away from them by sneaking around the back to make a dash to the parking
     lot, but everythi ng seemed to be going in slow motion?
-                                                                                                                                                                                     
+
     ~fantyv-ralpen "jpt4": That nightmare?
     ~labfes-larzod [aidan longworth (raptros) coyne]: it involved getting eaten
     ~fantyv-ralpen "jpt4": atax1a, November of 2013.
@@ -2127,18 +2107,12 @@ urbit, `~2014.1.16`:
     i think
     ~rovsyp-hatbep [Aaron Beckerman] has left the building
     ~fantyv-ralpen "jpt4": Interesting.
-    ~tognex-labmeb "Tiktalik": yeah, the ... is waiting for a server reply 't be
-    held against them as employees
-                                                                                                                                                                                     
-       attacked through an employer.
-                                                                                                                                                                                     
+    ~tognex-labmeb "Tiktalik": yeah, the ... is waiting for a server reply
     ~tomsyt-balsen [John Burnham]: i'm thinking of running through some project
     euler problems in hoon
     ~hatteb-mitlyd "atax1a": It seems like a good fit.
     ~tognex-labmeb "Tiktalik": hoon is the high-level part, right?
     ~hatteb-mitlyd "atax1a": Hoon is the systems language.
-      %orange history and my more %black present.
-                                                                                                                                                                                     
     ~fantyv-ralpen "jpt4": Hoon : Nock :: C : Assembly
     ~tognex-labmeb "Tiktalik": Ok.
     ~tognex-labmeb "Tiktalik": so hoon is the highest level?
@@ -2162,13 +2136,13 @@ urbit, `~2014.1.16`:
     ~fantyv-ralpen "jpt4": Like so:     Root
     /    \
     ch ild  child
-                                                                                                                                                                                     
+
     ~fantyv-ralpen "jpt4": These nodes have indexes, numbers which identify their
     address within the tree.
     ~fantyv-ralpen "jpt4": E.g.       Root                                  /    \
     child  child                   becomes      0                      / \
     1   2
-                                                                                                                                                                                     
+
     ~fantyv-ralpen "jpt4": Hopefully that looks ok on your screen.
     ~ladhut-docfyn [Dan Haffey]: the root is 1
     ~ladhut-docfyn [Dan Haffey]: if you're talking / indexes
@@ -2176,7 +2150,7 @@ urbit, `~2014.1.16`:
     ~fantyv-ralpen "jpt4": If you have never encountered trees or other data
     structures, the only action that will be of much help is to go and learn them,
     for which Nock is quite suitable.
-                                                                                                                                                                                     
+
     ~tognex-labmeb "Tiktalik": k
     ~fantyv-ralpen "jpt4": If you do, then the mantra that Nock is a way to
     manipulate binary trees of integers helps to burn away the mysticism.
@@ -2417,7 +2391,7 @@ urbit, `~2014.1.16`:
     at a time, though.
     ~nimsup-losseb "DMT": here we go, detaching...
     ~nimsup-losseb "DMT": and we're back.
-    ~hatteb-mitlyd "atax1a": dash, it's & yes 
+    ~hatteb-mitlyd "atax1a": dash, it's & yes | no, not & true | false. :)
     ~tasfyn-partyv [Curtis Yarvin] does not fear the DO.
     ~tasfyn-partyv [Curtis Yarvin]: although their "private networking" option is
     hilarious considering everyone is on the same "private" network
@@ -2476,7 +2450,8 @@ urbit, `~2014.1.16`:
     little hoon exercise
     ~hidsup-donsyn "UWTB" has left the building
     ~hatteb-mitlyd "atax1a": those cut and end functions scare me a bit. 
-    ~hatteb-mitlyd "atax1a": but i grok turn, and envision the 
+    ~hatteb-mitlyd "atax1a": but i grok turn, and envision the |= as a pair of
+    wires being wrapped around some data :)
     ~hatteb-mitlyd "atax1a" peeked forward and read role...
     ~hidsup-donsyn "UWTB" is in the building
     ~tasfyn-partyv [Curtis Yarvin]: cut and end are thoroughly jet propelled, in
@@ -2750,8 +2725,7 @@ urbit, `~2014.1.16`:
     barstools?
     ~tasfyn-partyv [Curtis Yarvin] is not opposed to government, just the
     government we have
-    ~satfex-difdyr [Steve Steve Dee Dee] becomes 
-    ~hobmed-hinrym
+    ~satfex-difdyr [Steve Steve Dee Dee] becomes ~hobmed-hinrym
     ~tasfyn-partyv [Curtis Yarvin]: comfy recliners crawling with bedbugs
     ~hobmed-hinrym [Steven (mrdomino) Dee] is in the building
     ~dondep-radtud [Allen (dash) Short]: hmm
@@ -2788,8 +2762,7 @@ urbit, `~2014.1.16`:
     ~tomsyt-balsen [John Burnham] is in the building
     ~tasfyn-partyv [Curtis Yarvin]: like everything, there are good ones and bad
     ones
-    ~hidsup-donsyn "UWTB": try :
-    ~wacrel-ripwes/main/cp1/bin/achat
+    ~hidsup-donsyn "UWTB": try :~wacrel-ripwes/main/cp1/bin/achat
     ~dondep-radtud [Allen (dash) Short]: hatteb, it's more about the fate he's
     wishing on future software developers :)
     ~tasfyn-partyv [Curtis Yarvin] has spent 40 years trying to sound smarter than
@@ -2841,8 +2814,8 @@ urbit, `~2014.1.16`:
     they get the fascist thing right
     ~hatteb-mitlyd "atax1a": now define "good".
     ~racbes-solmun "kpm" has left the building
-    ~hidsup-donsyn "UWTB": thanks 
-    ~satnum-maptux... (wacrel-ripwes is up on DO so it stays up all the time)
+    ~hidsup-donsyn "UWTB": thanks ~satnum-maptux... (wacrel-ripwes is up on DO so
+    it stays up all the time)
     ~hatteb-mitlyd "atax1a" frantically gestures to indicate that this is merely a
     thought exercise.
     ~tasfyn-partyv [Curtis Yarvin]: basically the cause of the funky smell
@@ -3075,6 +3048,7 @@ urbit, `~2014.1.16`:
     ~dondep-radtud [Allen (dash) Short]: Primarily I'm referring to the fact that
     'liberal' or 'moderate' were the terms I always heard for both people favoring
     and disfavoring th e category that is better covered by 'progressive'
+
     ~tasfyn-partyv [Curtis Yarvin]: other than that it's kind of new and broken
     ~hatteb-mitlyd "atax1a" got in trouble in 5th grade for putting a computer book
     inside the math textbook we were supposed to be reading.
@@ -3399,6 +3373,7 @@ urbit, `~2014.1.16`:
     ~tognex-labmeb "Tiktalik": but if the point of urbit is to get around the need
     for use of things such as conventional internet technology, it seems a bit
     weird to have it be p iggybacking off of it
+
     ~tasfyn-partyv [Curtis Yarvin]: whereas a "personal server" just isn't that
     hard to build
     ~dondep-radtud [Allen (dash) Short]: tognex, this is how networks are built
@@ -3497,6 +3472,7 @@ urbit, `~2014.1.16`:
     ~dondep-radtud [Allen (dash) Short]: The general concept is that they give 10
     people a million dollars, expecting that 9 of them will fail and 1 will produce
     something that ea rns them 100 million dollars.
+
     ~tasfyn-partyv [Curtis Yarvin] is the 1
     ~tasfyn-partyv [Curtis Yarvin]: just like in that movie with Keanu
     ~tasfyn-partyv [Curtis Yarvin] actually used to look a lot like Keanu before he
@@ -3549,8 +3525,7 @@ urbit, `~2014.1.16`:
     ~tasfyn-partyv [Curtis Yarvin]: and for various silly reasons is limited to a
     512MB address space
     ~tasfyn-partyv [Curtis Yarvin]: and also, its network protocol gets about 20K a
-    second on a good day lgian-Congo-Ruanda-Urundi/dp/B0044WPDDY
-                                                                                                                                                                                     
+    second on a good day
     ~tasfyn-partyv [Curtis Yarvin]: so cat pictures... you could do it right now.
     if they were small.  but still it's hard to encourage.
     ~hatteb-mitlyd "atax1a": You can send cat unicode.
@@ -3629,6 +3604,7 @@ urbit, `~2014.1.16`:
     ~bilsym-bisner [John Burnham]: "Each finite field of size q is the splitting
     field of the polynomial x^q − x, and thus the fixed field of the Frobenius
     endomorphism which ta kes x to x^q."
+
     ~bilsym-bisner [John Burnham]: wat
     ~bilsym-bisner [John Burnham]: time to dive into the wikipedia hole
     ~hatteb-mitlyd "atax1a": Wikipedia is really bad at explaining a lot of this.
@@ -3657,9 +3633,8 @@ urbit, `~2014.1.16`:
     ~bilsym-bisner [John Burnham]: hobmed, yes that'd be helpful
     ~bilsym-bisner [John Burnham]: i'm bogged down in recursive definitions
     ~hatteb-mitlyd "atax1a" is also interested, academically of course.
-    ~hobmed-hinrym [Steven (mrdomino) Dee]: 
-    ~bilsym-bisner /
-    ~hobmed-hinrym/try/2/bin/aes/hoon
+    ~hobmed-hinrym [Steven (mrdomino) Dee]: ~bilsym-bisner
+    /~hobmed-hinrym/try/2/bin/aes/hoon
     ~hobmed-hinrym [Steven (mrdomino) Dee]: "mur", for speakers of languages that
     fuck up ls and rs
     ~bilsym-bisner [John Burnham]: thx
@@ -3670,6 +3645,7 @@ urbit, `~2014.1.16`:
     ~hobmed-hinrym [Steven (mrdomino) Dee]: once you get the hang of the idea that
     you're operating on polynomials that just happen to have convenient numeric
     representations, it should all start to come together
+
     ~hobmed-hinrym [Steven (mrdomino) Dee]: are you clear on finite field addition?
     ~bilsym-bisner [John Burnham]: not yet
     ~bilsym-bisner [John Burnham]: the link you sent me was fairly clear, but i
@@ -3678,6 +3654,7 @@ urbit, `~2014.1.16`:
     degree n. for GF(2^8), degree 8. each polynomial has coefficients in GF(2).
     since there's only 2 of those, your result polynomial (of degree n) has each
     coefficient looking like the two inputs XORed
+
     ~hidsup-donsyn "UWTB" has left the building
     ~hobmed-hinrym [Steven (mrdomino) Dee]: only two possible things each
     coefficient can be, that is
@@ -3788,8 +3765,7 @@ urbit, `~2014.1.16`:
     ~satnum-maptux "yebyen": there's :type
     ~fantyv-ralpen "jpt4": :zero, to remind you of the Carrier identities.
     ~satnum-maptux "yebyen" hadn't seen that one
-    ~satnum-maptux "yebyen": there's :
-    ~novrud-hanweb/try=/bin/chat
+    ~satnum-maptux "yebyen": there's :~novrud-hanweb/try=/bin/chat
     ~satnum-maptux "yebyen": which takes you to the other chat room
     ~satnum-maptux "yebyen": and then of course there's :room, which actually
     handles the stateful chat room thing
@@ -3826,14 +3802,12 @@ urbit, `~2014.1.16`:
     ~satnum-maptux "yebyen": or is there...
     ~fantyv-ralpen "jpt4": Do you know of the :thumb procedure, ~tognex?
     ~satnum-maptux "yebyen": nope...
-    ~satnum-maptux "yebyen": satnum-maptux/try=> :thumb 
-    ~tognex-labmeb
+    ~satnum-maptux "yebyen": satnum-maptux/try=> :thumb ~tognex-labmeb
     ~satnum-maptux "yebyen": [%duke p=[%punk p=%blue q='Tiktalik']]
     ~satnum-maptux "yebyen": you need to be neighbors first
-    ~satnum-maptux "yebyen": or you get ~ /a/
-    ~tognex-labmeb/will/~2014.1.15..21.52.20..dbab
-    ~fantyv-ralpen "jpt4": Neighborship can be accomplished either via :hi
-    ~$shipname
+    ~satnum-maptux "yebyen": or you get ~
+    /a/~tognex-labmeb/will/~2014.1.15..21.52.20..dbab
+    ~fantyv-ralpen "jpt4": Neighborship can be accomplished either via :hi~$shipname
     ~fantyv-ralpen "jpt4": (which is done at the terminal)
     ~fantyv-ralpen "jpt4": or by sending a private :chat message, e.g. ~$shipname
     <message>
@@ -3915,8 +3889,7 @@ urbit, `~2014.1.16`:
     "message channel"
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Urbit is a series of tubes
     ~fantyv-ralpen "jpt4": atax1a is the lucky dog who got ~net
-    ~fantyv-ralpen "jpt4": but Stephenson fans know the real Metaverse lives on the
-    ~ret
+    ~fantyv-ralpen "jpt4": but Stephenson fans know the real Metaverse lives on the~ret
     ~hatteb-mitlyd "atax1a" liked it because 79 is one less than the web
     ~hatteb-mitlyd "atax1a": and it's where you stick your fingers.
     ~hatteb-mitlyd "atax1a": also net is a jerkcity character.
@@ -3931,6 +3904,7 @@ urbit, `~2014.1.16`:
     was told this meant that he was stateless and a refugee, and had some kind of
     permanent non-citi zen residency status in the US.  The former Vietnam was his
     country, and so he was stateless.
+
     ~bitmet-racteg "IMT": I wonder if Curtis might not know something about this?
     ~fantyv-ralpen "jpt4": Intriguing.
     ~bitmet-racteg "IMT"  resolves to get back to work.
@@ -3979,15 +3953,8 @@ urbit, `~2014.1.16`:
     ~hatteb-mitlyd "atax1a": nothing detected the mis-odoring, until the counter
     wrapped and some signed value got printed out.
     ~hatteb-mitlyd "atax1a": ladies and gentlemen, the state of the art of computer
-    software.  would involve USG officially acknowledging me stateless de jure, but
-    I imagine they'd be reluctant to do so when unlike Mr. Gogulski, I ain't goin'
-    nowhere. Since I don't buy al cohol or exercise the privilege of being part of
-    the body politic, the only things I "need" identity authentication in meatspace
-    for are 1) my Urbit carrier possibly, 2) being a guest at my friend's new
-    apartment, and 3) possibly dealing with inheritance issues hopefully years in
-    the future. Although a library card again would be nice (imagines Asimov' s
-    Foundation library defended by Leibowitzian monks).
-    ~bilsym-bisner [John Burnham] has left the building 
+    software.
+    ~bilsym-bisner [John Burnham] has left the building
     ~tasfyn-partyv [Curtis Yarvin] has left the building
     ~tasfyn-partyv [Curtis Yarvin] is in the building
     ~hatteb-mitlyd "atax1a": And today in build systems, the '-noprompt' option is
@@ -4050,8 +4017,7 @@ urbit, `~2014.1.16`:
     modified directly?
     ~monder-navryx "LarryH": strangely enough, :cat shows the previous contents
     instead of the current contents
-    ~fantyv-ralpen "jpt4": E.g. :
-    ~monder-navryx/try=/3/bin/foo
+    ~fantyv-ralpen "jpt4": E.g. :~monder-navryx/try=/3/bin/foo
     ~fantyv-ralpen "jpt4": No re-synchronization at all then.
     ~fantyv-ralpen "jpt4": Have you tried building a new pier?
     ~monder-navryx "LarryH": not yet, this just started a day or so ago
@@ -4084,6 +4050,7 @@ urbit, `~2014.1.16`:
     ~hobmed-hinrym [Steven (mrdomino) Dee]: yeah, tell me about it. I was a little
     crestfallen when I figured that out on Arch after a time of excitedly digging
     into libuv's fs ev ents API.
+
     ~monder-navryx "LarryH": just got things re-installed on my new machine and the
     environment settings got over looked
     ~hobmed-hinrym [Steven (mrdomino) Dee]: *nod*
@@ -4094,8 +4061,7 @@ urbit, `~2014.1.16`:
     makes it really obvious that you don't have URBIT_HOME set
     ~monder-navryx "LarryH": yeah, there's always that
     ~tasfyn-partyv [Curtis Yarvin] has left the building
-    ~monder-navryx "LarryH": thanks a heap for the assist, 
-    ~hobmed-hinrym
+    ~monder-navryx "LarryH": thanks a heap for the assist, ~hobmed-hinrym
     ~hobmed-hinrym [Steven (mrdomino) Dee]: sure thing! :)
     ~monder-navryx "LarryH": now if this baby would quit waking up i could use this
     new-found syncing ability to learn this hoon stuff
@@ -4180,11 +4146,11 @@ urbit, `~2014.1.16`:
     ~fantyv-ralpen "jpt4": Banners are chosen at compile time.
     ~navhul-lacsup [jacob (showtime) lyles]: 
     ~fantyv-ralpen "jpt4": And there is currently no mechanism for channel
-    creation, aside from 
-    ~novrud-hanweb's hack of hosting his own :room.
+    creation, aside from ~novrud-hanweb's hack of hosting his own :room.
     ~navhul-lacsup [jacob (showtime) lyles]: hmm, should have thought a minute
     before picking a nickname, since that is now set for all of time
-    ~fantyv-ralpen "jpt4": However, prefix a message with 
+    ~fantyv-ralpen "jpt4": However, prefix a message with | to send it to your
+    currently selected banner.
     ~dondep-radtud [Allen (dash) Short]:  Don't worry, the world is likely to end
     before next month.
     ~navhul-lacsup [jacob (showtime) lyles]: woohoo! 
@@ -4213,8 +4179,7 @@ urbit, `~2014.1.16`:
     something recognizable
     ~talsur-todres [Galen (galen) Wolfe-Pauly] has left the building
     ~dilnem-nodfun "cmm" has left the building
-    ~hidsup-donsyn "UWTB": 
-    ~wacrel-ripwes
+    ~hidsup-donsyn "UWTB": ~wacrel-ripwes
     ~hidsup-donsyn "UWTB" has left the building
     ~talsur-todres [Galen (galen) Wolfe-Pauly] is in the building
     ~talsur-todres [Galen (galen) Wolfe-Pauly] has left the building
@@ -4248,7 +4213,8 @@ urbit, `~2014.1.16`:
     ~fantyv-ralpen "jpt4": And you only saw one "&" prompt?
     ~dolrux-nomlup "nydwracu": right
     ~fantyv-ralpen "jpt4": Try closing :chat and restarting.
-    ~dolrux-nomlup "nydwracu": oh lol wait no i didn't i bet that's what that 
+    ~dolrux-nomlup "nydwracu": oh lol wait no i didn't i bet that's what that |...
+    was
     ~dolrux-nomlup "nydwracu": i ^D'd that and now i'm not seeing double
     ~fantyv-ralpen "jpt4": Suspicions confirmed.
     ~talsur-todres [Galen (galen) Wolfe-Pauly] is in the building
@@ -4351,9 +4317,11 @@ urbit, `~2014.1.16`:
     expression tree? How is it traversed? Might this be easier if I drew the tree
     and calculated manually instead of looking a t numbers until my eyes bleed?
     (Once more my lack of symbolic logic is apparent.)
+
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: And will the wiki including such
     things as https://github.com/urbit/urbit/wiki/Decoding-Hoon be updated in
     accordance with the la st few months of doc/etc updates?
+
     ~dondep-radtud [Allen (dash) Short]: hm, never heard the term "algebraic
     expression tree"
     ~dondep-radtud [Allen (dash) Short]: looking at the wikipedia page i would say
@@ -4376,15 +4344,19 @@ urbit, `~2014.1.16`:
     experience or knowledge base to model any of this on, apart from reducing
     formulas long ago and fa r away in entry level algebra, which is where I hit a
     number of walls
+
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: So I'm mainly an observer
     tinkering at the OS level, while in my copious free time indulging myself in
     the tantalizing, frustrati ng deeper mysteries
+
     ~dondep-radtud [Allen (dash) Short]: right, well. this is indeed one of those
     earth-programmer concepts that urbit builds on, that doesn't have a direct
     equivalent in algebra or whatever
+
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: I keep telling my wife to try it
     as she is reasonably well learned in math as well as having a more intuitive
     grasp of abstract/e ngineering-type thought.
+
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: And she loves puzzles.
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: It should be a shoe-in
     ~dondep-radtud [Allen (dash) Short]: it's _sort of_ like those algebraic
@@ -4400,6 +4372,7 @@ urbit, `~2014.1.16`:
     are "done". It's like Zen programming compared to the common-sense-makes-sense
     imperative style. "Let go of comman ds, describe reality, and what you want to
     happen, will happen."
+
     ~satnum-maptux "yebyen": well there are only 10 of them to look at
     ~dondep-radtud [Allen (dash) Short]: yeah I don't have a real firm grasp on
     zeno's execution model myself
@@ -4422,6 +4395,7 @@ urbit, `~2014.1.16`:
     stack machine ( I watched a dummies-level video on that +accumulators). And I
     think I vaguely get how a monad can carry information from one operation to the
     next, without state, but...
+
     ~satnum-maptux "yebyen": where [a b] describes a cell to be nocked and
     incremented
     ~dondep-radtud [Allen (dash) Short]: well, "state" just means "something that
@@ -4443,15 +4417,18 @@ urbit, `~2014.1.16`:
     other languages in general, computer or human...any one of which I suspect
     would be a strong advantage in the whole idea of "thinking different" that has
     to be done to truly understand and exp ress oneself in a language.
+
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Hence why I keep pimping Urbit to
     everyone I can
     ~dondep-radtud [Allen (dash) Short]: well, hoon/nock aren't extremely
     foundationally different from other programming stuff. they just don't follow
     the fashions/conventions of the past few decades
+
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: I figure if some non-computer
     person with one or more of the above skills figures it out, they'll at least be
-    able to help me understand it at a kiddy level, which would be more than my
+    able to help me und erstand it at a kiddy level, which would be more than my
     current level
+
     ~satnum-maptux "yebyen": there is a really small number of programs to
     understand at this point
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: I also suspect my wife might be
@@ -4474,6 +4451,7 @@ urbit, `~2014.1.16`:
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Unfortunately I recognize that as
     one of my greatest flaws, for many reasons, but most importantly because "math
     is how you know you're being lied to"
+
     ~satnum-maptux "yebyen": yeah, we need math
     ~dondep-radtud [Allen (dash) Short]: well, fortunately nock and friends are
     almost entirely unrelated to math
@@ -4547,7 +4525,8 @@ urbit, `~2014.1.16`:
     leaves
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Let's try this: If I type in
     numbers to be interpreted as Nock formulas, how does it know whether they're
-    values or pointers to locations in the tree?
+    values or pointers to l ocations in the tree?
+
     ~satnum-maptux "yebyen": they are part of either a subject or a formula, if
     they're well formed nock
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: So I have this drawing, and it
@@ -4561,9 +4540,10 @@ urbit, `~2014.1.16`:
     ~satnum-maptux "yebyen": you'd get back the value at location 9
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: Okay, so: If I provide, say, five
     integers. Will they be placed respectively in the matching cells (i.e., first
-    integer goes in "1", the top of the tree)? No, that can't be right, because I
+    integer goes in " 1", the top of the tree)? No, that can't be right, because I
     recall it was mentioned that the tree evaluates and ends with a result in the
-    top (previously empty) cell. But wouldn't that be bottom-up?
+    top (previously empty) cell. But would n't that be bottom-up?
+
     ~satnum-maptux "yebyen": I wasn't going to say "assuming you ran nock on [a 0
     9]" because I thought it was pedantic
     ~satnum-maptux "yebyen": if you have a tree, 1 is not an integer or atom
@@ -4722,7 +4702,8 @@ urbit, `~2014.1.16`:
     ~tomsyt-balsen [John Burnham]: where does %cy appear again?
     ~difryt-dapdeg [Ian Michael (imrowan) Rowan]: As I said, I think that's where
     the majority of my issue lies, but we'll see. Thank you all kindly, and I'll
-    see you later this evening.
+    see you later this e vening.
+
     ~satnum-maptux "yebyen": cheers!
     ~tomsyt-balsen [John Burnham]: i think that just might be the path iirc
     ~tomsyt-balsen [John Burnham]: and %cx is the data at the path
@@ -4734,8 +4715,7 @@ urbit, `~2014.1.16`:
     ~dondep-radtud [Allen (dash) Short]: yes.
     ~dondep-radtud [Allen (dash) Short]: I'm looking at ++roil
     ~satnum-maptux "yebyen" has left the building
-    ~tomsyt-balsen [John Burnham]: .^(%cy /
-    ~tomsyt-balsen
+    ~tomsyt-balsen [John Burnham]: .^(%cy /~tomsyt-balsen
     ~tomsyt-balsen [John Burnham]: whoops
     ~dondep-radtud [Allen (dash) Short]: yes, meaning of .^ was my next question.
     :)
@@ -4796,7 +4776,7 @@ urbit, `~2014.1.16`:
     ~tomsyt-balsen [John Burnham]: so you have to say e.g.
     ~tomsyt-balsen [John Burnham]: ->+>
     ~tomsyt-balsen [John Burnham]: not -++-
-    ~dondep-radtud [Allen (dash) Short]  tries to fit an 
+    ~dondep-radtud [Allen (dash) Short]  tries to fit an |% invocation on one line
     ~tomsyt-balsen [John Burnham]: or actually no that would be -+++
     ~dondep-radtud [Allen (dash) Short]: digging around in cores from the shell is
     tricky, because half the time you hang the interpreter, the other half you get
@@ -4833,6 +4813,225 @@ urbit, `~2014.1.16`:
     ~dondep-radtud [Allen (dash) Short]: heh. "I am a prototype for a much larger
     system."
     ~padpem-niddut "LeVeutre" has left the building
-    ~nocpyx-modbex [John Burnham] is in the building 
+    ~nocpyx-modbex [John Burnham] is in the building
+    ~rovrel-bicmyl has left the building
+    ~navhul-lacsup [jacob (showtime) lyles] has left the building
+    ~racbes-solmun "kpm" is in the building
+    ~hidsup-donsyn "UWTB" is in the building
+    ~talsur-todres [Galen (galen) Wolfe-Pauly] is in the building
+    ~talsur-todres [Galen (galen) Wolfe-Pauly] has left the building
+    ~navhul-lacsup [jacob (showtime) lyles] is in the building
+    ~talhet-sidnus "zygen" has left the building
+    ~navhul-lacsup [jacob (showtime) lyles] has left the building
+    ~sarlug-picwep "ikari" is in the building
+    ~talsur-todres [Galen (galen) Wolfe-Pauly] is in the building
+    ~talsur-todres [Galen (galen) Wolfe-Pauly] has left the building
+    ~bitfus-worwyd [J Henry Cartmell (Henry) Ault] is in the building
+    ~nocpyx-modbex [John Burnham]: welcome ~bitfus-worwyd
+    ~navhul-lacsup [jacob (showtime) lyles] is in the building
+    ~labfes-larzod [aidan longworth (raptros) coyne] is in the building
+    ~labfes-larzod [aidan longworth (raptros) coyne]: evening
+    ~labfes-larzod [aidan longworth (raptros) coyne]: or whatever
+    ~fantyv-ralpen "jpt4": Ave, ~labfes-larzod. It is near midnight, shipboard
+    (that is to say, Urbit Galactic) time.
+    ~labfes-larzod [aidan longworth (raptros) coyne]: so we're using utc
+    ~fantyv-ralpen "jpt4": UGT, but yes.
+    ~talhet-sidnus "zygen" is in the building
+    ~labfes-larzod [aidan longworth (raptros) coyne]: it'd be much easier to
+    remember how to convert from local to ugt
+    ~labfes-larzod [aidan longworth (raptros) coyne]: if daylight savings was
+    gotten rid of
+    ~labfes-larzod [aidan longworth (raptros) coyne]: abolished, that's the word
+    i'm looking for
+    ~fantyv-ralpen "jpt4": Or if state clocks were permanently offset 1/24 of an
+    Earth rotation.
+    ~talhet-sidnus "zygen" has left the building
+    ~hobmed-hinrym [Steven (mrdomino) Dee]: or if we just used ugt for everything
+    ~labfes-larzod [aidan longworth (raptros) coyne]: it'd be easy to remember "ugt
+    is 6 hours ahead" if it wasn't sometimes only 5
+    ~hobmed-hinrym [Steven (mrdomino) Dee]: the easiest conversion to remember is
+    of course no conversion, but I suppose we're a little ways away from that for
+    now
+    ~latner-fonsel "atax0a" is in the building
+    ~latner-fonsel "atax0a" has left the building
+    ~racbes-solmun "kpm" has left the building
+    ~talsur-todres [Galen (galen) Wolfe-Pauly] is in the building
+    ~talsur-todres [Galen (galen) Wolfe-Pauly] has left the building
+    ~bitfus-worwyd [J Henry Cartmell (Henry) Ault] has left the building
+    ~nocsub-modbex "Admiral of the White" is in the building
+    ~nocpyx-modbex [John Burnham] has left the building
+    ~fantyv-ralpen "jpt4": Ave, ~nocsub-modbex.
+    ~tomsyt-balsen [John Burnham]: nocsub-modbex is me
+    ~tomsyt-balsen [John Burnham]: i'm bringing up several admirals for banner
+    moderation
+    ~fantyv-ralpen "jpt4": I thought the arrogation of "Admiral" was a bit of a
+    bold claim.
+    ~fantyv-ralpen "jpt4": A reasonable idea.
+    ~tomsyt-balsen [John Burnham]: tlon has an interest in keeping the banner
+    system operating properly
+    ~tomsyt-balsen [John Burnham]: if, for example, someone spams a banner with
+    off-banner content
+    ~tomsyt-balsen [John Burnham]: e.g. the %blues experience a torrent of %orange
+    aggression
+    ~tomsyt-balsen [John Burnham]: tlon would like to know about it
+    ~tomsyt-balsen [John Burnham]: we haven't instituted a proper reputation system
+    yet
+    ~fantyv-ralpen "jpt4": However, banners are fixed, horizontal associations.
+    Channel (or :room) moderation would seem more effective.
+    ~tomsyt-balsen [John Burnham]: sure, for a chatroom
+    ~fantyv-ralpen "jpt4": What powers could a banner admiral possess, if they
+    don't control the kill-file? And if they do, how do they acquire it?
+    ~tomsyt-balsen [John Burnham]: oh, for now there are no powers whatsoever
+    ~tomsyt-balsen [John Burnham]: i'm mostly interested in banner statistics and
+    activity
+    ~fantyv-ralpen "jpt4": By design then, if not by present implementation.
+    ~tomsyt-balsen [John Burnham]: so i know where i need to pay attention to
+    stoking the fires
+    ~mirdem-nislux "Admiral of the Black" is in the building
+    ~fantyv-ralpen "jpt4": Are they to rely information to the actual :room
+    manager?
+    ~tomsyt-balsen [John Burnham]: perhaps, i don't really know what's needed yet
+    ~tomsyt-balsen [John Burnham]: but i just figured this way was more honest than
+    spawning some anons
+    ~tomsyt-balsen [John Burnham]: 
+    ~fantyv-ralpen "jpt4": It is, and I find the naval vernacular deeply appealing.
+    My curiosity was to whether some aspect of the longer term reputation hierarchy
+    was being revealed.
+    ~tomsyt-balsen [John Burnham]: not at all, i just thought this up this
+    afternoon
+    ~docfel-panmus "Admiral of the Red" is in the building
+    ~tomsyt-balsen [John Burnham]: it may be a silly idea
+    ~tamnyl-fotsed "Admiral of the Blue" is in the building
+    ~labtyl-fapmer "Admiral of the Orange" is in the building
+    ~tomsyt-balsen [John Burnham]: but at least it's very pretty
+    ~fantyv-ralpen "jpt4": Are there any technical benefits to destroyer-level
+    %banner listeners that ~doznec does not already provide?
+    ~labfes-larzod [aidan longworth (raptros) coyne]: proper budgeting has both its
+    upside and downside
+    ~labfes-larzod [aidan longworth (raptros) coyne]: i just found out that i am
+    probably not buying a couch this month
+    ~navhul-lacsup [jacob (showtime) lyles]: 
+    ~labfes-larzod [aidan longworth (raptros) coyne]: yo navhul you blanked lined
+    in both
+    ~navhul-lacsup [jacob (showtime) lyles]: can i check someone's banner? 
+    ~fantyv-ralpen "jpt4": In terminal, :hi ~shipname
+    ~fantyv-ralpen "jpt4": Then :thumb ~shipname
+    ~navhul-lacsup [jacob (showtime) lyles]: sorry about that :(, I thought it
+    would "switch modes" if I hit enter with blank statement
+    ~navhul-lacsup [jacob (showtime) lyles]: and it does
+    ~navhul-lacsup [jacob (showtime) lyles]: but it also sends a blank line
+    ~tomsyt-balsen [John Burnham]: well, looks like there's a very valuable service
+    needed here
+    ~hidsup-donsyn "UWTB" has left the building
+    ~tomsyt-balsen [John Burnham]: some of the banners (i won't say which) are
+    looking rather barren
+    ~hobmed-hinrym [Steven (mrdomino) Dee]: yeah, there's like nobody on %white
+    ~tomsyt-balsen [John Burnham]: someone should be on them at all times just to
+    be friendly
+    ~tomsyt-balsen [John Burnham]: yeah... that %white
+    ~tomsyt-balsen [John Burnham]: so alone
+    ~nocsub-modbex "Admiral of the White": you don't know how it feels
+    ~nocsub-modbex "Admiral of the White": banner messages just go to everyone
+    ~hobmed-hinrym [Steven (mrdomino) Dee]: o rly
+    ~nocsub-modbex "Admiral of the White": but that's the price you pay for
+    neutrality
+    ~hobmed-hinrym [Steven (mrdomino) Dee]: so they do! but the prefix looks
+    different locally...
+    ~tomsyt-balsen [John Burnham]: fantyv, the only technical benefits i can see
+    are separation of routing and moderation
+    ~tomsyt-balsen [John Burnham]: and the interface is cleaner
+    ~talsur-todres [Galen (galen) Wolfe-Pauly] is in the building
+    ~tomsyt-balsen [John Burnham]: but really, i'm mostly doing this for reasons of
+    situational awareness
+    ~fantyv-ralpen "jpt4":  ~doznec can presumably read all %banner traffic.
+    ~tomsyt-balsen [John Burnham]: very true, cruisers have no banner
+    ~tomsyt-balsen [John Burnham]: being network infrastructure
+    ~fantyv-ralpen "jpt4": That was the next question.
+    ~fantyv-ralpen "jpt4": Could ~doznec join its own :room?
+    ~tomsyt-balsen [John Burnham]: i believe it could
+    ~tomsyt-balsen [John Burnham]: as could ~zod
+    ~tomsyt-balsen [John Burnham]: but one wouldn't want to use the voice of ~zod
+    for banner chitchat
+    ~labfes-larzod [aidan longworth (raptros) coyne]: could we start our own :rooms
+    and chat in them?
+    ~dondep-radtud [Allen (dash) Short]: learn hoon and then yes, probably :)
+    ~fantyv-ralpen "jpt4":  ~novrud-hanweb has done so.
+    :~novrud-hanweb/try=/bin/chat
+    ~tomsyt-balsen [John Burnham]: sure, but you've got to modify the :chat code a
+    little
+    ~tomsyt-balsen [John Burnham]: so it doesn't conflict
+    ~labfes-larzod [aidan longworth (raptros) coyne]: hmm
+    ~dondep-radtud [Allen (dash) Short]: tomsyt, to go back to my earlier
+    inquiries, i'm starting to wonder if arm names are actually stored in the
+    core's formula at all
+    ~dondep-radtud [Allen (dash) Short]: or if they're part of the type?
+    ~dondep-radtud [Allen (dash) Short]: i suppose i'm going to have to actually
+    understand the compiler guts to answer that question myself :)
+    ~tomsyt-balsen [John Burnham]: tnh, dondep, i dunno either
+    ~tomsyt-balsen [John Burnham]: what do you mean by arm names?
+    ~dondep-radtud [Allen (dash) Short]: the text after ++ 
+    ~dondep-radtud [Allen (dash) Short]: before the twig
+    ~talsur-todres [Galen (galen) Wolfe-Pauly] has left the building
+    ~dondep-radtud [Allen (dash) Short]: figuring this out is made harder by the
+    fact that ++ appears to not be a hoon.
+    ~tomsyt-balsen [John Burnham]: hmm, that's a good question, how is slus handled
+    ~dondep-radtud [Allen (dash) Short]: around line 6409, in ++scat
+    ~dondep-radtud [Allen (dash) Short]: so far as I can tell.
+    ~tomsyt-balsen [John Burnham]: hang on, my line numbers are different
+    ~tomsyt-balsen [John Burnham]: i'm in the middle of adding sha-512 to our hash
+    library
+    ~tomsyt-balsen [John Burnham]: which, as an algorithm, is kinda overkill
+    ~tomsyt-balsen [John Burnham]: but ed25519 needs it
+    ~tomsyt-balsen [John Burnham]: (our signature function for cryptosuite b)
+    ~dondep-radtud [Allen (dash) Short]: it's a nice thing to have, yep
+    ~tomsyt-balsen [John Burnham]: anyway, i don't grok this part of hoon.hoon
+    ~tomsyt-balsen [John Burnham]: i really have to go read that tile doc again and
+    more slowly
+    ~dondep-radtud [Allen (dash) Short]: okay! good to know i'm not the only bozo
+    on this bus.
+    ~tomsyt-balsen [John Burnham]: i think pretty much everyone here is in the same
+    boat...
+    ~tomsyt-balsen [John Burnham]: err, bus
+    ~tomsyt-balsen [John Burnham]: except for cgy of course
+    ~tomsyt-balsen [John Burnham]: our fearless driver/pilot/leader
+    ~monder-navryx "LarryH": little kids honk my big red nose all the time
+    ~dondep-radtud [Allen (dash) Short]: i should play with the parsing combinators
+    a bit.
+    ~dondep-radtud [Allen (dash) Short]: we've supposedly got a json generator,
+    maybe i should write a json parser. :)
+    ~fantyv-ralpen "jpt4": The :chat log on urbit.org seems to be missing content.
+    ~fantyv-ralpen "jpt4": Any text following a "|" is not displayed, nor is it
+    present in the page source.
+    ~dondep-radtud [Allen (dash) Short]: that's on purpose, I believe.
+    ~dondep-radtud [Allen (dash) Short]: banner chat is for Secret Plans.
+    ~fantyv-ralpen "jpt4": It was a discussion of prefixes in %white-space.
+    ~fantyv-ralpen "jpt4": Specifically: ~fantyv-ralpen "jpt4": Only %blue comrades
+    would see this, and your prompt
+    ~fantyv-ralpen "jpt4": would change from & to 
+    ~fantyv-ralpen "jpt4": The final two characters should be "|."
+    ~racbes-solmun "kpm" is in the building
+    ~fantyv-ralpen "jpt4": I don't have a personal copy of the :chat history with
+    which to compare, but the ommission occurs repeatedly.
+    ~dondep-radtud [Allen (dash) Short]: oh, ha.
+    ~dondep-radtud [Allen (dash) Short]: someone's regex is flawed, I suppose.
+    ~tomsyt-balsen [John Burnham]: ahhhhhhhhh
+    ~tomsyt-balsen [John Burnham]: yes, duh
+    ~tomsyt-balsen [John Burnham]: my regex was flawed
+    ~tomsyt-balsen [John Burnham]: very very flawed
+    ~tomsyt-balsen [John Burnham]: hang on will fix
+    ~fantyv-ralpen "jpt4": Also, ~shipname, automatically creates a new line.
+    ~tomsyt-balsen [John Burnham]: yes, same flaw
+    ~tomsyt-balsen [John Burnham]: forgot to add ^
+    ~tomsyt-balsen [John Burnham]: for start of line
+    ~fantyv-ralpen "jpt4": It's not universal, ~zod stays in-line.
+    ~tomsyt-balsen [John Burnham]: yeah, my regex was \~.{6}-.{6}
+    ~tomsyt-balsen [John Burnham]: or actually ......
+    ~tomsyt-balsen [John Burnham]: instead of .{6}
+    ~tomsyt-balsen [John Burnham]: regexes in vim are slightly strange
+    ~tomsyt-balsen [John Burnham]: different escaping than sed
+    ~fantyv-ralpen "jpt4": Roger, roger.
+    ~ligfed-famsef "kpm" is in the building
+    ~mirwyc-nislux is in the building
+
 
 
