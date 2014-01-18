@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2014-01-17T18:52:11-08:00</updated>
+ <updated>2014-01-18T10:47:05-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -9887,17 +9887,17 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Observe that the tile stems are no longer rune digraphs. Rather, a gardening metaphor appears to pertain. Let’s work through these one by one, showing both (regular) syntax and semantics.&lt;/p&gt;
 
-&lt;h3 id=&quot;axil_pbase&quot;&gt;[%axil p=base]&lt;/h3&gt;
+&lt;h3 id=&quot;&quot;&gt;&lt;code&gt;[%axil p=base]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;An &lt;code&gt;%axil&lt;/code&gt; is a simple built-in mechanism for a few basic icons: an atom of any odor (&lt;code&gt;@odor&lt;/code&gt;, or just &lt;code&gt;@&lt;/code&gt; for the odorless base atom); a noun (&lt;code&gt;*&lt;/code&gt;); a cell of nouns (&lt;code&gt;^&lt;/code&gt;); a loobean &lt;code&gt;?&lt;/code&gt;; and null &lt;code&gt;~&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;leaf_pterm_q&quot;&gt;[%leaf p=term q=@]&lt;/h3&gt;
+&lt;h3 id=&quot;_2&quot;&gt;&lt;code&gt;[%leaf p=term q=@]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;A &lt;code&gt;%leaf&lt;/code&gt; is an atomic constant of value &lt;code&gt;q&lt;/code&gt; and odor &lt;code&gt;p&lt;/code&gt;. Obviously its icon is a &lt;code&gt;%cube&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The syntax for a leaf is the same as the twig syntax, except that &lt;code&gt;%&lt;/code&gt; is never required to generate a cube. For instance, as a twig, &lt;code&gt;7&lt;/code&gt; has a type of [%atom %ud]; &lt;code&gt;%7&lt;/code&gt; has a type of &lt;code&gt;[%cube 7 [%atom %ud]]&lt;/code&gt;. But the icon of the leaf &lt;code&gt;7&lt;/code&gt; is, again, &lt;code&gt;[%cube 7 [%atom %ud]]&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;ptile_qtile&quot;&gt;[p=tile q=tile]&lt;/h3&gt;
+&lt;h3 id=&quot;_3&quot;&gt;&lt;code&gt;[p=tile q=tile]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;Tiles autocons, just like twigs - a cell of tiles is a tile of a cell. But we shouldn’t skip the differences too lightly.&lt;/p&gt;
 
@@ -9911,7 +9911,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
     @
 ==&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;bark_pterm_qtile&quot;&gt;[%bark p=term q=tile]&lt;/h3&gt;
+&lt;h3 id=&quot;_4&quot;&gt;&lt;code&gt;[%bark p=term q=tile]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;Wrap a name round a tile. &lt;code&gt;a=*&lt;/code&gt; parses as &lt;code&gt;[%bark %a %noun]&lt;/code&gt;.&lt;/p&gt;
 
@@ -9922,7 +9922,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Obviously a silly syntactic arrangement. But you can need it if &lt;code&gt;q&lt;/code&gt; is really big.&lt;/p&gt;
 
-&lt;h3 id=&quot;reed_ptile_qtile&quot;&gt;[%reed p=tile q=tile]&lt;/h3&gt;
+&lt;h3 id=&quot;_5&quot;&gt;&lt;code&gt;[%reed p=tile q=tile]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;A &lt;code&gt;%reed&lt;/code&gt; is a tile whose icon contains two kinds of nouns: atoms of tile &lt;code&gt;p&lt;/code&gt; and cells of tile &lt;code&gt;q&lt;/code&gt;.&lt;/p&gt;
 
@@ -9934,7 +9934,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;or in wide mode, of course, &lt;code&gt;$|(~ [@ @])&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;kelp_piline_tlist_line&quot;&gt;[%kelp p=i=line t=(list line)]&lt;/h3&gt;
+&lt;h3 id=&quot;_6&quot;&gt;&lt;code&gt;[%kelp p=[i=line t=(list line)]]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;A &lt;code&gt;kelp&lt;/code&gt; is the workhorse of tiles - it provides the most common data structure in any language, the discriminated union.&lt;/p&gt;
 
@@ -9942,7 +9942,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;(Yes. We’re aware that “kelp” is not properly a singular noun. In Hoon - it is properly a singular noun. And that’s that. And oddly, it’s not that hard to run out of four-letter plants.)&lt;/p&gt;
 
-&lt;h3 id=&quot;bush_ptile_qtile&quot;&gt;[%bush p=tile q=tile]&lt;/h3&gt;
+&lt;h3 id=&quot;_7&quot;&gt;&lt;code&gt;[%bush p=tile q=tile]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;A &lt;code&gt;%bush&lt;/code&gt; is a tile in which there are two kinds of nouns: cells whose head is a cell (tile &lt;code&gt;p&lt;/code&gt;) and cells whose head is an atom (tile &lt;code&gt;q&lt;/code&gt;). Its default value is the value of &lt;code&gt;q&lt;/code&gt;.&lt;/p&gt;
 
@@ -9952,7 +9952,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Sure, we could attach these semantics to an atom, and just use a &lt;code&gt;%kelp&lt;/code&gt;. In twigs, tiles, or nock formulas, we could have an explicit &lt;em&gt;cons&lt;/em&gt; stem of some sort. But it would be a bulky and annoying pain in the butt as compared to autocons.&lt;/p&gt;
 
-&lt;h3 id=&quot;fern_pitile_tlist_tile&quot;&gt;[%fern p=i=tile t=(list tile)]]&lt;/h3&gt;
+&lt;h3 id=&quot;_8&quot;&gt;&lt;code&gt;[%fern p=[i=tile t=(list tile)]]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;A &lt;code&gt;fern&lt;/code&gt; is a non-empty list of cases; its icon is naturally a &lt;code&gt;%fork&lt;/code&gt;. The programmer is responsible for ensuring that the cases are actually orthogonal (unlike with the structured forks, &lt;code&gt;%bush&lt;/code&gt;, &lt;code&gt;%kelp&lt;/code&gt; and &lt;code&gt;%reed&lt;/code&gt;). A good general practice is to use ferns only with leaves (see below).&lt;/p&gt;
 
@@ -9970,7 +9970,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And even if were this not the case, anyone creating complex tiles and icons should use one of these standard structures - simply because it is never really worth varying from this set of patterns, even if small structural efficiencies can be extracted. Therefore, it’s worth telling both the compiler and the reader exactly what the programmer is trying to do in each case.&lt;/p&gt;
 
-&lt;h3 id=&quot;herb_ptwig&quot;&gt;[%herb p=twig]&lt;/h3&gt;
+&lt;h3 id=&quot;_9&quot;&gt;&lt;code&gt;[%herb p=twig]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;You can write your own tile which is just a gate, accepting a sample of &lt;code&gt;*&lt;/code&gt; and normalizing it as you choose. If you use a twig as a tile, it’s treated as an herb.&lt;/p&gt;
 
@@ -9984,7 +9984,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The important thing to remember about &lt;code&gt;%herb&lt;/code&gt; is that the actual twig we provide will be applied when we whip or clam. Hence, arbitrary normalization and/or verification procedures may be part of the herbaceous custom tile.&lt;/p&gt;
 
-&lt;h3 id=&quot;weed_ptwig&quot;&gt;[%weed p=twig]&lt;/h3&gt;
+&lt;h3 id=&quot;_10&quot;&gt;&lt;code&gt;[%weed p=twig]&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;%weed&lt;/code&gt; is the lamest kind of tile - tile by example. A &lt;code&gt;%weed&lt;/code&gt; is defined by its example twig &lt;code&gt;p&lt;/code&gt;, which produces the icon.&lt;/p&gt;
 
@@ -12064,7 +12064,7 @@ Z   4MB&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hoon does not yet support floating point, so these syntaxes don’t actually work. But the syntax for a single-precision float is the normal English syntax, with a &lt;code&gt;.&lt;/code&gt; prefix:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;.6.2832             ::  τ as @rs
-.-6.2832            ::  -τ as @
+.-6.2832            ::  -τ as @rs
 .~6.2832            ::  τ as @rd
 .~-6.2832           ::  -τ as @rd
 .~~6.2832           ::  τ as @rh
