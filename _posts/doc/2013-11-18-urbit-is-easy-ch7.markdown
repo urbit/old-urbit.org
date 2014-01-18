@@ -530,7 +530,6 @@ need a core.  This adds another to the kinds of types we know:
                   [%cube p=* q=type]                        ::
                   [%face p=term q=type]                     ::
                   [%fork p=type q=type]                     ::
-                  [%hold p=(list ,[p=type q=twig])]         ::
               ==                                            ::
     ++  coil  $:  p=?(%gold %iron %lead %zinc)              ::
                   q=type                                    ::
