@@ -258,7 +258,7 @@ Alternately, we could check if our `*` is a `@` with `?=`:
 
 Why is all this true?  Because the bunt of `*` is the atom `0`
 with the type `%noun`.
-  
+ 
 Finally, if a tile appears where we expect a twig, the normal
 tile-to-twig conversion is always `%bccm`.  Ie, using a tile as a
 twig generates a gate producing the icon.
