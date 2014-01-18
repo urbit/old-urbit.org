@@ -164,11 +164,11 @@ instance, let's quickly run through how `++mint` handles a
 `=+` (`tislus`) twig, `[%tsls p=twig q=twig]`.  This is a 
 synthetic twig:
 
-  ++  open
-    ^-  twig
-    ?-  gen
-      [%tsls *]  [%tsgr [p.gen [~ 1]] q.gen]
-    ==
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%tsls *]  [%tsgr [p.gen [~ 1]] q.gen]
+      ==
 
 ie, `=+(a b)` is `=>([a .] b)`.  We thus turn to the `%tsgr`
 twig in `++mint`.  Simplifying broadly:
@@ -423,7 +423,7 @@ If you don't completely understand (or believe) this, or if you are
 not quite sure on the difference between head and tail recursion,
 just cast the product of every arm.
 
-`%kthp` also has an irregular wide form.  `^-(@tas foo) can also
+`%kthp` also has an irregular wide form.  `^-(@tas foo)` can also
 be written
 
     `@tas`foo
@@ -831,7 +831,7 @@ stick to French as she is spoke in Paris.
 
 On the other hand, at least this grizzled old baboon has no
 trouble parsing the apparent line noise above.  Why so funky?
-Why, oh why, `\_,`*`?  Because for various irrelevant reasons,
+Why, oh why, `\_,*`?  Because for various irrelevant reasons,
 the `++list` here is trying as hard as possible to build itself
 out of tiles.
 
