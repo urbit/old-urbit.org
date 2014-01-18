@@ -831,7 +831,7 @@ don't actually work.  But the syntax for a single-precision
 float is the normal English syntax, with a `.` prefix:
 
     .6.2832             ::  τ as @rs
-    .-6.2832            ::  -τ as @
+    .-6.2832            ::  -τ as @rs
     .~6.2832            ::  τ as @rd
     .~-6.2832           ::  -τ as @rd
     .~~6.2832           ::  τ as @rh
