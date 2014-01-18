@@ -767,11 +767,11 @@ provide the same basic feature set provided by generic features
 in other languages, such as Haskell's typeclasses.
 
 Logically, when we use an `%elm`, generic or "wet" arm, we simply
-*recompile the entire core* with the changed payload.  If this
+*recompile the entire twig* with the changed payload.  If this
 recompilation, which *is* typechecked, succeeds - and if it
-*produces exactly the same Nock battery* - we know that we can
+*produces exactly the same Nock formula* - we know that we can
 use the modified core as if it was the original, without of
-course changing the static battery.
+course changing the static formula we generated once.
 
 Of course, a lot of caching is required to make this compile with
 reasonable efficiency.  But computers these days are pretty fast.
