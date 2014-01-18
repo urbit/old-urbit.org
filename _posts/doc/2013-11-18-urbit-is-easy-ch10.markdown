@@ -164,11 +164,11 @@ instance, let's quickly run through how `++mint` handles a
 `=+` (`tislus`) twig, `[%tsls p=twig q=twig]`.  This is a 
 synthetic twig:
 
-    ++  open
-      ^-  twig
-      ?-  gen
-        [%tsls *]  [%tsgr [p.gen [~ 1]] q.gen]
-      ==
+  ++  open
+    ^-  twig
+    ?-  gen
+      [%tsls *]  [%tsgr [p.gen [~ 1]] q.gen]
+    ==
 
 ie, `=+(a b)` is `=>([a .] b)`.  We thus turn to the `%tsgr`
 twig in `++mint`.  Simplifying broadly:
@@ -423,7 +423,7 @@ If you don't completely understand (or believe) this, or if you are
 not quite sure on the difference between head and tail recursion,
 just cast the product of every arm.
 
-`%kthp` also has an irregular wide form.  `^-(@tas foo)` can also
+`%kthp` also has an irregular wide form.  `^-(@tas foo) can also
 be written
 
     `@tas`foo
@@ -438,6 +438,17 @@ the product of the loop step anyway:
       b
     $(b +(b))
 
+Note that this is just a fancy modern arrangement of the classic Hoon 
+
+    =+  b=0
+    |-  
+    ^-  @
+    ?:  =(a +(b))
+      b
+    $(b +(b))
+
+Ie, it is only by casting *within* the arm that 
+
 The idiom of "barhep kethep tile" is common enough that you
 should rarely see a `|-` without a `^-`.  Especially while
 still a beginning Hoon programmer - when in doubt, cast.
@@ -446,7 +457,7 @@ still a beginning Hoon programmer - when in doubt, cast.
 
 Type inference wouldn't be very useful or interesting if we
 couldn't learn things about our nouns at runtime.  Actually,
-we can't even really *use* most things without this.
+we can't even really *use* most nouns without type inference.
 
 For instance, let's make a list:
 
@@ -661,7 +672,7 @@ in: is the payload that's in it now geometrically compatible with
 the payload that its formulas were compiled with?  Can we use the
 present payload as if it was the original, default payload?
 
-It is actually not a type error of any kind to create a modified
+It is actually not a type error of any kind to produce a modified
 core with the payload set to any kind of garbage at all.  It's
 just a type error to *use* it - unless the payload is compatible.
 And when we use a geometric arm, we test this compatibility and
@@ -690,9 +701,9 @@ general practice in building applications is to use a reef of at
 least two cores - inner for the tiles, outer for the functions.
 
 All that remains is this mysterious `p` field.  If you are an OO
-geek of a certain flavor and have been arrested with a spraycan
-once or twice for writing "BERTRAND MEYER IS GOD" graffiti, you
-may be familiar with the concept of *variance*.
+geek of a certain flavor who was once busted with a Sharpie for
+writing "BERTRAND MEYER IS GOD" on a Muni bus, you may be
+familiar with the broad language concept of *variance*.
 
 Polymorphism in Hoon supports four kinds of variance: `%gold`
 (invariant), `%lead` (bivariant), `%zinc` (covariant), and
@@ -743,9 +754,9 @@ as more specialized, you have a type loophole.
 A `%zinc` (covariant) core is the opposite - the context remains
 opaque, the sample is read-only.  We don't use any `%zinc` at
 present, but this is only because we haven't yet gotten into
-inheritance and other fancy OO patterns.  (An earlier version of
-Hoon had inheritance, but it was removed as incompletely baked.)
-You make a `%gold` core `%zinc` with `^&` (`ketpam`, `%ktpm`).
+inheritance and other fancy OO patterns.  (Hoon 191 had
+inheritance, but it was removed as incompletely baked.) You make
+a `%gold` core `%zinc` with `^&` (`ketpam`, `%ktpm`).
 
 Finally, the entire payload of a `%lead` (invariant) core is
 immune to reading or writing.  So all that matters is the product
@@ -775,18 +786,30 @@ recompilation, which *is* typechecked, succeeds - and if it
 use the modified core as if it was the original, without of
 course changing the static formula we generated once.
 
+Why does this work out to the same thing as a typeclass?  Because
+with a wet core, we are essentially just using the source code of
+the core as a giant macro in a sense.  Our only restriction is
+that because the Nock formula that actually executes the code
+must be the same formula we generated statically for the battery.
+
+In a sense this defines an implicit typeclass: the class of types
+that can be passed through the arm, emerging intact and with an
+identical formula.  But no declaration of any sort is required.
+You could call it "duck typeclassing."
+
 Of course, a lot of caching is required to make this compile with
 reasonable efficiency.  But computers these days are pretty fast.
 
 This description of how wet arms work is not quite correct,
-though it's the way older versions of Hoon did it.  The problem
+though it's the way ancient versions of Hoon worked.  The problem
 is that there are some cases in which it's okay if the modified
 core generates a different battery - for example, if the original
 battery takes branches that are not taken in this specific call.
+
 So we have a function `++mull` which tests whether a twig
 compiled with one subject will work with another.  But still,
-thinking of the check as a simple comparison of the compiled code
-is the best intuitive test.
+thinking of the wet call check as a simple comparison of the
+compiled code is the best intuitive test.
 
 Again, your best bet as a novice Hoon programmer is to understand
 that this is how things like `list` and `map` work, that someone
@@ -794,5 +817,145 @@ else who knows Hoon better than you wrote these tools, and that
 in general if you want to use generic polymorphism you're
 probably making a mistake.  But if you wonder how `list` works -
 this is how it works.
+
+###Generic polymorphism action sequences###
+
+Let's deploy this boy!  Here is `++list`:
+
+    ++  list  |*(a=_,* $|(~ [i=a t=(list a)]))
+
+Don't worry.  This is just grievously badass hardcore Hoon - as
+irregular as Marseilles street slang.  As a novice Hoon monkey,
+you won't be writing `++list` or anything like it, and you can
+stick to French as she is spoke in Paris. 
+
+On the other hand, at least this grizzled old baboon has no
+trouble parsing the apparent line noise above.  Why so funky?
+Why, oh why, `\_,`*`?  Because for various irrelevant reasons,
+the `++list` here is trying as hard as possible to build itself
+out of tiles.
+
+For instance, in general in Hoon it is gauche for a gate to use
+its core's namespace to recurse back into itself, but tiles do
+not expose their own internals to the twigs they contain
+(otherwise, obviously, they could not be hygienic).
+
+manipulate the subject such that it's not possible to loop
+properly.  So in fact there is no alternative but to use `(list
+a)` within `++list` - a normal usage in complex tiles, but only
+in complex tiles.
+
+But a normal person wouldn't use tiles to prove a point.  They'd
+do it like this - let's use the REPL to build a `list` replacement, 
+without one single "obfuscated Hoon trick."
+
+    ~zod/try=> =lust |*(a=$+(* *) |=(b=* ?@(b ~ [i=(a -.b) t=$(b +.b)])))
+    ~zod/try=> ((lust ,@) 1 2 ~)
+    ~[1 2]
+    ~zod/try=> ((list ,@) 1 2 ~)
+    ~[1 2]
+    ~zod/try=> `(list ,@)``(lust ,@)`[1 2 ~]
+    ~[1 2]
+
+Note that `list` and `lust` do the same thing and are perfectly
+compatible.  But sadly, `lust` still looks like line noise.
+Let's slip into something more comfortable:
+
+    |*  a=$+(* *)
+    |=  b=*
+    ?@  b  ~
+    [i=(a -.b) t=$(b +.b)]
+
+We haven't met `$+` (`buclus`) yet.  `$+(p q)` is a tile for a
+gate which accepts `p` and produces `q`.  The spectre of function
+signatures once again rears its ugly head - but `$+(p q)` is no
+different from `$\_(|+(p _q))`.
+
+Otherwise, when we think of a wet gate (`|*`) as a macro, we see
+(list ,@) producing
+
+    |=  b=*
+    ?@  b  ~
+    [i=(,@ -.b) t=$(b +.b)]
+
+This function is easily recognized as a gate accepting a noun and
+producing a list of atoms - in short, perfectly formed for an
+herbaceous tile.  Pass it some random noun off the Internet, and
+it will give you a list of atoms.  In fact, we could define it
+on its own as:
+
+    ++  atls
+      |=  b=*
+      ?@  b  ~
+      [i=(,@ -.b) t=$(b +.b)]
+
+and everywhere you write `(list ,@)`, you could write `atls`.
+Which would work perfectly despite its self-evident lameness.
+Note *in particular* that the inner `b` gate is *not* wet, but
+rather dry - once we have done our substitution, there is no need
+to get funky.
+
+Let's do some little fun thing with `list` - eg, gluing two lists
+together:
+
+    ++  weld
+      ~/  %weld
+      |*  [a=(list) b=(list)]
+      =>  .(a ^.(homo a), b ^.(homo b))
+      |-  ^+  b
+      ?~  a  b
+      [i.a $(a t.a)]
+
+What is this `homo` thing (meaning "homogenize", of course)?
+Exactly that - it homogenizes the type of a list, producing its
+sample noun unchanged:
+
+    ++  homo
+      |*  a=(list)
+      ^+  =<  $
+        |%  +-  $  ?:(_? ~ [i=(snag 0 a) t=$])
+        --
+      a
+
+Here is more dark magic that should clearly be ignored.  But
+essentially, to homogenize a list `a`, we are casting `a` to a
+deranged pseudo-loop that produces an infinite stream of the
+first item in `a`, selected via the `++snag` function:
+
+    ++  snag
+      ~/  %snag
+      |*  [a=@ b=(list)]
+      |-
+      ?~  b
+        ~|('snag-fail' !!)
+      ?:  =(0 a)
+        i.b
+      $(b t.b, a (dec a))
+
+`++snag` of course selects any item in the list; but if `b` has a
+type more complex than a homogeneous list (eg, the type system
+might well know the number of items, etc, etc), Hoon is nowhere
+near enough to see that the counter is always 0.  So the type
+produced by `++snag` is the union of all list elements, which is
+precisely the type we want for our homogenized list.
+
+As for `^.` (`ketdot`, `%ktdt`), we can see it in `++open`:
+
+      ++  open
+        ^-  twig
+        ?-  gen
+          [%ktdt *]  [%ktls [%cnhp p.gen q.gen ~] q.gen]
+        ==
+
+Ie, `^.(a b)` is `^+((a b) b)` is `^-(_(a b) b)`.
+
+`++weld` prudently casts its product to the type of the base list
+`b`.  In future this `^+`  will probably be removed, since we are
+perfectly capable of inferring that when you weld `(list a)` and
+`(list b)`, you get a `(list ?(a b))`.  But there's old code this
+change might confuse.
+
+In short: generic polymorphism is cool but wacky.  Leave it to
+the experts, please!
 
 [**Prev**: Tiles](urbit-is-easy-ch9.html)
