@@ -26,6 +26,8 @@ only people with a serious clue run BSD.  Intrepid ninjas may
 attempt ports to other OSes.  If you're not an intrepid ninja,
 try a VM (eg, VirtualBox).
 
+Otherwise, open up your terminal and let's get started:
+
 ###Configure OS X###
 
 1. Do you have XCode?  Type `gcc`.  If it says `no input files`, you have XCode.
@@ -33,13 +35,14 @@ try a VM (eg, VirtualBox).
    Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the
    command line tools.
 
-2. Install dependencies
-   - Do you have Homebrew?  Type `brew`.  If it does something, you have Homebrew.
+2. Install dependencies. Pick either one of Homebrew or Macports, but not both.  
+
+   - Homebrew? Type `brew`.  If it does something, you have Homebrew.
 
      Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
      will install it.
 
-     And follow up with `brew install gmp libsigsegv openssl`
+     And follow up with `brew install git gmp libsigsegv openssl`
 
      This will ask you for the root password, which ideally you know.
 
@@ -47,7 +50,7 @@ try a VM (eg, VirtualBox).
 
      Otherwise go [here](http://www.macports.org/install.php "here").
 
-     Then `sudo port install gmp libsigsegv openssl`
+     Then `sudo port install git gmp libsigsegv openssl`
 
      Enter your root password at the prompt.
 
@@ -63,16 +66,24 @@ try a VM (eg, VirtualBox).
 
 ###Get the source###
 
-Either:
+Urbit uses git for its revision control. Eventually, Urbit will use itself for this, but for now,
+you need git. If you've followed the above instructions correctly then typing `git` in your terminal should do something. 
 
-A. Download and unzip `https://github.com/urbit/urbit/archive/master.zip`.
+If that works, run:
 
-B. `git clone https://github.com/urbit/urbit.git`.
+    `git clone https://github.com/urbit/urbit.git`.
+
+to download Urbit from its repository. 
+
+If for some reason you have moral qualms about using Git, you can also just download and unzip `https://github.com/urbit/urbit/archive/master.zip`. This won't provide any version control
 
 ###Set up your enviroment###
 
-`cd` to the unpacked Urbit directory you just created.  If this works,
-`ls urb` should show:
+`cd` to the unpacked Urbit directory you just created:
+
+    cd urbit
+
+If this works, `ls urb` should show:
 
     urbit.pill  zod/
 
@@ -87,6 +98,8 @@ To make sure this worked,
     echo $URBIT_HOME
 
 should show `/urb` within the current directory.
+
+If this didn't work, you'll have to do this the hard way. run `vi ~/.bash_profile` and fix it.
 
 ###Build###
 
@@ -417,6 +430,12 @@ To install them (the simplest, slowest, most general way):
     [%vane %e /~waclux-tomwyc/arvo/~2013.11.26..20.29.15..090f/eyre ~forbur-disben]
 
 All of your state, including running tasks, will be unchanged.
+
+Sometimes the interpreter, called `vere` gets updated. In your urbit directory, back in Unixland, run:
+
+    git pull origin master
+
+every so often to get the latest Urbit source code.
 
 ###Chat###
 

@@ -287,14 +287,14 @@ Observe that the tile stems are no longer rune digraphs.  Rather,
 a gardening metaphor appears to pertain.  Let's work through
 these one by one, showing both (regular) syntax and semantics.
 
-###[%axil p=base]###
+###`[%axil p=base]`###
 
 An `%axil` is a simple built-in mechanism for a few basic
 icons: an atom of any odor (`@odor`, or just `@` for the
 odorless base atom); a noun (`*`); a cell of nouns (`^`); a
 loobean `?`; and null `~`. 
 
-###[%leaf p=term q=@]###
+###`[%leaf p=term q=@]`###
 
 A `%leaf` is an atomic constant of value `q` and odor `p`.
 Obviously its icon is a `%cube`.
@@ -305,7 +305,7 @@ twig, `7` has a type of [%atom %ud]; `%7` has a type of
 `[%cube 7 [%atom %ud]]`.  But the icon of the leaf `7` is,
 again, `[%cube 7 [%atom %ud]]`.
 
-###[p=tile q=tile]###
+###`[p=tile q=tile]`###
 
 Tiles autocons, just like twigs - a cell of tiles is a tile of
 a cell.  But we shouldn't skip the differences too lightly.
@@ -329,7 +329,7 @@ there is also a regular tall/wide tuple syntax, with `$:`
         @
     ==
 
-###[%bark p=term q=tile]###
+###`[%bark p=term q=tile]`###
 
 Wrap a name round a tile.  `a=*` parses as `[%bark %a %noun]`.
 
@@ -344,7 +344,7 @@ syntax, but only in the irregular form.  The twig equivalent of
 Obviously a silly syntactic arrangement.  But you can need it if
 `q` is really big.
 
-###[%reed p=tile q=tile]###
+###`[%reed p=tile q=tile]`###
 
 A `%reed` is a tile whose icon contains two kinds of nouns: atoms
 of tile `p` and cells of tile `q`.
@@ -357,7 +357,7 @@ There is no irregular form of `%reed`.  The regular form is:
 
 or in wide mode, of course, `$|(~ [@ @])`.
 
-###[%kelp p=[i=line t=(list line)]]###
+###`[%kelp p=[i=line t=(list line)]]`###
 
 A `kelp` is the workhorse of tiles - it provides the most common
 data structure in any language, the discriminated union.  
@@ -370,7 +370,7 @@ are known inevitably as `fronds`.
 In Hoon - it is properly a singular noun.  And that's that.  And 
 oddly, it's not that hard to run out of four-letter plants.)
 
-###[%bush p=tile q=tile]###
+###`[%bush p=tile q=tile]`###
 
 A `%bush` is a tile in which there are two kinds of nouns: cells
 whose head is a cell (tile `p`) and cells whose head is an atom
@@ -390,7 +390,7 @@ Sure, we could attach these semantics to an atom, and just use a
 explicit *cons* stem of some sort.  But it would be a bulky and
 annoying pain in the butt as compared to autocons.
 
-###[%fern p=[i=tile t=(list tile)]]]###
+###`[%fern p=[i=tile t=(list tile)]]`###
 
 A `fern` is a non-empty list of cases; its icon is naturally
 a `%fork`.  The programmer is responsible for ensuring that the
@@ -423,7 +423,7 @@ patterns, even if small structural efficiencies can be extracted.
 Therefore, it's worth telling both the compiler and the reader
 exactly what the programmer is trying to do in each case.
 
-###[%herb p=twig]###
+###`[%herb p=twig]`###
 
 You can write your own tile which is just a gate, accepting a
 sample of `*` and normalizing it as you choose.  If you use a
@@ -450,7 +450,7 @@ twig we provide will be applied when we whip or clam.  Hence,
 arbitrary normalization and/or verification procedures may be
 part of the herbaceous custom tile.
 
-###[%weed p=twig]###
+###`[%weed p=twig]`###
 
 `%weed` is the lamest kind of tile - tile by example.  A `%weed`
 is defined by its example twig `p`, which produces the icon.

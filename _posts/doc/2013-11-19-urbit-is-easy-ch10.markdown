@@ -4,6 +4,8 @@ category: doc
 title: Urbit Is Easy&#58; Chapter X (Type Inference)
 ---
 
+*Ever, as before, does Madness remain a mysterious-terrific, altogether infernal boiling-up of the Nether Chaotic Deep, through this fair-painted Vision of Creation, which swims thereon, which we name the Real.*
+
 **(Carlyle)**
 
 [**Prev**: Tiles](urbit-is-easy-ch9.html)
@@ -162,11 +164,11 @@ instance, let's quickly run through how `++mint` handles a
 `=+` (`tislus`) twig, `[%tsls p=twig q=twig]`.  This is a 
 synthetic twig:
 
-  ++  open
-    ^-  twig
-    ?-  gen
-      [%tsls *]  [%tsgr [p.gen [~ 1]] q.gen]
-    ==
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%tsls *]  [%tsgr [p.gen [~ 1]] q.gen]
+      ==
 
 ie, `=+(a b)` is `=>([a .] b)`.  We thus turn to the `%tsgr`
 twig in `++mint`.  Simplifying broadly:
@@ -421,7 +423,7 @@ If you don't completely understand (or believe) this, or if you are
 not quite sure on the difference between head and tail recursion,
 just cast the product of every arm.
 
-`%kthp` also has an irregular wide form.  `^-(@tas foo) can also
+`%kthp` also has an irregular wide form.  `^-(@tas foo)` can also
 be written
 
     `@tas`foo
