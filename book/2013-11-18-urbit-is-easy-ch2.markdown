@@ -246,7 +246,7 @@ fails to terminate.
 
 ###`?`###
 
-`?` (pronounced "wut") tests whether is a noun is a cell.  Again, 
+`?` (pronounced "wut") tests whether a noun is a cell.  Again, 
 `0` means yes, `1` means no:
 
     8  ::    ?[a b]           0
