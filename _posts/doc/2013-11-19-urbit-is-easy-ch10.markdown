@@ -570,7 +570,7 @@ pass a function an argument more specialized than its declaration.
 
 Consider a function that takes a pair `[a b]` and produces [b a].
 Any noun will obviously do for `b` and `a`.  So the sample tile
-is `[a=\* b=\*]`.  But suppose the caller knows something more
+is `[a=* b=*]`.  But suppose the caller knows something more
 about `a` and `b`.  What happens?  Let's give it a try:
 
     ~zod/try=> :type; (|=([a=* b=*] [b a]) %foo %bar)
@@ -587,11 +587,11 @@ Here's something else we can do:
     [%bar %foo]
     [%bar %foo]
 
-By using `|\*` (`bartar`, `%brtr`), we seem to have produced the
+By using `|*` (`bartar`, `%brtr`), we seem to have produced the
 same noun, but not lost any type information.  Interesting...
 
-The difference is that while both `|=` and `|\*` are polymorphic,
-`|=` uses *geometric* polymorphism and `|\*` uses *generic*.
+The difference is that while both `|=` and `|*` are polymorphic,
+`|=` uses *geometric* polymorphism and `|*` uses *generic*.
 Which should you choose?
 
 There's a simple rule for this, which is that unless you are a
@@ -613,7 +613,7 @@ can I take any noun in type `ref`, and use it as if it was within
 `sut`?
 
 Consider the trivial example above - the question is, can we use
-our noun [%foo %bar] as if it was a `[a=\* b=\*]`?  
+our noun [%foo %bar] as if it was a `[a=* b=*]`?  
 
 When we use `%=` (`centis`, `%cnts`) to modify the sample in a
 core, we actually change the type of the core.  (Of course we are
@@ -831,7 +831,7 @@ stick to French as she is spoke in Paris.
 
 On the other hand, at least this grizzled old baboon has no
 trouble parsing the apparent line noise above.  Why so funky?
-Why, oh why, `\_,*`?  Because for various irrelevant reasons,
+Why, oh why, `_,*`?  Because for various irrelevant reasons,
 the `++list` here is trying as hard as possible to build itself
 out of tiles.
 
@@ -869,7 +869,7 @@ Let's slip into something more comfortable:
 We haven't met `$+` (`buclus`) yet.  `$+(p q)` is a tile for a
 gate which accepts `p` and produces `q`.  The spectre of function
 signatures once again rears its ugly head - but `$+(p q)` is no
-different from `$\_(|+(p _q))`.
+different from `$_(|+(p _q))`.
 
 Otherwise, when we think of a wet gate (`|*`) as a macro, we see
 (list ,@) producing
@@ -910,12 +910,14 @@ What is this `homo` thing (meaning "homogenize", of course)?
 Exactly that - it homogenizes the type of a list, producing its
 sample noun unchanged:
 
+```
     ++  homo
       |*  a=(list)
       ^+  =<  $
         |%  +-  $  ?:(_? ~ [i=(snag 0 a) t=$])
         --
       a
+```
 
 Here is more dark magic that should clearly be ignored.  But
 essentially, to homogenize a list `a`, we are casting `a` to a
