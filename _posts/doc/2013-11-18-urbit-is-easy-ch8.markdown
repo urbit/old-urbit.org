@@ -16,17 +16,19 @@ that now.
 ##Gates and "lambda"##
 
 While we can hardly stop you from saying "function," the proper
-Urbit terminology is `gate`.  You might remember our discussion
-in chapter 4.  A core is
+Urbit terminology is `gate`.  
+
+A gate is a kind of core - you might remember our discussion in
+chapter 4.  A core is
 
     [battery payload]
 
 The battery is one or more formulas; the payload is any noun.  
 
-In a gate, which is a special case of a core, there is exactly
-one arm - whose name is `$`, `buc` or `blip` - ie, nothing.  One
-arm, one twig, one formula.  Moreover, the payload is always a 
-cell, arbitrarily labeled `sample` and `context`.  
+In a gate, there is exactly one arm - whose name is `$`, `buc` or
+`blip` - ie, nothing.  One arm, one twig, one formula.  Moreover,
+the payload is always a cell, arbitrarily labeled `sample` and
+`context`.  
 
 So - to combine several ways of deconstructing a noun - a gate
 looks like this:
