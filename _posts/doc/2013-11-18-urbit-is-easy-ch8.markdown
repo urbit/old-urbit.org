@@ -5,6 +5,7 @@ title: Urbit Is Easy&#58; Chapter VIII (Gates)
 ---
 
 [**Prev**: Hoon Computes](urbit-is-easy-ch7.html)
+[**Next**: Tiles](urbit-is-easy-ch9.html)
 
 *"Anyone who thinks he's original is merely ignorant."*
 **(Nicolás Gómez Dávila)**
@@ -460,3 +461,4 @@ the difference between a bat and a bird.  Both have wings and use
 them to fly, but below that level everything is different.
 
 [**Prev**: Hoon Computes](urbit-is-easy-ch7.html)
+[**Next**: Tiles](urbit-is-easy-ch9.html)
