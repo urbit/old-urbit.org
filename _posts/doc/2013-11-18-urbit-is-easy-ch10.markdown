@@ -8,7 +8,7 @@ title: Urbit Is Easy&#58; Chapter X (Type Inference)
 
 **(Carlyle)**
 
-[**Prev**: Tiles](2013-11-19-urbit-is-easy-ch9.html)
+[**Prev**: Tiles](urbit-is-easy-ch9.html)
 
 ##On type inference algorithms##
 
@@ -960,4 +960,4 @@ change might confuse.
 In short: generic polymorphism is cool but wacky.  Leave it to
 the experts, please!
 
-[**Prev**: Tiles](2013-11-19-urbit-is-easy-ch9.html)
+[**Prev**: Tiles](urbit-is-easy-ch9.html)
