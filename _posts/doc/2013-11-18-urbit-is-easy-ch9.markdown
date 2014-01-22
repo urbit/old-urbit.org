@@ -10,6 +10,7 @@ ignorance foisted upon you."*
 **(Carlyle)**
 
 [**Prev**: Gates](urbit-is-easy-ch8.html)
+[**Next**: Type Inference](urbit-is-easy-ch10.html)
 
 ##Tiles##
 
@@ -467,3 +468,4 @@ form is `$_` (`buccab`):
     $_  foo
 
 [**Prev**: Gates](urbit-is-easy-ch8.html)
+[**Next**: Type Inference](urbit-is-easy-ch10.html)

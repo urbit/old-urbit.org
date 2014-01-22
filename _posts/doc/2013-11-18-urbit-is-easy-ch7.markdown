@@ -5,6 +5,7 @@ title: Urbit Is Easy&#58; Chapter VII (Hoon Computes)
 ---
 
 [**Prev**: Moar Hoon Types](urbit-is-easy-ch6.html)
+[**Next**: Gates](urbit-is-easy-ch8.html)
 
 *"I've only been in love with a beer bottle and a mirror."*
 **(Sid Vicious)**
@@ -952,4 +953,5 @@ Exercise 2: write a Hoon program :fib that instead computes the
 Fibonacci number at `n`.
 
 [**Prev**: Moar Hoon Types](urbit-is-easy-ch6.html)
+[**Next**: Gates](urbit-is-easy-ch8.html)
 
