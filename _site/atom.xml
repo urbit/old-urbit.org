@@ -4,7 +4,7 @@
  <title>The blog of Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org"/>
- <updated>2014-01-20T12:03:56-08:00</updated>
+ <updated>2014-01-23T11:05:57-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Urbit</name>
@@ -57,7 +57,7 @@
    <link href="http://urbit.org/2014/01/18/mod5.html"/>
    <updated>2014-01-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2014/01/18/mod5</id>
-   <content type="html">&lt;p&gt;That is, we can evaluate arbitrary numbers of formulas on the same subject in parallel. Which is pretty cool. But what if we want to run them in series?&lt;/p&gt;
+   <content type="html">&lt;p&gt;Which is pretty cool. But what if we want to run them in series?&lt;/p&gt;
 
 &lt;p&gt;The expression &lt;code&gt;*[[42 43] [[4 0 3] 1 [0 1]]]&lt;/code&gt; is a good example of how this might work:&lt;/p&gt;
 
@@ -90,7 +90,7 @@
 
 &lt;p&gt;except that Nock 2 has an extra &lt;code&gt;*&lt;/code&gt; meaning we run everything through Nock a second time. So if we have two formulas&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;*[subject 2 formula1 formula2]          *[*[subject formula1] *[subject formula2]]  &lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;*[subject 2 formula1 formula2]               *[*[subject formula1] *[subject formula2]]  &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;which we can rewrite as:&lt;/p&gt;
 
@@ -10422,7 +10422,7 @@ them to use names. :)&lt;/code&gt;&lt;/pre&gt;</content>
 
 &lt;p&gt;&lt;strong&gt;(Carlyle)&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch9.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Tiles&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.urbit.org/2013/11/18/urbit-is-easy-ch9.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Tiles&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;on_type_inference_algorithms&quot;&gt;On type inference algorithms&lt;/h2&gt;
 
@@ -10711,7 +10711,7 @@ it(@)&lt;/code&gt;&lt;/pre&gt;
 [i=1 t=~[2 3 4]]
 { %foobar [i=@ t=it(@)] }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;It’s important to note that the &lt;em&gt;only&lt;/em&gt; hoons recognized in branch analysis are &lt;code&gt;?=&lt;/code&gt; (&lt;code&gt;wuttis&lt;/code&gt;, &lt;code&gt;%wtts&lt;/code&gt;, fish), &lt;code&gt;?&amp;amp;&lt;/code&gt; (&lt;code&gt;wutpam&lt;/code&gt;, &lt;code&gt;%wtts&lt;/code&gt;, logical and), and &lt;code&gt;?|&lt;/code&gt; (&lt;code&gt;wutbar&lt;/code&gt;, &lt;code&gt;%wtbr&lt;/code&gt;, logical or). (Boolean logic is fully understood within the test itself, so the second twig in a &lt;code&gt;?&amp;amp;&lt;/code&gt; can depend on the result of the first.)&lt;/p&gt;
+&lt;p&gt;It’s important to note that the &lt;em&gt;only&lt;/em&gt; hoons recognized in branch analysis are &lt;code&gt;?=&lt;/code&gt; (&lt;code&gt;wuttis&lt;/code&gt;, &lt;code&gt;%wtts&lt;/code&gt;, fish), &lt;code&gt;?&amp;amp;&lt;/code&gt; (&lt;code&gt;wutpam&lt;/code&gt;, &lt;code&gt;%wtpm&lt;/code&gt;, logical and), and &lt;code&gt;?|&lt;/code&gt; (&lt;code&gt;wutbar&lt;/code&gt;, &lt;code&gt;%wtbr&lt;/code&gt;, logical or). (Boolean logic is fully understood within the test itself, so the second twig in a &lt;code&gt;?&amp;amp;&lt;/code&gt; can depend on the result of the first.)&lt;/p&gt;
 
 &lt;p&gt;Of course, synthetic hoons that reduce to these work as well. However, we don’t learn from any other test, even if we could:&lt;/p&gt;
 
@@ -10741,7 +10741,7 @@ it(@)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;One interesting question in any language is what happens when you pass a function an argument more specialized than its declaration.&lt;/p&gt;
 
-&lt;p&gt;Consider a function that takes a pair &lt;code&gt;[a b]&lt;/code&gt; and produces [b a]. Any noun will obviously do for &lt;code&gt;b&lt;/code&gt; and &lt;code&gt;a&lt;/code&gt;. So the sample tile is &lt;code&gt;[a=\* b=\*]&lt;/code&gt;. But suppose the caller knows something more about &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. What happens? Let’s give it a try:&lt;/p&gt;
+&lt;p&gt;Consider a function that takes a pair &lt;code&gt;[a b]&lt;/code&gt; and produces [b a]. Any noun will obviously do for &lt;code&gt;b&lt;/code&gt; and &lt;code&gt;a&lt;/code&gt;. So the sample tile is &lt;code&gt;[a=* b=*]&lt;/code&gt;. But suppose the caller knows something more about &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. What happens? Let’s give it a try:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;~zod/try=&amp;gt; :type; (|=([a=* b=*] [b a]) %foo %bar)
 [7.496.034 7.303.014]
@@ -10755,9 +10755,9 @@ it(@)&lt;/code&gt;&lt;/pre&gt;
 [%bar %foo]
 [%bar %foo]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;By using &lt;code&gt;|\*&lt;/code&gt; (&lt;code&gt;bartar&lt;/code&gt;, &lt;code&gt;%brtr&lt;/code&gt;), we seem to have produced the same noun, but not lost any type information. Interesting&lt;/p&gt;
+&lt;p&gt;By using &lt;code&gt;|*&lt;/code&gt; (&lt;code&gt;bartar&lt;/code&gt;, &lt;code&gt;%brtr&lt;/code&gt;), we seem to have produced the same noun, but not lost any type information. Interesting&lt;/p&gt;
 
-&lt;p&gt;The difference is that while both &lt;code&gt;|=&lt;/code&gt; and &lt;code&gt;|\*&lt;/code&gt; are polymorphic, &lt;code&gt;|=&lt;/code&gt; uses &lt;em&gt;geometric&lt;/em&gt; polymorphism and &lt;code&gt;|\*&lt;/code&gt; uses &lt;em&gt;generic&lt;/em&gt;. Which should you choose?&lt;/p&gt;
+&lt;p&gt;The difference is that while both &lt;code&gt;|=&lt;/code&gt; and &lt;code&gt;|*&lt;/code&gt; are polymorphic, &lt;code&gt;|=&lt;/code&gt; uses &lt;em&gt;geometric&lt;/em&gt; polymorphism and &lt;code&gt;|*&lt;/code&gt; uses &lt;em&gt;generic&lt;/em&gt;. Which should you choose?&lt;/p&gt;
 
 &lt;p&gt;There’s a simple rule for this, which is that unless you are a wizard doing wizardly things, you should use &lt;code&gt;|=&lt;/code&gt;. Generic polymorphism is a way to build and use tools like containers (lists, etc), which in other, inferior languages might simply be built in to the language semantics. Especially as a new Hoon programmer, you are probably not building heavy machinery of this kind, and should probably make do with the standard components.&lt;/p&gt;
 
@@ -10767,7 +10767,7 @@ it(@)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We’ve already met the fundamental function of geometric polymorphism, &lt;code&gt;++nest&lt;/code&gt;. The question &lt;code&gt;(nest sut ref)&lt;/code&gt; asks is: can I take any noun in type &lt;code&gt;ref&lt;/code&gt;, and use it as if it was within &lt;code&gt;sut&lt;/code&gt;?&lt;/p&gt;
 
-&lt;p&gt;Consider the trivial example above - the question is, can we use our noun [%foo %bar] as if it was a &lt;code&gt;[a=\* b=\*]&lt;/code&gt;?&lt;/p&gt;
+&lt;p&gt;Consider the trivial example above - the question is, can we use our noun [%foo %bar] as if it was a &lt;code&gt;[a=* b=*]&lt;/code&gt;?&lt;/p&gt;
 
 &lt;p&gt;When we use &lt;code&gt;%=&lt;/code&gt; (&lt;code&gt;centis&lt;/code&gt;, &lt;code&gt;%cnts&lt;/code&gt;) to modify the sample in a core, we actually change the type of the core. (Of course we are not &lt;em&gt;modifying&lt;/em&gt; the core per se, but creating a new one with the given changes.)&lt;/p&gt;
 
@@ -10871,7 +10871,7 @@ it(@)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Don’t worry. This is just grievously badass hardcore Hoon - as irregular as Marseilles street slang. As a novice Hoon monkey, you won’t be writing &lt;code&gt;++list&lt;/code&gt; or anything like it, and you can stick to French as she is spoke in Paris.&lt;/p&gt;
 
-&lt;p&gt;On the other hand, at least this grizzled old baboon has no trouble parsing the apparent line noise above. Why so funky? Why, oh why, &lt;code&gt;\_,*&lt;/code&gt;? Because for various irrelevant reasons, the &lt;code&gt;++list&lt;/code&gt; here is trying as hard as possible to build itself out of tiles.&lt;/p&gt;
+&lt;p&gt;On the other hand, at least this grizzled old baboon has no trouble parsing the apparent line noise above. Why so funky? Why, oh why, &lt;code&gt;_,*&lt;/code&gt;? Because for various irrelevant reasons, the &lt;code&gt;++list&lt;/code&gt; here is trying as hard as possible to build itself out of tiles.&lt;/p&gt;
 
 &lt;p&gt;For instance, in general in Hoon it is gauche for a gate to use its core’s namespace to recurse back into itself, but tiles do not expose their own internals to the twigs they contain (otherwise, obviously, they could not be hygienic).&lt;/p&gt;
 
@@ -10895,7 +10895,7 @@ a)&lt;/code&gt; within &lt;code&gt;++list&lt;/code&gt; - a normal usage in compl
 ?@  b  ~
 [i=(a -.b) t=$(b +.b)]&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;We haven’t met &lt;code&gt;$+&lt;/code&gt; (&lt;code&gt;buclus&lt;/code&gt;) yet. &lt;code&gt;$+(p q)&lt;/code&gt; is a tile for a gate which accepts &lt;code&gt;p&lt;/code&gt; and produces &lt;code&gt;q&lt;/code&gt;. The spectre of function signatures once again rears its ugly head - but &lt;code&gt;$+(p q)&lt;/code&gt; is no different from &lt;code&gt;$\_(|+(p _q))&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We haven’t met &lt;code&gt;$+&lt;/code&gt; (&lt;code&gt;buclus&lt;/code&gt;) yet. &lt;code&gt;$+(p q)&lt;/code&gt; is a tile for a gate which accepts &lt;code&gt;p&lt;/code&gt; and produces &lt;code&gt;q&lt;/code&gt;. The spectre of function signatures once again rears its ugly head - but &lt;code&gt;$+(p q)&lt;/code&gt; is no different from &lt;code&gt;$_(|+(p _q))&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Otherwise, when we think of a wet gate (&lt;code&gt;|*&lt;/code&gt;) as a macro, we see (list ,@) producing&lt;/p&gt;
 
@@ -10924,12 +10924,14 @@ a)&lt;/code&gt; within &lt;code&gt;++list&lt;/code&gt; - a normal usage in compl
 
 &lt;p&gt;What is this &lt;code&gt;homo&lt;/code&gt; thing (meaning “homogenize”, of course)? Exactly that - it homogenizes the type of a list, producing its sample noun unchanged:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;++  homo
-  |*  a=(list)
-  ^+  =&amp;lt;  $
-    |%  +-  $  ?:(_? ~ [i=(snag 0 a) t=$])&lt;/code&gt;&lt;/pre&gt;
-&lt;hr /&gt;
-&lt;pre&gt;&lt;code&gt;  a&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;
+    ++  homo
+      |*  a=(list)
+      ^+  =&amp;lt;  $
+        |%  +-  $  ?:(_? ~ [i=(snag 0 a) t=$])
+        --
+      a
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Here is more dark magic that should clearly be ignored. But essentially, to homogenize a list &lt;code&gt;a&lt;/code&gt;, we are casting &lt;code&gt;a&lt;/code&gt; to a deranged pseudo-loop that produces an infinite stream of the first item in &lt;code&gt;a&lt;/code&gt;, selected via the &lt;code&gt;++snag&lt;/code&gt; function:&lt;/p&gt;
 
@@ -10959,7 +10961,7 @@ a)&lt;/code&gt; within &lt;code&gt;++list&lt;/code&gt; - a normal usage in compl
 
 &lt;p&gt;In short: generic polymorphism is cool but wacky. Leave it to the experts, please!&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch9.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Tiles&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;www.urbit.org/2013/11/18/urbit-is-easy-ch9.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Tiles&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -10971,7 +10973,7 @@ a)&lt;/code&gt; within &lt;code&gt;++list&lt;/code&gt; - a normal usage in compl
 
 &lt;p&gt;&lt;strong&gt;(Carlyle)&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch8.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Gates&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch8.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Gates&lt;/a&gt; &lt;a href=&quot;www.urbit.org/2013/11/19/urbit-is-easy-ch10.html&quot;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Type Inference&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;tiles&quot;&gt;Tiles&lt;/h2&gt;
 
@@ -11272,7 +11274,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;$_  foo&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch8.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Gates&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch8.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Gates&lt;/a&gt; &lt;a href=&quot;www.urbit.org/2013/11/19/urbit-is-easy-ch10.html&quot;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Type Inference&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -11280,7 +11282,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch8.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch8</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch7.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Computes&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch7.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Computes&lt;/a&gt; &lt;a href=&quot;urbit-is-easy-ch9.html&quot;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Tiles&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;“Anyone who thinks he’s original is merely ignorant.”&lt;/em&gt; &lt;strong&gt;(Nicolás Gómez Dávila)&lt;/strong&gt;&lt;/p&gt;
 
@@ -11288,13 +11290,15 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&quot;gates_and_lambda&quot;&gt;Gates and “lambda”&lt;/h2&gt;
 
-&lt;p&gt;While we can hardly stop you from saying “function,” the proper Urbit terminology is &lt;code&gt;gate&lt;/code&gt;. You might remember our discussion in chapter 4. A core is&lt;/p&gt;
+&lt;p&gt;While we can hardly stop you from saying “function,” the proper Urbit terminology is &lt;code&gt;gate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A gate is a kind of core - you might remember our discussion in chapter 4. A core is&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[battery payload]&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The battery is one or more formulas; the payload is any noun.&lt;/p&gt;
 
-&lt;p&gt;In a gate, which is a special case of a core, there is exactly one arm - whose name is &lt;code&gt;$&lt;/code&gt;, &lt;code&gt;buc&lt;/code&gt; or &lt;code&gt;blip&lt;/code&gt; - ie, nothing. One arm, one twig, one formula. Moreover, the payload is always a cell, arbitrarily labeled &lt;code&gt;sample&lt;/code&gt; and &lt;code&gt;context&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In a gate, there is exactly one arm - whose name is &lt;code&gt;$&lt;/code&gt;, &lt;code&gt;buc&lt;/code&gt; or &lt;code&gt;blip&lt;/code&gt; - ie, nothing. One arm, one twig, one formula. Moreover, the payload is always a cell, arbitrarily labeled &lt;code&gt;sample&lt;/code&gt; and &lt;code&gt;context&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;So - to combine several ways of deconstructing a noun - a gate looks like this:&lt;/p&gt;
 
@@ -11634,7 +11638,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;For those with classic FP experience, it’s very tempting to read &lt;code&gt;|=&lt;/code&gt; (&lt;code&gt;bartis&lt;/code&gt;, &lt;code&gt;%brts&lt;/code&gt;) as “lambda.” I hope it’s clear by now that the difference between Hoon and classic FP languages is like the difference between a bat and a bird. Both have wings and use them to fly, but below that level everything is different.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch7.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Computes&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch7.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Hoon Computes&lt;/a&gt; &lt;a href=&quot;urbit-is-easy-ch9.html&quot;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Tiles&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
@@ -11642,7 +11646,7 @@ XX                      ::  code assuming a is a cell&lt;/code&gt;&lt;/pre&gt;
    <link href="http://urbit.org/2013/11/18/urbit-is-easy-ch7.html"/>
    <updated>2013-11-18T00:00:00-08:00</updated>
    <id>http://urbit.org/2013/11/18/urbit-is-easy-ch7</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch6.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Moar Hoon Types&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch6.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Moar Hoon Types&lt;/a&gt; &lt;a href=&quot;urbit-is-easy-ch8.html&quot;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Gates&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;“I’ve only been in love with a beer bottle and a mirror.”&lt;/em&gt; &lt;strong&gt;(Sid Vicious)&lt;/strong&gt;&lt;/p&gt;
 
@@ -12409,7 +12413,7 @@ $(b +(b))&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Exercise 2: write a Hoon program :fib that instead computes the Fibonacci number at &lt;code&gt;n&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch6.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Moar Hoon Types&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;a href=&quot;urbit-is-easy-ch6.html&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Moar Hoon Types&lt;/a&gt; &lt;a href=&quot;urbit-is-easy-ch8.html&quot;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Gates&lt;/a&gt;&lt;/p&gt;</content>
  </entry>
  
  <entry>
