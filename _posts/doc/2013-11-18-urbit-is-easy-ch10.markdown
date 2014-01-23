@@ -520,7 +520,7 @@ product can be ignored.  If we changed that:
 
 It's important to note that the *only* hoons recognized in branch
 analysis are `?=` (`wuttis`, `%wtts`, fish), `?&` (`wutpam`,
-`%wtts`, logical and), and `?|` (`wutbar`, `%wtbr`, logical or).
+`%wtpm`, logical and), and `?|` (`wutbar`, `%wtbr`, logical or).
 (Boolean logic is fully understood within the test itself, so the
 second twig in a `?&` can depend on the result of the first.)
 
