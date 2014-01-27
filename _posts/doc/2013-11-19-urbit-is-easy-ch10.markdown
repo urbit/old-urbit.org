@@ -758,7 +758,7 @@ inheritance and other fancy OO patterns.  (Hoon 191 had
 inheritance, but it was removed as incompletely baked.) You make
 a `%gold` core `%zinc` with `^&` (`ketpam`, `%ktpm`).
 
-Finally, the entire payload of a `%lead` (invariant) core is
+Finally, the entire payload of a `%lead` (bivariant) core is
 immune to reading or writing.  So all that matters is the product
 of the arms.  You make a lead core with `^?` (`ketwut`, `%ktwt`).
 
