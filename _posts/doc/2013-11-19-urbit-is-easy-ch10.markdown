@@ -841,7 +841,7 @@ its core's namespace to recurse back into itself, but tiles do
 not expose their own internals to the twigs they contain
 (otherwise, obviously, they could not be hygienic).
 
-manipulate the subject such that it's not possible to loop
+Tiles manipulate the subject such that it's not possible to loop
 properly.  So in fact there is no alternative but to use `(list
 a)` within `++list` - a normal usage in complex tiles, but only
 in complex tiles.
