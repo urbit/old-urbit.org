@@ -8,7 +8,7 @@ title: Urbit Is Easy&#58; Chapter X (Type Inference)
 
 **(Carlyle)**
 
-[**Prev**: Tiles](2013-11-19-urbit-is-easy-ch9.html)
+[**Prev**: Tiles](http://www.urbit.org/2013/11/18/urbit-is-easy-ch9.html)
 
 ##On type inference algorithms##
 
@@ -521,7 +521,7 @@ product can be ignored.  If we changed that:
 
 It's important to note that the *only* hoons recognized in branch
 analysis are `?=` (`wuttis`, `%wtts`, fish), `?&` (`wutpam`,
-`%wtts`, logical and), and `?|` (`wutbar`, `%wtbr`, logical or).
+`%wtpm`, logical and), and `?|` (`wutbar`, `%wtbr`, logical or).
 (Boolean logic is fully understood within the test itself, so the
 second twig in a `?&` can depend on the result of the first.)
 
@@ -961,4 +961,4 @@ change might confuse.
 In short: generic polymorphism is cool but wacky.  Leave it to
 the experts, please!
 
-[**Prev**: Tiles](2013-11-19-urbit-is-easy-ch9.html)
+[**Prev**: Tiles](http://www.urbit.org/2013/11/18/urbit-is-easy-ch9.html)
