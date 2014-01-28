@@ -447,7 +447,8 @@ Note that this is just a fancy modern arrangement of the classic Hoon
       b
     $(b +(b))
 
-Ie, it is only by casting *within* the arm that 
+Ie, it is only by casting *within* the loop that we can infer
+either head or tail recursion.
 
 The idiom of "barhep kethep tile" is common enough that you
 should rarely see a `|-` without a `^-`.  Especially while
