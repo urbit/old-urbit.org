@@ -6,7 +6,7 @@ title: `.=`, `dtts`, `%dtts`
 
 ###Synopsis###
 
-`.=`, `dottis`, `[dtts p=twig q=twig]` is a natural hoon that
+`.=`, `dottis`, `[%dtts p=twig q=twig]` is a natural hoon that
 applies nock `5` (equals) to the products of p and q.
 
 ###Definition###

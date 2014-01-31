@@ -6,7 +6,7 @@ title: `.*`, `dttr`, `%dttr`
 
 ###Synopsis###
 
-`.*`, `dottar`, `[dttr p=twig q=twig]` is a natural hoon that
+`.*`, `dottar`, `[%dttr p=twig q=twig]` is a natural hoon that
 calculates the nock of subject `p`, formula `q`.
 
 ###Definition###

@@ -1,12 +1,12 @@
 ---
 layout: post
 category: doc
-title: `XX`, `collus`, `%clls`
+title: `:+`, `collus`, `%clls`
 ---
 
 ###Synopsis###
 
-`XX`, `collus`, `[%clls p=twig q=twig]` is a synthetic hoon that
+`:+`, `collus`, `[%clls p=twig q=twig]` is a synthetic hoon that
 
 ###Definition###
 

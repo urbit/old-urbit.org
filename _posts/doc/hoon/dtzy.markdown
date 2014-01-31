@@ -6,7 +6,7 @@ title: `dtzy`, `%dtzy`
 
 ###Synopsis###
 
-`dotzey`, `[dtzy p=term q=@]` is a natural hoon that produces a
+`dotzey`, `[%dtzy p=term q=@]` is a natural hoon that produces a
 non-cubed atomic constant of odor `p` and value `q`.
 
 ###Definition###
