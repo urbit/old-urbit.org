@@ -6,7 +6,7 @@ title: `.^`, `dotket`, `%dtkt`
 
 ###Synopsis###
 
-`.^`, `dotket`, `[dtkt p=twig]` is a natural hoon that generates
+`.^`, `dotket`, `[%dtkt p=twig]` is a natural hoon that generates
 nock operator `11`, which in virtual userspace nock (`mock`)
 loads a file from the global namespace.
 

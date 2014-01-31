@@ -1,12 +1,12 @@
 ---
 layout: post
 category: doc
-title: `$@`, `barcen`, `%brcn`
+title: `|%`, `barcen`, `%brcn`
 ---
 
 ###Synopsis###
 
-`$@`, `barcen`, `[%brcn p=(map term foot)]` is a natural hoon
+`|%`, `barcen`, `[%brcn p=(map term foot)]` is a natural hoon
 that produces a core.
 
 ###Definition###

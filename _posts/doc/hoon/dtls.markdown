@@ -6,7 +6,7 @@ title: `.^`, `dotlus`, `%dtls`
 
 ###Synopsis###
 
-`.^`, `dotlus`, `[dtls p=twig]` is a natural hoon that generates
+`.^`, `dotlus`, `[%dtls p=twig]` is a natural hoon that generates
 nock operator `4`, which increments an atomic operand.
 
 ###Definition###

@@ -6,7 +6,7 @@ title: `dtzz`, `%dtzz`
 
 ###Synopsis###
 
-`dotzaz`, `[dtzz p=term q=*]` is a natural hoon that produces an
+`dotzaz`, `[%dtzz p=term q=*]` is a natural hoon that produces an
 cubed noun constant of value `q` and odor `p`, if `q` is an atom.
 
 ###Definition###
