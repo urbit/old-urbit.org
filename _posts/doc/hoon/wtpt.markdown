@@ -5,8 +5,9 @@ title: `?@`, `wutpat`, `%wtpt`
 ---
 
 ###Synopsis###
-
-`?@`, `wutpat`, `[%wtpt p=twig q=twig]` is a synthetic hoon that
+`?@`, `wutpat`, `[%wtpt p=wing q=twig r=twig]` is a synthetic hoon that
+evaluates `q` if `p` is equal to the bunt for its tile, otherwise `r`
+is evaluated.
 
 ###Definition###
 

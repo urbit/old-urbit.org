@@ -7,7 +7,7 @@ title: `:-`, `colhep`, `%clhp`
 ###Synopsis###
 
 `:-`, `colhep`, `[%clhp p=twig q=twig]` is a synthetic hoon that
-
+creates the cell [p q].
 ###Definition###
 
     ++  twig  

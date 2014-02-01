@@ -7,6 +7,7 @@ title: `|_`, `barcab`, `%brcb`
 ###Synopsis###
 
 `|_`, `barcab`, `[%brcb p=tile q=(map term foot)]` is a synthetic hoon that
+creates a core with the bunt of tile `p` in its context and arms `q`.
 
 ###Definition###
 

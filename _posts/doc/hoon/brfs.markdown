@@ -6,8 +6,9 @@ title: `|/`, `barfas`, `%brfs`
 
 ###Synopsis###
 
-`|/`, `barfas`, `[%brfs p=tile q=(map term foot)]` is a synthetic 
-hoon that 
+`|/`, `barfas`, `[%brfs p=tile q=(map term foot)]` is a synthetic hoon
+that creates a core with the bunt of tile `p` in its context and wet
+arms `q`.
 
 
 ###Definition###

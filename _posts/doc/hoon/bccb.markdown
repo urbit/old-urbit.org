@@ -7,6 +7,7 @@ title: `$_`, `buccab`, `%bccb`
 ###Synopsis###
 
 `$_`, `buccab`, `[%bccb p=tile]` is a synthetic hoon that
+produces the bunt (default value) for `p`.
 
 ###Definition###
 
@@ -15,11 +16,11 @@ title: `$_`, `buccab`, `%bccb`
       ==
 
 ###Regular form (tall)###
-
+$_  p
 ###Regular form (wide)###
-
+None.
 ###Irregular form###
-
+_p
 ###Expansion###
     
     ++  open

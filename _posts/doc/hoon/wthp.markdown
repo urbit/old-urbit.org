@@ -6,7 +6,8 @@ title: `?-`, `wuthep`, `%wthp`
 
 ###Synopsis###
 
-`?-`, `wuthep`, `[%wthp p=twig q=twig]` is a synthetic hoon that
+`?-`, `wuthep`, `[%wthp p=wing q=tine]` is a synthetic hoon that
+works as a 'switch/case' construct.
 
 ###Definition###
 

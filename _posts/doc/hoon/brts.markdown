@@ -7,6 +7,8 @@ title: `|=`, `bartis`, `%brts`
 ###Synopsis###
 
 `|=`, `bartis`, `[%brts p=tile q=twig]` is a synthetic hoon that
+creates a gate (i.e. a core with a single unnamed dry arm) with the
+bunt of tile `p` in its context.
 
 ###Definition###
 

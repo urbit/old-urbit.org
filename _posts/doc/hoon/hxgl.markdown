@@ -6,8 +6,9 @@ title: `#>`, `haxgal`, `%hxgl`
 
 ###Synopsis###
 
-`#>`, `haxgal`, `[%hxgl p=tusk]` is a synthetic hoon that
-
+`#>`, `haxgal`, `[%hxgl p=tusk]` is a synthetic hoon that invokes the
+pretty-printer on `p`, producing a tank (tree of pretty-printer
+elements).
 ###Definition###
 
     ++  twig  
@@ -16,11 +17,11 @@ title: `#>`, `haxgal`, `%hxgl`
   ++  tusk  (list twig) 
 
 ###Regular form (tall)###
-
+None.
 ###Regular form (wide)###
-
+None.
 ###Irregular form###
-
+>i.p i.t.p ...<
 ###Expansion###
     
     ++  open

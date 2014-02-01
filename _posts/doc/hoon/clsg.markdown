@@ -6,12 +6,14 @@ title: `:~`, `colsig`, `%clsg`
 
 ###Synopsis###
 
-`:~`, `colsig`, `[%clsg p=twig q=twig]` is a synthetic hoon that
+`:~`, `colsig`, `[%clsg p=tusk]` is a synthetic hoon that takes a
+sequence of twigs and creates a null-terminated cell, geometrically
+compatible with a list.
 
 ###Definition###
 
     ++  twig  
-      $%  [%clsg p=twig]
+      $%  [%clsg p=tusk]
       ==
 
 ###Regular form (tall)###

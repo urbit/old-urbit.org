@@ -6,7 +6,8 @@ title: `!>`, `zapgar`, `%zpgr`
 
 ###Synopsis###
 
-`!>`, `zapgar`, `[%zpgr p=twig q=twig]` is a synthetic hoon that
+`!>`, `zapgar`, `[%zpgr p=twig]` is a synthetic hoon that
+creates a vase (a type/value pair) for `p`.
 
 ###Definition###
 

@@ -6,7 +6,10 @@ title: `$,`, `buccom`, `%bccm`
 
 ###Synopsis###
 
-`$,`, `buccom`, `[%bccm p=tile]` is a synthetic hoon that
+`$,`, `buccom`, `[%bccm p=tile]` is a synthetic hoon that produces a
+validator core (clam) for `p`, which, when activated, will either
+produce the value given to it if valid, or the default value for `p`
+otherwise.
 
 ###Definition###
 
@@ -15,11 +18,11 @@ title: `$,`, `buccom`, `%bccm`
       ==
 
 ###Regular form (tall)###
-
+$,  p
 ###Regular form (wide)###
-
+None.
 ###Irregular form###
-
+,p
 ###Expansion###
     
     ++  open

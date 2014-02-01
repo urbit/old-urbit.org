@@ -6,7 +6,8 @@ title: `=|`, `tisbar`, `%tsbr`
 
 ###Synopsis###
 
-`=|`, `tisbar`, `[%tsbr p=twig q=twig]` is a synthetic hoon that
+`=|`, `tisbar`, `[%tsbr p=tile q=twig]` is a synthetic hoon that
+produces `q` with the bunted tile `p` as its subject.
 
 ###Definition###
 
