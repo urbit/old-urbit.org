@@ -7,6 +7,8 @@ title: `|+`, `barlus`, `%brls`
 ###Synopsis###
 
 `|+`, `barlus`, `[%brls p=tile q=twig]` is a synthetic hoon that
+creates a contravariant gate (i.e. an %iron core with a single unnamed
+arm) with the bunt of tile `p` in its context.
 
 ###Definition###
 

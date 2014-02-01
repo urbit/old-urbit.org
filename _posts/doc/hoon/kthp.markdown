@@ -1,17 +1,20 @@
 ---
 layout: post
 category: doc
-title: `XX`, `YYY`, `ZZ`
+title: `^-`, `kethep`, `%kthp`
 ---
 
 ###Synopsis###
 
-`XX`, `YYY`, `[ZZ p=twig q=twig]` is a synthetic hoon that
+`^-`, `kethep`, `[%kthp p=tile q=twig]` is a synthetic hoon that
+mates the type of tile `p` to the formula of twig `q`, minted 
+on the same subject - so long as the type of `q` nests within the
+type of `p`.
 
 ###Definition###
 
     ++  twig  
-      $%  [ZZ p=twig]
+      $%  [%kthp p=tile q=twig]
       ==
 
 ###Regular form (tall)###

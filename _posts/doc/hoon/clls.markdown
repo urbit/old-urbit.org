@@ -6,12 +6,13 @@ title: `:+`, `collus`, `%clls`
 
 ###Synopsis###
 
-`:+`, `collus`, `[%clls p=twig q=twig]` is a synthetic hoon that
+`:+`, `collus`, `[%clls p=twig q=twig r=twig]` is a synthetic hoon that
+creates the cell [p q r].
 
 ###Definition###
 
     ++  twig  
-      $%  [%clls p=twig]
+      $%  [%clls p=twig q=twig r=twig]
       ==
 
 ###Regular form (tall)###

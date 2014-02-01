@@ -7,6 +7,8 @@ title: `|*`, `bartar`, `%brtr`
 ###Synopsis###
 
 `|*`, `bartar`, `[%brtr p=tile q=twig]` is a synthetic hoon that
+creates a wet gate (i.e. a core with a single unnamed wet arm) with
+the bunt of tile `p` in its context.
 
 ###Definition###
 

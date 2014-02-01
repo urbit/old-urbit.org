@@ -6,7 +6,9 @@ title: `|-`, `barhep`, `%brhp`
 
 ###Synopsis###
 
-`|-`, `barhep`, `[%brhp p=twig]` is a synthetic hoon that
+`|-`, `barhep`, `[%brhp p=twig]` is a synthetic hoon that creates a
+core with a single dry arm (like `|.`, `bardot`) and immediately
+activates it.
 
 ###Definition###
 

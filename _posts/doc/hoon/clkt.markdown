@@ -7,6 +7,7 @@ title: `:^`, `colket`, `%clkt`
 ###Synopsis###
 
 `:^`, `colket`, `[%clkt p=twig q=twig r=twig s=twig]` is a synthetic hoon that
+creates a [p q r s] cell.
 
 ###Definition###
 

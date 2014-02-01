@@ -7,7 +7,7 @@ title: `=<`, `tisgal`, `%tsgl`
 ###Synopsis###
 
 `=<`, `tisgal`, `[%tsgl p=twig q=twig]` is a synthetic hoon that
-
+uses the product of `q` as the subject of `p`.
 ###Definition###
 
     ++  twig  

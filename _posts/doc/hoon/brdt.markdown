@@ -6,7 +6,8 @@ title: `|.`, `bardot`, `%brdt`
 
 ###Synopsis###
 
-`|.`, `bardot`, `[%brdt p=twig]` is a synthetic hoon that
+`|.`, `bardot`, `[%brdt p=twig]` is a synthetic hoon that creates a
+gate, i.e. a core with a single unnamed dry arm.
 
 ###Definition###
 
