@@ -6,8 +6,8 @@ title: `|.`, `bardot`, `%brdt`
 
 ###Synopsis###
 
-`|.`, `bardot`, `[%brdt p=twig]` is a synthetic hoon that creates a
-gate, i.e. a core with a single unnamed dry arm.
+`|.`, `bardot`, `[%brdt p=twig]` is a synthetic hoon that produces
+a dry `%gold` trap.
 
 ###Definition###
 
@@ -17,9 +17,18 @@ gate, i.e. a core with a single unnamed dry arm.
 
 ###Regular form (tall)###
 
+Kingside:
+
+    |.
+    p
+ 
+Queenside:
+
+    |.  p
+
 ###Regular form (wide)###
 
-###Irregular form###
+    |.(p)
 
 ###Expansion###
     
@@ -32,3 +41,4 @@ gate, i.e. a core with a single unnamed dry arm.
 
 ###Notes###
 
+See the bestiary of core patterns in chapter 11.

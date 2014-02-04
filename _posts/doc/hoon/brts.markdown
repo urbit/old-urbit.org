@@ -7,8 +7,7 @@ title: `|=`, `bartis`, `%brts`
 ###Synopsis###
 
 `|=`, `bartis`, `[%brts p=tile q=twig]` is a synthetic hoon that
-creates a gate (i.e. a core with a single unnamed dry arm) with the
-bunt of tile `p` in its context.
+produces a dry `%gold` gate with arm `q`, sample `[%bctr p]`.
 
 ###Definition###
 
@@ -18,9 +17,12 @@ bunt of tile `p` in its context.
 
 ###Regular form (tall)###
 
+    |=  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    |=(p q)
 
 ###Expansion###
     
@@ -33,3 +35,8 @@ bunt of tile `p` in its context.
 
 ###Notes###
 
+See the bestiary of cores in Chapter 11.
+
+In slang, street or gutter Hoon, `|=` is pronounced `bong`.  But
+any serious or respectable engineer will only say `bartis`.
+"Lambda" is not an appropriate usage in either circumstance.

@@ -6,8 +6,8 @@ title: `:^`, `colket`, `%clkt`
 
 ###Synopsis###
 
-`:^`, `colket`, `[%clkt p=twig q=twig r=twig s=twig]` is a synthetic hoon that
-creates a [p q r s] cell.
+`:^`, `colket`, `[%clkt p=twig q=twig r=twig s=twig]` is a 
+synthetic hoon that produces a cell `[p q r s]`.
 
 ###Definition###
 
@@ -17,17 +17,31 @@ creates a [p q r s] cell.
 
 ###Regular form (tall)###
 
+Kingside:
+
+    :^    p
+        q
+      r
+    s
+
+Queenside:
+
+    :^  p  q
+      r
+    s
+
+    :^  p  q  r  
+    s
+
 ###Regular form (wide)###
 
-###Irregular form###
+    :^(p q r s)
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%clkt *]
+      ?-  gen
+        [%clkt *]  [p.gen q.gen r.gen s.gen]
       ==
-
-###Notes###
 

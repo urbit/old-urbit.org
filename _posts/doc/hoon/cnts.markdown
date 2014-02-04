@@ -6,15 +6,15 @@ title: `%=`, `centis`, `%cnts`
 
 ###Synopsis###
 
-`%=`, `centis`, `[%cnts p=wing q=tray]` is a natural hoon that
+`%=`, `centis`, `[%cnts p=wing q=tram]` is a natural hoon that
 evaluates `p` with the changes specified in `q`.
 
 ###Definition###
 
     ++  twig  
-      $%  [%cnts p=wing q=tray]
+      $%  [%cnts p=wing q=tram]
       ==
-    ++  tray  (list ,[p=wing q=twig]) 
+    ++  tram  (list ,[p=wing q=twig]) 
 
 ###Regular form (tall)###
 

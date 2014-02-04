@@ -580,16 +580,15 @@ about `a` and `b`.  What happens?  Let's give it a try:
 
 With `|=` (`bartis`, `%brts`), the normal way of building a gate,
 we lost all our type information.  Sometimes this is fine.
-Sometimes it's exactly what we want.  But sometimes...
-
-Here's something else we can do:
+Sometimes it's exactly what we want.  But here's something else
+we can do:
 
     ~zod/try=> :type; (|*([a=* b=*] [b a]) %foo %bar)
     [%bar %foo]
     [%bar %foo]
 
 By using `|*` (`bartar`, `%brtr`), we seem to have produced the
-same noun, but not lost any type information.  Interesting...
+same noun, but not lost any type information.  Interesting!
 
 The difference is that while both `|=` and `|*` are polymorphic,
 `|=` uses *geometric* polymorphism and `|*` uses *generic*.

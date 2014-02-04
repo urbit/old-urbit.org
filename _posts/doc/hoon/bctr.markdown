@@ -7,7 +7,8 @@ title: `$*`, `buctar`, `%bctr`
 ###Synopsis###
 
 `$*`, `buctar`, `[%bctr p=tile]` is a synthetic hoon that
-produces the bunt (default value) for `p` as a compile-time constant.
+produces the bunt (default value) for `p` as a compile-time
+constant.
 
 ###Definition###
 
@@ -16,11 +17,17 @@ produces the bunt (default value) for `p` as a compile-time constant.
       ==
 
 ###Regular form (tall)###
-$*  p
+
+    $*  p
+
 ###Regular form (wide)###
-None.
+
+    $*(p)
+
 ###Irregular form###
-*p
+
+    *p
+
 ###Expansion###
     
     ++  open
@@ -32,3 +39,4 @@ None.
 
 ###Notes###
 
+See the discussion of tiles in chapter 9.

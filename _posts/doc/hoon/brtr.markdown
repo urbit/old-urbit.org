@@ -7,8 +7,7 @@ title: `|*`, `bartar`, `%brtr`
 ###Synopsis###
 
 `|*`, `bartar`, `[%brtr p=tile q=twig]` is a synthetic hoon that
-creates a wet gate (i.e. a core with a single unnamed wet arm) with
-the bunt of tile `p` in its context.
+produces a vulcanized wet gate with arm `q`, sample `[%bctr p]`.
 
 ###Definition###
 
@@ -18,9 +17,12 @@ the bunt of tile `p` in its context.
 
 ###Regular form (tall)###
 
+    |*  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    |*(p q)
 
 ###Expansion###
     
@@ -33,3 +35,5 @@ the bunt of tile `p` in its context.
 
 ###Notes###
 
+See the bestiary of cores in Chapter 11.  See also the discussion
+of vulcanization.

@@ -7,8 +7,8 @@ title: `|^`, `barket`, `%brkt`
 ###Synopsis###
 
 `|^`, `barket`, `[%brkt p=twig q=(map term foot)]` is a synthetic hoon
-that creates a core with the unnamed arm `p` and named arms `q`, then
-activates the unnamed arm.
+that produces a `%gold` book with arms `q`, plus `p` as `%$`, and 
+kicks it.
 
 ###Definition###
 
@@ -18,9 +18,20 @@ activates the unnamed arm.
 
 ###Regular form (tall)###
 
-###Regular form (wide)###
+Kingside:
 
-###Irregular form###
+    |^  
+      p
+    ++  p.n.q
+      q.n.q
+    --
+
+Queenside:
+  
+    |^  p
+      ++  p.n.q
+        q.n.q
+    --
 
 ###Expansion###
     
@@ -33,3 +44,6 @@ activates the unnamed arm.
 
 ###Notes###
 
+See the bestiary of cores in Chapter 11.
+
+`|^` is kind of pointless and may be deprecated in future releases.

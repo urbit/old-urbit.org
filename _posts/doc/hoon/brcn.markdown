@@ -7,7 +7,7 @@ title: `|%`, `barcen`, `%brcn`
 ###Synopsis###
 
 `|%`, `barcen`, `[%brcn p=(map term foot)]` is a natural hoon
-that produces a core.
+that produces a `%gold` core.
 
 ###Definition###
 
@@ -23,19 +23,19 @@ that produces a core.
 
 Kingside:
 
-    |%  ++  dry-arm
-          "hello, world"
-        +-  wet-arm
-          "goodbye, world"
-    --
-
-Queenside:
-
     |%  
     ++  dry-arm
       "hello, world"
     +-  wet-arm
       "goodbye, world"
+    --
+
+Queenside:
+
+    |%  ++  dry-arm
+          "hello, world"
+        +-  wet-arm
+          "goodbye, world"
     --
 
 ###Compilation###

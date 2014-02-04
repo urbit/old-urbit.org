@@ -7,7 +7,7 @@ title: `:%`, `colcen`, `%clcn`
 ###Synopsis###
 
 `:%`, `colcen`, `[%clcn p=tusk]` is a synthetic hoon that
-accepts a list of twigs `p` and produces a [[p ~] ~] cell.
+produces a cell `[[p ~] ~]`.
 
 ###Definition###
 
@@ -18,17 +18,23 @@ accepts a list of twigs `p` and produces a [[p ~] ~] cell.
 
 ###Regular form (tall)###
 
+    :%  i.p
+        i.t.p
+        i.t.t.p
+    ==
+
 ###Regular form (wide)###
 
+    :%(i.p i.t.p i.t.t.p)
+
 ###Irregular form###
-%[1 2 3 ...]
+
+    %[i.p i.t.p i.t.t.p]
+
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%clcn *]
+      ?-  gen
+        [%clcn *]  [[%clsg p.gen] [%bczp %null]]
       ==
-
-###Notes###
-

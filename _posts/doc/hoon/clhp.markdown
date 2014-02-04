@@ -7,26 +7,28 @@ title: `:-`, `colhep`, `%clhp`
 ###Synopsis###
 
 `:-`, `colhep`, `[%clhp p=twig q=twig]` is a synthetic hoon that
-creates the cell [p q].
+produces the cell `[p q]`.
+
 ###Definition###
 
     ++  twig  
-      $%  [%clhp p=twig]
+      $%  [%clhp p=twig q=twig]
       ==
 
 ###Regular form (tall)###
 
+    :-  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    :-(p q)
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%clhp *]
+      ?-  gen
+        [%clhp *]  [q.gen p.gen]
       ==
-
-###Notes###
 

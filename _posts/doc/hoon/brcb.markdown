@@ -6,8 +6,8 @@ title: `|_`, `barcab`, `%brcb`
 
 ###Synopsis###
 
-`|_`, `barcab`, `[%brcb p=tile q=(map term foot)]` is a synthetic hoon that
-creates a core with the bunt of tile `p` in its context and arms `q`.
+`|_`, `barcab`, `[%brcb p=tile q=(map term foot)]` is a synthetic
+hoon that produces a `%gold` tray with sample `p`, arms `q`.
 
 ###Definition###
 
@@ -17,9 +17,19 @@ creates a core with the bunt of tile `p` in its context and arms `q`.
 
 ###Regular form (tall)###
 
-###Regular form (wide)###
+Kingside:
 
-###Irregular form###
+    |_  p
+    ++  p.n.q
+      q.n.q
+    --
+
+Queenside:
+  
+    |_  p  
+      ++  p.n.q
+        q.n.q
+    --
 
 ###Expansion###
     
@@ -32,3 +42,4 @@ creates a core with the bunt of tile `p` in its context and arms `q`.
 
 ###Notes###
 
+See the bestiary of core patterns in chapter 11.

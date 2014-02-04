@@ -6,9 +6,8 @@ title: `|-`, `barhep`, `%brhp`
 
 ###Synopsis###
 
-`|-`, `barhep`, `[%brhp p=twig]` is a synthetic hoon that creates a
-core with a single dry arm (like `|.`, `bardot`) and immediately
-activates it.
+`|-`, `barhep`, `[%brhp p=twig]` is a synthetic hoon that produces
+a dry `%gold` trap and kicks it.
 
 ###Definition###
 
@@ -18,7 +17,18 @@ activates it.
 
 ###Regular form (tall)###
 
+Kingside:
+
+    |-
+    p
+
+Queenside:
+    
+    |-  p
+
 ###Regular form (wide)###
+
+    |-(p)
 
 ###Irregular form###
 
@@ -32,3 +42,4 @@ activates it.
 
 ###Notes###
 
+See the bestiary of core patterns in chapter 11.

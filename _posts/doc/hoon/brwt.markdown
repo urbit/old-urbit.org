@@ -6,9 +6,8 @@ title: `|?`, `barwut`, `%brwt`
 
 ###Synopsis###
 
-`|?`, `barwut`, `[%brwt q=twig]` is a synthetic hoon that creates a
-bivariant gate (i.e. a %lead core with a single unnamed arm) with the
-bunt of tile `p` in its context.
+`|?`, `barwut`, `[%brwt q=twig]` is a synthetic hoon that produces a
+dry `%lead` trap.
 
 ###Definition###
 
@@ -18,9 +17,18 @@ bunt of tile `p` in its context.
 
 ###Regular form (tall)###
 
+Kingside:
+
+    |?
+    p
+ 
+Queenside:
+
+    |?  p
+
 ###Regular form (wide)###
 
-###Irregular form###
+    |?(p)
 
 ###Expansion###
     
@@ -32,3 +40,5 @@ bunt of tile `p` in its context.
       ==
 
 ###Notes###
+
+See the bestiary of core patterns in chapter 11.

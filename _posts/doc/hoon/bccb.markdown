@@ -16,11 +16,17 @@ produces the bunt (default value) for `p`.
       ==
 
 ###Regular form (tall)###
-$_  p
+
+    $_  p
+
 ###Regular form (wide)###
-None.
+
+    $_(p)
+
 ###Irregular form###
-_p
+
+    _p
+
 ###Expansion###
     
     ++  open
@@ -32,3 +38,4 @@ _p
 
 ###Notes###
 
+See the discussion of tiles in chapter 9.

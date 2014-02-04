@@ -7,7 +7,7 @@ title: `:+`, `collus`, `%clls`
 ###Synopsis###
 
 `:+`, `collus`, `[%clls p=twig q=twig r=twig]` is a synthetic hoon that
-creates the cell [p q r].
+produces a cell `[p q r]`.
 
 ###Definition###
 
@@ -17,9 +17,20 @@ creates the cell [p q r].
 
 ###Regular form (tall)###
 
+Kingside:
+
+    :+  p
+      q
+    r
+
+Queenside:
+
+    :+  p   q
+    r
+
 ###Regular form (wide)###
 
-###Irregular form###
+    :+(p q r)
 
 ###Expansion###
     
@@ -28,6 +39,3 @@ creates the cell [p q r].
       ?-    gen
           [%clls *]
       ==
-
-###Notes###
-

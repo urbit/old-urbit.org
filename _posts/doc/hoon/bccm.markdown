@@ -7,9 +7,7 @@ title: `$,`, `buccom`, `%bccm`
 ###Synopsis###
 
 `$,`, `buccom`, `[%bccm p=tile]` is a synthetic hoon that produces a
-validator core (clam) for `p`, which, when activated, will either
-produce the value given to it if valid, or the default value for `p`
-otherwise.
+normalizing gate (clam) for `p`. 
 
 ###Definition###
 
@@ -18,11 +16,17 @@ otherwise.
       ==
 
 ###Regular form (tall)###
-$,  p
+
+    $,  p
+
 ###Regular form (wide)###
-None.
+
+    None.
+
 ###Irregular form###
-,p
+
+    ,p
+
 ###Expansion###
     
     ++  open
@@ -34,3 +38,4 @@ None.
 
 ###Notes###
 
+See the discussion of tiles in chapter 9.
