@@ -1,12 +1,12 @@
 ---
 layout: post
 category: doc
-title: `.^`, `dotlus`, `%dtls`
+title: `.+`, `dotlus`, `%dtls`
 ---
 
 ###Synopsis###
 
-`.^`, `dotlus`, `[%dtls p=twig]` is a natural hoon that generates
+`.+`, `dotlus`, `[%dtls p=twig]` is a natural hoon that generates
 nock operator `4`, which increments an atomic operand.
 
 ###Definition###
@@ -17,7 +17,7 @@ nock operator `4`, which increments an atomic operand.
 
 ###Regular form (tall)###
 
-    .^  p
+    .+  p
 
 ###Regular form (wide)###
 
