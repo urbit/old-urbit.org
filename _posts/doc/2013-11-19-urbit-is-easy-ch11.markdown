@@ -33,7 +33,7 @@ entire core as the subject, and the payload is any noun.
 
 There are three main ways we can talk about a core: its variance
 model, `%gold`, `%iron`, `%zinc` or `%lead`, `%gold` by default;
-the inference approach of each of its feet, `%ash` or %elm`,
+the inference approach of each of its feet, `%ash` or `%elm`,
 informally `dry` or `wet`, `dry` or `ash` by default; and its
 payload pattern, which makes it a `gate`, `reef`, `book`,
 `trap` or `tray`.  There are also several ways of using cores:
