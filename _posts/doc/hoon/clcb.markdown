@@ -7,7 +7,7 @@ title: `:_`, `colcab`, `%clcb`
 ###Synopsis###
 
 `:_`, `colcab`, `[%clcb p=twig q=twig]` is a synthetic hoon that
-creates the cell [q p].
+produces the cell `[q p]`
 
 ###Definition###
 
@@ -26,8 +26,9 @@ creates the cell [q p].
     ++  open
       ^-  twig
       ?-    gen
-          [%clcb *]
+          [%clcb *] [q.gen p.gen]
       ==
 
 ###Notes###
 
+See also `:-`
