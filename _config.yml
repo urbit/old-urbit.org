@@ -1,41 +1,37 @@
-# General Jekyll Config
-pygments: true
-url: http://urbit.org
-lsi: false
-exclude: [LICENSE, CNAME, README.md, .gitignore]
-permalink: /:year/:month/:day/:title.html
- 
-# Theme customization - please change from the defaults!
-theme:
-  # Color for top bar, links, etc
-  highlight_color: '#971223'
+# Dependencies
+markdown:         redcarpet
+pygments:         true
 
-  # Profile links on the left sidebar, leave blank to ignore
-  social:
-    github: urbit 
-    twitter: Urbit_
-    hacker_news: urbit
+# Permalinks
+permalink:        pretty
 
-  # "Hi, I'm _______"
-  name: Urbit
-  email: urbit@urbit.org
-  tagline: "An operating function"
+# Setup
+title:            Urbit
+tagline:          'Personal Cloud Computing'
+description:      'a personal cloud computer'
+url:              http://urbit.org
 
-  # Google Analytics key, leave blank to ignore
-  google_analytics_key: UA-xxxx-x
+author:
+  name:           'Tlon'
+  url:            https://tlon.io
 
-  # Toggle "Postings are my own" disclaimer in footer
-  show_disclaimer: false
+paginate:         5
+
+# Custom vars
+version:          544 Kelvin
+
+github:
+  repo:           https://github.com/urbit/urbit
 
 authors:
   cgy:
     display_name: ~tasfyn-partyv [Curtis Yarvin]
-    email: curtis@urbit.org
+    email: curtis@tlon.io
     github: cgyarvin
 
   jcb:
     display_name: ~tomsyt-balsen [John Burnham]
-    email: john@urbit.org
+    email: john@tlon.io
     github: johncburnham
 
   atax1a:

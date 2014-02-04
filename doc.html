@@ -1,0 +1,17 @@
+---
+layout: page
+title: Documentation
+---
+
+<hr>
+<div class="posts">
+      <li><a href="/setup">Chapter I (Setup)</a></li>
+{% for post in site.posts reversed %}
+  {% if post.categories contains 'doc' %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endif %}
+{% endfor %}
+
+</div>
+
+

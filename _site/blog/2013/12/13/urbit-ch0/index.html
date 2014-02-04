@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Urbit Is &#58; Chapter 0 &middot; Urbit
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+
+  <!-- Icons -->
+
+   <link rel="shortcut icon" href="/favicon.png">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>Urbit</h1>
+      <p class="lead">a personal cloud computer</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+        <a href="/">What is Urbit?</a>
+      </li>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/about/">About</a>
+            </li>
+          
+        
+      
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/blog/">Blog</a>
+            </li>
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/doc/">Documentation</a>
+            </li>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/setup/">Setup</a>
+            </li>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <li class="sidebar-nav-item"><a href="https://github.com/urbit/urbit">GitHub</a></li>
+      <li class="sidebar-nav-item"><a href="https://groups.google.com/forum/#!forum/urbit-dev">Mailing List</a></li>
+      <li class="sidebar-nav-item">Cooling at 544 Kelvin</li>
+      <li>Last Continuity Breach: <a href="/blog/2014/01/06/continuity/">~2014.1.6</a></li>
+    </ul>
+    <p>&copy; 2014.  All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Urbit Is &#58; Chapter 0</h1>
+  <h1>Introduction</h1>
+
+<p>Greetings from the off-world colonies! I&#39;m your guide and scribe,
+<code>atax1a</code>, a character from a book that hasn&#39;t been written yet. Every
+great book has a Chapter 0, though, and you are reading mine.</p>
+
+<p>I am often asked...</p>
+
+<h1>What Is Urbit?</h1>
+
+<p>Urbit could be a way of sharing your data in a way that makes it live
+forever.  Maybe it&#39;s a Facebook of memories, 140 Twitters of words, or
+an Instagram for when you&#39;re a grandpa. Maybe you send Urbit an email.
+You can hit it with your web browser right now, but that&#39;s a bit rough
+around the edges. (Given time, it could even be that BBS or MUD that
+you wanted, but could never have...) It could be anything --- right
+now, we use it as a glorified chat program, but one that never loses
+messages. Well, almost never.  Sometimes we have to reboot the
+Universe, and everything we haven&#39;t backed up is lost.</p>
+
+<p>You may be getting the idea that Urbit is hard to define precisely. It is,
+because it isn&#39;t finished yet. In reality, Urbit is just a labyrinth
+of code, written as a book, running on a virtual machine (possibly
+running on another virtual machine, and so on), built out of physical
+parts, and it&#39;s read and written )and edited( by human mammals on a
+planet called Earth. (The Urbit computer follows a &quot;Hears, knows,
+does&quot; model, which I can explain later.) A lot of Earthlings call it
+an art project, which isn&#39;t far off. Sometime it&#39;s Dada, other times
+it&#39;s baroque, but it always has a precise scientific backing in the
+form of <em>Nock</em>, which are the fundamental axioms (rules) of the
+Urbiverse. Nock is all numbers, tho, and it&#39;s tiring.</p>
+
+<p>Urbit is also a programming language. We call that <em>Hoon</em>, for reasons
+I&#39;m still not quite clear on. It takes Nock&#39;s numbers and puts symbols
+on them. They&#39;re kinda weird symbols, and most &quot;real&quot; programmers I
+know (and work with) take one look at something like</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">|=(x=@ ?:((lth x 2) 1 (add $(x (dec x)) $(x (sub x 2)))))
+</code></pre></div>
+<p>and go pale around the gills. Myself, I grew up speaking a language
+called <code>perl</code>, which has an even bigger love-affair with special
+characters, so reading this doesn&#39;t faze me (Hoon uses its special
+characters judiciously, so please don&#39;t think of <code>perl</code> unless you like
+that sort of thing).</p>
+
+<p>An earlier version of Urbit (when Hoon was still called Watt) was
+rejected from a real scientific conference because the judges felt
+vaguely insulted by the nonstandard language. The Urbit you&#39;re looking
+at now has had a few years to cool down and mature, and right now it&#39;s
+so cool at the core that it&#39;s well below -400 Fahrenheit. Thankfully,
+there is an entire planet built up around its icy core, and on the
+surface of that planet, it&#39;s a balmy 25 degrees Celsius, and the water
+is like glass.</p>
+
+<p>Urbit is currently only usable by a hyperliterate set of people ---
+it&#39;s immersed in the culture of the word, and it&#39;s struggling for a
+glimpse of air, the sound of music, and a taste of freedom.  Really,
+though, it&#39;s easy to teach yourself, if you work through it with a
+dedicated mind. Having a friend along for the ride is definitely
+recommended. People with prior programming experience are welcome, but
+be warned: your existing biases and expectations are wrong. We&#39;ll try
+and be gentle about breaking them.</p>
+
+<h1>Why should I care? (the buried lede)</h1>
+
+<p>In the end, Urbit is a single global computer. Think &quot;Cyberspace&quot; from
+<em>Neuromancer</em>, or &quot;The Metaverse&quot; from <em>Snow Crash</em>. If you&#39;re really
+early, think of Haflinger&#39;s worm from <em>The Shockwave Rider</em>. But don&#39;t
+think of it as the Internet --- the internet is a single global
+<em>network</em>, and it only follows two rules: you can act like a UNIX
+machine when prompted, and you speak TCP/IP. Anyone can see what
+you&#39;re saying, and most people can understand it. There are gaps in
+the network, too: <em>The Great Firewall Of China</em>, anyone? &quot;Encryption&quot;,
+or as I might call it, <em>privacy</em>, is an afterthought, and people who
+Never Say Anything can read a lot of supposedly &quot;private&quot; things, just
+by doing the right math. <em>Urbit isn&#39;t like that</em>. It enables secure,
+private, computing, in a way that nobody else can, because it is
+&quot;semantically isolated&quot; --- the meaning of the Urbit program is
+independent of the outside world (in this case, the Internet).</p>
+
+<p>Urbit works like an Internet should. If you know someone&#39;s address,
+you can send them a message. It will either reliably be delivered, or
+get rejected. Likewise with requesting something: if you ask for
+tomorrow&#39;s newspaper headline <em>today</em>, Urbit will gladly give it to
+you...  tomorrow. Your ship just waits for it to come in, and when it
+does, everything proceeds like normal. &quot;HTTP 404 Not Found&quot;? What the
+<code>!^&amp;#</code> does THAT mean?</p>
+
+<h2>Who ARE you people?</h2>
+
+<p>We&#39;re dreamers, but the dream escaped and is slowly consuming the real
+world. We&#39;re programmers with a sense of humor and an overload of
+whimsy. At the end of the day, though, we&#39;re just people just like
+you. People who want to change the world.  Everyone wants to change
+the world, right?</p>
+
+<h2>And what is with all of the weird words?</h2>
+
+<p>Urbit is a piece of technology. Unfortunately, technology is hard to
+explain, and it gets harder when the words we use to explain it are
+misunderstood.  If you&#39;re used to speaking about your computers in
+terms of a Unix (or Windows) workstation, it&#39;s a bit of a leap to
+think in terms of Urbit ships in a pier.</p>
+
+<p>In short, we use weird words to force a change in how our technology
+is perceived. Without that, readers are likely to gloss over important
+details, thinking that they understand more than they really do. It&#39;s
+why we redefine everything, change the pronunciation of the symbols
+you&#39;re used to, and even have our own number system. Count with me,
+and feel free to scribble in the margins:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">~zod 0   (also &#39;yes&#39;)                 if i were rewriting this
+~nec 1   (no)                            i would put &#39;can&#39; b4
+~bud 2   [the rest of the numberz        &#39;change meaning…&#39;
+~wes 3        change meaning
+~sev 4    according to context]
+~per 5   ---
+~sut 6   &lt;but that&#39;s 0kay&gt;
+~let 7   
+~ful 8   
+~pen 9   ¡you can figure it out!
+</code></pre></div>
+<p>Saying them out loud helps. You and your friend can agree on the
+pronunciation.</p>
+
+<h1>Introductions</h1>
+
+<p>You can get in touch with me on Urbit, of course. Join up to <code>:chat</code>
+and use <code>=</code> to see who&#39;s in the room. On the old internet, I go by
+many names, but on this one I try to stick with <code>~hatteb-mitlyd</code>.</p>
+
+</div>
+
+
+
+    </div>
+
+  </body>
+</html>
