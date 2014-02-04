@@ -24,11 +24,14 @@ produces the cell `[p q]`.
 
     :-(p q)
 
+###Irregular form###
+
+    [p q]
+
 ###Expansion###
     
     ++  open
       ^-  twig
       ?-  gen
-        [%clhp *]  [q.gen p.gen]
+        [%clhp *]  [p.gen q.gen]
       ==
-

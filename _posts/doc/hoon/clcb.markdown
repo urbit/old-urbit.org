@@ -31,3 +31,7 @@ produces the cell `[q p]`.
       ?-  gen
         [%clcb *]  [q.gen p.gen]
       ==
+
+###Notes###
+
+See also `%clhp`.
