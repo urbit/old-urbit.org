@@ -1,7 +1,7 @@
 ---
 layout: post
 category: doc
-title: Urban Reference Manual&#58; Chapter XI (Odds, Ends, Quirks)
+title: Chapter XI (Odds, Ends, Quirks)
 ---
 
 [**Prev**: Type Inference](http://www.urbit.org/2013/11/19/urbit-is-easy-ch10.html)
@@ -31,7 +31,7 @@ entire core as the subject, and the payload is any noun.
 
 There are three main ways we can talk about a core: its variance
 model, `%gold`, `%iron`, `%zinc` or `%lead`, `%gold` by default;
-the inference approach of each of its feet, `%ash` or %elm`,
+the inference approach of each of its feet, `%ash` or `%elm`,
 informally `dry` or `wet`, `dry` or `ash` by default; and its
 payload pattern, which makes it a `gate`, `reef`, `book`,
 `trap` or `tray`.  There are also several ways of using cores:

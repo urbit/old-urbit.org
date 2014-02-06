@@ -4,7 +4,7 @@ category: doc
 title: Chapter X (Type Inference)
 ---
 
-[**Prev**: Tiles](/doc/2013/11/18/ch9)
+[**Prev**: Tiles](/doc/2013/11/18/ch9)[**Next**: Odds, Ends](/doc/2013/11/19/ch11)
 
 *Ever, as before, does Madness remain a mysterious-terrific, altogether infernal boiling-up of the Nether Chaotic Deep, through this fair-painted Vision of Creation, which swims thereon, which we name the Real.*
 
@@ -961,5 +961,6 @@ change might confuse.
 In short: generic polymorphism is cool but wacky.  Leave it to
 the experts, please!
 
-[**Prev**: Tiles](/doc/2013/11/18/ch9)
+[**Prev**: Tiles](/doc/2013/11/18/ch9)[**Next**: Odds, Ends](/doc/2013/11/19/ch11)
+
 
