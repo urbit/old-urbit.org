@@ -50,4 +50,6 @@ Queenside:
 
 ###Notes###
 
-`%cnts` is not of course constrained to 
+`%cnts` is not of course constrained to produce a `p` whose type
+is unchanged.  Usually this is fine - sometimes we want the
+discipline.

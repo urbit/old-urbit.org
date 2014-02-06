@@ -1,32 +1,39 @@
+
 ---
 layout: post
 category: doc
-title: `~>`, `siggar`, `%sggr`
+title: `~>`, `siggal`, `%sggl`
 ---
 
 ###Synopsis###
 
-`~>`, `siggar`, `[%sggr p=$|(term [p=term q=twig]) q=twig]`
-is a natural hoon that applies twig `q` within hint `p`.
+`~>`, `siggal`, `[%sggl p=$|(term [p=term q=twig]) q=twig]` is a
+natural hoon that applies arbitrary hint `p` to `q`.
+`q`.
 
 ###Definition###
 
     ++  twig  
-      $%  [%sggr p=$|(term [p=term q=twig]) q=twig]
+        [%sggl p=$|(term [p=term q=twig]) q=twig]   ::
+      $%  [%sggl p=twig]
       ==
 
 ###Regular form (tall)###
-
-    ~>  %hint
+    
+`p=%foo`:
+  
+    ~>  %foo
     q
 
-    ~>  %hint.(add 2 2)
+`p=[p=%foo q=bar]`:
+
+    ~>  %foo.bar
     q
 
 ###Regular form (wide)###
 
-    ~>(%hint q)
-    ~>(%hint.(add 2 2) q)
+    ~>(%foo q)
+    ~>(%foo.bar q)
 
 ###Compilation###
     
@@ -45,5 +52,4 @@ is a natural hoon that applies twig `q` within hint `p`.
 
 ###Notes###
 
-Numerous other hinting `~` runes resolve to `~>`.
-
+Rather obviously, all other hinting `~` runes reduce to `~>`.

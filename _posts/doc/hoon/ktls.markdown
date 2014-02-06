@@ -7,9 +7,8 @@ title: `^+`, `ketlus`, `%ktls`
 ###Synopsis###
 
 `^+`, `ketlus`, `[%ktls p=twig q=twig]` is a natural hoon that
-mates the type of twig `p` to the formula of twig `q`, minted 
-on the same subject - so long as the type of `q` nests within the
-type of `p`.
+casts the product of `q` to the type of `p`, verifying that it
+contains the type of `q`.
 
 ###Definition###
 
@@ -38,5 +37,3 @@ type of `p`.
 
 `^+` is the dual, and natural form, of `^-`, ie, cast.  The
 difference is just that `^+` takes a twig and `^-` a tile.
-
-Nesting is part of geometric polymorphism; see chapter 10.

@@ -6,7 +6,8 @@ title: `%^`, `cenket`, `%cnkt`
 
 ###Synopsis###
 
-`%^`, `cenket`, `[%cnkt p=twig q=twig r=twig s=twig]` is a synthetic hoon that
+`%^`, `cenket`, `[%cnkt p=twig q=twig r=twig s=twig]` is a 
+synthetic hoon that slams gate `p` with `[%cntr q r s]`.
 
 ###Definition###
 
@@ -16,9 +17,22 @@ title: `%^`, `cenket`, `%cnkt`
 
 ###Regular form (tall)###
 
+Kingside:
+
+    %^    p
+        q
+      r
+    s
+
+Queenside:
+
+    %^  p  q
+      r
+    s
+
 ###Regular form (wide)###
 
-###Irregular form###
+    %^(p q r s)
 
 ###Expansion###
     
@@ -26,7 +40,6 @@ title: `%^`, `cenket`, `%cnkt`
       ^-  twig
       ?-    gen
           [%cnkt *]
+        [%cnhp p.gen q.gen r.gen s.gen ~]
       ==
-
-###Notes###
 

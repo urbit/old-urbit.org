@@ -50,7 +50,7 @@ know the difference between a tile and its icon.
 Imagine, for instance, a C++ in which the class definition and
 the constructor are the same thing.  And the latter can also
 validate untrusted data off the Internets, acting much as for
-instance an XML DTD.  Yo, why would you have a type system and
+instance an XML DTD.  Why would you have a type system and
 not be able to do this?
 
 ##Reductions##

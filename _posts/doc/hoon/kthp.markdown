@@ -7,9 +7,7 @@ title: `^-`, `kethep`, `%kthp`
 ###Synopsis###
 
 `^-`, `kethep`, `[%kthp p=tile q=twig]` is a synthetic hoon that
-mates the type of tile `p` to the formula of twig `q`, minted 
-on the same subject - so long as the type of `q` nests within the
-type of `p`.
+casts `q` to `~(bunt al p)`, ie, the icon of `p`.
 
 ###Definition###
 
@@ -19,17 +17,25 @@ type of `p`.
 
 ###Regular form (tall)###
 
+    ^-  p
+    q
+
 ###Regular form (wide)###
 
+    ^-(p q)
+
 ###Irregular form###
+
+    `p`q
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [ZZ *]
+      ?-  gen
+        [%kthp *]  [%ktls ~(bunt al p.gen) q.gen]
       ==
 
 ###Notes###
 
+See the discussion of tiles in chapter 9.

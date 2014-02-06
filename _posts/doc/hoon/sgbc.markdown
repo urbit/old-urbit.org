@@ -6,17 +6,23 @@ title: `~$`, `sigbuc`, `%sgbc`
 
 ###Synopsis###
 
-`~$`, `sigbuc`, `[%sgbc p=twig q=twig]` is a synthetic hoon that
+`~$`, `sigbuc`, `[%sgbc p=term q=twig]` is a synthetic hoon that
+labels computation `q` as `p` for profiling.
 
 ###Definition###
 
     ++  twig  
-      $%  [%sgbc p=twig]
+      $%  [%sgbc p=term q=twig]
       ==
 
 ###Regular form (tall)###
 
+    ~$  p
+    q
+
 ###Regular form (wide)###
+
+    ~$(p q)
 
 ###Irregular form###
 
@@ -24,9 +30,10 @@ title: `~$`, `sigbuc`, `%sgbc`
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%sgbc *]
+      ?-  gen
+        [%sgbc *]  [%sggr [%live [%dtzz %$ p.gen]] q.gen]
       ==
 
 ###Notes###
 
+The profiler is not currently enabled.

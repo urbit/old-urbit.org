@@ -1,33 +1,40 @@
 ---
 layout: post
 category: doc
-title: `#>`, `haxgal`, `%hxgl`
+title: `#<`, `haxgal`, `%hxgl`
 ---
 
 ###Synopsis###
 
-`#>`, `haxgal`, `[%hxgl p=tusk]` is a synthetic hoon that invokes the
-pretty-printer on `p`, producing a tank (tree of pretty-printer
-elements).
+`#<`, `haxgal`, `[%hxgl p=tusk]` is a synthetic hoon that
+slams the assumed gate `noah` on `[%zpgr %cntr p]`.
+
 ###Definition###
 
     ++  twig  
       $%  [%hxgl p=tusk]
       ==
-  ++  tusk  (list twig) 
+    ++  tusk  (list twig) 
 
-###Regular form (tall)###
-None.
-###Regular form (wide)###
-None.
 ###Irregular form###
->i.p i.t.p ...<
+
+    >i.p i.t.p i.t.t.p<
+
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%hxgl *]
+      ?-  gen
+        [%hxgl *]  [%cnhp [%cnzy %noah] [%zpgr [%cltr p.gen]] ~]
       ==
 
 ###Notes###
+
+`noah` is one of four "Biblical" names that the Hoon compiler,
+violating its usual principles, generates automatically.
+
+Of course the compiler cannot control what `noah` produces when
+pulled from the subject, but the convention is that it should be
+a gate that accepts a `vase` (type-value cell) and produces a 
+`tank` (pretty-printer input).
+

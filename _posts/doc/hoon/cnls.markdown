@@ -6,19 +6,31 @@ title: `%+`, `cenlus`, `%cnls`
 
 ###Synopsis###
 
-`%+`, `cenlus`, `[%cnls p=twig q=twig]` is a synthetic hoon that
+`%+`, `cenlus`, `[%cnls p=twig q=twig r=twig]` is a synthetic hoon 
+that slams gate `p` with `[%cntr q r]`.
 
 ###Definition###
 
     ++  twig  
-      $%  [%cnls p=twig]
+      $%  [%cnls p=twig q=twig r=twig]
       ==
 
 ###Regular form (tall)###
 
+Kingside:
+
+    %+  p
+      q
+    r
+
+Queenside:
+
+    %+  p  q
+    r
+
 ###Regular form (wide)###
 
-###Irregular form###
+    %+(p q r)
 
 ###Expansion###
     
@@ -26,7 +38,5 @@ title: `%+`, `cenlus`, `%cnls`
       ^-  twig
       ?-    gen
           [%cnls *]
+        [%cnhp p.gen q.gen r.gen ~]
       ==
-
-###Notes###
-

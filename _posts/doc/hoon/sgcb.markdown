@@ -6,27 +6,34 @@ title: `~_`, `sigcab`, `%sgcb`
 
 ###Synopsis###
 
-`~_`, `sigcab`, `[%sgcb p=twig q=twig]` is a synthetic hoon that
+`~_`, `sigcab`, `[%sgcb p=twig q=twig]` is a synthetic hoon
+that inserts `p`, a trap producing `tank`, in the trace of `q`.
 
 ###Definition###
 
     ++  twig  
-      $%  [%sgcb p=twig]
+      $%  [%sgcb p=twig q=twig]
       ==
 
 ###Regular form (tall)###
 
+    ~_  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    ~_(p q)
 
 ###Expansion###
     
     ++  open
       ^-  twig
       ?-    gen
-          [%sgcb *]
+          [%sgcb *]  [%sggr [%mean [%brdt p.gen]] q.gen]
       ==
 
 ###Notes###
 
+`~_` is useful if you want to define and present your own
+debugging representation of an ongoing computation, which will
+appear in the trace of any crash within that computation.

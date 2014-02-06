@@ -6,7 +6,8 @@ title: `%~`, `censig`, `%cnsg`
 
 ###Synopsis###
 
-`%~`, `censig`, `[%cnsg p=twig q=twig]` is a synthetic hoon that
+`%~`, `censig`, `[%cnsg p=wing q=twig r=twig]` is a synthetic
+hoon that pulls `p` from the tray `q` with its sample set to `r`.
 
 ###Definition###
 
@@ -16,9 +17,24 @@ title: `%~`, `censig`, `%cnsg`
 
 ###Regular form (tall)###
 
+Kingside:
+
+    %~  p
+      q
+    r
+
+Queenside:
+
+    %~  p  q
+    r
+
 ###Regular form (wide)###
 
+    %~(p q r)
+
 ###Irregular form###
+
+    ~(p q r)
 
 ###Expansion###
     
@@ -26,7 +42,5 @@ title: `%~`, `censig`, `%cnsg`
       ^-  twig
       ?-    gen
           [%cnsg *]
+        [%cntr p.gen q.gen [[[[%& 6] ~] r.gen] ~]]
       ==
-
-###Notes###
-

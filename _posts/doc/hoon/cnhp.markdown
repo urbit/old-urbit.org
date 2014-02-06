@@ -7,7 +7,7 @@ title: `%-`, `cenhep`, `%cnhp`
 ###Synopsis###
 
 `%-`, `cenhep`, `[%cnhp p=twig q=tusk]` is a synthetic hoon that
-calls the gate `p` with the sample `[%cltr q]`
+slams the gate `p` with `[%cltr q]`
 
 ###Definition###
 
@@ -36,8 +36,3 @@ calls the gate `p` with the sample `[%cltr q]`
           [%cnhp *]
         ?~(q.gen [%tsgr p.gen [%cnzy %$]] [%cncl p.gen [%cltr q.gen]])
       ==
-
-###Notes###
-
-It is deplorable but not unusual to say "function" when you mean
-"gate", and "argument" when you mean "sample leg."

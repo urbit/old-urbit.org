@@ -1,35 +1,39 @@
 ---
 layout: post
 category: doc
-title: `#>`, `haxgar`, `%hxgr`
+title: `#<`, `haxgar`, `%hxgr`
 ---
 
 ###Synopsis###
 
-`#>`, `haxgar`, `[%hxgr p=tusk]` is a synthetic hoon that invokes the
-pretty-printer on `p`, producing a tape (byte string).
+`#<`, `haxgar`, `[%hxgr p=tusk]` is a synthetic hoon that
+slams the assumed gate `cain` on `[%zpgr %cntr p]`.
 
 ###Definition###
 
     ++  twig  
       $%  [%hxgr p=tusk]
       ==
-  ++  tusk  (list twig) 
+    ++  tusk  (list twig) 
 
-###Regular form (tall)###
-None.
-###Regular form (wide)###
-None.
 ###Irregular form###
-<i.p i.t.p ...>
+
+    <i.p i.t.p i.t.t.p>
+
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%hxgr *]
+      ?-  gen
+        [%hxgr *]  [%cnhp [%cnzy %cain] [%zpgr [%cltr p.gen]] ~]
       ==
 
 ###Notes###
 
+`cain` is one of four "Biblical" names that the Hoon compiler,
+violating its usual principles, generates automatically.
 
+Of course the compiler cannot control what `noah` produces when
+pulled from the subject, but the convention is that it should be
+a gate that accepts a `vase` (type-value cell) and produces a 
+`tape` (list of UTF-8 bytes).

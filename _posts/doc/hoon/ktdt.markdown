@@ -7,6 +7,7 @@ title: `^.`, `ketdot`, `%ktdt`
 ###Synopsis###
 
 `^.`, `ketdot`, `[%ktdt p=twig q=twig]` is a synthetic hoon that
+casts `q` to the type of `(p q)`.
 
 ###Definition###
 
@@ -16,9 +17,8 @@ title: `^.`, `ketdot`, `%ktdt`
 
 ###Regular form (tall)###
 
-###Regular form (wide)###
-
-###Irregular form###
+    ^.  p
+    q
 
 ###Expansion###
     
@@ -26,7 +26,7 @@ title: `^.`, `ketdot`, `%ktdt`
       ^-  twig
       ?-    gen
           [%ktdt *]
+        [%ktls [%cnhp p.gen q.gen ~] q.gen]
       ==
 
 ###Notes###
-

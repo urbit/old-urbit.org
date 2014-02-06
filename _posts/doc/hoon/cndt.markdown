@@ -1,32 +1,34 @@
 ---
 layout: post
 category: doc
-title: `%.`, `cendot`, `%.`
+title: `%.`, `cendot`, `%cndt`
 ---
 
 ###Synopsis###
 
-`%.`, `cendot`, `[%. p=twig q=twig]` is a synthetic hoon that
+`%.`, `cendot`, `[%cndt p=twig q=twig]` is a synthetic hoon that
+reverses the order of `%cnhp`.
 
 ###Definition###
 
     ++  twig  
-      $%  [%. p=twig]
+      $%  [%cndt p=twig q=twig]
       ==
 
 ###Regular form (tall)###
 
+    %.  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    %.(p q)
 
 ###Expansion###
     
     ++  open
       ^-  twig
       ?-    gen
-          [%. *]
+          [%cndt *]
+        [%cnhp q.gen [p.gen ~]]
       ==
-
-###Notes###
-

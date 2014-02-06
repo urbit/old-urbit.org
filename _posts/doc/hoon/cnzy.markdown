@@ -6,27 +6,20 @@ title: `cenzey`, `%cnzy`
 
 ###Synopsis###
 
-`cenzey`, `[%cnzy p=twig q=twig]` is a synthetic hoon that
+`cenzey`, `[%cnzy p=term]` is a synthetic hoon that pulls limb
+`p` from the subject.
 
 ###Definition###
 
     ++  twig  
-      $%  [%cnzy p=twig]
+      $%  [%cnzy p=term]
       ==
-
-###Regular form (tall)###
-
-###Regular form (wide)###
-
-###Irregular form###
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%cnzy *]
+      ?-  gen
+        [%cnzy *]  [%cnts [p.gen ~] ~]
       ==
-
-###Notes###
 

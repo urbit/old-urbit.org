@@ -6,26 +6,21 @@ title: `cenzaz`, `%cnzz`
 
 ###Synopsis###
 
-`cenzaz`, `[%cnzz p=twig q=twig]` is a synthetic hoon that
+`cenzaz`, `[%cnzz p=wing]` is a synthetic hoon that pulls
+wing `p` from the subject.
 
 ###Definition###
 
     ++  twig  
-      $%  [%cnzz p=twig]
+      $%  [%cnzz p=wing]
       ==
-
-###Regular form (tall)###
-
-###Regular form (wide)###
-
-###Irregular form###
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%cnzz *]
+      ?-  gen
+        [%cnzz *]  [%cnts p.gen ~]
       ==
 
 ###Notes###
