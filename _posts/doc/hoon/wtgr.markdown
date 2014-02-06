@@ -7,7 +7,7 @@ title: `?>`, `wutgar`, `%wtgr`
 ###Synopsis###
 
 `?>`, `wutgar`, `[%wtgr p=twig q=twig]` is a synthetic hoon that
-asserts `p` is true before evaluating `q`, crashing if `p` is false.
+produces `q`, asserting that `p` is no (`|`, 1).
 
 ###Definition###
 
@@ -17,17 +17,17 @@ asserts `p` is true before evaluating `q`, crashing if `p` is false.
 
 ###Regular form (tall)###
 
+    ?>  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    ?>(p q)
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%wtgr *]
+      ?-  gen
+        [%wtgr *]   [%wtcl p.gen q.gen [%zpzp ~]]
       ==
-
-###Notes###
-

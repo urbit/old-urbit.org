@@ -17,17 +17,22 @@ pushes `q` on the subject and sends it to `p`.
 
 ###Regular form (tall)###
 
+    =-  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    =-(p q)
 
 ###Expansion###
     
     ++  open
       ^-  twig
       ?-    gen
-          [%tshp *]
+          [%tshp *]  [%tsls q.gen p.gen]
       ==
 
 ###Notes###
 
+`=-`, the opposite of `=+`, is very useful for code arrangement
+when `q` is much bigger than `p`.

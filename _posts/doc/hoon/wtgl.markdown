@@ -7,6 +7,7 @@ title: `?<`, `wutgal`, `%wtgl`
 ###Synopsis###
 
 `?<`, `wutgal`, `[%wtgl p=twig q=twig]` is a synthetic hoon that
+produces `q`, asserting that `p` is no (`|`, 1).
 
 ###Definition###
 
@@ -16,17 +17,21 @@ title: `?<`, `wutgal`, `%wtgl`
 
 ###Regular form (tall)###
 
+    ?<  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    ?<(p q)
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%wtgl *]
+      ?-  gen
+        [%wtgl *]   [%wtcl p.gen [%zpzp ~] q.gen]
       ==
 
 ###Notes###
+
 

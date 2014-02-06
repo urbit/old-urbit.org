@@ -6,19 +6,32 @@ title: `=~`, `tissig`, `%tssg`
 
 ###Synopsis###
 
-`=~`, `tissig`, `[%tssg p=twig q=twig]` is a synthetic hoon that
+`=~`, `tissig`, `[%tssg p=tusk]` is a synthetic hoon that
+composes a list of twigs.
 
 ###Definition###
 
     ++  twig  
-      $%  [%tssg p=twig]
+      $%  [%tssg p=tusk]
       ==
+    ++  tusk  (list twig)
 
 ###Regular form (tall)###
 
-###Regular form (wide)###
+Kingside:
 
-###Irregular form###
+      =~  
+    i.p
+    i.t.p
+    i.t.t.p
+      ==
+ 
+Queenside:
+
+    =~  i.p
+        i.t.p
+        i.t.t.p
+    ==
 
 ###Expansion###
     
@@ -30,3 +43,5 @@ title: `=~`, `tissig`, `%tssg`
 
 ###Notes###
 
+`=~` is usually used for formatting high-level reefs without
+losing base indentation.

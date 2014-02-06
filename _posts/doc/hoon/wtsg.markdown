@@ -6,21 +6,24 @@ title: `?~`, `wutsig`, `%wtsg`
 
 ###Synopsis###
 
-`?~`, `wutsig`, `[%wtsg p=wing q=twig r=twig]` is a synthetic hoon that
-evaluates `q` if `p` is a list, otherwise `r`
-is evaluated.
+`?~`, `wutsig`, `[%wtsg p=wing q=twig r=twig]` is a synthetic hoon 
+that produces `q` if `p` is `~`, `r` otherwise.
 
 ###Definition###
 
     ++  twig  
-      $%  [%wtsg p=twig]
+      $%  [%wtsg p=wing q=twig r=twig]
       ==
 
 ###Regular form (tall)###
 
+    ?~  p
+      q
+    r
+
 ###Regular form (wide)###
 
-###Irregular form###
+    ?~(p q r)
 
 ###Expansion###
     
@@ -28,7 +31,6 @@ is evaluated.
       ^-  twig
       ?-    gen
           [%wtsg *]
+        [%wtcl [%wtts [%axil %null] p.gen] q.gen r.gen]
       ==
-
-###Notes###
 

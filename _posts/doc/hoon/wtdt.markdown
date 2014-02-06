@@ -6,9 +6,9 @@ title: `?.`, `wutdot`, `%wtdt`
 
 ###Synopsis###
 
-`?.`, `wutdot`, `[%wtdt p=twig q=twig r=twig]` is a synthetic hoon that
-evaluates `r` if `p` evaluates to true, otherwise `q` is
-evaluated. This is Hoon's "unless".
+`?.`, `wutdot`, `[%wtdt p=twig q=twig r=twig]` is a synthetic hoon
+that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
+(`|`, 1).
 
 ###Definition###
 
@@ -18,17 +18,22 @@ evaluated. This is Hoon's "unless".
 
 ###Regular form (tall)###
 
+    ?.  p
+      q
+    r
+
 ###Regular form (wide)###
 
-###Irregular form###
+    ?:(p q r)
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%wtdt *]
+      ?-  gen
+        [%wtdt *]   [%wtcl p.gen r.gen q.gen]
       ==
 
 ###Notes###
 
+It's not unheard of to say `?.` as "unless."

@@ -6,7 +6,8 @@ title: `?!`, `wutzap`, `%wtzp`
 
 ###Synopsis###
 
-`?!`, `wutzap`, `[%wtzp p=twig q=twig]` is a synthetic hoon that
+`?!`, `wutzap`, `[%wtzp p=twig]` is a synthetic hoon that
+produces the logical "not" of `p`.
 
 ###Definition###
 
@@ -16,17 +17,20 @@ title: `?!`, `wutzap`, `%wtzp`
 
 ###Regular form (tall)###
 
+    ?!  p
+
 ###Regular form (wide)###
 
+    ?!(p)
+
 ###Irregular form###
+
+    !p
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%wtzp *]
+      ?-  gen
+        [%wtzp *]  [%wtcl p.gen [%dtzz %f 1] [%dtzz %f 0]]
       ==
-
-###Notes###
-

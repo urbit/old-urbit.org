@@ -5,29 +5,30 @@ title: `?@`, `wutpat`, `%wtpt`
 ---
 
 ###Synopsis###
-`?@`, `wutpat`, `[%wtpt p=wing q=twig r=twig]` is a synthetic hoon that
-evaluates `q` if `p` is equal to the bunt for its tile, otherwise `r`
-is evaluated.
+
+`?@`, `wutpat`, `[%wtpt p=wing q=twig r=twig]` is a synthetic hoon 
+that produces `q` if `p` is an atom, `r` otherwise.
 
 ###Definition###
 
     ++  twig  
-      $%  [%wtpt p=twig]
+      $%  [%wtpt p=wing q=twig r=twig]
       ==
 
 ###Regular form (tall)###
 
+    ?@  p
+      q
+    r
+
 ###Regular form (wide)###
 
-###Irregular form###
+    ?@(p q r)
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%wtpt *]
+      ?-  gen
+        [%wtpt *]  [%wtcl [%wtts [%axil %atom %$] p.gen] q.gen r.gen]
       ==
-
-###Notes###
-
