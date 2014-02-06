@@ -4,7 +4,7 @@ category: doc
 title: Chapter XI (Odds, Ends, Quirks)
 ---
 
-[**Prev**: Type Inference](http://www.urbit.org/2013/11/19/urbit-is-easy-ch10.html)
+[**Prev**: Type Inference](/doc/2013/11/19/ch10)
 
 ##A bestiary of cores##
 
@@ -338,4 +338,4 @@ as well.  Which would be clumsy.
 
 
 
-[**Prev**: Type Inference](http://www.urbit.org/2013/11/19/urbit-is-easy-ch10.html)
+[**Prev**: Type Inference](/doc/2013/11/19/ch10)
