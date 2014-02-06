@@ -33,6 +33,9 @@
     <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
+      <img src="/public/urbit_logo_ur.svg">
+      <br>
+      <br>
       <h1>Urbit</h1>
       <p class="lead">a personal cloud computer</p>
     </div>
@@ -146,7 +149,7 @@
     <div class="content container">
       <div class="post">
   <h1 class="post-title">Chapter X (Type Inference)</h1>
-  <p><a href="/doc/2013/11/18/ch9"><strong>Prev</strong>: Tiles</a></p>
+  <p><a href="/doc/2013/11/18/ch9"><strong>Prev</strong>: Tiles</a> <a href="/doc/2013/11/19/ch11"><strong>Next</strong>: Odds, Ends</a></p>
 
 <p><em>Ever, as before, does Madness remain a mysterious-terrific, altogether infernal boiling-up of the Nether Chaotic Deep, through this fair-painted Vision of Creation, which swims thereon, which we name the Real.</em></p>
 
@@ -701,15 +704,14 @@ about <code>a</code> and <code>b</code>.  What happens?  Let&#39;s give it a try
 </code></pre></div>
 <p>With <code>|=</code> (<code>bartis</code>, <code>%brts</code>), the normal way of building a gate,
 we lost all our type information.  Sometimes this is fine.
-Sometimes it&#39;s exactly what we want.  But sometimes...</p>
-
-<p>Here&#39;s something else we can do:</p>
+Sometimes it&#39;s exactly what we want.  But here&#39;s something else
+we can do:</p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">~zod/try=&gt; :type; (|*([a=* b=*] [b a]) %foo %bar)
 [%bar %foo]
 [%bar %foo]
 </code></pre></div>
 <p>By using <code>|*</code> (<code>bartar</code>, <code>%brtr</code>), we seem to have produced the
-same noun, but not lost any type information.  Interesting...</p>
+same noun, but not lost any type information.  Interesting!</p>
 
 <p>The difference is that while both <code>|=</code> and <code>|*</code> are polymorphic,
 <code>|=</code> uses <em>geometric</em> polymorphism and <code>|*</code> uses <em>generic</em>.
@@ -1067,7 +1069,7 @@ change might confuse.</p>
 <p>In short: generic polymorphism is cool but wacky.  Leave it to
 the experts, please!</p>
 
-<p><a href="/doc/2013/11/18/ch9"><strong>Prev</strong>: Tiles</a></p>
+<p><a href="/doc/2013/11/18/ch9"><strong>Prev</strong>: Tiles</a> <a href="/doc/2013/11/19/ch11"><strong>Next</strong>: Odds, Ends</a></p>
 
 </div>
 

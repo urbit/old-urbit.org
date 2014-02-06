@@ -4,7 +4,7 @@
  <title>Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org/"/>
- <updated>2014-02-04T14:07:52-08:00</updated>
+ <updated>2014-02-06T10:10:50-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Tlon</name>
@@ -288,11 +288,345 @@ many names, but on this one I try to stick with &lt;code&gt;~hatteb-mitlyd&lt;/c
  </entry>
  
  <entry>
+   <title>Chapter XI (Odds, Ends, Quirks)</title>
+   <link href="http://urbit.org/doc/2013/11/19/ch11/"/>
+   <updated>2013-11-19T00:00:00-08:00</updated>
+   <id>http://urbit.org/doc/2013/11/19/ch11</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;/doc/2013/11/19/ch10&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Type Inference&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;A bestiary of cores&lt;/h2&gt;
+
+&lt;p&gt;The Hoon core is just not a gadget you&amp;#39;re familiar with from
+your Earth programming career.  A core is not a lambda, a
+closure, a library, an object, etc.  Or perhaps we should say:
+when we translate any of these into Hoon, we get a core.  So we
+cannot translate &amp;quot;core&amp;quot; into any one of them.&lt;/p&gt;
+
+&lt;p&gt;But clearly in practice there are lots of different kinds of
+practical cores.  For example, we have already met Hoon&amp;#39;s
+equivalent of the lambda, the &lt;code&gt;gate&lt;/code&gt;.  Every gate is a core, but
+not every core is a gate.  And the gate is by no means the only
+subspecies of core.  So describing cores becomes a big part of
+the Hoonist&amp;#39;s alien vocabulary.  &lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s review briefly what we know about cores.  A core is a noun
+of the form&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;[battery payload]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;where the &lt;code&gt;battery&lt;/code&gt; is a tree of formulas, each invoked with the
+entire core as the subject, and the payload is any noun.&lt;/p&gt;
+
+&lt;p&gt;There are three main ways we can talk about a core: its variance
+model, &lt;code&gt;%gold&lt;/code&gt;, &lt;code&gt;%iron&lt;/code&gt;, &lt;code&gt;%zinc&lt;/code&gt; or &lt;code&gt;%lead&lt;/code&gt;, &lt;code&gt;%gold&lt;/code&gt; by default;
+the inference approach of each of its feet, &lt;code&gt;%ash&lt;/code&gt; or &lt;code&gt;%elm&lt;/code&gt;,
+informally &lt;code&gt;dry&lt;/code&gt; or &lt;code&gt;wet&lt;/code&gt;, &lt;code&gt;dry&lt;/code&gt; or &lt;code&gt;ash&lt;/code&gt; by default; and its
+payload pattern, which makes it a &lt;code&gt;gate&lt;/code&gt;, &lt;code&gt;reef&lt;/code&gt;, &lt;code&gt;book&lt;/code&gt;,
+&lt;code&gt;trap&lt;/code&gt; or &lt;code&gt;tray&lt;/code&gt;.  There are also several ways of using cores:
+you can &lt;code&gt;pull&lt;/code&gt;, &lt;code&gt;kick&lt;/code&gt;, &lt;code&gt;slam&lt;/code&gt; or &lt;code&gt;slug&lt;/code&gt; them.&lt;/p&gt;
+
+&lt;p&gt;For an explanation of variance and inference, see chapter 10.
+Here, let&amp;#39;s go over the payload patterns.  Unlike most concepts
+in Hoon, these are strictly informal conventions.  A core is a
+core - there is no code in &lt;code&gt;hoon.hoon&lt;/code&gt; that deals with a &lt;code&gt;gate&lt;/code&gt;
+per se.  Nonetheless, these definitions are precise and
+unambiguous.&lt;/p&gt;
+
+&lt;h3&gt;Book&lt;/h3&gt;
+
+&lt;p&gt;A core whose payload is either another core, or a constant
+(&lt;code&gt;%cube&lt;/code&gt;), is a &lt;code&gt;book&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Reef&lt;/h3&gt;
+
+&lt;p&gt;A book whose payload is either another reef, or a cube, is a
+&lt;code&gt;reef&lt;/code&gt;.  Effectively, a reef is an entirely constant core.&lt;/p&gt;
+
+&lt;h3&gt;Trap&lt;/h3&gt;
+
+&lt;p&gt;Any core with one arm named &lt;code&gt;%$&lt;/code&gt; is a trap.  &amp;quot;It&amp;#39;s a trap!&amp;quot;&lt;/p&gt;
+
+&lt;h3&gt;Gate&lt;/h3&gt;
+
+&lt;p&gt;A gate is a trap whose payload has the form &lt;code&gt;[sample context]&lt;/code&gt;,
+&lt;code&gt;sample&lt;/code&gt; being dynamic data and &lt;code&gt;context&lt;/code&gt; being anything.&lt;/p&gt;
+
+&lt;h3&gt;Tray&lt;/h3&gt;
+
+&lt;p&gt;A tray is any core whose payload has the form &lt;code&gt;[sample
+context]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Categories&lt;/h3&gt;
+
+&lt;p&gt;Every reef is a book.  Every gate is a trap.  Every gate is a
+tray.&lt;/p&gt;
+
+&lt;h3&gt;Using cores&lt;/h3&gt;
+
+&lt;p&gt;As we already know, a name or axis (which of course applies to
+all nouns, not just cores) is a &lt;code&gt;limb&lt;/code&gt;.  A list of limbs is a
+&lt;code&gt;wing&lt;/code&gt;.  &lt;/p&gt;
+
+&lt;p&gt;To access a wing or limb in a core is to &lt;code&gt;pull&lt;/code&gt; it.  When we
+write &lt;code&gt;a.b.x&lt;/code&gt;, we pull the wing &lt;code&gt;a.b&lt;/code&gt; (ie, &lt;code&gt;a&lt;/code&gt; within &lt;code&gt;b&lt;/code&gt;) from
+&lt;code&gt;x&lt;/code&gt;.  If the result is defined as a subtree of &lt;code&gt;x&lt;/code&gt;, the wing is a
+&lt;code&gt;leg&lt;/code&gt;.  If it is computed from &lt;code&gt;x&lt;/code&gt; by a formula, it&amp;#39;s an &lt;code&gt;arm&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To pull &lt;code&gt;%$&lt;/code&gt; - the empty name - on a core is to &lt;code&gt;kick&lt;/code&gt; it.  To
+replace the sample with &lt;code&gt;a&lt;/code&gt; in gate &lt;code&gt;g&lt;/code&gt; then kick the gate, is
+to &lt;code&gt;slam g with a&lt;/code&gt;.  &lt;/p&gt;
+
+&lt;p&gt;(The archaic usage of &amp;quot;call&amp;quot; for &lt;code&gt;slam&lt;/code&gt; is discouraged, but
+common.  Please at least do not use &amp;quot;call&amp;quot; to mean &lt;code&gt;pull&lt;/code&gt;.)&lt;/p&gt;
+
+&lt;p&gt;Slamming is a special case of &lt;code&gt;slug&lt;/code&gt;, which pulls any limb on a
+tray after replacing the sample.  To replace the sample with &lt;code&gt;a&lt;/code&gt;
+on tray &lt;code&gt;t&lt;/code&gt;, then pull &lt;code&gt;m&lt;/code&gt;, is to &lt;code&gt;slug t to m with a&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thus when we write&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;(~(get by foo) bar)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;++by&lt;/code&gt; produces a tray.  We slug &lt;code&gt;by&lt;/code&gt; to &lt;code&gt;get&lt;/code&gt; with &lt;code&gt;foo&lt;/code&gt;,
+producing a gate that searches the map &lt;code&gt;foo&lt;/code&gt;, and slam this gate
+with &lt;code&gt;bar&lt;/code&gt;.  This is the most normal possible thing in the
+universe, though it must seem strange to you now.&lt;/p&gt;
+
+&lt;h2&gt;On jet propulsion&lt;/h2&gt;
+
+&lt;p&gt;Consider the problem of optimizing a Nock interpreter.  Let&amp;#39;s
+assume that this process must not and will not contaminate the
+pristine semantics of Nock itself.&lt;/p&gt;
+
+&lt;p&gt;But by definition, the interpreter does not need to be optimized
+to compute all possible functions as fast as possible.  It only
+needs to be optimized for the functions it computes.&lt;/p&gt;
+
+&lt;p&gt;Moreover, any given function (to use the word in its abstract
+mathematical sense), can be computed by an indefinite, and
+generally infinite, number of Nock formulas.  Again, we do not
+need to optimize all possible formulas - just the ones our
+interpreter actually executes.&lt;/p&gt;
+
+&lt;p&gt;A crude approach to this problem would be to compute the hash of
+every formula we interpret, and hardcode these hashes into the
+interpreter.  For hashes both commonly executed, and known to
+match some known algorithm, a manual implementation of that
+algorithm would be run.&lt;/p&gt;
+
+&lt;p&gt;Not quite what we do, but it&amp;#39;s close enough.  Nock&amp;#39;s conventional
+jet model is more or less this hash-matching with the addition of
+a reasonably convenient and effective mechanism for matching
+formulas and their manual implementations (&amp;quot;jets&amp;quot;).&lt;/p&gt;
+
+&lt;p&gt;In general it is not correct to match the formula when detecting
+jet invocations.  Rather, we need to match the entire core and
+the arm being pulled.  In other words, when instrumenting a Nock
+interpreter, the correct way to match jets is to sit on top of 
+Nock 9 and match both subject and arm.&lt;/p&gt;
+
+&lt;p&gt;When matching the subject to see if we can use a jet, we need a
+jet description that (a) expects the subject to be a core, (b)
+uses a hash to make sure it has the &lt;em&gt;battery&lt;/em&gt;, and (c) imposes
+some other complex constraint on the &lt;em&gt;payload&lt;/em&gt; of the core.&lt;/p&gt;
+
+&lt;p&gt;(Who writes this jet description?  Perhaps the programmer who
+wrote the core.  But this requires the programmer to either be the
+developer who runs the core, or to have some parallel channel for
+delivering her optimizations to the consumer.)&lt;/p&gt;
+
+&lt;p&gt;In any case, our task is matching the core to the jet.  We divide
+this into two parts: one, matching the battery (and arm, since
+different arms in a core may or may not be jet-propelled); two,
+checking the payload constraint.&lt;/p&gt;
+
+&lt;p&gt;It is not practical to compute a hash, especially a &lt;em&gt;secure&lt;/em&gt;
+hash, of every formula we reduce in Nock - or even of every
+battery.  We also do not want to make this match heuristically.
+Finally, we do not want to give the developer - who may well be
+creating the battery and the jet at the same time - the job of
+computing hashes by hand.&lt;/p&gt;
+
+&lt;p&gt;Battery matching is still a difficult and potentially ugly
+problem.  Worst of all, it seems potentially slow.  Some things
+that save us:&lt;/p&gt;
+
+&lt;p&gt;One, at least unless co-developing core and jet, it is generally 
+not common for new batteries to be created.  Therefore, caching
+is very worthwhile and pointer equality is often useful.&lt;/p&gt;
+
+&lt;p&gt;Two, we do not have room for a full secure hash on every noun,
+and we do not want to distinguish batteries from ordinary nouns
+when it comes to storage.  However, every indirect noun does have
+a 31-bit slot for a conventional FNV hash, &lt;code&gt;++mug&lt;/code&gt;.  This is
+computed lazily, relying on the fact that &lt;code&gt;0&lt;/code&gt; is not in its
+range.  (The mug slot is very useful for jet dispatch - but not
+used only for jet dispatch.)&lt;/p&gt;
+
+&lt;p&gt;Broadly speaking, while &lt;code&gt;++mug&lt;/code&gt; is by no means infallible, it
+reduces the associative process enough for linear search to be
+perfectly practical.&lt;/p&gt;
+
+&lt;p&gt;We then need to check the payload.  Broadly speaking, the payload
+consists of some mosaic of code, static data, and dynamic data.&lt;/p&gt;
+
+&lt;p&gt;Consider a giant reef, like the one &lt;code&gt;hoon.hoon&lt;/code&gt; constructs.  A
+reef is a stack of books, in which each book is the payload of
+the one above it.  To make sure our jet matches an arm in any of
+these books, we need to check &lt;em&gt;every battery in the stack&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The trick to checking a payload is to simplify the payload into a
+single &lt;em&gt;parent core&lt;/em&gt; and a surrounding bundle of data.  To
+recognize its core, it is sufficient to (a) recognize its parent
+- matching, once again, by the battery - and (b) validate all
+other data in the core.&lt;/p&gt;
+
+&lt;p&gt;The most common structure of this form is, of course, the tray
+&lt;code&gt;[battery [sample context]]&lt;/code&gt;.  (Again, iff &lt;code&gt;battery&lt;/code&gt; is a single 
+formula which implements an arm &lt;code&gt;%$&lt;/code&gt;, our tray is a gate.)  Trays
+and other core conventions are simply design patterns, which may
+be violated with complete impunity.  And there of course may be
+multiple cores within the payload.  One must be selected and
+treated as the parent; the rest are static data.&lt;/p&gt;
+
+&lt;p&gt;As for the sample and/or other dynamic data, it may or may not
+prove useful and/or efficient for a jet dispatch mechanism to
+enforce basic structure constraints on it.  Remember that, at the
+Nock level, we have no guarantee that this core was constructed
+in accordance with Hoon type rules.  &lt;/p&gt;
+
+&lt;p&gt;However, we can ask the programmer to at least do us the favor of
+declaring &lt;em&gt;logical&lt;/em&gt; cores.  Every time we construct a core -
+which, for a core defined by an arm in a book, ie, a typical
+library function, is every time we use it - we identify, using
+the three legs of the &lt;code&gt;%sgcn&lt;/code&gt; hint, three aspects of this core:&lt;/p&gt;
+
+&lt;p&gt;(p) the axis to its parent core
+(q) the logical version of the algorithm implemented
+(r) a list of bound arms, as [name axis] pairs&lt;/p&gt;
+
+&lt;p&gt;Thus there are two sources of information for a match: the
+Hoon programmer, who specifies the logical name of her core;
+and the jet programmer, whose declaration matches that logical
+name, verifies the match by computing an actual hash, and also
+describes any other constraints on the core her jet requires for
+it to accurately simulate Nock.  &lt;/p&gt;
+
+&lt;p&gt;In addition, it is very advisable for a jet framework to include
+tools that let the jet programmer bail out trivially with a
+refusal to handle any given case of the function, returning
+control to the pure Nock interpreter.&lt;/p&gt;
+
+&lt;p&gt;Another advantage of this model is that interpreters which
+receive a match for jets for they don&amp;#39;t have, still have a
+declaration from the programmer&amp;#39;s hand of the set of inner loops
+that need to be optimized.  This completely eliminates any excuse
+for a complex tracing JIT.  We know exactly where to JIT:
+wherever we don&amp;#39;t find a jet.&lt;/p&gt;
+
+&lt;h2&gt;Gonads&lt;/h2&gt;
+
+&lt;p&gt;It&amp;#39;s common in functional programming to create pipelines of
+functions which accept and produce the same type.  If we have
+two, three, or 47 gates which both accept and produce an atom,
+it&amp;#39;s easy to string them together into one gate with two, three,
+or 47 pipeline steps.&lt;/p&gt;
+
+&lt;p&gt;Suppose we think of one of these homogeneous parts as a block:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;   ----
+  |    |
+-&amp;gt;| F  |-&amp;gt;
+  |    |
+   ----
+
+one little function
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It&amp;#39;s clear that these blocks fit neatly together into a pipeline:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;   ----  ----  ----  ----
+  |    ||    ||    ||    |
+-&amp;gt;| F  || G  || H  || I  |-&amp;gt;
+  |    ||    ||    ||    |
+   ----  ----  ----  ----
+
+one big function
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But suppose we have a function whose product isn&amp;#39;t the same type
+as its sample?&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;   ----
+  |    \
+-&amp;gt;| F   )-&amp;gt;
+  |    /
+   ----
+
+one funky function
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It would seem difficult to use this as a building block.  But in
+fact, all we need is a little piece of glue that accepts the
+product type of F, and produces its sample type:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;  ----
+ \    |
+-&amp;gt;) U |-&amp;gt;
+ /    |
+  ----
+
+one gluey function
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With this, we can construct pipelines using U as the &amp;quot;mortar&amp;quot;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;   ----  ----  ----  ----  ----  ----  ---- 
+  |    \\    ||    \\    ||    \\    ||    \\
+-&amp;gt;| F   )) U || G   )) U || H   )) U || I   ))-&amp;gt;
+  |    //    ||    //    ||    //    ||    //
+   ----  ----  ----  ----  ----  ----  ---- 
+
+one big funky, gluey function
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that just as FGHI in the simple model has the same interface
+as F, G, H or I, FUGUHUI in the complex model has the same
+interface as F, G, H, or I.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s say the sample of F, the straight line, is X, and the
+product of F, the bump, is Y.  So FUGUHUI turns an X into a Y,
+just the way F does.&lt;/p&gt;
+
+&lt;p&gt;We can make this system even more powerful if, instead of using
+the simple tool U, a gate whose sample is Y and whose product X, 
+we use a more complex tool V.  V is a gate whose sample is a cell
+&lt;code&gt;[m n]&lt;/code&gt;, where &lt;code&gt;m&lt;/code&gt; is a Y and &lt;code&gt;n&lt;/code&gt; is another gate matching F.
+V&amp;#39;s product remains a Y.&lt;/p&gt;
+
+&lt;p&gt;In the above example, &lt;code&gt;q&lt;/code&gt; is GUHUI, the rest of the pipeline.  If
+we have a simple U that just converts a Y into an X, we can write
+a V that just uses U, then sends its result to GUHUI.  But a V
+does not need to work this way.  For instance, it could decide
+that the X it got in is perfectly fine, and just produce it - 
+never calling &lt;code&gt;q&lt;/code&gt; at all.&lt;/p&gt;
+
+&lt;p&gt;In Hoon, we call one of these funky, gluey pipelines a &lt;code&gt;gonad&lt;/code&gt;.
+The gonad rune is &lt;code&gt;;~&lt;/code&gt;, &lt;code&gt;[%smsg p q]&lt;/code&gt;.  A gonad has one &lt;code&gt;go&lt;/code&gt;, the
+V part - &lt;code&gt;p&lt;/code&gt; in &lt;code&gt;[%smsg p q]&lt;/code&gt; - and one or more &lt;code&gt;nads&lt;/code&gt;, the F, G,
+H or I parts (&lt;code&gt;q&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;If you look at the expansion, you&amp;#39;ll note one special trick we
+play - before we pass &lt;code&gt;n&lt;/code&gt; to V, the go, we reset its sample to
+the sample of the gonad as a whole.  Since neither the go nor the
+nad would otherwise see this value, it allows for more tricks.&lt;/p&gt;
+
+&lt;p&gt;For instance, gonads are often used for parsing.  A common go for
+parsing is &lt;code&gt;pose&lt;/code&gt;, whose nads are parsing rules tried in order -
+the first to parse succeeds.  Because of this trick, when the
+first nad returns a parsing failure, the second nad is sent to
+the go pre-configured with the parse input.  Otherwise, the noun
+representing a parsing failure would have to contain the input 
+as well.  Which would be clumsy.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/doc/2013/11/19/ch10&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Type Inference&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Chapter X (Type Inference)</title>
    <link href="http://urbit.org/doc/2013/11/19/ch10/"/>
    <updated>2013-11-19T00:00:00-08:00</updated>
    <id>http://urbit.org/doc/2013/11/19/ch10</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;/doc/2013/11/18/ch9&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Tiles&lt;/a&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;a href=&quot;/doc/2013/11/18/ch9&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Tiles&lt;/a&gt; &lt;a href=&quot;/doc/2013/11/19/ch11&quot;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Odds, Ends&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Ever, as before, does Madness remain a mysterious-terrific, altogether infernal boiling-up of the Nether Chaotic Deep, through this fair-painted Vision of Creation, which swims thereon, which we name the Real.&lt;/em&gt;&lt;/p&gt;
 
@@ -847,15 +1181,14 @@ about &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;.  What happens? 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;With &lt;code&gt;|=&lt;/code&gt; (&lt;code&gt;bartis&lt;/code&gt;, &lt;code&gt;%brts&lt;/code&gt;), the normal way of building a gate,
 we lost all our type information.  Sometimes this is fine.
-Sometimes it&amp;#39;s exactly what we want.  But sometimes...&lt;/p&gt;
-
-&lt;p&gt;Here&amp;#39;s something else we can do:&lt;/p&gt;
+Sometimes it&amp;#39;s exactly what we want.  But here&amp;#39;s something else
+we can do:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~zod/try=&amp;gt; :type; (|*([a=* b=*] [b a]) %foo %bar)
 [%bar %foo]
 [%bar %foo]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;By using &lt;code&gt;|*&lt;/code&gt; (&lt;code&gt;bartar&lt;/code&gt;, &lt;code&gt;%brtr&lt;/code&gt;), we seem to have produced the
-same noun, but not lost any type information.  Interesting...&lt;/p&gt;
+same noun, but not lost any type information.  Interesting!&lt;/p&gt;
 
 &lt;p&gt;The difference is that while both &lt;code&gt;|=&lt;/code&gt; and &lt;code&gt;|*&lt;/code&gt; are polymorphic,
 &lt;code&gt;|=&lt;/code&gt; uses &lt;em&gt;geometric&lt;/em&gt; polymorphism and &lt;code&gt;|*&lt;/code&gt; uses &lt;em&gt;generic&lt;/em&gt;.
@@ -1213,7 +1546,7 @@ change might confuse.&lt;/p&gt;
 &lt;p&gt;In short: generic polymorphism is cool but wacky.  Leave it to
 the experts, please!&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;/doc/2013/11/18/ch9&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Tiles&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/doc/2013/11/18/ch9&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Tiles&lt;/a&gt; &lt;a href=&quot;/doc/2013/11/19/ch11&quot;&gt;&lt;strong&gt;Next&lt;/strong&gt;: Odds, Ends&lt;/a&gt;&lt;/p&gt;
 </content>
  </entry>
  
@@ -1268,7 +1601,7 @@ know the difference between a tile and its icon.&lt;/p&gt;
 &lt;p&gt;Imagine, for instance, a C++ in which the class definition and
 the constructor are the same thing.  And the latter can also
 validate untrusted data off the Internets, acting much as for
-instance an XML DTD.  Yo, why would you have a type system and
+instance an XML DTD.  Why would you have a type system and
 not be able to do this?&lt;/p&gt;
 
 &lt;h2&gt;Reductions&lt;/h2&gt;
@@ -1838,7 +2171,7 @@ smooth over this issue a little, but smart isn&amp;#39;t free either.)&lt;/p&gt;
 implying three cores - mean.  First, we have the &lt;code&gt;|%&lt;/code&gt; which
 contains &lt;code&gt;++deq&lt;/code&gt;.  (When referring to an arm in informal text,
 we use this syntax, though the actual language of course requires
-a double space - when searching in a file, &amp;quot;++  arm&amp;quot; will always
+a double space - when searching in a file, &lt;code&gt;++&amp;ensp;&amp;ensp;arm&lt;/code&gt; will always
 find the definition of &lt;code&gt;arm&lt;/code&gt; and nothing else.)&lt;/p&gt;
 
 &lt;p&gt;This outer core defines &lt;em&gt;the library our decrement gate is in&lt;/em&gt;.
