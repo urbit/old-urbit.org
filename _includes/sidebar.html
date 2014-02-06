@@ -1,23 +1,36 @@
-<nav>
-  <a href="/">
-    <img src="/logo.svg" id="logo" alt="logo"/>
-  </a>
-  <h2> Urbit</h2>
-  <hr/>
-  <ul>
-  <p>An operating function</p>
-  <p>
-   <a href="/">Documentation </a>
-   <br>
-    <a href="/blog.html">Blog</a>
-   <br>
-   <a href="/community.html">Community</a>
-  </p>
-  <hr/>
-  <div>
-    <div id="social">
-      {% include social.html %}
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>{{ site.title }}</h1>
+      <p class="lead">{{ site.description }}</p>
     </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item{% if page.title == "Home" %} active{% endif %}">
+        <a href="/">What is Urbit?</a>
+      </li>
+
+      {% comment %}
+        The code below dynamically generates a sidebar nav of pages with
+        `layout: page` in the front-matter. See readme for usage.
+      {% endcomment %}
+
+      {% assign pages_list = site.pages %}
+      {% for node in pages_list %}
+        {% if node.title != null %}
+          {% if node.layout == "page" %}
+            <li class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}">
+              <a href="{{ node.url }}">{{ node.title }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      <li class="sidebar-nav-item"><a href="{{ site.github.repo }}">GitHub</a></li>
+      <li class="sidebar-nav-item"><a href="https://groups.google.com/forum/#!forum/urbit-dev">Mailing List</a></li>
+      <li class="sidebar-nav-item">Cooling at {{ site.version }}</li>
+      <li>Last Continuity Breach: <a href="/blog/2014/01/06/continuity/">~2014.1.6</a></li>
+    </ul>
+    <p>&copy; {{ site.time | date: '%Y' }}.  All rights reserved.</p>
   </div>
-  </ul>
-</nav>
+</div>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Chapter VIII (Gates) &middot; Urbit
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+
+  <!-- Icons -->
+
+   <link rel="shortcut icon" href="/favicon.png">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>Urbit</h1>
+      <p class="lead">a personal cloud computer</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+        <a href="/">What is Urbit?</a>
+      </li>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/about/">About</a>
+            </li>
+          
+        
+      
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/blog/">Blog</a>
+            </li>
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/doc/">Documentation</a>
+            </li>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/setup/">Setup</a>
+            </li>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <li class="sidebar-nav-item"><a href="https://github.com/urbit/urbit">GitHub</a></li>
+      <li class="sidebar-nav-item"><a href="https://groups.google.com/forum/#!forum/urbit-dev">Mailing List</a></li>
+      <li class="sidebar-nav-item">Cooling at 544 Kelvin</li>
+      <li>Last Continuity Breach: <a href="/blog/2014/01/06/continuity/">~2014.1.6</a></li>
+    </ul>
+    <p>&copy; 2014.  All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Chapter VIII (Gates)</h1>
+  <p><a href="/doc/2013/11/18/ch7"><strong>Prev</strong>: Hoon Computes</a>
+<a href="/doc/2013/11/18/ch9"><strong>Next</strong>: Tiles</a></p>
+
+<p><em>&quot;Anyone who thinks he&#39;s original is merely ignorant.&quot;</em>
+<strong>(Nicolás Gómez Dávila)</strong></p>
+
+<p>It&#39;s nice that we got decrement working in the last chapter.  But
+we didn&#39;t actually produce a decrement <em>function</em>.  So, let&#39;s do
+that now.</p>
+
+<h2>Gates and &quot;lambda&quot;</h2>
+
+<p>While we can hardly stop you from saying &quot;function,&quot; the proper
+Urbit terminology is <code>gate</code>.  </p>
+
+<p>A gate is a kind of core - you might remember our discussion in
+chapter 4.  A core is</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">[battery payload]
+</code></pre></div>
+<p>The battery is one or more formulas; the payload is any noun.  </p>
+
+<p>In a gate, there is exactly one arm - whose name is <code>$</code>, <code>buc</code> or
+<code>blip</code> - ie, nothing.  One arm, one twig, one formula.  Moreover,
+the payload is always a cell, arbitrarily labeled <code>sample</code> and
+<code>context</code>.  </p>
+
+<p>So - to combine several ways of deconstructing a noun - a gate
+looks like this:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">           glus   gras
+          lusgal lusgar
+            +&lt;     +&gt;
+[formula [sample context]]
+    -          +
+   hep        lus
+</code></pre></div>
+<p>Does this remind you of anything?  I hope not!  Unfortunately
+some readers may be previously familiar with legacy functional
+languages from the late 20th century.  Legacy?  Perhaps this is a
+little sharp - let&#39;s say &quot;classical.&quot;</p>
+
+<p>In classical FP, something quite like a Hoon gate is known as a
+&quot;lambda.&quot; We try not to use this term, really.  Hoon is obviously
+not based on the lambda calculus, and it&#39;s not nice to define
+other people&#39;s words for them.  (This is also why we don&#39;t say
+&quot;monad.&quot;)  But we may slip up sometimes and that&#39;s okay.  (We may
+also get caught with &quot;closure&quot; or even &quot;continuation.&quot;) </p>
+
+<p>But there is a big difference: in classical FP, &quot;lambda&quot; is a
+fundamental semantic primitive.  Since these are <em>functional</em>
+languages after all, it makes sense that defining and calling
+functions would be fundamental primitives.  </p>
+
+<p>But gates - Hoon&#39;s equivalent of functions - are no more than a
+design pattern: a convention, and a relatively funky convention
+at that.  Plus some sugary macros that make things convenient.</p>
+
+<p>Since Hoon&#39;s primitives are actually primitive (it doesn&#39;t get
+much more primitive than Nock), we can combine them to produce
+not only classic, function-oriented FP, but also a broader garden
+of funky patterns at the same complexity level as function
+calling.  But different from function calling.  What?  We&#39;ll see
+some of these patterns in a bit.</p>
+
+<h3>We make a gate</h3>
+
+<p>Our goal this time is not just to build decrement - it&#39;s to build
+decrement <em>right</em>.  That is, as a decrement function - a gate.
+If this is called <code>deq</code> (there already being a perfectly usable 
+<code>dec</code>) and we want decrementing <code>a</code> to look like Lisp:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">(deq a)
+</code></pre></div>
+<p>then we can expect our program to look something like </p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">!:             ::  To write a trivial Hoon program
+|=  *          ::
+|=  [a=@ ~]    ::  For educational purposes only
+:_  ~  :_  ~   ::
+:-  %$         ::  Preserve this mysterious boilerplate square
+!&gt;             ::
+:::::::::::::::::  Produce a value below
+=&gt;  XXXXX      ::  some twig or other
+(deq a)
+</code></pre></div>
+<p>This XXXXX twig, whatever it is, must extend the subject to
+contain a core which includes an arm which produces our gate.</p>
+
+<p>Extend the subject to contain a core which includes an arm which
+produces our gate?  Sure:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&gt;  |%
+    ++  deq
+      =+  x=0
+      |.  =+  y=0
+          |-  ?:  =(x +(y))
+                y
+              $(y +(y))
+    --
+(deq a)
+</code></pre></div>
+<p>Or more conveniently:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  (deq a)
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+</code></pre></div>
+<p>Does this work?</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">: /~zod/try/25/bin/hec/hoon
+~zod/try=&gt; :hec 42
+41
+</code></pre></div>
+<p>But this doesn&#39;t mean we understand it.  </p>
+
+<p>Sure, we read the last chapter.  So we understand how and why
+<code>|%</code> turned into <code>|.</code>, which then turned into <code>|-</code>.  The loop.
+But this strange beast seems to contain... <em>three</em> cores? </p>
+
+<h3>We understand a gate</h3>
+
+<p>Of course we need three nested cores.  Actually, we have a lot
+more than three nested cores, because the subject we are getting
+for the application contains all of <code>zuse.hoon</code> and <code>hoon.hoon</code>.</p>
+
+<p>A stack of cores in which the core below is the context of the
+one above, all the way down to the innermost core whose payload
+is a simple constant (for <code>hoon.hoon</code>, always the Kelvin version)
+is called, for obvious reasons, a <code>reef</code>.  With our three cores,
+we are adding no more than a few decorative polyps to our reef.</p>
+
+<p>For example, we can just as well use the standard decrement,
+<code>dec</code> - it&#39;s in there too:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  (dec a)
+|%
+++  deq
+  =+  x=0
+  |.  
+  =+  y=0
+  |-  
+  ?:  =(x +(y))
+    y
+  $(y +(y))
+--
+</code></pre></div>
+<p>(We&#39;ve used a more conservative indentation here - uglier and
+less compact, but arguably clearer.)</p>
+
+<p>We define <code>deq</code>, but we seem to be able to just call <code>dec</code>.  Why?
+Because we read past cores which don&#39;t bind the arm we&#39;re looking
+for, we can read all the way to the deepest layer in the Hoon 164
+reef - which contains the official, original <code>dec</code>.</p>
+
+<p>(It remains important not to profoundly abuse this magic power.
+Every layer of core you add, of course, puts you farther from
+some of the gates you want to use.  A smart interpreter can
+smooth over this issue a little, but smart isn&#39;t free either.)</p>
+
+<p>Thus, it should be perfectly clear what the three <code>bar</code> runes -
+implying three cores - mean.  First, we have the <code>|%</code> which
+contains <code>++deq</code>.  (When referring to an arm in informal text,
+we use this syntax, though the actual language of course requires
+a double space - when searching in a file, &quot;++  arm&quot; will always
+find the definition of <code>arm</code> and nothing else.)</p>
+
+<p>This outer core defines <em>the library our decrement gate is in</em>.
+Actually, &quot;library&quot; (or <code>book</code> - defined as a core which
+contains only code and constant data) is not quite the right
+terminology here.  Even though we don&#39;t use it and it shouldn&#39;t
+in fact be there, the payload of this core contains dynamic
+information such as <code>a</code>.</p>
+
+<p>In actual fact our nascent integer math library  is really an
+&quot;object&quot; or <code>cart</code> - ie, a core containing dynamic state.  This
+is just wrong and we&#39;ll see later on how to do it right.</p>
+
+<p>As in every core, the subject of every arm is the core itself.
+Naturally, the <code>|%</code> twig uses its own subject as the payload,
+creating the familiar reef effect as the stack of cores piles up.</p>
+
+<p>And this library is the <code>context</code> (or <code>+&gt;</code>, <code>gras</code>) of our gate.
+Thus, the twig in the gate can use anything in the library - of
+course as needed.</p>
+
+<p>The <code>sample</code> (or <code>+&lt;</code>, <code>glus</code>) of our gate is simply any default
+noun for the type we want to compute on.  Remember, of course,
+that the whole point of gates is that we change the sample, then
+compute the formula.  Hoon is a typed language, so the sample can
+be safely replaced by any noun in the same type.</p>
+
+<p>Within <code>=+</code>, <code>tislus</code>, the old subject becomes the context, and
+the new subject adds the sample <code>^=(b 0)</code>.  This pair of sample
+and context then becomes the payload within <code>|.</code>  Hence, we build
+a gate.</p>
+
+<p>And then, within this gate - the third core is the decrement loop
+itself, as we built it in the last chapter.  Note that if
+decrement did not need a counter variable or other incremental
+state, we would need only two cores - we could recurse through
+the decrement gate itself.  We&#39;ll see this in a little bit.</p>
+
+<p>Let&#39;s eschew synthetic runes and show the three cores as they
+really are:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  (deq a)
+|%
+++  deq
+  =+  x=0
+  |%  
+  ++  $
+    =+  y=0
+    =&lt;  $
+    |%  
+    ++  $
+      ?:  =(x +(y))
+        y
+      $(y +(y))
+    --
+  --
+--
+</code></pre></div>
+<p>On the other hand, if we don&#39;t mind synthetics and lots of
+parentheses, our decrement gate can also be a one-liner.  This is
+perfectly legitimate Hoon style:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">|%  ++  deq  =+(x=0 |.(=+(y=0 |-(?:(=(x +(y)) y $(y +(y)))))))
+--
+</code></pre></div>
+<h3>We call a gate</h3>
+
+<p>Note that we&#39;ve still totally failed to explain <code>(deq a)</code>.  This
+is obviously an irregular form.  Let&#39;s try to turn it back into
+natural hoons, and figure out what it&#39;s doing.</p>
+
+<p>We know that <code>deq</code> builds a gate.  We already know how to change
+the sample, <code>+&lt;</code> or <code>glus</code>, in that gate.  So let&#39;s drag it out 
+and do it the ugly way:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  =+  foo=deq             ::  create the gate
+    =+  bar=foo(+&lt; a)       ::  replace its sample
+    $.bar                   ::  invoke the gate
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+</code></pre></div>
+<p>Does this work?  It&#39;s always nice to check...</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">: /~zod/try/28/bin/hec/hoon
+~zod/try=&gt; :hec 42
+41
+</code></pre></div>
+<p>We don&#39;t actually need a separate <code>bar</code>:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  =+  foo=deq             ::  create the gate
+    $.foo(+&lt; a)             ::  replace the sample and invoke
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+</code></pre></div>
+<p>But what we&#39;d actually like to be able to get away with is...
+something that <em>won&#39;t</em> work - but that looks like it might:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  $.deq(+&lt; a)             ::  create, replace and invoke
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+</code></pre></div>
+<p>We try it and - doh!</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">: /~zod/try/31/bin/hec/hoon
+~zod/try=&gt; :hec 42
+! /~zod/hec/bin/~2014.1.13..22.55.29..8975/try:&lt;[2 1].[23 3]&gt;
+! /~zod/hec/bin/~2014.1.13..22.55.29..8975/try:&lt;[3 1].[23 3]&gt;
+! /~zod/hec/bin/~2014.1.13..22.55.29..8975/try:&lt;[4 1].[23 3]&gt;
+! /~zod/hec/bin/~2014.1.13..22.55.29..8975/try:&lt;[4 8].[23 3]&gt;
+! /~zod/hec/bin/~2014.1.13..22.55.29..8975/try:&lt;[5 1].[23 3]&gt;
+! /~zod/hec/bin/~2014.1.13..22.55.29..8975/try:&lt;[6 1].[23 3]&gt;
+! /~zod/hec/bin/~2014.1.13..22.55.29..8975/try:&lt;[8 1].[23 3]&gt;
+! /~zod/hec/bin/~2014.1.13..22.55.29..8975/try:&lt;[8 5].[8 16]&gt;
+! type-fail
+! exit
+</code></pre></div>
+<p>(This means we had a type failure between columns 5 and 16 of line
+8, by the way.  More on troubleshooting errors later.)</p>
+
+<p>Because when we wrote <code>deq(+&lt; a)</code>, we didn&#39;t mean: compute <code>deq</code>,
+then modify the <code>+&lt;</code> of its result to be <code>a</code>.  We meant: compute
+<code>deq</code>, with the <code>+&lt;</code> of the core that contains <code>deq</code> - ie, with
+the <code>+&lt;</code> of the <em>library</em> - changed to <code>a</code>.  Needless to say,
+that&#39;s not what we want at all.</p>
+
+<p>The change in <code>=%</code> - remember that <code>deq(+&lt; a)</code> is a short form
+for <code>=%(deq +&lt; a)</code> - is always <em>before</em> the invocation.
+So we can&#39;t do this as easily as it looks like we should be able
+to do it - because we can&#39;t edit the gate until we build it.</p>
+
+<p>Fortunately, we have a synthetic hoon to do this.  What hoon is
+(deq a), anyway?  It&#39;s <code>%-</code>, <code>cenhep</code>, <code>%cnhp</code>:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  %-  deq
+    a
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+</code></pre></div>
+<p>Let&#39;s look at the definition of <code>%cnhp</code>, our function caller.
+Here are the relevant clips from <code>hoon.hoon</code>:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">++  twig
+  |%  [%cnhp p=twig q=tusk]
+  ==
+
+++  tusk  (list twig)
+
+++  open
+  ^-  twig
+  ?-    gen
+      [%cnhp *]
+    ?~(q.gen [%tsgr p.gen [%cnzy %$]] [%cncl p.gen [%cltr q.gen]])
+  ::
+      [%cncl *]  
+    [%cnsg [%$ ~] p.gen q.gen]
+  ::
+      [%cnsg *]  
+    [%cntr p.gen q.gen [[[[%&amp; 6] ~] r.gen] ~]]
+  ::
+      [%cntr *]
+    :+  %tsls
+      q.gen
+    :+  %cnts
+      (weld p.gen `wing`[[~ 2] ~])
+    (turn r.gen |=([p=wing q=twig] [p [%tsgr [~ 3] q]]))
+  ==
+</code></pre></div>
+<p>You&#39;re not expected to understand this.  At least, not yet.  But
+we see that <code>%-</code>, so far from being a primitive, actually is a
+special case of <code>%:</code>, which is a special case of <code>%~</code>, which is a
+special case of <code>%*</code>, which seems to do... something.</p>
+
+<p>Which probably makes you think <code>%cnhp</code> is insanely complicated.
+Actually it just shows what an interesting family of things
+which are like function calls, but which are not function calls,
+we have here in Hoon.  Defining <code>%cnhp</code> this way saves code, but
+it doesn&#39;t help us understand the humble function call.</p>
+
+<p>If we just wanted %cnhp to be simple, we&#39;d define it this way:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">++  twig
+  |%  [%cnhp p=twig q=twig]
+  ==
+
+++  open
+  ^-  twig
+  ?-    gen
+      [%cnhp *]
+    :+  %tsls  q.gen
+    :+  %tsgl  [%cnzy %$]
+    [%cnhp [[%&amp; 2] ~] [[[%&amp; 6] ~] [%tsgl [~ 3] p.gen]] ~]
+  ==
+</code></pre></div>
+<p>This also is not terribly readable.  Let&#39;s translate it into the
+code that we&#39;d write if we were writing this macro out by hand:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  =+  deq               ::  create the gate
+    $.-(+&lt; =&gt;(+ a))       ::  replace the sample and invoke
+|%
+++  deq
+  =+  x=0
+  |.  =+  y=0
+      |-  ?:  =(x +(y))
+            y
+          $(y +(y))
+--
+</code></pre></div>
+<p>Compare this to the working example above.  The main difference
+is that this is what a Lisp fan would call a &quot;hygienic macro.&quot;
+It does not create private symbols of its own, or if it does they
+are not visible to the programmer.  For instance, when we write</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=+  deq
+</code></pre></div>
+<p>instead of</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=+  foo=deq
+</code></pre></div>
+<p>we see how wrong it is to think of the latter as &quot;declaring a
+variable <code>foo</code> and assigning it to <code>deq</code>.&quot;  Actually, we have no
+need within a synthetic hoon to bind a name.  After the <code>=+</code>, we
+can reach the gate with just <code>-</code>. </p>
+
+<p>But we cannot simply replace the sample with <code>a</code> - because the
+programmer who wrote <code>a</code> meant to write a twig against the
+original subject, not against the cell of gate and subject.</p>
+
+<p>Fortunately, <code>=&gt;(+ a)</code> gets us our original subject back - and
+<code>%-</code> works exactly as if it was a natural hoon.  That&#39;s hygiene.</p>
+
+<h3>Sequel hook</h3>
+
+<p>So is this the right way to write decrement (assuming we didn&#39;t
+already have decrement)?  No - there is actually a hoon designed
+specifically for building gates.  </p>
+
+<p>The right code (which we saw earlier) is:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">=&lt;  (deq a)
+|%
+++  deq
+  |=  x=@
+  =|  y=@
+  |-  ?:  =(x +(y))
+        y
+      $(y +(y))
+--
+</code></pre></div>
+<p>But this requires us to understand <code>x=@</code> - which <em>isn&#39;t even a
+twig</em>.  Rather, it&#39;s something else, called a <code>tile</code>.  We&#39;ll make
+friends with the tiles in the next chapter.</p>
+
+<p>For those with classic FP experience, it&#39;s very tempting to read
+<code>|=</code> (<code>bartis</code>, <code>%brts</code>) as &quot;lambda.&quot;  I hope it&#39;s clear by now
+that the difference between Hoon and classic FP languages is like
+the difference between a bat and a bird.  Both have wings and use
+them to fly, but below that level everything is different.</p>
+
+<p><a href="/doc/2013/11/18/ch7"><strong>Prev</strong>: Hoon Computes</a>
+<a href="/doc/2013/11/18/ch9"><strong>Next</strong>: Tiles</a></p>
+
+</div>
+
+
+
+    </div>
+
+  </body>
+</html>

@@ -1,34 +1,80 @@
 ---
 layout: default
-title: Documentation
+title: Home
 ---
 
 <div id="home">
-<iframe src="//player.vimeo.com/video/75312418" width="640" height="460" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p></p>
-  
-  <h2>Last Continuity Breach: ~2014.1.6 </h2>
-  <hr/>
-  <p> A continuity breach occurs when the entire Urbit network gets recreated &mdash; this will not happen in real life! All ships and piers prior to the breach will no longer work with the new network. </p>
-  <p> 
-What does this mean for the Urbit user? If you built your ships and piers before 1pm PST, January 6th (Urbit ~2014.1.6..21.00.00), do this: </p>
+  <h1>What is Urbit?</h1>
 
-<ol>
-  <li> git pull origin master </li>
-  <li> make clean; make </li>
-  <li> rm -rf $URBIT_HOME/*-* </li>
-  <li> rm -rf $mypier </li>
-  <li> vere -c $mypier and create your submarine/destroyer </li>
-  <li> :chat to chat </li>
-</ol>
-  <hr/>
-  <h2><i class="icon-bookmark"></i> Documentation</h2>
-  <ul id="blog-posts" class="posts">
-{% for post in site.posts reversed %}
-  {% if post.categories contains 'doc' %}
-    <div class="post">
-      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-     </div>
-  {% endif %}
-{% endfor %}
-  </ul>
+  <h2>Nock, a minimal virtual machine</h2>
+
+
+  <p><a href="https://github.com/urbit/urbit/blob/master/urb/zod/spec/nock/5.txt">Nock</a> is a homoiconic combinator algebra, not much fancier than SKI combinators.  Its spec fits on a T-shirt and gzips to 340 bytes.  Nock's data model: a noun is an atom or a cell.  An atom is any natural number.  A cell is an ordered pair of any two nouns.</p>
+
+  <p>Nock cannot create cycles and needs no GC.  Its only arithmetic operator is increment, so it is not inherently efficient; an efficient Nock interpreter works by recognizing standard Nock formulas and matching them to pre-written manual optimizations.  We never extend Nock or call out to Unix from it.</p>
+
+
+  <h2>Hoon, a typed functional language</h2>
+
+  <p><a href="/doc/2013/11/18/ch5/">Hoon</a> is a strict, typed functional language that compiles itself to Nock.  The Hoon compiler is 4000 lines of Hoon.  Adding standard libraries, the self-compiling kernel is 8000 lines.</p>
+
+
+  <p>Hoon has no particular family relationship to any older language, functional or not.  It uses its own type inference algorithm and is as different from Haskell as from Lisp.  Its syntax is also completely unfamiliar.  In general, Hoon tries to have the same relationship to Nock that C has to assembly - as thin a layer as possible.  It is possible to learn Hoon without Nock, but it's probably not a good idea.</p>
+
+
+  <p>As a functional systems language, Hoon is especially good at: metaprogramming, self-virtualization, hotpatching, etc; marshalling and validating untyped data; decoding and encoding binary message formats.  Hoon is designed for event programming, so there is no concurrency model.</p>
+
+
+  <h2>Arvo, a functional operating system</h2>
+
+  <p>Arvo is an event-driven server OS built on the same event library as node.js (<a href="https://github.com/joyent/libuv">libuv</a>).  Unlike node.js, Arvo is (a) written in Hoon, (b) isolated from Unix, (c) a persistent single-level store. Arvo can update itself and its data and programs indefinitely from its own state - after the image is created, it lives indefinitely and is never modified externally.</p>
+
+
+  <p>Arvo is modular, but present modules provide a network messaging protocol, a REPL and task manager, a revision-controlled filesystem, a text console, and an HTTP server.  The Arvo codebase is about 6500 lines, which is probably too big.</p>
+
+
+<h2>Clay, a global immutable namespace</h2>
+
+  <p>Clay is a feature of Arvo - a secure, referentially transparent decentralized filesystem.  The root of the namespace is a global PKI - each identity serves its own filesystem tree.  Files are nouns, not atoms, with arbitrary tree structure.</p>
+
+
+  <p>Identities, which are also routable addresses, are either key fingerprints or hierarchically assigned short numbers.  All numbers are mapped to phonemic strings for memorability.  All identities are transferrable and irrevocable; ownership is established by key pinning.  The system has a superficial resemblance to Bitcoin, but works more like land than money.  It does not use mining or a blockchain.</p>
+
+
+  <p>Since Clay is immutable, all paths contain a revision, which is either a change number, a date, or a label.  A request is a special case of a subscription, so syndication is straightforward.  Clay also has a synthesis mode which computes a functional namespace on the client side.</p>
+
+
+<h2>What is Urbit good for?</h2>
+
+<p>Urbit is good for everything, of course!  It's a new general-purpose computing layer.  Once our program of world domination is complete, the old Internets will be exist only as an underground series of tubes for which transports to you your Urbit.</p>
+
+
+<p>But more specifically, Urbit is a personal cloud computer.  Right now, the cloud computers we use run OSes designed for minicomputers in the '70s.  An ordinary user can no more drive a Linux box in the cloud than fly an A320.  So she has to sit in coach class as a row in someone else's database.  It's definitely air travel.  It's not exactly flying.v</p>
+
+
+<p>The user of the future will fly her own computer.  She will own and control her own identity and her own data.  She will even host her own apps.  She will not be part of someone else's Big Data.  She will be her own Little Data.  Unless she's a really severe geek, she will pay some service to store and execute her Urbit ship - but she can move it anywhere else, anytime, for the cost of the bandwidth.</p>
+
+
+<p>A user can't manage a general-purpose computer unless she basically understands what it's doing.  She may not be a programmer, but she needs at least a rough mental model of her computer's state.</p>
+
+
+<p>So a personal computer has to be a *simple* computer.  This is why we built a new system software stack from scratch, with the goal of bringing it in under 10,000 lines of code.  Urbit is about 50% over this complexity budget, but nobody's perfect.</p>
+
+
+<h2>What can it do now?</h2>
+
+
+<p>Urbit at present is not good for anything but screwing around.  For screwing around, it answer all your needs and happy to consume any amount unwanted time.</p>
+
+
+<p>It does basically work as described above, though.  Urbit at present propagates all its updates through its own filesystem, runs its own chat server over its own network protocol, etc.  But as of early 2014, it is an interesting prototype, not a useful device.</p>
+
+
+<h2>How can I join the revolution?</h2>
+
+<p>Just wait.  If you're cool enough, someone will send you an invitation.</p>
+
+
+<p>Psych!  No, actually, you can go <a href="/setup">here</a>.</p>
+
 </div>
