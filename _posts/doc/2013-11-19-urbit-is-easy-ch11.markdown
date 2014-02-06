@@ -4,8 +4,6 @@ category: doc
 title: Urban Reference Manual&#58; Chapter XI (Odds, Ends, Quirks)
 ---
 
-**(Carlyle)**
-
 [**Prev**: Type Inference](http://www.urbit.org/2013/11/19/urbit-is-easy-ch10.html)
 
 ##A bestiary of cores##
@@ -105,5 +103,239 @@ Thus when we write
 producing a gate that searches the map `foo`, and slam this gate
 with `bar`.  This is the most normal possible thing in the
 universe, though it must seem strange to you now.
+
+##On jet propulsion##
+
+Consider the problem of optimizing a Nock interpreter.  Let's
+assume that this process must not and will not contaminate the
+pristine semantics of Nock itself.
+
+But by definition, the interpreter does not need to be optimized
+to compute all possible functions as fast as possible.  It only
+needs to be optimized for the functions it computes.
+
+Moreover, any given function (to use the word in its abstract
+mathematical sense), can be computed by an indefinite, and
+generally infinite, number of Nock formulas.  Again, we do not
+need to optimize all possible formulas - just the ones our
+interpreter actually executes.
+
+A crude approach to this problem would be to compute the hash of
+every formula we interpret, and hardcode these hashes into the
+interpreter.  For hashes both commonly executed, and known to
+match some known algorithm, a manual implementation of that
+algorithm would be run.
+
+Not quite what we do, but it's close enough.  Nock's conventional
+jet model is more or less this hash-matching with the addition of
+a reasonably convenient and effective mechanism for matching
+formulas and their manual implementations ("jets").
+
+In general it is not correct to match the formula when detecting
+jet invocations.  Rather, we need to match the entire core and
+the arm being pulled.  In other words, when instrumenting a Nock
+interpreter, the correct way to match jets is to sit on top of 
+Nock 9 and match both subject and arm.
+
+When matching the subject to see if we can use a jet, we need a
+jet description that (a) expects the subject to be a core, (b)
+uses a hash to make sure it has the *battery*, and (c) imposes
+some other complex constraint on the *payload* of the core.
+
+(Who writes this jet description?  Perhaps the programmer who
+wrote the core.  But this requires the programmer to either be the
+developer who runs the core, or to have some parallel channel for
+delivering her optimizations to the consumer.)
+ 
+In any case, our task is matching the core to the jet.  We divide
+this into two parts: one, matching the battery (and arm, since
+different arms in a core may or may not be jet-propelled); two,
+checking the payload constraint.
+
+It is not practical to compute a hash, especially a *secure*
+hash, of every formula we reduce in Nock - or even of every
+battery.  We also do not want to make this match heuristically.
+Finally, we do not want to give the developer - who may well be
+creating the battery and the jet at the same time - the job of
+computing hashes by hand.
+
+Battery matching is still a difficult and potentially ugly
+problem.  Worst of all, it seems potentially slow.  Some things
+that save us:
+
+One, at least unless co-developing core and jet, it is generally 
+not common for new batteries to be created.  Therefore, caching
+is very worthwhile and pointer equality is often useful.
+
+Two, we do not have room for a full secure hash on every noun,
+and we do not want to distinguish batteries from ordinary nouns
+when it comes to storage.  However, every indirect noun does have
+a 31-bit slot for a conventional FNV hash, `++mug`.  This is
+computed lazily, relying on the fact that `0` is not in its
+range.  (The mug slot is very useful for jet dispatch - but not
+used only for jet dispatch.)
+
+Broadly speaking, while `++mug` is by no means infallible, it
+reduces the associative process enough for linear search to be
+perfectly practical.
+
+We then need to check the payload.  Broadly speaking, the payload
+consists of some mosaic of code, static data, and dynamic data.
+
+Consider a giant reef, like the one `hoon.hoon` constructs.  A
+reef is a stack of books, in which each book is the payload of
+the one above it.  To make sure our jet matches an arm in any of
+these books, we need to check *every battery in the stack*.
+
+The trick to checking a payload is to simplify the payload into a
+single *parent core* and a surrounding bundle of data.  To
+recognize its core, it is sufficient to (a) recognize its parent
+- matching, once again, by the battery - and (b) validate all
+other data in the core.
+
+The most common structure of this form is, of course, the tray
+`[battery [sample context]]`.  (Again, iff `battery` is a single 
+formula which implements an arm `%$`, our tray is a gate.)  Trays
+and other core conventions are simply design patterns, which may
+be violated with complete impunity.  And there of course may be
+multiple cores within the payload.  One must be selected and
+treated as the parent; the rest are static data.
+
+As for the sample and/or other dynamic data, it may or may not
+prove useful and/or efficient for a jet dispatch mechanism to
+enforce basic structure constraints on it.  Remember that, at the
+Nock level, we have no guarantee that this core was constructed
+in accordance with Hoon type rules.  
+
+However, we can ask the programmer to at least do us the favor of
+declaring *logical* cores.  Every time we construct a core -
+which, for a core defined by an arm in a book, ie, a typical
+library function, is every time we use it - we identify, using
+the three legs of the `%sgcn` hint, three aspects of this core:
+
+(p) the axis to its parent core
+(q) the logical version of the algorithm implemented
+(r) a list of bound arms, as [name axis] pairs
+
+Thus there are two sources of information for a match: the
+Hoon programmer, who specifies the logical name of her core;
+and the jet programmer, whose declaration matches that logical
+name, verifies the match by computing an actual hash, and also
+describes any other constraints on the core her jet requires for
+it to accurately simulate Nock.  
+
+In addition, it is very advisable for a jet framework to include
+tools that let the jet programmer bail out trivially with a
+refusal to handle any given case of the function, returning
+control to the pure Nock interpreter.
+
+Another advantage of this model is that interpreters which
+receive a match for jets for they don't have, still have a
+declaration from the programmer's hand of the set of inner loops
+that need to be optimized.  This completely eliminates any excuse
+for a complex tracing JIT.  We know exactly where to JIT:
+wherever we don't find a jet.
+
+##Gonads##
+
+It's common in functional programming to create pipelines of
+functions which accept and produce the same type.  If we have
+two, three, or 47 gates which both accept and produce an atom,
+it's easy to string them together into one gate with two, three,
+or 47 pipeline steps.
+
+Suppose we think of one of these homogeneous parts as a block:
+
+       ----
+      |    |
+    ->| F  |->
+      |    |
+       ----
+
+    one little function
+
+It's clear that these blocks fit neatly together into a pipeline:
+
+       ----  ----  ----  ----
+      |    ||    ||    ||    |
+    ->| F  || G  || H  || I  |->
+      |    ||    ||    ||    |
+       ----  ----  ----  ----
+
+    one big function
+
+But suppose we have a function whose product isn't the same type
+as its sample?
+
+       ----
+      |    \
+    ->| F   )->
+      |    /
+       ----
+
+    one funky function
+
+It would seem difficult to use this as a building block.  But in
+fact, all we need is a little piece of glue that accepts the
+product type of F, and produces its sample type:
+    
+      ----
+     \    |
+    ->) U |->
+     /    |
+      ----
+
+    one gluey function
+
+With this, we can construct pipelines using U as the "mortar":
+
+       ----  ----  ----  ----  ----  ----  ---- 
+      |    \\    ||    \\    ||    \\    ||    \\
+    ->| F   )) U || G   )) U || H   )) U || I   ))->
+      |    //    ||    //    ||    //    ||    //
+       ----  ----  ----  ----  ----  ----  ---- 
+
+    one big funky, gluey function
+
+Note that just as FGHI in the simple model has the same interface
+as F, G, H or I, FUGUHUI in the complex model has the same
+interface as F, G, H, or I.
+
+Let's say the sample of F, the straight line, is X, and the
+product of F, the bump, is Y.  So FUGUHUI turns an X into a Y,
+just the way F does.
+
+We can make this system even more powerful if, instead of using
+the simple tool U, a gate whose sample is Y and whose product X, 
+we use a more complex tool V.  V is a gate whose sample is a cell
+`[m n]`, where `m` is a Y and `n` is another gate matching F.
+V's product remains a Y.
+
+In the above example, `q` is GUHUI, the rest of the pipeline.  If
+we have a simple U that just converts a Y into an X, we can write
+a V that just uses U, then sends its result to GUHUI.  But a V
+does not need to work this way.  For instance, it could decide
+that the X it got in is perfectly fine, and just produce it - 
+never calling `q` at all.
+
+In Hoon, we call one of these funky, gluey pipelines a `gonad`.
+The gonad rune is `;~`, `[%smsg p q]`.  A gonad has one `go`, the
+V part - `p` in `[%smsg p q]` - and one or more `nads`, the F, G,
+H or I parts (`q`).
+
+If you look at the expansion, you'll note one special trick we
+play - before we pass `n` to V, the go, we reset its sample to
+the sample of the gonad as a whole.  Since neither the go nor the
+nad would otherwise see this value, it allows for more tricks.
+
+For instance, gonads are often used for parsing.  A common go for
+parsing is `pose`, whose nads are parsing rules tried in order -
+the first to parse succeeds.  Because of this trick, when the
+first nad returns a parsing failure, the second nad is sent to
+the go pre-configured with the parse input.  Otherwise, the noun
+representing a parsing failure would have to contain the input 
+as well.  Which would be clumsy.
+
+
 
 [**Prev**: Type Inference](http://www.urbit.org/2013/11/19/urbit-is-easy-ch10.html)
