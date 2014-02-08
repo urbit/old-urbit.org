@@ -19,7 +19,8 @@ title: nock 7, function composition
  
 *[*[a b] c]
  
-```text
+```
+
 **`7` Reduced:**
 
 ```text
