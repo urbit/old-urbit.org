@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      nock 6, if, then, else &middot; Urbit
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+
+  <!-- Icons -->
+
+   <link rel="shortcut icon" href="/favicon.png">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img src="/public/urbit_logo_ur.svg">
+      <br>
+      <h1>Urbit</h1>
+      <p class="lead">a personal cloud computer</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+        <a href="/">What is Urbit?</a>
+      </li>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/about/">About</a>
+            </li>
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/blog/">Blog</a>
+            </li>
+          
+        
+      
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/doc/">Documentation</a>
+            </li>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            <li class="sidebar-nav-item">
+              <a href="/setup/">Setup</a>
+            </li>
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <li class="sidebar-nav-item"><a href="https://github.com/urbit/urbit">GitHub</a></li>
+      <li class="sidebar-nav-item"><a href="https://groups.google.com/forum/#!forum/urbit-dev">Mailing List</a></li>
+      <li class="sidebar-nav-item">Cooling at 544 Kelvin</li>
+      <li>Last Continuity Breach: <a href="/blog/2014/01/06/continuity/">~2014.1.6</a></li>
+    </ul>
+    <p>&copy; 2014.  All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="subpage">
+  <h1 class="subpage-title">nock 6, if, then, else</h1>
+  <p><strong><code>6</code> Reduction:</strong></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">32 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+
+*[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+
+27 ::    *[a 2 b c]        *[*[a b] *[a c]]
+
+*[*[a 0 1] *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
+
+25 ::    *[a 0 b]          /[b a]
+
+*[a *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
+
+27 ::    *[a 2 b c]        *[*[a b] *[a c]]
+
+*[a *[*[a [1 c d]] *[a [1 0] 2 [1 2 3] [1 0] 4 4 b]]]
+
+26 ::    *[a 1 b]          b
+
+23 ::    *[a [b c] d]      [*[a b c] *[a d]]
+
+*[a *[[c d] [*[a 1 0] *[a 2 [1 2 3] [1 0] 4 4 b]]]]
+
+26 ::    *[a 1 b]          b
+
+*[a *[[c d] [0 *[a 2 [1 2 3] [1 0] 4 4 b]]]]
+
+27 ::    *[a 2 b c]        *[*[a b] *[a c]]
+
+*[a *[[c d] [0 *[*[a [1 2 3]] *[a [1 0] 4 4 b]]]]]
+
+26 ::    *[a 1 b]          b
+
+*[a *[[c d] [0 *[[2 3] *[a [1 0] 4 4 b]]]]]
+
+23 ::    *[a [b c] d]      [*[a b c] *[a d]]
+
+*[a *[[c d] [0 *[[2 3] [*[a [1 0]] *[a 4 4 b]]]]]]
+
+26 ::    *[a 1 b]          b
+
+*[a *[[c d] [0 *[[2 3] [0 *[a 4 4 b]]]]]]
+
+29 ::    *[a 4 b]          +*[a b]
+
+*[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
+</code></pre></div>
+<p><strong><code>6</code> Reduced:</strong></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">    32r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
+</code></pre></div>
+<p><code>6</code> is a primitive known to every programmer - good old &quot;if.&quot;  If <code>b</code> evaluates
+to <code>0</code>, we produce <code>c</code>; if <code>b</code> evaluates to <code>1</code>, we produce <code>d</code>; otherwise, we
+crash. We could have defined &quot;if&quot; as a built-in function, like increment
+by arbitrarily inventing another operator:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">::    $[0 b c]         b
+::    $[1 b c]         c
+</code></pre></div>
+<p>Then we could restate <code>6</code> quite compactly:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">32c::    *[a 6 b c d]     *[a $[*[a b] c d]]
+</code></pre></div>
+<p>However, since we <em>can</em> write <code>if</code> as a macro, albeit a funky macro, we do so
+as to keep the Nock specification small.</p>
+
+<p>In real life, of course, the Nock implementor knows that <code>6</code> is &quot;if&quot; and
+implements it as such. It&#39;s worth noting that in practical, compiler-generated
+Nock, we never do anything as funky as these <code>6</code> macro internals.  There&#39;s no
+reason we couldn&#39;t build formulas at runtime, but we have no reason to and we
+don&#39;t - except when actually metaprogramming.  As in most languages, normally
+code is code and data is data.</p>
+
+</div>
+
+    </div>
+
+  </body>
+</html>
