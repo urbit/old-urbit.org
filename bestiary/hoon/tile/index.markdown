@@ -3,6 +3,7 @@ layout: subpage
 title: tiles
 ---
 
+```text  
 ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
           $%  [%axil p=base]                            ::  base type
               [%bark p=term q=tile]                     ::  name
@@ -14,3 +15,4 @@ title: tiles
               [%reed p=tile q=tile]                     ::  atom/cell
               [%weed p=twig]                            ::  example
           ==  
+```          
