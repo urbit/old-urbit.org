@@ -4,8 +4,6 @@ title: About
 ---
 
 
-<hr>
-
 #Links#
 
 + [Nock, Hoon, etc. for Non-Vulcans (Why Urbit Matters)](http://www.popehat.com/2013/12/06/nock-hoon-etc-for-non-vulcans-why-urbit-matters/)
@@ -19,6 +17,8 @@ title: About
 + [The future of search](http://unqualified-reservations.blogspot.com/2010/03/future-of-search.html)
 + [Agora Remora: Swimming with the Urbit community](http://www.agoraremora.com/about.html)
 + [Tlon] (http://www.crunchbase.com/company/tlon)
+
+---
 
 #Videos#
 

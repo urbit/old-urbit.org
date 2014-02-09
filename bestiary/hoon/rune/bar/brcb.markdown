@@ -4,6 +4,8 @@ category: bar
 title: barcab
 ---
 
+[**Up:** Urban Bestiary Index](/bestiary/hoon/rune/bar/)
+
 `|_`, `barcab`, `[%brcb p=tile q=(map term foot)]` is a synthetic
 hoon that produces a `%gold` tray with sample `p`, arms `q`.
 
