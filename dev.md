@@ -1,52 +1,52 @@
-----
+---
 layout: page
 title: Developer
 ---
 
-#Regular Weekly Urbit Chat:#
+##Regular Weekly Urbit Chat:#
 
-Wednesdays at 6pm pacific time. On Urbit :chat, where else?
+Wednesdays at 6pm pacific time. On Urbit `:chat,` where else?
 
-#Nock Interpreters, by language#
+##Nock Interpreters, by language#
 
-#`Python`#
+###`Python`#
 
 + [~rammul-sigfet](https://github.com/eykd/nock)
 + [~dolsun-hoptes] (https://github.com/jtauber/pynock/)
 
-#`Ruby`#
+###`Ruby`#
 
 + [~lopdev-dirlut] (https://github.com/tjic/nock)
 + [https://github.com/davidbalbert/nock.rb] (https://github.com/davidbalbert/nock.rb)
 
-#`JavaScript`#
+###`JavaScript`#
 
 + [~nimtep-dibteb] (https://github.com/famousj/nock.js)
 + [~rampyx-mirpec] (http://jsfiddle.net/anoxic/TXT5V/8/embedded/result/)
 
-#`Haskell`#
+###`Haskell`#
 + [https://github.com/mmakowski/hock](https://github.com/mmakowski/hock)
 + [https://github.com/mbrubeck/mynock](https://github.com/mbrubeck/mynock)
 + [~satfex-difdyr](https://github.com/mrdomino/hsnock)
 
-#`Lisp`#
+###`Lisp`#
 
 + [~dilnem-nodfun](https://github.com/cmm/nock)
 
-#`C#`#
+###`C#`#
 
 + [https://github.com/zass30/Nock5KCSharp](https://github.com/zass30/Nock5KCSharp)
 
-#`Clojure`#
+###`Clojure`#
 
 + [~lapled-rammyn](https://github.com/jordanlewis/nock-clj)
 
-#`F#`#
+###`F#`#
 
 + [~portem-ravdet] (https://github.com/martindevans/NockFSharp)
 
-#`Racket`#
+###`Racket`#
 + [~wictuc-folrex](https://github.com/philipcmonk/racketnock)
 
-#`Scala`#
+###`Scala`#
 + [https://github.com/swaldman/nnnock](https://github.com/swaldman/nnnock)
