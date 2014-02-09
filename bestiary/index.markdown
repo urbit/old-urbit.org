@@ -29,7 +29,6 @@ title: Urban Bestiary, Index
 + [**nock:** dot, `.`](/bestiary/hoon/rune/dot/)
 + [**compositions:** tis, `=`](/bestiary/hoon/rune/tis/)
 + [**invocations:** cen, `%`](/bestiary/hoon/rune/cen/)
-+ [**gears:** pam, `&`](/bestiary/hoon/rune/pam/)
 + [**hints:** sig, `~`](/bestiary/hoon/rune/sig/)
 + [**prettyprint:** hax, `#`](/bestiary/hoon/rune/hax/)
 + [**miscellaneous:** sem, `;`](/bestiary/hoon/rune/sem/)
