@@ -4,7 +4,7 @@ category: hax
 title: haxgar
 ---
 
-`#<`, `haxgar`, `[%hxgr p=tusk]` is a synthetic hoon that
+`#>`, `haxgar`, `[%hxgr p=tusk]` is a synthetic hoon that
 slams the assumed gate `cain` on `[%zpgr %cntr p]`.
 
 ###Definition###
