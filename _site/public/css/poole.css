@@ -171,7 +171,7 @@ pre {
 }
 pre code {
   padding: 0;
-  font-size: 100%;
+  font-size: 90%;
   color: inherit;
   background-color: transparent;
 }
@@ -202,7 +202,7 @@ blockquote p:last-child {
 
 img {
   display: block;
-  margin: 1rem 0 1rem;
+  margin: 0 0 1rem;
   border-radius: 5px;
   min-width:100%;
   max-width:100%;
