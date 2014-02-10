@@ -290,9 +290,9 @@ product type of F, and produces its sample type:
 With this, we can construct pipelines using U as the "mortar":
 
        ----  ----  ----  ----  ----  ----  ---- 
-      |    \\    ||    \\    ||    \\    ||    \\
-    ->| F   )) U || G   )) U || H   )) U || I   ))->
-      |    //    ||    //    ||    //    ||    //
+      |    \\    ||    \\    ||    \\    ||    \
+    ->| F   )) U || G   )) U || H   )) U || I   )->
+      |    //    ||    //    ||    //    ||    /
        ----  ----  ----  ----  ----  ----  ---- 
 
     one big funky, gluey function
@@ -311,31 +311,354 @@ we use a more complex tool V.  V is a gate whose sample is a cell
 `[m n]`, where `m` is a Y and `n` is another gate matching F.
 V's product remains a Y.
 
-In the above example, `q` is GUHUI, the rest of the pipeline.  If
-we have a simple U that just converts a Y into an X, we can write
-a V that just uses U, then sends its result to GUHUI.  But a V
-does not need to work this way.  For instance, it could decide
-that the X it got in is perfectly fine, and just produce it - 
-never calling `q` at all.
+Here's what this looks like in ASCII art:
 
-In Hoon, we call one of these funky, gluey pipelines a `gonad`.
-The gonad rune is `;~`, `[%smsg p q]`.  A gonad has one `go`, the
-V part - `p` in `[%smsg p q]` - and one or more `nads`, the F, G,
-H or I parts (`q`).
+       ----  ---- 
+      |    \\    \
+    ->| F   )m V  )->
+      |    //    /
+       ----  ---- 
+              |n
+             ----  ----  
+            |    \\    \
+          ->| G   )m V  )->
+            |    //    /
+             ----  ---- 
+                    |n
+                   ----  ----  
+                  |    \\    \
+                ->| H   )m V  )->
+                  |    //    /
+                   ----  ---- 
+                          |n
+                         ----  ----  
+                        |    \\    \
+                      ->| I   )m V  )->
+                        |    //    /
+                         ----  ---- 
+             
+    one big funky, gluey, complicated function
 
-If you look at the expansion, you'll note one special trick we
-play - before we pass `n` to V, the go, we reset its sample to
-the sample of the gonad as a whole.  Since neither the go nor the
-nad would otherwise see this value, it allows for more tricks.
+What's the advantage?  A V-function is more powerful than a
+U-function, because the U-function has no choice but to turn its
+X into a Y and use `n`, the rest of the pipeline, on it.  The V
+function can do anything with its input - it could even ignore
+the rest of the pipeline and just produce the `m` it got in.
+
+In Hoon, we call one of these funky, gluey, complicated pipelines
+a `gonad`.  The gonad rune is `;~`, `[%smsg p q]`.  A gonad has
+one `go`, the V part - `p` in `[%smsg p q]` - and one or more
+`nads`, the F, G, H or I parts (`q`).
+
+There's one other complicated trick we play to make our gonads
+work better.
+
+If you look at the expansion, you'll see that before we pass `n`
+to V, the go, we reset its sample to the sample of the gate that
+`%smsg` produces.  Since neither the go nor `n` would otherwise
+see this value, it allows for more hackery.
 
 For instance, gonads are often used for parsing.  A common go for
-parsing is `pose`, whose nads are parsing rules tried in order -
+parsing is `++pose`, whose nads are parsing rules tried in order -
 the first to parse succeeds.  Because of this trick, when the
 first nad returns a parsing failure, the second nad is sent to
-the go pre-configured with the parse input.  Otherwise, the noun
-representing a parsing failure would have to contain the input 
-as well.  Which would be clumsy.
+the go pre-configured with the original problem.
 
+The go doesn't have to do a proper slam on `n`, replacing its 
+sample.  It can just use `n` as a trap, leaving the sample
+default - in the case of `++pose`, the original parsing problem.
+Which is exactly what we want.
 
+##On debugging your urbits##
 
-[**Prev**: Type Inference](/doc/2013/11/19/ch10)
+Okay so you tried to do something and it didn't work.
+
+What happened?  Hopefully, nothing bad.  But coding is a vale of
+tears.  Here are some bad things that can happen to you in Hoon.
+
+###Parse error###
+
+You could be 'avin a parse error.  The Hoon parser reports
+the location - line and column - of errors quite accurately.
+
+Let's generate an erroneous file.  Open up `try/bin/foo.hoon`,
+an empty file, and put a `#` at line 8, column 4.  Then type
+
+    ~waclux-tomwyc/try=> :foo
+    ! /~waclux-tomwyc/try/~2014.2.9..06.58.40..e352/bin/foo/hoon
+    ! {8 4}
+    ! 'syntax-error'
+    ! exit
+
+That means you got a syntax error at line 8, column 4, when
+trying to load `/~waclux-tomwyc/try=/bin/foo/hoon`.  (You may
+also see traces for `/~waclux-tomwyc/arvo=/batz/hoon`, which
+simply means Arvo was compiled with debugging.)  
+
+This is always exactly right, for certain values of "right."
+As always, you have to understand what Hoon is thinking.
+
+The position of the error is the position at which the parser
+*stopped being able to parse* - it has no way to interpret the 
+byte at this line and column.  Often this is actually where you
+screwed up.  It is at least no *later* than you screwed up.
+
+But one of the prices we pay for for a tall form without
+terminators is that the parser relies on knowing that after a
+`:+`, for instance, it expects to parse exactly three twigs.  If
+you accidentally leave one of these three out, the parser at `:+`
+will steal whatever twig should come next.
+
+Generally at some point the parser will collide with reality and
+reality will win.  At this position, you'll see a syntax error.
+But bad luck can move this point some distance from the mistake.
+
+This is never a serious problem once you get used to Hoon, but it
+can be a pain in the butt while you're learning.  To attack any
+mysterious syntax error (in any language, not just Hoon), work by
+binary search reduction - pull out giant chunks of code to see if
+the error is there, or elsewhere.
+
+###Type failure###
+
+Okay, you parsed.  But you're still failing.  Plenty of fail.
+
+By far the most common semantic failure from the Hoon compiler is
+the cryptic `type-fail`.  What failed exactly?  We have a lot
+more information, but we'd rather not give it to you up front.
+
+The second most common error is `missing limb`.  Here we actually
+tell you the name of the limb.  But look, if you write `b.a`,
+you'd better have a `b` in your `a`.  You probably have the wrong
+idea of what type an `a` is.  So it comes back to type again.
+
+Essentially all Hoon compiler errors are in a sense type failure.
+Generally, the compiler wants to shield you from the direct
+details, because most ways of presenting the direct details
+automatically would, at least in certain cases, just belch all
+over the screen.
+
+Instead, the most important information about any Hoon error is
+the *location stack*.  Where did this happen?  The general
+process of troubleshooting disregards the error details
+completely, and starts from the *place* your program failed.
+
+Unlike the parser location, the type location trace is *always*
+correct.  But you still have to know how to interpret it.  And
+first, you need to know how to *generate* it. 
+
+###Generate your trace###
+
+Every twig within a `!:` generates trace information, both at
+compile time and runtime.  Normally you will see `!:` at the
+start of a file, and when writing simple programs it is a good
+habit just to put it in at the start.
+
+Why wouldn't you always use `!:`?  Because runtime tracing isn't
+free, and especially because it kills tail-call optimization.
+Also, because sometimes code just works.  For all these reasons,
+there is no `!:` on `hoon.hoon` or `zuse.hoon`.
+
+To experiment with tracing, copy `try/bin/goodbye.hoon` into
+`try/bin/error.hoon`.`:
+
+      + /~waclux-tomwyc/try/4/bin/error/hoon
+      ~waclux-tomwyc/try=> :error "world"
+      "hasta la vista, world."
+
+The simplest kind of error is on the command line itself:
+
+      ~waclux-tomwyc/try=> :error
+      ! type-fail
+      ! exit
+
+But this only happens if the file actually compiles.  Let's make
+it not compile, by changing it from
+
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {planet}.")]
+
+to
+
+    |=  *
+    |=  [planet=tape ~]
+    =+  foo=(add 2)
+    ^-  bowl
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {planet}.")]
+
+We've introduced a subtle semantic error into our Folger's
+coffee.  How might the discerning compiler respond?
+
+    ~waclux-tomwyc/try=> :error "world"
+    ! type-fail
+    ! exit
+
+It's mischieviously identical to the argument error.  But if we
+add `!:` to the start of the file, we get:
+
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    =+  foo=(add 2)
+    ^-  bowl
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {planet}.")]
+
+and running it:
+
+    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[2 1].[7 37]>
+    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[3 1].[7 37]>
+    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[4 1].[7 37]>
+    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[5 1].[7 37]>
+    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[5 5].[5 16]>
+    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[5 9].[5 16]>
+    ! type-fail
+    ! exit
+
+We see that the problem is on line 5 between columns 9 and 16.
+Ie, `(add 2)`.  Well, duh.
+
+But suppose we can't see what's wrong with `(add 2)`.  Then, it's
+time for us to print some types, which we do with `~!`:
+
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    ~!  2
+    ~!  +<:add
+    =+  foo=(add 2)
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {planet}.")]
+
+We see:
+
+    : /~zod/try/10/bin/error/hoon
+    ~zod/try=> :error "world"
+    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[2 1].[9 37]>
+    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[3 1].[9 37]>
+    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[4 1].[9 37]>
+    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[5 1].[9 37]>
+    ! @ud
+    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[6 1].[9 37]>
+    ! [a=@ b=@]
+    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 1].[9 37]>
+    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 5].[7 16]>
+    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 9].[7 16]>
+    ! type-fail
+    ! exit
+
+In other words: our sample, `2`, is a `@ud`; and the default
+sample of `add`, `+<:add`, is a `[a=@ b=@]`.  So we'd expect some
+problems here.
+
+Hoon believes strongly in modifying the program itself, not some
+external metadata, to debug it.  While a `~!` has no runtime cost
+and negligible compile-time cost, take it out when you're done.
+
+###Printf, %sgpm###
+
+It's well known that real programmers don't use debuggers.  Real
+programmers use printf.
+
+`~&`, informally "printf," is a true printf that sends its
+operand, printed by its type (a bit of biblical magic), directly
+and magically to the console whenever it executes.  It's okay to
+have side effects if they are write-only.
+
+Let's try a `~&` in a working program:
+
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    ~&  [%planet planet]
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {planet}.")]
+
+It's as easy as this:
+
+    : /~zod/try/11/bin/error/hoon
+    ~zod/try=> :error "world"
+    [%planet "world"]
+    "hasta la vista, world."
+
+Please note the very important difference between these outputs.
+Both result in a line of text on the console - but `"hasta la
+vista, world."` is the legitimate product of the application
+bowl, whereas `[%planet "world"]` went into the interpreter as a
+hint and came out as a Unix printf.
+
+###Trace###
+
+We also can crash, and get a reasonably useful and accurate trace.
+With a very misconceived assert:
+
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    ~&  [%planet planet]
+    ?>  =(5 (add 2 2))
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {planet}.")]
+
+we get:
+
+    : /~zod/try/12/bin/error/hoon
+    ~zod/try=> :error "world"
+    [%planet "world"]
+    ! /~zod/try/~2014.2.10..00.18.08..16ea/bin/error/:<[4 1].[8 37]>
+    ! /~zod/try/~2014.2.10..00.18.08..16ea/bin/error/:<[5 1].[8 37]>
+    ! /~zod/try/~2014.2.10..00.18.08..16ea/bin/error/:<[6 1].[8 37]>
+    ! exit
+
+Note that the printf is delivered as soon as it executes.  Note
+also that we accurately report the location of the failing twig.
+And note finally that without `!:`, we get none of this info.
+
+###Stackf, %sgbr###
+
+`~|` has the same form as `~&`, but it computes at all only if
+there is actually a runtime crash within the body of the `~|`.
+In that case, it prints its data as part of the stack trace.
+
+It's important to note that `~|` does no work except at crash
+time - its hint is not a tank, but a trap producing a tank.
+Let's try it:
+
+    : /~zod/try/12/bin/error/hoon
+    ~zod/try=> :error "world"
+    [%planet "world"]
+    ! /~zod/try/~2014.2.10..00.34.28..8f89/bin/error/:<[4 1].[9 37]>
+    ! /~zod/try/~2014.2.10..00.34.28..8f89/bin/error/:<[5 1].[9 37]>
+    ! /~zod/try/~2014.2.10..00.34.28..8f89/bin/error/:<[6 1].[9 37]>
+    ! [%asteroid "world"]
+    ! /~zod/try/~2014.2.10..00.34.28..8f89/bin/error/:<[7 1].[9 37]>
+    ! exit
+
+And if there's no crash, `~|` doesn't run:
+
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    ~|  [%asteroid planet]
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {planet}.")]
+
+just gives us:
+
+    : /~zod/try/15/bin/error/hoon
+    ~zod/try=> :error "world"
+    "hasta la vista, world."
+
+Probably someone invented this before, but I haven't seen it.
+
+##Too much information##
+
+[* *Prev**: Type Inference](/doc/2013/11/19/ch10)
