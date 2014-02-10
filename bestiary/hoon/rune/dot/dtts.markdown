@@ -22,6 +22,10 @@ applies nock `5` (equals) to the products of p and q.
 
     .=(p q)
 
+###Irregular form###
+
+    =(p q)
+
 ###Compilation###
     
     ++  mint

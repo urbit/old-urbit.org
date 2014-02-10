@@ -19,7 +19,11 @@ nock operator `4`, which increments an atomic operand.
 
 ###Regular form (wide)###
 
-    .^(p)
+    .+(p)
+
+###Irregular form###
+
+    +(p)
 
 ###Compilation###
    

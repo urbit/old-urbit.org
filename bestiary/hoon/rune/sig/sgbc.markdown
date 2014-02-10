@@ -22,8 +22,6 @@ labels computation `q` as `p` for profiling.
 
     ~$(p q)
 
-###Irregular form###
-
 ###Expansion###
     
     ++  open

@@ -28,8 +28,6 @@ Queenside:
 
     |-(p)
 
-###Irregular form###
-
 ###Expansion###
     
     ++  open

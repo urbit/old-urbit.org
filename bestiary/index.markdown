@@ -21,6 +21,7 @@ title: Urban Bestiary, Index
 
 ###Runes###
 
++ [Irregular Forms](/bestiary/hoon/rune/irregular/)
 + [**type definitions:** buc, `$`](/bestiary/hoon/rune/buc/)
 + [**gates:** bar, `|`](/bestiary/hoon/rune/bar/)
 + [**tests:** wut, `?`](/bestiary/hoon/rune/wut/)
