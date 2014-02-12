@@ -4,9 +4,8 @@ category: bar
 title: barlus
 ---
 
-`|+`, `barlus`, `[%brls p=tile q=twig]` is a syn
-creates a contravariant gate (i.e. an %iron core with a single unnamed
-arm) with the bunt of tile `p` in its context.
+`|+`, `barlus`, `[%brls p=tile q=twig]` is a synthetic hoon that
+produces a dry `%iron` gate with arm `q`, sample `[%bctr p]`.
 
 ###Definition###
 
@@ -16,9 +15,12 @@ arm) with the bunt of tile `p` in its context.
 
 ###Regular form (tall)###
 
+    |+  p
+    q
+
 ###Regular form (wide)###
 
-###Irregular form###
+    |+(p q)
 
 ###Expansion###
     
@@ -28,6 +30,3 @@ arm) with the bunt of tile `p` in its context.
           [%brls *]
         [%ktbr [%brts p.gen q.gen]]
       ==
-
-###Notes###
-

@@ -5,7 +5,7 @@ title: zapgar
 ---
 
 `!>`, `zapgar`, `[%zpgr p=twig]` is a synthetic hoon that
-creates a vase (a type/value pair) for `p`.
+produces a vase (a [type noun] cell) with the value `p`.
 
 ###Definition###
 
@@ -15,9 +15,11 @@ creates a vase (a type/value pair) for `p`.
 
 ###Regular form (tall)###
 
+    !>  p
+
 ###Regular form (wide)###
 
-###Irregular form###
+    !>(p)
 
 ###Expansion###
     
@@ -25,7 +27,5 @@ creates a vase (a type/value pair) for `p`.
       ^-  twig
       ?-    gen
           [%zpgr *]
+        [%cnhp [%cnzy %onan] [%zpsm [%bctr [%herb [%cnzy %abel]]] p.gen] ~]
       ==
-
-###Notes###
-

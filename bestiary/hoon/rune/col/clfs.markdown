@@ -4,7 +4,6 @@ category: col
 title: colfas
 ---
 
-
 `:/`, `colfas`, `[%clfs p=twig]` is a synthetic hoon that
 produces `[%$ [%$ p ~] ~]`, ie, `[0 [0 p 0] 0]`.
 
@@ -16,9 +15,11 @@ produces `[%$ [%$ p ~] ~]`, ie, `[0 [0 p 0] 0]`.
 
 ###Regular form (tall)###
 
+    :/  p
+
 ###Regular form (wide)###
 
-###Irregular form###
+    :/(p)
 
 ###Expansion###
     
@@ -31,4 +32,4 @@ produces `[%$ [%$ p ~] ~]`, ie, `[0 [0 p 0] 0]`.
 
 ###Notes###
 
-`:/` is only used in the bowels of string interpolation.
+In practice, `:/` is only used in the bowels of string interpolation.
