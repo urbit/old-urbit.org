@@ -27,7 +27,7 @@ Wednesdays at 6pm pacific time. On Urbit `:chat,` where else?
 ###`Haskell`#
 + [https://github.com/mmakowski/hock](https://github.com/mmakowski/hock)
 + [https://github.com/mbrubeck/mynock](https://github.com/mbrubeck/mynock)
-+ [~satfex-difdyr](https://github.com/mrdomino/hsnock)
++ [~hobmed-hinrym](https://github.com/mrdomino/hsnock)
 
 ###`Lisp`#
 
