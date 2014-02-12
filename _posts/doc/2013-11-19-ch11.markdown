@@ -510,12 +510,12 @@ add `!:` to the start of the file, we get:
 
 and running it:
 
-    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[2 1].[7 37]>
-    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[3 1].[7 37]>
-    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[4 1].[7 37]>
-    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[5 1].[7 37]>
-    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[5 5].[5 16]>
-    ! /~zod/try/~2014.2.9..22.36.30..2052/bin/error:<[5 9].[5 16]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:<[2 1].[7 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:<[3 1].[7 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:<[4 1].[7 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:<[5 1].[7 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:<[5 5].[5 16]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:<[5 9].[5 16]>
     ! type-fail
     ! exit
 
@@ -537,18 +537,18 @@ time for us to print some types, which we do with `~!`:
 
 We see:
 
-    : /~zod/try/10/bin/error/hoon
-    ~zod/try=> :error "world"
-    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[2 1].[9 37]>
-    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[3 1].[9 37]>
-    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[4 1].[9 37]>
-    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[5 1].[9 37]>
+    : /~waclux-tomwyc/try/10/bin/error/hoon
+    ~waclux-tomwyc/try=> :error "world"
+    ! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:<[2 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:<[3 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:<[4 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:<[5 1].[9 37]>
     ! @ud
-    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[6 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:<[6 1].[9 37]>
     ! [a=@ b=@]
-    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 1].[9 37]>
-    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 5].[7 16]>
-    ! /~zod/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 9].[7 16]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 5].[7 16]>
+    ! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:<[7 9].[7 16]>
     ! type-fail
     ! exit
 
@@ -582,8 +582,8 @@ Let's try a `~&` in a working program:
 
 It's as easy as this:
 
-    : /~zod/try/11/bin/error/hoon
-    ~zod/try=> :error "world"
+    : /~waclux-tomwyc/try/11/bin/error/hoon
+    ~waclux-tomwyc/try=> :error "world"
     [%planet "world"]
     "hasta la vista, world."
 
@@ -609,12 +609,12 @@ With a very misconceived assert:
 
 we get:
 
-    : /~zod/try/12/bin/error/hoon
-    ~zod/try=> :error "world"
+    : /~waclux-tomwyc/try/12/bin/error/hoon
+    ~waclux-tomwyc/try=> :error "world"
     [%planet "world"]
-    ! /~zod/try/~2014.2.10..00.18.08..16ea/bin/error/:<[4 1].[8 37]>
-    ! /~zod/try/~2014.2.10..00.18.08..16ea/bin/error/:<[5 1].[8 37]>
-    ! /~zod/try/~2014.2.10..00.18.08..16ea/bin/error/:<[6 1].[8 37]>
+    ! /~waclux-tomwyc/try/~2014.2.10..00.18.08..16ea/bin/error/:<[4 1].[8 37]>
+    ! /~waclux-tomwyc/try/~2014.2.10..00.18.08..16ea/bin/error/:<[5 1].[8 37]>
+    ! /~waclux-tomwyc/try/~2014.2.10..00.18.08..16ea/bin/error/:<[6 1].[8 37]>
     ! exit
 
 Note that the printf is delivered as soon as it executes.  Note
@@ -631,14 +631,14 @@ It's important to note that `~|` does no work except at crash
 time - its hint is not a tank, but a trap producing a tank.
 Let's try it:
 
-    : /~zod/try/12/bin/error/hoon
-    ~zod/try=> :error "world"
+    : /~waclux-tomwyc/try/12/bin/error/hoon
+    ~waclux-tomwyc/try=> :error "world"
     [%planet "world"]
-    ! /~zod/try/~2014.2.10..00.34.28..8f89/bin/error/:<[4 1].[9 37]>
-    ! /~zod/try/~2014.2.10..00.34.28..8f89/bin/error/:<[5 1].[9 37]>
-    ! /~zod/try/~2014.2.10..00.34.28..8f89/bin/error/:<[6 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.10..00.34.28..8f89/bin/error/:<[4 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.10..00.34.28..8f89/bin/error/:<[5 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.10..00.34.28..8f89/bin/error/:<[6 1].[9 37]>
     ! [%asteroid "world"]
-    ! /~zod/try/~2014.2.10..00.34.28..8f89/bin/error/:<[7 1].[9 37]>
+    ! /~waclux-tomwyc/try/~2014.2.10..00.34.28..8f89/bin/error/:<[7 1].[9 37]>
     ! exit
 
 And if there's no crash, `~|` doesn't run:
@@ -653,12 +653,567 @@ And if there's no crash, `~|` doesn't run:
 
 just gives us:
 
-    : /~zod/try/15/bin/error/hoon
-    ~zod/try=> :error "world"
+    : /~waclux-tomwyc/try/15/bin/error/hoon
+    ~waclux-tomwyc/try=> :error "world"
     "hasta la vista, world."
 
 Probably someone invented this before, but I haven't seen it.
 
+Finally, if you want to do `~|` but your problem is important
+enough that you have to write your own custom tank trap, `~\_`
+is the rune for you.
+
+##The urban bull##
+
+There is actually another `%type` stem we forgot to mention.
+Finally, the full and final `%type`:
+
+    ++  type  $|  ?(%noun %void)
+              $%  [%atom p=term]
+                  [%bull p=twin q=type]
+                  [%cell p=type q=type]
+                  [%core p=type q=coil]
+                  [%cube p=* q=type]
+                  [%face p=term q=type]
+                  [%fork p=type q=type]
+                  [%hold p=(list ,[p=type q=twig])]
+              ==
+    ++  twin  ,[p=term q=wing r=axis s=type]
+
+What is this `%bull`?
+
+`%bull` is a feature of "middle Hoon" (164K), created by the new
+hoon `=\*`.  Most of Urbit is written in the older "classic Hoon" 
+(191K), and does not use `=\*`.
+
+A common complaint in classic Hoon is that we have to use long,
+opaque paths, like `p.i.t.p.q.u.q`, when pulling deep wings from
+a large, complex subject.  Of course, we could use `=+` to push a
+copy.  But that would be inelegant.
+
+After studying this problem, our engineers invented %bull, the
+alias.  Let's copy `goodbye.hoon` into `bull.hoon`, and add a
+`=\*`:
+
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    =*  mars  planet
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {mars}.")]
+
+`=\*` just makes a synonym.  We can use this synonym anywhere we
+used the original wing, and the compiler will produce the same
+code as if we used the original wing:
+
+    ~waclux-tomwyc/try=> :bull "world"
+    "hasta la vista, world."
+
+Let's make this slightly fancier:
+
+    !:
+    |=  *
+    |=  [planet=tape ~]
+    ^-  bowl
+    ?>  ?=(^ planet)
+    =*  mars  t.planet
+    :_  ~  :_  ~
+    [%$ !>("hasta la vista, {mars}.")]
+
+What would you expect to see here?  Do you know already?
+
+    ~waclux-tomwyc/try=> :bull "world"
+    "hasta la vista, orld."
+
+and, of course:
+
+    ~waclux-tomwyc/try=> :bull ""
+    ! /~waclux-tomwyc/try/~2014.2.11..18.29.54..4a1a/bin/bull/:<[4 1].[8 35]>
+    ! /~waclux-tomwyc/try/~2014.2.11..18.29.54..4a1a/bin/bull/:<[5 1].[8 35]>
+    ! exit
+
+Note that `<[5 1].[8 35]>` is exactly the span of line and column
+that contains the assertion twig `?>`.  Don't be frightened by
+broad error ranges - they are normal, as are big twigs.
+
+And finally, there is no difficulty in both reading and writing
+through `%bull`.  For example, purely to amuse ourselves, we can
+bullify decrement:
+
+    !:
+    |=  *
+    |=  [a=@ ~]
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    =+  b=0
+    =*  c  b
+    |-  ^-  @
+    ?:  =(a +(c))
+      c
+    $(c +(b))
+
 ##Too much information##
+
+It would be vain to deny that Hoon is not a perfect language.
+Especially at this early stage, it has its quirks and rough
+spots, and some oddities will probably always remain.  Every
+language has some.
+
+One of the worst is the infamous TMI.  What is TMI?  Let's make
+`tmi.hoon`:
+
+    |=  *
+    |=  nos=(list ,@)
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    (snag 2 nos)
+
+Let's see what this does:
+
+    ~waclux-tomwyc/try=> :tmi 56 71 12 19
+    12
+    ~waclux-tomwyc/try=> :tmi 56 71 12 19 22
+    12
+    ~waclux-tomwyc/try=> :tmi 56 71
+    ! exit
+
+Tracing is not needed to figure out why.  But suppose, for no
+good reason at all, we get some TMI:
+
+    |=  *
+    |=  nos=(list ,@)
+    ?>  ?=(^ nos)
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    (snag 2 nos)
+
+Now we have problem:
+
+    ~waclux-tomwyc/try=> :tmi 56 71 12 19 22
+    ! type-fail
+    ! exit
+
+Why this happen?  Let's look at ++snag:
+
+    ++  snag
+      ~/  %snag
+      |*  [a=@ b=(list)]
+      |-
+      ?~  b
+        ~|('snag-fail' !!)
+      ?:  =(0 a)
+        i.b
+      $(b t.b, a (dec a))
+
+Obviously, `++snag` produces entry `a` of list `b`.  Less than
+obviously, `++snag` *only works for homogeneous lists*.
+
+You might think `b`, being (in this instance) a `(list ,@)`, is a
+homogeneous list.   But actually, we got `b` from `nos`, and we
+refined `nos` with `?=`.  It's now not a mere `(list ,@)`.  It's
+actually a `[i=@ t=(list ,@)]`.
+
+So when we recurse in `++snag`, we are pulling `$` from the trap
+produced by `|-`; and when we mutate this core with `b=t.b`, we
+are replacing `[i=@ t=(list ,@)]` (ie, a list we know is
+non-empty) with a mere `(list ,@)` (which could be empty).  So,
+the compiler gets mad and has every right to.
+
+Of course, you could say: the compiler should be smarter.  No, it
+shouldn't be smarter.  The right way of understanding a
+compiler's semantics is to understand what it does.  If Hoon were
+smart enough to figure out that breaking a local rule here was,
+in some sense, globally ok, it would need a kind of mammalian
+global forebrain sitting on top of its reptilian walnut brain.
+Then you, the programmer, would need to grok this global
+forebrain as well.  And for what?  So you don't have to cast?
+
+###Mitigating TMI###
+
+Fortunately, there are an endless number of ways to hack around
+TMI - in this case, both on the caller and callee side.  
+
+In `++snag`, if we instead recurse with `(snag (dec a) t.b)` in
+classic 20th-century style (normally a real solecism in Hoon),
+`++snag` does not have a problem with `nos`.  (This hack will
+probably be committed at some point, but `++snag` is such a good
+example.)
+
+You probably don't have commit rights on `hoon.hoon`, so you have
+to do your hacking on the caller side.
+
+One thing you can do is:
+
+    |=  *
+    |=  nos=(list ,@)
+    ?>  ?=(^ nos)
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    (snag 2 `(list ,@)`nos)
+
+This fix has zero cost in runtime and if anything makes your code
+compile faster.  On the other hand, it is slightly ugly and it
+needs to be done every time you use the value.  You can also cast
+it back in place:
+
+    |=  *
+    |=  nos=(list ,@)
+    ?>  ?=(^ nos)
+    =>  .(nos `(list ,@)`nos)
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    (snag 2 nos)
+
+Even a very weak optimizer will optimize this to zero-cost.  It
+is even uglier, however.
+
+You can also cleverly avoid refining the subject at all.  For
+instance:
+
+    |=  *
+    |=  nos=(list ,@)
+    ?>  !=(~ nos)
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    (snag 2 nos)
+
+Equality testing does not produce type information.  This is a
+feature, not a bug.  If you want to refine the subject, you
+really do have to use `?=` or some synthetic hoon that resolves
+to it.
+
+###TMI and other bulls###
+
+Middle Hoon, however, added bulls not just because long terse
+wings are ugly, but also because they help with TMI.
+
+When we `?=` through a bull, the type refinement sticks to the
+bull.  That is, we can write
+
+    |=  *
+    |=  nos=(list ,@)
+    =*  cud  nos
+    ?>  ?=(^ cud)
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    (snag 2 nos)
+
+and it works just fine, because `nos` remains `(list ,@)`.
+However, we are back to `type-fail` with:
+
+    |=  *
+    |=  nos=(list ,@)
+    =*  cud  nos
+    ?>  ?=(^ cud)
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    (snag 2 cud)
+
+In many complex computations, because the type system isn't
+perfect, we often want access to both original and refined types.
+By interrogating a `%bull`, we get exactly that.  It's
+straightforward to make the alias carry the refined type, and the
+underlying wing the original type - another subtle design touch
+that chimes smoothly with Hoon's rich Corinthian leather.
+
+##Another convenient convenience##
+
+Another common complaint about classic Hoon is that you very
+often want to fish in something that isn't a wing.  For instance,
+put this in as `try/bin/fish.hoon`:
+
+    !:
+    |=  *
+    |=  [x=@ ~]
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    =+  foo=(mod x 2)
+    ?+  foo  !!
+      0  "even"
+      1  "odd"
+    ==
+
+    ~waclux-tomwyc/try=> :fish 3
+    "odd"
+    ~waclux-tomwyc/try=> :fish 4
+    "even"
+
+We need the `?+` and `!!` because the type system, not being
+infinitely smart or anywhere close, cannot show that `foo` is
+limited to `0` and `1`.  Try it with `?-`:
+
+    !:
+    |=  *
+    |=  [x=@ ~]
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    =+  foo=(mod x 2)
+    ?-  foo
+      0  "even"
+      1  "odd"
+    ==
+
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[2 1].[9 3]>
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[3 1].[9 3]>
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[4 1].[9 3]>
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[4 11].[9 3]>
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[4 18].[9 3]>
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[4 25].[9 3]>
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[4 33].[9 3]>
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[5 1].[9 3]>
+    ! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:<[6 1].[9 3]>
+    ! -lost.@
+    ! mint-lost
+    ! exit
+
+The compiler is telling us that the rest of `@` is unhandled in
+our `?-`.
+
+But what we can't do is what we'd actually like to do:
+
+    !:
+    |=  *
+    |=  [x=@ ~]
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    ?+  (mod x 2)  !!
+      0  "even"
+      1  "odd"
+    ==
+
+We know that we can't do this, becase we see the type:
+
+    ++  twig  $%  [%wtls p=wing q=twig r=tine]
+              ==
+
+and, obviously, `(mod x 2)` is a `twig`, not a `wing`.  But let's
+try it anyway:
+
+    !:
+    |=  *
+    |=  [x=@ ~]
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    ?+  (mod x 2)  !!
+      0  "even"
+      1  "odd"
+    ==
+
+    ~zod/try=> :fish 4
+    "even"
+
+WTF?  It works?
+
+It turns out that when we parse `?+` - and `?-`, `?@`, `?^`
+and `?~` - we produce not an ordinary twig matching the hoon, but
+a bizarre precursor:
+
+    ++  twig  $%  [%wthp p=wing q=tine]
+                  [%wthz p=tiki q=tine]
+                  [%wtkt p=wing q=twig r=twig]
+                  [%wtkz p=tiki q=twig r=twig]
+                  [%wtls p=wing q=twig r=tine]
+                  [%wtlz p=tiki q=twig r=tine]
+                  [%wtpt p=wing q=twig r=twig]
+                  [%wtpz p=tiki q=twig r=twig]
+                  [%wtsg p=wing q=twig r=twig]
+                  [%wtsz p=tiki q=twig r=twig]
+              ==
+    ++  tiki  $%  [& p=(unit term) q=wing]
+                  [| p=(unit term) q=twig]
+              ==
+
+With the uncommon power of `++tiki`, our parser figures out if
+you're using these pattern tests to fish for (a) a nameless wing,  
+(b) a named wing, (c) a nameless twig, (d) a named twig.  
+
+For (a), `wtlz` is equivalent to `wtls`.  For (b), we automagically
+insert a `=*`:
+
+    !:
+    |=  *
+    |=  [x=@ ~]
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    =+  moo=(mod x 2)
+    ?+  foo=moo  !!
+      0  ["even" foo]
+      1  ["odd" foo]
+    ==
+
+    ~zod/try=> :fish 4 
+    ["even" %0]
+    ~zod/try=> :fish 5
+    ["odd" %1]
+
+(c) we've seen already; and (d) inserts a `=+`:
+
+    !:
+    |=  *
+    |=  [x=@ ~]
+    ^-  bowl  :_  ~  :_  ~  :-  %$  !>
+    ?+  foo=(mod x 2)  !!
+      0  ["even" foo]
+      1  ["odd" foo]
+    ==
+
+    ~zod/try=> :fish 5
+    ["odd" %1]
+    ~zod/try=> :fish 4
+    ["even" %0]
+
+To call this feature essential would be going too far.  But it's
+often quite convenient.
+
+##Vulcanization##
+
+As you're probably aware by now, generic polymorphism is funky.
+It spares us from having a whole monstrous abstraction layer in
+typeclasses.  That's cool.  But still, it's funky.
+
+One of the funky questions that's perhaps occurred to you is: how
+do argument names work in a wet (generic) gate?
+
+Consider a normal dry gate, like `|=([a=* b=*] [b a])`.  When
+you slam this gate, `%.([%foo %bar] |=([a=* b=*] [b a]))`, you
+know what the compiler does - it replaces `[a=* b=*]` with 
+`[%foo %bar]`, checks that `[%foo %bar]` nests inside `[a=*
+b=*]`, and executes the formula compiled against `[a=* b=*]`.
+Losing all your type information:
+
+    ~zod/try=> %.([%foo %bar] |=([a=* b=*] [b a]))
+    [7.496.034 7.303.014]
+
+But with `|*([a=* b=*] [b a])`, we get:
+
+    ~zod/try=> %.([%foo %bar] |*([a=* b=*] [b a]))
+    [%bar %foo]
+
+The types persist.  Okay, we know that.  We also know that, to
+put it crudely, `|*` works by recompiling the twig with the
+default sample replaced by the caller's sample, then checking
+that this produces the same code as originally compiled.
+
+But - this leaves us compiling
+
+    |*([%foo %bar] [b a])
+
+How do the limbs `b` and `a` get pulled?  The default sample had
+these names, but the caller's sample doesn't.  
+
+The answer is simple - `|*` doesn't work the way you think it
+does.  `|*` is synthetic, of course; and you might think it
+resolved to
+
+    =+  [a=* b=*]
+    |%
+    +-  %$
+      [b a]
+    --
+
+just as `|=([a=* b=*] [b a])` is 
+
+    =+  [a=* b=*]
+    |%
+    ++  %$
+      [b a]
+    --
+
+But no!  If you try the top twig as a replacement for `|*`,
+you'll find it doesn't work at all, unless you slam it not with
+`[%foo %bar]`, but rather with `[a=%foo b=%bar]`.
+
+The solution is vulcanization.  `|*` becomes `|\`, which gets a
+funky little thing done to it:
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brfs *]  =+  lyg=~(cloq al p.gen)
+                     :+  %brcb  q.lyg
+                     %-  ~(run by q.gen)
+                     |=  a=foot  ^-  foot
+                     ?.  ?=(%elm -.a)  a
+                     :-  -.a
+                     :+  %tsgl  p.a
+                     :+  %cnts  ~
+                     :~  [[[%& 6] ~] [%ktts p.lyg [~ 6]]]
+                     ==
+      == 
+
+Huh?  The long and the short of it is that, thanks to this little
+piece of wizardry, `|*` in our example instead generates:
+
+    =+  [* *]
+    |%
+    +-  %$
+      =>  .(+< [a b]=+<)
+      [b a]
+    --
+
+Ie, we pull the names out of the default sample and reimpose them
+in the actual arm.  This is vulcanization.  If you don't like it,
+don't use `|*` or `|\`, and feel free to roll your own!
+
+##Naming conventions##
+
+There are three tasks in translating an algorithm into Hoon.
+
+First, catch your algorithm.  
+
+Second, arrange it as a Hoon twig, in a way that looks good on
+the page.  Hoon arrangement, because it requires adjusting both
+the runes and the formatting, becomes a sort of minor art form in
+a pleasant way, perhaps at the level of knitting.  Perhaps an
+editor could be taught to do it, but not necessarily do it well.
+And do we really need more robots taking jobs from programmers?
+
+Third, decide what to name things.  We actually have three styles
+of naming, corresponding to durability of code.
+
+Hoon's theory is that durability of code should correspond to
+austerity of naming.  The more austere and impersonal its names,
+the more like a specification your twig looks.  It seems written
+in stone - and indeed it is in another sense.  The more austere
+your names are, the harder it is to change them.  As you know, if
+you've ever tried to change a one-letter variable name.
+
+The ideal of austere code is that anyone who tried to rewrite it,
+in the same austere style, would produce exactly the same bytes.
+There is nothing in the code but what it does.  But an austere
+style, applied to code not itself austere, is a disaster.
+
+There are three naming conventions: *hyperlapidary*, *lapidary*, and
+*freehand*.
+
+In hyperlapidary naming (H-Hoon), variables and arguments are
+named alphabetically with one letter, `a`, `b`, `c` etc, in
+strict order of appearance in the text.  This scheme is only
+useful in the case of extremely regular and straightforward
+namespaces: very short functions, for instance.
+
+Hyperlapidary arms must be gates or trays.  Gate arms are three
+letters and try to carry some mnemonic significance - for
+instance, `++dec`.  Tray arms are two letters and try to resemble
+pronouns - for instance, `++by`.  
+
+Hyperlapidary structures must be short tuples, no wider than 5.
+The legs are named `p`, `q`, `r`, `s` and/or `t`.
+
+Conventional recursive structures use other standard names.  The
+head of a list is always `i`, the tail is always `t`.  In a
+binary tree of nodes, the node is `n`, the children `l` and `r`.
+
+When in doubt, do not use H-mode.  In an ordinary context - not
+least because hyperlapidary gates are easily mistaken for
+lapidary variables - there should be as few hyperlapidary arms as
+possible.  And always remind yourself that H-mode makes it as
+hard as possible to refactor your code.
+
+Lapidary mode (L-Hoon) is the ordinary style of most of Hoon and
+Arvo.  In lapidary mode, variables, arguments, attributes, etc,
+are three-letter strings, usually consonant-vowel-consonant,
+generally meaningless.  If the same string is used more than once
+in the same file, it should be used for the same concept in some
+sense, as often happens spontaneously in cutting and pasting.  It
+would be nice to have an editor with a macro that generated
+random unique TLV strings automatically.
+
+Lapidary arms are always four letters.  They may or may not be
+English words, which may or may not mean anything relevant.
+
+In freehand mode (F-Hoon), do whatever the heck you want.  Note
+that while uppercase is not permitted in a symbol, `-` is,
+suggesting a generally Lisp-like state of gross hyphenated
+disorder.  F-mode is best used for top-layer software which
+nothing else is based on; prototyping and casual coding; etc.
 
 [* *Prev**: Type Inference](/doc/2013/11/19/ch10)
