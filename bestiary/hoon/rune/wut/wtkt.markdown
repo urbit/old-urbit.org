@@ -15,17 +15,18 @@ that evaluates `r` if `p` is equal to the bunt for its tile, otherwise
 
 ###Regular form (tall)###
 
+    ?^  p
+      q
+    r
+
 ###Regular form (wide)###
 
-###Irregular form###
+    ?^(p q r)
 
 ###Expansion###
     
     ++  open
       ^-  twig
-      ?-    gen
-          [%wtkt *]
+      ?-  gen
+        [%wtkt *]   [%wtcl [%wtts [%axil %atom %$] p.gen] r.gen q.gen]
       ==
-
-###Notes###
-
