@@ -660,7 +660,7 @@ just gives us:
 Probably someone invented this before, but I haven't seen it.
 
 Finally, if you want to do `~|` but your problem is important
-enough that you have to write your own custom tank trap, `~\_`
+enough that you have to write your own custom tank trap, `~_`
 is the rune for you.
 
 ##The urban bull##
@@ -683,8 +683,8 @@ Finally, the full and final `%type`:
 What is this `%bull`?
 
 `%bull` is a feature of "middle Hoon" (164K), created by the new
-hoon `=\*`.  Most of Urbit is written in the older "classic Hoon" 
-(191K), and does not use `=\*`.
+hoon `=*`.  Most of Urbit is written in the older "classic Hoon" 
+(191K), and does not use `=*`.
 
 A common complaint in classic Hoon is that we have to use long,
 opaque paths, like `p.i.t.p.q.u.q`, when pulling deep wings from
@@ -693,7 +693,7 @@ copy.  But that would be inelegant.
 
 After studying this problem, our engineers invented %bull, the
 alias.  Let's copy `goodbye.hoon` into `bull.hoon`, and add a
-`=\*`:
+`=*`:
 
     !:
     |=  *
@@ -703,7 +703,7 @@ alias.  Let's copy `goodbye.hoon` into `bull.hoon`, and add a
     :_  ~  :_  ~
     [%$ !>("hasta la vista, {mars}.")]
 
-`=\*` just makes a synonym.  We can use this synonym anywhere we
+`=*` just makes a synonym.  We can use this synonym anywhere we
 used the original wing, and the compiler will produce the same
 code as if we used the original wing:
 
