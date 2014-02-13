@@ -13,6 +13,7 @@ Wednesdays at 6pm pacific time. On Urbit `:chat,` where else?
 
 + [~rammul-sigfet](https://github.com/eykd/nock)
 + [~dolsun-hoptes] (https://github.com/jtauber/pynock/)
++ [~parsym-dortex](https://github.com/calcu16/urbit/blob/master/extras/simulator.py)
 
 ###`Ruby`#
 
