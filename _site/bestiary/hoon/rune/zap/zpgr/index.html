@@ -487,6 +487,26 @@
         
       
         
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
       
         
           
@@ -687,7 +707,7 @@
       <div class="subpage">
   <h1 class="subpage-title">zapgar</h1>
   <p><code>!&gt;</code>, <code>zapgar</code>, <code>[%zpgr p=twig]</code> is a synthetic hoon that
-creates a vase (a type/value pair) for <code>p</code>.</p>
+produces a vase (a [type noun] cell) with the value <code>p</code>.</p>
 
 <h3>Definition</h3>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">++  twig  
@@ -695,20 +715,19 @@ creates a vase (a type/value pair) for <code>p</code>.</p>
   ==
 </code></pre></div>
 <h3>Regular form (tall)</h3>
-
+<div class="highlight"><pre><code class="text language-text" data-lang="text">!&gt;  p
+</code></pre></div>
 <h3>Regular form (wide)</h3>
-
-<h3>Irregular form</h3>
-
+<div class="highlight"><pre><code class="text language-text" data-lang="text">!&gt;(p)
+</code></pre></div>
 <h3>Expansion</h3>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">++  open
   ^-  twig
   ?-    gen
       [%zpgr *]
+    [%cnhp [%cnzy %onan] [%zpsm [%bctr [%herb [%cnzy %abel]]] p.gen] ~]
   ==
 </code></pre></div>
-<h3>Notes</h3>
-
 </div>
 
     </div>

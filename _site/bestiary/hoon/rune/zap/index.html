@@ -487,6 +487,26 @@
         
       
         
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
       
         
           
@@ -751,7 +771,7 @@ it reports its subject as an error.</p>
 <h2><a href="/bestiary/hoon/rune/zap/zpgr/">zapgar</a></h2>
 
 <p><code>!&gt;</code>, <code>zapgar</code>, <code>[%zpgr p=twig]</code> is a synthetic hoon that
-creates a vase (a type/value pair) for <code>p</code>.</p>
+produces a vase (a [type noun] cell) with the value <code>p</code>.</p>
 
 <h3>Definition</h3>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">++  twig  
@@ -759,20 +779,19 @@ creates a vase (a type/value pair) for <code>p</code>.</p>
   ==
 </code></pre></div>
 <h3>Regular form (tall)</h3>
-
+<div class="highlight"><pre><code class="text language-text" data-lang="text">!&gt;  p
+</code></pre></div>
 <h3>Regular form (wide)</h3>
-
-<h3>Irregular form</h3>
-
+<div class="highlight"><pre><code class="text language-text" data-lang="text">!&gt;(p)
+</code></pre></div>
 <h3>Expansion</h3>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">++  open
   ^-  twig
   ?-    gen
       [%zpgr *]
+    [%cnhp [%cnzy %onan] [%zpsm [%bctr [%herb [%cnzy %abel]]] p.gen] ~]
   ==
 </code></pre></div>
-<h3>Notes</h3>
-
 <hr>
 
 <h2><a href="/bestiary/hoon/rune/zap/zpsm/">zapsem</a></h2>
@@ -834,6 +853,40 @@ the formula of twig <code>p</code> as a noun.</p>
 
 <p>Arguably should be changed to use a type, like %zpsm and %zpcm.</p>
 
+<hr>
+
+<h2><a href="/bestiary/hoon/rune/zap/zpwt/">zapwut</a></h2>
+
+<p><code>!?</code>, <code>zapwut</code>, <code>[%zpwt p=twig]</code> is a synthetic hoon that
+enforces a Hoon version restriction.</p>
+
+<h3>Definition</h3>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">++  twig  
+  $%  [%zpwt p=$|(p=@ [p=@ q=@]) q=twig]
+  ==
+</code></pre></div>
+<h3>Regular form (tall)</h3>
+
+<p>To declare code that runs only in Hoon 164K or newer:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">!?  164
+q
+</code></pre></div>
+<p>To declare code that runs only in 164K through 161K:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">!?  [164 161] 
+q
+</code></pre></div>
+<h3>Expansion</h3>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">++  open
+  ^-  twig
+  ?-    gen
+      [%zpwt *]
+    ?:  ?:  ?=(@ p.gen)
+          (lte stub p.gen)
+        &amp;((lte stub p.p.gen) (gte stub q.p.gen))
+      q.gen 
+    ~|([%stub-fail stub p.gen] !!)
+  ==
+</code></pre></div>
 <hr>
 
 <h2><a href="/bestiary/hoon/rune/zap/zpzp/">zapzap</a></h2>

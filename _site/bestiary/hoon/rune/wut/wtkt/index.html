@@ -487,6 +487,26 @@
         
       
         
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
       
         
           
@@ -696,20 +716,20 @@ that evaluates <code>r</code> if <code>p</code> is equal to the bunt for its til
   ==
 </code></pre></div>
 <h3>Regular form (tall)</h3>
-
+<div class="highlight"><pre><code class="text language-text" data-lang="text">?^  p
+  q
+r
+</code></pre></div>
 <h3>Regular form (wide)</h3>
-
-<h3>Irregular form</h3>
-
+<div class="highlight"><pre><code class="text language-text" data-lang="text">?^(p q r)
+</code></pre></div>
 <h3>Expansion</h3>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">++  open
   ^-  twig
-  ?-    gen
-      [%wtkt *]
+  ?-  gen
+    [%wtkt *]   [%wtcl [%wtts [%axil %atom %$] p.gen] r.gen q.gen]
   ==
 </code></pre></div>
-<h3>Notes</h3>
-
 </div>
 
     </div>

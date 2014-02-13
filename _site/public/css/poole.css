@@ -156,7 +156,7 @@ code {
   background-color: #f9f9f9;
   border-radius: 3px;
 }
-pre {
+pre, .codeblock {
   display: block;
   margin-top: 0;
   margin-bottom: 1rem;

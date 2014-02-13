@@ -25,12 +25,14 @@ that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
     ?:(p q r)
 
 ###Expansion###
-    
-    ++  open
-      ^-  twig
-      ?-  gen
-        [%wtdt *]   [%wtcl p.gen r.gen q.gen]
-      ==
+
+<div class="codeblock">
+  ++  open
+    ^-  twig
+    ?-  gen
+      [%wtdt *]   [<a href="/bestiary/hoon/rune/wut/wtcl/">%wtcl</a> p.gen r.gen q.gen]
+    ==
+</div>
 
 ###Notes###
 

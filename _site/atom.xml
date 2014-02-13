@@ -4,7 +4,7 @@
  <title>Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org/"/>
- <updated>2014-02-12T09:16:52-08:00</updated>
+ <updated>2014-02-12T22:42:40-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Tlon</name>
@@ -571,9 +571,9 @@ one gluey function
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;With this, we can construct pipelines using U as the &amp;quot;mortar&amp;quot;:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;   ----  ----  ----  ----  ----  ----  ---- 
-  |    \\    ||    \\    ||    \\    ||    \\
--&amp;gt;| F   )) U || G   )) U || H   )) U || I   ))-&amp;gt;
-  |    //    ||    //    ||    //    ||    //
+  |    \\    ||    \\    ||    \\    ||    \
+-&amp;gt;| F   )) U || G   )) U || H   )) U || I   )-&amp;gt;
+  |    //    ||    //    ||    //    ||    /
    ----  ----  ----  ----  ----  ----  ---- 
 
 one big funky, gluey function
@@ -592,32 +592,862 @@ we use a more complex tool V.  V is a gate whose sample is a cell
 &lt;code&gt;[m n]&lt;/code&gt;, where &lt;code&gt;m&lt;/code&gt; is a Y and &lt;code&gt;n&lt;/code&gt; is another gate matching F.
 V&amp;#39;s product remains a Y.&lt;/p&gt;
 
-&lt;p&gt;In the above example, &lt;code&gt;q&lt;/code&gt; is GUHUI, the rest of the pipeline.  If
-we have a simple U that just converts a Y into an X, we can write
-a V that just uses U, then sends its result to GUHUI.  But a V
-does not need to work this way.  For instance, it could decide
-that the X it got in is perfectly fine, and just produce it - 
-never calling &lt;code&gt;q&lt;/code&gt; at all.&lt;/p&gt;
+&lt;p&gt;Here&amp;#39;s what this looks like in ASCII art:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;   ----  ---- 
+  |    \\    \
+-&amp;gt;| F   )m V  )-&amp;gt;
+  |    //    /
+   ----  ---- 
+          |n
+         ----  ----  
+        |    \\    \
+      -&amp;gt;| G   )m V  )-&amp;gt;
+        |    //    /
+         ----  ---- 
+                |n
+               ----  ----  
+              |    \\    \
+            -&amp;gt;| H   )m V  )-&amp;gt;
+              |    //    /
+               ----  ---- 
+                      |n
+                     ----  ----  
+                    |    \\    \
+                  -&amp;gt;| I   )m V  )-&amp;gt;
+                    |    //    /
+                     ----  ---- 
 
-&lt;p&gt;In Hoon, we call one of these funky, gluey pipelines a &lt;code&gt;gonad&lt;/code&gt;.
-The gonad rune is &lt;code&gt;;~&lt;/code&gt;, &lt;code&gt;[%smsg p q]&lt;/code&gt;.  A gonad has one &lt;code&gt;go&lt;/code&gt;, the
-V part - &lt;code&gt;p&lt;/code&gt; in &lt;code&gt;[%smsg p q]&lt;/code&gt; - and one or more &lt;code&gt;nads&lt;/code&gt;, the F, G,
-H or I parts (&lt;code&gt;q&lt;/code&gt;).&lt;/p&gt;
+one big funky, gluey, complicated function
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What&amp;#39;s the advantage?  A V-function is more powerful than a
+U-function, because the U-function has no choice but to turn its
+X into a Y and use &lt;code&gt;n&lt;/code&gt;, the rest of the pipeline, on it.  The V
+function can do anything with its input - it could even ignore
+the rest of the pipeline and just produce the &lt;code&gt;m&lt;/code&gt; it got in.&lt;/p&gt;
 
-&lt;p&gt;If you look at the expansion, you&amp;#39;ll note one special trick we
-play - before we pass &lt;code&gt;n&lt;/code&gt; to V, the go, we reset its sample to
-the sample of the gonad as a whole.  Since neither the go nor the
-nad would otherwise see this value, it allows for more tricks.&lt;/p&gt;
+&lt;p&gt;In Hoon, we call one of these funky, gluey, complicated pipelines
+a &lt;code&gt;gonad&lt;/code&gt;.  The gonad rune is &lt;code&gt;;~&lt;/code&gt;, &lt;code&gt;[%smsg p q]&lt;/code&gt;.  A gonad has
+one &lt;code&gt;go&lt;/code&gt;, the V part - &lt;code&gt;p&lt;/code&gt; in &lt;code&gt;[%smsg p q]&lt;/code&gt; - and one or more
+&lt;code&gt;nads&lt;/code&gt;, the F, G, H or I parts (&lt;code&gt;q&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;There&amp;#39;s one other complicated trick we play to make our gonads
+work better.&lt;/p&gt;
+
+&lt;p&gt;If you look at the expansion, you&amp;#39;ll see that before we pass &lt;code&gt;n&lt;/code&gt;
+to V, the go, we reset its sample to the sample of the gate that
+&lt;code&gt;%smsg&lt;/code&gt; produces.  Since neither the go nor &lt;code&gt;n&lt;/code&gt; would otherwise
+see this value, it allows for more hackery.&lt;/p&gt;
 
 &lt;p&gt;For instance, gonads are often used for parsing.  A common go for
-parsing is &lt;code&gt;pose&lt;/code&gt;, whose nads are parsing rules tried in order -
+parsing is &lt;code&gt;++pose&lt;/code&gt;, whose nads are parsing rules tried in order -
 the first to parse succeeds.  Because of this trick, when the
 first nad returns a parsing failure, the second nad is sent to
-the go pre-configured with the parse input.  Otherwise, the noun
-representing a parsing failure would have to contain the input 
-as well.  Which would be clumsy.&lt;/p&gt;
+the go pre-configured with the original problem.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;/doc/2013/11/19/ch10&quot;&gt;&lt;strong&gt;Prev&lt;/strong&gt;: Type Inference&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The go doesn&amp;#39;t have to do a proper slam on &lt;code&gt;n&lt;/code&gt;, replacing its 
+sample.  It can just use &lt;code&gt;n&lt;/code&gt; as a trap, leaving the sample
+default - in the case of &lt;code&gt;++pose&lt;/code&gt;, the original parsing problem.
+Which is exactly what we want.&lt;/p&gt;
+
+&lt;h2&gt;On debugging your urbits&lt;/h2&gt;
+
+&lt;p&gt;Okay so you tried to do something and it didn&amp;#39;t work.&lt;/p&gt;
+
+&lt;p&gt;What happened?  Hopefully, nothing bad.  But coding is a vale of
+tears.  Here are some bad things that can happen to you in Hoon.&lt;/p&gt;
+
+&lt;h3&gt;Parse error&lt;/h3&gt;
+
+&lt;p&gt;You could be &amp;#39;avin a parse error.  The Hoon parser reports
+the location - line and column - of errors quite accurately.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s generate an erroneous file.  Open up &lt;code&gt;try/bin/foo.hoon&lt;/code&gt;,
+an empty file, and put a &lt;code&gt;#&lt;/code&gt; at line 8, column 4.  Then type&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~waclux-tomwyc/try=&amp;gt; :foo
+! /~waclux-tomwyc/try/~2014.2.9..06.58.40..e352/bin/foo/hoon
+! {8 4}
+! &amp;#39;syntax-error&amp;#39;
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That means you got a syntax error at line 8, column 4, when
+trying to load &lt;code&gt;/~waclux-tomwyc/try=/bin/foo/hoon&lt;/code&gt;.  (You may
+also see traces for &lt;code&gt;/~waclux-tomwyc/arvo=/batz/hoon&lt;/code&gt;, which
+simply means Arvo was compiled with debugging.)  &lt;/p&gt;
+
+&lt;p&gt;This is always exactly right, for certain values of &amp;quot;right.&amp;quot;
+As always, you have to understand what Hoon is thinking.&lt;/p&gt;
+
+&lt;p&gt;The position of the error is the position at which the parser
+&lt;em&gt;stopped being able to parse&lt;/em&gt; - it has no way to interpret the 
+byte at this line and column.  Often this is actually where you
+screwed up.  It is at least no &lt;em&gt;later&lt;/em&gt; than you screwed up.&lt;/p&gt;
+
+&lt;p&gt;But one of the prices we pay for for a tall form without
+terminators is that the parser relies on knowing that after a
+&lt;code&gt;:+&lt;/code&gt;, for instance, it expects to parse exactly three twigs.  If
+you accidentally leave one of these three out, the parser at &lt;code&gt;:+&lt;/code&gt;
+will steal whatever twig should come next.&lt;/p&gt;
+
+&lt;p&gt;Generally at some point the parser will collide with reality and
+reality will win.  At this position, you&amp;#39;ll see a syntax error.
+But bad luck can move this point some distance from the mistake.&lt;/p&gt;
+
+&lt;p&gt;This is never a serious problem once you get used to Hoon, but it
+can be a pain in the butt while you&amp;#39;re learning.  To attack any
+mysterious syntax error (in any language, not just Hoon), work by
+binary search reduction - pull out giant chunks of code to see if
+the error is there, or elsewhere.&lt;/p&gt;
+
+&lt;h3&gt;Type failure&lt;/h3&gt;
+
+&lt;p&gt;Okay, you parsed.  But you&amp;#39;re still failing.  Plenty of fail.&lt;/p&gt;
+
+&lt;p&gt;By far the most common semantic failure from the Hoon compiler is
+the cryptic &lt;code&gt;type-fail&lt;/code&gt;.  What failed exactly?  We have a lot
+more information, but we&amp;#39;d rather not give it to you up front.&lt;/p&gt;
+
+&lt;p&gt;The second most common error is &lt;code&gt;missing limb&lt;/code&gt;.  Here we actually
+tell you the name of the limb.  But look, if you write &lt;code&gt;b.a&lt;/code&gt;,
+you&amp;#39;d better have a &lt;code&gt;b&lt;/code&gt; in your &lt;code&gt;a&lt;/code&gt;.  You probably have the wrong
+idea of what type an &lt;code&gt;a&lt;/code&gt; is.  So it comes back to type again.&lt;/p&gt;
+
+&lt;p&gt;Essentially all Hoon compiler errors are in a sense type failure.
+Generally, the compiler wants to shield you from the direct
+details, because most ways of presenting the direct details
+automatically would, at least in certain cases, just belch all
+over the screen.&lt;/p&gt;
+
+&lt;p&gt;Instead, the most important information about any Hoon error is
+the &lt;em&gt;location stack&lt;/em&gt;.  Where did this happen?  The general
+process of troubleshooting disregards the error details
+completely, and starts from the &lt;em&gt;place&lt;/em&gt; your program failed.&lt;/p&gt;
+
+&lt;p&gt;Unlike the parser location, the type location trace is &lt;em&gt;always&lt;/em&gt;
+correct.  But you still have to know how to interpret it.  And
+first, you need to know how to &lt;em&gt;generate&lt;/em&gt; it. &lt;/p&gt;
+
+&lt;h3&gt;Generate your trace&lt;/h3&gt;
+
+&lt;p&gt;Every twig within a &lt;code&gt;!:&lt;/code&gt; generates trace information, both at
+compile time and runtime.  Normally you will see &lt;code&gt;!:&lt;/code&gt; at the
+start of a file, and when writing simple programs it is a good
+habit just to put it in at the start.&lt;/p&gt;
+
+&lt;p&gt;Why wouldn&amp;#39;t you always use &lt;code&gt;!:&lt;/code&gt;?  Because runtime tracing isn&amp;#39;t
+free, and especially because it kills tail-call optimization.
+Also, because sometimes code just works.  For all these reasons,
+there is no &lt;code&gt;!:&lt;/code&gt; on &lt;code&gt;hoon.hoon&lt;/code&gt; or &lt;code&gt;zuse.hoon&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To experiment with tracing, copy &lt;code&gt;try/bin/goodbye.hoon&lt;/code&gt; into
+&lt;code&gt;try/bin/error.hoon&lt;/code&gt;.`:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;  + /~waclux-tomwyc/try/4/bin/error/hoon
+  ~waclux-tomwyc/try=&amp;gt; :error &amp;quot;world&amp;quot;
+  &amp;quot;hasta la vista, world.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The simplest kind of error is on the command line itself:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;  ~waclux-tomwyc/try=&amp;gt; :error
+  ! type-fail
+  ! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But this only happens if the file actually compiles.  Let&amp;#39;s make
+it not compile, by changing it from&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  [planet=tape ~]
+^-  bowl
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {planet}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;to&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  [planet=tape ~]
+=+  foo=(add 2)
+^-  bowl
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {planet}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We&amp;#39;ve introduced a subtle semantic error into our Folger&amp;#39;s
+coffee.  How might the discerning compiler respond?&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~waclux-tomwyc/try=&amp;gt; :error &amp;quot;world&amp;quot;
+! type-fail
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It&amp;#39;s mischieviously identical to the argument error.  But if we
+add &lt;code&gt;!:&lt;/code&gt; to the start of the file, we get:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [planet=tape ~]
+=+  foo=(add 2)
+^-  bowl
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {planet}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and running it:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:&amp;lt;[2 1].[7 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:&amp;lt;[3 1].[7 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:&amp;lt;[4 1].[7 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:&amp;lt;[5 1].[7 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:&amp;lt;[5 5].[5 16]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.36.30..2052/bin/error:&amp;lt;[5 9].[5 16]&amp;gt;
+! type-fail
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We see that the problem is on line 5 between columns 9 and 16.
+Ie, &lt;code&gt;(add 2)&lt;/code&gt;.  Well, duh.&lt;/p&gt;
+
+&lt;p&gt;But suppose we can&amp;#39;t see what&amp;#39;s wrong with &lt;code&gt;(add 2)&lt;/code&gt;.  Then, it&amp;#39;s
+time for us to print some types, which we do with &lt;code&gt;~!&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [planet=tape ~]
+^-  bowl
+~!  2
+~!  +&amp;lt;:add
+=+  foo=(add 2)
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {planet}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We see:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;: /~waclux-tomwyc/try/10/bin/error/hoon
+~waclux-tomwyc/try=&amp;gt; :error &amp;quot;world&amp;quot;
+! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:&amp;lt;[2 1].[9 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:&amp;lt;[3 1].[9 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:&amp;lt;[4 1].[9 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:&amp;lt;[5 1].[9 37]&amp;gt;
+! @ud
+! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:&amp;lt;[6 1].[9 37]&amp;gt;
+! [a=@ b=@]
+! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:&amp;lt;[7 1].[9 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:&amp;lt;[7 5].[7 16]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.9..22.41.38..5b4d/bin/error:&amp;lt;[7 9].[7 16]&amp;gt;
+! type-fail
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In other words: our sample, &lt;code&gt;2&lt;/code&gt;, is a &lt;code&gt;@ud&lt;/code&gt;; and the default
+sample of &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;+&amp;lt;:add&lt;/code&gt;, is a &lt;code&gt;[a=@ b=@]&lt;/code&gt;.  So we&amp;#39;d expect some
+problems here.&lt;/p&gt;
+
+&lt;p&gt;Hoon believes strongly in modifying the program itself, not some
+external metadata, to debug it.  While a &lt;code&gt;~!&lt;/code&gt; has no runtime cost
+and negligible compile-time cost, take it out when you&amp;#39;re done.&lt;/p&gt;
+
+&lt;h3&gt;Printf, %sgpm&lt;/h3&gt;
+
+&lt;p&gt;It&amp;#39;s well known that real programmers don&amp;#39;t use debuggers.  Real
+programmers use printf.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;~&amp;amp;&lt;/code&gt;, informally &amp;quot;printf,&amp;quot; is a true printf that sends its
+operand, printed by its type (a bit of biblical magic), directly
+and magically to the console whenever it executes.  It&amp;#39;s okay to
+have side effects if they are write-only.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s try a &lt;code&gt;~&amp;amp;&lt;/code&gt; in a working program:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [planet=tape ~]
+^-  bowl
+~&amp;amp;  [%planet planet]
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {planet}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It&amp;#39;s as easy as this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;: /~waclux-tomwyc/try/11/bin/error/hoon
+~waclux-tomwyc/try=&amp;gt; :error &amp;quot;world&amp;quot;
+[%planet &amp;quot;world&amp;quot;]
+&amp;quot;hasta la vista, world.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Please note the very important difference between these outputs.
+Both result in a line of text on the console - but &lt;code&gt;&amp;quot;hasta la
+vista, world.&amp;quot;&lt;/code&gt; is the legitimate product of the application
+bowl, whereas &lt;code&gt;[%planet &amp;quot;world&amp;quot;]&lt;/code&gt; went into the interpreter as a
+hint and came out as a Unix printf.&lt;/p&gt;
+
+&lt;h3&gt;Trace&lt;/h3&gt;
+
+&lt;p&gt;We also can crash, and get a reasonably useful and accurate trace.
+With a very misconceived assert:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [planet=tape ~]
+^-  bowl
+~&amp;amp;  [%planet planet]
+?&amp;gt;  =(5 (add 2 2))
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {planet}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;we get:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;: /~waclux-tomwyc/try/12/bin/error/hoon
+~waclux-tomwyc/try=&amp;gt; :error &amp;quot;world&amp;quot;
+[%planet &amp;quot;world&amp;quot;]
+! /~waclux-tomwyc/try/~2014.2.10..00.18.08..16ea/bin/error/:&amp;lt;[4 1].[8 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.10..00.18.08..16ea/bin/error/:&amp;lt;[5 1].[8 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.10..00.18.08..16ea/bin/error/:&amp;lt;[6 1].[8 37]&amp;gt;
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that the printf is delivered as soon as it executes.  Note
+also that we accurately report the location of the failing twig.
+And note finally that without &lt;code&gt;!:&lt;/code&gt;, we get none of this info.&lt;/p&gt;
+
+&lt;h3&gt;Stackf, %sgbr&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;~|&lt;/code&gt; has the same form as &lt;code&gt;~&amp;amp;&lt;/code&gt;, but it computes at all only if
+there is actually a runtime crash within the body of the &lt;code&gt;~|&lt;/code&gt;.
+In that case, it prints its data as part of the stack trace.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s important to note that &lt;code&gt;~|&lt;/code&gt; does no work except at crash
+time - its hint is not a tank, but a trap producing a tank.
+Let&amp;#39;s try it:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;: /~waclux-tomwyc/try/12/bin/error/hoon
+~waclux-tomwyc/try=&amp;gt; :error &amp;quot;world&amp;quot;
+[%planet &amp;quot;world&amp;quot;]
+! /~waclux-tomwyc/try/~2014.2.10..00.34.28..8f89/bin/error/:&amp;lt;[4 1].[9 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.10..00.34.28..8f89/bin/error/:&amp;lt;[5 1].[9 37]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.10..00.34.28..8f89/bin/error/:&amp;lt;[6 1].[9 37]&amp;gt;
+! [%asteroid &amp;quot;world&amp;quot;]
+! /~waclux-tomwyc/try/~2014.2.10..00.34.28..8f89/bin/error/:&amp;lt;[7 1].[9 37]&amp;gt;
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And if there&amp;#39;s no crash, &lt;code&gt;~|&lt;/code&gt; doesn&amp;#39;t run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [planet=tape ~]
+^-  bowl
+~|  [%asteroid planet]
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {planet}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;just gives us:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;: /~waclux-tomwyc/try/15/bin/error/hoon
+~waclux-tomwyc/try=&amp;gt; :error &amp;quot;world&amp;quot;
+&amp;quot;hasta la vista, world.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Probably someone invented this before, but I haven&amp;#39;t seen it.&lt;/p&gt;
+
+&lt;p&gt;Finally, if you want to do &lt;code&gt;~|&lt;/code&gt; but your problem is important
+enough that you have to write your own custom tank trap, &lt;code&gt;~_&lt;/code&gt;
+is the rune for you.&lt;/p&gt;
+
+&lt;h2&gt;The urban bull&lt;/h2&gt;
+
+&lt;p&gt;There is actually another &lt;code&gt;%type&lt;/code&gt; stem we forgot to mention.
+Finally, the full and final &lt;code&gt;%type&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;++  type  $|  ?(%noun %void)
+          $%  [%atom p=term]
+              [%bull p=twin q=type]
+              [%cell p=type q=type]
+              [%core p=type q=coil]
+              [%cube p=* q=type]
+              [%face p=term q=type]
+              [%fork p=type q=type]
+              [%hold p=(list ,[p=type q=twig])]
+          ==
+++  twin  ,[p=term q=wing r=axis s=type]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What is this &lt;code&gt;%bull&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;%bull&lt;/code&gt; is a feature of &amp;quot;middle Hoon&amp;quot; (164K), created by the new
+hoon &lt;code&gt;=*&lt;/code&gt;.  Most of Urbit is written in the older &amp;quot;classic Hoon&amp;quot; 
+(191K), and does not use &lt;code&gt;=*&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A common complaint in classic Hoon is that we have to use long,
+opaque paths, like &lt;code&gt;p.i.t.p.q.u.q&lt;/code&gt;, when pulling deep wings from
+a large, complex subject.  Of course, we could use &lt;code&gt;=+&lt;/code&gt; to push a
+copy.  But that would be inelegant.&lt;/p&gt;
+
+&lt;p&gt;After studying this problem, our engineers invented %bull, the
+alias.  Let&amp;#39;s copy &lt;code&gt;goodbye.hoon&lt;/code&gt; into &lt;code&gt;bull.hoon&lt;/code&gt;, and add a
+&lt;code&gt;=*&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [planet=tape ~]
+^-  bowl
+=*  mars  planet
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {mars}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;=*&lt;/code&gt; just makes a synonym.  We can use this synonym anywhere we
+used the original wing, and the compiler will produce the same
+code as if we used the original wing:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~waclux-tomwyc/try=&amp;gt; :bull &amp;quot;world&amp;quot;
+&amp;quot;hasta la vista, world.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let&amp;#39;s make this slightly fancier:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [planet=tape ~]
+^-  bowl
+?&amp;gt;  ?=(^ planet)
+=*  mars  t.planet
+:_  ~  :_  ~
+[%$ !&amp;gt;(&amp;quot;hasta la vista, {mars}.&amp;quot;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What would you expect to see here?  Do you know already?&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~waclux-tomwyc/try=&amp;gt; :bull &amp;quot;world&amp;quot;
+&amp;quot;hasta la vista, orld.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and, of course:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~waclux-tomwyc/try=&amp;gt; :bull &amp;quot;&amp;quot;
+! /~waclux-tomwyc/try/~2014.2.11..18.29.54..4a1a/bin/bull/:&amp;lt;[4 1].[8 35]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.11..18.29.54..4a1a/bin/bull/:&amp;lt;[5 1].[8 35]&amp;gt;
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that &lt;code&gt;&amp;lt;[5 1].[8 35]&amp;gt;&lt;/code&gt; is exactly the span of line and column
+that contains the assertion twig &lt;code&gt;?&amp;gt;&lt;/code&gt;.  Don&amp;#39;t be frightened by
+broad error ranges - they are normal, as are big twigs.&lt;/p&gt;
+
+&lt;p&gt;And finally, there is no difficulty in both reading and writing
+through &lt;code&gt;%bull&lt;/code&gt;.  For example, purely to amuse ourselves, we can
+bullify decrement:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [a=@ ~]
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+=+  b=0
+=*  c  b
+|-  ^-  @
+?:  =(a +(c))
+  c
+$(c +(b))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Too much information&lt;/h2&gt;
+
+&lt;p&gt;It would be vain to deny that Hoon is not a perfect language.
+Especially at this early stage, it has its quirks and rough
+spots, and some oddities will probably always remain.  Every
+language has some.&lt;/p&gt;
+
+&lt;p&gt;One of the worst is the infamous TMI.  What is TMI?  Let&amp;#39;s make
+&lt;code&gt;tmi.hoon&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  nos=(list ,@)
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+(snag 2 nos)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let&amp;#39;s see what this does:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~waclux-tomwyc/try=&amp;gt; :tmi 56 71 12 19
+12
+~waclux-tomwyc/try=&amp;gt; :tmi 56 71 12 19 22
+12
+~waclux-tomwyc/try=&amp;gt; :tmi 56 71
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Tracing is not needed to figure out why.  But suppose, for no
+good reason at all, we get some TMI:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  nos=(list ,@)
+?&amp;gt;  ?=(^ nos)
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+(snag 2 nos)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we have problem:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~waclux-tomwyc/try=&amp;gt; :tmi 56 71 12 19 22
+! type-fail
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Why this happen?  Let&amp;#39;s look at ++snag:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;++  snag
+  ~/  %snag
+  |*  [a=@ b=(list)]
+  |-
+  ?~  b
+    ~|(&amp;#39;snag-fail&amp;#39; !!)
+  ?:  =(0 a)
+    i.b
+  $(b t.b, a (dec a))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Obviously, &lt;code&gt;++snag&lt;/code&gt; produces entry &lt;code&gt;a&lt;/code&gt; of list &lt;code&gt;b&lt;/code&gt;.  Less than
+obviously, &lt;code&gt;++snag&lt;/code&gt; &lt;em&gt;only works for homogeneous lists&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;You might think &lt;code&gt;b&lt;/code&gt;, being (in this instance) a &lt;code&gt;(list ,@)&lt;/code&gt;, is a
+homogeneous list.   But actually, we got &lt;code&gt;b&lt;/code&gt; from &lt;code&gt;nos&lt;/code&gt;, and we
+refined &lt;code&gt;nos&lt;/code&gt; with &lt;code&gt;?=&lt;/code&gt;.  It&amp;#39;s now not a mere &lt;code&gt;(list ,@)&lt;/code&gt;.  It&amp;#39;s
+actually a &lt;code&gt;[i=@ t=(list ,@)]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So when we recurse in &lt;code&gt;++snag&lt;/code&gt;, we are pulling &lt;code&gt;$&lt;/code&gt; from the trap
+produced by &lt;code&gt;|-&lt;/code&gt;; and when we mutate this core with &lt;code&gt;b=t.b&lt;/code&gt;, we
+are replacing &lt;code&gt;[i=@ t=(list ,@)]&lt;/code&gt; (ie, a list we know is
+non-empty) with a mere &lt;code&gt;(list ,@)&lt;/code&gt; (which could be empty).  So,
+the compiler gets mad and has every right to.&lt;/p&gt;
+
+&lt;p&gt;Of course, you could say: the compiler should be smarter.  No, it
+shouldn&amp;#39;t be smarter.  The right way of understanding a
+compiler&amp;#39;s semantics is to understand what it does.  If Hoon were
+smart enough to figure out that breaking a local rule here was,
+in some sense, globally ok, it would need a kind of mammalian
+global forebrain sitting on top of its reptilian walnut brain.
+Then you, the programmer, would need to grok this global
+forebrain as well.  And for what?  So you don&amp;#39;t have to cast?&lt;/p&gt;
+
+&lt;h3&gt;Mitigating TMI&lt;/h3&gt;
+
+&lt;p&gt;Fortunately, there are an endless number of ways to hack around
+TMI - in this case, both on the caller and callee side.  &lt;/p&gt;
+
+&lt;p&gt;In &lt;code&gt;++snag&lt;/code&gt;, if we instead recurse with &lt;code&gt;(snag (dec a) t.b)&lt;/code&gt; in
+classic 20th-century style (normally a real solecism in Hoon),
+&lt;code&gt;++snag&lt;/code&gt; does not have a problem with &lt;code&gt;nos&lt;/code&gt;.  (This hack will
+probably be committed at some point, but &lt;code&gt;++snag&lt;/code&gt; is such a good
+example.)&lt;/p&gt;
+
+&lt;p&gt;You probably don&amp;#39;t have commit rights on &lt;code&gt;hoon.hoon&lt;/code&gt;, so you have
+to do your hacking on the caller side.&lt;/p&gt;
+
+&lt;p&gt;One thing you can do is:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  nos=(list ,@)
+?&amp;gt;  ?=(^ nos)
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+(snag 2 `(list ,@)`nos)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This fix has zero cost in runtime and if anything makes your code
+compile faster.  On the other hand, it is slightly ugly and it
+needs to be done every time you use the value.  You can also cast
+it back in place:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  nos=(list ,@)
+?&amp;gt;  ?=(^ nos)
+=&amp;gt;  .(nos `(list ,@)`nos)
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+(snag 2 nos)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Even a very weak optimizer will optimize this to zero-cost.  It
+is even uglier, however.&lt;/p&gt;
+
+&lt;p&gt;You can also cleverly avoid refining the subject at all.  For
+instance:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  nos=(list ,@)
+?&amp;gt;  !=(~ nos)
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+(snag 2 nos)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Equality testing does not produce type information.  This is a
+feature, not a bug.  If you want to refine the subject, you
+really do have to use &lt;code&gt;?=&lt;/code&gt; or some synthetic hoon that resolves
+to it.&lt;/p&gt;
+
+&lt;h3&gt;TMI and other bulls&lt;/h3&gt;
+
+&lt;p&gt;Middle Hoon, however, added bulls not just because long terse
+wings are ugly, but also because they help with TMI.&lt;/p&gt;
+
+&lt;p&gt;When we &lt;code&gt;?=&lt;/code&gt; through a bull, the type refinement sticks to the
+bull.  That is, we can write&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  nos=(list ,@)
+=*  cud  nos
+?&amp;gt;  ?=(^ cud)
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+(snag 2 nos)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and it works just fine, because &lt;code&gt;nos&lt;/code&gt; remains &lt;code&gt;(list ,@)&lt;/code&gt;.
+However, we are back to &lt;code&gt;type-fail&lt;/code&gt; with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|=  *
+|=  nos=(list ,@)
+=*  cud  nos
+?&amp;gt;  ?=(^ cud)
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+(snag 2 cud)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In many complex computations, because the type system isn&amp;#39;t
+perfect, we often want access to both original and refined types.
+By interrogating a &lt;code&gt;%bull&lt;/code&gt;, we get exactly that.  It&amp;#39;s
+straightforward to make the alias carry the refined type, and the
+underlying wing the original type - another subtle design touch
+that chimes smoothly with Hoon&amp;#39;s rich Corinthian leather.&lt;/p&gt;
+
+&lt;h2&gt;Another convenient convenience&lt;/h2&gt;
+
+&lt;p&gt;Another common complaint about classic Hoon is that you very
+often want to fish in something that isn&amp;#39;t a wing.  For instance,
+put this in as &lt;code&gt;try/bin/fish.hoon&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [x=@ ~]
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+=+  foo=(mod x 2)
+?+  foo  !!
+  0  &amp;quot;even&amp;quot;
+  1  &amp;quot;odd&amp;quot;
+==
+
+~waclux-tomwyc/try=&amp;gt; :fish 3
+&amp;quot;odd&amp;quot;
+~waclux-tomwyc/try=&amp;gt; :fish 4
+&amp;quot;even&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We need the &lt;code&gt;?+&lt;/code&gt; and &lt;code&gt;!!&lt;/code&gt; because the type system, not being
+infinitely smart or anywhere close, cannot show that &lt;code&gt;foo&lt;/code&gt; is
+limited to &lt;code&gt;0&lt;/code&gt; and &lt;code&gt;1&lt;/code&gt;.  Try it with &lt;code&gt;?-&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [x=@ ~]
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+=+  foo=(mod x 2)
+?-  foo
+  0  &amp;quot;even&amp;quot;
+  1  &amp;quot;odd&amp;quot;
+==
+
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[2 1].[9 3]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[3 1].[9 3]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[4 1].[9 3]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[4 11].[9 3]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[4 18].[9 3]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[4 25].[9 3]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[4 33].[9 3]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[5 1].[9 3]&amp;gt;
+! /~waclux-tomwyc/try/~2014.2.12..00.06.42..8e4a/bin/fish:&amp;lt;[6 1].[9 3]&amp;gt;
+! -lost.@
+! mint-lost
+! exit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The compiler is telling us that the rest of &lt;code&gt;@&lt;/code&gt; is unhandled in
+our &lt;code&gt;?-&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;But what we can&amp;#39;t do is what we&amp;#39;d actually like to do:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [x=@ ~]
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+?+  (mod x 2)  !!
+  0  &amp;quot;even&amp;quot;
+  1  &amp;quot;odd&amp;quot;
+==
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We know that we can&amp;#39;t do this, becase we see the type:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;++  twig  $%  [%wtls p=wing q=twig r=tine]
+          ==
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and, obviously, &lt;code&gt;(mod x 2)&lt;/code&gt; is a &lt;code&gt;twig&lt;/code&gt;, not a &lt;code&gt;wing&lt;/code&gt;.  But let&amp;#39;s
+try it anyway:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [x=@ ~]
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+?+  (mod x 2)  !!
+  0  &amp;quot;even&amp;quot;
+  1  &amp;quot;odd&amp;quot;
+==
+
+~zod/try=&amp;gt; :fish 4
+&amp;quot;even&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;WTF?  It works?&lt;/p&gt;
+
+&lt;p&gt;It turns out that when we parse &lt;code&gt;?+&lt;/code&gt; - and &lt;code&gt;?-&lt;/code&gt;, &lt;code&gt;?@&lt;/code&gt;, &lt;code&gt;?^&lt;/code&gt;
+and &lt;code&gt;?~&lt;/code&gt; - we produce not an ordinary twig matching the hoon, but
+a bizarre precursor:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;++  twig  $%  [%wthp p=wing q=tine]
+              [%wthz p=tiki q=tine]
+              [%wtkt p=wing q=twig r=twig]
+              [%wtkz p=tiki q=twig r=twig]
+              [%wtls p=wing q=twig r=tine]
+              [%wtlz p=tiki q=twig r=tine]
+              [%wtpt p=wing q=twig r=twig]
+              [%wtpz p=tiki q=twig r=twig]
+              [%wtsg p=wing q=twig r=twig]
+              [%wtsz p=tiki q=twig r=twig]
+          ==
+++  tiki  $%  [&amp;amp; p=(unit term) q=wing]
+              [| p=(unit term) q=twig]
+          ==
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;With the uncommon power of &lt;code&gt;++tiki&lt;/code&gt;, our parser figures out if
+you&amp;#39;re using these pattern tests to fish for (a) a nameless wing,&lt;br&gt;
+(b) a named wing, (c) a nameless twig, (d) a named twig.  &lt;/p&gt;
+
+&lt;p&gt;For (a), &lt;code&gt;wtlz&lt;/code&gt; is equivalent to &lt;code&gt;wtls&lt;/code&gt;.  For (b), we automagically
+insert a &lt;code&gt;=*&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [x=@ ~]
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+=+  moo=(mod x 2)
+?+  foo=moo  !!
+  0  [&amp;quot;even&amp;quot; foo]
+  1  [&amp;quot;odd&amp;quot; foo]
+==
+
+~zod/try=&amp;gt; :fish 4 
+[&amp;quot;even&amp;quot; %0]
+~zod/try=&amp;gt; :fish 5
+[&amp;quot;odd&amp;quot; %1]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;(c) we&amp;#39;ve seen already; and (d) inserts a &lt;code&gt;=+&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;!:
+|=  *
+|=  [x=@ ~]
+^-  bowl  :_  ~  :_  ~  :-  %$  !&amp;gt;
+?+  foo=(mod x 2)  !!
+  0  [&amp;quot;even&amp;quot; foo]
+  1  [&amp;quot;odd&amp;quot; foo]
+==
+
+~zod/try=&amp;gt; :fish 5
+[&amp;quot;odd&amp;quot; %1]
+~zod/try=&amp;gt; :fish 4
+[&amp;quot;even&amp;quot; %0]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To call this feature essential would be going too far.  But it&amp;#39;s
+often quite convenient.&lt;/p&gt;
+
+&lt;h2&gt;Vulcanization&lt;/h2&gt;
+
+&lt;p&gt;As you&amp;#39;re probably aware by now, generic polymorphism is funky.
+It spares us from having a whole monstrous abstraction layer in
+typeclasses.  That&amp;#39;s cool.  But still, it&amp;#39;s funky.&lt;/p&gt;
+
+&lt;p&gt;One of the funky questions that&amp;#39;s perhaps occurred to you is: how
+do argument names work in a wet (generic) gate?&lt;/p&gt;
+
+&lt;p&gt;Consider a normal dry gate, like &lt;code&gt;|=([a=* b=*] [b a])&lt;/code&gt;.  When
+you slam this gate, &lt;code&gt;%.([%foo %bar] |=([a=* b=*] [b a]))&lt;/code&gt;, you
+know what the compiler does - it replaces &lt;code&gt;[a=* b=*]&lt;/code&gt; with 
+&lt;code&gt;[%foo %bar]&lt;/code&gt;, checks that &lt;code&gt;[%foo %bar]&lt;/code&gt; nests inside &lt;code&gt;[a=*
+b=*]&lt;/code&gt;, and executes the formula compiled against &lt;code&gt;[a=* b=*]&lt;/code&gt;.
+Losing all your type information:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~zod/try=&amp;gt; %.([%foo %bar] |=([a=* b=*] [b a]))
+[7.496.034 7.303.014]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But with &lt;code&gt;|*([a=* b=*] [b a])&lt;/code&gt;, we get:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;~zod/try=&amp;gt; %.([%foo %bar] |*([a=* b=*] [b a]))
+[%bar %foo]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The types persist.  Okay, we know that.  We also know that, to
+put it crudely, &lt;code&gt;|*&lt;/code&gt; works by recompiling the twig with the
+default sample replaced by the caller&amp;#39;s sample, then checking
+that this produces the same code as originally compiled.&lt;/p&gt;
+
+&lt;p&gt;But - this leaves us compiling&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;|*([%foo %bar] [b a])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;How do the limbs &lt;code&gt;b&lt;/code&gt; and &lt;code&gt;a&lt;/code&gt; get pulled?  The default sample had
+these names, but the caller&amp;#39;s sample doesn&amp;#39;t.  &lt;/p&gt;
+
+&lt;p&gt;The answer is simple - &lt;code&gt;|*&lt;/code&gt; doesn&amp;#39;t work the way you think it
+does.  &lt;code&gt;|*&lt;/code&gt; is synthetic, of course; and you might think it
+resolved to&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;=+  [a=* b=*]
+|%
++-  %$
+  [b a]
+--
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;just as &lt;code&gt;|=([a=* b=*] [b a])&lt;/code&gt; is &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;=+  [a=* b=*]
+|%
+++  %$
+  [b a]
+--
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But no!  If you try the top twig as a replacement for &lt;code&gt;|*&lt;/code&gt;,
+you&amp;#39;ll find it doesn&amp;#39;t work at all, unless you slam it not with
+&lt;code&gt;[%foo %bar]&lt;/code&gt;, but rather with &lt;code&gt;[a=%foo b=%bar]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The solution is vulcanization.  &lt;code&gt;|*&lt;/code&gt; becomes &lt;code&gt;|\&lt;/code&gt;, which gets a
+funky little thing done to it:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;++  open
+  ^-  twig
+  ?-    gen
+      [%brfs *]  =+  lyg=~(cloq al p.gen)
+                 :+  %brcb  q.lyg
+                 %-  ~(run by q.gen)
+                 |=  a=foot  ^-  foot
+                 ?.  ?=(%elm -.a)  a
+                 :-  -.a
+                 :+  %tsgl  p.a
+                 :+  %cnts  ~
+                 :~  [[[%&amp;amp; 6] ~] [%ktts p.lyg [~ 6]]]
+                 ==
+  == 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Huh?  The long and the short of it is that, thanks to this little
+piece of wizardry, &lt;code&gt;|*&lt;/code&gt; in our example instead generates:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;=+  [* *]
+|%
++-  %$
+  =&amp;gt;  .(+&amp;lt; [a b]=+&amp;lt;)
+  [b a]
+--
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ie, we pull the names out of the default sample and reimpose them
+in the actual arm.  This is vulcanization.  If you don&amp;#39;t like it,
+don&amp;#39;t use &lt;code&gt;|*&lt;/code&gt; or &lt;code&gt;|\&lt;/code&gt;, and feel free to roll your own!&lt;/p&gt;
+
+&lt;h2&gt;Naming conventions&lt;/h2&gt;
+
+&lt;p&gt;There are three tasks in translating an algorithm into Hoon.&lt;/p&gt;
+
+&lt;p&gt;First, catch your algorithm.  &lt;/p&gt;
+
+&lt;p&gt;Second, arrange it as a Hoon twig, in a way that looks good on
+the page.  Hoon arrangement, because it requires adjusting both
+the runes and the formatting, becomes a sort of minor art form in
+a pleasant way, perhaps at the level of knitting.  Perhaps an
+editor could be taught to do it, but not necessarily do it well.
+And do we really need more robots taking jobs from programmers?&lt;/p&gt;
+
+&lt;p&gt;Third, decide what to name things.  We actually have three styles
+of naming, corresponding to durability of code.&lt;/p&gt;
+
+&lt;p&gt;Hoon&amp;#39;s theory is that durability of code should correspond to
+austerity of naming.  The more austere and impersonal its names,
+the more like a specification your twig looks.  It seems written
+in stone - and indeed it is in another sense.  The more austere
+your names are, the harder it is to change them.  As you know, if
+you&amp;#39;ve ever tried to change a one-letter variable name.&lt;/p&gt;
+
+&lt;p&gt;The ideal of austere code is that anyone who tried to rewrite it,
+in the same austere style, would produce exactly the same bytes.
+There is nothing in the code but what it does.  But an austere
+style, applied to code not itself austere, is a disaster.&lt;/p&gt;
+
+&lt;p&gt;There are three naming conventions: &lt;em&gt;hyperlapidary&lt;/em&gt;, &lt;em&gt;lapidary&lt;/em&gt;, and
+&lt;em&gt;freehand&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;In hyperlapidary naming (H-Hoon), variables and arguments are
+named alphabetically with one letter, &lt;code&gt;a&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt; etc, in
+strict order of appearance in the text.  This scheme is only
+useful in the case of extremely regular and straightforward
+namespaces: very short functions, for instance.&lt;/p&gt;
+
+&lt;p&gt;Hyperlapidary arms must be gates or trays.  Gate arms are three
+letters and try to carry some mnemonic significance - for
+instance, &lt;code&gt;++dec&lt;/code&gt;.  Tray arms are two letters and try to resemble
+pronouns - for instance, &lt;code&gt;++by&lt;/code&gt;.  &lt;/p&gt;
+
+&lt;p&gt;Hyperlapidary structures must be short tuples, no wider than 5.
+The legs are named &lt;code&gt;p&lt;/code&gt;, &lt;code&gt;q&lt;/code&gt;, &lt;code&gt;r&lt;/code&gt;, &lt;code&gt;s&lt;/code&gt; and/or &lt;code&gt;t&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Conventional recursive structures use other standard names.  The
+head of a list is always &lt;code&gt;i&lt;/code&gt;, the tail is always &lt;code&gt;t&lt;/code&gt;.  In a
+binary tree of nodes, the node is &lt;code&gt;n&lt;/code&gt;, the children &lt;code&gt;l&lt;/code&gt; and &lt;code&gt;r&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When in doubt, do not use H-mode.  In an ordinary context - not
+least because hyperlapidary gates are easily mistaken for
+lapidary variables - there should be as few hyperlapidary arms as
+possible.  And always remind yourself that H-mode makes it as
+hard as possible to refactor your code.&lt;/p&gt;
+
+&lt;p&gt;Lapidary mode (L-Hoon) is the ordinary style of most of Hoon and
+Arvo.  In lapidary mode, variables, arguments, attributes, etc,
+are three-letter strings, usually consonant-vowel-consonant,
+generally meaningless.  If the same string is used more than once
+in the same file, it should be used for the same concept in some
+sense, as often happens spontaneously in cutting and pasting.  It
+would be nice to have an editor with a macro that generated
+random unique TLV strings automatically.&lt;/p&gt;
+
+&lt;p&gt;Lapidary arms are always four letters.  They may or may not be
+English words, which may or may not mean anything relevant.&lt;/p&gt;
+
+&lt;p&gt;In freehand mode (F-Hoon), do whatever the heck you want.  Note
+that while uppercase is not permitted in a symbol, &lt;code&gt;-&lt;/code&gt; is,
+suggesting a generally Lisp-like state of gross hyphenated
+disorder.  F-mode is best used for top-layer software which
+nothing else is based on; prototyping and casual coding; etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/doc/2013/11/19/ch10&quot;&gt;* &lt;em&gt;Prev&lt;/em&gt;*: Type Inference&lt;/a&gt;&lt;/p&gt;
 </content>
  </entry>
  
@@ -5952,11 +6782,11 @@ we really break it...&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;A hymn can be full of love, or hate. And the quality of Urbit&amp;#8217;s haters is absurdly high. We cherish each and every one of them. There&amp;#8217;s something sublime about being hit with a perfectly-formed jab. So we&amp;#8217;d like to serve some of the choicest examples for you here, names redacted (we don&amp;#8217;t want to embarrass anyone). Here they are:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://web.archive.org/web/20130925195007/http://www.mcclatchydc.com/2013/09/24/203134/exclusive-john-mcafee-vows-to.html&quot;&gt;&lt;img alt=&#39;It&#39;s an image. It&#39;s a link&#39; src=&#39;/assets/tweets.png&#39; /&gt;&lt;/a&gt; Sadly, though we&amp;#8217;re avid followers of the &lt;a href=&quot;http://www.mercurynews.com/business/ci_24168403/exclusive-john-mcafee-vows-make-internet-impossible-hack&quot;&gt;adventures&lt;/a&gt; of John McAfee, he&amp;#8217;s not involved.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://web.archive.org/web/20130925195007/http://www.mcclatchydc.com/2013/09/24/203134/exclusive-john-mcafee-vows-to.html&quot;&gt;&lt;img alt='It's an image. It's a link' src='/assets/tweets.png' /&gt;&lt;/a&gt; Sadly, though we&amp;#8217;re avid followers of the &lt;a href=&quot;http://www.mercurynews.com/business/ci_24168403/exclusive-john-mcafee-vows-make-internet-impossible-hack&quot;&gt;adventures&lt;/a&gt; of John McAfee, he&amp;#8217;s not involved.&lt;/p&gt;
 
 &lt;p&gt;Yet.&lt;/p&gt;
 
-&lt;p&gt;But &lt;a href=&#39;http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=2#post419831292&#39;&gt;outside&lt;/a&gt; the Twitterverse is where&lt;a href=&#39;http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=2#post419831292&#39;&gt; things &lt;/a&gt; really start to&lt;a href=&#39;http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=1#post419822422&#39;&gt; shine.&lt;/a&gt; &lt;em&gt;This&lt;/em&gt; is how you gripe:&lt;/p&gt;
+&lt;p&gt;But &lt;a href='http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=2#post419831292'&gt;outside&lt;/a&gt; the Twitterverse is where&lt;a href='http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=2#post419831292'&gt; things &lt;/a&gt; really start to&lt;a href='http://forums.somethingawful.com/showthread.php?threadid=3571697&amp;amp;userid=0&amp;amp;perpage=40&amp;amp;pagenumber=1#post419822422'&gt; shine.&lt;/a&gt; &lt;em&gt;This&lt;/em&gt; is how you gripe:&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;this one looks like x86 assembly had a fetal alcohol syndrome love child with haskell&lt;/p&gt;
@@ -5988,7 +6818,7 @@ we really break it...&lt;/p&gt;
 &lt;p&gt;wait why do I feel moist&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;And our &lt;a href=&#39;http://irclog.perlgeek.de/perl6/2013-09-25&#39;&gt;favorite:&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;And our &lt;a href='http://irclog.perlgeek.de/perl6/2013-09-25'&gt;favorite:&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;08:14 * moritz: congratulates the makers on the most elaborate joke he has seen in quite some time&lt;/p&gt;
@@ -5998,13 +6828,13 @@ we really break it...&lt;/p&gt;
 
 &lt;p&gt;Because that&amp;#8217;s literally what happened&amp;#8230;&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt=&#39;Aint even mad&#39; src=&#39;/assets/notevenmad.jpg&#39; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='Aint even mad' src='/assets/notevenmad.jpg' /&gt;&lt;/p&gt;
 
-&lt;p&gt;[Note: there&amp;#8217;s also a lot of great substantive criticism out there, especially on the &lt;a href=&#39;https://news.ycombinator.com/item?id=6438320&#39;&gt;Hacker News Thread&lt;/a&gt;. We love all that too.]&lt;/p&gt;
+&lt;p&gt;[Note: there&amp;#8217;s also a lot of great substantive criticism out there, especially on the &lt;a href='https://news.ycombinator.com/item?id=6438320'&gt;Hacker News Thread&lt;/a&gt;. We love all that too.]&lt;/p&gt;
 
 &lt;p&gt;We also want to acknowledge some of the love we&amp;#8217;ve received over the past few days:&lt;/p&gt;
-&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;PLT/OS geeks, this is weird and fascinating. Plan 9 meets Factor meets Haskell, (t)rolled into one: &lt;a href=&#39;http://t.co/22e4xIBWIN&#39;&gt;http://t.co/22e4xIBWIN&lt;/a&gt; (via &lt;a href=&#39;https://twitter.com/goodmanio&#39;&gt;@goodmanio&lt;/a&gt;)&lt;/p&gt;&amp;mdash; Alex Payne (@al3x) &lt;a href=&#39;https://twitter.com/al3x/statuses/382954933974097920&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;&lt;a href=&#39;https://twitter.com/fet&#39;&gt;@fet&lt;/a&gt; Yeah. It&amp;#39;s first thing to give me the same feeling I had as a teenager, stumbling around the early internet trying to learn computing…&lt;/p&gt;&amp;mdash; Izzy (@frozendevil) &lt;a href=&#39;https://twitter.com/frozendevil/statuses/382942599847215104&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;of course, my first thought *after* &amp;quot;is this a joke?&amp;quot; was &amp;quot;hmm, this would be fun to implement in Python&amp;quot;&lt;/p&gt;&amp;mdash; James Tauber (@jtauber) &lt;a href=&quot;https://twitter.com/jtauber/statuses/383052324429893632&quot;&gt;September 26, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;It&amp;#39;s late. I should have been in bed hours ago. Instead I made my first commit to urbit and quoted Borges in my email to get my destroyers.&lt;/p&gt;&amp;mdash; J Kenneth King (@agentultra) &lt;a href=&#39;https://twitter.com/agentultra/statuses/382718105111109633&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;Urbit seems deeply cool, deeply weird, but destined to be a new Usenet for libertarian cipherpunks and bitcoin fans.&lt;/p&gt;&amp;mdash; David Flanagan (@__DavidFlanagan) &lt;a href=&#39;https://twitter.com/__DavidFlanagan/statuses/383126596246196224&#39;&gt;September 26, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;Oh my God. &lt;a href=&#39;http://t.co/ImZkS1d71U&#39;&gt;http://t.co/ImZkS1d71U&lt;/a&gt; .  It&amp;#39;s like being a kid again!  Hackers still exist! Someone else wants to rebuild *everything*!&lt;/p&gt;&amp;mdash; Mike Biggs (@nfomon) &lt;a href=&#39;https://twitter.com/nfomon/statuses/382690623352225793&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&#39;twitter-tweet&#39;&gt;&lt;p&gt;*drops everything, goes to live in Urbit monastery*&lt;/p&gt;&amp;mdash; Swizzlr (@swizzlr) &lt;a href=&#39;https://twitter.com/swizzlr/statuses/382986416730681344&#39;&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;
-&lt;p&gt;But our favorite piece of love was this comment on &lt;a href=&#39;https://news.ycombinator.com/item?id=6439913&#39;&gt;Hacker News&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote class='twitter-tweet'&gt;&lt;p&gt;PLT/OS geeks, this is weird and fascinating. Plan 9 meets Factor meets Haskell, (t)rolled into one: &lt;a href='http://t.co/22e4xIBWIN'&gt;http://t.co/22e4xIBWIN&lt;/a&gt; (via &lt;a href='https://twitter.com/goodmanio'&gt;@goodmanio&lt;/a&gt;)&lt;/p&gt;&amp;mdash; Alex Payne (@al3x) &lt;a href='https://twitter.com/al3x/statuses/382954933974097920'&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;blockquote class='twitter-tweet'&gt;&lt;p&gt;&lt;a href='https://twitter.com/fet'&gt;@fet&lt;/a&gt; Yeah. It&amp;#39;s first thing to give me the same feeling I had as a teenager, stumbling around the early internet trying to learn computing…&lt;/p&gt;&amp;mdash; Izzy (@frozendevil) &lt;a href='https://twitter.com/frozendevil/statuses/382942599847215104'&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p&gt;of course, my first thought *after* &amp;quot;is this a joke?&amp;quot; was &amp;quot;hmm, this would be fun to implement in Python&amp;quot;&lt;/p&gt;&amp;mdash; James Tauber (@jtauber) &lt;a href=&quot;https://twitter.com/jtauber/statuses/383052324429893632&quot;&gt;September 26, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class='twitter-tweet'&gt;&lt;p&gt;It&amp;#39;s late. I should have been in bed hours ago. Instead I made my first commit to urbit and quoted Borges in my email to get my destroyers.&lt;/p&gt;&amp;mdash; J Kenneth King (@agentultra) &lt;a href='https://twitter.com/agentultra/statuses/382718105111109633'&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class='twitter-tweet'&gt;&lt;p&gt;Urbit seems deeply cool, deeply weird, but destined to be a new Usenet for libertarian cipherpunks and bitcoin fans.&lt;/p&gt;&amp;mdash; David Flanagan (@__DavidFlanagan) &lt;a href='https://twitter.com/__DavidFlanagan/statuses/383126596246196224'&gt;September 26, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class='twitter-tweet'&gt;&lt;p&gt;Oh my God. &lt;a href='http://t.co/ImZkS1d71U'&gt;http://t.co/ImZkS1d71U&lt;/a&gt; .  It&amp;#39;s like being a kid again!  Hackers still exist! Someone else wants to rebuild *everything*!&lt;/p&gt;&amp;mdash; Mike Biggs (@nfomon) &lt;a href='https://twitter.com/nfomon/statuses/382690623352225793'&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;&lt;blockquote class='twitter-tweet'&gt;&lt;p&gt;*drops everything, goes to live in Urbit monastery*&lt;/p&gt;&amp;mdash; Swizzlr (@swizzlr) &lt;a href='https://twitter.com/swizzlr/statuses/382986416730681344'&gt;September 25, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;p&gt;But our favorite piece of love was this comment on &lt;a href='https://news.ycombinator.com/item?id=6439913'&gt;Hacker News&lt;/a&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Watching the &lt;a href=&quot;http://vimeo.com/75312418&quot;&gt;video&lt;/a&gt; blew my brains out the back of my head. Figuratively of course. Thanks for not letting me get anything productive done for the rest of the day.&lt;/p&gt;
