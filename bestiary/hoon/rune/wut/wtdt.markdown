@@ -27,11 +27,12 @@ that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
 ###Expansion###
 
 <div class="codeblock">
-  ++  open
+  <code>++  open
     ^-  twig
     ?-  gen
       [%wtdt *]   [<a href="/bestiary/hoon/rune/wut/wtcl/">%wtcl</a> p.gen r.gen q.gen]
     ==
+  </code>
 </div>
 
 ###Notes###
