@@ -31,16 +31,13 @@ computes the "or" of the loobeans in `p`.
 
 ###Expansion###
 
-<div class="codeblock">
-  <code>++  open
+    ++  open
       ^-  twig
       ?-    gen
           [%wtbr *]
         |-
-        ?~(p.gen [<a href="/bestiary/hoon/rune/dot/dtzz/">%dtzz</a> %f 1] [<a href="/bestiary/hoon/rune/wut/wtcl/">%wtcl</a> i.p.gen [<a href="/bestiary/hoon/rune/dot/dtzz/">%dtzz</a> %f 0] $(p.gen t.p.gen)])
+        ?~(p.gen [%dtzz %f 1] [%wtcl i.p.gen [%dtzz %f 0] $(p.gen t.p.gen)])
       ==
-  </code>
-</div>
 
 ###Notes###
 

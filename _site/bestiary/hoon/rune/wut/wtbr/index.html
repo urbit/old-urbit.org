@@ -760,18 +760,14 @@ computes the &quot;or&quot; of the loobeans in <code>p</code>.</p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">|(i.p i.t.p i.t.t.p)
 </code></pre></div>
 <h3>Expansion</h3>
-
-<div class="codeblock">
-  <code>++  open
-      ^-  twig
-      ?-    gen
-          [%wtbr *]
-        |-
-        ?~(p.gen [<a href="/bestiary/hoon/rune/dot/dtzz/">%dtzz</a> %f 1] [<a href="/bestiary/hoon/rune/wut/wtcl/">%wtcl</a> i.p.gen [<a href="/bestiary/hoon/rune/dot/dtzz/">%dtzz</a> %f 0] $(p.gen t.p.gen)])
-      ==
-  </code>
-</div>
-
+<div class="highlight"><pre><code class="text language-text" data-lang="text">++  open
+  ^-  twig
+  ?-    gen
+      [%wtbr *]
+    |-
+    ?~(p.gen [%dtzz %f 1] [%wtcl i.p.gen [%dtzz %f 0] $(p.gen t.p.gen)])
+  ==
+</code></pre></div>
 <h3>Notes</h3>
 
 <p>Short-circuiting and type inference work as expected in <code>?|</code>.</p>
