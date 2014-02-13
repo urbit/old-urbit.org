@@ -1093,37 +1093,37 @@ selects a case in <code>q</code> for the actual type of <code>p</code>.</p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">?-(p p.i.q q.i.q, p.i.t.q q.i.t.q, p.i.t.t.q q.i.t.t.q)
 </code></pre></div>
 <h3>Expansion</h3>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">++  open
-  ^-  twig
-  ?-    gen
-      [%wthz *]
-    =+  vaw=~(. ah p.gen)
-    %-  gray:vaw
-    [%wthp puce:vaw (turn q.gen |=([a=tile b=twig] [a (blue:vaw b)]))]
-  ==
-++  ah
-  |_  tig=tiki
-  ++  blue
-    |=  gen=twig 
-    ^-  twig
-    ?.  &amp;(?=(| -.tig) ?=(~ p.tig))  gen
-    [%tsgr [~ 3] gen]
-  ::
-  ++  gray
-    |=  gen=twig
-    ^-  twig
-    ?-  -.tig
-      &amp;  ?~(p.tig gen [%tstr u.p.tig q.tig gen])
-      |  [%tsls ?~(p.tig q.tig [%ktts u.p.tig q.tig]) gen]
-    ==
-  ::
-  ++  puce
-    ^-  wing
-    ?-  -.tig
-      &amp;  ?~(p.tig q.tig [u.p.tig ~])
-      |  [[%&amp; 2] ~]
-    ==
-  --
+<div class="highlight"><pre><code class="text language-text" data-lang="text">    ++  open
+      ^-  twig
+      ?-    gen
+          [%wthz *]
+        =+  vaw=~(. ah p.gen)
+        %-  gray:vaw
+        [%wthp puce:vaw (turn q.gen |=([a=tile b=twig] [a (blue:vaw b)]))]
+      ==
+    ++  ah
+      |_  tig=tiki
+      ++  blue
+        |=  gen=twig 
+        ^-  twig
+        ?.  &amp;(?=(| -.tig) ?=(~ p.tig))  gen
+        [%tsgr [~ 3] gen]
+      ::
+      ++  gray
+        |=  gen=twig
+        ^-  twig
+        ?-  -.tig
+          &amp;  ?~(p.tig gen [%tstr u.p.tig q.tig gen])
+          |  [%tsls ?~(p.tig q.tig [%ktts u.p.tig q.tig]) gen]
+        ==
+      ::
+      ++  puce
+        ^-  wing
+        ?-  -.tig
+          &amp;  ?~(p.tig q.tig [u.p.tig ~])
+          |  [[%&amp; 2] ~]
+        ==
+      --
 </code></pre></div>
 <h3>Notes</h3>
 

@@ -44,7 +44,8 @@ Queenside:
     ?-(p p.i.q q.i.q, p.i.t.q q.i.t.q, p.i.t.t.q q.i.t.t.q)
 
 ###Expansion###
-    
+
+```
     ++  open
       ^-  twig
       ?-    gen
@@ -76,6 +77,7 @@ Queenside:
           |  [[%& 2] ~]
         ==
       --
+```
 
 ###Notes###
 
