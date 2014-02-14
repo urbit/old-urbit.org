@@ -381,8 +381,8 @@ code is code and data is data.
 easy to see how this is built out of `2`.  The data to evaluate
 is simply `b`, and the formula is `c` quoted.
 
-title: nock 8, Push
 ---
+##Nock 8, Push
 
 **`8` Reduction:**
 
