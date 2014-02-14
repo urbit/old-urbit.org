@@ -69,7 +69,7 @@ an extra one. Fortunately, the error message tells you where the mistake is:
 ```
 
 means that there's an error at `line 1`, `column 4`.  Once you know where an
-error is, it's much easieer to fix.
+error is, it's much easier to fix.
 
 But even if your Nock expression is formatted correctly, you might get
 something that looks like this:
