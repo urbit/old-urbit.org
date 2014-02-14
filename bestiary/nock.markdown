@@ -320,7 +320,7 @@ For instance, if `x` is a formula that calculates some product, `[3 x]` would te
 **`6` Reduced:**
 
 ```text
-	32r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
+32r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
 ```
 `6` is a primitive known to every programmer - good old "if."  If `b` evaluates
 to `0`, we produce `c`; if `b` evaluates to `1`, we produce `d`; otherwise, we

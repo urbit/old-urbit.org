@@ -65,7 +65,7 @@ title: Operator 6
 **`6` Reduced:**
 
 ```text
-	32r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
+32r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
 ```
 
 Actually, `6` is a primitive known to every programmer - good old
