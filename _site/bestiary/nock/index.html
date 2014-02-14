@@ -10,7 +10,7 @@
 
   <title>
     
-      Urban Bestiary, Part I Nock &middot; Urbit
+      Nock Reference &middot; Urbit
     
   </title>
 
@@ -554,70 +554,6 @@
       
         
           
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
             <li class="sidebar-nav-item">
               <a href="/blog/">Blog</a>
             </li>
@@ -737,7 +673,7 @@
 
     <div class="content container">
       <div class="subpage">
-  <h1 class="subpage-title">Urban Bestiary, Part I Nock</h1>
+  <h1 class="subpage-title">Nock Reference</h1>
   <h2>Nock Specification:</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">1  ::    A noun is an atom or a cell.
 2  ::    An atom is a natural number.
@@ -781,7 +717,7 @@
 </code></pre></div>
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line01/">structures</a></h2>
+<h2>Structures</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">1  ::    A noun is an atom or a cell.
 2  ::    An atom is a natural number.
 3  ::    A cell is an ordered pair of nouns.
@@ -814,7 +750,7 @@ you like.</p>
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line05/">nock function</a></h2>
+<h2>The Nock Function</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">5  ::    nock(a)           *a
 </code></pre></div>
 <p>Nock is a pure (stateless) function from noun to noun.  In our pseudocode (and
@@ -830,7 +766,7 @@ map directly to <code>*[subject formula]</code>.</p>
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line06/">bracket grouping</a></h2>
+<h2>Bracket Grouping</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">6  ::    [a b c]           [a [b c]]
 </code></pre></div>
 <p>Ie, brackets (in our pseudocode, as in Hoon) associate to the right.  For those
@@ -850,7 +786,7 @@ emphasis.</p>
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line08/">pseudocode</a></h2>
+<h2>Axiomatic Functions</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">8  ::    ?[a b]           0
 9  ::    ?a               1
 10 ::    +[a b]           +[a b]
@@ -858,7 +794,7 @@ emphasis.</p>
 12 ::    =[a a]           0
 13 ::    =[a b]           1
 </code></pre></div>
-<p>Here we define more pseudocode operators, which we&#39;ll use in reductions further
+<p>Here we define more axiomatic pseudocode functions, which we&#39;ll use in reductions further
 down.  So far we have four built-in functions: <code>*</code> meaning Nock itself, <code>?</code>
 testing whether a noun is a cell or an atom, <code>+</code> incrementing an atom, and <code>=</code>
 testing for equality.  Again, no rocket science here.</p>
@@ -870,7 +806,7 @@ right.</p>
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line16/">trees</a></h2>
+<h2>Noun Trees</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">16 ::    /[1 a]           a
 17 ::    /[2 a b]         a
 18 ::    /[3 a b]         b
@@ -893,11 +829,9 @@ simple tree:</p>
 </code></pre></div>
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line23/">autocons</a></h2>
+<h2>Autocons</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">23 ::    *[a [b c] d]      [*[a b c] *[a d]]
 </code></pre></div>
-<p>Um, what?</p>
-
 <p>Since Nock of an atom just crashes, the practical domain of the Nock function
 is always a cell.  Conventionally, the head of this cell is the &quot;subject,&quot; the
 tail is the &quot;formula,&quot; and the result of Nocking it is the &quot;product.&quot;
@@ -917,14 +851,14 @@ Where in Lisp you would write <code>(cons x y)</code>, in Nock you write <code>[
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line25/">axis</a></h2>
+<h2>Axis Operator</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">25 ::    *[a 0 b]         /[b a]
 </code></pre></div>
-<p>Line 25 is Nock&#39;s tree address or axis operator, using the tree addressing structure defined in lines 16 through 25. <code>*[a 0 b]</code> simply returns the value of the part of a at axis b.   </p>
+<p>Line 25 is Nock&#39;s tree address or axis operator, using the tree addressing structure defined in lines 16 through 20. <code>*[a 0 b]</code> simply returns the value of the part of a at axis b.   </p>
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line26/">constant</a></h2>
+<h2>Constant</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">26 ::    *[a 1 b]          b
 </code></pre></div>
 <p><code>1</code> is the constant operator.  It produces its argument without
@@ -932,7 +866,7 @@ reference to the subject. </p>
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line27/">recursion</a></h2>
+<h2>Recursion</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">27 ::    *[a 2 b c]        *[*[a b] *[a c]]
 </code></pre></div>
 <p>Line 22 brings us the essential magic of recursion.  <code>2</code> is the Nock operator.
@@ -942,7 +876,7 @@ But Nock has no <code>apply</code> - so all our work gets done with <code>2</cod
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line28/">cell test, increment, equality</a></h2>
+<h2>Cell, Increment, Equality</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">28 ::    *[a 3 b]         ?*[a b]
 29 ::    *[a 4 b]         +*[a b]
 30 ::    *[a 5 b]         =*[a b]
@@ -953,54 +887,56 @@ But Nock has no <code>apply</code> - so all our work gets done with <code>2</cod
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line32/">nock 6, if, then, else</a></h2>
+<h2>Nock 6, If, Then, Else</h2>
 
 <p><strong><code>6</code> Reduction:</strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">32 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+<div class="highlight"><pre><code class="text language-text" data-lang="text">*[p 6 q r s]
 
-*[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+32 ::    *[a 6 b c d]      *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
+
+*[p 2 [0 1] 2 [1 r s] [1 0] 2 [1 2 3] [1 0] 4 4 q]
 
 27 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
-*[*[a 0 1] *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
+*[*[p 0 1] *[p 2 [1 r s] [1 0] 2 [1 2 3] [1 0] 4 4 q]]
 
 25 ::    *[a 0 b]          /[b a]
 
-*[a *[a 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]]
+*[p *[p 2 [1 r s] [1 0] 2 [1 2 3] [1 0] 4 4 q]]
 
 27 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
-*[a *[*[a [1 c d]] *[a [1 0] 2 [1 2 3] [1 0] 4 4 b]]]
+*[p *[*[p [1 r s]] *[p [1 0] 2 [1 2 3] [1 0] 4 4 q]]]
 
 26 ::    *[a 1 b]          b
 
 23 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
-*[a *[[c d] [*[a 1 0] *[a 2 [1 2 3] [1 0] 4 4 b]]]]
+*[p *[[r s] [*[p 1 0] *[p 2 [1 2 3] [1 0] 4 4 q]]]]
 
 26 ::    *[a 1 b]          b
 
-*[a *[[c d] [0 *[a 2 [1 2 3] [1 0] 4 4 b]]]]
+*[p *[[r s] [0 *[p 2 [1 2 3] [1 0] 4 4 q]]]]
 
 27 ::    *[a 2 b c]        *[*[a b] *[a c]]
 
-*[a *[[c d] [0 *[*[a [1 2 3]] *[a [1 0] 4 4 b]]]]]
+*[p *[[r s] [0 *[*[p [1 2 3]] *[p [1 0] 4 4 q]]]]]
 
 26 ::    *[a 1 b]          b
 
-*[a *[[c d] [0 *[[2 3] *[a [1 0] 4 4 b]]]]]
+*[p *[[r s] [0 *[[2 3] *[p [1 0] 4 4 q]]]]]
 
 23 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
-*[a *[[c d] [0 *[[2 3] [*[a [1 0]] *[a 4 4 b]]]]]]
+*[p *[[r s] [0 *[[2 3] [*[p [1 0]] *[p 4 4 q]]]]]]
 
 26 ::    *[a 1 b]          b
 
-*[a *[[c d] [0 *[[2 3] [0 *[a 4 4 b]]]]]]
+*[p *[[r s] [0 *[[2 3] [0 *[p 4 4 q]]]]]]
 
 29 ::    *[a 4 b]          +*[a b]
 
-*[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
+*[p *[[r s] [0 *[[2 3] [0 ++*[p q]]]]]]
 </code></pre></div>
 <p><strong><code>6</code> Reduced:</strong></p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">    32r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
@@ -1027,20 +963,22 @@ code is code and data is data.</p>
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line33/">nock 7, function composition</a></h2>
+<h2>Nock 7, Composition</h2>
 
 <p><strong><code>7</code> Reduction:</strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">33 ::    *[a 7 b c]        *[a 2 b 1 c]
+<div class="highlight"><pre><code class="text language-text" data-lang="text">*[p 7 q r]
 
-*[a 2 b 1 c]
+33 ::    *[a 7 b c]        *[a 2 b 1 c]
+
+*[p 2 q 1 r]
 
 27 ::    *[a 2 b c]        *[*[a b] *[a c]] 
 
-*[*[a b] *[a 1 c]]
+*[*[p q] *[p 1 r]]
 
 26:    *[a 1 b]          b
 
-*[*[a b] c]
+*[*[p q] r]
 </code></pre></div>
 <p><strong><code>7</code> Reduced:</strong></p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">33r ::     *[a 7 b c]         *[*[a b] c]
@@ -1049,34 +987,42 @@ code is code and data is data.</p>
 easy to see how this is built out of <code>2</code>.  The data to evaluate
 is simply <code>b</code>, and the formula is <code>c</code> quoted.</p>
 
-<hr>
-
-<h2><a href="/bestiary/nock/rule/line34/">nock 8, declaration</a></h2>
+<h2>title: nock 8, Push</h2>
 
 <p><strong><code>8</code> Reduction:</strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">34 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+<div class="highlight"><pre><code class="text language-text" data-lang="text">*[p 8 q r] 
 
-*[a 7 [[7 [0 1] b] 0 1] c]   
+34 ::    *[a 8 b c]        *[a 7 [[7 [0 1] b] 0 1] c]
+
+*[p 7 [[7 [0 1] q] 0 1] r]   
 
 33r ::     *[a 7 b c]         *[*[a b] c]
 
-*[*[a [7 [0 1] b] 0 1]] c]
+*[*[p [7 [0 1] q] 0 1]] r]
 
 23 ::    *[a [b c] d]      [*[a b c] *[a d]]
 
-*[[*[a [7 [0 1] b]] *[a 0 1]] c]
+*[[*[p [7 [0 1] q]] *[p 0 1]] r]
 
 25 ::    *[a 0 b]          /[b a]
 
-*[[*[a [7 [0 1] b]] /[1 a]] c]
+*[[*[p [7 [0 1] q]] /[1 p]] r]
 
 16 ::    /[1 a]            a
 
-*[[*[a [7 [0 1] b]] a] c]
+*[[*[p [7 [0 1] q]] p] r]
 
 33r ::     *[a 7 b c]         *[*[a b] c]
 
-*[[*[*[a 0 1]] b] a] c]
+*[[*[*[p 0 1]] q] p] r]
+
+25 ::    *[a 0 b]          /[b a]
+
+*[[*[/[1 p] q] p] r]
+
+16 ::    /[1 a]            a
+
+*[[*[p q] p] r]
 </code></pre></div>
 <p><strong><code>8</code> Reduced:</strong></p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">34r ::     *[a 8 b c]        *[[*[a b] a] c]
@@ -1092,22 +1038,26 @@ calculation which depends both on the original subject and the new variable.</p>
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line35/">nock 9, firearm</a></h2>
+<h2>Nock 9, firearm</h2>
 
 <p><strong><code>9</code> Reduction:</strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">35 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+<div class="highlight"><pre><code class="text language-text" data-lang="text">*[p 9 q r]
 
-*[a 7 c [2 [0 1] [0 b]]]
+35 :: *[a 9 b c]        *[a 7 c [2 [0 1] [0 b]]]
+
+*[p 7 r [2 [0 1] [0 q]]]
 
 33r ::     *[a 7 b c]         *[*[a b] c]
 
-*[*[a c] [2 [0 1] [0 b]]]
+*[*[p r] [2 [0 1] [0 q]]]
 
 27 ::     *[a 2 b c]        *[*[a b] *[a c]]
 
-*[*[*[a c] [0 1]] *[*[a c] [0 b]]]
+*[*[*[p r] [0 1]] *[*[p r] [0 q]]]
 
 25 ::     *[a 0 b]          /[b a]
+
+*[*[p r] *[*[p r] 0 q]] 
 </code></pre></div>
 <p><strong><code>9</code> Reduced:</strong>    </p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">35r ::     *[a 9 b c]        *[*[a c] *[*[a c] 0 b]] 
@@ -1138,18 +1088,22 @@ argument.  The arm is just a function of the core, ie, a computed attribute.)</p
 
 <hr>
 
-<h2><a href="/bestiary/nock/rule/line36/">nock 10, hint</a></h2>
+<h2>Nock 10, Hint</h2>
 
 <p><strong><code>10</code> Reduction:</strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">36 :: *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
+<div class="highlight"><pre><code class="text language-text" data-lang="text">*[p 10 [q r] s] 
+
+36 :: *[a 10 [b c] d]   *[a 8 c 7 [0 3] d]
+
+*[p 8 r 7 [0 3] d]
 
 34r ::     *[a 8 b c]        [[*[a b] a] c]
 
-*[[*[a c] a] 7 [0 2] d]
+*[[*[p r] p] 7 [0 2] s]
 
 33r ::     *[a 7 b c]        *[*[a b] c]
 
-*[*[[*[a c] a] 0 3] d]
+*[*[[*[p r] p] 0 3] s]
 </code></pre></div>
 <p><strong><code>10</code> reduced:</strong></p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">36r ::    *[a 10 [b c] d]   *[*[[*[a c] a] 0 3] d]
@@ -1173,9 +1127,7 @@ quite poorly.  When it gets the product, however, the product will be right.</p>
 <p>(Why is the c in <code>[b c]</code> is computed?  Because <code>c</code> could crash.  A correct
 Nock cannot simply ignore it, and treat both variants of <code>10</code> as equivalent.)</p>
 
-<hr>
-
-<h2><a href="/bestiary/nock/rule/line39/">crash defaults</a></h2>
+<h2>Crash Defaults</h2>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">    10 ::    +[a b]           +[a b]
     ...
     14 ::    =a               =a
@@ -1193,10 +1145,7 @@ produces no result - and in practice, your interpreter will stop.</p>
 exception mechanism.  The only way to catch Nock errors is to simulate Nock in
 a higher-level virtual Nock - which, in fact, we do all the time.  A simulator
 (or a practical low-level interpreter) can report, out of band, that Nock would
-not terminate.  It cannot recognize all infinite loops, of course, but it can
-catch the obvious ones - like <code>*42</code>.)</p>
-
-<hr>
+not terminate.  It cannot recognize all in</p>
 
 </div>
 

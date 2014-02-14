@@ -7,7 +7,7 @@ title: Urban Bestiary, Index
 
 #Nock#
 
-+ [Specification and Reference](/bestiary/nock/)
++ [Specification and Reference](/bestiary/nock)
 
 ---
 
