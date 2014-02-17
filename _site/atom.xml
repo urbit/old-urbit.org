@@ -4,13 +4,150 @@
  <title>Urbit</title>
  <link href="http://urbit.org/atom.xml" rel="self"/>
  <link href="http://urbit.org/"/>
- <updated>2014-02-13T18:27:45-08:00</updated>
+ <updated>2014-02-16T23:33:17-08:00</updated>
  <id>http://urbit.org</id>
  <author>
    <name>Tlon</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Martian Computing</title>
+   <link href="http://urbit.org/blog/2014/02/16/mars/"/>
+   <updated>2014-02-16T15:00:00-08:00</updated>
+   <id>http://urbit.org/blog/2014/02/16/mars</id>
+   <content type="html">&lt;p&gt;&lt;em&gt;This is condensed slightly edited from an early post on Urbit, the original
+version, which should be read by everyone, can be found
+&lt;a href=&quot;http://moronlab.blogspot.com/2010/01/urbit-functional-programming-from.html&quot;&gt;here&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Few of us have been to Mars. But science fiction has filled in many of the
+gaps. We know that the Martian civilization is immensely old. Its software
+technology, therefore, must be similarly antique. Obviously nothing like it
+exists on earth - though those of us who remember VMS might be deceived.&lt;/p&gt;
+
+&lt;p&gt;Whether we remember VMS or not, some of us are unhappy with the state of Earth
+software. Therefore it behooves us to consider an alternative. Since we have
+not yet established communications with the Martians (who retreated into
+tunnels as their planet froze), we cannot just FTP their code. We could,
+however, try to write it.&lt;/p&gt;
+
+&lt;p&gt;What is Martian code actually like? There are two possibilities.&lt;/p&gt;
+
+&lt;p&gt;One: since Earth code is fifty years old, and Martian code is fifty million
+years old, Martian code has been evolving into a big ball of mud for a million
+times longer than Earth software. (And two million times longer than
+Windows.)&lt;/p&gt;
+
+&lt;p&gt;This hypothesis strikes me as possible, but implausible. Since the big ball of
+mud expands indefinitely, Martian code would therefore be so large and horrible
+that, despite its underground installed base, the server room bulged into space
+like a termite mound, intercepting low-flying asteroids and stinking up the
+solar system all the way to Pluto. Our latest space telescopes would surely
+have detected this abominable structure - if not, in fact, collided with it.&lt;/p&gt;
+
+&lt;p&gt;Two: therefore, at some point in Martian history, some abject fsck of a Martian
+code-monkey must have said: fsck this entire fscking ball of mud. For lo, its
+defects cannot be summarized; for they exceed the global supply of bullet
+points; for numerous as the fishes in the sea, like the fishes in the sea they
+fsck, making more little fscking fishes. For lo, it is fscked, and a big ball
+of mud. And there is only one thing to do with it: obliterate the trunk, fire
+the developers, and hire a whole new fscking army of Martian code-monkeys to
+rewrite the entire fscking thing.&lt;/p&gt;
+
+&lt;p&gt;This is such an obvious and essential response to the big ball of mud pattern
+that, despite the fact that we know nothing about Mars, we can deduce that it
+must have happened on Mars. Probably several times. Probably several hundred.
+For each of these attempts but the last, of course, the result was either (a)
+abject failure, (b) another big ball of mud, or (c) both.&lt;/p&gt;
+
+&lt;p&gt;But the last, by definition, succeeded. This is the crucial inference we can
+draw about Mars: since the Martians had 50 million years to try, in the end
+they must have succeeded. The result: Martian code, as we know it today. Not
+enormous and horrible - tiny and diamond-perfect. Moreover, because it is tiny
+and diamond-perfect, it is perfectly stable and never changes or decays. It
+neither is a big ball of mud, nor tends to become one. It has achieved its
+final, permanent and excellent state.&lt;/p&gt;
+
+&lt;p&gt;For instance (and just for instance - this is by no means a guarantee of
+perfection), Martian code is entirely Maxwellian: computationally defined by a
+small set of axioms. In other words, it is formally specified - always and
+everywhere. Nothing else could be perfect.&lt;/p&gt;
+
+&lt;p&gt;Of course, Martian code is also Martian. So completely incompatible with Earth
+code. Note, however, that Mars had to go through this same transition - they
+had to throw away their old Windows for Mars (tm), and adopt this new, tiny,
+diamond-perfect kernel.&lt;/p&gt;
+
+&lt;p&gt;But can Earth code cooperate productively with this alien intruder? It sure
+can. All it takes is glue - and Earth code is no stranger to glue. If there&amp;#39;s
+one thing Earth doesn&amp;#39;t need, it&amp;#39;s a new glue language. There is certainly no
+difficulty in gluing Mars code to Earth code. From the Earth perspective,
+Martian software is just another strange, mutually incompatible doohickey.
+Welcome aboard! Alas, our mudball is already ornamented with many such curios.
+They stick quite well.&lt;/p&gt;
+
+&lt;p&gt;Moreover, Martian code is so perfect that it cannot be contaminated, even in
+this sticky environment. The general structure of cross-planet computation is
+that Earth always calls Mars; Mars never calls Earth. The latter would be quite
+impossible, since Earth code is non-Maxwellian. There is only one way for a
+Maxwellian computer to run non-Maxwellian code: in a Maxwellian emulator. Any
+direct invocation is an implementation error by definition. Thus, Mars remains
+completely pure and Martian, even while glued firmly to Earth.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, Urbit is not in contact with Mars and cannot download their
+tiny, diamond-perfect, 49-million-year-old kernel. Therefore, we have had no
+alternative but to construct our own. It is not entirely done yet, and even the
+done parts are probably nowhere near the quality of real Martian software.
+Getting them there will require an actual collective effort, in the traditional
+open-source manner.&lt;/p&gt;
+
+&lt;p&gt;As with any dangerous new technology, it&amp;#39;s fortunate that Urbit is not yet
+fully armed and operational. It&amp;#39;s our plan to introduce Martian computing
+gradually, to avoid producing serious social unrest. He who controls the spice
+controls the universe. While Martian code is not in any real position to
+dominate the universe, it cannot be described as Martian with a straight face,
+unless clearly designed to dominate the world. After all, it&amp;#39;s already
+dominating Mars!&lt;/p&gt;
+
+&lt;p&gt;Any ersatz, Earth-produced Martian code is truly Martian in character only if
+it is obviously and self-evidently immune to any extension or improvement.
+Simplicity inflation is a chronic industry disease; Martian software must be
+far beyond simple. It can only be described as stupid in its majestic
+triviality. Or, of course, moronic.&lt;/p&gt;
+
+&lt;p&gt;Does it need to be this clean and simple? Yes. It does. This is perhaps my most
+significant objection to &amp;quot;other peoples&amp;#39; languages.&amp;quot; They all want to be clean
+and simple. Everyone does. But their idea of clean and simple: terminating
+bacterial growth. My idea of clean and simple: terminating atomic motion.&lt;/p&gt;
+
+&lt;p&gt;If this problem can be solved at all, which is not at all clear, it can be
+solved only at cryogenic temperatures.&lt;/p&gt;
+
+&lt;p&gt;In case this metaphor is too weird for you, let me make it concrete. Normally,
+when normal people release normal software, they count by fractions, and they
+count up. Thus, they can keep extending and revising their systems
+incrementally. This is generally considered a good thing. It generally is.&lt;/p&gt;
+
+&lt;p&gt;In some cases, however, specifications needs to be permanently frozen. This
+requirement is generally found in the context of standards. Some standards are
+extensible or versionable, but some are not. ASCII, for instance, is
+perma-frozen. So is IPv4 (its relationship to IPv6 is little more than nominal
+- if they were really the same protocol, they&amp;#39;d have the same ethertype).
+Moreover, many standards render themselves incompatible in practice through
+excessive enthusiasm for extensibility. They may not be perma-frozen, but they
+probably should be.&lt;/p&gt;
+
+&lt;p&gt;The true, Martian way to perma-freeze a system is what I call Kelvin
+versioning. In Kelvin versioning, releases count down by integer degrees
+Kelvin. At absolute zero, the system can no longer be changed. At 1K, one more
+modification is possible. And so on. For instance, &lt;a href=&quot;/bestiary/nock&quot;&gt;Nock&lt;/a&gt; is at
+5K. It might change, though it probably won&amp;#39;t. Certainly any change would be
+extremely painful. &lt;a href=&quot;/&quot;&gt;Hoon&lt;/a&gt; is at 164K, roughly the boiling point of Xenon.
+&lt;a href=&quot;/&quot;&gt;Arvo&lt;/a&gt;, and thus Urbit has a whole, has an overall temperature of 544K,
+an excellent temperature at which to grill a steak. &lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>claiming ~net</title>
@@ -6841,64 +6978,6 @@ we really break it...&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
 
-</content>
- </entry>
- 
- <entry>
-   <title>Continuity timeframe</title>
-   <link href="http://urbit.org/blog/2013/09/25/continuity/"/>
-   <updated>2013-09-25T15:00:00-07:00</updated>
-   <id>http://urbit.org/blog/2013/09/25/continuity</id>
-   <content type="html">&lt;p&gt;Thought we&amp;#39;d share the following email that we sent out on the developers
-mailing list (urbit-dev@googlegroups.org):&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Welcome to Urbit! You&amp;#39;ve been added to this mailing list because you all are
-now proud owners of one or more destroyers (let us know if you&amp;#39;re not and
-we&amp;#39;ll remedy that). We&amp;#39;ll be using this list to update all of you with the
-latest news from the offworld colonies. Presently your subscription settings
-are at one digest email daily (we have a powerful hatred of listserv-spam).
-Feel free to change these settings on Google Groups to whatever you like.&lt;/p&gt;
-
-&lt;p&gt;Our target date for network continuity is Friday October 4th. At which point
-the data structures we create will (if we succeed) live forever. We&amp;#39;ll almost
-certainly do at least one reboot sometime before then, so you&amp;#39;ll have to
-recreate your destroyers from your keys when we do.&lt;/p&gt;
-
-&lt;p&gt;Also, we plan on putting up some actual Hoon doc by then, so you all can, you
-know, actually learn Hoon.&lt;/p&gt;
-
-&lt;p&gt;I&amp;#39;ll leave you with some Borges: &amp;quot;Stranger and more pure than any hron is, at
-times, the ur: the object produced through suggestion, educed by hope.&amp;quot; &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Since this blog post is not limited to 1000 words (seriously Google) and
-because I love that quote so damn much, I&amp;#39;ll post the whole thing:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&amp;quot;In the most ancient regions of Tlön, the duplication of lost objects is not
-infrequent. Two persons look for a pencil; the first finds it and says nothing;
-the second finds a second pencil, no less real, but closer to his expectations.
-These secondary objects are called hronir and are, though awkward in form,
-somewhat longer. Until recently, the hronir were the accidental products of
-distraction and forgetfulness. It seems unbelievable that their methodical
-production dates back scarcely a hundred years, but this is what the Eleventh
-Volume tells us.&lt;/p&gt;
-
-&lt;p&gt;[...]&lt;/p&gt;
-
-&lt;p&gt;The methodical fabrication of hronir (says the Eleventh Volume) has performed
-prodigious services for archaeologists.  It has made possible the interrogation
-and even the modification of the past, which is now no less plastic and docile
-than the future. Curiously, the hronir of second and third degree - the hronir
-derived from another hron, those derived from the hron of a hron - exaggerate
-the aberrations of the initial one; those of fifth degree are almost uniform;
-those of ninth degree become confused with those of the second; in those of the
-eleventh there is a purity of line not found in the original. The process is
-cyclical: the hron of the twelfth degree begins to fall off in quality.
-Stranger and more pure than any hron is, at times, the ur: the object produced
-through suggestion, educed by hope.&amp;quot;&lt;/p&gt;
-&lt;/blockquote&gt;
 </content>
  </entry>
  

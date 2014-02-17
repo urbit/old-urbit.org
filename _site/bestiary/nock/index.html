@@ -554,6 +554,26 @@
       
         
           
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
             <li class="sidebar-nav-item">
               <a href="/blog/">Blog</a>
             </li>
@@ -683,7 +703,7 @@
 
       <li class="sidebar-nav-item"><a href="https://github.com/urbit/urbit">GitHub</a></li>
       <li class="sidebar-nav-item"><a href="https://groups.google.com/forum/#!forum/urbit-dev">Mailing List</a></li>
-      <li class="sidebar-nav-item">Cooling at 544 Kelvin</li>
+      <li class="sidebar-nav-item">Cooling at <a href="/blog/2014/02/16/mars/">544 Kelvin</a></li>
       <li>Last Continuity Breach: <a href="/blog/2014/01/06/continuity/">~2014.1.6</a></li>
     </ul>
     <p>urbit@urbit.org</p>
@@ -959,7 +979,7 @@ But Nock has no <code>apply</code> - so all our work gets done with <code>2</cod
 *[p *[[r s] [0 *[[2 3] [0 ++*[p q]]]]]]
 </code></pre></div>
 <p><strong><code>6</code> Reduced:</strong></p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">    32r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
+<div class="highlight"><pre><code class="text language-text" data-lang="text">32r ::   *[a 6 b c d]               *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
 </code></pre></div>
 <p><code>6</code> is a primitive known to every programmer - good old &quot;if.&quot;  If <code>b</code> evaluates
 to <code>0</code>, we produce <code>c</code>; if <code>b</code> evaluates to <code>1</code>, we produce <code>d</code>; otherwise, we
@@ -1007,7 +1027,9 @@ code is code and data is data.</p>
 easy to see how this is built out of <code>2</code>.  The data to evaluate
 is simply <code>b</code>, and the formula is <code>c</code> quoted.</p>
 
-<h2>title: nock 8, Push</h2>
+<hr>
+
+<h2>Nock 8, Push</h2>
 
 <p><strong><code>8</code> Reduction:</strong></p>
 <div class="highlight"><pre><code class="text language-text" data-lang="text">*[p 8 q r] 

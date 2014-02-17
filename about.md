@@ -7,16 +7,13 @@ title: About
 #Links#
 
 + [Nock, Hoon, etc. for Non-Vulcans (Why Urbit Matters)](http://www.popehat.com/2013/12/06/nock-hoon-etc-for-non-vulcans-why-urbit-matters/)
-
 + [A Brief Introduction to Urbit](http://alexkrupp.typepad.com/sensemaking/2013/12/a-brief-introduction-to-urbit.html)
-
 + [Urbit: functional programming from scratch](http://moronlab.blogspot.com/2010/01/urbit-functional-programming-from.html)
-
 + [Personal cloud computing in 2020 (or not)](http://unqualified-reservations.blogspot.com/2011/10/personal-cloud-computing-in-2020-or-not.html)
-
 + [The future of search](http://unqualified-reservations.blogspot.com/2010/03/future-of-search.html)
 + [Agora Remora: Swimming with the Urbit community](http://www.agoraremora.com/about.html)
 + [Tlon] (http://www.crunchbase.com/company/tlon)
+
 
 ---
 
