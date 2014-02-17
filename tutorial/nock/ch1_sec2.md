@@ -171,7 +171,7 @@ Or, because the lines are kind of ugly:
 
 Of course, this only a very small part of the entire tree. We extend the tree
 by applying the rule: Every axis `/n` has a head with the axis`/2n` and a tail
-with the axis`/2n+1`"
+with the axis`/2n+1`. For example, as you can see in the diagram above, the axis`/1` has a head, or right branch, at`/2(1)`, which is just `/2`, and a tail, or right branch at `/2(1)+1`, which is just `/3`. Say now we want to determine the addresses of the head and the tail of axis 3, which we just determined was the tail of axis 1. The head would just be `2(3)`, which is `/6`, and the tail is just the head plus 1, or `/7`.   
 
 We map from noun to axis by comparing the tree of the noun with the axis tree
 and seeing what matches. Like so, marking axes with a `/` character:
@@ -189,7 +189,7 @@ of axis `/n` is `/2n+1`. Remember that the head is the left-hand noun and the
 tail the right-hand noun of a cell-pair.
 
 Start with 1. This is your root axis. All nouns have a valid axis `/1`, even
-atoms. and the axis `/1` just refers to the noun itself. In the above example,
+atoms. The the axis `/1` just refers to the noun itself. In the above example,
 axis /1 of `[[44 45] 43]` is just `[[44 45] 43]`. The head of `[[44 45] 43]` is
 `[44 45]` and the tail is `43`. Thus, axis `/2` of `[[44 45] 43]` is `[44 45]`
 and axis /3 is `43`.
