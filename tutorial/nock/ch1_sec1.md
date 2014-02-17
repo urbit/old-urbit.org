@@ -46,7 +46,7 @@ At your prompt, type the following exactly:
 This should return `42`. Don't worry about what this is doing yet.
 
 It's very important that you actually go to your prompt and type in our
-examples. Copying and pasting is cheating. This might seem silly, but to learn
+examples. Copying and pasting is cheating, although using your up-arrow is not. This might seem silly, but to learn
 Nock (or any language)  it's very important that your fingers get
 comfortable writing it. 
 
@@ -101,7 +101,7 @@ Enough about errors, let's practice some expressions that work:
 
 
 The perceptive reader will notice the pattern here: If a is a number, `.*(a [0
-1])` always produces `a`. To test it, run the following, but
+1])` always produces `a`, although `a` itself will not return, as `a` is not a number and nock does not act on letters. To test it, run the following, but
 replace `a` with any number you like.
 
 ```text
@@ -300,6 +300,7 @@ Lower-case letters such as `a` or `b` are variables that represent nouns.
 Nock rules are notated with two columns, where the left hand side indicates
 what pattern the noun matches, and the right hand side indicates what the noun
 produces.
+
 ```text
 *[a [0 1]]                  a
 *[a [1 b]]                  b
@@ -308,16 +309,21 @@ ___
 
 ###Exercises:
 
-1. Take the noun [[a b] c] and replace each of `a` `b` and `c` with a cell. Test your cell by applying, in Arvo using the correct syntax, the rule:
-```text
-*[a [0 1]]                  a
-```
+1. Using the rule:
 
-2. Write a cell that contains 12 atoms. Test your cell by applying, in Arvo using the correct syntax, the rule:
-```text
-*[a [1 b]]                  b
-```
-setting `a` eqaul to `1`.
+	```text
+	*[a [0 1]]                  a
+	```
+
+	replace `a` with an atom, a cell, and multiple cells, and return them all respectively in Arvo (using, of course, the proper Arvo syntax).  
+
+
+2. Using the rule:
+
+	```text
+	*[a [1 b]]                  b
+	```
+	Write a cell, substituting a noun of more then 4 cells for `b`, and any atom for `a`, and then return it in Arvo (again, in the correct syntax, of course). Then play around with what you substitute for a: change it to a different atom, make it a cell, and then a set of nested cells. Does it make a difference? If yes, why? If not, why not?
 
 3. Produce a syntax error that reads:
 ```text
