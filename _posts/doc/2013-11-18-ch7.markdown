@@ -658,29 +658,31 @@ Our command-line argument, `a`, is still in there.  We can also
 use it from within the arm.  With some string-interpolation black
 magic:
 
+{% raw %}
+    =>  |%
+        ++  hello
+          "hello, world - a is {(scow %ud a)}."
+        --
+    hello
+{% endraw %}
 ```
-=>  |%
-    ++  hello
-      "hello, world - a is { (scow %ud a) }."
-    --
-hello
-
 : /~waclux-tomwyc/try/13/bin/hec/hoon
 ~waclux-tomwyc/try=> :hec 42
 "hello, world - a is 42."
 ```
-
 Finally, this is a classic case in which the twig needs to be
 reversed to make it flow downward.  We need the opposite of `=>`:
 `=<`, `tisgal`, `%tsgl`:
 
-```
-=<  hello
-|%
-++  hello
-  "hello, world - a is { (scow %ud a) }."
---
+{% raw %}
+    =<  hello
+    |%
+    ++  hello
+      "hello, world - a is {(scow %ud a)}."
+    --
+{% endraw %}
 
+```
 : /~waclux-tomwyc/try/14/bin/hec/hoon
 ~waclux-tomwyc/try=> :hec 42
 "hello, world - a is 42."
