@@ -641,6 +641,7 @@ as it were.  (Can we build a method?  We'll get to that.)
 
 Second, when we're searching for a name in a core, we search the
 payload if we don't find an arm.  For example:
+
 ```
 =>  |%
     ++  hello
@@ -652,6 +653,7 @@ a
 ~waclux-tomwyc/try=> :hec 42
 42
 ```
+
 Our command-line argument, `a`, is still in there.  We can also
 use it from within the arm.  With some string-interpolation black
 magic:
