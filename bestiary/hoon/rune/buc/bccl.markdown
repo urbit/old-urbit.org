@@ -14,7 +14,7 @@ A cell of twigs is also a twig of a cell. But in the cell of twigs, the subject 
 
 ###Definition###
 
-  ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
 
 ###Regular form (tall)###
 

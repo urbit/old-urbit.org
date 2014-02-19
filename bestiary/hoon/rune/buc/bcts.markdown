@@ -12,9 +12,9 @@ A %bark wraps a name around a tile. `a=*` parses as `[%bark %a %noun]`.
 
 ###Definition###
 
-  ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
-            $%  [%bark p=term q=tile]                     ::  name
-            ==
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%bark p=term q=tile]                     ::  name
+              ==
 
 ###Regular form (tall)###
 

@@ -8,13 +8,13 @@ title: bucbar
 
     [%reed p=tile q=tile]
 
-a %reed is a tile whose icon contains two kinds of nouns: atoms of tile p and cells of tile q.
+a `%reed` is a tile whose icon contains two kinds of nouns: atoms of tile `p` and cells of tile `q`.
 
 ###Definition###
 
-  ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
-            $%  [%reed p=tile q=tile]                     ::  atom/cell
-            ==
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%reed p=tile q=tile]                     ::  atom/cell
+              ==
 
 ###Regular form (tall)###
 

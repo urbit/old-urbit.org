@@ -4,7 +4,9 @@ category: buc
 title: buccen
 ---
 
-`$%`, `buccen`, is a tile hoon that ###Definition###
+`$%`, `buccen`, is a tile hoon that 
+
+###Definition###
 
     ++  noil
       |=  tol=?
