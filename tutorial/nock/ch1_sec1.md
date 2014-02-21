@@ -61,7 +61,7 @@ syntax error:
 ~ <syntax error at [1 4]>
 ```
 
-Easiest way to get a sytax error is to accidentally leave out a space. Or add
+Easiest way to get a syntax error is to accidentally leave out a space. Or add
 an extra one. Fortunately, the error message tells you where the mistake is:
 
 ```text
@@ -82,11 +82,11 @@ This means that the expression you typed in is correct Nock, but it just
 doesn't produce anything. Unfortunately, we can't give you line and column
 numbers on this one, so the only surefire way to debug an exit message is to
 understand what your code is doing. Literally speaking, an exit message means
-you tried to do something that just doesn't make sense. Such trying to
+you tried to do something that just doesn't make sense. Such as, trying to
 reference data that doesn't exist, or trying to increment something that's not
 a number, or asking if `42` is equal, without asking what it's equal to.
 
-Enough about errors, let's practice some expressions that work:
+Enough about errors.  Let's practice some expressions that work:
 
 ```text
 ~tomsyt-balsen/try=> .*(41 [0 1]) 
@@ -100,7 +100,7 @@ Enough about errors, let's practice some expressions that work:
 ```
 
 
-The perceptive reader will notice the pattern here: If a is a number, `.*(a [0
+The perceptive reader will notice the pattern here: If `a` is a number, `.*(a [0
 1])` always produces `a`, although `a` itself will not return, as `a` is not a number and nock does not act on letters. To test it, run the following, but
 replace `a` with any number you like.
 
@@ -109,7 +109,7 @@ replace `a` with any number you like.
 a
 ```
 
-Once you're satisfied that this is true, let's do something slightly
+Once you're satisfied that this is true, let's try something slightly
 different:
 
 ```text
@@ -123,7 +123,7 @@ different:
 0
 ```
 
-This pattern is pretty easy: `*(a [1 0])` always produces `0`, no matter what a
+This pattern is pretty easy: `*(a [1 0])` always produces `0`, no matter what `a`
 is.
 
 Again, play around with the above yourself by choosing your own values for a:
@@ -150,7 +150,7 @@ As an exercise, run the last three lines again but replace `374` and `40` with
 number of your own.
 
 You've probably already guessed the pattern here: `.*(a [1 b])` always produces
-`b`, regardless of `a`. But feel free to test it, replacing `a` and `b` with any number.
+`b`, regardless of `a`.  But feel free to test it, replacing `a` and `b` with any number.
 
 ```text
 ~tomsyt-balsen/try=> .*(a [1 b]) 
@@ -173,7 +173,7 @@ Collectively, both atoms and cells are called nouns. And Nock is just a list of
 rules (or a set of patterns) for transforming nouns.  You put one noun in, you
 get another noun out. It's like algebra, `f(x) = y`. `nock(noun_a) = noun_b`
 
-The atom `42` is a noun, the cell `[0 1]` is a noun, In fact, `.*(42 [0 1])`
+The atom `42` is a noun, the cell `[0 1]` is a noun. In fact, `.*(42 [0 1])`
 is a noun too, except that its wrapped in syntax that tells Arvo "run
 this noun through Nock". `.*(42 [0 1])` is actually the way to tell Arvo
 (Urbit's operating system) to evaluate `Nock([42 [0 1]])`. The cellular noun
