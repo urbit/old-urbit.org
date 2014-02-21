@@ -78,7 +78,7 @@ Yup, the subject is definitely running through both formulas in parallel. The
 last example seems to do something like this:
 
 ```text
-*[[42 43] [4 0 3] 1 [55 73]]         [*[[42 43] [4 0 3]] *[[42 43] 1 [55 73]]]
+*[[42 43] [4 0 3] 1 [0 1]]         [*[[42 43] [4 0 3]] *[[42 43] 1 [0 1]]]
 ```
 which we can evaluate using Arvo:
 
