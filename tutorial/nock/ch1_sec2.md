@@ -16,6 +16,7 @@ Last section we played around with this:
 42
 ```
 which corresponds to the pattern
+
 ```text
 *[a [0 1]]                  a
 ```
@@ -92,9 +93,11 @@ Let's do one more example and then we'll explain it.
 47
 ```
 Try to solve this puzzle on your own by playing with the following:
+
 ```text
 ~tomsyt-balsen/try=> .*(a [0 b])
 ```
+
 where `a` is a cell and `b` is an atom. Try to pick atoms for `b` that are
 small and try to pick cells for `a` that have lots of nesting. 
 
@@ -147,8 +150,7 @@ And now, for a more complicated tree, here's the noun `[[[48 49] 45] [46 47]]`:
 48   49
 ```
 So how do the above trees relate to running `.*(a [0 b])`? Simple, every part
-of the tree gets mapped to an atomic address (we call it an axis). The mapping
-looks something like this:
+of the tree gets mapped to an atomic address, which we call it an axis.  The mapping looks something like this:
 
 ```text
            1 
@@ -169,9 +171,15 @@ Or, because the lines are kind of ugly:
 8 9 10 11 12 13 14 15
 ```
 
+Our Nock notation for an axis at `n` is `/n`.  So the axis for `3` would be written as `/3`.
+
 Of course, this only a very small part of the entire tree. We extend the tree
-by applying the rule: Every axis `/n` has a head with the axis`/2n` and a tail
-with the axis`/2n+1`. For example, as you can see in the diagram above, the axis`/1` has a head, or right branch, at`/2(1)`, which is just `/2`, and a tail, or right branch at `/2(1)+1`, which is just `/3`. Say now we want to determine the addresses of the head and the tail of axis 3, which we just determined was the tail of axis 1. The head would just be `2(3)`, which is `/6`, and the tail is just the head plus 1, or `/7`.   
+by applying the rule: For every cell at axis `/n`, the head is at axis`/2n` and
+a tail is at axis`/2n+1`. 
+
+For example, as you can see in the diagram above, the axis`/1` has a head, or
+left branch, at`/(2*1)`, which is just `/2`, and a tail, or right branch at
+`/(2*1)+1`, which is just `/3`.  Say now we want to determine the addresses of the head and the tail of axis `/3`, which we just determined was the tail of axis `/1`. The head would just be `/(2*3)`, or `/6`, and the tail is just the head plus 1, or `/7`.   
 
 We map from noun to axis by comparing the tree of the noun with the axis tree
 and seeing what matches. Like so, marking axes with a `/` character:
@@ -189,10 +197,9 @@ of axis `/n` is `/2n+1`. Remember that the head is the left-hand noun and the
 tail the right-hand noun of a cell-pair.
 
 Start with 1. This is your root axis. All nouns have a valid axis `/1`, even
-atoms. The the axis `/1` just refers to the noun itself. In the above example,
-axis /1 of `[[44 45] 43]` is just `[[44 45] 43]`. The head of `[[44 45] 43]` is
-`[44 45]` and the tail is `43`. Thus, axis `/2` of `[[44 45] 43]` is `[44 45]`
-and axis /3 is `43`.
+atoms. The axis `/1` just refers to the noun itself. In the above example,
+axis `/1` of `[[44 45] 43]` is just `[[44 45] 43]`. The head of `[[44 45] 43]` is `[44 45]` and the tail is `43`. Thus, axis `/2` of `[[44 45] 43]` is `[44 45]`
+and axis `/3` is `43`.
 
 Another way to think about it is that the tree map has layers:
 
@@ -222,7 +229,7 @@ This, we now see, is a special case of
 
 The 0 in `*[a [0 b]]` is just an operator that means axis. Nock maps simple
 operators and functions to atoms, instead of a character like `/` for example,
-because atoms (and cells) are all Nock knows. This would Fortunately for us,
+because atoms (and cells) are all Nock knows. Fortunately for us,
 there are only eleven atoms that are operators, atoms `0` through `10.`
 
 ___
@@ -232,6 +239,7 @@ ___
 **Noun structure:**
 
 Nouns are trees that look like this:
+
 ```text
  [[44 45] 43]
     /      \
@@ -239,22 +247,25 @@ Nouns are trees that look like this:
  /   \
 44   45
 ```
-The left-hand of a cell is called the head. The right hand is the tail.
+
+The left-hand of a cell is called the head. The right-hand is the tail.
 
 **Axes:**
 
 An axis is the address of a node of the noun tree.
 
-The notation for axis n is /n.
+The notation for axis `n` is `/n`.
 
 The first part of the axis tree looks like this:
+
 ```text
          1
     2          3
  4    5     6     7
 8 9 10 11 12 13 14 15
 ```
-The head of axis /n is /(2n) and the tail of axis /n is /(2n+1). 
+
+The head of axis `/n` is `/(2n)` and the tail of axis `/n` is `/(2n+1)`. 
 
 **Nock Operators:**
 
@@ -263,9 +274,11 @@ The operators in Nock are functions mapped onto the eleven atoms `0` through `10
 **Nock 0:**
 
 The Nock operator that produces a given axis of a noun:
+
 ```text
 *[a [0 b]]               /b of a
 ```
+
 ___
 
 ###Exercises:
@@ -282,21 +295,23 @@ ___
 48   49
 ```
 
-    then to test yourself, run:
+then to test them yourself, run:
 
 ```text
 ~tomsyt-balsen/try=> .*([[[48 49] 45] [46 47]] [0 b])
 ```
-   for each axis `/b` of `[[[48 49] 45] [46 47]]`
+
+for each axis `/b` of `[[[48 49] 45] [46 47]]`
 
 2. Write a noun `a` such that the following produces something:
 
 ```text
 ~tomsyt-balsen/try=> .*(a [0 100])
 ```
-    In other words, find a noun that has an axis `/100`.
 
-3. Prune your noun from the last exercis so that its as short as possible,
+In other words, find a noun that has an axis `/100`.
+
+3. Prune your noun from the last exercise so that its as short as possible,
 while still having an axis `/100`.
 
 4. If you still feel confused, replicate the previous two exercises with the
@@ -311,6 +326,7 @@ the better. I'll get you started:
 [[4 5] 3]
 [[4 5] [6 7]
 ```
+
 To test different atoms in your noun, run 
 
 ```text
