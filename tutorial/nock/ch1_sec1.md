@@ -119,6 +119,7 @@ different:
 ~tomsyt-balsen/try=> .*(40 [1 0]) 
 0
 
+
 ~tomsyt-balsen/try=> .*(41 [1 0]) 
 0
 ```
@@ -288,6 +289,8 @@ The cell in the syntax error gives the line and column number of the location of
 ! exit
 ```
 
+If you receive an `! exit`, your command was correctly-formatted Nock, but it didn't produce a value.
+
 **Structures:**
 
 A noun is an atom or a cell.  An atom is a natural number.  A cell is an
@@ -326,6 +329,7 @@ ___
 	Write a cell, substituting a noun of more then 4 cells for `b`, and any atom for `a`, and then return it in Arvo (again, in the correct syntax, of course). Then play around with what you substitute for a: change it to a different atom, make it a cell, and then a set of nested cells. Does it make a difference? If yes, why? If not, why not?
 
 3. Produce a syntax error that reads:
+
 ```text
 ~ <syntax error at [1 14]>
 ```
