@@ -105,7 +105,7 @@ The perceptive reader will notice the pattern here: If `a` is a number, `.*(a [0
 replace `a` with any number you like.
 
 ```text
-~tomsyt-balsen/try=> .*(a [0 1]) 
+.*(a [0 1]) 
 a
 ```
 
@@ -119,7 +119,7 @@ different:
 ~tomsyt-balsen/try=> .*(40 [1 0]) 
 0
 
-~tomsyt-balsen/try=> .*(41 [1 0]) /
+~tomsyt-balsen/try=> .*(41 [1 0]) 
 0
 ```
 
@@ -153,7 +153,7 @@ You've probably already guessed the pattern here: `.*(a [1 b])` always produces
 `b`, regardless of `a`.  But feel free to test it, replacing `a` and `b` with any number.
 
 ```text
-~tomsyt-balsen/try=> .*(a [1 b]) 
+.*(a [1 b]) 
 b
 ```
 
