@@ -14,7 +14,7 @@ What does this mean for the Urbit user? If your ships have spontaneously stopped
 2. `make clean; make` to build
 3. `rm -rf $URBIT_HOME/*-*` to wipe your old ships. Be sure to save any important files.
 4. `rm -rf $mypier` to wipe your piers, replace `$mypier` with whatever your pier names are.
-5. `vere -c $mypier` to build a new pier
+5. `bin/vere -c $mypier` to build a new pier
 6. `:begin` and relaunch your destroyers
 7. `:chat to chat`
 
