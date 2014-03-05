@@ -797,7 +797,7 @@ But at the yacht level, we actually want to see a uniform 32-bit
 space of yachts directly associated with the destroyer:
 
     ~waclux-tomwyc/try=> `@p`0x9.8765.4321
-    ~talfes-sibwaclux-tomwyc-famsyr-dirwes
+    ~talfes-sibzod-famsyr-dirwes
     ~waclux-tomwyc/try=> `@p`0xba9.8765.4321
     ~tacbep-ronreg-famsyr-dirwes
     ~waclux-tomwyc/try=> `@p`0xd.cba9.8765.4321
