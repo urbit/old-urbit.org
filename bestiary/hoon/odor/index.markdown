@@ -32,3 +32,35 @@ title: odors
   @uw           unsigned base64
   @ux           unsigned hexadecimal
 ```
+
+Size:
+
+```
+A   1 bit
+B   2 bits
+C   4 bits
+D   1 byte
+E   2 bytes
+F   4 bytes
+G   8 bytes
+H   16 bytes
+I   32 bytes
+J   64 bytes
+K   128 bytes
+L   256 bytes
+M   512 bytes
+N   1K
+O   2K
+P   4K
+Q   8K
+R   16K
+S   32K
+T   64K
+U   128K
+V   256K
+W   512K
+X   1MB
+Y   2MB
+Z   4MB
+```
+

@@ -30,7 +30,7 @@ computes the "or" of the loobeans in `p`.
     |(i.p i.t.p i.t.t.p)
 
 ###Expansion###
-    
+
     ++  open
       ^-  twig
       ?-    gen

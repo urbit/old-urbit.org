@@ -366,7 +366,7 @@ We actually don't need anything in the context, so we'll put 0.
       ]                               ::   |
       [ 9                             ::   call
         2                             ::    .2
-        [0 4] [0 3] [0 11]            ::    cons /4 /3 /11
+        [[0 4] [0 3] [0 11]]          ::    cons /4 /3 /11
       ]                               ::   |
     ]                                 ::  |
 
@@ -523,10 +523,7 @@ excellent exercise to add it - see below.
       ]
       [ 8
         [9 2 0 2]
-        [ 9
-          2
-          [0 4] [0 7] [0 11]
-        ]
+        [9 2 [0 4] [0 7] [0 11]]]
       ]
     ]
 
@@ -584,10 +581,7 @@ decrement.
       ]
       [ 8
         [9 4 0 2]
-        [ 9
-          2
-          [0 4] [0 7] [0 11]
-        ]
+        [9 2 [0 4] [0 7] [0 11]]
       ]
     ]
 

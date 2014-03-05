@@ -1,7 +1,7 @@
 ---
 layout: subpage
 category: wut
-title: wutpat
+title: wutpaz
 ---
 
 `wutpaz`, `[%wtpz p=tiki q=twig r=twig]` is a synthetic hoon 

@@ -25,12 +25,12 @@ that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
     ?:(p q r)
 
 ###Expansion###
-    
-    ++  open
-      ^-  twig
-      ?-  gen
-        [%wtdt *]   [%wtcl p.gen r.gen q.gen]
-      ==
+
+  ++  open
+    ^-  twig
+    ?-  gen
+      [%wtdt *]   [%wtcl p.gen r.gen q.gen]
+    ==
 
 ###Notes###
 
