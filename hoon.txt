@@ -48,15 +48,184 @@ This is an annotated and reordered version of hoon.hoon. Work in progress.
 |%                                                      ::
 
 
-++  abel  typo                                          ::  original sin: type
-
-one of four biblical names in hoon, used for macros? abel is used for staging/type upgrades. why have a separate arm for this?
+::  atom models
 
 
 ++  axis  ,@                                            ::  tree address
 
-An `axis` the tree address described by the [Nock
-specification](/bestiary/nock/). `,@` means that an `axis` produces an atom. 
+::  An `axis` the tree address described by the Nock specification.
+
+
+++  bloq  ,@                                            ::  blockclass
+
+::  A bloq is a bare atom most often used in bit manipulation
+::  functions for setting the size of block of bits to operate on.
+::  `bloq` should always be read as a binary power. For example, a
+::  `bloq` of 0 means single bits, whereas a `bloq` of 3 means bytes. 
+
+
+++  numb  ,@                                            ::  just a number
+
+
+::  for commenting programmer intent
+
+++  pass  ,@                                            ::
+
+::  crypto in zuse. public key
+
+++  ring  ,@                                            ::
+
+::  crypto in zuse. private key
+
+
+++  odor  ,@ta                                          ::
+
+::  An `odor` is an atom format.
+
+::  `,@ta`, which itself contains the odor `@ta`, means that an
+::  odor produces an atom of ascii text, such as 'ta', which is
+::  24.948.
+
+
+:: "string" models
+
+++  char  ,@tD                                          ::  text atom (UTF-8)
+
+::  A char produces a UTF-8 text atom a single byte in length, i.e. a
+::  single character.
+
+++  cord  ,@t                                           ::
+
+::  A `cord` is an atom of text, or a stream of UTF-8 bits mapped to
+::  an atom. 
+
+::  'foo' is a cord.
+
+::  ~tomsyt-balsen/try=> `@`'foo'
+::  7.303.014
+
+
+::  ~tomsyt-balsen/try=> `@ub`'foo'
+::  0b110.1111.0110.1111.0110.0110
+
+++  span  ,@ta                                          ::  text atom (ASCII)
+
+::  A span is an ASCII text atom. The prefix is `~.`. There are no
+::  escape sequences except `~~`, which means `~`, and `~-`, which
+::  means `_`. `-` and `.` encode themselves. No other characters
+::  besides numbers and lowercase letters are permitted.
+
+::  ~.foo is a span
+
+
+++  term  ,@tas                                         ::
+
+::  A `term` is a subset of ASCII text. The only characters permitted
+::  are lowercase ASCII, `-` except as the first or last character,
+::  and 0-9 except as the first character. 
+
+
+++  tape  (list char)                                   ::  list of characters
+
+::  A tape is a list of chars. This is roughly equivalent to what in
+::  many other languages is called a "string". Hoon, however, has two
+::  different models that fill the same role that a "string" does in
+::  other languages. The other model is a `cord.`
+
+::  "foo" is a tape.
+
+::  ~tomsyt-balsen/try=> `(list ,@)`"foo"
+::  ~[102 111 111]
+::  ~tomsyt-balsen/try=> `@tD`102
+::  ~~f
+
+ 
+
+time models
+
+++  date  ,[[a=? y=@ud] m=@ud t=tarp]                   ::  parsed date
+
+::  A date is a list of a year cell (a loobean head for AD or BC and
+::  a year atom), a month atom, and a tarp (a parsed time)
+
+
+++  tarp  ,[d=@ud h=@ud m=@ud s=@ud f=(list ,@ux)]      ::  parsed time
+
+::  A tarp is a list of atoms representing, in order, day, hour,
+::  minute, second and subsecond. The subsecond is itself a list of
+::  atoms.
+
+++  time  ,@da                                          ::  galactic time
+
+::  A time is an atom that maps to a time. 
+
+::  ~2014.2.17..14.47.50..0f86 is a time.
+
+::  ~tomsyt-balsen/try=> `@`~2014.2.17..14.47.50..0f86
+::  170.141.184.500.841.997.869.354.824.985.386.942.464
+::  ~tomsyt-balsen/try=> `@da`170.141.184.500.841.997.869.354.824.985.386.942.464
+::  ~2014.2.17..14.47.50..0f86
+
+
+::  parsing models
+
+++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::
+
+
+::  A pint is a cell of two atom pairs. Used for line and column
+::  range. in a file.
+
+++  dime  ,[p=@ta q=@]                                  ::
+
+::  a dime is a pair of a text atom and a raw atom
+
+++  coin  $%  [%$ p=dime]                               ::
+              [%blob p=*]                               ::
+              [%many p=(list coin)]                     ::
+          ==                                            ::
+
+::  a coin is a dime (a span atom pair) labeled %$, a noun
+::  labeled %blob, and a list of coins (which could be null) labelled
+::  many.
+
+::  parsing a @ta
+
+++  hapt  (list ,@ta)                                   ::
+
+::  a hapt is a list of spans
+
+::  like a path, comment for inverted path
+
+
+++  hair  ,[p=@ud q=@ud]                                ::
+
+::  a hair is a pair of unsigned decimal atoms
+
+::  line column pair
+
+
+++  path  (list span)                                   ::
+
+::  A path is a list of spans used to describe a location in a filesystem.
+
+::  /~tomsyt-balsen/try is a path
+
+
+::  ~tomsyt-balsen/try=> `(list ,@)`/~tomsyt-balsen/try
+::  ~[2.239.102.822.615.623.022.927.944.589.735.038 7.959.156]
+::  ~tomsyt-balsen/try=> `(list ,term)`/~tomsyt-balsen/try
+::  ~[%~tomsyt-balsen %try]
+
+++  wall  (list tape)                                   ::  text lines
+
+::  a list of tapes, text lines in a file
+
+
+++  abel  typo                                          ::  original sin: type
+
+::  one of four biblical names in hoon, used for macros? abel is used
+::  for staging/type upgrades. 
+
 
 
 ++  also  ,[p=term q=wing r=type]                       ::  alias
@@ -74,23 +243,9 @@ $| is a %reed, beer is an atom and the cell of null and a twig.
 string construction.
 
 
-++  bloq  ,@                                            ::  blockclass
-
-A bloq is a bare atom most often used in bit manipulation functions for setting
-the size of block of bits to operate on. `bloq` should always be read as a
-binary power. For example, a `bloq` of 0 means single bits, whereas a `bloq` of
-3 means bytes. 
-
-
-
 ++  calf  ,[p=(map ,@ud wine) q=wine]                   ::
 
 a calf is a map of wines to numbers. 
-
-
-++  char  ,@tD                                          ::  text atom (UTF-8)
-
-A char produces a UTF-8 text atom a single byte in length, i.e. a single character.
 
 
 ++  chum  $?  lef=term                                  ::
@@ -124,39 +279,7 @@ a coat is the pair of a path (a list of spans) and a vase (a type noun pair)
 $: is the tile autocons, ? is a %fern. the head of a coil is a metl, q is a type 
 
 
-++  coin  $%  [%$ p=dime]                               ::
-              [%blob p=*]                               ::
-              [%many p=(list coin)]                     ::
-          ==                                            ::
 
-a coin is a dime (a span atom pair) labeled %$, a noun labeled %blob, and a list of coins (which could be null) labelled many.
-
-parsing a @ta
-
-++  cord  ,@t                                           ::
-
-A `cord` is an atom of text, or a stream of UTF-8 bits mapped to an atom. 
-
-'foo' is a cord.
-
-```
-~tomsyt-balsen/try=> `@`'foo'
-7.303.014
-```
-
-~tomsyt-balsen/try=> `@ub`'foo'
-0b110.1111.0110.1111.0110.0110
-
-
-
-
-++  date  ,[[a=? y=@ud] m=@ud t=tarp]                   ::  parsed date
-
-A date is a list of a year cell (a loobean head for AD or BC and a year atom), a month atom, and a tarp (a parsed time)
-
-++  dime  ,[p=@ta q=@]                                  ::
-
-a dime is a pair of a text atom and a raw atom
 
 ++  dram  $%  [| p=(map ,@tas dram)]                    ::
               [& p=@ud q=@]                             ::
@@ -198,18 +321,6 @@ a foot describes cores, wet elm, dry ash, null, labeled? oak and yew for inherit
 ???
 
 
-++  hair  ,[p=@ud q=@ud]                                ::
-
-a hair is a pair of unsigned decimal atoms
-
-line column pair
-
-
-++  hapt  (list ,@ta)                                   ::
-
-a hapt is a list of spans
-
-like a path, comment for inverted path
 
 ++  like  |*  a=_,*                                     ::  generic edge
           |=  b=_`*`[(hair) ~]                          ::
@@ -242,28 +353,6 @@ a list is a nested structure that terminates with ~
 
 a metl is any one of four labels describing core variance
 
-++  odor  ,@ta                                          ::
-
-An `odor` is an atom format.
-
-`,@ta`, which itself contains the odor `@ta`, means that an odor produces an
-atom of ascii text, such as `ta` or 24.948.
-
-++  tarp  ,[d=@ud h=@ud m=@ud s=@ud f=(list ,@ux)]      ::  parsed time
-
-A tarp is a list of atoms representing, in order, day, hour, minute, second and subsecond. The subsecond is itself a list of atoms.
-
-++  time  ,@da                                          ::  galactic time
-
-A time is an atom that maps to a time. 
-
-~2014.2.17..14.47.50..0f86 is a time.
-
-~tomsyt-balsen/try=> `@`~2014.2.17..14.47.50..0f86
-170.141.184.500.841.997.869.354.824.985.386.942.464
-~tomsyt-balsen/try=> `@da`170.141.184.500.841.997.869.354.824.985.386.942.464
-~2014.2.17..14.47.50..0f86
-
 
 
 ++  tree  |*  a=_,*                                     ::  binary tree
@@ -281,36 +370,10 @@ a pair of a pair of atoms and a tape. parsing?
 
 arg for parsong rules
 
-++  numb  ,@                                            ::  just a number
-
-
-for commenting programmer intent?
-
-++  pass  ,@                                            ::
-
-used for passcodes in zuse. public key
 
 
 
-++  path  (list span)                                   ::
 
-A path is a list of spans used to describe a location in a filesystem.
-
-/~tomsyt-balsen/try is a path
-
-``
-~tomsyt-balsen/try=> `(list ,@)`/~tomsyt-balsen/try
-~[2.239.102.822.615.623.022.927.944.589.735.038 7.959.156]
-~tomsyt-balsen/try=> `(list ,term)`/~tomsyt-balsen/try
-~[%~tomsyt-balsen %try]
-``
-
-
-
-++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::
-
-
-A pint is a cell of two atom pairs. Used for line and column range. in a file.
 
 
 ++  port  $:  p=axis                                    ::
@@ -350,9 +413,6 @@ a port is [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
 
 a reef is the pair of a bean and a decimal with another decimal
 
-++  ring  ,@                                            ::
-
-crypto in zuse. private key
 
 ++  rule  |=(tub=nail `edge`[p.tub ~ ~ tub])            ::
 
@@ -367,12 +427,6 @@ a rule is a gate that takes a nail and produces and edge
 footwear? four cases: a tank, a term, a noun or a spot
 
 tracing hints
-
-++  span  ,@ta                                          ::  text atom (ASCII)
-
-A span is an ASCII text atom. The prefix is `~.`. There are no escape sequences except `~~`, which means `~`, and `~-`, which means `_`. `-` and `.` encode themselves. No other characters besides numbers and lowercase letters are permitted.
-
-~.foo is a span
 
 
 ++  spot  ,[p=path q=pint]                              ::
@@ -394,22 +448,6 @@ palm is backstep
 
 rose is straight down
 
-
-++  tape  (list char)                                   ::  list of characters
-
-A tape is a list of chars. This is roughly equivalent to what in many other languages is called a "string". Hoon, however, has two different models that fill the same role that a "string" does in other languages. The other model is a `cord.`
-
-"foo" is a tape.
-
-~tomsyt-balsen/try=> `(list ,@)`"foo"
-~[102 111 111]
-~tomsyt-balsen/try=> `@tD`102
-~~f
-
-
-++  term  ,@tas                                         ::
-
-A `term` is a subset of ASCII text. The only characters permitted are lowercase ASCII, `-` except as the first or last character, and 0-9 except as the first character.  
 
 
 ++  tiki                                                ::  test case
@@ -934,9 +972,6 @@ a vase is a type and noun
 
 a vise is a vase, except used for staging
 
-++  wall  (list tape)                                   ::  text lines
-
-a list of tapes, text lines in a file?
 
 ++  wing  (list limb)                                   ::
 
