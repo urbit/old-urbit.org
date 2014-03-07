@@ -204,6 +204,13 @@ time models
 ::  line column pair
 
 
+++  nail  ,[p=hair q=tape]                              ::
+
+::  a pair of a pair of atoms and a tape. parsing?
+
+::  arg for parsing rules
+
+
 ++  path  (list span)                                   ::
 
 ::  A path is a list of spans used to describe a location in a filesystem.
@@ -220,6 +227,19 @@ time models
 
 ::  a list of tapes, text lines in a file
 
+
+++  rule  |=(tub=nail `edge`[p.tub ~ ~ tub])            ::
+
+a rule is a gate that takes a nail and produces and edge
+
+++  spot  ,[p=path q=pint]                              ::
+
+A spot is a cell of a path and a pint. Used for a specific spot in a file
+
+
+
+
+:: uncategorized
 
 ++  abel  typo                                          ::  original sin: type
 
@@ -364,17 +384,6 @@ a simple binary tree. node is n, l is left, r is right. ~ terminates
 
  l     r
 
-++  nail  ,[p=hair q=tape]                              ::
-
-a pair of a pair of atoms and a tape. parsing?
-
-arg for parsong rules
-
-
-
-
-
-
 
 ++  port  $:  p=axis                                    ::
               $=  q                                     ::
@@ -414,10 +423,6 @@ a port is [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
 a reef is the pair of a bean and a decimal with another decimal
 
 
-++  rule  |=(tub=nail `edge`[p.tub ~ ~ tub])            ::
-
-a rule is a gate that takes a nail and produces and edge
-
 ++  shoe  $%  [%hunk p=tank]                            ::
               [%lose p=term]                            ::
               [%mean p=*]                               ::
@@ -427,11 +432,6 @@ a rule is a gate that takes a nail and produces and edge
 footwear? four cases: a tank, a term, a noun or a spot
 
 tracing hints
-
-
-++  spot  ,[p=path q=pint]                              ::
-
-A spot is a cell of a path and a pint. Used for a specific spot in a file
 
 
 
