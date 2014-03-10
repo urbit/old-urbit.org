@@ -366,7 +366,7 @@ Finally, Arvo is a single-level store.  Since it's not the '70s
 anymore and disk is cheap, everything you do is saved for ever.
 (In fact, it's saved in two ways - as a memory image and an event
 log - so you, or the government if they haz your filez, can
-repeat every computation you've every performed.)
+repeat every computation you've ever performed.)
 
 If the current prompt is just the shell prompt, `^D` on an empty
 line will log out - as in Unix:
