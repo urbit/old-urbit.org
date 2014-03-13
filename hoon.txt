@@ -12,7 +12,7 @@ This is an annotated and reordered version of hoon.hoon. Work in progress.
       all                                               ::  then return engine
     (make:all cud)                                      ::  else simple compile
 ^=  all                                                 ::  assemble engine
-  =~                                                    ::  volume stack
+  =~               f                                     ::  volume stack
 %164                                                    ::  version constant
 
 
@@ -145,13 +145,13 @@ time models
 
 ++  date  ,[[a=? y=@ud] m=@ud t=tarp]                   ::  parsed date
 
-::  A date is a list of a year cell (a loobean head for AD or BC and
+::  a date is a list of a year cell (a loobean head for AD or BC and
 ::  a year atom), a month atom, and a tarp (a parsed time)
 
 
 ++  tarp  ,[d=@ud h=@ud m=@ud s=@ud f=(list ,@ux)]      ::  parsed time
 
-::  A tarp is a list of atoms representing, in order, day, hour,
+::  a tarp is a list of atoms representing, in order, day, hour,
 ::  minute, second and subsecond. The subsecond is itself a list of
 ::  atoms.
 
@@ -196,6 +196,8 @@ time models
 
 ::  like a path, comment for inverted path
 
+::  hapt doesn't appear anywhere except here. usage example?
+
 
 ++  hair  ,[p=@ud q=@ud]                                ::
 
@@ -217,11 +219,12 @@ time models
 
 ::  /~tomsyt-balsen/try is a path
 
-
 ::  ~tomsyt-balsen/try=> `(list ,@)`/~tomsyt-balsen/try
 ::  ~[2.239.102.822.615.623.022.927.944.589.735.038 7.959.156]
 ::  ~tomsyt-balsen/try=> `(list ,term)`/~tomsyt-balsen/try
 ::  ~[%~tomsyt-balsen %try]
+
+::  are forward slashes interpreted as a kind of list delimeter here?
 
 ++  wall  (list tape)                                   ::  text lines
 
@@ -230,11 +233,11 @@ time models
 
 ++  rule  |=(tub=nail `edge`[p.tub ~ ~ tub])            ::
 
-a rule is a gate that takes a nail and produces and edge
+::  a rule is a gate that takes a nail and produces and edge
 
 ++  spot  ,[p=path q=pint]                              ::
 
-A spot is a cell of a path and a pint. Used for a specific spot in a file
+::  A spot is a cell of a path and a pint. Used for a specific spot in a file
 
 
 
@@ -247,25 +250,26 @@ A spot is a cell of a path and a pint. Used for a specific spot in a file
 ::  for staging/type upgrades. 
 
 
-
 ++  also  ,[p=term q=wing r=type]                       ::  alias
 
-a triple of a term (a text atom), a wing (a list of limbs, or part of a subject) and a type. the term becomes the alias of the wing plus type?
+::  a triple of a term (a text atom), a wing (a list of limbs, or part of a 
+::  subject) and a type. the term becomes the alias of the wing plus type?
 
 
 ++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::
 
-? is $? which is a %fern, base is either an odored atom, a noun, a cell, a bean or null.
+::  ? is $? which is a %fern, base is either an odored atom, a noun, a cell, a 
+::  bean or null.
 
 ++  beer  $|(@ [~ p=twig])                              ::
 
-$| is a %reed, beer is an atom and the cell of null and a twig.
-string construction.
+::  $| is a %reed, beer is an atom and the cell of null and a twig.
+::  string construction.
 
 
 ++  calf  ,[p=(map ,@ud wine) q=wine]                   ::
 
-a calf is a map of wines to numbers. 
+::  a calf is a map of wines to numbers. 
 
 
 ++  chum  $?  lef=term                                  ::
@@ -274,9 +278,11 @@ a calf is a map of wines to numbers.
               [ven=term pro=term ver=@ kel=@]           ::
           ==                                            ::
 
-a chum is either a term called lef; a term called std and an atom kel; a term ven, a term pro, and an atom kel; or a term ven, a term pro, an atom ver and an atom kel.
+::  a chum is (a fern) either a term called lef; a term called std and an atom kel; 
+::  a term ven, a term pro, and an atom kel; or a term ven, a term pro, an atom ver 
+::  and an atom kel.
 
-something to do with jets? vendor, version, product, kelvin
+::  something to do with jets? vendor, version, product, kelvin
 
 
 ++  claw  $%  [%ash p=twig]                             ::
@@ -285,19 +291,20 @@ something to do with jets? vendor, version, product, kelvin
               [%yew p=(map term claw)]                  ::
           ==                                            ::
 
-is the same as a foot? XX
+::  is the same as a foot? XX
+::  buccen doesn't seem to be very well documented in the bestiary
 
 ++  coat  ,[p=path q=vase]                              ::
 
-a coat is the pair of a path (a list of spans) and a vase (a type noun pair)
+::  a coat is the pair of a path (a list of spans) and a vase (a type noun pair)
 
 ++  coil  $:  p=?(%gold %iron %lead %zinc)              ::
               q=type                                    ::
               r=[p=?(~ ^) q=(map term foot)]            ::
           ==                                            ::
 
-$: is the tile autocons, ? is a %fern. the head of a coil is a metl, q is a type 
-
+::  $: is the tile autocons, ? is a %fern. the head of a coil is a metl, q is a type 
+::  if tile autocon ($:) takes p and q, what is r for?
 
 
 
@@ -305,20 +312,19 @@ $: is the tile autocons, ? is a %fern. the head of a coil is a metl, q is a type
               [& p=@ud q=@]                             ::
           ==                                            ::
 
-a dram has two cases, a map of drams to terms or a pair of a @ud and a raw atom
-simple directory for unix
+::  a dram has two cases, a map of drams to terms or a pair of a @ud and a raw atom
+::  simple directory for unix
 
 
 ++  each  |*([a=$+(* *) b=$+(* *)] $%([& p=a] [| p=b])) ::
 
-effectively a macro
+::  effectively a macro
 
 
 ++  edge  ,[p=hair q=(unit ,[p=* q=nail])]              ::
 
-an edge is a pair of a hair (pair of decimals) and a unit of a noun and a nail pair.
-
-parsing, 
+::  an edge is a pair of a hair (pair of decimals) and a unit of a noun and a nail pair.
+::  parsing, 
 
 
 ++  foot  $%  [%ash p=twig]                             ::
@@ -357,7 +363,6 @@ edge producing x
 
 
 $| is a %reed, a limb is a term and an axis or a term and a unsigned decimal. Name, axis, or ??
-
 
 
 ++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::
@@ -448,6 +453,8 @@ palm is backstep
 
 rose is straight down
 
+are these just different dimensions of nested tapes? palm is 4d, rose is 3d.
+
 
 
 ++  tiki                                                ::  test case
@@ -459,6 +466,10 @@ rose is straight down
 a tiki has two cases, a unit term and a wing, or a unit term and a twig
 
 used for name resolution
+
+since & (?&) computes the and of two loobeans, are the unit and term in p` 
+converted somehow? how are they tested against q?
+same for | (?|)
 
 ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
           $%  [%axil p=base]                            ::  base type
@@ -940,6 +951,8 @@ a pair of nouns
           $%  [%d p=@ud]                                ::  blocklist
           ==                                            ::
 
+:: $| produces a %reed ([%reed p=tile q=tile]), does the $? then return two cases? 
+:: or is the second case returned by $% (always a @ud)?
 
 
 ++  unce  |*  a=_,*                                     ::  change part
@@ -965,17 +978,17 @@ a unit takes a noun and is either a null or the cell [~ noun]
 
 ++  vase  ,[p=type q=*]                                 ::  type-value pair
 
-a vase is a type and noun
+::  a vase is a type and noun
 
 
 ++  vise  ,[p=typo q=*]                                 ::  old vase
 
-a vise is a vase, except used for staging
+::  a vise is a vase, except used for staging
 
 
 ++  wing  (list limb)                                   ::
 
-a list of limbs. this is how we get stuff inside our subject!
+::  a list of limbs. this is how we get stuff inside our subject!
 
 ++  wine  $|  ?(%noun %path %tank %void %wall %wool %yarn)
           $%  [%atom p=term]                            ::
@@ -990,6 +1003,8 @@ a list of limbs. this is how we get stuff inside our subject!
               [%unit p=term q=wine]                     ::
           ==                                            ::
 
+::  a list of cubes, the first of which are types, the remainder of which look 
+::  to be used for building trees of wines. 
 
 what's a %wool or a yarn?
 
@@ -998,16 +1013,17 @@ types to print.
 
 ++  woof  (list $|(@ud [p=@ud q=@ud]))                  ::  udon transform
 
-
+::  a list of reeds?
 
 ++  wonk  |*(veq=edge ?@(q.veq !! p.u.q.veq))           ::
 
+::  return either the unit or something inside the unit of an edge
 
 ::                                                      ::
 ++  map  |*  [a=_,* b=_,*]                              ::  associative array
          $|(~ [n=[p=a q=b] l=(map a b) r=(map a b)])    ::
 
-a map takes two nouns and 
+::  a map takes two nouns and 
 
 
 ++  qeu  |*  a=_,*                                      ::
@@ -1202,6 +1218,9 @@ difference between qeu and set? and tree?
     ~
   [~ u=(b u.a)]
 ::
+::  takes a unit and any function, produces a unit [~ u=(the noun, the unit noun)]
+::  apply the funciton b to the u in unit a
+::
 ++  clap                                                ::  combine
   |*  [a=(unit) b=(unit) c=_|=(^ +<-)]
   ?~  a
@@ -1210,15 +1229,22 @@ difference between qeu and set? and tree?
     a
   [~ u=(c u.a u.b)]
 ::
+::  if a is ~ produce b, if b is ~ produce a
+::  not exactly sure how c is working
+::
 ++  drop                                                ::  enlist
   |*  a=(unit)
   ?~  a
     ~
   [i=u.a t=~]
 ::
+::  if a is ~ return ~, else [u.a ~]
+::
 ++  fall                                                ::  default
   |*  [a=(unit) b=*]
   ?~(a b u.a)
+::
+::  if not a return b else u.a
 ::
 ++  mate                                                ::  choose
   |*  [a=(unit) b=(unit)]
@@ -1228,15 +1254,22 @@ difference between qeu and set? and tree?
     b
   ?.(=(u.a u.b) ~|('mate' !!) a)
 ::
+::  if not b then produce a, if not a then produce b, else produce a if u.a and u.b are equal
+::
 ++  need                                                ::  demand
   |*  a=(unit)
   ?@  a
     !!
   u.a
 ::
+::  if a is an atom produce a crash, else produce u.a
+::
 ++  some                                                ::  lift
   |*  a=*
   [~ u=a]
+::
+::  take any noun (?) and produce [~ u=a]
+::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                Section 2bB, lists                    ::
 ::
