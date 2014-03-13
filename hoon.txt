@@ -1,4 +1,4 @@
-This is an annotated and reordered version of hoon.hoon. Work in progress.
+::  This is an annotated and reordered version of hoon.hoon. Work in progress.
 
 
 
@@ -17,10 +17,6 @@ This is an annotated and reordered version of hoon.hoon. Work in progress.
 
 
 
-
-
-
-
 ::::::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::::::  ::::::    volume 0, version stub                ::::::
 ::::::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -29,14 +25,10 @@ This is an annotated and reordered version of hoon.hoon. Work in progress.
 ++  stub  164                                           ::  version stub
 --                                                      ::
 
-
-::  This volume describes the current version of Hoon using 
-::  Urbit's kelvin versioning system.
-::
-::  At your prompt,
-::
+::  The current version of Hoon using Urbit's kelvin versioning system.
 ::  ~tomsyt-balsen/try=> stub
 ::  164
+
 
 
 ::::::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -47,224 +39,205 @@ This is an annotated and reordered version of hoon.hoon. Work in progress.
   ~
 |%                                                      ::
 
-
-::  atom models
-
+::::::  Atom models
 
 ++  axis  ,@                                            ::  tree address
 
-::  An `axis` the tree address described by the Nock specification.
+::  The tree address described by the Nock specification.
 
 
 ++  bloq  ,@                                            ::  blockclass
 
-::  A bloq is a bare atom most often used in bit manipulation
-::  functions for setting the size of block of bits to operate on.
-::  `bloq` should always be read as a binary power. For example, a
-::  `bloq` of 0 means single bits, whereas a `bloq` of 3 means bytes. 
+::  A bare atom most often used in bit manipulation functions for setting the
+::  size of block of bits to operate on. ++ bloq should always be read as a 
+::  binary power. For example, a `bloq` of 0 means single bits, whereas a 
+::  ++ bloq of 3 means bytes. 
 
 
 ++  numb  ,@                                            ::  just a number
 
+::  For commenting programmer intent.
 
-::  for commenting programmer intent
 
 ++  pass  ,@                                            ::
 
-::  crypto in zuse. public key
+::  Used by crypto in zuse. Public key.
+
 
 ++  ring  ,@                                            ::
 
-::  crypto in zuse. private key
+::  Used by crypto in zuse. Private key.
 
 
 ++  odor  ,@ta                                          ::
 
-::  An `odor` is an atom format.
-
+::  An atom format.
 ::  `,@ta`, which itself contains the odor `@ta`, means that an
 ::  odor produces an atom of ascii text, such as 'ta', which is
 ::  24.948.
 
 
-:: "string" models
+::::::  String-like models
 
 ++  char  ,@tD                                          ::  text atom (UTF-8)
 
-::  A char produces a UTF-8 text atom a single byte in length, i.e. a
-::  single character.
+::  A UTF-8 text atom a single byte in length; a single character.
+
 
 ++  cord  ,@t                                           ::
 
-::  A `cord` is an atom of text, or a stream of UTF-8 bits mapped to
-::  an atom. 
-
+::  An atom of text, or a stream of UTF-8 bits mapped to an atom.
 ::  'foo' is a cord.
-
 ::  ~tomsyt-balsen/try=> `@`'foo'
 ::  7.303.014
-
-
 ::  ~tomsyt-balsen/try=> `@ub`'foo'
 ::  0b110.1111.0110.1111.0110.0110
 
+
 ++  span  ,@ta                                          ::  text atom (ASCII)
 
-::  A span is an ASCII text atom. The prefix is `~.`. There are no
-::  escape sequences except `~~`, which means `~`, and `~-`, which
-::  means `_`. `-` and `.` encode themselves. No other characters
-::  besides numbers and lowercase letters are permitted.
-
+::  An ASCII text atom. The prefix is `~.`. There are no escape sequences 
+::  except `~~`, which means `~`, and `~-`, which means `_`. `-` and `.` encode
+::  themselves. No other characters besides numbers and lowercase letters are 
+::  permitted.
 ::  ~.foo is a span
 
 
 ++  term  ,@tas                                         ::
 
-::  A `term` is a subset of ASCII text. The only characters permitted
-::  are lowercase ASCII, `-` except as the first or last character,
-::  and 0-9 except as the first character. 
+::  A subset of ASCII text. The only characters permitted are lowercase ASCII, 
+::  `-` except as the first or last character, and 0-9 except as the first 
+::  character. 
 
 
 ++  tape  (list char)                                   ::  list of characters
 
-::  A tape is a list of chars. This is roughly equivalent to what in
-::  many other languages is called a "string". Hoon, however, has two
-::  different models that fill the same role that a "string" does in
-::  other languages. The other model is a `cord.`
-
+::  A list of chars. This is roughly equivalent to what in many other languages
+::  is called a "string". Hoon, however, has two different models that fill the
+::  same role that a "string" does in other languages. The other model is a 
+::  ++ cord.
 ::  "foo" is a tape.
-
 ::  ~tomsyt-balsen/try=> `(list ,@)`"foo"
 ::  ~[102 111 111]
 ::  ~tomsyt-balsen/try=> `@tD`102
 ::  ~~f
 
  
-
-time models
+::::::  Time models
 
 ++  date  ,[[a=? y=@ud] m=@ud t=tarp]                   ::  parsed date
 
-::  a date is a list of a year cell (a loobean head for AD or BC and
-::  a year atom), a month atom, and a tarp (a parsed time)
+::  A list of a year cell (a loobean head for AD or BC and a year atom), a 
+::  month atom, and a ++ tarp (a parsed time).
 
 
 ++  tarp  ,[d=@ud h=@ud m=@ud s=@ud f=(list ,@ux)]      ::  parsed time
 
-::  a tarp is a list of atoms representing, in order, day, hour,
-::  minute, second and subsecond. The subsecond is itself a list of
-::  atoms.
+::  A list of atoms representing, in order, day, hour, minute, second and 
+::  subsecond. The subsecond is itself a list of atoms.
+
 
 ++  time  ,@da                                          ::  galactic time
 
-::  A time is an atom that maps to a time. 
-
+::  An atom that maps to a time. 
 ::  ~2014.2.17..14.47.50..0f86 is a time.
-
 ::  ~tomsyt-balsen/try=> `@`~2014.2.17..14.47.50..0f86
 ::  170.141.184.500.841.997.869.354.824.985.386.942.464
 ::  ~tomsyt-balsen/try=> `@da`170.141.184.500.841.997.869.354.824.985.386.942.464
 ::  ~2014.2.17..14.47.50..0f86
 
 
-::  parsing models
+::::::  Parsing models
 
 ++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::
 
+::  A cell of two atom pairs. Used for line and column range in a file.
 
-::  A pint is a cell of two atom pairs. Used for line and column
-::  range. in a file.
 
 ++  dime  ,[p=@ta q=@]                                  ::
 
-::  a dime is a pair of a text atom and a raw atom
+::  A pair of a text atom and a raw atom.
+
 
 ++  coin  $%  [%$ p=dime]                               ::
               [%blob p=*]                               ::
               [%many p=(list coin)]                     ::
           ==                                            ::
 
-::  a coin is a dime (a span atom pair) labeled %$, a noun
-::  labeled %blob, and a list of coins (which could be null) labelled
-::  many.
+::  A coin is a dime (a span atom pair) labeled %$, a noun labeled %blob, and a
+::  list of coins (which could be null) labelled many.
 
-::  parsing a @ta
+
+::::::  Parsing @ta
 
 ++  hapt  (list ,@ta)                                   ::
 
-::  a hapt is a list of spans
-
-::  like a path, comment for inverted path
-
-::  hapt doesn't appear anywhere except here. usage example?
+::  A hapt is a list of spans: like a path.
+::  ??  hapt doesn't appear anywhere except here. usage example?
 
 
 ++  hair  ,[p=@ud q=@ud]                                ::
 
-::  a hair is a pair of unsigned decimal atoms
-
-::  line column pair
+::  A hair is a pair of unsigned decimal atoms, like a line column pair.
 
 
 ++  nail  ,[p=hair q=tape]                              ::
 
-::  a pair of a pair of atoms and a tape. parsing?
-
-::  arg for parsing rules
+::  A pair of a pair of atoms and a tape. Used as an arg for parsing rules
+::  ??  parsing? clarify usage example?
 
 
 ++  path  (list span)                                   ::
 
 ::  A path is a list of spans used to describe a location in a filesystem.
-
 ::  /~tomsyt-balsen/try is a path
-
 ::  ~tomsyt-balsen/try=> `(list ,@)`/~tomsyt-balsen/try
 ::  ~[2.239.102.822.615.623.022.927.944.589.735.038 7.959.156]
 ::  ~tomsyt-balsen/try=> `(list ,term)`/~tomsyt-balsen/try
 ::  ~[%~tomsyt-balsen %try]
+::  ??  are forward slashes interpreted as a kind of list delimeter here?
 
-::  are forward slashes interpreted as a kind of list delimeter here?
 
 ++  wall  (list tape)                                   ::  text lines
 
-::  a list of tapes, text lines in a file
+::  A list of ++tapes (list of chars) text lines in a file
 
 
 ++  rule  |=(tub=nail `edge`[p.tub ~ ~ tub])            ::
 
-::  a rule is a gate that takes a nail and produces and edge
+::  A rule is a gate that takes a nail and produces and edge.
+
 
 ++  spot  ,[p=path q=pint]                              ::
 
-::  A spot is a cell of a path and a pint. Used for a specific spot in a file
+::  A spot is a cell of a path and a pint. Used for a specific spot in a file.
 
 
-
-
-:: uncategorized
+:::::: Uncategorized
 
 ++  abel  typo                                          ::  original sin: type
 
-::  one of four biblical names in hoon, used for macros? abel is used
-::  for staging/type upgrades. 
+::  One of four biblical names in hoon. Abel is used for staging/type upgrades. 
+::  ??  used for macros?
 
 
 ++  also  ,[p=term q=wing r=type]                       ::  alias
 
-::  a triple of a term (a text atom), a wing (a list of limbs, or part of a 
-::  subject) and a type. the term becomes the alias of the wing plus type?
+::  A triple of a term (a text atom), a wing (a list of limbs, or part of a 
+::  subject) and a type. 
+::  ??  The term becomes the alias of the wing plus type?
 
 
 ++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::
 
-::  ? is $? which is a %fern, base is either an odored atom, a noun, a cell, a 
-::  bean or null.
+::  ? is $? which is a %fern. ++ base is either an odored atom, a noun, a cell,
+::  a bean or null.
+
 
 ++  beer  $|(@ [~ p=twig])                              ::
 
-::  $| is a %reed, beer is an atom and the cell of null and a twig.
-::  string construction.
+::  $| is a %reed, ++ beer is an atom and the cell of null and a twig. string 
+::  construction.
 
 
 ++  calf  ,[p=(map ,@ud wine) q=wine]                   ::
@@ -278,11 +251,10 @@ time models
               [ven=term pro=term ver=@ kel=@]           ::
           ==                                            ::
 
-::  a chum is (a fern) either a term called lef; a term called std and an atom kel; 
-::  a term ven, a term pro, and an atom kel; or a term ven, a term pro, an atom ver 
-::  and an atom kel.
-
-::  something to do with jets? vendor, version, product, kelvin
+::  $? is a fern. ++ chum is either a term called lef; a term called std and an
+::  atom kel; a term ven, a term pro, and an atom kel; or a term ven, a term 
+::  pro, an atom ver and an atom kel.
+::  ??  something to do with jets? vendor, version, product, kelvin
 
 
 ++  claw  $%  [%ash p=twig]                             ::
@@ -291,40 +263,44 @@ time models
               [%yew p=(map term claw)]                  ::
           ==                                            ::
 
-::  is the same as a foot? XX
-::  buccen doesn't seem to be very well documented in the bestiary
+::  $% is a kelp. 
+::  ??  is the same as a foot?
+
 
 ++  coat  ,[p=path q=vase]                              ::
 
-::  a coat is the pair of a path (a list of spans) and a vase (a type noun pair)
+::  The pair of a path (a list of spans) and a vase (a type noun pair).
+
 
 ++  coil  $:  p=?(%gold %iron %lead %zinc)              ::
               q=type                                    ::
               r=[p=?(~ ^) q=(map term foot)]            ::
           ==                                            ::
 
-::  $: is the tile autocons, ? is a %fern. the head of a coil is a metl, q is a type 
-::  if tile autocon ($:) takes p and q, what is r for?
-
+::  $: is the tile autocons, ? is a %fern. the head of a coil is a metl, q is a
+::  type.
+::  ??  if tile autocon ($:) takes p and q, what is r for?
 
 
 ++  dram  $%  [| p=(map ,@tas dram)]                    ::
               [& p=@ud q=@]                             ::
           ==                                            ::
 
-::  a dram has two cases, a map of drams to terms or a pair of a @ud and a raw atom
-::  simple directory for unix
+::  $% is a kelp. A map of drams to terms or a pair of a @ud and a raw atom
+::  ??  simple directory for unix
 
 
 ++  each  |*([a=$+(* *) b=$+(* *)] $%([& p=a] [| p=b])) ::
 
 ::  effectively a macro
+::  !!  this needs work. expand to wide form to help?
 
 
 ++  edge  ,[p=hair q=(unit ,[p=* q=nail])]              ::
 
-::  an edge is a pair of a hair (pair of decimals) and a unit of a noun and a nail pair.
-::  parsing, 
+::  an edge is a pair of a hair (pair of decimals) and a unit of a noun and a 
+::  nail pair. 
+::  ??  parsing? examples.
 
 
 ++  foot  $%  [%ash p=twig]                             ::
@@ -333,8 +309,9 @@ time models
               [%yew p=(map term foot)]                  ::
           ==                                            ::
 
-
-a foot describes cores, wet elm, dry ash, null, labeled? oak and yew for inheritance, ignore
+::  $% is a kelp. wet elm, dry ash, null, labeled? oak and yew for inheritance,
+::  ignore
+::  ??  this needs further investication
 
 ++  gear  |*  a=_,*                                     ::  list generator
           $_                                            ::
@@ -344,8 +321,8 @@ a foot describes cores, wet elm, dry ash, null, labeled? oak and yew for inherit
             ~                                           ::
           [i=(a -.b) t=^?(..$(b +.b))]                  ::
 
-???
-
+::  ??  the last line makes some sense, but what is it used for?
+::  !!
 
 
 ++  like  |*  a=_,*                                     ::  generic edge
@@ -356,38 +333,42 @@ a foot describes cores, wet elm, dry ash, null, labeled? oak and yew for inherit
           :-  ~                                         ::
           u=[p=(a +>-.b) q=[p=(hair -.b) q=(tape +.b)]] ::
 
-edge producing x
+::  ??  edge producing x
+::  !!
 
 
 ++  limb  $|(term $%([%& p=axis] [%| p=@ud q=term]))    ::
 
 
-$| is a %reed, a limb is a term and an axis or a term and a unsigned decimal. Name, axis, or ??
+::  $| is a %reed. ++ limb is a term and an axis or a term and a unsigned 
+::  decimal. 
+::  ??  Name, axis, or ??
+::  !!
 
 
 ++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::
 
-a line is used by a kelp, its head is a %leaf, which reduces to a %cube label for the tile in the tail.
+::  Used by a kelp, its head is a %leaf, which reduces to a %cube label for the
+::  tile in the tail.
+
 
 ++  list  |*  a=_,*                                     ::  null-terminated list
           $|(~ [i=a t=(list a)])                        ::
 
-a list is a nested structure that terminates with ~ 
+::  A nested structure that terminates with ~.
+
 
 ++  metl  ?(%gold %iron %zinc %lead)                    ::
 
-a metl is any one of four labels describing core variance
-
+::  Any one of four labels describing core variance.
 
 
 ++  tree  |*  a=_,*                                     ::  binary tree
           $|(~ [n=a l=(tree a) r=(tree a)])             ::
 
-a simple binary tree. node is n, l is left, r is right. ~ terminates
-
-    n
-
- l     r
+::  A simple binary tree. node is n, l is left, r is right. ~ terminates
+::     n
+::  l     r
 
 
 ++  port  $:  p=axis                                    ::
@@ -397,8 +378,8 @@ a simple binary tree. node is n, l is left, r is right. ~ terminates
               ==                                        ::
           ==                                            ::
 
-
-a port is [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
+::  [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
+::  !! in english!
 
 
 
@@ -411,6 +392,7 @@ a port is [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
               ==                                        ::
           ==                                            ::
 
+::  !!
 
 
 ++  prop  $:  p=axis                                    ::
@@ -418,14 +400,13 @@ a port is [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
               [p=?(~ axis) q=(list ,[p=type q=foot])]   ::
           ==                                            ::
 
-
-
+::  !!
 
 
 ++  reef  ,[p=[p=? q=@ud] q=@ud]                        ::
 
 
-a reef is the pair of a bean and a decimal with another decimal
+::  A reef is the pair of a bean and a decimal with another decimal.
 
 
 ++  shoe  $%  [%hunk p=tank]                            ::
@@ -434,10 +415,8 @@ a reef is the pair of a bean and a decimal with another decimal
               [%spot p=spot]                            ::
           ==                                            ::
 
-footwear? four cases: a tank, a term, a noun or a spot
-
-tracing hints
-
+::  footwear? four cases: a tank, a term, a noun or a spot
+::  ??  tracing hints  
 
 
 ++  tank  $%  [%leaf p=tape]                            ::
@@ -445,16 +424,10 @@ tracing hints
               [%rose p=[p=tape q=tape r=tape] q=(list tank)]
           ==                                            ::
 
-buccen is a kelp. a tank has three cases, a leaf, a palm and a rose
-
-tank is for printing
-
-palm is backstep
-
-rose is straight down
-
-are these just different dimensions of nested tapes? palm is 4d, rose is 3d.
-
+::  $% is a kelp. ++ tank has three cases, a leaf, a palm and a rose. ++ tank
+::  is for printing: %palm is backstep, %rose is straight down.
+::  ??  are these just different dimensions of nested tapes? palm is 4d, rose is
+::  3d.
 
 
 ++  tiki                                                ::  test case
@@ -462,14 +435,11 @@ are these just different dimensions of nested tapes? palm is 4d, rose is 3d.
               [| p=(unit term) q=twig]                  ::  named wing
           ==                                            ::
 
+::  $% is a kelp. ++ tiki has two cases, a unit term and a wing, or a unit term
+::  and a twig. Used for name resolution.
+::  ??  since & (?&) computes the and of two loobeans, are the unit and term in
+::  p converted somehow? how are they tested against q? same for | (?|)
 
-a tiki has two cases, a unit term and a wing, or a unit term and a twig
-
-used for name resolution
-
-since & (?&) computes the and of two loobeans, are the unit and term in p` 
-converted somehow? how are they tested against q?
-same for | (?|)
 
 ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
           $%  [%axil p=base]                            ::  base type
@@ -483,27 +453,16 @@ same for | (?|)
               [%weed p=twig]                            ::  example
           ==                                            ::
 
-
-a tile is a convenient mechnasim for making well-typed nouns
-
-an axil is an icon for an odored atom, a noun, a cell, a bean or null.
-
-a bark wraps a term around a tile
-
-a bush is tile with an cellular head p or an atomic head q
-
-a fern is a non-empty list of cases, must be orthogonal
-
-an herb is a twig, used as a tile
-
-a kelp is a tagged union, a list of cases and labels
-
-a leaf is an atomic constant
-
-a reed is atoms of p=tile and cells of q=tile
-
-a weed is a tile by default value, same as bunting a twig
-
+::  A convenient mechnasim for making well-typed nouns.
+::  An axil is an icon for an odored atom, a noun, a cell, a bean or null.
+::  %bark wraps a term around a tile.
+::  %bush is tile with an cellular head p or an atomic head q.
+::  %fern is a non-empty list of cases, must be orthogonal
+::  %herb is a twig, used as a tile
+::  %kelp is a tagged union, a list of cases and labels
+::  %leaf is an atomic constant
+::  %reed is atoms of p=tile and cells of q=tile
+::  %weed is a tile by default value, same as bunting a twig
 
 
 ++  toga                                                ::  face control
@@ -514,10 +473,8 @@ a weed is a tile by default value, same as bunting a twig
           ==                                            ::
 
 
-a toga is a term and one of three cases: null, a term and a toga, or a toga pair.
-
-wraps a whole tree with names
-
+::  A term and one of three cases: null, a term and a ++ toga, or a ++ toga pair.
+::  wraps a whole tree with faces
 
 
 ++  twig  $&  [p=twig q=twig]                           ::
