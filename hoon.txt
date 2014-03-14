@@ -49,9 +49,9 @@
 ++  bloq  ,@                                            ::  blockclass
 
 ::  A bare atom most often used in bit manipulation functions for setting the
-::  size of block of bits to operate on. ++ bloq should always be read as a 
-::  binary power. For example, a `bloq` of 0 means single bits, whereas a 
-::  ++ bloq of 3 means bytes. 
+::  size of block of bits to operate on. ++bloq should always be read as a 
+::  binary power. For example, a ++bloq of 0 means single bits, whereas a 
+::  ++bloq of 3 means bytes. 
 
 
 ++  numb  ,@                                            ::  just a number
@@ -230,8 +230,8 @@
 
 ++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::
 
-::  ? is $? which is a %fern. ++ base is either an odored atom, a noun, a cell,
-::  a bean or null.
+::  ? is $? which is a %fern. ++base is either an odored atom, a noun, a cell,
+::  a bean (loobean) or null.
 
 
 ++  beer  $|(@ [~ p=twig])                              ::
@@ -479,77 +479,75 @@
 
 ++  twig  $&  [p=twig q=twig]                           ::
 
-bush
+$& is a bush.
 
           $%                                            ::
 
-kelp
+$% is a kelp
             [%$ p=axis]                                 ::
 
-blip, the empty name
+%$ is a blip, the empty name
 
             [%bccb p=tile]                              ::
 
-a synthetic rune that produces a bunted tile
-
+%bccb produces a bunted tile
 
             [%bccm p=tile]                              ::
 
-synthetic, produces a norm gate (clam) for tile
-
+%bccm produces a validator gate (%clam) for the tile
 
             [%bcpt p=wing q=tile]                       ::
 
-natural, whips tile q onto wing p
+%bcpt is a natural rune that %whips wing p into tile q
 
             [%bctr p=tile]                              ::
 
-synthetic, produces the bunt for p as a compile time constant
+%bctr produces the %bunt for tile p 
 
             [%bczp p=base]                              ::
 
-synthetic, bunts an axil
+%bczp bunts an %axil (see ++tile) p
 
           ::                                            ::
             [%brcb p=tile q=(map term foot)]            ::
 
-synthetic, produces a %gold tray with sample p
+%brcb produces a %gold tray with tile sample p
 
             [%brcn p=(map term foot)]                   ::
 
-natural, produces a %gold core
+%brcn is a natural rune that produces a %gold core
 
             [%brdt p=twig]                              ::
 
-synthetic, produces a dry %gold trap, 
+%brdt produces a dry %gold trap
 
             [%brfs p=tile q=(map term foot)]            ::
 
-synthetic, produces a vulcanized %gold tray
+%brfs produces a vulcanized %gold tray
 
             [%brkt p=twig q=(map term foot)]            ::
 
-synthetic, produces a %gold book
+%brkt produces a %gold book
 
             [%brhp p=twig]                              ::
 
-synthetic, produces a dry %gold trap, kicks it
+%brhp produces a dry %gold trap, kicks it
 
             [%brls p=tile q=twig]                       ::
 
-synthetic, produces a dry %iron gate
+%brls produces a dry %iron gate
 
             [%brpt p=tile q=tile r=twig]                ::
 
-not used?
+%brpt is not used
 
             [%brtr p=tile q=twig]                       ::
 
-synthetic, produces a vulcanized wet gate
+%brtr produces a vulcanized wet gate
 
             [%brts p=tile q=twig]                       ::
 
-synthetic, produces a dry %gold gate
+%brts produces a dry %gold gate
 
             [%brwt p=twig]                              ::
 
