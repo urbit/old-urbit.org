@@ -39,6 +39,9 @@
   ~
 |%                                                      ::
 
+::  ??  Models all use , ($,) or %clam. When you pass a clam a value, it produces
+::  ??  something similar to a bunt?
+
 ::::::  Atom models
 
 ++  axis  ,@                                            ::  tree address
@@ -164,21 +167,21 @@
               [%many p=(list coin)]                     ::
           ==                                            ::
 
-::  A coin is a dime (a span atom pair) labeled %$, a noun labeled %blob, and a
-::  list of coins (which could be null) labelled many.
+::  A dime (a span atom pair) labeled %$, a noun labeled %blob, and a list of 
+::  coins (which could be null) labelled many.
 
 
 ::::::  Parsing @ta
 
 ++  hapt  (list ,@ta)                                   ::
 
-::  A hapt is a list of spans: like a path.
+::  A list of spans: like a path.
 ::  ??  hapt doesn't appear anywhere except here. usage example?
 
 
 ++  hair  ,[p=@ud q=@ud]                                ::
 
-::  A hair is a pair of unsigned decimal atoms, like a line column pair.
+::  A pair of unsigned decimal atoms, like a line column pair.
 
 
 ++  nail  ,[p=hair q=tape]                              ::
@@ -189,7 +192,7 @@
 
 ++  path  (list span)                                   ::
 
-::  A path is a list of spans used to describe a location in a filesystem.
+::  A list of spans used to describe a location in a filesystem.
 ::  /~tomsyt-balsen/try is a path
 ::  ~tomsyt-balsen/try=> `(list ,@)`/~tomsyt-balsen/try
 ::  ~[2.239.102.822.615.623.022.927.944.589.735.038 7.959.156]
@@ -205,12 +208,12 @@
 
 ++  rule  |=(tub=nail `edge`[p.tub ~ ~ tub])            ::
 
-::  A rule is a gate that takes a nail and produces and edge.
+::  A gate that takes a nail and produces and edge.
 
 
 ++  spot  ,[p=path q=pint]                              ::
 
-::  A spot is a cell of a path and a pint. Used for a specific spot in a file.
+::  A cell of a path and a pint. Used for a specific spot in a file.
 
 
 :::::: Uncategorized
@@ -242,7 +245,7 @@
 
 ++  calf  ,[p=(map ,@ud wine) q=wine]                   ::
 
-::  a calf is a map of wines to numbers. 
+::  A map of wines to numbers. 
 
 
 ++  chum  $?  lef=term                                  ::
@@ -251,7 +254,7 @@
               [ven=term pro=term ver=@ kel=@]           ::
           ==                                            ::
 
-::  $? is a fern. ++ chum is either a term called lef; a term called std and an
+::  $? is a fern. ++chum is either a term called lef; a term called std and an
 ::  atom kel; a term ven, a term pro, and an atom kel; or a term ven, a term 
 ::  pro, an atom ver and an atom kel.
 ::  ??  something to do with jets? vendor, version, product, kelvin
@@ -379,9 +382,7 @@
           ==                                            ::
 
 ::  [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
-::  !! in english!
-
-
+::  !! in english! used in flay, foil, ~(fink ut), ~(seek ut)
 
 
 ++  post  $:  p=axis                                    ::
@@ -406,7 +407,7 @@
 ++  reef  ,[p=[p=? q=@ud] q=@ud]                        ::
 
 
-::  A reef is the pair of a bean and a decimal with another decimal.
+::  Pair of a loobean and a decimal with another decimal.
 
 
 ++  shoe  $%  [%hunk p=tank]                            ::
@@ -415,7 +416,7 @@
               [%spot p=spot]                            ::
           ==                                            ::
 
-::  footwear? four cases: a tank, a term, a noun or a spot
+::  Four cases: a tank, a term, a noun or a spot
 ::  ??  tracing hints  
 
 
@@ -424,10 +425,10 @@
               [%rose p=[p=tape q=tape r=tape] q=(list tank)]
           ==                                            ::
 
-::  $% is a kelp. ++ tank has three cases, a leaf, a palm and a rose. ++ tank
+::  $% is a kelp. ++tank has three cases, a leaf, a palm and a rose. ++tank
 ::  is for printing: %palm is backstep, %rose is straight down.
 ::  ??  are these just different dimensions of nested tapes? palm is 4d, rose is
-::  3d.
+::  3d?
 
 
 ++  tiki                                                ::  test case
@@ -435,8 +436,8 @@
               [| p=(unit term) q=twig]                  ::  named wing
           ==                                            ::
 
-::  $% is a kelp. ++ tiki has two cases, a unit term and a wing, or a unit term
-::  and a twig. Used for name resolution.
+::  $% is a kelp. ++tiki has two cases, a unit term and a wing if yes, or a 
+::  unit term and a twig if no. Used for name resolution.
 ::  ??  since & (?&) computes the and of two loobeans, are the unit and term in
 ::  p converted somehow? how are they tested against q? same for | (?|)
 
@@ -722,32 +723,36 @@
 
 ++  tine  (list ,[p=tile q=twig])                       ::
 
-a tine is a list of tile twig pairs
+::  A list of tile twig pairs
+
 
 ++  tusk  (list twig)                                   ::
 
-a tusk is a list of twigs
+::  A list of twigs
+
 
 ++  tyre  (list ,[p=term q=twig])                       ::
 
-a tyre is a list of term twig pairs
+::  A list of term twig pairs
+
 
 ++  tyke  (list (unit twig))                            ::
 
-a tyke is a list of unit twig pairs
+::  A list of unit twig pairs
+
 
 ++  tram  (list ,[p=wing q=twig])                       ::
 
-a tram is a list of wing twig pairs
+::  A list of wing twig pairs
+
 
 ++  tone  $%  [%0 p=*]                                  ::
               [%1 p=(list)]                             ::
               [%2 p=(list ,[@ta *])]                    ::
           ==                                            ::
 
-a tone has three cases: a noun a, a list, and a list of span noun pairs
+::  Three cases: a noun a, a list, and a list of span noun pairs
 
-mock
 
 ++  nock  $&  [p=nock q=nock]                           ::
           $%  [%0 p=@]                                  ::
@@ -764,25 +769,29 @@ mock
               [%11 p=nock]                              ::
           ==                                            ::
 
-this one goes to 11. 
+::  this one goes to 11. 
+::  ??  mock nock? these look like nock models.
 
 ++  toon  $%  [%0 p=*]                                  ::
               [%1 p=(list)]                             ::
               [%2 p=(list tank)]                        ::
           ==                                            ::
 
-a noun, a list, or a list of tanks
+::  A noun, a list, or a list of tanks
+
 
 ++  tune  $%  [%0 p=vase]                               ::
               [%1 p=(list)]                             ::
               [%2 p=(list ,[@ta *])]                    ::
           ==                                            ::
 
-a vase, a list or a list of span noun pairs
+::  A vase, a list or a list of span noun pairs
+
 
 ++  twin  ,[p=term q=wing r=axis s=type]                ::
 
-a quad of a term, a wing, an axis and a type
+::  A term, a wing, an axis and a type
+
 
 ++  type  $|  ?(%noun %void)                            ::
           $%  [%atom p=term]                            ::
@@ -795,20 +804,32 @@ a quad of a term, a wing, an axis and a type
               [%hold p=(list ,[p=type q=twig])]         ::
           ==                                            ::
 
-[%reed [%fern %noun %void] [cases...]]
+::  A type is either a noun or void that resolves to:
+::  %atom is an atom
+::  %bull is a twin (a wing an axis and a type) and a type
+::  %cell is a type and a type
+::  %core is a type and a coil
+::  %cube is a noun and a type
+::  %face is a term (,@tas) and a type
+::  %fork is a type and a type
+::  ??  what's the difference between a cell and a fork?
+::  %hold is a list of type twig cells
+::  [%reed [%fern %noun %void] [cases...]]
+
 
 ++  typo  type                                          ::  old type
 
-staging
+::  ??  Alias?
+
 
 ++  udal                                                ::  atomic change (%b)
           $:  p=@ud                                     ::  blockwidth
               q=(list ,[p=@ud q=(unit ,[p=@ q=@])])     ::  indels
           ==                                            ::
 
-an unsigned decimal and a list the pair of a @ud and a unit atom pair
+::  An unsigned decimal and a list the pair of a @ud and a unit atom pair
 
-diff architecture
+::::::  Diff architecture
 
 ++  udon                                                ::  abstract delta
           $:  p=umph                                    ::  preprocessor
@@ -820,12 +841,12 @@ diff architecture
               ==                                        ::
           ==                                            ::
 
-insertions and deletes
+::  insertions and deletes
+::  !!  
 
 ++  ulna  ,[p=* q=*]                                    ::  from to
 
-a pair of nouns
-
+::  A pair of nouns
 
 
 ++  umph                                                ::  change filter
@@ -836,18 +857,20 @@ a pair of nouns
           $%  [%d p=@ud]                                ::  blocklist
           ==                                            ::
 
-:: $| produces a %reed ([%reed p=tile q=tile]), does the $? then return two cases? 
-:: or is the second case returned by $% (always a @ud)?
+::  $| produces a %reed ([%reed p=tile q=tile]), does the $? then return two 
+::  cases? or is the second case returned by $% (always a @ud)?
 
 
 ++  unce  |*  a=_,*                                     ::  change part
           $%([%& p=@ud] [%| p=(list a) q=(list a)])     ::
+::  !!
 
 
 ++  unit  |*  a=_,*                                     ::  maybe
           $|(~ [~ u=a])                                 ::
 
-a unit takes a noun and is either a null or the cell [~ noun]
+::  Takes a noun and is either a null or the cell [~ noun]
+
 
 ++  upas                                                ::  tree change (%d)
           $&  [p=upas q=upas]                           ::  cell
@@ -856,24 +879,28 @@ a unit takes a noun and is either a null or the cell [~ noun]
               [%2 p=axis q=udon]                        ::  mutate!
           ==                                            ::
 
+::  ??  Used in diffs / merging?
 
 
 ++  urge  |*(a=_,* (list (unce a)))                     ::  list change
 
+::  !!  Basically a list of unce, document unce first.
+
 
 ++  vase  ,[p=type q=*]                                 ::  type-value pair
 
-::  a vase is a type and noun
+::  A type and noun
 
 
 ++  vise  ,[p=typo q=*]                                 ::  old vase
 
-::  a vise is a vase, except used for staging
+::  A vase, except used for staging
 
 
 ++  wing  (list limb)                                   ::
 
-::  a list of limbs. this is how we get stuff inside our subject!
+::  A list of limbs. This is how we get stuff inside our subject!
+
 
 ++  wine  $|  ?(%noun %path %tank %void %wall %wool %yarn)
           $%  [%atom p=term]                            ::
@@ -890,35 +917,38 @@ a unit takes a noun and is either a null or the cell [~ noun]
 
 ::  a list of cubes, the first of which are types, the remainder of which look 
 ::  to be used for building trees of wines. 
-
-what's a %wool or a yarn?
-
-types to print. 
+::  ??  what's a %wool or a yarn?
+::  ??  types to print. 
 
 
 ++  woof  (list $|(@ud [p=@ud q=@ud]))                  ::  udon transform
 
-::  a list of reeds?
+::  ??  a list of reeds (that produce cells)?
+
 
 ++  wonk  |*(veq=edge ?@(q.veq !! p.u.q.veq))           ::
 
-::  return either the unit or something inside the unit of an edge
+::  Takes an edge. Crashes if the q.edge (the unit) inside is an atom, produces 
+::  p.u.q.edge if not
 
-::                                                      ::
+
 ++  map  |*  [a=_,* b=_,*]                              ::  associative array
          $|(~ [n=[p=a q=b] l=(map a b) r=(map a b)])    ::
 
 ::  a map takes two nouns and 
+::  !!  usage example?
 
 
 ++  qeu  |*  a=_,*                                      ::
          $|(~ [n=a l=(qeu a) r=(qeu a)])                ::
 
+::  ??  difference between qeu and set? and tree?
 
-difference between qeu and set? and tree?
 
 ++  set  |*  a=_,*                                      ::
          $|(~ [n=a l=(set a) r=(set a)])                ::
+
+::  ??  difference between qeu and set? and tree?
 
 
 --                                                      ::
@@ -949,7 +979,7 @@ difference between qeu and set? and tree?
 ::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::
 
-::  arithmetic
+::::::  Arithmetic
 
 ++  dec                                                 ::  decrement
   ~/  %dec
@@ -961,7 +991,11 @@ difference between qeu and set? and tree?
   ?:  =(a +(b))
     b
   $(b +(b))
-::
+
+:: Decrement atom a by counting up to a-1, return %decrement-underflow if 
+:: result is less than 0
+
+
 ++  add                                                 ::  add
   ~/  %add
   |=  [a=@ b=@]
@@ -969,7 +1003,10 @@ difference between qeu and set? and tree?
   ?:  =(0 a)
     b
   $(a (dec a), b +(b))
-::
+
+:: Add atoms a and b
+
+
 ++  sub                                                 ::  subtract
   ~/  %sub
   |=  [a=@ b=@]
@@ -978,7 +1015,10 @@ difference between qeu and set? and tree?
   ?:  =(0 b)
     a
   $(a (dec a), b (dec b))
-::
+
+:: Subtract atoms a and b
+
+
 ++  mul                                                 ::  multiply
   ~/  %mul
   |=  [a=@ b=@]
@@ -988,8 +1028,10 @@ difference between qeu and set? and tree?
   ?:  =(0 a)
     c
   $(a (dec a), c (add b c))
-::
-::
+
+:: Multiply atoms a and b
+
+
 ++  div                                                 ::  divide
   ~/  %div
   |=  [a=@ b=@]
@@ -1001,16 +1043,21 @@ difference between qeu and set? and tree?
   ?:  (lth a b)
     c
   $(a (sub a b), c +(c))
-::
+
+:: Divide atoms a and b
+
+
 ++  mod                                                 ::  remainder
   ~/  %mod
   |=  [a=@ b=@]
   ^-  @
   ?<  =(0 b)
   (sub a (mul b (div a b)))
-::
 
-::comparisons
+:: Remiainder of a divided by b
+
+
+::::::  Comparisons
 
 ::
 ++  lth                                                 ::  less-than
@@ -1018,24 +1065,35 @@ difference between qeu and set? and tree?
   |=  [a=@ b=@]
   ^-  ?
   &(!=(a b) |-(|(=(0 a) &(!=(0 b) $(a (dec a), b (dec b))))))
-::
+
+::  Produce a loobean of whether a < b
+
+
 ++  lte                                                 ::  less-equal
   ~/  %lte
   |=  [a=@ b=@]
   |(=(a b) (lth a b))
-::
+
+::  Produce a loobean of whether a <= b
+
+
 ++  gth                                                 ::  greater-than
   ~/  %gth
   |=  [a=@ b=@]
   ^-  ?
   !(lte a b)
-::
+
+::  Produce a loobean of whether a > b
+
 ++  gte                                                 ::  greater-equal
   ~/  %gte
   |=  [a=@ b=@]
   ^-  ?
   !(lth a b)
-::
+
+::  Produce a loobean of whether a >= b
+
+
 ++  max                                                 ::  maximum
   ~/  %max
   |=  [a=@ b=@]
@@ -1043,7 +1101,10 @@ difference between qeu and set? and tree?
   ?:  (gth a b)
     a
   b
-::
+
+::  Produce the maximum of a and b
+
+
 ++  min                                                 ::  minimum
   ~/  %min
   |=  [a=@ b=@]
@@ -1053,7 +1114,10 @@ difference between qeu and set? and tree?
   b
 ::
 
-::nock tree calculations
+::  Produce the minimum of a and b
+
+
+::::::  Nock tree calculations
 
 ::
 ++  cap                                                 ::  tree head
@@ -1066,7 +1130,11 @@ difference between qeu and set? and tree?
     ?(%0 %1)  !!
     *         $(a (div a 2))
   ==
-::
+
+::  ??  Not sure about this. Recursively divides a by two until it resolves
+::  to either %2 or %3
+
+
 ++  mas                                                 ::  tree body
   ~/  %mas
   |=  a=@
@@ -1077,7 +1145,10 @@ difference between qeu and set? and tree?
     3   1
     *   (add (mod a 2) (mul $(a (div a 2)) 2))
   ==
-::
+
+::  ??  Measuring tree length?
+
+
 ++  peg                                                 ::  tree connect
   ~/  %peg
   |=  [a=@ b=@]
@@ -1088,6 +1159,9 @@ difference between qeu and set? and tree?
     3   +((mul a 2))
     *   (add (mod b 2) (mul $(b (div b 2)) 2))
   ==
+::  ??  Totally unsure. Tree addition?
+
+
 ::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::  ::
 ::::              chapter 2b, basic containers          ::::
 ::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1097,15 +1171,20 @@ difference between qeu and set? and tree?
 ::  ++  unit  |*  a=_,*                                     ::  maybe
 ::            $|(~ [~ u=a])                                 ::
 
-++  bind                                                ::  argue
+::  Takes a noun and is either a null or the cell [~ noun]
+::  ??  Why are there two of these? Reference?
+
+++  bind                                                    ::  argue
   |*  [a=(unit) b=_,*]
   ?~  a
     ~
   [~ u=(b u.a)]
-::
-::  takes a unit and any function, produces a unit [~ u=(the noun, the unit noun)]
-::  apply the funciton b to the u in unit a
-::
+
+::  Takes a unit and any gate, produces a unit [~ u=(the noun the unit 
+::  noun)] apply the gate b to the u in unit a
+::  ??  Not entirely sure of this.
+
+
 ++  clap                                                ::  combine
   |*  [a=(unit) b=(unit) c=_|=(^ +<-)]
   ?~  a
