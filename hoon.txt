@@ -12,7 +12,7 @@
       all                                               ::  then return engine
     (make:all cud)                                      ::  else simple compile
 ^=  all                                                 ::  assemble engine
-  =~               f                                     ::  volume stack
+  =~                                                    ::  volume stack
 %164                                                    ::  version constant
 
 
@@ -62,17 +62,17 @@
 ::  For commenting programmer intent.
 
 
-++  pass  ,@                                            ::
+++  pass  ,@                                            ::  public key
 
 ::  Used by crypto in zuse. Public key.
 
 
-++  ring  ,@                                            ::
+++  ring  ,@                                            ::  private key
 
 ::  Used by crypto in zuse. Private key.
 
 
-++  odor  ,@ta                                          ::
+++  odor  ,@ta                                          ::  atom format
 
 ::  An atom format.
 ::  `,@ta`, which itself contains the odor `@ta`, means that an
@@ -82,12 +82,12 @@
 
 ::::::  String-like models
 
-++  char  ,@tD                                          ::  text atom (UTF-8)
+++  char  ,@tD                                          ::  UTF-8 byte
 
 ::  A UTF-8 text atom a single byte in length; a single character.
 
 
-++  cord  ,@t                                           ::
+++  cord  ,@t                                           ::  text atom (UTF-8)
 
 ::  An atom of text, or a stream of UTF-8 bits mapped to an atom.
 ::  'foo' is a cord.
@@ -106,7 +106,7 @@
 ::  ~.foo is a span
 
 
-++  term  ,@tas                                         ::
+++  term  ,@tas                                         ::  Hoon's ASCII subset
 
 ::  A subset of ASCII text. The only characters permitted are lowercase ASCII, 
 ::  `-` except as the first or last character, and 0-9 except as the first 
@@ -152,7 +152,7 @@
 
 ::::::  Parsing models
 
-++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::
+++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::  line/column range
 
 ::  A cell of two atom pairs. Used for line and column range in a file.
 
@@ -211,7 +211,7 @@
 ::  A gate that takes a nail and produces and edge.
 
 
-++  spot  ,[p=path q=pint]                              ::
+++  spot  ,[p=path q=pint]                              ::  range in file
 
 ::  A cell of a path and a pint. Used for a specific spot in a file.
 
@@ -231,13 +231,13 @@
 ::  ??  The term becomes the alias of the wing plus type?
 
 
-++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::
+++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::  axils, @ * ^ ? ~
 
 ::  ? is $? which is a %fern. ++base is either an odored atom, a noun, a cell,
 ::  a bean (loobean) or null.
 
 
-++  beer  $|(@ [~ p=twig])                              ::
+++  beer  $|(@ [~ p=twig])                              ::  string construction
 
 ::  $| is a %reed, ++beer is an atom and the cell of null and a twig. string 
 ::  construction.
@@ -248,10 +248,10 @@
 ::  A map of wines to numbers. 
 
 
-++  chum  $?  lef=term                                  ::
-              [std=term kel=@]                          ::
-              [ven=term pro=term kel=@]                 ::
-              [ven=term pro=term ver=@ kel=@]           ::
+++  chum  $?  lef=term                                  ::  jet name
+              [std=term kel=@]                          ::  kelvin version
+              [ven=term pro=term kel=@]                 ::  vendor and product
+              [ven=term pro=term ver=@ kel=@]           ::  all of the above
           ==                                            ::
 
 ::  $? is a fern. ++chum is either a term called lef; a term called std and an
@@ -260,10 +260,10 @@
 ::  ??  something to do with jets? vendor, version, product, kelvin
 
 
-++  claw  $%  [%ash p=twig]                             ::
-              [%elm p=twig]                             ::
-              [%oak ~]                                  ::
-              [%yew p=(map term claw)]                  ::
+++  claw  $%  [%ash p=twig]                             ::  dry, geometric
+              [%elm p=twig]                             ::  wet, generic
+              [%oak ~]                                  ::  XX not used
+              [%yew p=(map term claw)]                  ::  XX not used
           ==                                            ::
 
 ::  $% is a kelp. 
@@ -275,8 +275,8 @@
 ::  The pair of a path (a list of spans) and a vase (a type noun pair).
 
 
-++  coil  $:  p=?(%gold %iron %lead %zinc)              ::
-              q=type                                    ::
+++  coil  $:  p=?(%gold %iron %lead %zinc)              ::  %metl, variance
+              q=type                                    :: 
               r=[p=?(~ ^) q=(map term foot)]            ::
           ==                                            ::
 
@@ -306,10 +306,10 @@
 ::  ??  parsing? examples.
 
 
-++  foot  $%  [%ash p=twig]                             ::
-              [%elm p=twig]                             ::
-              [%oak ~]                                  ::
-              [%yew p=(map term foot)]                  ::
+++  foot  $%  [%ash p=twig]                             ::  dry, geometric
+              [%elm p=twig]                             ::  wet, generic
+              [%oak ~]                                  ::  XX not used
+              [%yew p=(map term foot)]                  ::  XX not used
           ==                                            ::
 
 ::  $% is a kelp. wet elm, dry ash, null, labeled? oak and yew for inheritance,
@@ -349,7 +349,7 @@
 ::  !!
 
 
-++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::
+++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::  kelp case labels
 
 ::  Used by a kelp, its head is a %leaf, which reduces to a %cube label for the
 ::  tile in the tail.
@@ -361,7 +361,7 @@
 ::  A nested structure that terminates with ~.
 
 
-++  metl  ?(%gold %iron %zinc %lead)                    ::
+++  metl  ?(%gold %iron %zinc %lead)                    ::  core variance
 
 ::  Any one of four labels describing core variance.
 
@@ -420,7 +420,7 @@
 ::  ??  tracing hints  
 
 
-++  tank  $%  [%leaf p=tape]                            ::
+++  tank  $%  [%leaf p=tape]                            ::  printing formats
               [%palm p=[p=tape q=tape r=tape s=tape] q=(list tank)]
               [%rose p=[p=tape q=tape r=tape] q=(list tank)]
           ==                                            ::
@@ -753,20 +753,20 @@
 
 ::  Three cases: a noun a, a list, and a list of span noun pairs
 
-
-++  nock  $&  [p=nock q=nock]                           ::
-          $%  [%0 p=@]                                  ::
-              [%1 p=*]                                  ::
-              [%2 p=nock q=nock]                        ::
-              [%3 p=nock]                               ::
-              [%4 p=nock]                               ::
-              [%5 p=nock q=nock]                        ::
-              [%6 p=nock q=nock r=nock]                 ::
-              [%7 p=nock q=nock]                        ::
-              [%8 p=nock q=nock]                        ::
-              [%9 p=@ q=nock]                           ::
-              [%10 p=?(@ [p=@ q=nock]) q=nock]          ::
-              [%11 p=nock]                              ::
+                                                        ::::::  virtual nock
+++  nock  $&  [p=nock q=nock]                           ::  autocons 
+          $%  [%0 p=@]                                  ::  axis select
+              [%1 p=*]                                  ::  constant
+              [%2 p=nock q=nock]                        ::  compose
+              [%3 p=nock]                               ::  cell test
+              [%4 p=nock]                               ::  increment
+              [%5 p=nock q=nock]                        ::  equality test
+              [%6 p=nock q=nock r=nock]                 ::  if, then, else
+              [%7 p=nock q=nock]                        ::  serial compose
+              [%8 p=nock q=nock]                        ::  push onto subject
+              [%9 p=@ q=nock]                           ::  select arm and fire
+              [%10 p=?(@ [p=@ q=nock]) q=nock]          ::  hint
+              [%11 p=nock]                              ::  grab data from sky
           ==                                            ::
 
 ::  this one goes to 11. 
@@ -788,20 +788,20 @@
 ::  A vase, a list or a list of span noun pairs
 
 
-++  twin  ,[p=term q=wing r=axis s=type]                ::
+++  twin  ,[p=term q=wing r=axis s=type]                ::  %bull
 
 ::  A term, a wing, an axis and a type
 
 
-++  type  $|  ?(%noun %void)                            ::
-          $%  [%atom p=term]                            ::
-              [%bull p=twin q=type]                     ::
-              [%cell p=type q=type]                     ::
-              [%core p=type q=coil]                     ::
-              [%cube p=* q=type]                        ::
-              [%face p=term q=type]                     ::
-              [%fork p=type q=type]                     ::
-              [%hold p=(list ,[p=type q=twig])]         ::
+++  type  $|  ?(%noun %void)                            ::  set all or set none
+          $%  [%atom p=term]                            ::  number and format
+              [%bull p=twin q=type]                     ::  wing synonym
+              [%cell p=type q=type]                     ::  ordered pair
+              [%core p=type q=coil]                     ::  
+              [%cube p=* q=type]                        ::  constants
+              [%face p=term q=type]                     ::  named type
+              [%fork p=type q=type]                     ::  union/branch
+              [%hold p=(list ,[p=type q=twig])]         ::  infinite generator
           ==                                            ::
 
 ::  A type is either a noun or void that resolves to:
@@ -897,7 +897,7 @@
 ::  A vase, except used for staging
 
 
-++  wing  (list limb)                                   ::
+++  wing  (list limb)                                   ::  part of subject
 
 ::  A list of limbs. This is how we get stuff inside our subject!
 
@@ -939,13 +939,13 @@
 ::  !!  usage example?
 
 
-++  qeu  |*  a=_,*                                      ::
+++  qeu  |*  a=_,*                                      ::  queue type
          $|(~ [n=a l=(qeu a) r=(qeu a)])                ::
 
 ::  ??  difference between qeu and set? and tree?
 
 
-++  set  |*  a=_,*                                      ::
+++  set  |*  a=_,*                                      ::  set type
          $|(~ [n=a l=(set a) r=(set a)])                ::
 
 ::  ??  difference between qeu and set? and tree?
@@ -958,18 +958,9 @@
 ~%    %hoon
     +
   ==
-    %al    al
-
-::  tile expansion
-
-    %ap    ap
-
-::  twig expansion
-
-    %ut    ut
-
-::  compiler
-
+    %al    al                                           ::  tile expansion
+    %ap    ap                                           ::  twig expansion
+    %ut    ut                                           ::  compiler
     %seed  seed
     %show  show
   ==
@@ -1131,8 +1122,7 @@
     *         $(a (div a 2))
   ==
 
-::  ??  Not sure about this. Recursively divides a by two until it resolves
-::  to either %2 or %3
+::  asks, is this axis in the head of the noun or the tail?
 
 
 ++  mas                                                 ::  tree body
@@ -1146,7 +1136,8 @@
     *   (add (mod a 2) (mul $(a (div a 2)) 2))
   ==
 
-::  ??  Measuring tree length?
+::  calculates axis within the head or the tail
+::  a is always the same as (peg (cap a) (mas a))
 
 
 ++  peg                                                 ::  tree connect
@@ -1159,7 +1150,7 @@
     3   +((mul a 2))
     *   (add (mod b 2) (mul $(b (div b 2)) 2))
   ==
-::  ??  Totally unsure. Tree addition?
+::  calculates the axis of axis b within axis a
 
 
 ::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::  ::
