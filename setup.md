@@ -351,18 +351,7 @@ Hit `^X` again:
 
 And finally, hit `^C` to kill the task.
 
-There's one more magic control key that switches your whole
-reality.  This is `^W`, which switches between the ships in a pier.
-Do you have multiple ships in your pier?  Sure - you still have
-your old submarine.  Hit `^W`:
-
-    ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=>
-
-Hit `^W` again:
-
-    ~waclux-tomwyc/try=>
-
-Finally, Arvo is a single-level store.  Since it's not the '70s
+Lastly, Arvo is a single-level store.  Since it's not the '70s
 anymore and disk is cheap, everything you do is saved for ever.
 (In fact, it's saved in two ways - as a memory image and an event
 log - so you, or the government if they haz your filez, can
