@@ -314,7 +314,7 @@
 
 ::  $% is a kelp. wet elm, dry ash, null, labeled? oak and yew for inheritance,
 ::  ignore
-::  ??  this needs further investication
+::  ??  this needs further investigation
 
 ++  gear  |*  a=_,*                                     ::  list generator
           $_                                            ::
@@ -325,6 +325,7 @@
           [i=(a -.b) t=^?(..$(b +.b))]                  ::
 
 ::  ??  the last line makes some sense, but what is it used for?
+::  ??  apparently a would be a core that produces either a list or null`
 ::  !!
 
 
@@ -1522,6 +1523,9 @@
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2bC, gears                    ::
 ::
+
+::  Gears are no longer used in this version of hoon. Should be removed and 
+::  reintroduced later.
 ++  from                                                ::  range
   |=  [a=@ b=@]
   ^-  (gear ,@)
@@ -1593,7 +1597,12 @@
   ?:  =(0 a)
     1
   (mul 2 $(a (dec a)))
-::
+
+::  a is an atom. Produces an atom of 2^a.
+::  ~talsur-todres/try=> (bex 4)
+::  16
+
+
 ++  can                                                 ::  assemble
   ~/  %can
   |=  [a=bloq b=(list ,[p=@ q=@])]
@@ -1601,7 +1610,10 @@
   ?~  b
     0
   (mix (end a p.i.b q.i.b) (lsh a p.i.b $(b t.b)))
+
 ::
+
+
 ++  cat                                                 ::  concatenate
   ~/  %cat
   |=  [a=bloq b=@ c=@]
@@ -2107,7 +2119,11 @@
     ?@  a
       &
     ?&((b n.a) $(a l.a) $(a r.a))
-  ::
+  
+  ::  ~talsur-todres/try=>  =b (sa `(list ,[@t *])`[['a' 97] ['b' 98] ['c' 99] ~]) 
+  ::  ~talsur-todres/try=> (~(all in b) |=(a=* ?@(a %.y %.n)))
+  ::  %.n
+
   +-  any
     ~/  %any
     |*  b=$+(* ?)
@@ -2212,10 +2228,17 @@
   ?&  ?@(l.a & ?&((vor p.n.a p.n.l.a) (hor p.n.l.a p.n.a)))
       ?@(r.a & ?&((vor p.n.a p.n.r.a) (hor p.n.a p.n.r.a)))
   ==
-::
+
+::  Takes a tree of nouns, produces a loobean. 
+::  ??  Not sure about this one.
+
+
 ++  by                                                  ::  map engine
   ~/  %by
   |/  a=(map)
+
+  ::  ++by takes a map a, which is accessible to all of its +- arms
+
   +-  all
     ~/  %all
     |*  b=$+(* ?)
@@ -2223,7 +2246,14 @@
     ?@  a
       &
     ?&((b q.n.a) $(a l.a) $(a r.a))
-  ::
+  
+  ::  Takes a gate b that takes any noun and produces a loobean. +-all produces
+  ::  the logical and of all the values (q.a) in a. 
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+  ::  ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
+  ::  %.n
+
+
   +-  any
     ~/  %any
     |*  b=$+(* ?)
@@ -2231,7 +2261,15 @@
     ?@  a
       |
     ?|((b q.n.a) $(a l.a) $(a r.a))
-  ::
+
+  ::  Takes a gate b that takes any noun and produces a loobean. +-any produces
+  ::  the logical or of all the values (q.a) in a. 
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+  ::  ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
+  ::  %.y
+  
+
+
   +-  del
     ~/  %del
     |*  b=*
@@ -2248,7 +2286,13 @@
     ?:  (vor p.n.l.a p.n.r.a)
       [n.l.a l.l.a $(l.a r.l.a)]
     [n.r.a $(r.a l.r.a) r.r.a]
-  ::
+
+  ::  Takes a noun b and removes the member of the map a where p.a is b.
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(del by b) 'a')
+  ::  {[p='b' q=[2 3]]}
+
+
   +-  dig
     |=  b=*
     =+  c=1
@@ -2258,7 +2302,13 @@
     ?:  (gor b p.n.a)
       $(a l.a, c (peg c 6))
     $(a r.a, c (peg c 7))
-  ::
+  
+  ::  Takes any noun b and produces the axis of b within the values (p.a) of a.
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(dig by b) 'b')
+  ::  [~ 2]
+  
+
   +-  gas
     ~/  %gas
     |*  b=(list ,[p=* q=*])
@@ -2267,7 +2317,10 @@
     ?@  b
       a
     $(b t.b, a (put(+< a) p.i.b q.i.b))
-  ::
+  
+  ::  ??  Not sure about this. Returning later.
+
+
   +-  get
     ~/  %get
     |*  b=*
@@ -2279,18 +2332,36 @@
     ?:  (gor b p.n.a)
       $(a l.a)
     $(a r.a)
-  ::
+  
+  ::  Takes any noun b and produces the value (q.a) at key (p.a) b or null if 
+  ::  the key doesn't exist.
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(get by b) 'b')
+  ::  [~ [2 3]]
+
+
   +-  has
     ~/  %has
     |*  b=*
     !=(~ (get(+< a) b))
-  ::
+  
+  :: Takes any noun b and produces a loobean indicating whether that key (p.a) 
+  ::  exists in a.
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(has by b) 'b')
+  ::  %.y
+  ::  ~talsur-todres/try=> (~(has by b) 'c')
+  ::  %.n
+
   +-  mar
     |*  [b=_?>(?=(^ a) p.n.a) c=(unit ,_?>(?=(^ a) q.n.a))]
     ?~  c
       (del b)
     (put b u.c)
-  ::
+
+  ::  ??  Not so sure about this.
+
+
   +-  put
     ~/  %put
     |*  [b=* c=*]
@@ -2312,13 +2383,25 @@
     ?:  (vor p.n.a p.n.d)
       [n.a l.a d]
     [n.d [n.a l.a l.d] r.d]
-  ::
+  
+  ::  Takes a cell of two nouns [b=* c=*] and produces the map a with added 
+  ::  [b=* c=*]
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(put by b) 'c' 1)
+  ::  {[p='a' q=1] [p='c' q=1] [p='b' q=[2 3]]}
+
+
   +-  rep
     |*  [b=* c=_,*]
     |-
     ?~  a  b
     $(a r.a, b $(a l.a, b (c n.a b)))
-  ::
+
+  ::  if a is null return b
+  ::  else recurse with a set to r.a, b set to (c n.a b)
+  ::  ??  returns with (c n.a b) from the last leftmost part of the tree?
+
+
   +-  rib
     |*  [b=* c=_,*]
     |-  ^+  [b a]
@@ -2328,13 +2411,22 @@
     =+  e=$(a l.a, b -.d)
     =+  f=$(a r.a, b -.e)
     [-.f [n.a +.e +.f]]
-  ::
+
+  ::  ??  not sure about this one.
+
+
   +-  run
     |*  b=_,*
     |-
     ?~  a  a
     [[p.n.a (b q.n.a)] $(a l.a) $(a r.a)]
-  ::
+  
+  ::  Takes a gate b that produces any noun, produces a null-terminated tuple
+  ::  by running each element in map a through b. 
+  ::  ~talsur-todres/try=>  =b (mo `(list ,[@t *])`[['a' 97] ['b' 98] ~])  
+  ::  ~talsur-todres/try=> (~(run by b) ,@t)
+  ::  [['b' 'b'] [['a' 'a'] ~ ~] ~]
+
   +-  tap
     ~/  %tap
     |=  b=(list ,_?>(?=(^ a) n.a))
@@ -2342,12 +2434,20 @@
     ?@  a
       b
     $(a r.a, b [n.a $(a l.a)])
-  ::
+
+  ::  ??  not sure.
+
+
   +-  wyt
     .+
     |-  ^-  @
     ?~(a 0 +((add $(a l.a) $(a r.a))))
   --
+
+  ::  Counts the depth of a.
+  ::  ??  This is a bit confusing — it increments on each recursion, but 
+  ::  returns 0 when it hits the end?
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2dC, queues                   ::
 ::
