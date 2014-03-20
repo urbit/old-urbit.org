@@ -1,4 +1,4 @@
-This is an annotated and reordered version of hoon.hoon. Work in progress.
+::  This is an annotated and reordered version of hoon.hoon. Work in progress.
 
 
 
@@ -17,10 +17,6 @@ This is an annotated and reordered version of hoon.hoon. Work in progress.
 
 
 
-
-
-
-
 ::::::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::::::  ::::::    volume 0, version stub                ::::::
 ::::::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -29,14 +25,10 @@ This is an annotated and reordered version of hoon.hoon. Work in progress.
 ++  stub  164                                           ::  version stub
 --                                                      ::
 
-
-::  This volume describes the current version of Hoon using 
-::  Urbit's kelvin versioning system.
-::
-::  At your prompt,
-::
+::  The current version of Hoon using Urbit's kelvin versioning system.
 ::  ~tomsyt-balsen/try=> stub
 ::  164
+
 
 
 ::::::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -47,288 +39,281 @@ This is an annotated and reordered version of hoon.hoon. Work in progress.
   ~
 |%                                                      ::
 
+::  ??  Models all use , ($,) or %clam. When you pass a clam a value, it produces
+::  something similar to a bunt?
 
-::  atom models
-
+::::::  Atom models
 
 ++  axis  ,@                                            ::  tree address
 
-::  An `axis` the tree address described by the Nock specification.
+::  The tree address described by the Nock specification.
 
 
 ++  bloq  ,@                                            ::  blockclass
 
-::  A bloq is a bare atom most often used in bit manipulation
-::  functions for setting the size of block of bits to operate on.
-::  `bloq` should always be read as a binary power. For example, a
-::  `bloq` of 0 means single bits, whereas a `bloq` of 3 means bytes. 
+::  A bare atom most often used in bit manipulation functions for setting the
+::  size of block of bits to operate on. ++bloq should always be read as a 
+::  binary power. For example, a ++bloq of 0 means single bits, whereas a 
+::  ++bloq of 3 means bytes. 
 
 
 ++  numb  ,@                                            ::  just a number
 
-
-::  for commenting programmer intent
-
-++  pass  ,@                                            ::
-
-::  crypto in zuse. public key
-
-++  ring  ,@                                            ::
-
-::  crypto in zuse. private key
+::  For commenting programmer intent.
 
 
-++  odor  ,@ta                                          ::
+++  pass  ,@                                            ::  public key
 
-::  An `odor` is an atom format.
+::  Used by crypto in zuse. Public key.
 
+
+++  ring  ,@                                            ::  private key
+
+::  Used by crypto in zuse. Private key.
+
+
+++  odor  ,@ta                                          ::  atom format
+
+::  An atom format.
 ::  `,@ta`, which itself contains the odor `@ta`, means that an
 ::  odor produces an atom of ascii text, such as 'ta', which is
 ::  24.948.
 
 
-:: "string" models
+::::::  String-like models
 
-++  char  ,@tD                                          ::  text atom (UTF-8)
+++  char  ,@tD                                          ::  UTF-8 byte
 
-::  A char produces a UTF-8 text atom a single byte in length, i.e. a
-::  single character.
+::  A UTF-8 text atom a single byte in length; a single character.
 
-++  cord  ,@t                                           ::
 
-::  A `cord` is an atom of text, or a stream of UTF-8 bits mapped to
-::  an atom. 
+++  cord  ,@t                                           ::  text atom (UTF-8)
 
+::  An atom of text, or a stream of UTF-8 bits mapped to an atom.
 ::  'foo' is a cord.
-
 ::  ~tomsyt-balsen/try=> `@`'foo'
 ::  7.303.014
-
-
 ::  ~tomsyt-balsen/try=> `@ub`'foo'
 ::  0b110.1111.0110.1111.0110.0110
 
+
 ++  span  ,@ta                                          ::  text atom (ASCII)
 
-::  A span is an ASCII text atom. The prefix is `~.`. There are no
-::  escape sequences except `~~`, which means `~`, and `~-`, which
-::  means `_`. `-` and `.` encode themselves. No other characters
-::  besides numbers and lowercase letters are permitted.
-
+::  An ASCII text atom. The prefix is `~.`. There are no escape sequences 
+::  except `~~`, which means `~`, and `~-`, which means `_`. `-` and `.` encode
+::  themselves. No other characters besides numbers and lowercase letters are 
+::  permitted.
 ::  ~.foo is a span
 
 
-++  term  ,@tas                                         ::
+++  term  ,@tas                                         ::  Hoon's ASCII subset
 
-::  A `term` is a subset of ASCII text. The only characters permitted
-::  are lowercase ASCII, `-` except as the first or last character,
-::  and 0-9 except as the first character. 
+::  A subset of ASCII text. The only characters permitted are lowercase ASCII, 
+::  `-` except as the first or last character, and 0-9 except as the first 
+::  character. 
 
 
 ++  tape  (list char)                                   ::  list of characters
 
-::  A tape is a list of chars. This is roughly equivalent to what in
-::  many other languages is called a "string". Hoon, however, has two
-::  different models that fill the same role that a "string" does in
-::  other languages. The other model is a `cord.`
-
+::  A list of chars. This is roughly equivalent to what in many other languages
+::  is called a "string". Hoon, however, has two different models that fill the
+::  same role that a "string" does in other languages. The other model is a 
+::  ++ cord.
 ::  "foo" is a tape.
-
 ::  ~tomsyt-balsen/try=> `(list ,@)`"foo"
 ::  ~[102 111 111]
 ::  ~tomsyt-balsen/try=> `@tD`102
 ::  ~~f
 
  
-
-time models
+::::::  Time models
 
 ++  date  ,[[a=? y=@ud] m=@ud t=tarp]                   ::  parsed date
 
-::  A date is a list of a year cell (a loobean head for AD or BC and
-::  a year atom), a month atom, and a tarp (a parsed time)
+::  A list of a year cell (a loobean head for AD or BC and a year atom), a 
+::  month atom, and a ++ tarp (a parsed time).
 
 
 ++  tarp  ,[d=@ud h=@ud m=@ud s=@ud f=(list ,@ux)]      ::  parsed time
 
-::  A tarp is a list of atoms representing, in order, day, hour,
-::  minute, second and subsecond. The subsecond is itself a list of
-::  atoms.
+::  A list of atoms representing, in order, day, hour, minute, second and 
+::  subsecond. The subsecond is itself a list of atoms.
+
 
 ++  time  ,@da                                          ::  galactic time
 
-::  A time is an atom that maps to a time. 
-
+::  An atom that maps to a time. 
 ::  ~2014.2.17..14.47.50..0f86 is a time.
-
 ::  ~tomsyt-balsen/try=> `@`~2014.2.17..14.47.50..0f86
 ::  170.141.184.500.841.997.869.354.824.985.386.942.464
 ::  ~tomsyt-balsen/try=> `@da`170.141.184.500.841.997.869.354.824.985.386.942.464
 ::  ~2014.2.17..14.47.50..0f86
 
 
-::  parsing models
+::::::  Parsing models
 
-++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::
+++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]                    ::  line/column range
 
+::  A cell of two atom pairs. Used for line and column range in a file.
 
-::  A pint is a cell of two atom pairs. Used for line and column
-::  range. in a file.
 
 ++  dime  ,[p=@ta q=@]                                  ::
 
-::  a dime is a pair of a text atom and a raw atom
+::  A pair of a text atom and a raw atom.
+
 
 ++  coin  $%  [%$ p=dime]                               ::
               [%blob p=*]                               ::
               [%many p=(list coin)]                     ::
           ==                                            ::
 
-::  a coin is a dime (a span atom pair) labeled %$, a noun
-::  labeled %blob, and a list of coins (which could be null) labelled
-::  many.
+::  A dime (a span atom pair) labeled %$, a noun labeled %blob, and a list of 
+::  coins (which could be null) labelled many.
 
-::  parsing a @ta
+
+::::::  Parsing @ta
 
 ++  hapt  (list ,@ta)                                   ::
 
-::  a hapt is a list of spans
-
-::  like a path, comment for inverted path
+::  A list of spans: like a path.
+::  ??  hapt doesn't appear anywhere except here. usage example?
 
 
 ++  hair  ,[p=@ud q=@ud]                                ::
 
-::  a hair is a pair of unsigned decimal atoms
-
-::  line column pair
+::  A pair of unsigned decimal atoms, like a line column pair.
 
 
 ++  nail  ,[p=hair q=tape]                              ::
 
-::  a pair of a pair of atoms and a tape. parsing?
-
-::  arg for parsing rules
+::  A pair of a pair of atoms and a tape. Used as an arg for parsing rules
+::  ??  parsing? clarify usage example?
 
 
 ++  path  (list span)                                   ::
 
-::  A path is a list of spans used to describe a location in a filesystem.
-
+::  A list of spans used to describe a location in a filesystem.
 ::  /~tomsyt-balsen/try is a path
-
-
 ::  ~tomsyt-balsen/try=> `(list ,@)`/~tomsyt-balsen/try
 ::  ~[2.239.102.822.615.623.022.927.944.589.735.038 7.959.156]
 ::  ~tomsyt-balsen/try=> `(list ,term)`/~tomsyt-balsen/try
 ::  ~[%~tomsyt-balsen %try]
 
+
 ++  wall  (list tape)                                   ::  text lines
 
-::  a list of tapes, text lines in a file
+::  A list of ++tapes (list of chars) text lines in a file
 
 
 ++  rule  |=(tub=nail `edge`[p.tub ~ ~ tub])            ::
 
-a rule is a gate that takes a nail and produces and edge
-
-++  spot  ,[p=path q=pint]                              ::
-
-A spot is a cell of a path and a pint. Used for a specific spot in a file
+::  A gate that takes a nail and produces and edge.
 
 
+++  spot  ,[p=path q=pint]                              ::  range in file
+
+::  A cell of a path and a pint. Used for a specific spot in a file.
 
 
-:: uncategorized
+:::::: Uncategorized
 
 ++  abel  typo                                          ::  original sin: type
 
-::  one of four biblical names in hoon, used for macros? abel is used
-::  for staging/type upgrades. 
-
+::  One of four biblical names in hoon. Abel is used for staging/type upgrades. 
+::  ??  used for macros?
 
 
 ++  also  ,[p=term q=wing r=type]                       ::  alias
 
-a triple of a term (a text atom), a wing (a list of limbs, or part of a subject) and a type. the term becomes the alias of the wing plus type?
+::  A triple of a term (a text atom), a wing (a list of limbs, or part of a 
+::  subject) and a type. 
+::  ??  The term becomes the alias of the wing plus type?
 
 
-++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::
+++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::  axils, @ * ^ ? ~
 
-? is $? which is a %fern, base is either an odored atom, a noun, a cell, a bean or null.
+::  ? is $? which is a %fern. ++base is either an odored atom, a noun, a cell,
+::  a bean (loobean) or null.
 
-++  beer  $|(@ [~ p=twig])                              ::
 
-$| is a %reed, beer is an atom and the cell of null and a twig.
-string construction.
+++  beer  $|(@ [~ p=twig])                              ::  string construction
+
+::  $| is a %reed, ++beer is an atom and the cell of null and a twig. string 
+::  construction.
 
 
 ++  calf  ,[p=(map ,@ud wine) q=wine]                   ::
 
-a calf is a map of wines to numbers. 
+::  A map of wines to numbers. 
 
 
-++  chum  $?  lef=term                                  ::
-              [std=term kel=@]                          ::
-              [ven=term pro=term kel=@]                 ::
-              [ven=term pro=term ver=@ kel=@]           ::
+++  chum  $?  lef=term                                  ::  jet name
+              [std=term kel=@]                          ::  kelvin version
+              [ven=term pro=term kel=@]                 ::  vendor and product
+              [ven=term pro=term ver=@ kel=@]           ::  all of the above
           ==                                            ::
 
-a chum is either a term called lef; a term called std and an atom kel; a term ven, a term pro, and an atom kel; or a term ven, a term pro, an atom ver and an atom kel.
+::  $? is a fern. ++chum is either a term called lef; a term called std and an
+::  atom kel; a term ven, a term pro, and an atom kel; or a term ven, a term 
+::  pro, an atom ver and an atom kel.
+::  ??  something to do with jets? vendor, version, product, kelvin
 
-something to do with jets? vendor, version, product, kelvin
 
-
-++  claw  $%  [%ash p=twig]                             ::
-              [%elm p=twig]                             ::
-              [%oak ~]                                  ::
-              [%yew p=(map term claw)]                  ::
+++  claw  $%  [%ash p=twig]                             ::  dry, geometric
+              [%elm p=twig]                             ::  wet, generic
+              [%oak ~]                                  ::  XX not used
+              [%yew p=(map term claw)]                  ::  XX not used
           ==                                            ::
 
-is the same as a foot? XX
+::  $% is a kelp. 
+::  ??  is the same as a foot?
+
 
 ++  coat  ,[p=path q=vase]                              ::
 
-a coat is the pair of a path (a list of spans) and a vase (a type noun pair)
+::  The pair of a path (a list of spans) and a vase (a type noun pair).
 
-++  coil  $:  p=?(%gold %iron %lead %zinc)              ::
-              q=type                                    ::
+
+++  coil  $:  p=?(%gold %iron %lead %zinc)              ::  %metl, variance
+              q=type                                    :: 
               r=[p=?(~ ^) q=(map term foot)]            ::
           ==                                            ::
 
-$: is the tile autocons, ? is a %fern. the head of a coil is a metl, q is a type 
-
-
+::  $: is the tile autocons, ? is a %fern. the head of a coil is a metl, q is a
+::  type.
+::  ??  if tile autocon ($:) takes p and q, what is r for?
 
 
 ++  dram  $%  [| p=(map ,@tas dram)]                    ::
               [& p=@ud q=@]                             ::
           ==                                            ::
 
-a dram has two cases, a map of drams to terms or a pair of a @ud and a raw atom
-simple directory for unix
+::  $% is a kelp. A map of drams to terms or a pair of a @ud and a raw atom
+::  ??  simple directory for unix
 
 
 ++  each  |*([a=$+(* *) b=$+(* *)] $%([& p=a] [| p=b])) ::
 
-effectively a macro
+::  effectively a macro
+::  !!  this needs work. expand to wide form to help?
 
 
 ++  edge  ,[p=hair q=(unit ,[p=* q=nail])]              ::
 
-an edge is a pair of a hair (pair of decimals) and a unit of a noun and a nail pair.
+::  an edge is a pair of a hair (pair of decimals) and a unit of a noun and a 
+::  nail pair. 
+::  ??  parsing? examples.
 
-parsing, 
 
-
-++  foot  $%  [%ash p=twig]                             ::
-              [%elm p=twig]                             ::
-              [%oak ~]                                  ::
-              [%yew p=(map term foot)]                  ::
+++  foot  $%  [%ash p=twig]                             ::  dry, geometric
+              [%elm p=twig]                             ::  wet, generic
+              [%oak ~]                                  ::  XX not used
+              [%yew p=(map term foot)]                  ::  XX not used
           ==                                            ::
 
-
-a foot describes cores, wet elm, dry ash, null, labeled? oak and yew for inheritance, ignore
+::  $% is a kelp. wet elm, dry ash, null, labeled? oak and yew for inheritance,
+::  ignore
+::  ??  This needs an explanation of the difference between wet and dry
 
 ++  gear  |*  a=_,*                                     ::  list generator
           $_                                            ::
@@ -338,8 +323,7 @@ a foot describes cores, wet elm, dry ash, null, labeled? oak and yew for inherit
             ~                                           ::
           [i=(a -.b) t=^?(..$(b +.b))]                  ::
 
-???
-
+::  Gears are not currently used.
 
 
 ++  like  |*  a=_,*                                     ::  generic edge
@@ -350,39 +334,42 @@ a foot describes cores, wet elm, dry ash, null, labeled? oak and yew for inherit
           :-  ~                                         ::
           u=[p=(a +>-.b) q=[p=(hair -.b) q=(tape +.b)]] ::
 
-edge producing x
+::  ??  edge producing x
+::  !!
 
 
 ++  limb  $|(term $%([%& p=axis] [%| p=@ud q=term]))    ::
 
+::  $| is a %reed. ++limb is a term and an axis or a term and a unsigned 
+::  decimal. This is how values are addressed in wings.
 
-$| is a %reed, a limb is a term and an axis or a term and a unsigned decimal. Name, axis, or ??
 
+++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::  kelp case labels
 
+::  Used by a kelp, its head is a %leaf, which reduces to a %cube label for the
+::  tile in the tail.
 
-++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::
-
-a line is used by a kelp, its head is a %leaf, which reduces to a %cube label for the tile in the tail.
 
 ++  list  |*  a=_,*                                     ::  null-terminated list
           $|(~ [i=a t=(list a)])                        ::
 
-a list is a nested structure that terminates with ~ 
+::  A nested structure that terminates with ~.
+::  ~dovryp-toblug/try=> ((list ,@u) [1 2 3 ~])
+::  ~[1 2 3]
 
-++  metl  ?(%gold %iron %zinc %lead)                    ::
 
-a metl is any one of four labels describing core variance
+++  metl  ?(%gold %iron %zinc %lead)                    ::  core variance
 
+::  Any one of four labels describing core variance.
 
 
 ++  tree  |*  a=_,*                                     ::  binary tree
           $|(~ [n=a l=(tree a) r=(tree a)])             ::
 
-a simple binary tree. node is n, l is left, r is right. ~ terminates
-
-    n
-
- l     r
+::  A simple binary tree. node is n, l is left, r is right. ~ terminates. Maps,
+::  Sets and Queues are all trees.
+::     n
+::  l     r
 
 
 ++  port  $:  p=axis                                    ::
@@ -392,10 +379,8 @@ a simple binary tree. node is n, l is left, r is right. ~ terminates
               ==                                        ::
           ==                                            ::
 
-
-a port is [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
-
-
+::  [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
+::  !! in english! used in flay, foil, ~(fink ut), ~(seek ut)
 
 
 ++  post  $:  p=axis                                    ::
@@ -406,6 +391,7 @@ a port is [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
               ==                                        ::
           ==                                            ::
 
+::  !!
 
 
 ++  prop  $:  p=axis                                    ::
@@ -413,14 +399,13 @@ a port is [axis [%bark q [%kelp [%.y type] [%.n axis (list ,[type foot])]]]]
               [p=?(~ axis) q=(list ,[p=type q=foot])]   ::
           ==                                            ::
 
-
-
+::  !!
 
 
 ++  reef  ,[p=[p=? q=@ud] q=@ud]                        ::
 
 
-a reef is the pair of a bean and a decimal with another decimal
+::  Pair of a loobean and a decimal with another decimal.
 
 
 ++  shoe  $%  [%hunk p=tank]                            ::
@@ -429,25 +414,18 @@ a reef is the pair of a bean and a decimal with another decimal
               [%spot p=spot]                            ::
           ==                                            ::
 
-footwear? four cases: a tank, a term, a noun or a spot
-
-tracing hints
+::  Four cases: a tank, a term, a noun or a spot
 
 
-
-++  tank  $%  [%leaf p=tape]                            ::
+++  tank  $%  [%leaf p=tape]                            ::  printing formats
               [%palm p=[p=tape q=tape r=tape s=tape] q=(list tank)]
               [%rose p=[p=tape q=tape r=tape] q=(list tank)]
           ==                                            ::
 
-buccen is a kelp. a tank has three cases, a leaf, a palm and a rose
-
-tank is for printing
-
-palm is backstep
-
-rose is straight down
-
+::  $% is a kelp. ++tank has three cases, a leaf, a palm and a rose. ++tank
+::  is for printing: %palm is backstep, %rose is straight down.
+::  ??  are these just different dimensions of nested tapes? palm is 4d, rose is
+::  3d?
 
 
 ++  tiki                                                ::  test case
@@ -455,10 +433,11 @@ rose is straight down
               [| p=(unit term) q=twig]                  ::  named wing
           ==                                            ::
 
+::  $% is a kelp. ++tiki has two cases, a unit term and a wing if yes, or a 
+::  unit term and a twig if no. Used for name resolution.
+::  ??  since & (?&) computes the and of two loobeans, are the unit and term in
+::  p converted somehow? how are they tested against q? same for | (?|)
 
-a tiki has two cases, a unit term and a wing, or a unit term and a twig
-
-used for name resolution
 
 ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
           $%  [%axil p=base]                            ::  base type
@@ -472,27 +451,16 @@ used for name resolution
               [%weed p=twig]                            ::  example
           ==                                            ::
 
-
-a tile is a convenient mechnasim for making well-typed nouns
-
-an axil is an icon for an odored atom, a noun, a cell, a bean or null.
-
-a bark wraps a term around a tile
-
-a bush is tile with an cellular head p or an atomic head q
-
-a fern is a non-empty list of cases, must be orthogonal
-
-an herb is a twig, used as a tile
-
-a kelp is a tagged union, a list of cases and labels
-
-a leaf is an atomic constant
-
-a reed is atoms of p=tile and cells of q=tile
-
-a weed is a tile by default value, same as bunting a twig
-
+::  A convenient mechnasim for making well-typed nouns.
+::  An axil is an icon for an odored atom, a noun, a cell, a bean or null.
+::  %bark wraps a term around a tile.
+::  %bush is tile with an cellular head p or an atomic head q.
+::  %fern is a non-empty list of cases, must be orthogonal
+::  %herb is a twig, used as a tile
+::  %kelp is a tagged union, a list of cases and labels
+::  %leaf is an atomic constant
+::  %reed is atoms of p=tile and cells of q=tile
+::  %weed is a tile by default value, same as bunting a twig
 
 
 ++  toga                                                ::  face control
@@ -503,416 +471,365 @@ a weed is a tile by default value, same as bunting a twig
           ==                                            ::
 
 
-a toga is a term and one of three cases: null, a term and a toga, or a toga pair.
-
-wraps a whole tree with names
-
+::  A term and one of three cases: null, a term and a ++toga, or a ++toga pair.
+::  Wraps a whole tree with faces
 
 
 ++  twig  $&  [p=twig q=twig]                           ::
-
-bush
-
           $%                                            ::
+            [%$ p=axis]                                 ::  blip, empty name
+          ::                                            ::::::  tile reductions:
+            [%bccb p=tile]                              ::  bunted tile
+            [%bccm p=tile]                              ::  validator gate
+            [%bcpt p=wing q=tile]                       ::  whips p into q
+            [%bctr p=tile]                              ::  static bunt w/ ^~
+            [%bczp p=base]                              ::  bunt an axil
+          ::                                            ::::::  cores
+            [%brcb p=tile q=(map term foot)]            ::  %gold tray, sample p
+            [%brcn p=(map term foot)]                   ::  %gold core
+            [%brdt p=twig]                              ::  dry %gold trap
+            [%brfs p=tile q=(map term foot)]            ::  vulcan. %gold tray
+            [%brkt p=twig q=(map term foot)]            ::  %gold book
+            [%brhp p=twig]                              ::  kick dry %gold trap
+            [%brls p=tile q=twig]                       ::  dry %iron gate
+            [%brpt p=tile q=tile r=twig]                ::  XX not used XX
+            [%brtr p=tile q=twig]                       ::  vulcan. wet gate
+            [%brts p=tile q=twig]                       ::  dry %gold gate
+            [%brwt p=twig]                              ::  dry %lead trap
+          ::                                            ::::::  tuples
+            [%clcb p=twig q=twig]                       ::  [q p]
+            [%clcn p=tusk]                              ::  [[p ~] ~]
+            [%clfs p=twig]                              ::  [%$ [%$ p ~] ~]
+            [%clkt p=twig q=twig r=twig s=twig]         ::  [p q r s]
+            [%clhp p=twig q=twig]                       ::  [p q]
+            [%clls p=twig q=twig r=twig]                ::  [p q r]
+            [%clsg p=tusk]                              ::  [p ~]
+            [%cltr p=tusk]                              ::  p as a tuple
+            [%clzz p=tusk]                              ::  macro for :~, :*
+          ::                                            ::::::  invocations
+            [%cncb p=wing q=tram]                       ::  %=, then cast to p
+            [%cncl p=twig q=twig]                       ::  pull $.p w/ sample q
+            [%cndt p=twig q=twig]                       ::  %-(q p)
+            [%cnhp p=twig q=tusk]                       ::  slam p w/ sample q
+            [%cntr p=wing q=twig r=tram]                ::  ??
+            [%cnkt p=twig q=twig r=twig s=twig]         ::  slam p w/ %*(q r s)
+            [%cnls p=twig q=twig r=twig]                ::  ??
+            [%cnsg p=wing q=twig r=twig]                ::  pull p from q with r
+            [%cnts p=wing q=tram]                       ::  eval. p w/ q changes
+            [%cnzy p=term]                              ::  pulls limb p
+            [%cnzz p=wing]                              ::  pulls p
+          ::                                            ::::::  nock
+            [%dtkt p=twig]                              ::  Nock 11 data skyhook
+            [%dtls p=twig]                              ::  Nock 4 increment
+            [%dtzy p=term q=@]                          ::  atom constant
+            [%dtzz p=term q=*]                          ::  cubed noun constant
+            [%dttr p=twig q=twig]                       ::  nock p w/ formula q
+            [%dtts p=twig q=twig]                       ::  Nock 5 equality test 
+            [%dtwt p=twig]                              ::  Nock 3 cell test
+          ::                                            ::::::  prettyprinter
+            [%hxgl p=tusk]                              ::  slam noah w/ !>:*(p)
+            [%hxgr p=tusk]                              ::  slam cain w/ !>:*(p)
+          ::                                            ::::::  type conversion
+            [%ktbr p=twig]                              ::  %gold core to %iron
+            [%ktdt p=twig q=twig]                       ::  cast q to type (p q)
+            [%ktls p=twig q=twig]                       ::  cast q to p, verify
+            [%kthp p=tile q=twig]                       ::  cast q to icon of p
+            [%ktpm p=twig]                              ::  %gold core to %zinc
+            [%ktsg p=twig]                              ::  p as static constant 
+            [%ktts p=toga q=twig]                       ::  wrap q in toga p
+            [%ktwt p=twig]                              ::  %gold core to %lead
+          ::                                            ::::::  hints   
+            [%sgbr p=twig q=twig]                       ::  print p if q fails 
+            [%sgcb p=twig q=twig]                       ::  put p in q's trace  
+            [%sgcn p=chum q=twig r=tyre s=twig]         ::  id a core for jets
+            [%sgfs p=chum q=twig]                       ::  jetted arm in a ~%
+            [%sggl p=$|(term [p=term q=twig]) q=twig]   ::  hint p to product q
+            [%sggr p=$|(term [p=term q=twig]) q=twig]   ::  hint p to q
+            [%sgbc p=term q=twig]                       ::  label q, profiling
+            [%sgls p=@ q=twig]                          ::  cache/memoize
+            [%sgpm p=@ud q=twig r=twig]                 ::  print q w/ priority
+            [%sgts p=twig q=twig]                       ::  avoid duplication
+            [%sgwt p=@ud q=twig r=twig s=twig]          ::  hint iff q is yes
+            [%sgzp p=twig q=twig]                       ::  type in stacktrace
+          ::                                            ::::::  miscellaneous
+            [%smcl p=twig q=tusk]                       ::  binary to n-ary
+            [%smdt p=twig q=tusk]                       ::  ?? 
+            [%smdq p=(list beer)]                       ::  assemble string
+            [%smsg p=twig q=tusk]                       ::  gonads
+            [%smsm p=twig q=twig]                       ::  make sure q is a p
+          ::                                            ::::::  compositions
+            [%tsbr p=tile q=twig]                       ::  push bunt: =+(_p q)
+            [%tscl p=tram q=twig]                       ::  apply p to .. to q 
+            [%tscn p=twig q=twig]                       ::  XX not used 
+            [%tsdt p=wing q=twig r=twig]                ::  r with p set to q 
+            [%tsfs p=twig q=twig]                       ::  XX not used 
+            [%tsgl p=twig q=twig]                       ::  =>(q p)
+            [%tshp p=twig q=twig]                       ::  flip push: =+(q p)
+            [%tsgr p=twig q=twig]                       ::  use p as subj of q
+            [%tskt p=twig q=twig r=twig s=twig]         ::  state machine wing
+            [%tsls p=twig q=twig]                       ::  push p on subj of q
+            [%tspm p=tile q=twig]                       ::  XX not used
+            [%tspt p=tile q=twig]                       ::  XX not used
+            [%tstr p=term q=wing r=twig]                ::  make a %bull/alias
+            [%tssg p=tusk]                              ::  compose twig list
+          ::                                            ::::::  conditionals 
+            [%wtbr p=tusk]                              ::  logical OR
+            [%wthp p=wing q=tine]                       ::  select case in q
+            [%wthz p=tiki q=tine]                       ::  tiki %wthp
+            [%wtcl p=twig q=twig r=twig]                ::  if p, then q, else r
+            [%wtdt p=twig q=twig r=twig]                ::  unless, ?:(p r q)
+            [%wtkt p=wing q=twig r=twig]                ::  if p is not bunt
+            [%wtkz p=tiki q=twig r=twig]                ::  tiki %wtkt
+            [%wtgl p=twig q=twig]                       ::  assert |, ?:(p !! q)
+            [%wtgr p=twig q=twig]                       ::  assert &, ?:(p q !!)
+            [%wtls p=wing q=twig r=tine]                ::  %wtls with default
+            [%wtlz p=tiki q=twig r=tine]                ::  tiki %wtls
+            [%wtpm p=tusk]                              ::  logical AND
+            [%wtpt p=wing q=twig r=twig]                ::  if p is an atom 
+            [%wtpz p=tiki q=twig r=twig]                ::  tiki %wtpt
+            [%wtsg p=wing q=twig r=twig]                ::  null-test if =(p ~)
+            [%wtsz p=tiki q=twig r=twig]                ::  tiki %wtsg
+            [%wtts p=tile q=wing]                       ::  if q is in tile p
+            [%wtzp p=twig]                              ::  logical NOT
+          ::                                            ::::::  special
+            [%zpcb p=spot q=twig]                       ::  debug info in trace
+            [%zpcm p=twig q=twig]                       ::  ??
+            [%zpcn ~]                                   ::  ??
+            [%zpfs p=twig]                              ::  report subj as err.
+            [%zpgr p=twig]                              ::  vase w/ value p 
+            [%zpsm p=twig q=twig]                       ::  [type noun] pair
+            [%zpts p=twig]                              ::  Nock formula of p
+            [%zpwt p=$|(p=@ [p=@ q=@]) q=twig]          ::  restrict hoon vers.
+            [%zpzp ~]                                   ::  always crash
+          ==  
+          
+::  a twig is an abstract syntax tree
+::  %bccb produces a bunted tile
+::  %bccm produces a validator gate (%clam) for the tile
+::  %bcpt is a natural rune that %whips wing p into tile q
+::  %bctr produces the %bunt for tile p 
+::  %bczp bunts an %axil (see ++tile) p
+::  %brcb produces a %gold tray with tile sample p
+::  %brcn is a natural rune that produces a %gold core
+::  %brdt produces a dry %gold trap
+::  %brfs produces a vulcanized %gold tray
+::  %brkt produces a %gold book
+::  %brhp produces a dry %gold trap, kicks it
+::  %brls produces a dry %iron gate
+::  %brpt is not used
+::  %brtr produces a vulcanized wet gate
+::  %brts produces a dry %gold gate
+::  %brwt produces a dry %lead trap
+::  %clcb produces cell [q p]
+::  %clcn produces cell [[p ~] ~] from a tusk
+::  %clfs produces cell [%$ [%$ p ~] ~]
+::  %clkt produces cell [p q r s]
+::  %clhp produces cell [p q]
+::  %clls produces cell [p q r]
+::  %clsg produces a null-terminated tuple
+::  %cltr produces a tuple
+::  %clzz 
+::  ??  
+::  %cncb evaluates p with changes in q, casts back to p
+::  %cncl pulls %$ from tray p with sample q
+::  %cndt reversed %cnhp
+::  ??  shouldn't p be a tusk?
+::  %cnhp slams gate p with q
+::  %cntr 
+::  ??  doc doesn't match. looks like it applies all the [wing twig] pairs ::  in r to q
+::  %cnkt slams gate p with %cntr q r s
+::  %cnls uses %cnhp p q r
+::  ??  doc doesn't match, and %cnhp takes only two args
+::  %cnsg pulls p from tray q with sample r
+::  ??  why isnt q's type a tray?
+::  %cnts evaluates p with changes in the tram q
+::  %cnzy pulls limb p from the subject
+::  %dtkt is a natural rune that grabs data from the sky
+::  ??  very unclear
+::  %dtls is a natural rune that increments an atom
+::  %dtzy is a natural rune that produces a non-cubed atomic constant of ::  odor p and value q
+::  %dtzz is a natural rune that produces a cubed noun constant of odor p ::  and value q if q is an atom. if q is a cell produces q.
+::  %dttr is a natural rune that calculates nock of subject p, formula q
+::  %dtts is a natural rune that tests if two twigs are equal
+::  %dtwt is a natural rune that tests whether atom or cells
+::  %hxgl slams the gate ++noah with !>:*(p)
+::  %hxgr slams the gate ++cain with !>:*(p)
+::  %ktbr is a natural rune that converts %gold to %iron
+::  %ktdt casts q to type (p q)
+::  %ktls is a natural rule that casts q to p, verifying that p contains q
+::  %kthp casts q to the icon of p
+::  %ktpm converts %gold to %zinc
+::  %ktsg tries to execute p statically at compile time, if it fails p ::  ::  remains dynamic
+::  %ktts is a natural rune that wraps q in toga p
+::  %ktwt converts a %cold core p to %lead
+::  %sgbr prints p if q crashes
+::  %sgcb inserts p (a trap producing a tank) in the trace of q
+::  %sgcn ids a core p (in parent r) for optimization with a @tas s
+::  ??  what is q for? 
+::  %sgfs flags a core for jet propulsion. p is an arbitrary @tas for a ::  jet and q is a core inside of a book.
+::  %sggl applies hint p to product of q
+::  %sggr is a natural rune that applies hint p to q
+::  %sgbc labels q as p for profiling
+::  %sgls hints to the interpreter to cache/memoize the product of p
+::  %sgpm prints hint q before computing r with log priority p
+::  %sgts hints to interpreter that q may produce a noun equal to p to ::  ::  avoid duplication
+::  %sgwt prints hint [%sgpm p r s] iff q is yes
+::  %sgzp is a natural hoon that prints the type of p if q fails to compute
+::  %smcl applies a binary gate p to an n-ary tuple q
+::  %smdt 
+::  ??  undocumened, with a complicated expansion
+::  %smdq assembles a ++beer (string) p
+::  %smsg 
+::  ??  something related to gonads
+::  %smsm makes sure q is a p, and is the same as ++hard
+::  %tsbr pushes the bunt of p on to the subject and sends it to q
+::  %tscl modifies the subject with p and sends it to q
+::  %tscn is not used
+::  %tsdt produces r with p in the subject set to q
+::  %tsfs is not used
+::  %tsgl uses the product of p as the subject for q
+::  %tshp pushes q on the subject and sends it to p
+::  %tsgr is a natural rune that uses the product of p as the subject of q
+::  %tskt is for state machines. 
+::  ??  its unclear from the doc which argument is which
+::  %tsls pushes p on the subject and sends it to q
+::  %tspm is not used
+::  %tspt is not used
+::  %tstr creates a ++bull or alias type
+::  %tssg creates a list of twigs
+::  %wtbr logical or of two loobeans
+::  %wthp selects a case in q for the actual type of p
+::  ??  not sure exactly what 'actual type' really means
+::  %wthz inverse of %wthp
+::  %wtcl p produces a loobean. if %.y then q if %.n then r
+::  %wtdt p produces a loobean. if %.n then q if %.y then r
+::  %wtkt if p is not equal to the bunt of its tile then q, else r
+::  %wtkz inverse of %wtkt
+::  %wtgl asserts that p is no and evaluates q
+::  %wtgr asserts taht p is yes and evaluates q
+::  %wtls %wthp with a default case
+::  %wtlz 
+::  ??  not sure i understand tikis. docs are the same for all of these.
+::  %wtpm computes the and of the loobeans in p
+::  %wtpt if p is an atom produce q else produce r
+::  %wtpz inverse of %wtpt
+::  %wtsg if p is ~ produce q else produce r
+::  %wtsz inverse of wtsg
+::  %wtts produces true if the leg in wing q is in the tile p
+::  %wtzp logical not of p
 
-kelp
-            [%$ p=axis]                                 ::
-
-blip, the empty name
-
-            [%bccb p=tile]                              ::
-
-a synthetic rune that produces a bunted tile
-
-
-            [%bccm p=tile]                              ::
-
-synthetic, produces a norm gate (clam) for tile
-
-
-            [%bcpt p=wing q=tile]                       ::
-
-natural, whips tile q onto wing p
-
-            [%bctr p=tile]                              ::
-
-synthetic, produces the bunt for p as a compile time constant
-
-            [%bczp p=base]                              ::
-
-synthetic, bunts an axil
-
-          ::                                            ::
-            [%brcb p=tile q=(map term foot)]            ::
-
-synthetic, produces a %gold tray with sample p
-
-            [%brcn p=(map term foot)]                   ::
-
-natural, produces a %gold core
-
-            [%brdt p=twig]                              ::
-
-synthetic, produces a dry %gold trap, 
-
-            [%brfs p=tile q=(map term foot)]            ::
-
-synthetic, produces a vulcanized %gold tray
-
-            [%brkt p=twig q=(map term foot)]            ::
-
-synthetic, produces a %gold book
-
-            [%brhp p=twig]                              ::
-
-synthetic, produces a dry %gold trap, kicks it
-
-            [%brls p=tile q=twig]                       ::
-
-synthetic, produces a dry %iron gate
-
-            [%brpt p=tile q=tile r=twig]                ::
-
-not used?
-
-            [%brtr p=tile q=twig]                       ::
-
-synthetic, produces a vulcanized wet gate
-
-            [%brts p=tile q=twig]                       ::
-
-synthetic, produces a dry %gold gate
-
-            [%brwt p=twig]                              ::
-
-synthetic, produces a dry %lead trap
-
-          ::                                            ::
-            [%clcb p=twig q=twig]                       ::
-
-synthetic, produces cell [q p]
-
-            [%clcn p=tusk]                              ::
-
-synthetic, produces cell [[p ~] ~]
-
-            [%clfs p=twig]                              ::
-
-synthetic, produces cell [%$ [%$ p ~] ~]
-
-            [%clkt p=twig q=twig r=twig s=twig]         ::
-
-synthetic, produces cell [p q r s]
-
-            [%clhp p=twig q=twig]                       ::
-
-synthetic, produces cell [p q]
-
-            [%clls p=twig q=twig r=twig]                ::
-
-synthetic, produces cell [p q r]
-
-            [%clsg p=tusk]                              ::
-synthetic, produces a null-terminated tuple
-
-            [%cltr p=tusk]                              ::
-
-synthetic, produces a tuple
-
-            [%clzz p=tusk]                              ::
-
-???
-
-          ::                                            ::
-            [%cncb p=wing q=tram]                       ::
-
-synthetic, evaluates p with changes in q, casts back to p
-
-            [%cncl p=twig q=twig]                       ::
-
-synthetic, pulls %$ from tray p with sample q
-
-            [%cndt p=twig q=twig]                       ::
-
-synthetic, reversed cenhep, (shouldn't p be a tusk?)
-
-            [%cnhp p=twig q=tusk]                       ::
-
-synthetic, slams gate p with q
-
-            [%cntr p=wing q=twig r=tram]                ::
-
-synthetic, ... doc doesn't match
-
-            [%cnkt p=twig q=twig r=twig s=twig]         ::
-
-synthetic, slams gate p with %cntr q r s
-
-            [%cnls p=twig q=twig r=twig]                ::
-
-synthetic, again, doc doesn't match
-
-            [%cnsg p=wing q=twig r=twig]                ::
-synthetic, pulls p from tray q with sample r
-
-            [%cnts p=wing q=tram]                       ::
-
-natural, evaluates p with changes in q
-
-            [%cnzy p=term]                              ::
-            [%cnzz p=wing]                              ::
-          ::                                            ::
-            [%dtkt p=twig]                              ::
-
-natural, grab data from the sky
-
-            [%dtls p=twig]                              ::
-
-natural, increment an atom
-
-            [%dtzy p=term q=@]                          ::
-
-natural, produces atomic constant of odor p and value q
-
-            [%dtzz p=term q=*]                          ::
-
-natural, produces cubed noun constant of odor p and value q, if q is an atom. if q is a cell produces q
-
-            [%dttr p=twig q=twig]                       ::
-
-natural, calculates nock of subject p, formula q
-
-            [%dtts p=twig q=twig]                       ::
-
-natural, tests if two twigs are equal
-
-            [%dtwt p=twig]                              ::
-
-natural, tests whether atom or cells
-
-          ::                                            ::
-            [%hxgl p=tusk]                              ::
-            [%hxgr p=tusk]                              ::
-          ::                                            ::
-            [%ktbr p=twig]                              ::
-natural, converts gold to iron
-
-            [%ktdt p=twig q=twig]                       ::
-synthetic, casts q to type (p q)
-
-            [%ktls p=twig q=twig]                       ::
-
-natural, casts q to p, verifying that p contains q
-
-            [%kthp p=tile q=twig]                       ::
-
-synthetic, casts q to the icon of p
-
-            [%ktpm p=twig]                              ::
-
-synthetic, converts gold to zinc
-
-            [%ktsg p=twig]                              ::
-
-static vs. dynamic execution?
-
-            [%ktts p=toga q=twig]                       ::
-
-natural, wraps q in toga p
-
-            [%ktwt p=twig]                              ::
-          ::                                            ::
-            [%sgbr p=twig q=twig]                       ::
-
-synthetic, prints p if q crashes
-
-            [%sgcb p=twig q=twig]                       ::
-
-synthetic, inserts p in the trace of q
-
-            [%sgcn p=chum q=twig r=tyre s=twig]         ::
-
-synthetic, ids a core for optimization
-
-doesn't match doc, 
-
-            [%sgfs p=chum q=twig]                       ::
-
-synthetic, arm in a sigcen
-
-            [%sggl p=$|(term [p=term q=twig]) q=twig]   ::
-synthetic, applies hint p to product of q
-
-            [%sggr p=$|(term [p=term q=twig]) q=twig]   ::
-
-natural, applies hint p to q            
-
-
-            [%sgbc p=term q=twig]                       ::
-
-synthetic, labels q as p for profiling
-
-            [%sgls p=@ q=twig]                          ::
-
-synthetic, cache/memoize, doesn't match doc.
-
-            [%sgpm p=@ud q=twig r=twig]                 ::
-
-synthetic, prints hint, log priority
-
-            [%sgts p=twig q=twig]                       ::
-synthetic, hints to interpreter that q may produce already existing p to avoid duplication
-
-            [%sgwt p=@ud q=twig r=twig s=twig]          ::
-
-synthetic, prints hint iff q is yes, 
-
-            [%sgzp p=twig q=twig]                       ::
-
-
-          ::                                            ::
-            [%smcl p=twig q=tusk]                       ::
-            [%smdt p=twig q=tusk]                       ::
-            [%smdq p=(list beer)]                       ::
-            [%smsg p=twig q=tusk]                       ::
-            [%smsm p=twig q=twig]                       ::
-          ::                                            ::
-            [%tsbr p=tile q=twig]                       ::
-            [%tscl p=tram q=twig]                       ::
-            [%tscn p=twig q=twig]                       ::
-            [%tsdt p=wing q=twig r=twig]                ::
-            [%tsfs p=twig q=twig]                       ::
-            [%tsgl p=twig q=twig]                       ::
-            [%tshp p=twig q=twig]                       ::
-            [%tsgr p=twig q=twig]                       ::
-            [%tskt p=twig q=twig r=twig s=twig]         ::
-            [%tsls p=twig q=twig]                       ::
-            [%tspm p=tile q=twig]                       ::
-            [%tspt p=tile q=twig]                       ::
-            [%tstr p=term q=wing r=twig]                ::
-            [%tssg p=tusk]                              ::
-          ::                                            ::
-            [%wtbr p=tusk]                              ::
-            [%wthp p=wing q=tine]                       ::
-            [%wthz p=tiki q=tine]                       ::
-            [%wtcl p=twig q=twig r=twig]                ::
-            [%wtdt p=twig q=twig r=twig]                ::
-            [%wtkt p=wing q=twig r=twig]                ::
-            [%wtkz p=tiki q=twig r=twig]                ::
-            [%wtgl p=twig q=twig]                       ::
-            [%wtgr p=twig q=twig]                       ::
-            [%wtls p=wing q=twig r=tine]                ::
-            [%wtlz p=tiki q=twig r=tine]                ::
-            [%wtpm p=tusk]                              ::
-            [%wtpt p=wing q=twig r=twig]                ::
-            [%wtpz p=tiki q=twig r=twig]                ::
-            [%wtsg p=wing q=twig r=twig]                ::
-            [%wtsz p=tiki q=twig r=twig]                ::
-            [%wtts p=tile q=wing]                       ::
-            [%wtzp p=twig]                              ::
-          ::                                            ::
-            [%zpcb p=spot q=twig]                       ::
-            [%zpcm p=twig q=twig]                       ::
-            [%zpcn ~]                                   ::
-            [%zpfs p=twig]                              ::
-            [%zpgr p=twig]                              ::
-            [%zpsm p=twig q=twig]                       ::
-            [%zpts p=twig]                              ::
-            [%zpwt p=$|(p=@ [p=@ q=@]) q=twig]          ::
-            [%zpzp ~]                                   ::
-          ==                                            ::
-
-a twig is an abstract syntax tree
 
 ++  tine  (list ,[p=tile q=twig])                       ::
 
-a tine is a list of tile twig pairs
+::  A list of tile twig pairs
+
 
 ++  tusk  (list twig)                                   ::
 
-a tusk is a list of twigs
+::  A list of twigs
+
 
 ++  tyre  (list ,[p=term q=twig])                       ::
 
-a tyre is a list of term twig pairs
+::  A list of term twig pairs
+
 
 ++  tyke  (list (unit twig))                            ::
 
-a tyke is a list of unit twig pairs
+::  A list of unit twig pairs
+
 
 ++  tram  (list ,[p=wing q=twig])                       ::
 
-a tram is a list of wing twig pairs
+::  A list of wing twig pairs
+
 
 ++  tone  $%  [%0 p=*]                                  ::
               [%1 p=(list)]                             ::
               [%2 p=(list ,[@ta *])]                    ::
           ==                                            ::
 
-a tone has three cases: a noun a, a list, and a list of span noun pairs
+::  Three cases: a noun a, a list, and a list of span noun pairs
 
-mock
 
-++  nock  $&  [p=nock q=nock]                           ::
-          $%  [%0 p=@]                                  ::
-              [%1 p=*]                                  ::
-              [%2 p=nock q=nock]                        ::
-              [%3 p=nock]                               ::
-              [%4 p=nock]                               ::
-              [%5 p=nock q=nock]                        ::
-              [%6 p=nock q=nock r=nock]                 ::
-              [%7 p=nock q=nock]                        ::
-              [%8 p=nock q=nock]                        ::
-              [%9 p=@ q=nock]                           ::
-              [%10 p=?(@ [p=@ q=nock]) q=nock]          ::
-              [%11 p=nock]                              ::
+                                                        ::::::  virtual nock
+++  nock  $&  [p=nock q=nock]                           ::  autocons 
+          $%  [%0 p=@]                                  ::  axis select
+              [%1 p=*]                                  ::  constant
+              [%2 p=nock q=nock]                        ::  compose
+              [%3 p=nock]                               ::  cell test
+              [%4 p=nock]                               ::  increment
+              [%5 p=nock q=nock]                        ::  equality test
+              [%6 p=nock q=nock r=nock]                 ::  if, then, else
+              [%7 p=nock q=nock]                        ::  serial compose
+              [%8 p=nock q=nock]                        ::  push onto subject
+              [%9 p=@ q=nock]                           ::  select arm and fire
+              [%10 p=?(@ [p=@ q=nock]) q=nock]          ::  hint
+              [%11 p=nock]                              ::  grab data from sky
           ==                                            ::
 
-this one goes to 11. 
+::  this one goes to 11. 
+::  ??  mock nock? these look like nock models.
 
 ++  toon  $%  [%0 p=*]                                  ::
               [%1 p=(list)]                             ::
               [%2 p=(list tank)]                        ::
           ==                                            ::
 
-a noun, a list, or a list of tanks
+::  A noun, a list, or a list of tanks
+
 
 ++  tune  $%  [%0 p=vase]                               ::
               [%1 p=(list)]                             ::
               [%2 p=(list ,[@ta *])]                    ::
           ==                                            ::
 
-a vase, a list or a list of span noun pairs
+::  A vase, a list or a list of span noun pairs
 
-++  twin  ,[p=term q=wing r=axis s=type]                ::
 
-a quad of a term, a wing, an axis and a type
+++  twin  ,[p=term q=wing r=axis s=type]                ::  %bull
 
-++  type  $|  ?(%noun %void)                            ::
-          $%  [%atom p=term]                            ::
-              [%bull p=twin q=type]                     ::
-              [%cell p=type q=type]                     ::
-              [%core p=type q=coil]                     ::
-              [%cube p=* q=type]                        ::
-              [%face p=term q=type]                     ::
-              [%fork p=type q=type]                     ::
-              [%hold p=(list ,[p=type q=twig])]         ::
+::  A term, a wing, an axis and a type
+
+
+++  type  $|  ?(%noun %void)                            ::  set all or set none
+          $%  [%atom p=term]                            ::  number and format
+              [%bull p=twin q=type]                     ::  wing synonym
+              [%cell p=type q=type]                     ::  ordered pair
+              [%core p=type q=coil]                     ::  
+              [%cube p=* q=type]                        ::  constants
+              [%face p=term q=type]                     ::  named type
+              [%fork p=type q=type]                     ::  union/branch
+              [%hold p=(list ,[p=type q=twig])]         ::  infinite generator
           ==                                            ::
 
-[%reed [%fern %noun %void] [cases...]]
+::  A type is either a noun or void that resolves to:
+::  %atom is an atom
+::  %bull is a twin (a wing an axis and a type) and a type
+::  %cell is a type and a type
+::  %core is a type and a coil
+::  %cube is a noun and a type
+::  %face is a term (,@tas) and a type
+::  %fork is a type and a type
+::  ??  what's the difference between a cell and a fork?
+::  %hold is a list of type twig cells
+::  [%reed [%fern %noun %void] [cases...]]
+
 
 ++  typo  type                                          ::  old type
 
-staging
+::  ??  Alias?
+
+
+::::::  Diff architecture
 
 ++  udal                                                ::  atomic change (%b)
           $:  p=@ud                                     ::  blockwidth
               q=(list ,[p=@ud q=(unit ,[p=@ q=@])])     ::  indels
           ==                                            ::
 
-an unsigned decimal and a list the pair of a @ud and a unit atom pair
+::  An unsigned decimal and a list the pair of a @ud and a unit atom pair
 
-diff architecture
 
 ++  udon                                                ::  abstract delta
           $:  p=umph                                    ::  preprocessor
@@ -924,12 +841,13 @@ diff architecture
               ==                                        ::
           ==                                            ::
 
-insertions and deletes
+::  insertions and deletes
+::  ??  Looks to be used by the diffs. Needs further explanation.
+
 
 ++  ulna  ,[p=* q=*]                                    ::  from to
 
-a pair of nouns
-
+::  A pair of nouns
 
 
 ++  umph                                                ::  change filter
@@ -940,16 +858,21 @@ a pair of nouns
           $%  [%d p=@ud]                                ::  blocklist
           ==                                            ::
 
+::  $| produces a %reed ([%reed p=tile q=tile])
+::  ??  does the $? then return two cases? or is the second case returned by $%
+::  (always a @ud)?
 
 
 ++  unce  |*  a=_,*                                     ::  change part
           $%([%& p=@ud] [%| p=(list a) q=(list a)])     ::
+::  ??
 
 
 ++  unit  |*  a=_,*                                     ::  maybe
           $|(~ [~ u=a])                                 ::
 
-a unit takes a noun and is either a null or the cell [~ noun]
+::  Takes a noun and is either a null or the cell [~ noun]
+
 
 ++  upas                                                ::  tree change (%d)
           $&  [p=upas q=upas]                           ::  cell
@@ -958,24 +881,28 @@ a unit takes a noun and is either a null or the cell [~ noun]
               [%2 p=axis q=udon]                        ::  mutate!
           ==                                            ::
 
+::  ??  Used in diffs / merging?
 
 
 ++  urge  |*(a=_,* (list (unce a)))                     ::  list change
 
+::  ??  Basically a list of unce, document unce first.
+
 
 ++  vase  ,[p=type q=*]                                 ::  type-value pair
 
-a vase is a type and noun
+::  A type and noun
 
 
 ++  vise  ,[p=typo q=*]                                 ::  old vase
 
-a vise is a vase, except used for staging
+::  A vase, except used for staging
 
 
-++  wing  (list limb)                                   ::
+++  wing  (list limb)                                   ::  part of subject
 
-a list of limbs. this is how we get stuff inside our subject!
+::  A list of limbs. This is how we get stuff inside our subject!
+
 
 ++  wine  $|  ?(%noun %path %tank %void %wall %wool %yarn)
           $%  [%atom p=term]                            ::
@@ -990,34 +917,40 @@ a list of limbs. this is how we get stuff inside our subject!
               [%unit p=term q=wine]                     ::
           ==                                            ::
 
-
-what's a %wool or a yarn?
-
-types to print. 
+::  A list of cubes, the first of which are types, the remainder of which look 
+::  to be used for building trees of wines. 
+::  ??  what's a %wool or a yarn?
+::  ??  types to print. 
 
 
 ++  woof  (list $|(@ud [p=@ud q=@ud]))                  ::  udon transform
 
+::  ??  a list of reeds (that produce cells)? Probably for diffs.
 
 
 ++  wonk  |*(veq=edge ?@(q.veq !! p.u.q.veq))           ::
 
+::  Takes an edge. Crashes if the q.edge (the unit) inside is an atom, produces 
+::  p.u.q.edge if not
 
-::                                                      ::
+
 ++  map  |*  [a=_,* b=_,*]                              ::  associative array
          $|(~ [n=[p=a q=b] l=(map a b) r=(map a b)])    ::
 
-a map takes two nouns and 
+::  A map is a tree of [p=* q=*] cells where n is the node, and l and r are 
+::  branches. Similar to ++tree.
 
 
-++  qeu  |*  a=_,*                                      ::
+++  qeu  |*  a=_,*                                      ::  queue type
          $|(~ [n=a l=(qeu a) r=(qeu a)])                ::
 
+::  A qeu is a tree, but is inteded for use in the queue engine, ++to.
 
-difference between qeu and set? and tree?
 
-++  set  |*  a=_,*                                      ::
+++  set  |*  a=_,*                                      ::  set type
          $|(~ [n=a l=(set a) r=(set a)])                ::
+
+::  A set is a tree, but is intended for use in the set engine, ++in.
 
 
 --                                                      ::
@@ -1027,18 +960,9 @@ difference between qeu and set? and tree?
 ~%    %hoon
     +
   ==
-    %al    al
-
-::  tile expansion
-
-    %ap    ap
-
-::  twig expansion
-
-    %ut    ut
-
-::  compiler
-
+    %al    al                                           ::  tile expansion
+    %ap    ap                                           ::  twig expansion
+    %ut    ut                                           ::  compiler
     %seed  seed
     %show  show
   ==
@@ -1048,7 +972,7 @@ difference between qeu and set? and tree?
 ::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::
 
-::  arithmetic
+::::::  Arithmetic
 
 ++  dec                                                 ::  decrement
   ~/  %dec
@@ -1060,7 +984,11 @@ difference between qeu and set? and tree?
   ?:  =(a +(b))
     b
   $(b +(b))
-::
+
+:: Decrement atom a by counting up to a-1, return %decrement-underflow if 
+:: result is less than 0
+
+
 ++  add                                                 ::  add
   ~/  %add
   |=  [a=@ b=@]
@@ -1068,7 +996,10 @@ difference between qeu and set? and tree?
   ?:  =(0 a)
     b
   $(a (dec a), b +(b))
-::
+
+:: Add atoms a and b by counting down a to zero and incrementing b. Produce b.
+
+
 ++  sub                                                 ::  subtract
   ~/  %sub
   |=  [a=@ b=@]
@@ -1077,7 +1008,11 @@ difference between qeu and set? and tree?
   ?:  =(0 b)
     a
   $(a (dec a), b (dec b))
-::
+
+:: Subtract atoms a and b by counting down a to zero and decrementing b. 
+:: Produce b.
+
+
 ++  mul                                                 ::  multiply
   ~/  %mul
   |=  [a=@ b=@]
@@ -1087,8 +1022,11 @@ difference between qeu and set? and tree?
   ?:  =(0 a)
     c
   $(a (dec a), c (add b c))
-::
-::
+
+::  Multiply atoms a and b by counting a to zero while replacing c with the sum
+::  of b and c. Produce c.
+
+
 ++  div                                                 ::  divide
   ~/  %div
   |=  [a=@ b=@]
@@ -1100,16 +1038,22 @@ difference between qeu and set? and tree?
   ?:  (lth a b)
     c
   $(a (sub a b), c +(c))
-::
+
+::  Divide atoms a and b by subtracting b from a until b is less than a while 
+::  incrementing c. Produce c.
+
+
 ++  mod                                                 ::  remainder
   ~/  %mod
   |=  [a=@ b=@]
   ^-  @
   ?<  =(0 b)
   (sub a (mul b (div a b)))
-::
 
-::comparisons
+::  Remiainder of a divided by b.
+
+
+::::::  Comparisons
 
 ::
 ++  lth                                                 ::  less-than
@@ -1117,24 +1061,36 @@ difference between qeu and set? and tree?
   |=  [a=@ b=@]
   ^-  ?
   &(!=(a b) |-(|(=(0 a) &(!=(0 b) $(a (dec a), b (dec b))))))
-::
+
+::  Produce a loobean of whether a < b.
+
+
 ++  lte                                                 ::  less-equal
   ~/  %lte
   |=  [a=@ b=@]
   |(=(a b) (lth a b))
-::
+
+::  Produce a loobean of whether a <= b.
+
+
 ++  gth                                                 ::  greater-than
   ~/  %gth
   |=  [a=@ b=@]
   ^-  ?
   !(lte a b)
-::
+
+::  Produce a loobean of whether a > b.
+
+
 ++  gte                                                 ::  greater-equal
   ~/  %gte
   |=  [a=@ b=@]
   ^-  ?
   !(lth a b)
-::
+
+::  Produce a loobean of whether a >= b.
+
+
 ++  max                                                 ::  maximum
   ~/  %max
   |=  [a=@ b=@]
@@ -1142,7 +1098,10 @@ difference between qeu and set? and tree?
   ?:  (gth a b)
     a
   b
-::
+
+::  Produce the maximum of a and b.
+
+
 ++  min                                                 ::  minimum
   ~/  %min
   |=  [a=@ b=@]
@@ -1152,7 +1111,10 @@ difference between qeu and set? and tree?
   b
 ::
 
-::nock tree calculations
+::  Produce the minimum of a and b.
+
+
+::::::  Nock tree calculations
 
 ::
 ++  cap                                                 ::  tree head
@@ -1165,7 +1127,10 @@ difference between qeu and set? and tree?
     ?(%0 %1)  !!
     *         $(a (div a 2))
   ==
-::
+
+::  Takes an atom a. Produces %2 if a is in the head, %3 if in the tail. 
+
+
 ++  mas                                                 ::  tree body
   ~/  %mas
   |=  a=@
@@ -1176,7 +1141,11 @@ difference between qeu and set? and tree?
     3   1
     *   (add (mod a 2) (mul $(a (div a 2)) 2))
   ==
-::
+
+::  Takes an atom a. Produces the axis within the head or the tail.
+::  a is always the same as (peg (cap a) (mas a)).
+
+
 ++  peg                                                 ::  tree connect
   ~/  %peg
   |=  [a=@ b=@]
@@ -1187,6 +1156,9 @@ difference between qeu and set? and tree?
     3   +((mul a 2))
     *   (add (mod b 2) (mul $(b (div b 2)) 2))
   ==
+::  Produces the axis of axis b within axis a.
+
+
 ::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::  ::
 ::::              chapter 2b, basic containers          ::::
 ::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1196,12 +1168,21 @@ difference between qeu and set? and tree?
 ::  ++  unit  |*  a=_,*                                     ::  maybe
 ::            $|(~ [~ u=a])                                 ::
 
-++  bind                                                ::  argue
+::  Takes a noun and is either a null or the cell [~ noun]
+
+
+++  bind                                                    ::  argue
   |*  [a=(unit) b=_,*]
   ?~  a
     ~
   [~ u=(b u.a)]
-::
+
+::  Takes a unit and any gate, produces a unit [~ u=(the noun the unit 
+::  noun)] apply the gate b to the u in unit a
+::  ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
+::  [~ 'a']
+
+
 ++  clap                                                ::  combine
   |*  [a=(unit) b=(unit) c=_|=(^ +<-)]
   ?~  a
@@ -1209,17 +1190,35 @@ difference between qeu and set? and tree?
   ?~  b
     a
   [~ u=(c u.a u.b)]
-::
+
+::  If a is ~ produce b, if b is ~ produce a
+::  ~talsur-todres/try=> =a ((unit ,@u) [~ 1])
+::  ~talsur-todres/try=> =b ((unit ,@u) [~ 2])
+::  ~talsur-todres/try=> =c |=([a=@ b=@] (add a b))
+::  ~talsur-todres/try=> (clap a b c)
+::  [~ 3]
+
+
 ++  drop                                                ::  enlist
   |*  a=(unit)
   ?~  a
     ~
   [i=u.a t=~]
-::
+
+::  Takes a unit a. Produces a list [u.a ~] or ~ if a is null.
+
+
 ++  fall                                                ::  default
   |*  [a=(unit) b=*]
   ?~(a b u.a)
-::
+
+::  If not a return b else u.a
+::  ~talsur-todres/try=> (fall ~ 'a')
+::  'a'
+::  ~talsur-todres/try=> (fall [~ u=0] 'a')
+::  0
+
+
 ++  mate                                                ::  choose
   |*  [a=(unit) b=(unit)]
   ?~  b
@@ -1227,19 +1226,31 @@ difference between qeu and set? and tree?
   ?~  a
     b
   ?.(=(u.a u.b) ~|('mate' !!) a)
-::
+
+::  Takes two units a and b. If not b then produce a, if not a then produce b,
+::  else produce a if u.a and u.b are equal. Crash if they're not equal.
+
+
 ++  need                                                ::  demand
   |*  a=(unit)
   ?@  a
     !!
   u.a
-::
+
+::  Takes a unit a. If a is an atom produce a crash, else produce u.a. 
+
+
 ++  some                                                ::  lift
   |*  a=*
   [~ u=a]
+
+::  Takes any noun a and produces [~ u=a]. 
+
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                Section 2bB, lists                    ::
-::
+
+
 ++  flop                                                ::  reverse
   ~/  %flop
   |*  a=(list)
@@ -1250,21 +1261,37 @@ difference between qeu and set? and tree?
   ?@  a
     b
   $(a t.a, b [i.a b])
-::
+
+::  Reverse the order of a list. 
+::  ~dovryp-toblug/try=> (flop (limo [1 2 3 ~]))
+::  ~[3 2 1]
+
 ++  homo                                                ::  homogenize
   |*  a=(list)
   ^+  =<  $
     |%  +-  $  ?:(_? ~ [i=(snag 0 a) t=$])
     --
   a
-::
+
+::  ??  This recursively snags the item at position 0 in a. Sort of like 
+::  flatten?
+
+
 ++  limo                                                ::  listify
   |*  a=*
   ^+  =<  $
     |%  +-  $  ?@(a ~ ?:(_? [i=-.a t=$] $(a +.a)))
     --
   a
-::
+
+::  Turns any null-terminated cell in to a list. 
+::  ~dovryp-toblug/try=> (limo ['a' 'b' ~])
+::  [i='a' t=[i='b' t=~]]
+::  ~dovryp-toblug/try=> (limo [2 1 ~])
+::  [i=2 t=[i=1 t=~]]
+::  ?? a=* but passing in 'a' type-fails. 
+
+
 ++  lent                                                ::  length
   ~/  %lent
   |=  a=(list)
@@ -1272,7 +1299,11 @@ difference between qeu and set? and tree?
   =+  b=0
   |-
   ?@(a b $(a t.a, b +(b)))
-::
+
+::  Produces an atom equal to the length of a list.
+::  ~dovryp-toblug/try=> (lent (limo [1 2 3 4 5 6 ~]))
+::  6
+
 ++  levy
   ~/  %levy                                             ::  all of
   |*  [a=(list) b=_|=(p=* .?(p))]
@@ -1282,7 +1313,14 @@ difference between qeu and set? and tree?
   ?:  (b i.a)
     $(a t.a)
   |
-::
+
+::  Comparator. Send each value of a to a gate b that produces a loobean. 
+::  Produce a loobean %.y if all the results pass, else %.n.
+::  ~dovryp-toblug/try=> =a |=(a=@ (gte a 1))
+::  ~dovryp-toblug/try=> (levy (limo [0 1 2 1 ~]) a)
+::  %.n
+
+
 ++  lien                                                ::  some of
   ~/  %lien
   |*  [a=(list) b=$+(* ?)]
@@ -1290,7 +1328,14 @@ difference between qeu and set? and tree?
   ?~  a  |
   ?:  (b i.a)  &
   $(a t.a)
-::
+
+::  Comparator. Send each value of a to a gate b that produces a loobean. 
+::  Produce a loobean %.y if any of the results pass, else %.n.
+::  ~dovryp-toblug/try=> =a |=(a=@ (gte a 1))
+::  ~dovryp-toblug/try=> (lien (limo [0 1 2 1 ~]) a)
+::  %.y
+
+
 ++  reel                                                ::  right fold
   ~/  %reel
   |*  [a=(list) b=_=|([p=* q=*] |.(q))]
@@ -1298,7 +1343,14 @@ difference between qeu and set? and tree?
   ?@  a
     q.b
   (b i.a $(a t.a))
-::
+
+::  a is a list and b is a function that takes two arguments. Recursively call
+::  b with the right side of a. 
+::  ~dovryp-toblug/try=> =a =|([p=@ q=@] |.((add p q)))
+::  ~dovryp-toblug/try=> (reel (limo [1 3 6 ~]) a)
+::  10
+
+
 ++  roll                                                ::  left fold
   ~/  %roll
   |*  [a=(list) b=_=|([p=* q=*] |.(q))]
@@ -1307,14 +1359,28 @@ difference between qeu and set? and tree?
   ?@  a
     q.b
   $(a t.a, b b(q (b i.a q.b)))
-::
+
+::  a is a list and b is a gate that takes two arguments. Recursively call
+::  b with the right side of a. 
+::  ~dovryp-toblug/try=> =a =|([p=@ q=@] |.((sub p q)))
+::  ~dovryp-toblug/try=> (roll (limo [1 3 6 ~]) a)
+::  4
+
+
 ++  skid                                                ::  separate
   |*  [a=(list) b=$+(* ?)]
   |-  ^+  [p=a q=a]
   ?~  a  [~ ~]
   =+  c=$(a t.a)
   ?:((b i.a) [[i.a p.c] q.c] [p.c [i.a q.c]])
-::
+
+::  a is a list and b is a gate that produces a loobean. Recursively call 
+::  b separating a in to two lists p results that produced %.y and q that
+::  produced %.n
+::  ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
+::  ~dovryp-toblug/try=> (skid (limo [0 1 2 3 ~]) a)
+::  [p=[i=2 t=[i=3 t=~]] q=[i=0 t=[i=1 t=~]]]
+
 ++  skim                                                ::  only
   ~/  %skim
   |*  [a=(list) b=_|=(p=* .?(p))]
@@ -1323,7 +1389,15 @@ difference between qeu and set? and tree?
   ?@  a
     ~
   ?:((b i.a) [i.a $(a t.a)] $(a t.a))
-::
+
+::  a is a list and b is a gate that produces a loobean. Recursively call
+::  b to produce a list containing the values in a that return %.y from b.
+::  Inverse of skip.
+::  ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
+::  ~dovryp-toblug/try=> (skim (limo [0 1 2 3 ~]) a)
+::  [i=2 t=[i=3 t=~]]
+
+
 ++  skip                                                ::  except
   ~/  %skip
   |*  [a=(list) b=_|=(p=* .?(p))]
@@ -1332,14 +1406,27 @@ difference between qeu and set? and tree?
   ?@  a
     ~
   ?:((b i.a) $(a t.a) [i.a $(a t.a)])
-::
+
+::  a is a list and b is a gate that produces a loobean. Recursively call
+::  b to produce a list containing the values in a that return %.n from b.
+::  Inverse of skim.
+::  ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
+::  ~dovryp-toblug/try=> (skip (limo [0 1 2 3 ~]) a)
+::  [i=0 t=[i=1 t=~]]
+
 ++  scag                                                ::  prefix
   |*  [a=@ b=(list)]
   |-  ^+  b
   ?:  |(?=(~ b) =(0 a))
     ~
   [i.b $(b t.b, a (dec a))]
-::
+
+::  a is an atom and b is a list. Produce the first a values of b. 
+::  Inverse of slag.
+::  ~dovryp-toblug/try=> (scag 2 (limo [0 1 2 3 ~]))
+::  [i=0 t=[i=1 t=~]]
+
+
 ++  slag                                                ::  suffix
   |*  [a=@ b=(list)]
   |-  ^+  b
@@ -1348,7 +1435,13 @@ difference between qeu and set? and tree?
   ?@  b
     ~
   $(b t.b, a (dec a))
-::
+
+::  a is an atom and b is a list. Produce the last a values of b. 
+::  Inverse of scag.
+::  ~dovryp-toblug/try=> (slag 2 (limo [0 1 2 3 ~]))
+::  [i=2 t=[i=3 t=~]]
+
+
 ++  snag                                                ::  index
   ~/  %snag
   |*  [a=@ b=(list)]
@@ -1358,7 +1451,12 @@ difference between qeu and set? and tree?
   ?:  =(0 a)
     i.b
   $(b t.b, a (dec a))
-::
+
+::  a is an atom and b is a list. Produce the value at position a in b.
+::  ~dovryp-toblug/try=> (snag 2 (limo [3 2 1 0 ~]))
+::  1
+
+
 ++  sort                                                ::  quicksort
   ~/  %sort
   !:
@@ -1370,11 +1468,23 @@ difference between qeu and set? and tree?
     $(a (skim t.a |=(c=_i.a (b c i.a))))
   ^+  t.a
   [i.a $(a (skim t.a |=(c=_i.a !(b c i.a))))]
-::
+
+::  a is a list and b is a gate that takes two nouns and produces a loobean. 
+::  Recursively call b to produce a new list with the members of a.
+::  ~dovryp-toblug/try=> =a =|([p=@ q=@] |.((gth p q)))
+::  ~dovryp-toblug/try=> (sort (limo [0 1 2 3 ~]) a)
+::  ~[3 2 1 0]
+
+
 ++  swag                                                ::  infix
   |*  [[a=@ b=@] c=(list)]
   (scag b (slag a c))
-::
+
+:: [a b] is a cell and c is a list. Produces the values from a to b in c.
+::  ~dovryp-toblug/try=> (swag [1 2] (limo [1 2 3 ~]))
+::  [i=2 t=[i=3 t=~]] 
+
+
 ++  turn                                                ::  transform
   ~/  %turn
   |*  [a=(list) b=_,*]
@@ -1382,7 +1492,13 @@ difference between qeu and set? and tree?
   ?@  a
     ~
   [i=(b i.a) t=$(a t.a)]
-::
+
+::  a is a list and b is the clam of a noun. Recursively call b with the 
+::  members of a to produce a new list. 
+::  ~dovryp-toblug/try=> (turn (limo [104 111 111 110 ~]) ,@t)
+::  <|h o o n|>
+
+
 ++  weld                                                ::  concatenate
   ~/  %weld
   |*  [a=(list) b=(list)]
@@ -1390,16 +1506,36 @@ difference between qeu and set? and tree?
   |-  ^+  b
   ?~  a  b
   [i.a $(a t.a)]
-::
+
+::  a is a list and b is a list. Produces a list with a and b concatenated.
+::  ~dovryp-toblug/try=> (weld (limo [1 2 3 ~]) (limo [4 5 6 ~]))
+::  ~[1 2 3 4 5 6]
+
+
 ++  wild                                                ::  concatenate
   |*  [a=(list) b=(list)]
   =>  .(a ^.(homo a), b ^.(homo b))
   |-
   ?~  a  b
   [i=i.a $(a t.a)]
+
+::  Exactly the same as weld, except wild doesn't cast back to a list:
+::  
+::  ~tomsyt-balsen/try=> (homo (weld "foo" "bar"))
+::  ~[~~f ~~o ~~o ~~b ~~a ~~r]
+::  ~tomsyt-balsen/try=> (homo (wild "foo" "bar"))
+::  ! -find-limb.t
+::  ! find-fork
+::  ! exit
+
+
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2bC, gears                    ::
 ::
+
+::  Gears are no longer used in this version of hoon. Should be removed and 
+::  reintroduced later.
 ++  from                                                ::  range
   |=  [a=@ b=@]
   ^-  (gear ,@)
@@ -1471,7 +1607,12 @@ difference between qeu and set? and tree?
   ?:  =(0 a)
     1
   (mul 2 $(a (dec a)))
-::
+
+::  a is an atom. Produces an atom of 2^a.
+::  ~talsur-todres/try=> (bex 4)
+::  16
+
+
 ++  can                                                 ::  assemble
   ~/  %can
   |=  [a=bloq b=(list ,[p=@ q=@])]
@@ -1479,7 +1620,10 @@ difference between qeu and set? and tree?
   ?~  b
     0
   (mix (end a p.i.b q.i.b) (lsh a p.i.b $(b t.b)))
+
 ::
+
+
 ++  cat                                                 ::  concatenate
   ~/  %cat
   |=  [a=bloq b=@ c=@]
@@ -1738,15 +1882,31 @@ difference between qeu and set? and tree?
 ++  si                                                  ::  signed integer
   |%
   ++  abs  |=(a=@s (add (end 0 1 a) (rsh 0 1 a)))
+  ::  absolute value of a
+  ::
   ++  dif  |=([a=@s b=@s] (sum a (new !(syn b) (abs b))))
+  ::  signed subtraction
+  ::
   ++  dul  |=([a=@s b=@] =+(c=(old a) ?:(-.c (mod +.c b) (sub b +.c))))
+  ::  signed mod ??
+  ::
   ++  fra  |=  [a=@s b=@s]
            (new =(0 (mix (syn a) (syn b))) (div (abs a) (abs b)))
+  ::  signed division
+  ::
   ++  new  |=([a=? b=@] `@s`?:(a (mul 2 b) ?:(=(0 b) 0 +((mul 2 (dec b))))))
+  ::  convert [sign magnitude] pair to @s
+  ::
   ++  old  |=(a=@s [(syn a) (abs a)])
+  ::  sign magnitude pair
+  ::
   ++  pro  |=  [a=@s b=@s]
            (new =(0 (mix (syn a) (syn b))) (mul (abs a) (abs b)))
+  ::  signed multiplication
+  ::
   ++  rem  |=([a=@s b=@s] (dif a (pro b (fra a b))))
+  ::  signed remainder
+  ::
   ++  sum  |=  [a=@s b=@s]
            ~|  %si-sum
            =+  [c=(old a) d=(old b)]
@@ -1761,8 +1921,13 @@ difference between qeu and set? and tree?
                (new | (sub +.c +.d))
              (new & (sub +.d +.c))
            (new | (add +.c +.d))
+  ::  signed addition
+  ::
   ++  sun  |=(a=@u (mul 2 a))
+  ::  convert @u to @s
+  ::
   ++  syn  |=(a=@s =(0 (end 0 1 a)))
+  ::  %.y if a is positive, %.n if a is negative
   --
 ++  fe                                                  ::  modulo bloq
   |_  a=bloq
@@ -1804,7 +1969,7 @@ difference between qeu and set? and tree?
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2cH, urbit time               ::
 ::
-++  year
+++  year                                                ::  date to @d
   |=  det=date
   ^-  @d
   =+  ^=  yer
@@ -1813,8 +1978,14 @@ difference between qeu and set? and tree?
       (sub 292.277.024.400 (dec y.det))
   =+  day=(yawn yer m.det d.t.det)
   (yule day h.t.det m.t.det s.t.det f.t.det)
-::
-++  yore
+
+::  ~dovryp-toblug/try=> =a [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
+::  ~dovryp-toblug/try=> (year a)
+::  0x8000000d21c88d5d7456000000000000
+::  ??  Why does this return hex?
+
+
+++  yore                                                ::  @d to date
   |=  now=@d
   ^-  date
   =+  rip=(yell now)
@@ -1823,8 +1994,12 @@ difference between qeu and set? and tree?
         [a=& y=(sub y.ger 292.277.024.400)]
       [a=| y=+((sub 292.277.024.400 y.ger))]
   [m.ger d.ger h.rip m.rip s.rip f.rip]
-::
-++  yell
+
+::  ~dovryp-toblug/try=> (yore a)
+::  [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
+
+
+++  yell                                                ::  tarp from @d
   |=  now=@d
   ^-  tarp
   =+  sec=(rsh 6 1 now)
@@ -1842,8 +2017,12 @@ difference between qeu and set? and tree?
   =+  mit=(div sec mit:yo)
   =>  .(sec (mod sec mit:yo))
   [day hor mit sec fan]
-::
-++  yule
+
+::  ~dovryp-toblug/try=> (yell ~2014.3.20..05.42.53..7456)
+::  [d=106.751.991.820.094 h=5 m=42 s=53 f=~[0x7456]]
+
+
+++  yule                                                 ::  time atom?
   |=  rip=tarp
   ^-  @d
   =+  ^=  sec  ;:  add
@@ -1859,8 +2038,12 @@ difference between qeu and set? and tree?
                =>  .(muc (dec muc))
                (add (lsh 4 muc i.f.rip) $(f.rip t.f.rip))
   (con (lsh 6 1 sec) fac)
-::
-++  yall
+
+::  ~dovryp-toblug/try=> (yule (yell ~2014.3.20..05.42.53..7456))
+::  0x8000000d21c88d5d7456000000000000
+
+
+++  yall                                               ::  day # to day of year
   |=  day=@ud
   ^-  [y=@ud m=@ud d=@ud]
   =+  [era=0 cet=0 lep=_?]
@@ -1883,8 +2066,14 @@ difference between qeu and set? and tree?
   ?:  (lth day zis)
     [yer +(mot) +(day)]
   $(mot +(mot), day (sub day zis))
-::
-++  yawn
+
+::  ~dovryp-toblug/try=> (yawn 2.014 3 1)
+::  735.658
+::  ~dovryp-toblug/try=> (yall (yawn 2.014 3 1))
+::  [y=2.014 m=3 d=1]
+
+
+++  yawn                                                ::  day # from AD    
   |=  [yer=@ud mot=@ud day=@ud]
   ^-  @ud
   =>  .(mot (dec mot), day (dec day))
@@ -1908,11 +2097,21 @@ difference between qeu and set? and tree?
     =+  nec=(sub yer 100)
     $(yer nec, day (add day ?:((yelp nec) 36.525 36.524)))
   (add day (mul (div yer 400) (add 1 (mul 4 36.524))))
-::
-++  yelp
+
+::  ~dovryp-toblug/try=> (yawn 2.014 3 1)
+::  735.658
+::  ~dovryp-toblug/try=> (yall (yawn 2.014 3 1))
+::  [y=2.014 m=3 d=1]
+
+
+++  yelp                                                ::  leap year
   |=  yer=@ud  ^-  ?
   &(=(0 (mod yer 4)) |(!=(0 (mod yer 100)) =(0 (mod yer 400))))
-::
+
+::  ~dovryp-toblug/try=> (yelp 2.014)
+::  %.n
+
+
 ++  yo
   |%  ++  cet  36.524                 ::  (add 24 (mul 100 365))
       ++  day  86.400                 ::  (mul 24 hor)
@@ -1925,6 +2124,8 @@ difference between qeu and set? and tree?
       ++  qad  126.144.001            ::  (add 1 (mul 4 yer))
       ++  yer  31.536.000             ::  (mul 365 day)
   --
+::  A kelp of time constants.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2cI, almost macros            ::
 ::
@@ -1964,7 +2165,14 @@ difference between qeu and set? and tree?
     ?@  a
       &
     ?&((b n.a) $(a l.a) $(a r.a))
-  ::
+  
+  ::  Takes a gate b that takes any noun and produces a loobean. +-all produces
+  ::  the logical and of all the values (n.a) in a. 
+  ::  ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+  ::  ~dovryp-toblug/try=> (~(all in b) |=(a=* ?@(-.a & |)))
+  ::  %.n
+
+
   +-  any
     ~/  %any
     |*  b=$+(* ?)
@@ -1972,7 +2180,14 @@ difference between qeu and set? and tree?
     ?@  a
       |
     ?|((b n.a) $(a l.a) $(a r.a))
-  ::
+  
+  ::  Takes a gate b that takes any noun and produces a loobean. +-any produces
+  ::  the logical or of all the values (q.n.a) in a. 
+  ::  ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+  ::  ~dovryp-toblug/try=> (~(any in b) |=(a=* ?@(+.a & |)))
+  ::  %.y
+
+
   +-  del
     ~/  %del
     |*  b=*
@@ -1989,7 +2204,13 @@ difference between qeu and set? and tree?
     ?:  (vor n.l.a n.r.a)
       [n.l.a l.l.a $(l.a r.l.a)]
     [n.r.a $(r.a l.r.a) r.r.a]
-  ::
+
+  ::  Takes a noun b and removes the member of the set where n.a is b.
+  ::  ~dovryp-toblug/try=> =b (sa `(list ,@t)`['a' 'b' 'c' ~])
+  ::  ~dovryp-toblug/try=> (~(del in b) 'a')
+  ::  {'c' 'b'}
+
+
   +-  dig
     |=  b=*
     =+  c=1
@@ -1999,7 +2220,13 @@ difference between qeu and set? and tree?
     ?:  (gor b n.a)
       $(a l.a, c (peg c 6))
     $(a r.a, c (peg c 7))
-  ::
+
+  ::  finds the ++gor (the order of ++mug hashes) of b and n.a
+  ::  replaces a with l.a if true, r.a if not
+  ::  replaces c with ++peg c 6 if true, ++peg c 7 if not
+  ::  ??  so that's what it does, but what does it mean?
+
+
   +-  gas
     ~/  %gas
     |=  b=(list ,_?>(?=(^ a) n.a))
@@ -2007,7 +2234,15 @@ difference between qeu and set? and tree?
     ?@  b
       a
     $(b t.b, a (put(+< a) i.b))
-  ::
+
+  ::  Takes a list with some special form: ?=(^ a) is false, and the members 
+  ::  of the list are of the same bunt as the members of the set. Produces the
+  ::  set with the added members of b.
+  ::  ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+  ::  ~dovryp-toblug/try=> (~(gas in a) `(list ,@t)`['d' 'e' 'f' 
+  ::  {'e' 'd' 'f' 'a' 'c' 'b'}
+
+
   +-  has
     ~/  %has
     |*  b=*
@@ -2019,7 +2254,16 @@ difference between qeu and set? and tree?
     ?:  (hor b n.a)
       $(a l.a)
     $(a r.a)
-  ::
+
+  ::  Takes any noun b and produces a loobean indicating whether that value 
+  ::  (n.a) exists in a.
+  ::  ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+  ::  ~dovryp-toblug/try=> (~(has in a) 'a')
+  ::  %.y
+  ::  ~dovryp-toblug/try=> (~(has in a) 'z')
+  ::  %.n
+
+
   +-  put
     ~/  %put
     |*  b=*
@@ -2039,13 +2283,24 @@ difference between qeu and set? and tree?
     ?:  (vor n.a n.c)
       [n.a l.a c]
     [n.c [n.a l.a l.c] r.c]
-  ::
+
+  ::  Takes any noun b and adds it to the set a on the head (n=b).
+  ::  ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+  ::  ~dovryp-toblug/try=> (~(put in a) 'd')
+  ::  {'d' 'a' 'c' 'b'}
+
+
   +-  rep
     |*  [b=* c=_,*]
     |-
     ?~  a  b
     $(a r.a, b $(a l.a, b (c n.a b)))
-  ::
+
+  ::  Takes a cell with any noun b and a tile c. Walks through the set 
+  ::  replacing b with (c n.a b): applying c to n.a b.
+  ::  ??  But, what is it for? Can't find calls to it.
+
+
   +-  tap
     ~/  %tap
     |=  b=(list ,_?>(?=(^ a) n.a))
@@ -2053,12 +2308,20 @@ difference between qeu and set? and tree?
     ?@  a
       b
     $(a r.a, b [n.a $(a l.a)])
-  ::
+
+  ::  Takes a list tile. Produces the set a converted to a list.
+
+
   +-  wyt
     .+
     |-  ^-  @
     ?~(a 0 +((add $(a l.a) $(a r.a))))
   --
+
+  ::  Counts the depth of a.
+  ::  ??  
+
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2dB, maps                     ::
 ::
@@ -2069,10 +2332,17 @@ difference between qeu and set? and tree?
   ?&  ?@(l.a & ?&((vor p.n.a p.n.l.a) (hor p.n.l.a p.n.a)))
       ?@(r.a & ?&((vor p.n.a p.n.r.a) (hor p.n.a p.n.r.a)))
   ==
-::
+
+::  Takes a tree of nouns, produces a loobean. 
+::  ??  Not sure about this one.
+
+
 ++  by                                                  ::  map engine
   ~/  %by
   |/  a=(map)
+
+  ::  ++by takes a map a, which is accessible to all of its +- arms
+
   +-  all
     ~/  %all
     |*  b=$+(* ?)
@@ -2080,7 +2350,14 @@ difference between qeu and set? and tree?
     ?@  a
       &
     ?&((b q.n.a) $(a l.a) $(a r.a))
-  ::
+  
+  ::  Takes a gate b that takes any noun and produces a loobean. +-all produces
+  ::  the logical and of all the values (q.n.a) in a. 
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+  ::  ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
+  ::  %.n
+
+
   +-  any
     ~/  %any
     |*  b=$+(* ?)
@@ -2088,7 +2365,14 @@ difference between qeu and set? and tree?
     ?@  a
       |
     ?|((b q.n.a) $(a l.a) $(a r.a))
-  ::
+
+  ::  Takes a gate b that takes any noun and produces a loobean. +-any produces
+  ::  the logical or of all the values (q.n.a) in a. 
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+  ::  ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
+  ::  %.y
+  
+
   +-  del
     ~/  %del
     |*  b=*
@@ -2105,7 +2389,13 @@ difference between qeu and set? and tree?
     ?:  (vor p.n.l.a p.n.r.a)
       [n.l.a l.l.a $(l.a r.l.a)]
     [n.r.a $(r.a l.r.a) r.r.a]
-  ::
+
+  ::  Takes a noun b and removes the member of the map a where p.a is b.
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(del by b) 'a')
+  ::  {[p='b' q=[2 3]]}
+
+
   +-  dig
     |=  b=*
     =+  c=1
@@ -2115,7 +2405,14 @@ difference between qeu and set? and tree?
     ?:  (gor b p.n.a)
       $(a l.a, c (peg c 6))
     $(a r.a, c (peg c 7))
-  ::
+  
+  ::  Takes any noun b and produces the axis of b within the values (p.a) of a.
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(dig by b) 'b')
+  ::  [~ 2]
+  ::  ??  need to confirm this is true
+  
+
   +-  gas
     ~/  %gas
     |*  b=(list ,[p=* q=*])
@@ -2124,7 +2421,10 @@ difference between qeu and set? and tree?
     ?@  b
       a
     $(b t.b, a (put(+< a) p.i.b q.i.b))
-  ::
+  
+  ::  ??  Not sure about this. Returning later.
+
+
   +-  get
     ~/  %get
     |*  b=*
@@ -2136,18 +2436,37 @@ difference between qeu and set? and tree?
     ?:  (gor b p.n.a)
       $(a l.a)
     $(a r.a)
-  ::
+  
+  ::  Takes any noun b and produces the value (q.a) at key (p.a) b or null if 
+  ::  the key doesn't exist.
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(get by b) 'b')
+  ::  [~ [2 3]]
+
+
   +-  has
     ~/  %has
     |*  b=*
     !=(~ (get(+< a) b))
-  ::
+  
+  ::  Takes any noun b and produces a loobean indicating whether that key (p.a) 
+  ::  exists in a.
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(has by b) 'b')
+  ::  %.y
+  ::  ~talsur-todres/try=> (~(has by b) 'c')
+  ::  %.n
+
   +-  mar
     |*  [b=_?>(?=(^ a) p.n.a) c=(unit ,_?>(?=(^ a) q.n.a))]
     ?~  c
       (del b)
     (put b u.c)
-  ::
+
+  ::  deletes the key at b or puts the value of the unit c in at b
+  ::  ??  Not so sure about this.
+
+
   +-  put
     ~/  %put
     |*  [b=* c=*]
@@ -2169,13 +2488,27 @@ difference between qeu and set? and tree?
     ?:  (vor p.n.a p.n.d)
       [n.a l.a d]
     [n.d [n.a l.a l.d] r.d]
-  ::
+  
+  ::  Takes a cell of two nouns [b=* c=*] and produces the map a with added 
+  ::  [b=* c=*]
+  ::  ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+  ::  ~talsur-todres/try=> (~(put by b) 'c' 1)
+  ::  {[p='a' q=1] [p='c' q=1] [p='b' q=[2 3]]}
+
+
   +-  rep
     |*  [b=* c=_,*]
     |-
     ?~  a  b
     $(a r.a, b $(a l.a, b (c n.a b)))
-  ::
+
+  ::  walk through the list calling c with a and b
+  ::  could be used to add all the values in a list
+  ::  if a is null return b
+  ::  else recurse with a set to r.a, b set to (c n.a b)
+  ::  ??  returns with (c n.a b) from the last leftmost part of the tree?
+
+
   +-  rib
     |*  [b=* c=_,*]
     |-  ^+  [b a]
@@ -2185,13 +2518,24 @@ difference between qeu and set? and tree?
     =+  e=$(a l.a, b -.d)
     =+  f=$(a r.a, b -.e)
     [-.f [n.a +.e +.f]]
-  ::
+
+  ::  Produces the accumulated value of c from walking through the tree
+  ::  and a new tree
+  ::  ??  not sure about this one.
+
+
   +-  run
     |*  b=_,*
     |-
     ?~  a  a
     [[p.n.a (b q.n.a)] $(a l.a) $(a r.a)]
-  ::
+  
+  ::  Takes a gate b that produces any noun, produces a null-terminated tuple
+  ::  by running each element in map a through b. 
+  ::  ~talsur-todres/try=>  =b (mo `(list ,[@t *])`[['a' 97] ['b' 98] ~])  
+  ::  ~talsur-todres/try=> (~(run by b) ,@t)
+  ::  [['b' 'b'] [['a' 'a'] ~ ~] ~]
+
   +-  tap
     ~/  %tap
     |=  b=(list ,_?>(?=(^ a) n.a))
@@ -2199,12 +2543,22 @@ difference between qeu and set? and tree?
     ?@  a
       b
     $(a r.a, b [n.a $(a l.a)])
-  ::
+
+  ::  b is a list that has similar values to those that are in a
+  ::  ??  not sure.
+
+
   +-  wyt
     .+
     |-  ^-  @
     ?~(a 0 +((add $(a l.a) $(a r.a))))
   --
+
+  ::  Counts the depth of a.
+  ::  ??  This is a bit confusing — it increments on each recursion, but 
+  ::  produces 0 when it hits the end?
+  ::  -- produces a number or zero
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2dC, queues                   ::
 ::
@@ -2218,17 +2572,28 @@ difference between qeu and set? and tree?
     ?.  |(?=(~ r.a) (vor n.a n.r.a))
       $(a [n.r.a $(a [n.a l.a l.r.a]) r.r.a])
     a
-  ::
+
+  ::  Walk through the queue and use vor to order individual parts
+  ::  ??  Come back.
+
+
   +-  dep
     |-  ^-  @
     ?~  a  0
     +((max $(a l.a) $(a r.a)))
-  ::
+  
+  ::  Produce the depth of the queue by following l.a and r.a.
+
+
   +-  gas
     |=  b=(list ,_?>(?=(^ a) n.a))
     |-  ^+  a
     ?~(b a $(b t.b, a (put(+< a) i.b)))
-  ::
+
+  ::  Take the icon of a list b and produce a gate that creates a ++qeu from a
+  ::  list.
+
+
   +-  get
     |-  ^+  [p=?>(?=(^ a) n.a) q=a]
     ?~  a
@@ -2240,31 +2605,54 @@ difference between qeu and set? and tree?
     ?:  |(?=(~ q.b) (vor n.a n.q.b))
       [n.a l.a q.b]
     [n.q.b [n.a l.a l.q.b] r.q.b]
-  ::
+
+  ::  Produce the qeu in [p=* q=*] format.
+
+
   +-  nap
     ?>  ?=(^ a)
     ?:  =(~ l.a)  r.a
     =+  b=get(+< l.a)
     bal(+< ^+(a [p.b q.b r.a]))
-  ::
+
+  ::  ??  Not sure. Returning.
+
+
   +-  put
     |*  b=*
     |-  ^+  a
     ?~  a
       [b ~ ~]
     bal(+< a(l $(a l.a)))
-  ::
+  
+  ::  Takes any noun b and adds it to top of the qeu.
+  ::  =a (~(gas to `(qeu ,@)`~) `(list ,@)`[3 1 2 4 5 6 ~])
+  ::  ~dovryp-toblug/try=> (~(put to a) 7)
+  ::  {7 6 5 4 2 1 3}
+
+
   +-  tap
     |=  b=(list ,_?>(?=(^ a) n.a))
     ^+  b
     ?~  a
       b
     $(a r.a, b [n.a $(a l.a)])
-  ::
+  
+  ::  Takes a list b whose icon corresponds to the icon of n.a. Produces a 
+  ::  ++qeu with the members of b added to the bottom.
+  ::  ~dovryp-toblug/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[3 1 2 4 5 6 ~])
+  ::  ~dovryp-toblug/try=> (~(tap to a) `(list ,@)`[99 100 101 ~])
+  ::  ~[3 1 2 4 5 6 99 100 101]
+
+
   +-  top
     |-  ^-  (unit ,_?>(?=(^ a) n.a))
     ?~  a  ~
     ?~(r.a [~ n.a] $(a r.a))
+  
+  ::  Produces the rightmost item in the tree of ++qeu a.
+
+
   --
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2dD, casual containers        ::
