@@ -1508,7 +1508,15 @@
   ?~  a  b
   [i=i.a $(a t.a)]
 
-::  ??  This really looks exactly the same as weld. What's up?
+::  Exactly the same as weld, except wild doesn't cast back to a list:
+::  
+::  ~tomsyt-balsen/try=> (homo (weld "foo" "bar"))
+::  ~[~~f ~~o ~~o ~~b ~~a ~~r]
+::  ~tomsyt-balsen/try=> (homo (wild "foo" "bar"))
+::  ! -find-limb.t
+::  ! find-fork
+::  ! exit
+
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -1852,15 +1860,31 @@
 ++  si                                                  ::  signed integer
   |%
   ++  abs  |=(a=@s (add (end 0 1 a) (rsh 0 1 a)))
+  ::  absolute value of a
+  ::
   ++  dif  |=([a=@s b=@s] (sum a (new !(syn b) (abs b))))
+  ::  signed subtraction
+  ::
   ++  dul  |=([a=@s b=@] =+(c=(old a) ?:(-.c (mod +.c b) (sub b +.c))))
+  ::  signed mod ??
+  ::
   ++  fra  |=  [a=@s b=@s]
            (new =(0 (mix (syn a) (syn b))) (div (abs a) (abs b)))
+  ::  signed division
+  ::
   ++  new  |=([a=? b=@] `@s`?:(a (mul 2 b) ?:(=(0 b) 0 +((mul 2 (dec b))))))
+  ::  convert [sign magnitude] pair to @s
+  ::
   ++  old  |=(a=@s [(syn a) (abs a)])
+  ::  sign magnitude pair
+  ::
   ++  pro  |=  [a=@s b=@s]
            (new =(0 (mix (syn a) (syn b))) (mul (abs a) (abs b)))
+  ::  signed multiplication
+  ::
   ++  rem  |=([a=@s b=@s] (dif a (pro b (fra a b))))
+  ::  signed remainder
+  ::
   ++  sum  |=  [a=@s b=@s]
            ~|  %si-sum
            =+  [c=(old a) d=(old b)]
@@ -1875,8 +1899,13 @@
                (new | (sub +.c +.d))
              (new & (sub +.d +.c))
            (new | (add +.c +.d))
+  ::  signed addition
+  ::
   ++  sun  |=(a=@u (mul 2 a))
+  ::  convert @u to @s
+  ::
   ++  syn  |=(a=@s =(0 (end 0 1 a)))
+  ::  %.y if a is positive, %.n if a is negative
   --
 ++  fe                                                  ::  modulo bloq
   |_  a=bloq
@@ -1918,7 +1947,7 @@
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2cH, urbit time               ::
 ::
-++  year
+++  year                                                ::  date to @d
   |=  det=date
   ^-  @d
   =+  ^=  yer
@@ -1928,7 +1957,7 @@
   =+  day=(yawn yer m.det d.t.det)
   (yule day h.t.det m.t.det s.t.det f.t.det)
 ::
-++  yore
+++  yore                                                ::  @d to date
   |=  now=@d
   ^-  date
   =+  rip=(yell now)
@@ -1938,7 +1967,7 @@
       [a=| y=+((sub 292.277.024.400 y.ger))]
   [m.ger d.ger h.rip m.rip s.rip f.rip]
 ::
-++  yell
+++  yell                                                ::  tarp from @d
   |=  now=@d
   ^-  tarp
   =+  sec=(rsh 6 1 now)
@@ -1957,7 +1986,7 @@
   =>  .(sec (mod sec mit:yo))
   [day hor mit sec fan]
 ::
-++  yule
+++  yule                                                 ::  time atom?
   |=  rip=tarp
   ^-  @d
   =+  ^=  sec  ;:  add
@@ -1974,7 +2003,7 @@
                (add (lsh 4 muc i.f.rip) $(f.rip t.f.rip))
   (con (lsh 6 1 sec) fac)
 ::
-++  yall
+++  yall                                               ::  day # to day of year
   |=  day=@ud
   ^-  [y=@ud m=@ud d=@ud]
   =+  [era=0 cet=0 lep=_?]
@@ -1998,7 +2027,7 @@
     [yer +(mot) +(day)]
   $(mot +(mot), day (sub day zis))
 ::
-++  yawn
+++  yawn                                                ::  day # from AD    
   |=  [yer=@ud mot=@ud day=@ud]
   ^-  @ud
   =>  .(mot (dec mot), day (dec day))
@@ -2023,7 +2052,7 @@
     $(yer nec, day (add day ?:((yelp nec) 36.525 36.524)))
   (add day (mul (div yer 400) (add 1 (mul 4 36.524))))
 ::
-++  yelp
+++  yelp                                                ::  leap year
   |=  yer=@ud  ^-  ?
   &(=(0 (mod yer 4)) |(!=(0 (mod yer 100)) =(0 (mod yer 400))))
 ::
