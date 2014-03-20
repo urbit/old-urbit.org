@@ -1968,7 +1968,13 @@
       (sub 292.277.024.400 (dec y.det))
   =+  day=(yawn yer m.det d.t.det)
   (yule day h.t.det m.t.det s.t.det f.t.det)
-::
+
+::  ~dovryp-toblug/try=> =a [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
+::  ~dovryp-toblug/try=> (year a)
+::  0x8000000d21c88d5d7456000000000000
+::  ??  Why does this return hex?
+
+
 ++  yore                                                ::  @d to date
   |=  now=@d
   ^-  date
@@ -1978,7 +1984,11 @@
         [a=& y=(sub y.ger 292.277.024.400)]
       [a=| y=+((sub 292.277.024.400 y.ger))]
   [m.ger d.ger h.rip m.rip s.rip f.rip]
-::
+
+::  ~dovryp-toblug/try=> (yore a)
+::  [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
+
+
 ++  yell                                                ::  tarp from @d
   |=  now=@d
   ^-  tarp
@@ -1997,7 +2007,11 @@
   =+  mit=(div sec mit:yo)
   =>  .(sec (mod sec mit:yo))
   [day hor mit sec fan]
-::
+
+::  ~dovryp-toblug/try=> (yell ~2014.3.20..05.42.53..7456)
+::  [d=106.751.991.820.094 h=5 m=42 s=53 f=~[0x7456]]
+
+
 ++  yule                                                 ::  time atom?
   |=  rip=tarp
   ^-  @d
@@ -2014,7 +2028,11 @@
                =>  .(muc (dec muc))
                (add (lsh 4 muc i.f.rip) $(f.rip t.f.rip))
   (con (lsh 6 1 sec) fac)
-::
+
+::  ~dovryp-toblug/try=> (yule (yell ~2014.3.20..05.42.53..7456))
+::  0x8000000d21c88d5d7456000000000000
+
+
 ++  yall                                               ::  day # to day of year
   |=  day=@ud
   ^-  [y=@ud m=@ud d=@ud]
@@ -2038,7 +2056,13 @@
   ?:  (lth day zis)
     [yer +(mot) +(day)]
   $(mot +(mot), day (sub day zis))
-::
+
+::  ~dovryp-toblug/try=> (yawn 2.014 3 1)
+::  735.658
+::  ~dovryp-toblug/try=> (yall (yawn 2.014 3 1))
+::  [y=2.014 m=3 d=1]
+
+
 ++  yawn                                                ::  day # from AD    
   |=  [yer=@ud mot=@ud day=@ud]
   ^-  @ud
@@ -2063,11 +2087,21 @@
     =+  nec=(sub yer 100)
     $(yer nec, day (add day ?:((yelp nec) 36.525 36.524)))
   (add day (mul (div yer 400) (add 1 (mul 4 36.524))))
-::
+
+::  ~dovryp-toblug/try=> (yawn 2.014 3 1)
+::  735.658
+::  ~dovryp-toblug/try=> (yall (yawn 2.014 3 1))
+::  [y=2.014 m=3 d=1]
+
+
 ++  yelp                                                ::  leap year
   |=  yer=@ud  ^-  ?
   &(=(0 (mod yer 4)) |(!=(0 (mod yer 100)) =(0 (mod yer 400))))
-::
+
+::  ~dovryp-toblug/try=> (yelp 2.014)
+::  %.n
+
+
 ++  yo
   |%  ++  cet  36.524                 ::  (add 24 (mul 100 365))
       ++  day  86.400                 ::  (mul 24 hor)
@@ -2080,6 +2114,8 @@
       ++  qad  126.144.001            ::  (add 1 (mul 4 yer))
       ++  yer  31.536.000             ::  (mul 365 day)
   --
+::  A kelp of time constants.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ::                section 2cI, almost macros            ::
 ::
