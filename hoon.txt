@@ -40,7 +40,7 @@
 |%                                                      ::
 
 ::  ??  Models all use , ($,) or %clam. When you pass a clam a value, it produces
-::  ??  something similar to a bunt?
+::  something similar to a bunt?
 
 ::::::  Atom models
 
@@ -198,7 +198,6 @@
 ::  ~[2.239.102.822.615.623.022.927.944.589.735.038 7.959.156]
 ::  ~tomsyt-balsen/try=> `(list ,term)`/~tomsyt-balsen/try
 ::  ~[%~tomsyt-balsen %try]
-::  ??  are forward slashes interpreted as a kind of list delimeter here?
 
 
 ++  wall  (list tape)                                   ::  text lines
@@ -314,7 +313,7 @@
 
 ::  $% is a kelp. wet elm, dry ash, null, labeled? oak and yew for inheritance,
 ::  ignore
-::  ??  this needs further investigation
+::  ??  This needs an explanation of the difference between wet and dry
 
 ++  gear  |*  a=_,*                                     ::  list generator
           $_                                            ::
@@ -324,9 +323,7 @@
             ~                                           ::
           [i=(a -.b) t=^?(..$(b +.b))]                  ::
 
-::  ??  the last line makes some sense, but what is it used for?
-::  ??  apparently a would be a core that produces either a list or null`
-::  !!
+::  Gears are not currently used.
 
 
 ++  like  |*  a=_,*                                     ::  generic edge
@@ -343,11 +340,8 @@
 
 ++  limb  $|(term $%([%& p=axis] [%| p=@ud q=term]))    ::
 
-
-::  $| is a %reed. ++ limb is a term and an axis or a term and a unsigned 
-::  decimal. 
-::  ??  Name, axis, or ??
-::  !!
+::  $| is a %reed. ++limb is a term and an axis or a term and a unsigned 
+::  decimal. This is how values are addressed in wings.
 
 
 ++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::  kelp case labels
@@ -372,7 +366,8 @@
 ++  tree  |*  a=_,*                                     ::  binary tree
           $|(~ [n=a l=(tree a) r=(tree a)])             ::
 
-::  A simple binary tree. node is n, l is left, r is right. ~ terminates
+::  A simple binary tree. node is n, l is left, r is right. ~ terminates. Maps,
+::  Sets and Queues are all trees.
 ::     n
 ::  l     r
 
@@ -420,7 +415,6 @@
           ==                                            ::
 
 ::  Four cases: a tank, a term, a noun or a spot
-::  ??  tracing hints  
 
 
 ++  tank  $%  [%leaf p=tape]                            ::  printing formats
@@ -477,8 +471,8 @@
           ==                                            ::
 
 
-::  A term and one of three cases: null, a term and a ++ toga, or a ++ toga pair.
-::  wraps a whole tree with faces
+::  A term and one of three cases: null, a term and a ++toga, or a ++toga pair.
+::  Wraps a whole tree with faces
 
 
 ++  twig  $&  [p=twig q=twig]                           ::
@@ -724,6 +718,7 @@
 ::  %wtts produces true if the leg in wing q is in the tile p
 ::  %wtzp logical not of p
 
+
 ++  tine  (list ,[p=tile q=twig])                       ::
 
 ::  A list of tile twig pairs
@@ -755,6 +750,7 @@
           ==                                            ::
 
 ::  Three cases: a noun a, a list, and a list of span noun pairs
+
 
                                                         ::::::  virtual nock
 ++  nock  $&  [p=nock q=nock]                           ::  autocons 
@@ -825,6 +821,8 @@
 ::  ??  Alias?
 
 
+::::::  Diff architecture
+
 ++  udal                                                ::  atomic change (%b)
           $:  p=@ud                                     ::  blockwidth
               q=(list ,[p=@ud q=(unit ,[p=@ q=@])])     ::  indels
@@ -832,7 +830,6 @@
 
 ::  An unsigned decimal and a list the pair of a @ud and a unit atom pair
 
-::::::  Diff architecture
 
 ++  udon                                                ::  abstract delta
           $:  p=umph                                    ::  preprocessor
@@ -845,7 +842,8 @@
           ==                                            ::
 
 ::  insertions and deletes
-::  !!  
+::  ??  Looks to be used by the diffs. Needs further explanation.
+
 
 ++  ulna  ,[p=* q=*]                                    ::  from to
 
@@ -860,13 +858,14 @@
           $%  [%d p=@ud]                                ::  blocklist
           ==                                            ::
 
-::  $| produces a %reed ([%reed p=tile q=tile]), does the $? then return two 
-::  cases? or is the second case returned by $% (always a @ud)?
+::  $| produces a %reed ([%reed p=tile q=tile])
+::  ??  does the $? then return two cases? or is the second case returned by $%
+::  (always a @ud)?
 
 
 ++  unce  |*  a=_,*                                     ::  change part
           $%([%& p=@ud] [%| p=(list a) q=(list a)])     ::
-::  !!
+::  ??
 
 
 ++  unit  |*  a=_,*                                     ::  maybe
@@ -887,7 +886,7 @@
 
 ++  urge  |*(a=_,* (list (unce a)))                     ::  list change
 
-::  !!  Basically a list of unce, document unce first.
+::  ??  Basically a list of unce, document unce first.
 
 
 ++  vase  ,[p=type q=*]                                 ::  type-value pair
@@ -918,7 +917,7 @@
               [%unit p=term q=wine]                     ::
           ==                                            ::
 
-::  a list of cubes, the first of which are types, the remainder of which look 
+::  A list of cubes, the first of which are types, the remainder of which look 
 ::  to be used for building trees of wines. 
 ::  ??  what's a %wool or a yarn?
 ::  ??  types to print. 
@@ -926,7 +925,7 @@
 
 ++  woof  (list $|(@ud [p=@ud q=@ud]))                  ::  udon transform
 
-::  ??  a list of reeds (that produce cells)?
+::  ??  a list of reeds (that produce cells)? Probably for diffs.
 
 
 ++  wonk  |*(veq=edge ?@(q.veq !! p.u.q.veq))           ::
@@ -938,21 +937,21 @@
 ++  map  |*  [a=_,* b=_,*]                              ::  associative array
          $|(~ [n=[p=a q=b] l=(map a b) r=(map a b)])    ::
 
-::  a map takes two nouns and 
-::  !!  usage example?
+::  A map is a tree of [p=* q=*] cells where n is the node, and l and r are 
+::  branches. Similar to ++tree.
 
 
 ++  qeu  |*  a=_,*                                      ::  queue type
          $|(~ [n=a l=(qeu a) r=(qeu a)])                ::
 
-::  ??  difference between qeu and set? and tree?
+::  A qeu is a tree, but is inteded for use in the queue engine, ++to.
 
 
 ++  set  |*  a=_,*                                      ::  set type
          $|(~ [n=a l=(set a) r=(set a)])                ::
 
-::  ??  difference between qeu and set? and tree?
-::  --  maps have n=[p=a q=b] and sets and qeu have n=a
+::  A set is a tree, but is intended for use in the set engine, ++in.
+
 
 --                                                      ::
 ::::::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -998,7 +997,7 @@
     b
   $(a (dec a), b +(b))
 
-:: Add atoms a and b
+:: Add atoms a and b by counting down a to zero and incrementing b. Produce b.
 
 
 ++  sub                                                 ::  subtract
@@ -1010,7 +1009,8 @@
     a
   $(a (dec a), b (dec b))
 
-:: Subtract atoms a and b
+:: Subtract atoms a and b by counting down a to zero and decrementing b. 
+:: Produce b.
 
 
 ++  mul                                                 ::  multiply
@@ -1023,7 +1023,8 @@
     c
   $(a (dec a), c (add b c))
 
-:: Multiply atoms a and b
+::  Multiply atoms a and b by counting a to zero while replacing c with the sum
+::  of b and c. Produce c.
 
 
 ++  div                                                 ::  divide
@@ -1038,7 +1039,8 @@
     c
   $(a (sub a b), c +(c))
 
-:: Divide atoms a and b
+::  Divide atoms a and b by subtracting b from a until b is less than a while 
+::  incrementing c. Produce c.
 
 
 ++  mod                                                 ::  remainder
@@ -1048,7 +1050,7 @@
   ?<  =(0 b)
   (sub a (mul b (div a b)))
 
-:: Remiainder of a divided by b
+::  Remiainder of a divided by b.
 
 
 ::::::  Comparisons
@@ -1060,7 +1062,7 @@
   ^-  ?
   &(!=(a b) |-(|(=(0 a) &(!=(0 b) $(a (dec a), b (dec b))))))
 
-::  Produce a loobean of whether a < b
+::  Produce a loobean of whether a < b.
 
 
 ++  lte                                                 ::  less-equal
@@ -1068,7 +1070,7 @@
   |=  [a=@ b=@]
   |(=(a b) (lth a b))
 
-::  Produce a loobean of whether a <= b
+::  Produce a loobean of whether a <= b.
 
 
 ++  gth                                                 ::  greater-than
@@ -1077,7 +1079,8 @@
   ^-  ?
   !(lte a b)
 
-::  Produce a loobean of whether a > b
+::  Produce a loobean of whether a > b.
+
 
 ++  gte                                                 ::  greater-equal
   ~/  %gte
@@ -1085,7 +1088,7 @@
   ^-  ?
   !(lth a b)
 
-::  Produce a loobean of whether a >= b
+::  Produce a loobean of whether a >= b.
 
 
 ++  max                                                 ::  maximum
@@ -1096,7 +1099,7 @@
     a
   b
 
-::  Produce the maximum of a and b
+::  Produce the maximum of a and b.
 
 
 ++  min                                                 ::  minimum
@@ -1108,7 +1111,7 @@
   b
 ::
 
-::  Produce the minimum of a and b
+::  Produce the minimum of a and b.
 
 
 ::::::  Nock tree calculations
@@ -1125,7 +1128,7 @@
     *         $(a (div a 2))
   ==
 
-::  asks, is this axis in the head of the noun or the tail?
+::  Takes an atom a. Produces %2 if a is in the head, %3 if in the tail. 
 
 
 ++  mas                                                 ::  tree body
@@ -1139,8 +1142,8 @@
     *   (add (mod a 2) (mul $(a (div a 2)) 2))
   ==
 
-::  calculates axis within the head or the tail
-::  a is always the same as (peg (cap a) (mas a))
+::  Takes an atom a. Produces the axis within the head or the tail.
+::  a is always the same as (peg (cap a) (mas a)).
 
 
 ++  peg                                                 ::  tree connect
@@ -1153,7 +1156,7 @@
     3   +((mul a 2))
     *   (add (mod b 2) (mul $(b (div b 2)) 2))
   ==
-::  calculates the axis of axis b within axis a
+::  Produces the axis of axis b within axis a.
 
 
 ::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::  ::
@@ -1166,7 +1169,7 @@
 ::            $|(~ [~ u=a])                                 ::
 
 ::  Takes a noun and is either a null or the cell [~ noun]
-::  ??  Why are there two of these? Reference?
+
 
 ++  bind                                                    ::  argue
   |*  [a=(unit) b=_,*]
@@ -1176,7 +1179,8 @@
 
 ::  Takes a unit and any gate, produces a unit [~ u=(the noun the unit 
 ::  noun)] apply the gate b to the u in unit a
-::  ??  Not entirely sure of this.
+::  ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
+::  [~ 'a']
 
 
 ++  clap                                                ::  combine
@@ -1188,8 +1192,11 @@
   [~ u=(c u.a u.b)]
 
 ::  If a is ~ produce b, if b is ~ produce a
-::  ??  not exactly sure how c is working. it's a gate that produces part of 
-::  the subject? In practice seems to just return a.
+::  ~talsur-todres/try=> =a ((unit ,@u) [~ 1])
+::  ~talsur-todres/try=> =b ((unit ,@u) [~ 2])
+::  ~talsur-todres/try=> =c |=([a=@ b=@] (add a b))
+::  ~talsur-todres/try=> (clap a b c)
+::  [~ 3]
 
 
 ++  drop                                                ::  enlist
@@ -1198,8 +1205,7 @@
     ~
   [i=u.a t=~]
 
-::  If a is ~ return ~, else [i=u.a t=~]
-::  ??  Is this a list?
+::  Takes a unit a. Produces a list [u.a ~] or ~ if a is null.
 
 
 ++  fall                                                ::  default
@@ -1207,6 +1213,10 @@
   ?~(a b u.a)
 
 ::  If not a return b else u.a
+::  ~talsur-todres/try=> (fall ~ 'a')
+::  'a'
+::  ~talsur-todres/try=> (fall [~ u=0] 'a')
+::  0
 
 
 ++  mate                                                ::  choose
@@ -1217,8 +1227,8 @@
     b
   ?.(=(u.a u.b) ~|('mate' !!) a)
 
-::  If not b then produce a, if not a then produce b, else produce a if u.a and
-::  u.b are equal. Crash if they're not equal.
+::  Takes two units a and b. If not b then produce a, if not a then produce b,
+::  else produce a if u.a and u.b are equal. Crash if they're not equal.
 
 
 ++  need                                                ::  demand
@@ -1227,14 +1237,14 @@
     !!
   u.a
 
-::  If a is an atom produce a crash, else produce u.a. Extracts u from a unit.
+::  Takes a unit a. If a is an atom produce a crash, else produce u.a. 
 
 
 ++  some                                                ::  lift
   |*  a=*
   [~ u=a]
 
-::  Take any noun and produce [~ u=a]. Turn anything in to a unit.
+::  Takes any noun a and produces [~ u=a]. 
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -2453,6 +2463,7 @@
       (del b)
     (put b u.c)
 
+  ::  deletes the key at b or puts the value of the unit c in at b
   ::  ??  Not so sure about this.
 
 
@@ -2491,6 +2502,8 @@
     ?~  a  b
     $(a r.a, b $(a l.a, b (c n.a b)))
 
+  ::  walk through the list calling c with a and b
+  ::  could be used to add all the values in a list
   ::  if a is null return b
   ::  else recurse with a set to r.a, b set to (c n.a b)
   ::  ??  returns with (c n.a b) from the last leftmost part of the tree?
@@ -2506,6 +2519,8 @@
     =+  f=$(a r.a, b -.e)
     [-.f [n.a +.e +.f]]
 
+  ::  Produces the accumulated value of c from walking through the tree
+  ::  and a new tree
   ::  ??  not sure about this one.
 
 
@@ -2529,6 +2544,7 @@
       b
     $(a r.a, b [n.a $(a l.a)])
 
+  ::  b is a list that has similar values to those that are in a
   ::  ??  not sure.
 
 

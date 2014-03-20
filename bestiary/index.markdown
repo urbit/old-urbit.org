@@ -35,5 +35,6 @@ title: Urban Bestiary, Index
 + [**miscellaneous:** sem, `;`](/bestiary/hoon/rune/sem/)
 + [**special:** zap,  `!`](/bestiary/hoon/rune/zap/)
 
+###Spec###
 
-
++ [Annotated hoon.hoon (work in progress)](/hoon.txt)
