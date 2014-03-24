@@ -451,7 +451,7 @@
               [%weed p=twig]                            ::  example
           ==                                            ::
 
-::  A convenient mechnasim for making well-typed nouns.
+::  A convenient mechanism for making well-typed nouns.
 ::  An axil is an icon for an odored atom, a noun, a cell, a bean or null.
 ::  %bark wraps a term around a tile.
 ::  %bush is tile with an cellular head p or an atomic head q.
