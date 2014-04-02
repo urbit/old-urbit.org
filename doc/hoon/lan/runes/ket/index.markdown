@@ -1,19 +1,23 @@
 ---
 layout: subpage
-title: bar
+title: ket
 ---
 
-#gates: bar, `|`#
+#type conversions: ket, `^`#
 
 ---
-{% for post in site.pages %}
- {% if post.category contains 'bar' %}
+{% for post in site.pages%}
+ {% if post.category contains 'ket' %}
 ##[{{ post.title }}]({{ post.url }})##
 {{ post.content }}
 
 ---
 {% endif %}
 {% endfor %}
+
+
+
+
 
 
 

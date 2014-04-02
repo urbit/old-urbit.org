@@ -1,19 +1,21 @@
 ---
 layout: subpage
-title: bar
+title: buc
 ---
 
-#gates: bar, `|`#
+#type definitions: buc, `$`#
 
 ---
-{% for post in site.pages %}
- {% if post.category contains 'bar' %}
+{% for post in site.pages%}
+ {% if post.category contains 'buc' %}
 ##[{{ post.title }}]({{ post.url }})##
 {{ post.content }}
 
 ---
 {% endif %}
 {% endfor %}
+
+
 
 
 

@@ -1,19 +1,22 @@
 ---
 layout: subpage
-title: bar
+title: tis
 ---
 
-#gates: bar, `|`#
+#compositions: tis, `=`#
 
 ---
-{% for post in site.pages %}
- {% if post.category contains 'bar' %}
+{% for post in site.pages%}
+ {% if post.category contains 'tis' %}
 ##[{{ post.title }}]({{ post.url }})##
 {{ post.content }}
 
 ---
 {% endif %}
 {% endfor %}
+
+
+
 
 
 

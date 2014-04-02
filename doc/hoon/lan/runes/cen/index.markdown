@@ -1,19 +1,22 @@
 ---
 layout: subpage
-title: bar
+title: cen
 ---
 
-#gates: bar, `|`#
+#invocations: cen, `%`#
 
 ---
-{% for post in site.pages %}
- {% if post.category contains 'bar' %}
+{% for post in site.pages%}
+ {% if post.category contains 'cen' %}
 ##[{{ post.title }}]({{ post.url }})##
 {{ post.content }}
 
 ---
 {% endif %}
 {% endfor %}
+
+
+
 
 
 

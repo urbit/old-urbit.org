@@ -1,19 +1,22 @@
 ---
 layout: subpage
-title: bar
+title: col 
 ---
 
-#gates: bar, `|`#
+#tuples: col, `:`#
 
 ---
-{% for post in site.pages %}
- {% if post.category contains 'bar' %}
+{% for post in site.pages%}
+ {% if post.category contains 'col' %}
 ##[{{ post.title }}]({{ post.url }})##
 {{ post.content }}
 
 ---
 {% endif %}
 {% endfor %}
+
+
+
 
 
 

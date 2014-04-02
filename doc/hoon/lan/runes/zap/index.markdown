@@ -1,19 +1,21 @@
 ---
 layout: subpage
-title: bar
+title: zap
 ---
 
-#gates: bar, `|`#
+#special: zap, `!`#
 
 ---
-{% for post in site.pages %}
- {% if post.category contains 'bar' %}
+{% for post in site.pages%}
+ {% if post.category contains 'zap' %}
 ##[{{ post.title }}]({{ post.url }})##
 {{ post.content }}
 
 ---
 {% endif %}
 {% endfor %}
+
+
 
 
 
