@@ -5,40 +5,47 @@ axis: doc-hoon
 categories: lib
 sort: 1
 ---
-chapter 2a, basic unsigned math  
 
-This chapter covers basic mathematical operations on natural numbers (atoms), such as decremement, addition, subtraction etc. Simple comparison functions such as less-than, and a few useful functions for calculating axes within Nock nouns.
+This chapter covers basic mathematical operations on natural numbers (atoms), such as decremement, addition, subtraction etc. Simple comparison functions such as less-than, and a few useful functions for calculating axes within Nock nouns. You can find the relevant source in hoon.hoon.
 
-++  dec                                                 ::::::  decrement
-  ~/  %dec                                              ::  jet
-  |=  a=@                                               ::  gate, sample atom a
-  ~|  %decrement-underflow                              ::  crash message
-  ?<  =(0 a)                                            ::  assert a is not 0
-  =+  b=0                                               ::  push b is 0 
-  |-  ^-  @                                             ::  trap, cast as atom  
-  ?:  =(a +(b))                                         ::  if a equals b + 1
-    b                                                   ::  then produce b
-  $(b +(b))                                             ::  else loop trap
+##++dec
+
+    ++  dec                                                 ::::::  decrement
+      ~/  %dec                                              ::  jet
+      |=  a=@                                               ::  gate, sample atom a
+      ~|  %decrement-underflow                              ::  crash message
+      ?<  =(0 a)                                            ::  assert a is not 0
+      =+  b=0                                               ::  push b is 0 
+      |-  ^-  @                                             ::  trap, cast as atom  
+      ?:  =(a +(b))                                         ::  if a equals b + 1
+        b                                                   ::  then produce b
+      $(b +(b))                                             ::  else loop trap
 
 
-Summary: given an atom 'a', ++dec counts the variable 'b' up from 0 to 'a - 1'.
+++dec takes an atom `a` and produces `a - 1`
 
-Examples
-
-++dec is a jetted arm (~/, jets, link) which creates a dry %gold gate (|=, link), accepting an atomic sample (axil @, link, labeled 'a' (^=, link). 
+###Summary
+++dec is a [jetted arm]() which creates a dry %gold gate (|=, link), accepting an atomic sample (axil @, link, labeled 'a' (^=, link). 
 If 'a' is equal to 0, ++dec crashes (?<, link) and a crash message of %decrement-underflow is inserted into the stack trace (~|, link). 
 A variable b is set to 0 (^=, link) and is pushed onto the subject (=+ link). A dry %gold trap is created (|-, link), and its product is cast to an atom (^-, link).
 If (?:, link) the value of 'b' incremented (.+, link) is equal (.=, link) to 'a', then 'b' is produced. Else, the `$` arm ($, link) of the trap is activated (%=, link), with the value of 'b' set to +(b).
 
+###Examples
+    ~talsur-todres/try=> (dec 4.169)
+    4.168
+    ~talsur-todres/try=> (dec 0)
+    ! decrement-underflow
+    ! exit
 
 
-++  add                                                 ::::::  add
-  ~/  %add                                              ::  jet
-  |=  [a=@ b=@]                                         ::  gate, sample @ pair
-  ^-  @                                                 ::  cast result as atom
-  ?:  =(0 a)                                            ::  if a is 0
-    b                                                   ::  then, produce b
-  $(a (dec a), b +(b))                                  ::  loop, a - 1, b + 1
+##++add
+    ++  add                                                 ::::::  add
+      ~/  %add                                              ::  jet
+      |=  [a=@ b=@]                                         ::  gate, sample @ pair
+      ^-  @                                                 ::  cast result as atom
+      ?:  =(0 a)                                            ::  if a is 0
+        b                                                   ::  then, produce b
+      $(a (dec a), b +(b))                                  ::  loop, a - 1, b + 1
 
 
 Summary: given two atoms 'a' and 'b', ++add counts 'a' down to '0' and 'b' up to 'b + a.'
@@ -239,8 +246,3 @@ Summary: ++mas determines the axis of a noun within the head or the tail of a tr
 ::  calculates the axis of axis b within axis a
 
 Summary: ++peg determines the axis of of axis b within axis a. 
-
-<<<<<<< HEAD
-## hoon.hoon section 2a
-=======
->>>>>>> 4ef2770269ac90a6bca1bc784b3a66e5bc62dc44

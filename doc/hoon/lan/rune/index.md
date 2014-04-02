@@ -1,9 +1,13 @@
 ---
 layout: subpage
-title: Runes
+title: Rune
 axis: doc-hoon
-categories: lan
-sort: 4
+categories: lan overview
+sort: 1
 ---
 
-## RUNESSSZZ
+{% for page in site.axis.doc-hoon %}
+{% if page.categories contains 'rune' %}
+{{ page.content }}
+{% endif %}
+{% endfor %}
