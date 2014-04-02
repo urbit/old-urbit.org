@@ -11,6 +11,9 @@ tagline:          'Personal Cloud Computing'
 description:      'a personal cloud computer'
 url:              http://urbit.org
 
+post_groups:
+  - key: axis
+
 author:
   name:           'Tlon'
   url:            https://tlon.io

@@ -1,7 +1,9 @@
 ---
-layout: page
-title: a hoon
-categories: [documentation, hoon]
+layout: subpage
+title: 2a Unsigned Math
+axis: doc-hoon
+categories: lib
+sort: 1
 ---
 
-## SOME HOONS
+## hoon.hoon section 2a
