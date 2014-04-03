@@ -37,8 +37,12 @@ module Jekyll
         end
 
         # Sort the hash
-        hash.values.map { |sortme| sortme.sort! { |a, b| 
-          a.data.fetch('sort') <=> b.data.fetch('sort')  
+        hash.values.map { |sortme| sortme.sort! { |a, b|
+          if a.data['sort'] && b.data['sort']
+            a.data.fetch('sort') <=> b.data.fetch('sort')
+          else
+            a.data['title'] <=> b.data['title']
+          end
         } }
         hash
       end

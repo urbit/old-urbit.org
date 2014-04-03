@@ -25,10 +25,10 @@ This chapter covers basic mathematical operations on natural numbers (atoms), su
 ++dec takes an atom `a` and produces `a - 1`
 
 ###Summary
-++dec is a [jetted arm]() which creates a dry %gold gate (|=, link), accepting an atomic sample (axil @, link, labeled 'a' (^=, link). 
-If 'a' is equal to 0, ++dec crashes (?<, link) and a crash message of %decrement-underflow is inserted into the stack trace (~|, link). 
-A variable b is set to 0 (^=, link) and is pushed onto the subject (=+ link). A dry %gold trap is created (|-, link), and its product is cast to an atom (^-, link).
-If (?:, link) the value of 'b' incremented (.+, link) is equal (.=, link) to 'a', then 'b' is produced. Else, the `$` arm ($, link) of the trap is activated (%=, link), with the value of 'b' set to +(b).
+++dec is a [jetted arm]() which creates a dry %gold gate (|=, link), which accepts an atomic sample (axil @, link, labeled 'a' (^=, link).  
+If 'a' is equal to 0, ++dec crashes (?<, link) and a crash message of %decrement-underflow is inserted into the stack trace (~|, link).  
+A variable b is set to 0 (^=, link) and is pushed onto the subject (=+ link). A dry %gold trap is created (|-, link), and its product is cast to an atom (^-, link).  
+If (?:, link) the value of 'b' incremented (.+, link) is equal (.=, link) to 'a', then 'b' is produced. Else, the `$` arm ($, link) of the trap is activated (%=, link), with the value of 'b' set to +(b).  
 
 ###Examples
     ~talsur-todres/try=> (dec 4.169)
