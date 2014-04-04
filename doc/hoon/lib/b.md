@@ -6,66 +6,98 @@ categories: lib
 sort: 2
 ---
 
-::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::  ::
-::::              chapter 2b, basic containers          ::::
-::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::                Section 2bA, units                    ::
-::
+This section convers the basic container functions. Basic containers are units and lists.
 
-::  ++  unit  |*  a=_,*                                     ::  maybe
-::            $|(~ [~ u=a])                                 ::
+#Units
 
-::  Takes a noun and is either a null or the cell [~ noun]
+##++bind
+
+    ++  bind                                                    ::  argue
+      |*  [a=(unit) b=_,*]
+      ?~  a
+        ~
+      [~ u=(b u.a)]
+
+++bind takes a unit and a gate and produces a new unit with b applied to u.a or no if a is no.
+
+###Summary
+++bind creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a` and any [gate]() `b`. 
+If `a` is null ([?~]()) ++bind produces null.
+Otherwise ++bind produces a new [++unit]() with the `u` set to the product of the gate `b` with sample `a`.
+
+###Examples
+    ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
+    [~ 'a']
 
 
-++  bind                                                    ::  argue
-  |*  [a=(unit) b=_,*]
-  ?~  a
+##++clap
+    ++  clap                                                ::  combine
+      |*  [a=(unit) b=(unit) c=_|=(^ +<-)]
+      ?~  a
+        b
+      ?~  b
+        a
+      [~ u=(c u.a u.b)]
+
+++clap takes two units `a` and `b` and a gate c. If `a` is ~ produce `b`, if `b` is ~ produce `a`, else produce the product of (c u.a u.b). 
+
+###Summary
+++clap creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b` and a [gate]() `c`.
+If `a` is null ([?~]()) ++clap produces null.
+If `b` is null ([?~]()) ++clap produces null.
+Otherwise ++clapp produces a new unit with the `u` set to the product of the gate `c` with the sample of [u.a u.b].
+
+###Examples
+    ~talsur-todres/try=> =a ((unit ,@u) [~ 1])
+    ~talsur-todres/try=> =b ((unit ,@u) [~ 2])
+    ~talsur-todres/try=> =c |=([a=@ b=@] (add a b))
+    ~talsur-todres/try=> (clap a b c)
+    [~ 3]
+
+
+##++drop
+    ++  drop                                                ::  enlist
+      |*  a=(unit)
+      ?~  a
+        ~
+      [i=u.a t=~]
+
+++drop takes a unit `a` and produces a list [u.a ~] or ~ if a is ~.
+
+###Summary
+++drop creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.
+If `a` is null ([?~]()) ++drop produces null.
+Otherwise ++drop produces a [++list]() [u.a ~].
+
+###Examples
+    ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
+    ~divreg-misdef/try=> (drop a)
+    [i=97 t=~]
+    ~divreg-misdef/try=> =a ((unit ,@) [~])
+    ~divreg-misdef/try=> (drop a)
     ~
-  [~ u=(b u.a)]
-
-::  Takes a unit and any gate, produces a unit [~ u=(the noun the unit 
-::  noun)] apply the gate b to the u in unit a
-::  ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
-::  [~ 'a']
 
 
-++  clap                                                ::  combine
-  |*  [a=(unit) b=(unit) c=_|=(^ +<-)]
-  ?~  a
-    b
-  ?~  b
-    a
-  [~ u=(c u.a u.b)]
+##++fall
+    ++  fall                                                ::  default
+      |*  [a=(unit) b=*]
+      ?~(a b u.a)
 
-::  If a is ~ produce b, if b is ~ produce a
-::  ~talsur-todres/try=> =a ((unit ,@u) [~ 1])
-::  ~talsur-todres/try=> =b ((unit ,@u) [~ 2])
-::  ~talsur-todres/try=> =c |=([a=@ b=@] (add a b))
-::  ~talsur-todres/try=> (clap a b c)
-::  [~ 3]
+++fall takes a unit `a` and any noun `b`. If `a` is null produce `b` else `u.a`.
 
+###Summary
+++fall creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.
+If `a` is null ([?~]()) ++drop produces `b`.
+Otherwise ++drop produces `u.a`.
 
-++  drop                                                ::  enlist
-  |*  a=(unit)
-  ?~  a
-    ~
-  [i=u.a t=~]
-
-::  Takes a unit a. Produces a list [u.a ~] or ~ if a is null.
+###Examples
+    ~talsur-todres/try=> (fall ~ 'a')
+    'a'
+    ~talsur-todres/try=> (fall [~ u=0] 'a')
+    0
 
 
-++  fall                                                ::  default
-  |*  [a=(unit) b=*]
-  ?~(a b u.a)
-
-::  If not a return b else u.a
-::  ~talsur-todres/try=> (fall ~ 'a')
-::  'a'
-::  ~talsur-todres/try=> (fall [~ u=0] 'a')
-::  0
-
-
+##++mate
 ++  mate                                                ::  choose
   |*  [a=(unit) b=(unit)]
   ?~  b
@@ -74,56 +106,115 @@ sort: 2
     b
   ?.(=(u.a u.b) ~|('mate' !!) a)
 
-::  Takes two units a and b. If not b then produce a, if not a then produce b,
-::  else produce a if u.a and u.b are equal. Crash if they're not equal.
+++mate takes two units `a` and `b`. If not `b` then produce `a`, if not `a` then produce `b`, otherwise produce `a` if `u.a` and `u.b` are equal. Crash if they're not equal.
+
+###Summary
+++mate creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b`.
+If `b` is null ([?~]()) ++drop produces `a`.
+If `a` is null ([?~]()) ++drop produces `b`.
+Otherwise ++mate uses [?.]() to test the equality of `u.a` and `u.b` using [=](). 
+If they are equal ++mate produces `a`, otherwise a 'mate' crash is produced.
+
+###Examples
+    ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
+    ~divreg-misdef/try=> =b ((unit ,@) [~ 97])
+    ~divreg-misdef/try=> (mate a b)
+    [~ 97]
+    ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
+    ~divreg-misdef/try=> =b ((unit ,@) [~ 98])
+    ~divreg-misdef/try=> (mate a b)
+    ! 'mate'
+    ! exit
 
 
-++  need                                                ::  demand
-  |*  a=(unit)
-  ?@  a
-    !!
-  u.a
+##++need
+    ++  need                                                ::  demand
+      |*  a=(unit)
+      ?@  a
+        !!
+      u.a
 
-::  Takes a unit a. If a is an atom produce a crash, else produce u.a. 
+++need takes a unit `a`. If `a` is an atom produce a crash, else produce u.a. 
+
+###Summary
+++need creates a [wet vulcanized gate |*]() which accepts a [unit]() `a`.
+If `a` is an atom ([?@]()) ++need produces a crash.
+Otherwise ++need produces `u.a`.
+
+###Examples
+    ~divreg-misdef/try=> =a ((unit ,[@t @t]) [~ ['a' ' b']])
+    ~divreg-misdef/try=> (need a)
+    ['a' ' b']
+    ~divreg-misdef/try=> =a ((unit ,@) [~])
+    ~divreg-misdef/try=> (need a)
+    ! exit
 
 
-++  some                                                ::  lift
-  |*  a=*
-  [~ u=a]
+##++some
+    ++  some                                                ::  lift
+      |*  a=*
+      [~ u=a]
 
-::  Takes any noun a and produces [~ u=a]. 
+++some takes any noun `a` and produces `[~ u=a]`.
+
+###Summary
+++some creates a [wet vulcanized gate |*]() which accepts any [noun]() `a`.
+++some produces a unit `[~ u=a]`.
+
+###Examples
+    ~divreg-misdef/try=> (some ['a' 'b'])
+    [~ u=['a' 'b']]
+    ~divreg-misdef/try=> (some &)
+    [~ u=%.y]
 
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::                Section 2bB, lists                    ::
+#Lists
 
 
-++  flop                                                ::  reverse
-  ~/  %flop
-  |*  a=(list)
-  =>  .(a (homo a))
-  ^+  a
-  =+  b=`_a`~
-  |-
-  ?@  a
-    b
-  $(a t.a, b [i.a b])
+##++flop
+    ++  flop                                                ::  reverse
+      ~/  %flop
+      |*  a=(list)
+      =>  .(a (homo a))
+      ^+  a
+      =+  b=`_a`~
+      |-
+      ?@  a
+        b
+      $(a t.a, b [i.a b])
 
-::  Reverse the order of a list. 
-::  ~dovryp-toblug/try=> (flop (limo [1 2 3 ~]))
-::  ~[3 2 1]
+++flop takes a list `a` and produces that list with the elements reversed.
 
+###Summary
+++flop is a [jetted arm (~/)]().
+++flop creates a [wet vulcanized gate |*]() which accepts a [list]() `a`.
+`a` is replaced with the product of `([homo]() a)` using [=>]().
+The product of ++flop is cast to the type of `a` (a [list]()) with [^+]().
+`b` is pushed on to the subject with [=+]() as a [list]() in the same form as `a`.
+A dry %gold gate is created and kicked with [|-]().
+If `a` is an atom, the gate produces b. 
+Otherwise, produce a call to [$]() with `a` set to `t.a` and b set to `[i.a b]`.
+Note: Refer to the [list]() documentation for clarification of t.a and i.a. 
+
+###Examples
+    ~dovryp-toblug/try=> (flop (limo [1 2 3 ~]))
+    ~[3 2 1]
+    ~dovryp-toblug/try=> (flop (flop (limo [1 2 3 ~])))
+    ~[1 2 3]
+
+
+##++homo
 ++  homo                                                ::  homogenize
-  |*  a=(list)
-  ^+  =<  $
-    |%  +-  $  ?:(_? ~ [i=(snag 0 a) t=$])
-    --
-  a
+      |*  a=(list)
+      ^+  =<  $
+        |%  +-  $  ?:(_? ~ [i=(snag 0 a) t=$])
+        --
+      a
 
-::  ??  This recursively snags the item at position 0 in a. Sort of like 
-::  flatten?
+??  This recursively snags the item at position 0 in a. Sort of like flatten? I can't contrive an example that works, so this is a tough one.
 
 
+##++limo
 ++  limo                                                ::  listify
   |*  a=*
   ^+  =<  $
@@ -131,12 +222,19 @@ sort: 2
     --
   a
 
-::  Turns any null-terminated cell in to a list. 
-::  ~dovryp-toblug/try=> (limo ['a' 'b' ~])
-::  [i='a' t=[i='b' t=~]]
-::  ~dovryp-toblug/try=> (limo [2 1 ~])
-::  [i=2 t=[i=1 t=~]]
-::  ?? a=* but passing in 'a' type-fails. 
+++limo accepts any null-terminated cell `a` and produces a list.
+
+###Summary
+++limo creates a [wet vulcanized gate |*]() which accepts any noun `a`.
+The product of ++limo is cast, using [^+](), to the type of the product of [$]() using [=<]().
+A [%gold core |%] is created.
+??
+
+###Examples
+    ~dovryp-toblug/try=> (limo ['a' 'b' ~])
+    [i='a' t=[i='b' t=~]]
+    ~dovryp-toblug/try=> (limo [2 1 ~])
+    [i=2 t=[i=1 t=~]]
 
 
 ++  lent                                                ::  length
