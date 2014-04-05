@@ -21,9 +21,9 @@ This section convers the basic container functions. Basic containers are units a
 ++bind takes a unit and a gate and produces a new unit with b applied to u.a or no if a is no.
 
 ###Summary
-++bind creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a` and any [gate]() `b`. 
-If `a` is null ([?~]()) ++bind produces null.
-Otherwise ++bind produces a new [++unit]() with the `u` set to the product of the gate `b` with sample `a`.
+++bind creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a` and any [gate]() `b`.  
+If `a` is null ([?~]()) ++bind produces null.  
+Otherwise ++bind produces a new [++unit]() with the `u` set to the product of the gate `b` with sample `a`.  
 
 ###Examples
     ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
@@ -42,10 +42,10 @@ Otherwise ++bind produces a new [++unit]() with the `u` set to the product of th
 ++clap takes two units `a` and `b` and a gate c. If `a` is ~ produce `b`, if `b` is ~ produce `a`, else produce the product of (c u.a u.b). 
 
 ###Summary
-++clap creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b` and a [gate]() `c`.
-If `a` is null ([?~]()) ++clap produces null.
-If `b` is null ([?~]()) ++clap produces null.
-Otherwise ++clapp produces a new unit with the `u` set to the product of the gate `c` with the sample of [u.a u.b].
+++clap creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b` and a [gate]() `c`.  
+If `a` is null ([?~]()) ++clap produces null.  
+If `b` is null ([?~]()) ++clap produces null.  
+Otherwise ++clapp produces a new unit with the `u` set to the product of the gate `c` with the sample of [u.a u.b].  
 
 ###Examples
     ~talsur-todres/try=> =a ((unit ,@u) [~ 1])
@@ -65,9 +65,9 @@ Otherwise ++clapp produces a new unit with the `u` set to the product of the gat
 ++drop takes a unit `a` and produces a list [u.a ~] or ~ if a is ~.
 
 ###Summary
-++drop creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.
-If `a` is null ([?~]()) ++drop produces null.
-Otherwise ++drop produces a [++list]() [u.a ~].
+++drop creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.  
+If `a` is null ([?~]()) ++drop produces null.  
+Otherwise ++drop produces a [++list]() [u.a ~].  
 
 ###Examples
     ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
@@ -86,9 +86,9 @@ Otherwise ++drop produces a [++list]() [u.a ~].
 ++fall takes a unit `a` and any noun `b`. If `a` is null produce `b` else `u.a`.
 
 ###Summary
-++fall creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.
-If `a` is null ([?~]()) ++drop produces `b`.
-Otherwise ++drop produces `u.a`.
+++fall creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.  
+If `a` is null ([?~]()) ++drop produces `b`.  
+Otherwise ++drop produces `u.a`.  
 
 ###Examples
     ~talsur-todres/try=> (fall ~ 'a')
@@ -109,11 +109,11 @@ Otherwise ++drop produces `u.a`.
 ++mate takes two units `a` and `b`. If not `b` then produce `a`, if not `a` then produce `b`, otherwise produce `a` if `u.a` and `u.b` are equal. Crash if they're not equal.
 
 ###Summary
-++mate creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b`.
-If `b` is null ([?~]()) ++drop produces `a`.
-If `a` is null ([?~]()) ++drop produces `b`.
-Otherwise ++mate uses [?.]() to test the equality of `u.a` and `u.b` using [=](). 
-If they are equal ++mate produces `a`, otherwise a 'mate' crash is produced.
+++mate creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b`.  
+If `b` is null ([?~]()) ++drop produces `a`.  
+If `a` is null ([?~]()) ++drop produces `b`.  
+Otherwise `++mate` uses [?.]() to test the equality of `u.a` and `u.b` using [=]().  
+If they are equal `++mate` produces `a`, otherwise a 'mate' crash is produced.  
 
 ###Examples
     ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
@@ -667,72 +667,77 @@ Otherwise produce a cell containing i.a and the product of the gate with `a` rep
     ! find-fork
     ! exit
 
+#Gears
 
+Gears are no longer used in this version of hoon.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::                section 2bC, gears                    ::
-::
+##++from
+    ++  from                                                ::  range
+      |=  [a=@ b=@]
+      ^-  (gear ,@)
+      =+  c=0
+      |?
+      ?:  =(c b)
+        ~
+      [i=a t=^?(..$(a +(a), c +(c)))]
 
-::  Gears are no longer used in this version of hoon. Should be removed and 
-::  reintroduced later.
-++  from                                                ::  range
-  |=  [a=@ b=@]
-  ^-  (gear ,@)
-  =+  c=0
-  |?
-  ?:  =(c b)
-    ~
-  [i=a t=^?(..$(a +(a), c +(c)))]
-::
-++  long                                                ::
-  |*  a=(gear)
-  =+  b=0
-  |-  ^-  @
-  =+  c=(a)
-  ?~  c
-    b
-  $(b +(b), a t.c)
-::
-++  lone  |*(a=* |?([i=a t=none]))                      ::
-++  mill
-  |*  [a=_,* b=(gear)]
-  |?
-  =+  c=(b)
-  ?~  c
-    ~
-  [i=(a i.c) t=^?(..$(b t.c))]
-::
-++  none  |?(~)                                         ::
-++  over                                                ::
-  |=  [a=@ b=@]
-  ^-  (gear ,@)
-  |?
-  ?:  =(a b)
-    [i=a t=none]
-  [i=a t=^?(..$(a +(a)))]
-::
-++  pull                                                ::
-  |*  a=(gear)
-  |=  b=_^+(|-(=+(b=(a) ?~(b ~ [i=i.b t=$(a t.b)]))) ~)
-  ^+  b
-  =+  c=(a)
-  ?~  c
-    b
-  $(b [i.c b], a t.c)
-::
-++  push                                                ::
-  |*  a=(gear)
-  |=  b=_^+(|-(=+(b=(a) ?~(b ~ [i=i.b t=$(a t.b)]))) ~)
-  ^+  b
-  =+  c=((pull a) ~)
-  ((pull (spin c)) b)
-::
-++  spin                                                ::
-  |*  a=(list)
-  =>  .(a `_(homo a)`a)
-  |?
-  ?~  a
-    ~
-  [i=i.a t=^?(..$(a t.a))]
+##++long
+    ++  long                                                ::
+      |*  a=(gear)
+      =+  b=0
+      |-  ^-  @
+      =+  c=(a)
+      ?~  c
+        b
+      $(b +(b), a t.c)
 
->>>>>>> 4ef2770269ac90a6bca1bc784b3a66e5bc62dc44
+##++lone
+    ++  lone  |*(a=* |?([i=a t=none]))                      ::
+
+##++mill
+    ++  mill
+      |*  [a=_,* b=(gear)]
+      |?
+      =+  c=(b)
+      ?~  c
+        ~
+      [i=(a i.c) t=^?(..$(b t.c))]
+
+##++none
+    ++  none  |?(~)                                         ::
+
+##++over
+    ++  over                                                ::
+      |=  [a=@ b=@]
+      ^-  (gear ,@)
+      |?
+      ?:  =(a b)
+        [i=a t=none]
+      [i=a t=^?(..$(a +(a)))]
+
+##++pull
+    ++  pull                                                ::
+      |*  a=(gear)
+      |=  b=_^+(|-(=+(b=(a) ?~(b ~ [i=i.b t=$(a t.b)]))) ~)
+      ^+  b
+      =+  c=(a)
+      ?~  c
+        b
+      $(b [i.c b], a t.c)
+
+##++push
+    ++  push                                                ::
+      |*  a=(gear)
+      |=  b=_^+(|-(=+(b=(a) ?~(b ~ [i=i.b t=$(a t.b)]))) ~)
+      ^+  b
+      =+  c=((pull a) ~)
+      ((pull (spin c)) b)
+
+##++spin
+    ++  spin                                                ::
+      |*  a=(list)
+      =>  .(a `_(homo a)`a)
+      |?
+      ?~  a
+        ~
+      [i=i.a t=^?(..$(a t.a))]
