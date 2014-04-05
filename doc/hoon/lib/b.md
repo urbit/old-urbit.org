@@ -6,28 +6,30 @@ categories: lib
 sort: 2
 ---
 
-This section convers the basic container functions. Basic containers are units and lists.
+This section convers the basic container functions. Basic containers are [++unit]() and [++list](). 
 
-#Units
+#++unit arms
 
 ##++bind
-
     ++  bind                                                    ::  argue
       |*  [a=(unit) b=_,*]
       ?~  a
         ~
       [~ u=(b u.a)]
 
-++bind takes a unit and a gate and produces a new unit with b applied to u.a or no if a is no.
+`++bind` takes a [++unit]() and a [gate]() and produces a [++unit]() with `b` applied to `u.a` or null if a is null.
 
 ###Summary
-++bind creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a` and any [gate]() `b`.  
-If `a` is null ([?~]()) ++bind produces null.  
-Otherwise ++bind produces a new [++unit]() with the `u` set to the product of the gate `b` with sample `a`.  
+`++bind` creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a` and any [gate]() `b`.  
+If `a` is null ([?~]()) `++bind` produces null.  
+Otherwise, `++bind` produces a new [++unit]() where the face `u` is set to the product of the gate `b` with sample `a`, `(b u.a)`.  
 
 ###Examples
     ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
     [~ 'a']
+    ~talsur-todres/try=> =a |=(a=@ (add a 1))
+    ~talsur-todres/try=> (bind ((unit ,@) [~ 2]) a)
+    [~ 3]
 
 
 ##++clap
@@ -39,13 +41,13 @@ Otherwise ++bind produces a new [++unit]() with the `u` set to the product of th
         a
       [~ u=(c u.a u.b)]
 
-++clap takes two units `a` and `b` and a gate c. If `a` is ~ produce `b`, if `b` is ~ produce `a`, else produce the product of (c u.a u.b). 
+`++clap` passes the `u.a` and `u.b` in two [++unit]() `a` and `b` to the gate `c` and produces a new [++unit]() with the result. If `a` or `b` is null, `++clap` produces null.
 
 ###Summary
-++clap creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b` and a [gate]() `c`.  
-If `a` is null ([?~]()) ++clap produces null.  
-If `b` is null ([?~]()) ++clap produces null.  
-Otherwise ++clapp produces a new unit with the `u` set to the product of the gate `c` with the sample of [u.a u.b].  
+`++clap` creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b` and a [gate]() `c`.  
+If `a` is null ([?~]()) `++clap` produces null.  
+If `b` is null ([?~]()) `++clap` produces null.  
+Otherwise `++clap` produces a new [++unit]() with the `u` set to the product of the gate `c` with the sample of `[u.a u.b]`, `[~ u=(c u.a u.b)]`.  
 
 ###Examples
     ~talsur-todres/try=> =a ((unit ,@u) [~ 1])
@@ -62,12 +64,12 @@ Otherwise ++clapp produces a new unit with the `u` set to the product of the gat
         ~
       [i=u.a t=~]
 
-++drop takes a unit `a` and produces a list [u.a ~] or ~ if a is ~.
+`++drop` takes a unit `a` and produces a list `[u.a ~]`, or null if `a` is null.
 
 ###Summary
-++drop creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.  
-If `a` is null ([?~]()) ++drop produces null.  
-Otherwise ++drop produces a [++list]() [u.a ~].  
+`++drop` creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.  
+If `a` is null ([?~]()) `++drop` produces null.  
+Otherwise `++drop` produces a [++list]() [u.a ~].  
 
 ###Examples
     ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
@@ -83,12 +85,12 @@ Otherwise ++drop produces a [++list]() [u.a ~].
       |*  [a=(unit) b=*]
       ?~(a b u.a)
 
-++fall takes a unit `a` and any noun `b`. If `a` is null produce `b` else `u.a`.
+`++fall` takes a [++unit]() `a` and any noun `b`. If `a` is null produce `b` else `u.a`.
 
 ###Summary
-++fall creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.  
-If `a` is null ([?~]()) ++drop produces `b`.  
-Otherwise ++drop produces `u.a`.  
+`++fall` creates a [wet vulcanized gate |*]() which accepts a [++unit]() `a`.
+If `a` is null ([?~]()) `++drop` produces `b`.
+Otherwise `++drop` produces `u.a`.
 
 ###Examples
     ~talsur-todres/try=> (fall ~ 'a')
@@ -98,26 +100,31 @@ Otherwise ++drop produces `u.a`.
 
 
 ##++mate
-++  mate                                                ::  choose
-  |*  [a=(unit) b=(unit)]
-  ?~  b
-    a
-  ?~  a
-    b
-  ?.(=(u.a u.b) ~|('mate' !!) a)
+    ++  mate                                                ::  choose
+      |*  [a=(unit) b=(unit)]
+      ?~  b
+        a
+      ?~  a
+        b
+      ?.(=(u.a u.b) ~|('mate' !!) a)
 
-++mate takes two units `a` and `b`. If not `b` then produce `a`, if not `a` then produce `b`, otherwise produce `a` if `u.a` and `u.b` are equal. Crash if they're not equal.
+`++mate` takes two [++unit]() `a` and `b` and produces either the [++unit]() `a` or `b` that is not null, `a` if they are equal or crashes with `'mate'` if they are not.
 
 ###Summary
-++mate creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b`.  
-If `b` is null ([?~]()) ++drop produces `a`.  
-If `a` is null ([?~]()) ++drop produces `b`.  
-Otherwise `++mate` uses [?.]() to test the equality of `u.a` and `u.b` using [=]().  
-If they are equal `++mate` produces `a`, otherwise a 'mate' crash is produced.  
+`++mate` creates a [wet vulcanized gate |*]() which accepts two [++unit]() `a` and `b`.
+If `b` is null ([?~]()) `++drop` produces `a`.
+If `a` is null ([?~]()) `++drop` produces `b`.
+Otherwise `++mate` uses [?.]() to test the equality of `u.a` and `u.b` using [=](). 
+If they are equal `++mate` produces `a`. 
+Otherwise a crash is produced with the message `'mate'`, using [~|].
 
 ###Examples
     ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
     ~divreg-misdef/try=> =b ((unit ,@) [~ 97])
+    ~divreg-misdef/try=> (mate a b)
+    [~ 97]
+    ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
+    ~divreg-misdef/try=> =b ((unit ,@) [~])
     ~divreg-misdef/try=> (mate a b)
     [~ 97]
     ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
@@ -134,12 +141,12 @@ If they are equal `++mate` produces `a`, otherwise a 'mate' crash is produced.
         !!
       u.a
 
-++need takes a unit `a`. If `a` is an atom produce a crash, else produce u.a. 
+`++need` takes a unit `a` and produces `u.a`. If `a` is null `++need` crashes.
 
 ###Summary
-++need creates a [wet vulcanized gate |*]() which accepts a [unit]() `a`.
-If `a` is an atom ([?@]()) ++need produces a crash.
-Otherwise ++need produces `u.a`.
+`++need` creates a [wet vulcanized gate |*]() which accepts a [unit]() `a`.
+If `a` is an atom ([?@]()) `++need` produces a crash.
+Otherwise `++need` produces `u.a`.
 
 ###Examples
     ~divreg-misdef/try=> =a ((unit ,[@t @t]) [~ ['a' ' b']])
@@ -155,11 +162,11 @@ Otherwise ++need produces `u.a`.
       |*  a=*
       [~ u=a]
 
-++some takes any noun `a` and produces `[~ u=a]`.
+`++some` takes any noun `a` and produces the [++unit]() `[~ u=a]`.
 
 ###Summary
-++some creates a [wet vulcanized gate |*]() which accepts any [noun]() `a`.
-++some produces a unit `[~ u=a]`.
+`++some` creates a [wet vulcanized gate |*]() which accepts any [noun]() `a`.
+`++some` produces a unit `[~ u=a]`.
 
 ###Examples
     ~divreg-misdef/try=> (some ['a' 'b'])
@@ -183,19 +190,19 @@ Otherwise ++need produces `u.a`.
         b
       $(a t.a, b [i.a b])
 
-++flop takes a list `a` and produces that list with the elements reversed.
+`++flop` takes a list `a` and produces `a` with the elements reversed.
 
 ###Summary
-++flop is a [jetted arm (~/)]().
-++flop creates a [wet vulcanized gate |*]() which accepts a [list]() `a`.
-`a` is replaced with the product of `([homo]() a)` using [%=]() in its irregular form.
-This new subject is used for the rest of the expression using [=>]().
-The product of ++flop is cast to the type of `a` (a [list]()) with [^+]().
-`b` is pushed on to the subject with [=+]() as a [list]() in the same form as `a`.
-A dry %gold gate is created and kicked with [|-]().
-If `a` is an atom, the gate produces b. 
-Otherwise, produce a call to [$]() with `a` set to `t.a` and b set to `[i.a b]`.
-Note: Refer to the [list]() documentation for clarification of t.a and i.a. 
+`++flop` is a [jetted arm (~/)]().  
+`++flop` creates a [wet vulcanized gate |*]() which accepts a [list]() `a`.  
+`a` is replaced with the product of `([homo]() a)` using [%=]() in its irregular form, `( )`.  
+This new subject is used for the rest of the expression using [=>]().  
+The product of `++flop` is cast to the type of `a` (a [list]()) with [^+]().  
+`b` is pushed on to the subject with [=+]() as a [list]() in the same form as `a`.  
+A dry `%gold` gate is created and kicked with [|-]().  
+If `a` is an atom, the gate produces b.  
+Otherwise, produce a call to [$]() with `a` set to `t.a` and b set to `[i.a b]`.  
+Note: Refer to the [list]() documentation for clarification of `t.a` and `i.a`.  
 
 ###Examples
     ~dovryp-toblug/try=> (flop (limo [1 2 3 ~]))
@@ -214,11 +221,11 @@ Note: Refer to the [list]() documentation for clarification of t.a and i.a.
         --
       a
 
-++homo takes a list `a` and produces a list with the type information homogenized.
+`++homo` takes a list `a` and produces a [++list]() with the type information homogenized.
 
 ###Summary
-++homo creates a [wet vulcanized gate |*]() which accepts a [list]() `a`.
-The product of ++homo is cast, using [^+]() to the type of the product of [=<]().
+`++homo` creates a [wet vulcanized gate |*]() which accepts a [list]() `a`.
+The product of `++homo` is cast, using [^+]() to the type of the product of [=<]().
 ??  this seems like a pretty unconventional kind of recursion
 
 ###Examples
@@ -237,12 +244,12 @@ The product of ++homo is cast, using [^+]() to the type of the product of [=<]()
         --
       a
 
-++limo accepts any null-terminated cell `a` and produces a list.
+`++limo` accepts any null-terminated cell `a` and produces a [++list]().
 
 ###Summary
-++limo creates a [wet vulcanized gate |*]() which accepts any noun `a`.
-The product of ++limo is cast, using [^+](), to the type of the product of [$]() using [=<]().
-A [%gold core |%] is created.
+`++limo` creates a [wet vulcanized gate |*]() which accepts any noun `a`.
+The product of `++limo` is cast, using [^+](), to the type of the product of [$]() using [=<]().
+A [%gold core |%]() is created.
 ??  similarly strange recursion here
 
 ###Examples
@@ -261,12 +268,12 @@ A [%gold core |%] is created.
       |-
       ?@(a b $(a t.a, b +(b)))
 
-++lent takes a list `a` and produces an atom equal to the length of `a`.
+`++lent` takes a list `a` and produces an atom equal to the length of `a`.
 
 ###Summary
-++lent is a [jetted arm (~/)]().
-++lent creates a [dry %gold gate |=]() that takes a [list]() `a`.
-The product of ++lent is cast to an atom with [^-]().
+`++lent` is a [jetted arm (~/)]().
+`++lent` creates a [dry %gold gate |=]() that takes a [list]() `a`.
+The product of `++lent` is cast to an atom with [^-]().
 `b=0` is pushed on to the subject with =+.
 A [dry %gold trap |-]() is created and kicked.
 If `a` is an atom ([?@]()) b is produced.
@@ -290,15 +297,15 @@ Otherwise, `a` is replaced by `t.a` (descending in to the list) and `b` is repla
         $(a t.a)
       |
 
-++levy takes a list `a` and a gate `b` that produces a loobean. ++levy sends each member of `a` to `b` and produces %.y if each result is %.y and %.n if not.
+`++levy` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++levy` sends each member of `a` to `b` and produces `%.y` if each result is `%.y` and `%.n` if not.
 
 ###Summary
-++levy is a [jetted arm (~/)]().
-++levy creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which produces a loobean.
+`++levy` is a [jetted arm (~/)]().
+`++levy` creates a [wet vulcanized gate |*]() which accepts a [++list]() `a` and a gate `b` which produces a loobean.
 A [dry %gold trap |-]() is created and kicked.
 The product of the trap is cast ([^-]()) to a loobean.
-If `a` is an atom ([?@]())produce %.y (??  since lists have faces, this only occurs with the terminator ~)
-If the product of `(b i.a)` is %.y ([?:]()) recurse replacing `a` with `t.a` using `$` and the irregular form of [%=](), $().
+If `a` is an atom ([?@]()) produce `%.y` (??  since lists have faces, this only occurs with the terminator ~ ?)
+If the product of `(b i.a)` is `%.y` ([?:]()) recurse replacing `a` with `t.a` using `$` and the irregular form of [%=](), `( )`.
 
 ###Examples
     ~barred-tidset/try=> =b |=(a=@ (gte a 1))
@@ -318,16 +325,16 @@ If the product of `(b i.a)` is %.y ([?:]()) recurse replacing `a` with `t.a` usi
       ?:  (b i.a)  &
       $(a t.a)
 
-++levy takes a list `a` and a gate `b` that produces a loobean. ++levy sends each member of `a` to `b` and produces %.y if any result is %.y and %.n if none are %.y.
+`++levy` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++levy` sends each member of `a` to `b` and produces `%.y` if any result is `%.y` and `%.n` if none are `%.y`.
 
 ###Summary
-++lien is a [jetted arm (~/)]().
-++lien creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which produces a loobean.
+`++lien` is a [jetted arm (~/)]().
+`++lien` creates a [wet vulcanized gate |*]() which accepts a [++list]() `a` and a gate `b` which produces a loobean.
 A [dry %gold trap |-]() is created and kicked.
 The product of the trap is cast ([^-]()) to a loobean.
-If `a` is null ([?~]())produce %.n.
-If the product of `(b i.a)` is %.y ([?:]()) produce yes.
-Otherwise recurse, replacing `a` with `t.a` using `$` and the irregular form of [%=](), $().
+If `a` is null ([?~]())produce `%.n`.
+If the product of `(b i.a)` is `%.y` ([?:]()) produce `%.y`.
+Otherwise recurse, replacing `a` with `t.a` using `$` and the irregular form of [%=](), `( )`.
 
 ###Examples
     ~barred-tidset/try=> =a |=(a=@ (gte a 1))
@@ -347,15 +354,15 @@ Otherwise recurse, replacing `a` with `t.a` using `$` and the irregular form of 
         q.b
       (b i.a $(a t.a))
 
-++reel takes a list `a` a gate `b` that takes two nouns. ++reel recursively calls `b` with the right side of `a`.
+`++reel` takes a [++list]() `a` and a [gate]() `b` that takes two nouns. `++reel` recursively calls `b` with the right side of `a`.
 
 ###Summary
-++reel is a [jetted arm (~/)]().
-++roll creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which accepts two nouns `p` and `q`. 
+`++reel` is a [jetted arm (~/)]().
+`++roll` creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which accepts two nouns `p` and `q`. 
 A [dry %gold trap |-]() is created and kicked.
 The product is cast ([^+]()) to the type of `q.b`.
-If `a` is an atom ([?@]()), q.b is produced. 
-Otherwise `b` is called with the left side of `a` (i.a), and the product of the trap with `a` replaced with `t.a`. 
+If `a` is an atom ([?@]()), `q.b` is produced. 
+Otherwise `b` is called with the left side of `a` (i.a), and the product of the trap with `a` replaced with `t.a` (the 'right side' of `a`). 
 
 ###Examples
     ~barred-tidset/try=> =a =|([p=@ q=@] |.((sub p q)))
@@ -377,15 +384,15 @@ Otherwise `b` is called with the left side of `a` (i.a), and the product of the 
       $(a t.a, b b(q (b i.a q.b)))
 
 
-++roll takes a list `a` a gate `b` that takes two nouns. ++reel recursively calls `b` with the left side of `a`.
+`++roll` takes a [++list]() `a` and a [gate]() `b` that takes two nouns. `++reel` recursively calls `b` with the left side of `a`.
 
 ###Summary
-++roll is a [jetted arm (~/)]().
-++roll creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which accepts two nouns `p` and `q`. 
+`++roll` is a [jetted arm (~/)]().
+`++roll` creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which accepts two nouns `p` and `q`. 
 A [dry %gold trap |-]() is created and kicked.
 The product is cast ([^+]()) to the type of `q.b`.
-If `a` is an atom ([?@]()), q.b is produced. 
-Otherwise the trap is called with `a` replaced with `t.a` and `b` where `q.b` is replaced with the product of `(b i.a q.b)`.
+If `a` is an atom ([?@]()), `q.b` is produced. 
+Otherwise the trap is called with `a` replaced with `t.a` and `b` where `q.b` is replaced with the product of `(b i.a q.b)` .
 
 ###Examples
     ~barred-tidset/try=> =a =|([p=@ q=@] |.((sub p q)))
@@ -403,16 +410,16 @@ Otherwise the trap is called with `a` replaced with `t.a` and `b` where `q.b` is
       =+  c=$(a t.a)
       ?:((b i.a) [[i.a p.c] q.c] [p.c [i.a q.c]])
 
-++skid takes a list `a` and a gate `b` that produces a loobean. ++skid recursively calls `b` separating `a` into two lists: `p` results that produced %.y and `q` that produced %.n.
+`++skid` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++skid` recursively calls `b` separating `a` into two lists: `p` that produced `%.y` and `q` that produced `%.n`.
 
 ###Summary
-++skid creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which produces a loobean.
+`++skid` creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which produces a loobean.
 A [dry %gold trap |-]() is created and kicked.
 The product is cast ([^+]()) to a cell `[p=a q=a]`; a cell where both `p` and `q` are `++list`.
 If a is null ([?~]()), produce the cell `[~ ~]`.
 Add `c` to the subject ([=+]()) and assign it to the product of the trap with `a` set to `t.a`.
-If the product of `(b i.a)` is %.y, produce [[i.a p.c] q.c].
-Otherwise produce [p.c [i.a q.c]].
+If the product of `(b i.a)` is `%.y`, produce `[[i.a p.c] q.c]`.
+Otherwise produce `[p.c [i.a q.c]]`.
 
 ###Examples
     ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
@@ -430,15 +437,15 @@ Otherwise produce [p.c [i.a q.c]].
         ~
       ?:((b i.a) [i.a $(a t.a)] $(a t.a))
 
-++skim takes a list `a` and a gate `b` that produces a loobean. ++skim calls `b` with each member of `a` to produce a list containing the values in `a` that return %.y from `b`. Inverse of ++skip.
+`++skim` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++skim` calls `b` with each member of `a` to produce a list containing the values in `a` that return `%.y` from `b`. Inverse of `++skip`.
 
 ###Summary
-++skim is a [jetted arm (~/)]().
-++skim creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which produces a loobean.
+`++skim` is a [jetted arm (~/)]().
+`++skim` creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which produces a loobean.
 A [dry %gold trap |-]() is created and kicked.
 The product is cast ([^+]()) to a `++list`, since `a` is a `++list`.
 If `a` is an atom ([?@]()) return null.
-Otherwise if the product of `(b i.a)` is %.y produce [i.a $(a t.a)], if not recurse (using the empty name `$` and the irregular form of [%=]()) with `a` set to `t.a`.
+Otherwise if the product of `(b i.a)` is `%.y` produce `[i.a $(a t.a)]`, if not recurse (using the empty name `$` and the irregular form of [%=], `( )`) with `a` set to `t.a`.
 
 ###Examples
     ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
@@ -456,20 +463,20 @@ Otherwise if the product of `(b i.a)` is %.y produce [i.a $(a t.a)], if not recu
         ~
       ?:((b i.a) $(a t.a) [i.a $(a t.a)])
 
-++skip takes a list `a` and a gate `b` that produces a loobean. ++skip recursively calls `b` to produce a list containing the values in `a` that return %.n from `b`. Inverse of ++skim.
+++skip takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++skip` recursively calls `b` to produce a list containing the values in `a` that return `%.n` from `b`. Inverse of `++skim`.
 
 ###Summary
-++skip is a [jetted arm (~/)]().
-++skip creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which produces a loobean.
+`++skip` is a [jetted arm (~/)]().
+`++skip` creates a [wet vulcanized gate |*]() which accepts a list `a` and a gate `b` which produces a loobean.
 A [dry %gold trap |-]() is created and kicked.
 The product is cast ([^+]()) to a `++list`, since `a` is a `++list`.
 If `a` is an atom ([?@]()) return null.
-Otherwise if the product of `(b i.a)` is %.y recurse (using the empty name `$` and the irregular form of [%=]()) with `a` set to `t.a`, if not produce [i.a $(a t.a)].
+Otherwise if the product of `(b i.a)` is `%.y` recurse (using the empty name `$` and the irregular form of [%=]()) with `a` set to `t.a`, if not produce `[i.a $(a t.a)]`.
 
 ###Examples
-~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
-~dovryp-toblug/try=> (skip (limo [0 1 2 3 ~]) a)
-[i=0 t=[i=1 t=~]]
+    ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
+    ~dovryp-toblug/try=> (skip (limo [0 1 2 3 ~]) a)
+    [i=0 t=[i=1 t=~]]
 
 
 ##++scag
@@ -480,14 +487,14 @@ Otherwise if the product of `(b i.a)` is %.y recurse (using the empty name `$` a
         ~
       [i.b $(b t.b, a (dec a))]
 
-++scag takes an atom `a` and a list `b`. Produces the first `a` members of `b`. Inverse of ++slag.
+`++scag` takes an atom `a` and a [++list]() `b`. Produces the first `a` members of `b`. Inverse of `++slag`.
 
 ###Summary
-++scag creates a [wet vulcanized gate |*]() which accepts an atom `a` and a `++list` `b`.
+`++scag` creates a [wet vulcanized gate |*]() which accepts an atom `a` and a `++list` `b`.
 A [dry %gold trap |-]() is created and kicked.
 The product is cast ([^+]()) to a `++list` (the type of `b`).
-If either ([logical or ?|, irregular form |]()) `b` is null ([?=]()) or `a` is 0 (irregular [.=](), =) produce null. 
-Otherwise produce a cell with i.b and the product of the trap with `b` replaced with `t.b` and `a` replaced with `([dec]() a)`.
+If either ([logical or |, irregular form of ?|]()) `b` is null ([?=]()) or `a` is 0 ([=, irregular .=]()) produce null. 
+Otherwise produce a cell with `i.b` and the product of the trap with `b` replaced with `t.b` and `a` replaced with `([dec]() a)`.
 
 ###Examples
     ~dovryp-toblug/try=> (scag 2 (limo [0 1 2 3 ~]))
@@ -495,23 +502,23 @@ Otherwise produce a cell with i.b and the product of the trap with `b` replaced 
 
 
 ##++slag
-++  slag                                                ::  suffix
-  |*  [a=@ b=(list)]
-  |-  ^+  b
-  ?:  =(0 a)
-    b
-  ?@  b
-    ~
-  $(b t.b, a (dec a))
+    ++  slag                                                ::  suffix
+      |*  [a=@ b=(list)]
+      |-  ^+  b
+      ?:  =(0 a)
+        b
+      ?@  b
+        ~
+      $(b t.b, a (dec a))
 
-++slag takes an atom `a` and a list `b`. Produces the last `a` members of `b`. Inverse of ++scag.
+`++slag` takes an atom `a` and a [++list]() `b`. Produces the last `a` members of `b`. Inverse of `++scag`.
 
 ###Summary
-++scag creates a [wet vulcanized gate |*]() which accepts an atom `a` and a `++list` `b`.
+`++scag` creates a [wet vulcanized gate |*]() which accepts an atom `a` and a `++list` `b`.
 A [dry %gold trap |-]() is created and kicked.
 The product is cast ([^+]()) to a `++list` (the type of `b`).
 If ([?:]()) `a` is 0 (irregular [.=](), =), produce `b`. 
-If `b` is an atom ([?@]()), produce null (~).
+If `b` is an atom ([?@]()), produce null.
 Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` replaced with `([dec]() a)`.
 
 ###Examples
@@ -530,19 +537,19 @@ Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` r
         i.b
       $(b t.b, a (dec a))
 
-++snag takes an atom `a` and a list `b`. Produces the value of `b` at position `a`.
+`++snag` takes an atom `a` and a [++list]() `b`. Produces the value of `b` at position `a`.
 
 ###Summary
-++snag is a [jetted arm (~/)]().  
-++snag creates a [wet vulcanized gate |*]() which accepts an atom `a` and a `++list` `b`.  
+`++snag` is a [jetted arm (~/)]().  
+`++snag` creates a [wet vulcanized gate |*]() which accepts an atom `a` and a `++list` `b`.  
 A [dry %gold trap |-]() is created and kicked.  
-If `b` is null ([?~]()) [~|]() prints a 'snag-fail' and crashes with [!!]().  
+If `b` is null ([?~]()) [~|]() prints a 'snag-fail' before crashing with [!!]().  
 If ([?:]()) `a` is 0 (irregular [.=](), =), produce `i.b`.  
 Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` replaced with `(dec a)`.  
 
 ###Examples
-~dovryp-toblug/try=> (snag 2 (limo [3 2 1 0 ~]))
-1
+    ~dovryp-toblug/try=> (snag 2 (limo [3 2 1 0 ~]))
+    1
 
 
 ##++sort
@@ -558,7 +565,7 @@ Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` r
       ^+  t.a
       [i.a $(a (skim t.a |=(c=_i.a !(b c i.a))))]
 
-`++sort` takes a list `a` and a gate `b` that takes two nouns and produces a loobean. `++sort` recursively calls `b` to produce a new list with the members of `a` sorted according to `b`.
+`++sort` takes a [++list]() `a` and a [gate]() `b` that takes two nouns and produces a loobean. `++sort` recursively calls `b` to produce a new list with the members of `a` sorted according to `b`.
 
 ###Summary
 `++sort` is a [jetted arm (~/)]().  
@@ -566,11 +573,11 @@ Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` r
 The subject is replaced with `(homo a)` ([=>]()).
 A [dry %gold trap |-]() is created and kicked.
 The product is cast to the type of `a`, a `++list`.
-If a is null ([?~]()) return null.
+If `a` is null ([?~]()) return null.
 `++weld` is (slammed)[] using [%+]() with two things:
-The result of calling the trap with `a` replaced by the result of `++skim` applied to t.a with the gate ([|=]()) using `b` to compare `i.a`. 
-The cell i.a and the result of calling the trap with `a` replaced by the result of `++skim` applied to t.a with the gate [|=]() producing the inverse of the previous gate.
-??  this needs work.
+The result of calling the trap with `a` replaced by the result of `++skim` applied to `t.a` with the gate ([|=]()) using `b` to compare `i.a`. 
+The cell composed of `i.a` and the result of calling the trap with `a` replaced by the result of `++skim` applied to `t.a` with the gate [|=]() producing the logical 'not' of `(b c i.a)`.
+??  this needs work. why do those gates use _i.a?
 
 ###Examples
     ~dovryp-toblug/try=> =a =|([p=@ q=@] |.((gth p q)))
@@ -619,14 +626,14 @@ Otherwise, produce a cell where i is (b i.a) and t is the product of the gate wi
 
 ##++weld
 ++  weld                                                ::  concatenate
-  ~/  %weld
-  |*  [a=(list) b=(list)]
-  =>  .(a ^.(homo a), b ^.(homo b))
-  |-  ^+  b
-  ?~  a  b
-  [i.a $(a t.a)]
+    ~/  %weld
+    |*  [a=(list) b=(list)]
+    =>  .(a ^.(homo a), b ^.(homo b))
+    |-  ^+  b
+    ?~  a  b
+    [i.a $(a t.a)]
 
-`++weld` takes two `++list` `a`, `b` and produces a list with `a` and `b` concatenated.
+`++weld` takes two `++list` `a` and `b` and produces a list with `a` and `b` concatenated.
 
 ###Summary
 `++weld` is a [jetted arm (~/)]().  
