@@ -1,0 +1,1 @@
+- Every reference to an arm or language construct should be linked.
