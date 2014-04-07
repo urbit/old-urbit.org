@@ -9,7 +9,6 @@ sort: 3
 This chapter covers....
 
 ##++bex
-
     ++  bex                                                 ::::::  binary exponent
       ~/  %bex                                              ::  jet
       |=  a=@                                               ::  gate, atom sample 
@@ -22,7 +21,7 @@ This chapter covers....
 `++bex` takes an atom `a` and produces `2^a`.
 
 ###Summary
-`++bex` is a [jetted arm]().  
+`++bex` is a [jetted arm (~/)]().  
 `++bex` creates a dry `%gold` gate using [|=](), which accepts an atomic sample `a`, [axil @](), with [=, the irregular form of ^=]().  
 The result of `++bex` is then cast to an atom with [^-]().  
 If `a` is equal to 0, `++bex` produces 1.  
@@ -40,7 +39,6 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
 
 
 ##++can
-
     ++  can                                                 ::  assemble
       ~/  %can                                              ::  jet
       |=  [a=bloq b=(list ,[p=@ q=@])]                      ::  gate, sample: bloq, list 
@@ -49,28 +47,34 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
         0                                                   ::  then, return 0
       (mix (end a p.i.b q.i.b) (lsh a p.i.b $(b t.b)))      ::  else,
 
-++can accepts a bloq `a` and a list of cells `b`. ++can assembles bloqs of size `a` pulled from the list of atoms `b` and produces an atom.
+`++can` accepts a bloq `a` and a list of cells `b`. `++can` assembles the tails of 'q'; the length of the tail is 'p' number of bloqs of size 'a'.
 
 ###Summary
-++can is a [jetted arm]() that takes a [bloq]() and [list](), labeled 'a' and 'b' respectively using [=, the irregular form of ^=](). Using [^-](), ++can casts its result to an atom. ++can then uses [?~]() to determine whether the value of 'b' is null, and thus the end of the list. If yes, then ++can returns 0. Otherwise, ++can calls ++mix with two arguments: 1. ++end with [bloq]() size 'a', used 'p' number of times (p.i.b means the 'p' value of the head of list b, so here 'p' is the first 'p' of list 'b'), applied to the first 'q' of list 'b'; and, 2. ++lsh with [bloq]() size 'a',the 'p' of the head of [list]() 'b', and the result of recursively calling ++can with the value of [list]() 'b' now set to its tail.
+`++can` is a [jetted arm (~/)]().  
+`++can` takes a [bloq]() `a` and [list]() `b` using [=, the irregular form of ^=]().  
+The result is cast to an atom with [^-]().  
+If 'b' is null ([?~]()) `++can` produces 0.    
+Otherwise, `++can` calls `++mix` with two arguments:  
+1.`++end`, which produces the tail of the first 'q' in the list; the length of the tail is 'p' number of [bloqs]() of size 'a'.     
+2. `++lsh` with [bloq]() size 'a', the first 'p' of [list]() 'b', and the product of recursively calling ++can with the value of [list]() 'b' now set to its tail.
+
 ##Examples
-~ronrem-lonsem/try=> `@ub`(can 3 ~[[1 1]])
-0b1
-~ronrem-lonsem/try=> `@ub`(can 0 ~[[1 255]])
-0b1
-~ronrem-lonsem/try=> `@ub`(can 1 ~[[1 2]])
-0b10
-~ronrem-lonsem/try=> `@ub`(can 1 ~[[1 3]])
-0b11
-~ronrem-lonsem/try=> `@ub`(can 1 ~[[1 4]])
-0b0
-~ronrem-lonsem/try=> `@ub`(can 1 ~[[2 4]])
-0b100
+    ~ronrem-lonsem/try=> `@ub`(can 3 ~[[1 1]])
+    0b1
+    ~ronrem-lonsem/try=> `@ub`(can 0 ~[[1 255]])
+    0b1
+    ~ronrem-lonsem/try=> `@ub`(can 1 ~[[1 2]])
+    0b10
+    ~ronrem-lonsem/try=> `@ub`(can 1 ~[[1 3]])
+    0b11
+    ~ronrem-lonsem/try=> `@ub`(can 1 ~[[1 4]])
+    0b0
+    ~ronrem-lonsem/try=> `@ub`(can 1 ~[[2 4]])
+    0b100
 
 
 ##++cat
-
-    ++  cat                                                 ::  concatenate
+    ++  cat                                                     ::  concatenate
           ~/  %cat                                              ::  jet
           |=  [a=bloq b=@ c=@]                                  ::  gate, bloq, 2 @ sample
           (add (lsh a (met a b) c) b)                           ::  add b to c lshifted by # of bloqs in b
@@ -78,7 +82,10 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
 ++cat accepts a bloq a and two atoms b and c. ++cat produces b and c concatenated obeying the bloq size a.
 
 ###Summary
-++cat is a [jetted arm]() that takes a [bloq]() 'a', and two atoms of [axil @]() labeled 'b' and 'c' with [=, the irregular form of ^=](). ++cat then uses [++met]() to measure the number of [bloqs]() of size 'a' that comprise 'b'. 'c' is then left-shifted by the same number of [bloqs]() of size 'a', and then added ([++add]()) to 'b'.
+`++cat` is a [jetted arm(~/)]().
+`++cat` takes a [bloq]() 'a', and two atoms of [axil @]() labeled 'b' and 'c' with [=, the irregular form of ^=]().
+ ++cat uses [++met]() to measure the number of [bloqs]() of size 'a' that comprise 'b'. 
+ 'c' is then left-shifted by the same number of [bloqs]() of size 'a', and then added ([++add]()) to 'b'.
 
 ###Examples
 ~ronrem-lonsem/try=> `@ub`(cat 1 1 0)
