@@ -49,7 +49,7 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
         0                                                   ::  then, return 0
       (mix (end a p.i.b q.i.b) (lsh a p.i.b $(b t.b)))      ::  else,
 
-++can assembles bloqs of bits pulled from atoms from list b
+++can accepts a bloq `a` and a list of cells `b`. ++can assembles bloqs of size `a` pulled from the list of atoms `b` and produces an atom.
 
 ###Summary
 ++can is a [jetted arm]() that takes a [bloq]() and [list](), labeled 'a' and 'b' respectively using [=, the irregular form of ^=](). Using [^-](), ++can casts its result to an atom. ++can then uses [?~]() to determine whether the value of 'b' is null, and thus the end of the list. If yes, then ++can returns 0. Otherwise, ++can calls ++mix with two arguments: 1. ++end with [bloq]() size 'a', used 'p' number of times (p.i.b means the 'p' value of the head of list b, so here 'p' is the first 'p' of list 'b'), applied to the first 'q' of list 'b'; and, 2. ++lsh with [bloq]() size 'a',the 'p' of the head of [list]() 'b', and the result of recursively calling ++can with the value of [list]() 'b' now set to its tail.
@@ -75,7 +75,7 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
           |=  [a=bloq b=@ c=@]                                  ::  gate, bloq, 2 @ sample
           (add (lsh a (met a b) c) b)                           ::  add b to c lshifted by # of bloqs in b
 
-++cat concatenates b and c by first left shifting c by the number of bloqs of size a in b to ensure there is an adequate amount of space to add the two together, which it then does 
+++cat accepts a bloq a and two atoms b and c. ++cat produces b and c concatenated obeying the bloq size a.
 
 ###Summary
 ++cat is a [jetted arm]() that takes a [bloq]() 'a', and two atoms of [axil @]() labeled 'b' and 'c' with [=, the irregular form of ^=](). ++cat then uses [++met]() to measure the number of [bloqs]() of size 'a' that comprise 'b'. 'c' is then left-shifted by the same number of [bloqs]() of size 'a', and then added ([++add]()) to 'b'.
@@ -93,7 +93,6 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
 0b110
 ~ronrem-lonsem/try=> `@ub`(cat 2 1 1)
 0b1.0001
-
 ~ronrem-lonsem/try=> `@ub`256
 0b1.0000.0000
 ~ronrem-lonsem/try=> `@ub`255
@@ -113,7 +112,9 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
       |=  [a=bloq [b=@ c=@] d=@]                            ::  gate, sample: bloq, cell of @, @
       (end a c (rsh a b d))
 
+++cut accepts a bloq a, a cell of atoms b and c and an atom d.
 ++cut takes the [++tail]() of d right-shifted ([++rsh()) by a bloq of size a, b number of times
+??  this sentence should be different, but i'm a bit unclear on what exactly this does. perhaps the examples should be cast as @ub?
 
 ###Summary
 ++cut is a [jetted arm]() that creates a dry %gold gate using [|=](), whose sample takes a [bloq](), a cell of two atoms of[axil @](), labeled 'b' and 'c' respectively, and an atom of [axil @](), labeled 'd'. All of these lables are produced by [=, the irregular form of ^=](). ++cut then [right-shifts (++rsh)]() 'd' by 'b' number of bloqs of size 'a'. ++cut then calls the arm [++end]() to return the tail of the result of [right-shifting]() 'd'. The size of the tail is determined by the number of bloqs 'c' of size 'a'.
@@ -138,7 +139,7 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
       |=  [a=bloq b=@ c=@]                                  ::  gate, bloq, 2 @ sample
       (mod c (bex (mul (bex a) b)))                         ::  c % 2^(2^a * b)
 
-++end takes an atom c and returns its tail, whose length is determined by the number of of bloqs b, of size a
+++end takes a bloq a, and atoms c and d. ++end returns the tail of c, whose length is determined by the number of bloqs b, of size a
 
 ###Summary
 ++end is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes a [bloq]() and two atoms of [axil @](), labeled 'b' and 'c' with [=, the irregular form of ^=](). ++end returns the remainder of dividing c by the result of [++bex]() of [++bex]() multiplied by b.
@@ -168,7 +169,7 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
       (mul (bex (mul (bex a) b)) c)                         ::  c * (2^(2^a * b))
 
 
-++lsh takes an atom 'c', and shifts its binary code over by 'b' number of bloqs of size 'a' to the left.
+++lsh takes a bloq a and atoms b and c. ++lsh produces c shifted 'b' bloqs of size 'a' to the left.
 
 ###Summary
 ++lsh is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes a [bloq]() and two atoms of [axil @](), labeled 'b' and 'c' with [=, the irregular form of ^=](). ++lsh multiplies 'c' by the result of [++bex]() of the product of [++bex]() of 'a' multiplied by 'b'.
@@ -202,7 +203,7 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
       $(b (rsh a 1 b), c +(c))                              ::  sub values, recurse
 
 
-++met measures how many bloqs of size 'a' an atom 'b' has by right shifting 'b' by a bloq of size 'a' until 'b' reaches 0 
+++met accepts a bloq a and an atom b. ++met produces a count of bloqs of size 'a' in atom 'b'.
 
 ###Summary
 ++met is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes a [bloq]() and an atom of [axil @](), labeled 'b' with [=, the irregular form of ^=](). ++met uses [^-]() to cast its result to an atom of [axil @](), and uses [=+]() to push a variable 'c' onto the sample with a value of 0. Then ++met declares a [trap]() to enable recursion. If 'b' is equal to 0, then 'c' is returned. Otherwise, ++met recurses, this time with the value of 'b' set to the result of right-shifting ([++rsh]()) 'b' by one bloq of size 'a' to the right, with with the value of c set to +(c) [.+](). When the value of 'b' reaches 0, ++met returns the value of 'c', which will represent the number of bloqs of size 'a' b initially posessed.
@@ -255,7 +256,7 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
       |=  [a=bloq b=@ c=@]                                  ::  gate, bloq, 2 @ sample
       (div c (bex (mul (bex a) b)))                         ::  c / 2^(2^a * b)
 
-++rsh takes an atom 'c', and shifts its binary code over by 'b' number of bloqs of size 'a' to the right.
+++lsh takes a bloq a and atoms b and c. ++lsh produces c shifted 'b' bloqs of size 'a' to the right.
 
 ###Summary
 ++rsh [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes a [bloq]() and two atoms, [axil @](), labeled 'b' and 'c' with [=, the irregular form of ^=](). ++rsh divides 'c' by the result of [++bex]() of the product of [++bex]() of 'a' multiplied by 'b'. 
@@ -302,13 +303,13 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
     c   +(c)                                            ::  c incremented
     d   (add d (lsh 0 c ?&(=(0 (end 0 1 a)) =(0 (end 0 1 b))))) Tall form?
 
-++con performs the inclusive binary OR operation on two atoms, a and b, represented by bit strings
+++con accepts two atoms a and b and performs an inclusive binary OR.
 
 ###Summary
 ++con is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes two atoms, labeled 'a' and 'b' using [=, the irregular form of ^=](). ++con then pushes two atomic variables onto the subject, labeled 'a' and 'b' again by using [=](). With [^-](), ++con ensures its result is cast to an atom. Subsequently, ++con declares a [trap](), thus allowing it to loop. Using [?:]() and [?&](), ++con checks if both 'a' and 'b' are equal to 0. If yes, then ++con returns 'd'. Else, ++con uses the trap to loop, this time with the values of 'a' and 'b' both [right-shifted]() by one bit, and the value of 'c' now incremented using [+, the irregular form of .+](). The value of 'd'can also change: if either the last bit of 'a' (found using [++end]()) and the last bit of 'b' are equal ([.=]())to 0, then the value of 'd' becomes the sum of d and the result of left-shifting 1 by 'c' number of bits. Otherwise, d remains the same.     
 
-
-
+###Examples
+?
 
 
 ##++dis
@@ -326,10 +327,11 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
         c   +(c)                                            ::  c incremented
         d   (add d (lsh 0 c ?|(=(0 (end 0 1 a)) =(0 (end 0 1 b)))))  :: Tall form?
 
-++dis performs the binary AND operation on two atoms, 'a' and 'b', represented by bit strings
+++dis accepts two atoms a and b and performs a binary AND.
 
 ###Summary
 ++dis is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes two atoms, labeled 'a' and 'b' using [=, the irregular form of ^=](). Then, using [=|](), two tiles, labeled 'c' and 'd', are [bunted]() onto the subject. In order to loop, ++dis then calls a trap with [|-](), whose result is cast to an atom with [^-](). The trap then uses an if statement by using [?:]():it uses [=, the irregular form of .= to check if either 'a' or 'b' is equal to 0 (the inclusive OR statement is called with [?|]()). If either statement returns true, then ++dis produces d. Otherwise, the trap loops, this time with the values of 'a' and 'b' both [right-shifted]() by one bit, and the value of 'c' now incremented with [+, the irregular form of .+](). The value of 'd'can also change: if neither the last bit of 'a' nor the last bit of 'b' are equal ([.=]())to 0, then the value of 'd' becomes the sum of d and the result ofleft-shifting 1 by 'c' number of bits. Otherwise, d remains the same.     
+
 ###Examples
 ~ronrem-lonsem/try=> `@ub`9
 0b1001
@@ -366,7 +368,7 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
         c   +(c)                                            ::  c incremented
         d   (add d (lsh 0 c =((end 0 1 a) (end 0 1 b))))    ::  Tall form?
 
-++mix produces the result of performing the binary exclusive OR operation on two atoms, 'a' and 'b', represented by bit strings 
+++mix accepts two atoms a and b and performs an exclusive binary OR.
 
 ##Summary
 ++mix is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes two atoms, labeled 'a' and 'b' using [=, the irregular form of ^=](). ++mix then uses [^-]() to cast its result to an atom. ++mix then pushes two atomic variables onto the subject, labeled 'a' and 'b' again by using [^-](). Subsequently, ++mix declares a [trap](), thus allowing it to loop. Using [?:]() and [?&](), ++mix checks if both 'a' and 'b' are equal to 0. If yes, then ++mix returns 'd'. Else, ++mix uses the trap to loop, this time with the values of 'a' and 'b' both [right-shifted]() by one bit, and the value of 'c' now incremented using [+, the irregular form of .+](). The value of 'd' is also replaced with the sum of 'd' and the result of [=(), the irregular form of .=]() then [left-shifted]() by 1 bit 'c' number of times.
