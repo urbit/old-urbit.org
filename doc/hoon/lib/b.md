@@ -237,26 +237,29 @@ The product of `++homo` is cast, using [^+]() to the type of the product of [=<]
 
 
 ##++limo
-    ++  limo                                                ::  listify
-      |*  a=*
-      ^+  =<  $
-        |%  +-  $  ?@(a ~ ?:(_? [i=-.a t=$] $(a +.a)))
-        --
-      a
+
+####Listify.
 
 `++limo` accepts any null-terminated cell `a` and produces a [++list]().
-
-###Summary
-`++limo` creates a [wet vulcanized gate |*]() which accepts any noun `a`.
-The product of `++limo` is cast, using [^+](), to the type of the product of [$]() using [=<]().
-A [%gold core |%]() is created.
-??  similarly strange recursion here
 
 ###Examples
     ~dovryp-toblug/try=> (limo ['a' 'b' ~])
     [i='a' t=[i='b' t=~]]
     ~dovryp-toblug/try=> (limo [2 1 ~])
     [i=2 t=[i=1 t=~]]
+
+###Summary
+    ++  limo                                                
+      |*  a=*
+      ^+  =<  $
+        |%  +-  $  ?@(a ~ ?:(_? [i=-.a t=$] $(a +.a)))
+        --
+      a
+
+`++limo` creates a [wet vulcanized gate |*]() which accepts any noun `a` [1].  
+The product of `++limo` is cast, using [^+](), to the type of the product of [$]() using [=<]() [2].  
+A [%gold core |%]() is created.  
+??  similarly strange recursion here
 
 
 ##++lent
