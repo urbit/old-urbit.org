@@ -6,85 +6,114 @@ categories: lib
 sort: 4
 ---
 
-  ::::::::::::::::::::::::::::::::::::::::::::::::::::::  ::
-::::              chapter 2d, containers                ::::
-::  ::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::                section 2dA, sets                     ::
-::
-++  apt                                                 ::  set invariant
-  |=  a=(tree)
-  ?@  a
-    &
-  ?&  ?@(l.a & ?&((vor n.a n.l.a) (hor n.l.a n.a)))
-      ?@(r.a & ?&((vor n.a n.r.a) (hor n.a n.r.a)))
-  ==
-::
+This section covers the containers sets maps and trees.
+
+#Sets
+
+##++apt
+    ++  apt                                                 ::  set invariant
+      |=  a=(tree)
+      ?@  a
+        &
+      ?&  ?@(l.a & ?&((vor n.a n.l.a) (hor n.l.a n.a)))
+          ?@(r.a & ?&((vor n.a n.r.a) (hor n.a n.r.a)))
+      ==
+?? don't really understand apt.
+
+##++in
 ++  in                                                  ::  set engine
   !:
   ~/  %in
   |/  a=(set)
-  +-  all
-    ~/  %all
-    |*  b=$+(* ?)
-    |-  ^-  ?
-    ?@  a
-      &
-    ?&((b n.a) $(a l.a) $(a r.a))
-  
-  ::  Takes a gate b that takes any noun and produces a loobean. +-all produces
-  ::  the logical and of all the values (n.a) in a. 
-  ::  ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
-  ::  ~dovryp-toblug/try=> (~(all in b) |=(a=* ?@(-.a & |)))
-  ::  %.n
+
+`++in` is the container arm for all the set arms. The contained arms inherit its sample, `a`.
+
+###Summary: 
+?? zapcol?
+`++in` is a [jetted arm (~/)](). 
+`++in` creates a [vulcanized %gold tray]() that takes a `++set` `a`. 
+
+##+-all
+      +-  all
+        ~/  %all
+        |*  b=$+(* ?)
+        |-  ^-  ?
+        ?@  a
+          &
+        ?&((b n.a) $(a l.a) $(a r.a))
+
+`+-all` takes a gate `b` and produces the loobean of the logical AND of all the values (`n.a`) in `a`.
+
+  ##Summary
+
+  ##Examples
+      ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+      ~dovryp-toblug/try=> (~(all in b) |=(a=* ?@(-.a & |)))
+      %.n
 
 
-  +-  any
-    ~/  %any
-    |*  b=$+(* ?)
-    |-  ^-  ?
-    ?@  a
-      |
-    ?|((b n.a) $(a l.a) $(a r.a))
-  
-  ::  Takes a gate b that takes any noun and produces a loobean. +-any produces
-  ::  the logical or of all the values (q.n.a) in a. 
-  ::  ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
-  ::  ~dovryp-toblug/try=> (~(any in b) |=(a=* ?@(+.a & |)))
-  ::  %.y
+##+-any
+    +-  any
+      ~/  %any
+      |*  b=$+(* ?)
+      |-  ^-  ?
+      ?@  a
+        |
+      ?|((b n.a) $(a l.a) $(a r.a))
+
+`+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`.
+
+##Summary
+
+##Examples
+    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+    ~dovryp-toblug/try=> (~(any in b) |=(a=* ?@(+.a & |)))
+    %.y
 
 
-  +-  del
-    ~/  %del
-    |*  b=*
-    |-  ^+  a
-    ?~  a
-      ~
-    ?.  =(b n.a)
-      ?:  (hor b n.a)
-        [n.a $(a l.a) r.a]
-      [n.a l.a $(a r.a)]
-    |-  ^-  ?(~ _a)
-    ?~  l.a  r.a
-    ?~  r.a  l.a
-    ?:  (vor n.l.a n.r.a)
-      [n.l.a l.l.a $(l.a r.l.a)]
-    [n.r.a $(r.a l.r.a) r.r.a]
+##+-del
+    +-  del
+      ~/  %del
+      |*  b=*
+      |-  ^+  a
+      ?~  a
+        ~
+      ?.  =(b n.a)
+        ?:  (hor b n.a)
+          [n.a $(a l.a) r.a]
+        [n.a l.a $(a r.a)]
+      |-  ^-  ?(~ _a)
+      ?~  l.a  r.a
+      ?~  r.a  l.a
+      ?:  (vor n.l.a n.r.a)
+        [n.l.a l.l.a $(l.a r.l.a)]
+      [n.r.a $(r.a l.r.a) r.r.a]
 
-  ::  Takes a noun b and removes the member of the set where n.a is b.
-  ::  ~dovryp-toblug/try=> =b (sa `(list ,@t)`['a' 'b' 'c' ~])
-  ::  ~dovryp-toblug/try=> (~(del in b) 'a')
-  ::  {'c' 'b'}
+`+-del` takes any noun b and removes the member of the set `a` where `n.a` is `b`.
 
+##Summary
 
-  +-  dig
-    |=  b=*
-    =+  c=1
-    |-  ^-  (unit ,@)
-    ?~  a  ~
-    ?:  =(b n.a)  [~ u=(peg c 2)]
-    ?:  (gor b n.a)
-      $(a l.a, c (peg c 6))
-    $(a r.a, c (peg c 7))
+##Examples
+    ~dovryp-toblug/try=> =b (sa `(list ,@t)`['a' 'b' 'c' ~])
+    ~dovryp-toblug/try=> (~(del in b) 'a')
+    {'c' 'b'}
+
+##+-dig
+    +-  dig
+      |=  b=*
+      =+  c=1
+      |-  ^-  (unit ,@)
+      ?~  a  ~
+      ?:  =(b n.a)  [~ u=(peg c 2)]
+      ?:  (gor b n.a)
+        $(a l.a, c (peg c 6))
+      $(a r.a, c (peg c 7))
+
+`+-dig` takes any noun `b` and produces the 
+
+##Summary
+
+##Examples
 
   ::  finds the ++gor (the order of ++mug hashes) of b and n.a
   ::  replaces a with l.a if true, r.a if not
@@ -92,78 +121,91 @@ sort: 4
   ::  ??  so that's what it does, but what does it mean?
 
 
-  +-  gas
-    ~/  %gas
-    |=  b=(list ,_?>(?=(^ a) n.a))
-    |-  ^+  a
-    ?@  b
-      a
-    $(b t.b, a (put(+< a) i.b))
+##+-gas
+    +-  gas
+      ~/  %gas
+      |=  b=(list ,_?>(?=(^ a) n.a))
+      |-  ^+  a
+      ?@  b
+        a
+      $(b t.b, a (put(+< a) i.b))
 
-  ::  Takes a list with some special form: ?=(^ a) is false, and the members 
-  ::  of the list are of the same bunt as the members of the set. Produces the
-  ::  set with the added members of b.
-  ::  ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
-  ::  ~dovryp-toblug/try=> (~(gas in a) `(list ,@t)`['d' 'e' 'f' 
-  ::  {'e' 'd' 'f' 'a' 'c' 'b'}
+`+-gas` takes a list `b` with members of the same type as `a` and produces `b` concatenated with `a`.
 
+##Summary
 
-  +-  has
-    ~/  %has
-    |*  b=*
-    |-  ^-  ?
-    ?@  a
-      |
-    ?:  =(b n.a)
-      &
-    ?:  (hor b n.a)
-      $(a l.a)
-    $(a r.a)
-
-  ::  Takes any noun b and produces a loobean indicating whether that value 
-  ::  (n.a) exists in a.
-  ::  ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
-  ::  ~dovryp-toblug/try=> (~(has in a) 'a')
-  ::  %.y
-  ::  ~dovryp-toblug/try=> (~(has in a) 'z')
-  ::  %.n
+##Examples
+    ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+    ~dovryp-toblug/try=> (~(gas in a) `(list ,@t)`['d' 'e' 'f' 
+    {'e' 'd' 'f' 'a' 'c' 'b'}
 
 
-  +-  put
-    ~/  %put
-    |*  b=*
-    |-  ^+  a
-    ?@  a
-      [b ~ ~]
-    ?:  =(b n.a)
-      a
-    ?:  (hor b n.a)
-      =+  c=$(a l.a)
+##+-has
+    +-  has
+      ~/  %has
+      |*  b=*
+      |-  ^-  ?
+      ?@  a
+        |
+      ?:  =(b n.a)
+        &
+      ?:  (hor b n.a)
+        $(a l.a)
+      $(a r.a)
+
+`+-has` accepts any noun `b` and produces a loobean indicating whether that value (`n.a`) exists in `a`.
+
+##Summary
+
+##Examples
+    ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+    ~dovryp-toblug/try=> (~(has in a) 'a')
+    %.y
+    ~dovryp-toblug/try=> (~(has in a) 'z')
+    %.n
+
+
+##+-put
+    +-  put
+      ~/  %put
+      |*  b=*
+      |-  ^+  a
+      ?@  a
+        [b ~ ~]
+      ?:  =(b n.a)
+        a
+      ?:  (hor b n.a)
+        =+  c=$(a l.a)
+        ?>  ?=(^ c)
+        ?:  (vor n.a n.c)
+          [n.a c r.a]
+        [n.c l.c [n.a r.c r.a]]
+      =+  c=$(a r.a)
       ?>  ?=(^ c)
       ?:  (vor n.a n.c)
-        [n.a c r.a]
-      [n.c l.c [n.a r.c r.a]]
-    =+  c=$(a r.a)
-    ?>  ?=(^ c)
-    ?:  (vor n.a n.c)
-      [n.a l.a c]
-    [n.c [n.a l.a l.c] r.c]
+        [n.a l.a c]
+      [n.c [n.a l.a l.c] r.c]
 
-  ::  Takes any noun b and adds it to the set a on the head (n=b).
-  ::  ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
-  ::  ~dovryp-toblug/try=> (~(put in a) 'd')
-  ::  {'d' 'a' 'c' 'b'}
+`+-put` accepts any noun `b` and adds it to the head of `a` (`n=b`).
+
+##Summary
+
+##Examples
+    ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+    ~dovryp-toblug/try=> (~(put in a) 'd')
+    {'d' 'a' 'c' 'b'}
 
 
-  +-  rep
-    |*  [b=* c=_,*]
-    |-
-    ?~  a  b
-    $(a r.a, b $(a l.a, b (c n.a b)))
+##+-rep
+    +-  rep
+      |*  [b=* c=_,*]
+      |-
+      ?~  a  b
+      $(a r.a, b $(a l.a, b (c n.a b)))
 
-  ::  Takes a cell with any noun b and a tile c. Walks through the set 
-  ::  replacing b with (c n.a b): applying c to n.a b.
-  ::  ??  But, what is it for? Can't find calls to it.
+`+-rep` accepts a cell with any noun `b` and a tile `c`. `+-rep` produces `a` with each `n.a` replaced with `(c n.a b)`.
+
+  ??  But, what is it for? Can't find calls to it.
 
 
   +-  tap
