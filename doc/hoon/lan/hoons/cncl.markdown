@@ -7,29 +7,65 @@ title: cencol
 ---
 
 
+#[cencol, `%:`, %cncl](#cncl)
 
-`%:`, `cencol`, `[%cncl p=twig q=twig]` is a synthetic hoon that
+##Syntax
+
+`%:`, `cencol`, `[%cncl p=twig q=twig]` is a synthetic rune that
 that pulls `%$` from the tray `p` with its sample set to `q`.
 
-###Definition###
+###Form
+
+`p` is a twig
+`q` is a twig
+
+####Tall
+
+    %:  p
+    p
+
+####Wide
+
+    %:('twig' 'twig')
+
+####Irregular
+
+None
+
+###Reduction
+
+    %:  p
+    q
+
+reduces to
+
+    %~  $
+    p  q
+
+reduces to
+
+    %*  $  p
+      +<  q
+    ==
+      
+###Examples
+
+##Semantics
+
+%cncl is a twig.
+
+###Definition
 
     ++  twig  
       $%  [%cncl p=twig q=twig]
       ==
 
-###Regular form (tall)###
-
-    %:  p
-    q
-
-###Regular form (wide)###
-
-    %:(p q)
-
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
       ?-  gen
         [%cncl *]  [%cnsg [%$ ~] p.gen q.gen]
       ==
+
+###Notes

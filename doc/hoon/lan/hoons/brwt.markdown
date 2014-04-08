@@ -6,31 +6,55 @@ sort: 22
 title: barwut
 ---
 
+#[barwut, `|?`, %brwt](#brwt)
 
+##Syntax
 
 `|?`, `barwut`, `[%brwt q=twig]` is a synthetic hoon that produces a
 dry `%lead` trap.
+
+###Form
+
+`p` is a twig
+
+####Tall
+
+    |?  p
+
+####Wide
+
+    |?(p)
+
+####Irregular
+None
+
+###Reduction
+
+    |?  p
+
+reduces to
+
+    ^?  |. p
+
+reduces to [`|.` link]
+
+    ^?
+    |%  ++  $
+        p
+    --
+
+###Examples
+
+
+##Semantics
+
+`%brwt` is a twig.
 
 ###Definition###
 
     ++  twig  
       $%  [%brwt p=twig]
       ==
-
-###Regular form (tall)###
-
-Kingside:
-
-    |?
-    p
- 
-Queenside:
-
-    |?  p
-
-###Regular form (wide)###
-
-    |?(p)
 
 ###Expansion###
     

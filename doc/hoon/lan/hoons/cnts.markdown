@@ -7,42 +7,56 @@ title: centis
 ---
 
 
+#[centis, `%=`, %cnts](#cnts)
+
+##Syntax
 
 `%=`, `centis`, `[%cnts p=wing q=tram]` is a natural hoon that
 evaluates `p` with the changes specified in `q`.
 
-###Definition###
 
-    ++  twig  
-      $%  [%cnts p=wing q=tram]
-      ==
-    ++  tram  (list ,[p=wing q=twig]) 
+###Form
 
-###Regular form (tall)###
+`p` is a wing
 
-Kingside:
+`q` is a tram
+
+`p.i.q` is a wing
+`q.i.q` is a twig
+`p.i.t.q` is a wing
+`q.i.t.q` is a twig
+
+####Tall
 
     %=  p
       p.i.q    q.i.q
       p.i.t.q  q.i.t.q
     ==
 
-Queenside:
-
-    %=    p
-        p.i.q    
-      q.i.q
-        p.i.t.q  
-      q.i.t.q
-    ==
-
-###Regular form (wide)###
+####Wide
 
     %=(p p.i.q q.i.q, p.i.t.q q.i.t.q)
 
-###Irregular form###
+####Irregular
 
     p(p.i.q q.i.q, p.i.t.q q.i.t.q)
+
+###Reduction
+None, `%=` is Natural
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%cnts p=wing q=tram]
+      ==
+    ++  tram  (list ,[p=wing q=twig]) 
+
+
+###Expansion
 
 ###Compilation###
    
@@ -237,7 +251,8 @@ You are not expected to understand this:
         |  [p.pok [p.q.pok q.q.pok]]
       ==
 
-###Notes###
+
+##Notes
 
 See the explanation in Chapter 7.
 

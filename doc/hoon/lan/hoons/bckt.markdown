@@ -6,7 +6,9 @@ sort: 5
 title: bucket
 ---
 
+#[bucket `$^`](#bckt)
 
+##Syntax
 
 `$^`, `bucket`, is a tile hoon that declares an `%herb`:
 
@@ -14,22 +16,41 @@ title: bucket
 
 An `%herb` is just a gate, accepting a sample of * and normalizing it as you choose. If you use a twig as a tile, it's treated as an herb.
 
-###Definition###
+###Form
+`p` is a twig
 
-    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
-            $%  [%herb p=twig]                            ::  gate     
-            ==
-
-###Regular form (tall)###
+####Tall
 
     $^  p
         q
     ==
 
-###Regular form (wide)###
+
+####Wide
 
     $^(p q)
 
-###Notes###
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+##Semantics
+
+`%herb` is a tile
+
+###Definition
+
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+            $%  [%herb p=twig]                            ::  gate     
+            ==
+
+
+###Expansion
+    
+##Notes
 
 See the discussion of tiles in chapter 9.

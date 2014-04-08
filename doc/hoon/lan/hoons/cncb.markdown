@@ -7,41 +7,66 @@ title: cencab
 ---
 
 
+#[cencab, `%_`, %cncb](#cncb)
+
+##Syntax
 
 `%_`, `cencab`, `[%cncb p=wing q=tram]` is a synthetic hoon that
 evaluates `p` with the changes specified in `q`, then casts the
 product back to `p`.
 
-###Definition###
+###Form
+
+`p` is a wing
+`q` is a tram, a list of wing twig pairs 
+`p.i.q` is a wing
+`q.i.q` is a twig
+`p.i.t.q` is a wing 
+`q.i.t.q` is a twig
+
+####Tall
+
+    %_  p
+      p.i.q  q.i.q
+      p.i.t.q  q.i.t.q
+    ==
+
+####Wide
+
+    %_(p p.i.q q.i.q, p.i.t.q q.i.t.q)
+
+####Irregular
+None
+
+###Reduction
+ 
+    %_  p
+      p.i.q  q.i.q
+      p.i.t.q  q.i.t.q
+    ==
+    
+reduces to
+
+    ^+  p
+    %=  p
+       p.i.q  q.i.q
+      p.i.t.q  q.i.t.q
+    ==
+
+###Examples
+
+##Semantics
+
+`%cncb` is a twig.
+
+###Definition
 
     ++  twig  
       $%  [%cncb p=wing q=tram]
       ==
     ++  tram  (list ,[p=wing q=twig]) 
 
-###Regular form (tall)###
-
-Kingside:
-
-    %_  p
-      p.i.q    q.i.q
-      p.i.t.q  q.i.t.q
-    ==
-
-Queenside:
-
-    %_    p
-        p.i.q    
-      q.i.q
-        p.i.t.q  
-      q.i.t.q
-    ==
-
-###Regular form (wide)###
-
-    %_(p p.i.q q.i.q, p.i.t.q q.i.t.q)
-
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -50,8 +75,5 @@ Queenside:
         [%ktls [%cnzz p.gen] %cnts p.gen q.gen]
       ==
 
-###Notes###
+##Notes
 
-`%cnts` is not of course constrained to produce a `p` whose type
-is unchanged.  Usually this is fine - sometimes we want the
-discipline.

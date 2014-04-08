@@ -7,34 +7,68 @@ title: cenlus
 ---
 
 
+#[cenlus, `%+`, %cnls](#cnls)
+
+##Syntax
 
 `%+`, `cenlus`, `[%cnls p=twig q=twig r=twig]` is a synthetic hoon 
 that slams gate `p` with `[%cntr q r]`.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%cnls p=twig q=twig r=twig]
-      ==
-
-###Regular form (tall)###
-
-Kingside:
+####Tall
 
     %+  p
       q
     r
 
-Queenside:
 
-    %+  p  q
-    r
-
-###Regular form (wide)###
+####Wide
 
     %+(p q r)
 
-###Expansion###
+####Irregular
+None
+
+###Reduction
+
+    %+  p
+      q
+    r
+
+reduces to
+
+    %-  p
+      [q r]
+
+reduces to
+
+    ?~  [q r]
+      =>  p  $
+    %:  p
+    [q r]
+
+reduces to
+
+    ?~  [q r]
+      =>  p  $
+    %*  $  p
+      +<  [q r]
+    ==
+
+###Examples
+
+##Semantics
+
+`%cnls` is a twig
+
+###Definition
+
+    ++  twig  
+      $%  [%cnls p=twig q=twig r=twig]
+      ==
+
+###Expansion
     
     ++  open
       ^-  twig
@@ -42,3 +76,5 @@ Queenside:
           [%cnls *]
         [%cnhp p.gen q.gen r.gen ~]
       ==
+
+##Notes

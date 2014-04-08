@@ -1,24 +1,49 @@
 ---
 layout: subpage
 axis: doc-hoon
-categories: buc rune
+categories: buc twig
 sort: 12
 title: buczap
 ---
 
 
+#[buczap, %brhp](#brhp)
 
-`$!`, `buczap`, `[%bczp p=base]` is a synthetic hoon that
+##Syntax
+
+`buczap`, `[%bczp p=base]` is an synthetic internal twig that
 produces the bunt (default value) for `[%axil p]`.
 
-###Definition###
+###Form
+
+None, `buczap` is only used as a shorthand for macro expansion in ++open.
+
+####Tall
+None
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+None
+
+##Semantics
+%bczp is a ++twig.
+
+###Definition
 
     ++  twig  
       $%  [%bczp p=base]
       ==
     ++  base  ?([%atom p=odor] %noun %cell %bean %null)
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -27,6 +52,5 @@ produces the bunt (default value) for `[%axil p]`.
         [%bccb %axil p.gen]
       ==
 
-###Notes###
-
+##Notes
 See the discussion of tiles in chapter 9.

@@ -6,30 +6,54 @@ sort: 0
 title: bucbar
 ---
 
-##[bucbar $| %bcbr](#bcbr)
+#[bucbar,`$|`, %bcbr](#bcbr)
 
-`$|`, `bucbar`, is a tile hoon that produces a `%reed`,  
+##Syntax
+
+`$|`, `bucbar`, is a tile rune that produces a `%reed`,  
 
     [%reed p=tile q=tile]
 
 a `%reed` is a tile whose icon contains two kinds of nouns: atoms of tile `p` and cells of tile `q`.
 
-###Definition###
+###Form
+`p` is a tile
+`q` is a tile
 
-    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
-              $%  [%reed p=tile q=tile]                     ::  atom/cell
-              ==
-
-###Regular form (tall)###
+####Tall
 
     $|  p
         q
     ==
 
-###Regular form (wide)###
+####Wide
 
     $|(p q)
 
-###Notes###
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+    ++  list  |*  a=_,*                                     ::  null-terminated list
+              $|(~ [i=a t=(list a)])                        ::
+
+In ++list, $| specifies that every element in a noun that can be cast to a ++list is either the atom ~ or the cell [i=a t=(list a)]. 
+
+##Semantics
+
+###Definition
+
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%reed p=tile q=tile]                     ::  atom/cell
+              ==
+
+###Expansion
+None
+
+##Notes
 
 See the discussion of tiles in chapter 9.

@@ -6,31 +6,51 @@ sort: 9
 title: buctar
 ---
 
+#[buctar, `$*`, %bctr](#bctr)
 
+##Syntax
 
-`$*`, `buctar`, `[%bctr p=tile]` is a synthetic hoon that
+`$*`, `buctar`, `[%bctr p=tile]` is a synthetic rune that
 produces the bunt (default value) for `p` as a compile-time
 constant.
 
-###Definition###
+###Form
+
+`p` is a tile.
+
+####Tall
+
+    $*  p
+
+####Wide
+
+    $*(p)
+
+####Irregular
+
+    *p
+
+###Reduction
+
+    $*  p
+
+reduces to
+
+    ^~  ~(bunt al p)
+
+###Examples
+
+##Semantics
+
+`%bctr` is a twig.
+
+###Definition
 
     ++  twig  
       $%  [%bctr p=tile]
       ==
 
-###Regular form (tall)###
-
-    $*  p
-
-###Regular form (wide)###
-
-    $*(p)
-
-###Irregular form###
-
-    *p
-
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -39,6 +59,6 @@ constant.
         [%ktsg ~(bunt al p.gen)]
       ==
 
-###Notes###
+###Notes
 
 See the discussion of tiles in chapter 9.

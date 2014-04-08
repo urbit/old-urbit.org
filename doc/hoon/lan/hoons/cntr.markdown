@@ -7,26 +7,65 @@ title: centar
 ---
 
 
+#[centar, `%*`, %cntr](#cntr)
 
-`%*`, `centar`, `[%cntr p=twig q=twig]` is a synthetic hoon that
-produces the tray `p` with its sample set to `q`.
+##Syntax
 
-###Definition###
+`%*`, `centar`, `[%cntr p=wing q=twig r=tram]` is a synthetic rune that pull the wing `p` from a tray `q` with changes `r`.
+
+###Form
+
+`p` is a ++wing
+
+++  wing  (list limb)                                   ::  part of subject
+
+`q` is a twig. Should be a tray.
+
+`r` is a tram
+
+    ++  tram  (list ,[p=wing q=twig])                       ::
+
+####Tall
+
+    %*  p  q
+    p.i.r  q.i.r
+    p.i.t.r  q.i.t.r
+    ==
+
+####Wide
+
+    %*(p q p.i.r q.i.r, p.i.t.r q.i.t.r)
+
+####Irregular
+None
+
+###Reduction
+
+    %*  wing
+    'twig'
+    tram 
+
+reduces to
+
+    =+  q
+    %=  (weld p `wing`[[~ 2] ~])
+    (turn r |=([p=wing q=twig] [p =>(+ q)]))
+
+###Examples
+
+##Semantics
+
+%cntr is a twig.
+
+###Definition
 
     ++  twig  
-      $%  [%cntr p=twig]
+      $%  [%cntr p=wing q=twig r=tram]
       ==
 
-###Regular form (tall)###
 
-    %*  p
-    q
 
-###Regular form (wide)###
-
-    %*(p q)
-
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -39,22 +78,5 @@ produces the tray `p` with its sample set to `q`.
         (turn r.gen |=([p=wing q=twig] [p [%tsgr [~ 3] q]]))
       ==
 
-###Notes###
+###Notes
 
-What is the difference between 
-
-    %*  p
-    q
-
-and
-
-    %=  p 
-      +6  q
-    ==
-
-?  In the latter, we replace the sample not of the value computed
-by `p`, but of the context in which `p` is computed.  If `p` is a
-leg - which it usually isn't in this case - then the two are
-equivalent.  If `p` is an arm, rather than replacing the sample
-of the tray that the arm produces, we are replacing the sample on
-the arm's subject.  In general, this will do the wrong thing.
