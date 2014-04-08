@@ -1,1 +1,4 @@
 - Every reference to an arm or language construct should be linked.
+- Try to use 'produces' instead of 'returns'
+- Summaries should be one line per sentence for readability.
+- No colons in h tags
