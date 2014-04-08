@@ -8,7 +8,7 @@ permalink:        pretty
 # Setup
 title:            Urbit
 tagline:          'Personal Cloud Computing'
-description:      'a personal cloud computer'
+description:      'a personal cloud computer.'
 url:              http://urbit.org
 
 post_groups:
