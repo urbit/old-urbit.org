@@ -70,6 +70,9 @@ a {
   color: #555;
   text-decoration: none;
 }
+p a {
+  text-decoration: underline;
+}
 /* `:focus` is linked to `:hover` for basic accessibility */
 a:hover,
 a:focus {
