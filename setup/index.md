@@ -5,9 +5,9 @@ axis: root
 sort: 1
 ---
 
-*Tlön is surely a labyrinth, but it is a labyrinth devised
-by men, a labyrinth destined to be deciphered by men.*  
-**(Tlön, Uqbar, Orbis Tertius)**
+> Tlön is surely a labyrinth, but it is a labyrinth devised  
+> by men, a labyrinth destined to be deciphered by men.  
+> - Tlön, Uqbar, Orbis Tertius
 
 ##Prepare your computer##
 
@@ -439,4 +439,4 @@ simply type
 
 and type `?` for help.
 
-[**Next**: Intro To Nock](/doc/2013/11/18/ch2)
+[On to the documentation.](/doc/)

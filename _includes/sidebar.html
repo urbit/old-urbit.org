@@ -2,22 +2,21 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <a href="/">
-        <img src="/public/urbit_logo_ur.svg">
+        <h1 class="logo">⧋</h1>
+        <h1 class="title">{{ site.title }}, {{ site.description }}</h1>
       </a>
-      <br>
-      <h1>{{ site.title }}</h1>
-      <p class="lead">{{ site.description }}</p>
     </div>
 
     <ul class="sidebar-nav">
-
-    {% for page in site.axis.root %}
-      <li class="sidebar-nav-item{% if page.url == page.url %} active{% endif %}">
-        <a href="{{ page.url }}">{{ page.title }}</a>
+    {% for _page in site.axis.root %}
+      <li class="sidebar-nav-item">
+        <a href="{{ _page.url }}" class="{% if page.url == _page.url %} active{% endif %}">{{ _page.title }}</a>
       </li>
     {% endfor %}
-
+      <li class="sidebar-nav-item">
+        <a href="mailto:urbit@urbit.org">urbit@urbit.org</a>
+      </li>
     </ul>
-    <p>urbit@urbit.org</p>
+    
   </div>
 </div>

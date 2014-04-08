@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Articles
-axis: root
+axis: community
 sort: 3
 ---
 
