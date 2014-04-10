@@ -15,7 +15,7 @@
 }
 
 .sidebar-about h1.logo {
-	font-size: 1.1rem;
+	font-size: 2rem;
 	width: 20px;;
 }
 
@@ -44,7 +44,7 @@
 
 .sidebar-nav-item {
 	display: inline-block;
-	min-width: 9rem;
+	min-width: 13rem;
 	font-size: 1rem;
 }
 

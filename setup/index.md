@@ -2,7 +2,7 @@
 layout: page
 title: Setup
 axis: root
-sort: 1
+sort: 3
 ---
 
 > Tlön is surely a labyrinth, but it is a labyrinth devised  

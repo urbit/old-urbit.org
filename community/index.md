@@ -2,7 +2,7 @@
 layout: page
 title: Community
 axis: root
-sort: 4
+sort: 2
 ---
 
 The Urbit community continuously interacts on Urbit itself using `:chat`. Check out the [setup](/setup/) page for instructions on how to come join us. We're there to answer questions and discuss anything Urbit might bring up.

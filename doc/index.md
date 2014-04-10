@@ -2,7 +2,7 @@
 layout: page
 title: Documentation
 axis: root
-sort: 2
+sort: 1
 ---
 
 Arvo runs on top of Hoon, Hoon runs on top of Nock, and that's all we know.
