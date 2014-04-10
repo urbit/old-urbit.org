@@ -46,7 +46,7 @@ Each component has tutorial sections, language and library reference. If you wan
 ###Library Reference
 {% for page in site.axis.doc-hoon %}
 {% if page.categories contains 'lib' %}
-[{{ page.title }}]({{ page.url }})
+[{{ page.title }}](/doc/hoon/lib/#{{ page.section }})
 {% endif %}
 {% endfor %}
 

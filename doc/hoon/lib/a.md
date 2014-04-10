@@ -1,6 +1,7 @@
 ---
 layout: subpage
 title: 2a Unsigned Math
+arms: [++dec, ++add, ++sub, ++mul, ++div, ++mod, ++lth, ++lte, ++gth, ++gte, ++max, ++min, ++cap, ++mas, ++peg]
 axis: doc-hoon
 categories: lib
 sort: 1
@@ -8,7 +9,7 @@ sort: 1
 
 This chapter covers basic mathematical operations on natural numbers (atoms), such as decremement, addition, subtraction etc. Simple comparison functions such as less-than, and a few useful functions for calculating axes within Nock nouns.
 
-##++dec
+<h2 id="++dec">++dec</h2>
     ++  dec                                                 ::::::  decrement
       ~/  %dec                                              ::  jet
       |=  a=@                                               ::  gate, sample atom a

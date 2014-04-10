@@ -2,6 +2,7 @@
 layout: subpage
 title: 2d Containers
 axis: doc-hoon
+arms: [++apt, ++in, +-all ++in, +-any ++in, +-del ++in, +-dig ++in, +-gas ++in, +-has ++in, +-put ++in, +-rep ++in, +-tap ++in, +-wyt ++in, ++by, +-all ++by, +-any ++by, +-del ++by, +-dig ++by, +-gas ++by, +-get ++by, +-has ++by, +-mar ++by, +-put ++by, +-rep ++by, +-rib ++by, +-run ++by, +-tap ++by, +-wyt ++by, ++to, +-bal ++to, +-dep ++to, +-gas ++to, +-get ++to, +-nap ++to, +-put ++to, +-tap ++to, +-top ++to, ++mo, ++sa]
 categories: lib
 sort: 4
 ---
@@ -11,6 +12,12 @@ This section covers the containers sets maps and trees.
 #Sets
 
 ##++apt
+####Sets invariant
+`++apt` takes any tree `a` and produces a loobean indicating whether that tree is a set.
+
+###Examples
+
+###Summary
     ++  apt                                                 ::  set invariant
       |=  a=(tree)
       ?@  a
@@ -18,7 +25,6 @@ This section covers the containers sets maps and trees.
       ?&  ?@(l.a & ?&((vor n.a n.l.a) (hor n.l.a n.a)))
           ?@(r.a & ?&((vor n.a n.r.a) (hor n.a n.r.a)))
       ==
-?? don't really understand apt.
 
 ##++in
 
@@ -277,11 +283,15 @@ Otherwise produce `[n.c [n.a l.a l.c] r.c]`.
 
 ##+-rep  ++in
 
-####??
+####Reduce
 `+-rep` accepts a cell with any noun `b` and a tile `c`. `+-rep` produces `a` with each `n.a` replaced with `(c n.a b)`.
 
 ###Examples
-  ??  But, what is it for? Can't find calls to it.
+    ~talsur-todres/try=> =a (~(gas in *(set ,@)) [1 2 3 ~])
+    ~talsur-todres/try=> a
+    {1 3 2}
+    ~talsur-todres/try=> (~(rep in a) 0 |=([a=@ b=@] (add a b)))
+    6
 
 ###Summary
     +-  rep
@@ -578,6 +588,8 @@ Otherwise, recurse with `a` set to `r.a`.
 ##+-mar  ++by
 
 ####??
+If you send it null, it deletes if you send it a value it adds
+`b` is the key
 
 ###Examples
 
@@ -644,6 +656,11 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
 `+-rep` walks through the map `a` replacing `b` with the product of calling `c` with `n.a` and `b`.
 
 ###Examples
+    ~talsur-todres/try=> =a (~(gas by *(map ,@ ,@)) ['a' 1] ['b' 2] ~)
+    ~talsur-todres/try=> a
+    {[p=97 q=1] [p=98 q=2]}
+    ~talsur-todres/try=> (~(rep by a) 0 |=([a=[p=@t q=@] b=@] (add q.a b)))
+    3
 
 ###Summary
     +-  rep
@@ -697,7 +714,7 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
 
 ##+-tap  ++by
 
-####??
+####Listify
 
 ###Examples
     ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 97] ['b' 98] ~])
