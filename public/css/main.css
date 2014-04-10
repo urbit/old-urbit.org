@@ -45,7 +45,7 @@
 .sidebar-nav-item {
 	display: inline-block;
 	min-width: 9rem;
-	font-size: .9rem;
+	font-size: 1rem;
 }
 
 ul,ol {
@@ -56,7 +56,22 @@ ul {
 	list-style-type: circle;
 }
 
-code {
+code, .subnav > ul > li > ul {
 	font-family: "Menlo", "Courier New", courier, monospace;
 	color: inherit;
+}
+
+.subnav > ul > li > ul {
+	font-size: .9rem;
+	overflow: hidden;
+	height: 0;
+}
+
+.subnav > ul > li > ul.active {
+	overflow: normal;
+}
+
+.subnav > ul {
+	list-style-type: none;
+	padding: 0;
 }

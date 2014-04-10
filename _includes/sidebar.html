@@ -2,7 +2,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <a href="/">
-        <h1 class="logo">⧋</h1>
+        <h1 class="logo">⧍</h1>
         <h1 class="title">{{ site.title }}, {{ site.description }}</h1>
       </a>
     </div>
@@ -10,7 +10,7 @@
     <ul class="sidebar-nav">
     {% for _page in site.axis.root %}
       <li class="sidebar-nav-item">
-        <a href="{{ _page.url }}" class="{% if page.url == _page.url %} active{% endif %}">{{ _page.title }}</a>
+        <a href="{{ _page.url }}" class="{% if page.url contains _page.url %} active{% endif %}">{{ _page.title }}</a>
       </li>
     {% endfor %}
       <li class="sidebar-nav-item">

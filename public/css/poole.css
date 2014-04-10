@@ -308,6 +308,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .page,
+.subpage,
 .post {
   margin-top: 2rem;
   margin-bottom: 4em;
