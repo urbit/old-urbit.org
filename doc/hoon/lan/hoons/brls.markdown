@@ -6,27 +6,63 @@ sort: 19
 title: barlus
 ---
 
+#[barlus, `|+`, %brls](#brls)
 
+##Syntax
 
 `|+`, `barlus`, `[%brls p=tile q=twig]` is a synthetic hoon that
 produces a dry `%iron` gate with arm `q`, sample `[%bctr p]`.
 
-###Definition###
+###Forms
+
+`p` is a tile
+`q` is a twig
+
+###Tall
+
+    |+  p
+    q
+
+###Wide
+
+    |+(p q)
+
+###Irregular
+None
+
+###Reduction
+
+    |+  p
+    q
+
+reduces to
+
+    ^|  
+    |=  p
+    q
+
+reduces to [|= link]
+
+    ^|
+    =+  $*(p)
+    |%  ++  $
+      q
+    --
+
+###Examples
+
+
+##Semantics
+
+`%brls` is a twig. 
+
+###Definition
 
     ++  twig  
       $%  [%brls p=tile q=twig]
       ==
 
-###Regular form (tall)###
-
-    |+  p
-    q
-
-###Regular form (wide)###
-
-    |+(p q)
-
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -34,3 +70,5 @@ produces a dry `%iron` gate with arm `q`, sample `[%bctr p]`.
           [%brls *]
         [%ktbr [%brts p.gen q.gen]]
       ==
+
+##Notes

@@ -1,27 +1,50 @@
 ---
 layout: subpage
 axis: doc-hoon
-categories: cen rune
+categories: cen twig
 sort: 41
 title: cenzey
 ---
 
 
+#[cenzey, %cnzy](#cnzy)
 
-`cenzey`, `[%cnzy p=term]` is a synthetic hoon that pulls limb
+##Syntax
+
+`cenzey`, `[%cnzy p=term]` is a synthetic internal twig that pulls limb
 `p` from the subject.
 
-###Definition###
+###Form
+None, cenzey is only used internally
+
+####Tall
+
+####Wide
+
+####Irregular
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+%cnzy is a twig
+
+###Definition
 
     ++  twig  
       $%  [%cnzy p=term]
       ==
 
-###Expansion###
-    
-    ++  open
+###Expansion
+
+  ++  open
       ^-  twig
       ?-  gen
         [%cnzy *]  [%cnts [p.gen ~] ~]
       ==
+
+##Notes
+    
 

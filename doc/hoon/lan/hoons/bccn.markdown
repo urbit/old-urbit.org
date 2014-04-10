@@ -6,54 +6,58 @@ sort: 4
 title: buccen
 ---
 
+#[buccen, `$%`](#bccn)
 
+##Syntax
 
-`$%`, `buccen`, is a tile hoon that 
+`$%`, `buccen`, is a tile hoon that produces a %kelp. `$%` takes a list of lines, which are labeleed cases, closed by `==`.
+
+###Form
+
+`p`,`q` and `r` are ++line, which look like `[%foo *]`, where `*` is any noun. 
+####Tall
+
+    $%  p
+        q
+        q
+    ==
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+++  foot  $%  [%ash p=twig]                             ::  dry, geometric
+              [%elm p=twig]                             ::  wet, generic
+              [%oak ~]                                  ::  XX not used
+              [%yew p=(map term foot)]                  ::  XX not used
+          ==     
+
+In ++foot, `$%` creates a %kelp, which is a list of possible cases. That is, a ++foot can be either %ash, %elm, %oak or %yew.
+
+##Semantics
+
+`$%` is a tile.
 
 ###Definition###
 
-    ++  noil
-      |=  tol=?
-      =<  ;~  pfix  buc
-            %-  stew  
-            ^.  stet  ^.  limo
-            :~
-              ['|' (rung bar %reed exqb)]
-              ['&' (rung pam %bush exqb)]
-              ['?' (rung wut %fern exqc)]
-              ['_' (rung cab %weed exqd)]
-              ['^' (rung ket %herb exqd)]
-              ['=' (rung tis %bark exqe)]
-              :-  '+'
-                %+  cook
-                  |=([a=tile b=tile] [%weed [%brls a [%bccb b]]])
-                ;~(pfix lus (toad exqb))
-              :-  '%'
-                ;~  pfix  cen
-                  %+  sear
-                    |=  a=(list tile)  ^-  (unit tile)
-                    =-  ?~(b ~ ?~(u.b ~ [~ %kelp i.u.b t.u.b]))
-                    ^=  b
-                    |-  ^-  (unit (list line))
-                    ?~  a  [~ ~]
-                    =+  c=$(a t.a)
-                    ?~  c  ~
-                    ?.  ?=([[%leaf *] *] i.a)  ~
-                    [~ [p.i.a q.i.a] u.c]
-                  (toad exqc)
-                ==
-            ==
-          ==
 
-###Regular form (tall)###
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%kelp p=[i=line t=(list line)]]          ::  tag selection
+              ==
 
-
-###Regular form (wide)###
-
-
-###Irregular form###
-
+    ++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::  kelp case labels
 
 ###Notes###
+
+A kelp is the workhorse of tiles - it provides the most common data structure in any language, the discriminated union.
+
+In Hoon, the head (which must be a leaf) is called the stem. The tail (which can be anything) is the bulb. Cases of a kelp are known inevitably as fronds.
 
 See the discussion of tiles in chapter 9.
