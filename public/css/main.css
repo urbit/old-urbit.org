@@ -71,6 +71,19 @@ code, .subnav > ul > li > ul {
 	overflow: normal;
 }
 
+.subnav > ul > li .section {
+	display: inline-block;
+	width: 12rem;
+}
+
+.subnav > ul > li .expand {
+	font-size: .6rem;
+}
+
+.subnav > ul > li .expand:after {
+	content: "\25B6";
+}
+
 .subnav > ul {
 	list-style-type: none;
 	padding: 0;
