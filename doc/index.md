@@ -5,55 +5,53 @@ axis: root
 sort: 2
 ---
 
-##Overview
+Arvo runs on top of Hoon, Hoon runs on top of Nock, and that's all we know.
 
-Arvo runs on top of Hoon, Hoon runs on top of Nock, and everything else is earthbound. 
+If you want to build a deep understanding of how Urbit works, start with Nock. If you'd prefer to just start trying stuff out, start with Hoon. 
 
-Each component has tutorial sections, language and library reference. If you want to build a deep understanding of how Urbit works, start with Nock. If you'd prefer to just start trying stuff out, start with Hoon. 
++   <h2>Nock</h2>
 
-##Nock
+    ###Tutorial
+    {% for page in site.axis.doc-nock %}
+    {% if page.categories contains 'tut' %}
+    [{{ page.title }}]({{ page.url }})
+    {% endif %}
+    {% endfor %}
 
-###Tutorial
-{% for page in site.axis.doc-nock %}
-{% if page.categories contains 'tut' %}
-[{{ page.title }}]({{ page.url }})
-{% endif %}
-{% endfor %}
+    ###Language Reference
+    {% for page in site.axis.doc-nock %}
+    {% if page.categories contains 'lan' %}
+    [{{ page.title }}]({{ page.url }})
+    {% endif %}
+    {% endfor %}
 
-###Language Reference
-{% for page in site.axis.doc-nock %}
-{% if page.categories contains 'lan' %}
-[{{ page.title }}]({{ page.url }})
-{% endif %}
-{% endfor %}
++   <h2>Hoon</h2>
 
-##Hoon
+    ###Tutorial
+    {% for page in site.axis.doc-hoon %}
+    {% if page.categories contains 'tut' %}
+    [{{ page.title }}]({{ page.url }})
+    {% endif %}
+    {% endfor %}
 
-###Tutorial
-{% for page in site.axis.doc-hoon %}
-{% if page.categories contains 'tut' %}
-[{{ page.title }}]({{ page.url }})
-{% endif %}
-{% endfor %}
+    ###Language Reference
+    {% for page in site.axis.doc-hoon %}
+    {% if page.categories contains 'lan' %}
+    [{{ page.title }}]({{ page.url }})
+    {% endif %}
+    {% endfor %}
 
-###Language Reference
-{% for page in site.axis.doc-hoon %}
-{% if page.categories contains 'lan' %}
-[{{ page.title }}]({{ page.url }})
-{% endif %}
-{% endfor %}
+    ###Library Reference
+    {% for page in site.axis.doc-hoon %}
+    {% if page.categories contains 'lib' %}
+    [{{ page.title }}](/doc/hoon/lib/#{{ page.section }})
+    {% endif %}
+    {% endfor %}
 
-###Library Reference
-{% for page in site.axis.doc-hoon %}
-{% if page.categories contains 'lib' %}
-[{{ page.title }}](/doc/hoon/lib/#{{ page.section }})
-{% endif %}
-{% endfor %}
-
-##Arvo
-{% for page in site.axis.doc-arvo %}
-[{{ page.title }}]({{ page.url }})
-{% endfor %}
++   <h2>Arvo</h2>
+    {% for page in site.axis.doc-arvo %}
+    [{{ page.title }}]({{ page.url }})
+    {% endfor %}
 
 
 <!-- <hr>

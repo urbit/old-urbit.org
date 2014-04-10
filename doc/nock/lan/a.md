@@ -3,7 +3,7 @@ layout: subpage
 axis: doc-nock
 categories: lan
 sort: 1
-title: Nock Language Reference
+title: Nock Reference
 ---
 
 ##Nock Specification:##

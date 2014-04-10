@@ -1,6 +1,8 @@
 --- 
 layout: post 
 categories: articles
+axis: further-reading
+sort: 2
 author: jcb 
 title: Martian Computing
 date: 2014-02-16 15:00 

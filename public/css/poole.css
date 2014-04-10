@@ -71,12 +71,19 @@ a {
   text-decoration: none;
 }
 p a {
-  text-decoration: underline;
+  display: inline-block;
+  /*text-decoration: underline;*/
+  border-bottom: 2px solid #ccc;
 }
 /* `:focus` is linked to `:hover` for basic accessibility */
 a:hover,
 a:focus {
   text-decoration: underline;
+}
+
+p a:hover,
+p a:focus {
+  text-decoration: none;
 }
 
 /* Headings */
@@ -96,15 +103,18 @@ h2 {
 }
 h3 {
   margin-top: 1.5rem;
-  font-size: 1rem;
+  font-size: .9rem;
 }
 h4, h5, h6 {
-  margin-top: 1rem;
-  font-size: 1rem;
+  margin-top: .9rem;
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .03rem;
 }
 
 /* Body text */
 p {
+  max-width: 42rem;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -154,7 +164,7 @@ pre, .codeblock {
 }
 code {
   padding: .25em .5em;
-  font-size: 85%;
+  font-size: 90%;
   color: #bf616a;
   background-color: #f9f9f9;
   border-radius: 3px;
@@ -164,7 +174,7 @@ pre, .codeblock {
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
-  font-size: .8rem;
+  font-size: .9rem;
   line-height: 1.4;
   white-space: pre;
   white-space: pre-wrap;

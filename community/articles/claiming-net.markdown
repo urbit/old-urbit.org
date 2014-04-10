@@ -1,6 +1,8 @@
 ---
 layout: post
 categories: articles
+axis: further-reading
+sort: 3
 author: atax1a
 title: claiming ~net
 date: 2014-1-15 06:59

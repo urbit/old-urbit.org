@@ -56,6 +56,20 @@ ul {
 	list-style-type: circle;
 }
 
+ul.chat {
+	list-style-type: none;
+}
+
+.documentation ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.documentation ul > li {
+	float: left;
+	width: 13rem;
+}
+
 code, .subnav > ul > li > ul {
 	font-family: "Menlo", "Courier New", courier, monospace;
 	color: inherit;
