@@ -9,7 +9,7 @@ sort: 1
 
 This chapter covers basic mathematical operations on natural numbers (atoms), such as decremement, addition, subtraction etc. Simple comparison functions such as less-than, and a few useful functions for calculating axes within Nock nouns.
 
-<h2 id="++dec">++dec</h2>
+<h2 id="++dec">++&nbsp;&nbsp;dec</h2>
 
 ####Decrement  
 `++dec` takes an atom `a` and produces `a - 1`.
@@ -44,7 +44,7 @@ If ([?:]()) the value of `b` incremented ([+, irregular form of .+]()) is equal 
 Else, the `$` arm ([$]()) of the trap is activated ([%=]()), with the value of `b` set to `+(b)`.  
 
 
-##++ add
+<h2 id="++add">++&nbsp;&nbsp;add</h2>
 
 ####Addition  
 Given two atoms `a` and `b`, `++add` counts `a` down to `0` and `b` up to `b` + `a`.
@@ -73,7 +73,7 @@ If `a` is equal to 0, then `b` is produced.
 Otherwise, the `$` arm of the gate is activated [(%=)](), with the value of `a` set to (dec a) [%-](), and `b` set to +(b) [(.+)]().  
 
 
-##++sub  
+<h2 id="++sub">++&nbsp;&nbsp;sub</h2>
 
 ####Subtraction  
 `++sub` accepts two atoms, `a` and `b` and produces `a` - `b`.
@@ -106,7 +106,7 @@ The product of ++sub is cast as an atom with [^-]().
 If [(?:)]() `b` is [=]() 0, then `++sub` produces `a`. Else, the `$` arm of the gate is activated [%=](), with the value of `a` set to [(dec a)](), and the value of 'b' set to [(dec b)]().
 
 
-##++mul
+<h2 id="++mul">++&nbsp;&nbsp;mul</h2>
 
 ####Multiply  
 ++mul accepts two atoms a and b and produces the product `a` * `b` by adding `b` to a variable `c` `a` number of times
@@ -136,7 +136,7 @@ If [?:]() `a` is equal to 0, `++mul` produces `c`.
 Otherwise, the `$` arm of the [trap]() is activated [%=]()), with the value of `a`set to [(dec a)], and the value of `c` set to [(add b c)]().
 
 
-##++div
+<h2 id="++div">++&nbsp;&nbsp;div</h2>
 
 ####Division  
 `++div` accepts two atoms a and b and produces a / b as an atom.
@@ -173,7 +173,7 @@ Otherwise, the `$` arm of the [trap]() is activated [%=]()), with the value of `
  Otherwise the arm ['$']() is reactivated [%=]() with the value of `a` set to [(sub a b)](), and the value of `c` set to `+(c)` [.+](). 
 
 
-##Mod
+<h2 id="++mod">++&nbsp;&nbsp;mod</h2>
 
 ####Modulus  
 ++mod accepts two atoms a and b and produces a%b as an atom.
@@ -199,8 +199,7 @@ Otherwise, the `$` arm of the [trap]() is activated [%=]()), with the value of `
 Given two atoms `a` and `b`, ++mod divides `a` by `b`, multiplies the result by `b`, and then subtracts this from `a` to find the remainder. 
 
 
-::::::  Comparisons
-##++lth
+<h2 id="++lth">++&nbsp;&nbsp;lth</h2>
 
 ####Less than  
 ++lth takes two atoms `a` and `b` and produces a loobean `a`=`b`.
@@ -232,8 +231,7 @@ The product of `++lth` is cast to a loobean with [^-]().
 The last five lines are encompassed by a logical and statement: `FIX ME`  
  If `a` is equal to `b`, ++lte immediately returns false. If they are not equal, a trap (|-,link) is declared, containing a logical or (|, link) statement. If `a` is 0, then true is returned. If not, the next part of the or statement is examined, which is a logical and statement whose first condition is `b` not equal to 0. If this is false, ++lth returns false. If this is true, the `$` arm of the trap is reactivated, with the values of both `a` and `b` both decremented. 
 
-
-##++lte
+<h2 id="++lte">++&nbsp;&nbsp;lte</h2>
 
 ####Less than or equal to.  
 ++lte takes two atoms `a` and `b` and produces a loobean `a`<=`b`.
@@ -262,7 +260,7 @@ The second is whether `a` is less than `b`, which is determined by a call to ++l
 If either statement is true, true is returned.  
 
 
-##++gth
+<h2 id="++gth">++&nbsp;&nbsp;gth</h2>
 
 ####Greater than.  
 `++gth` takes two atoms, `a` and `b`, and produces a loobean `a`<`b`.
@@ -291,7 +289,7 @@ The product is cast to a loobean with [^-]().
 If the statement returns `true`, so does ++gth.   
 
 
-##++gte
+<h2 id="#++gte">++&nbsp;&nbsp;gte</h2>
 
 ####Greater than or equal to.  
 `++gte` takes two atoms, `a` and `b`, and produces the loobean for `a`>=`b`.

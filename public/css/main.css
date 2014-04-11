@@ -109,8 +109,9 @@ code, .subnav > ul > li > ul {
 	height: 0;
 }
 
-.subnav > ul > li > ul.active {
-	overflow: normal;
+.subnav > ul > li.active > ul {
+	overflow: visible;
+	height: auto;
 }
 
 .subnav > ul > li .section {
@@ -126,7 +127,11 @@ code, .subnav > ul > li > ul {
 	content: "\25B6";
 }
 
-.subnav, .subnav > ul {
+.subnav > ul > li.active .expand:after {
+	content: "\25BC";
+}
+
+.subnav, .subnav  ul {
 	list-style-type: none;
 	padding: 0;
 }

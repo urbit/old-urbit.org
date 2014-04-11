@@ -8,6 +8,12 @@ sort: 1
 
 {% for page in site.axis.doc-hoon %}
 {% if page.categories contains 'rune' %}
+{{ page.rune }}
+{% endif %}
+{% endfor %}
+
+{% for page in site.axis.doc-hoon %}
+{% if page.categories contains 'rune' %}
 {{ page.content }}
 {% endif %}
 {% endfor %}
