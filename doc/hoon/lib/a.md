@@ -24,7 +24,6 @@ This chapter covers basic mathematical operations on natural numbers (atoms), su
     ! exit
 
 ###Summary
->>>>>>> clarity
     ++  dec                                                 ::::::  decrement
       ~/  %dec                                              ::  jet
       |=  a=@                                               ::  gate, sample atom a
@@ -45,10 +44,10 @@ If ([?:]()) the value of `b` incremented ([+, irregular form of .+]()) is equal 
 Else, the `$` arm ([$]()) of the trap is activated ([%=]()), with the value of `b` set to `+(b)`.  
 
 
-##++ add                                                 ::::::  add
+##++ add
 
 ####Addition  
-given two atoms `a` and `b`, `++add` counts `a` down to `0` and `b` up to `b` + `a`.
+Given two atoms `a` and `b`, `++add` counts `a` down to `0` and `b` up to `b` + `a`.
 
 ###Examples
    ~ronrem-lonsem/try=> (add 4 7)
@@ -67,10 +66,10 @@ given two atoms `a` and `b`, `++add` counts `a` down to `0` and `b` up to `b` + 
         b                                                   ::  then, produce b
   $(a (dec a), b +(b))                                  ::  loop, a - 1, b + 1
 
-`++add` is a [jetted arm (~/)]().
-`++add` creates a dry %gold gate [|=](), which accepts a sample of a cell of atoms, labeled `a` and `b` with [=, the irregular form of ^=](). 
-The product of the gate is cast to an atom with [^-]().
-If `a` is equal to 0, then `b` is produced. 
+`++add` is a [jetted arm (~/)]().  
+`++add` creates a dry %gold gate [|=](), which accepts a sample of a cell of atoms, labeled `a` and `b` with [=, the irregular form of ^=]().  
+The product of the gate is cast to an atom with [^-]().  
+If `a` is equal to 0, then `b` is produced.  
 Otherwise, the `$` arm of the gate is activated [(%=)](), with the value of `a` set to (dec a) [%-](), and `b` set to +(b) [(.+)]().  
 
 

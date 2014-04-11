@@ -70,9 +70,8 @@ a {
   color: #555;
   text-decoration: none;
 }
-p a {
+li a, p a {
   display: inline-block;
-  /*text-decoration: underline;*/
   border-bottom: 2px solid #ccc;
 }
 /* `:focus` is linked to `:hover` for basic accessibility */
@@ -81,9 +80,10 @@ a:focus {
   text-decoration: underline;
 }
 
-p a:hover,
-p a:focus {
+li a:hover, p a:hover,
+li a:hover, p a:focus {
   text-decoration: none;
+  border-bottom: 2px solid #555;
 }
 
 /* Headings */

@@ -10,8 +10,6 @@ sort: 2
 
 This section convers the basic container functions. Basic containers are [++unit]() and [++list](). 
 
-#++unit arms
-
 ##++bind
 
 ####Apply `b`

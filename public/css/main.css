@@ -1,3 +1,11 @@
+.sidebar-sticky {
+	height: 6rem;
+}
+
+.sidebar-about {
+	height: 3rem;
+}
+
 .sidebar-about h1 {
 	font-size: 1rem;
 	font-weight: 500;
@@ -16,7 +24,10 @@
 
 .sidebar-about h1.logo {
 	font-size: 2rem;
-	width: 20px;;
+	width: 3rem;
+	margin-top: .3rem;
+	margin-bottom: 0;
+	float: left;
 }
 
 .sidebar-about p.lead {
@@ -27,6 +38,10 @@
 .sidebar-nav {
 	margin: 0;
 	padding: 0;
+}
+
+.sidebar-nav li > a {
+	border: none;
 }
 
 .sidebar-about h1.title:focus,
@@ -48,6 +63,14 @@
 	font-size: 1rem;
 }
 
+.footer {
+	margin-bottom: 4rem;
+}
+
+.footer .sidebar-nav-item {
+	margin-top: 4rem;
+}
+
 ul,ol {
 	padding-left: 2rem;
 }
@@ -60,9 +83,14 @@ ul.chat {
 	list-style-type: none;
 }
 
-.documentation ul {
+.doc-hoon h2 {
+	margin-top: 3rem;
+}
+
+.documentation > ul {
 	list-style-type: none;
 	padding-left: 0;
+	float: left;
 }
 
 .documentation ul > li {
@@ -87,18 +115,33 @@ code, .subnav > ul > li > ul {
 
 .subnav > ul > li .section {
 	display: inline-block;
-	width: 12rem;
 }
 
 .subnav > ul > li .expand {
 	font-size: .6rem;
+	border: 0;
 }
 
 .subnav > ul > li .expand:after {
 	content: "\25B6";
 }
 
-.subnav > ul {
+.subnav, .subnav > ul {
 	list-style-type: none;
 	padding: 0;
+}
+
+.subnav {
+	font-size: .8rem;
+}
+
+.subnav a {
+	margin-bottom: .5rem;
+}
+
+.subnav a.active {
+	font-size: 1rem;
+	font-weight: 700;
+	color: #333;
+	border-bottom: 2px solid #555;	
 }
