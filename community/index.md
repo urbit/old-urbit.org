@@ -2,54 +2,84 @@
 layout: page
 title: Community
 axis: root
-sort: 4
+sort: 2
 ---
 
-##Regular Weekly Urbit Chat:#
+The Urbit community continuously interacts on Urbit itself using `:chat`. Check out the [setup](/setup/) page for instructions on how to come join us. We're there to answer questions and discuss anything Urbit might bring up.
 
-Wednesdays at 6pm pacific time. On Urbit `:chat,` where else?
+##Regular Weekly Urbit Chat
 
-##Nock Interpreters, by language#
+Wednesdays at 6PM PST (UTC-8) we get together on Urbit `:chat` to discuss what we have been building, answer questions, and check in. Logs are below.
 
-###`Python`#
+<ul class="chat">
+{% for page in site.axis.chat-log %}
+<li>
+<h4>{{ page.title }}</h4>
+{{ page.content }}
+Complete log <a href="http://chat.urbit.org/{{ page.log }}">here</a>.
+</li>
+{% endfor %}
+</ul>
 
-+ [~rammul-sigfet](https://github.com/eykd/nock)
-+ [~dolsun-hoptes] (https://github.com/jtauber/pynock/)
-+ [~parsym-dortex](https://github.com/calcu16/urbit/blob/master/extras/simulator.py)
+##Mailing List
+Long form discussion and technical support can be found on our [mailing list](https://groups.google.com/forum/#!forum/urbit-dev).
 
-###`Ruby`#
+##GitHub
+Urbit is 100% open source. [Check it out](https://github.com/urbit/urbit).
 
-+ [~lopdev-dirlut] (https://github.com/tjic/nock)
-+ [https://github.com/davidbalbert/nock.rb] (https://github.com/davidbalbert/nock.rb)
+##Futher reading / watching
+A fair bit has been written about what Urbit is, was or could be. This is a only a subset, but could help to give you an idea of where we're coming from.
 
-###`JavaScript`#
+<ul>
+<li><a href="http://vimeo.com/75312418">Urbit demo ~2013.9.23</a></li>
+{% for page in site.axis.further-reading %}
+<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+{% endfor %}
+</ul>
 
-+ [~nimtep-dibteb] (https://github.com/famousj/nock.js)
-+ [~rampyx-mirpec] (http://jsfiddle.net/anoxic/TXT5V/8/embedded/result/)
+##Nock Interpreters
 
-###`Haskell`#
-+ [https://github.com/mmakowski/hock](https://github.com/mmakowski/hock)
-+ [https://github.com/mbrubeck/mynock](https://github.com/mbrubeck/mynock)
-+ [~hobmed-hinrym](https://github.com/mrdomino/hsnock)
+One great way to test your understanding of Nock is to write an interpreter. This has become a common practice in the community. If you write one, send it over!
 
-###`Lisp`#
+###Python
 
-+ [~dilnem-nodfun](https://github.com/cmm/nock)
++ `~rammul-sigfet` [https://github.com/eykd/nock](https://github.com/eykd/nock)
++ `~dolsun-hoptes` [https://github.com/jtauber/pynock/](https://github.com/jtauber/pynock/)
++ `~parsym-dortex` [https://github.com/calcu16/urbit/blob/master/extras/simulator.py](https://github.com/calcu16/urbit/blob/master/extras/simulator.py)
 
-###`C#`#
+###Ruby
 
-+ [https://github.com/zass30/Nock5KCSharp](https://github.com/zass30/Nock5KCSharp)
++ `~lopdev-dirlut` [~lopdev-dirlut](https://github.com/tjic/nock)
++ `davidbalbert` [https://github.com/davidbalbert/nock.rb](https://github.com/davidbalbert/nock.rb)
 
-###`Clojure`#
+###JavaScript
 
-+ [~lapled-rammyn](https://github.com/jordanlewis/nock-clj)
++ `~nimtep-dibteb` [https://github.com/famousj/nock.js](https://github.com/famousj/nock.js)
++ `~rampyx-mirpec` [http://jsfiddle.net/anoxic/TXT5V/8/embedded/result/](http://jsfiddle.net/anoxic/TXT5V/8/embedded/result/)
 
-###`F#`#
+###Haskell
++ `mmakowski` [https://github.com/mmakowski/hock](https://github.com/mmakowski/hock)
++ `mbrubeck` [https://github.com/mbrubeck/mynock](https://github.com/mbrubeck/mynock)
++ `~hobmed-hinrym` [https://github.com/mrdomino/hsnock](https://github.com/mrdomino/hsnock)
 
-+ [~portem-ravdet] (https://github.com/martindevans/NockFSharp)
+###Lisp
 
-###`Racket`#
-+ [~wictuc-folrex](https://github.com/philipcmonk/racketnock)
++ `~dilnem-nodfun` [https://github.com/cmm/nock](https://github.com/cmm/nock)
 
-###`Scala`#
-+ [https://github.com/swaldman/nnnock](https://github.com/swaldman/nnnock)
+###C
+
++ `zass30` [https://github.com/zass30/Nock5KCSharp](https://github.com/zass30/Nock5KCSharp)
+
+###Clojure
+
++ `~lapled-rammyn` [https://github.com/jordanlewis/nock-clj](https://github.com/jordanlewis/nock-clj)
+
+###F
+
++ `~portem-ravdet` [https://github.com/martindevans/NockFSharp](https://github.com/martindevans/NockFSharp)
+
+###Racket
++ `~wictuc-folrex` [https://github.com/philipcmonk/racketnock](https://github.com/philipcmonk/racketnock)
+
+###Scala
++ `swaldman` [https://github.com/swaldman/nnnock](https://github.com/swaldman/nnnock)

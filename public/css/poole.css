@@ -49,12 +49,12 @@ body {
 
 html {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
 }
 @media (min-width: 38rem) {
   html {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -67,13 +67,23 @@ body {
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
-  color: #268bd2;
+  color: #555;
   text-decoration: none;
+}
+li a, p a {
+  display: inline-block;
+  border-bottom: 2px solid #ccc;
 }
 /* `:focus` is linked to `:hover` for basic accessibility */
 a:hover,
 a:focus {
   text-decoration: underline;
+}
+
+li a:hover, p a:hover,
+li a:hover, p a:focus {
+  text-decoration: none;
+  border-bottom: 2px solid #555;
 }
 
 /* Headings */
@@ -85,23 +95,26 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 h2 {
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 h3 {
   margin-top: 1.5rem;
-  font-size: 1.25rem;
+  font-size: .9rem;
 }
 h4, h5, h6 {
-  margin-top: 1rem;
-  font-size: 1rem;
+  margin-top: .9rem;
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .03rem;
 }
 
 /* Body text */
 p {
+  max-width: 42rem;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -151,7 +164,7 @@ pre, .codeblock {
 }
 code {
   padding: .25em .5em;
-  font-size: 85%;
+  font-size: 90%;
   color: #bf616a;
   background-color: #f9f9f9;
   border-radius: 3px;
@@ -161,7 +174,7 @@ pre, .codeblock {
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
-  font-size: .8rem;
+  font-size: .9rem;
   line-height: 1.4;
   white-space: pre;
   white-space: pre-wrap;
@@ -186,9 +199,10 @@ pre code, .codeblock code {
 /* Quotes */
 blockquote {
   padding: .5rem 1rem;
+  padding-left: 0;
+  max-width: 32rem;
   margin: .8rem 0;
   color: #7a7a7a;
-  border-left: .25rem solid #e5e5e5;
 }
 blockquote p:last-child {
   margin-bottom: 0;
@@ -196,7 +210,7 @@ blockquote p:last-child {
 @media (min-width: 30rem) {
   blockquote {
     padding-right: 5rem;
-    padding-left: 1.25rem;
+    padding-left: 0;
   }
 }
 
@@ -261,7 +275,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .container {
-  max-width: 38rem;
+  max-width: 42rem;
   padding-left:  1rem;
   padding-right: 1rem;
   margin-left:  auto;
@@ -304,7 +318,9 @@ tbody tr:nth-child(odd) th {
  */
 
 .page,
+.subpage,
 .post {
+  margin-top: 2rem;
   margin-bottom: 4em;
 }
 
@@ -313,10 +329,6 @@ tbody tr:nth-child(odd) th {
 .post-title,
 .post-title a {
   color: #303030;
-}
-.page-title,
-.post-title {
-  margin-top: 0;
 }
 
 /* Meta data line below post title */

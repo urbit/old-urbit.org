@@ -4,6 +4,8 @@ axis: doc-hoon
 categories: buc rune
 sort: 0
 title: bucbar
+rune: $|
+tile: %bcbr
 ---
 
 #[bucbar,`$|`, %bcbr](#bcbr)

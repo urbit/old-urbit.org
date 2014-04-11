@@ -2,6 +2,8 @@
 layout: post
 categories: articles
 author: cgy
+axis: further-reading
+sort: 1
 title: Welcome to Urbit
 date: 2013-9-24 15:00
 ---

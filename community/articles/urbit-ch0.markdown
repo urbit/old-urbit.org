@@ -2,6 +2,8 @@
 layout: post
 categories: articles
 author: atax1a
+axis: further-reading
+sort: 4
 title: Urbit Is &#58; Chapter 0
 date: 2013-12-13 17:23
 ---

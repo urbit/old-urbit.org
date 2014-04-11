@@ -2,7 +2,6 @@
 layout: default
 ---
 
-<div class="subpage">
-  <h1 class="subpage-title">{{ page.title }}</h1>
+<div class="subpage {{ page.axis | handlize }}">
   {{ content }}
 </div>
