@@ -5,7 +5,7 @@ categories: buc rune
 sort: 0
 title: bucbar
 rune: $|
-tile: %bcbr
+tile: bcbr
 ---
 
 #[bucbar,`$|`, %bcbr](#bcbr)
