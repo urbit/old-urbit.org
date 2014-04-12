@@ -7,8 +7,6 @@ categories: lib
 sort: 3
 ---
 
-
-
 <h2 id="++bex">++&nbsp;&nbsp;bex</h2>
 
 ####Binary exponent.
@@ -418,6 +416,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 ++mix is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes two atoms, labeled 'a' and 'b' using [=, the irregular form of ^=](). ++mix then uses [^-]() to cast its result to an atom. ++mix then pushes two atomic variables onto the subject, labeled 'a' and 'b' again by using [^-](). Subsequently, ++mix declares a [trap](), thus allowing it to loop. Using [?:]() and [?&](), ++mix checks if both 'a' and 'b' are equal to 0. If yes, then ++mix returns 'd'. Else, ++mix uses the trap to loop, this time with the values of 'a' and 'b' both [right-shifted]() by one bit, and the value of 'c' now incremented using [+, the irregular form of .+](). The value of 'd' is also replaced with the sum of 'd' and the result of [=(), the irregular form of .=]() then [left-shifted]() by 1 bit 'c' number of times.
 
+#Noun orders
 
 <h2 id="++aor">++&nbsp;&nbsp;aor</h2>
 
@@ -614,6 +613,9 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 ###Summary
     ++  tos  ~/(%tos |=(a=@ ?>((lth a 256) (cut 3 [(mul 3 a) 3] sis))))
 
+
+#Signed integers
+
 ##++si
 ###Examples
 
@@ -724,215 +726,336 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  %.y if a is positive, %.n if a is negative
 
 
-++  fe                                                  ::  modulo bloq
-  |_  a=bloq
-  ++  dif  |=([b=@ c=@] (sit (sub (add out (sit b)) (sit c))))
-  ++  inv  |=(b=@ (sub (dec out) (sit b)))
-  ++  net  |=  b=@  ^-  @
-           =>  .(b (sit b))
-           ?:  (lte a 3)
-             b
-           =+  c=(dec a)
-           %+  con
-             (lsh c 1 $(a c, b (cut c [0 1] b)))
-           $(a c, b (cut c [1 1] b))
-  ++  out  (bex (bex a))
-  ++  rol  |=  [b=bloq c=@ d=@]  ^-  @
-           =+  e=(sit d)
-           =+  f=(bex (sub a b))
-           =+  g=(mod c f)
-           (sit (con (lsh b g e) (rsh b (sub f g) e)))
-  ++  ror  |=  [b=bloq c=@ d=@]  ^-  @
-           =+  e=(sit d)
-           =+  f=(bex (sub a b))
-           =+  g=(mod c f)
-           (sit (con (rsh b g e) (lsh b (sub f g) e)))
-  ++  sum  |=([b=@ c=@] (sit (add b c)))
-  ++  sit  |=(b=@ (end a 1 b))
-  --
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::                section 2cG, floating point           ::
-::
-++  rlyd  |=(red=@rd ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
-++  rlyh  |=(reh=@rh ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
-++  rlyq  |=(req=@rq ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
-++  rlys  |=(res=@rs ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
-++  ryld  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rd !!)))
-++  rylh  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rh !!)))
-++  rylq  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rq !!)))
-++  ryls  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rs !!)))
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::                section 2cH, urbit time               ::
-::
-++  year                                                ::  date to @d
-  |=  det=date
-  ^-  @d
-  =+  ^=  yer
-      ?:  a.det
-        (add 292.277.024.400 y.det)
-      (sub 292.277.024.400 (dec y.det))
-  =+  day=(yawn yer m.det d.t.det)
-  (yule day h.t.det m.t.det s.t.det f.t.det)
+##++fe
+###Examples
 
-::  ~dovryp-toblug/try=> =a [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
-::  ~dovryp-toblug/try=> (year a)
-::  0x8000000d21c88d5d7456000000000000
-::  ??  Why does this return hex?
+###Summary
+    ++  fe                                                  ::  modulo bloq
+      |_  a=bloq
 
+##dif:fe
+###Examples
 
-++  yore                                                ::  @d to date
-  |=  now=@d
-  ^-  date
-  =+  rip=(yell now)
-  =+  ger=(yall d.rip)
-  :-  ?:  (gth y.ger 292.277.024.400)
-        [a=& y=(sub y.ger 292.277.024.400)]
-      [a=| y=+((sub 292.277.024.400 y.ger))]
-  [m.ger d.ger h.rip m.rip s.rip f.rip]
+###Summary
+      ++  dif  |=([b=@ c=@] (sit (sub (add out (sit b)) (sit c))))
 
-::  ~dovryp-toblug/try=> (yore a)
-::  [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
+##inv:fe
+###Examples
 
+###Summary
+      ++  inv  |=(b=@ (sub (dec out) (sit b)))
 
-++  yell                                                ::  tarp from @d
-  |=  now=@d
-  ^-  tarp
-  =+  sec=(rsh 6 1 now)
-  =+  ^=  fan
-      =+  [muc=4 raw=(end 6 1 now)]
-      |-  ^-  (list ,@ux)
-      ?:  |(=(0 raw) =(0 muc))
-        ~
-      =>  .(muc (dec muc))
-      [(cut 4 [muc 1] raw) $(raw (end 4 muc raw))]
-  =+  day=(div sec day:yo)
-  =>  .(sec (mod sec day:yo))
-  =+  hor=(div sec hor:yo)
-  =>  .(sec (mod sec hor:yo))
-  =+  mit=(div sec mit:yo)
-  =>  .(sec (mod sec mit:yo))
-  [day hor mit sec fan]
+##net:fe
+###Examples
 
-::  ~dovryp-toblug/try=> (yell ~2014.3.20..05.42.53..7456)
-::  [d=106.751.991.820.094 h=5 m=42 s=53 f=~[0x7456]]
+###Summary
+      ++  net  |=  b=@  ^-  @
+               =>  .(b (sit b))
+               ?:  (lte a 3)
+                 b
+               =+  c=(dec a)
+               %+  con
+                 (lsh c 1 $(a c, b (cut c [0 1] b)))
+               $(a c, b (cut c [1 1] b))
 
+##out:fe
+###Examples
 
-++  yule                                                 ::  time atom?
-  |=  rip=tarp
-  ^-  @d
-  =+  ^=  sec  ;:  add
-                 (mul d.rip day:yo)
-                 (mul h.rip hor:yo)
-                 (mul m.rip mit:yo)
-                 s.rip
-               ==
-  =+  ^=  fac  =+  muc=4
-               |-  ^-  @
-               ?~  f.rip
-                 0
-               =>  .(muc (dec muc))
-               (add (lsh 4 muc i.f.rip) $(f.rip t.f.rip))
-  (con (lsh 6 1 sec) fac)
+###Summary
+      ++  out  (bex (bex a))
 
-::  ~dovryp-toblug/try=> (yule (yell ~2014.3.20..05.42.53..7456))
-::  0x8000000d21c88d5d7456000000000000
+##rol:fe
+###Examples
 
+###Summary
+      ++  rol  |=  [b=bloq c=@ d=@]  ^-  @
+               =+  e=(sit d)
+               =+  f=(bex (sub a b))
+               =+  g=(mod c f)
+               (sit (con (lsh b g e) (rsh b (sub f g) e)))
 
-++  yall                                               ::  day # to day of year
-  |=  day=@ud
-  ^-  [y=@ud m=@ud d=@ud]
-  =+  [era=0 cet=0 lep=_?]
-  =>  .(era (div day era:yo), day (mod day era:yo))
-  =>  ^+  .
-      ?:  (lth day +(cet:yo))
-        .(lep &, cet 0)
-      =>  .(lep |, cet 1, day (sub day +(cet:yo)))
-      .(cet (add cet (div day cet:yo)), day (mod day cet:yo))
-  =+  yer=(add (mul 400 era) (mul 100 cet))
-  |-  ^-  [y=@ud m=@ud d=@ud]
-  =+  dis=?:(lep 366 365)
-  ?.  (lth day dis)
-    =+  ner=+(yer)
-    $(yer ner, day (sub day dis), lep =(0 (end 0 2 ner)))
-  |-  ^-  [y=@ud m=@ud d=@ud]
-  =+  [mot=0 cah=?:(lep moy:yo moh:yo)]
-  |-  ^-  [y=@ud m=@ud d=@ud]
-  =+  zis=(snag mot cah)
-  ?:  (lth day zis)
-    [yer +(mot) +(day)]
-  $(mot +(mot), day (sub day zis))
+##ror:fe
+###Examples
 
-::  ~dovryp-toblug/try=> (yawn 2.014 3 1)
-::  735.658
-::  ~dovryp-toblug/try=> (yall (yawn 2.014 3 1))
-::  [y=2.014 m=3 d=1]
+###Summary
+      ++  ror  |=  [b=bloq c=@ d=@]  ^-  @
+               =+  e=(sit d)
+               =+  f=(bex (sub a b))
+               =+  g=(mod c f)
+               (sit (con (rsh b g e) (lsh b (sub f g) e)))
+
+##sum:fe
+###Examples
+
+###Summary
+      ++  sum  |=([b=@ c=@] (sit (add b c)))
+
+##sit:fe
+###Examples
+
+###Summary
+      ++  sit  |=(b=@ (end a 1 b))
+
+#Floating Point
+
+##++rlyd
+###Examples
+
+###Summary
+    ++  rlyd  |=(red=@rd ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
+
+##++rlyh
+###Examples
+
+###Summary
+    ++  rlyh  |=(reh=@rh ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
+
+##++rlyq
+###Examples
+
+###Summary
+    ++  rlyq  |=(req=@rq ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
+
+##++rlys
+###Examples
+
+###Summary
+    ++  rlys  |=(res=@rs ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
+
+##++ryld
+###Examples
+
+###Summary
+    ++  ryld  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rd !!)))
+
+##++rylh
+###Examples
+
+###Summary
+    ++  rylh  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rh !!)))
+
+##++rylq
+###Examples
+
+###Summary
+    ++  rylq  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rq !!)))
+
+##++ryls
+###Examples
+
+###Summary
+    ++  ryls  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rs !!)))
 
 
-++  yawn                                                ::  day # from AD    
-  |=  [yer=@ud mot=@ud day=@ud]
-  ^-  @ud
-  =>  .(mot (dec mot), day (dec day))
-  =>  ^+  .
-      %=    .
-          day
-        =+  cah=?:((yelp yer) moy:yo moh:yo)
-        |-  ^-  @ud
-        ?:  =(0 mot)
-          day
-        $(mot (dec mot), cah (slag 1 cah), day (add day (snag 0 cah)))
-      ==
-  |-  ^-  @ud
-  ?.  =(0 (mod yer 4))
-    =+  ney=(dec yer)
-    $(yer ney, day (add day ?:((yelp ney) 366 365)))
-  ?.  =(0 (mod yer 100))
-    =+  nef=(sub yer 4)
-    $(yer nef, day (add day ?:((yelp nef) 1.461 1.460)))
-  ?.  =(0 (mod yer 400))
-    =+  nec=(sub yer 100)
-    $(yer nec, day (add day ?:((yelp nec) 36.525 36.524)))
-  (add day (mul (div yer 400) (add 1 (mul 4 36.524))))
+#Urbit Time
 
-::  ~dovryp-toblug/try=> (yawn 2.014 3 1)
-::  735.658
-::  ~dovryp-toblug/try=> (yall (yawn 2.014 3 1))
-::  [y=2.014 m=3 d=1]
+##++year
+###Examples
+    ~dovryp-toblug/try=> =a [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
+    ~dovryp-toblug/try=> (year a)
+    0x8000000d21c88d5d7456000000000000
+    ??  Why does this return hex?
+
+###Summary
+    ++  year                                                ::  date to @d
+      |=  det=date
+      ^-  @d
+      =+  ^=  yer
+          ?:  a.det
+            (add 292.277.024.400 y.det)
+          (sub 292.277.024.400 (dec y.det))
+      =+  day=(yawn yer m.det d.t.det)
+      (yule day h.t.det m.t.det s.t.det f.t.det)
 
 
-++  yelp                                                ::  leap year
-  |=  yer=@ud  ^-  ?
-  &(=(0 (mod yer 4)) |(!=(0 (mod yer 100)) =(0 (mod yer 400))))
+##++yore
 
-::  ~dovryp-toblug/try=> (yelp 2.014)
-::  %.n
+###Examples
+    ~dovryp-toblug/try=> (yore a)
+    [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
+
+###Summary
+    ++  yore                                                ::  @d to date
+      |=  now=@d
+      ^-  date
+      =+  rip=(yell now)
+      =+  ger=(yall d.rip)
+      :-  ?:  (gth y.ger 292.277.024.400)
+            [a=& y=(sub y.ger 292.277.024.400)]
+          [a=| y=+((sub 292.277.024.400 y.ger))]
+      [m.ger d.ger h.rip m.rip s.rip f.rip]
 
 
-++  yo
-  |%  ++  cet  36.524                 ::  (add 24 (mul 100 365))
-      ++  day  86.400                 ::  (mul 24 hor)
-      ++  era  146.097                ::  (add 1 (mul 4 cet))
-      ++  hor  3.600                  ::  (mul 60 mit)
-      ++  jes  106.751.991.084.417    ::  (mul 730.692.561 era)
-      ++  mit  60
-      ++  moh  `(list ,@ud)`[31 28 31 30 31 30 31 31 30 31 30 31 ~]
-      ++  moy  `(list ,@ud)`[31 29 31 30 31 30 31 31 30 31 30 31 ~]
-      ++  qad  126.144.001            ::  (add 1 (mul 4 yer))
-      ++  yer  31.536.000             ::  (mul 365 day)
-  --
-::  A kelp of time constants.
+##++yell
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-::                section 2cI, almost macros            ::
-::
-++  hard
-  |*  han=$+(* *)
-  |=  fud=*  ^-  han
-  ~|  %hard
-  =+  gol=(han fud)
-  ?>(=(gol fud) gol)
-::
-++  soft
-  |*  han=$+(* *)
-  |=  fud=*  ^-  (unit han)
-  =+  gol=(han fud)
-  ?.(=(gol fud) ~ [~ gol])
+###Examples
+    ~dovryp-toblug/try=> (yell ~2014.3.20..05.42.53..7456)
+    [d=106.751.991.820.094 h=5 m=42 s=53 f=~[0x7456]]
+
+###Summary
+
+    ++  yell                                                ::  tarp from @d
+      |=  now=@d
+      ^-  tarp
+      =+  sec=(rsh 6 1 now)
+      =+  ^=  fan
+          =+  [muc=4 raw=(end 6 1 now)]
+          |-  ^-  (list ,@ux)
+          ?:  |(=(0 raw) =(0 muc))
+            ~
+          =>  .(muc (dec muc))
+          [(cut 4 [muc 1] raw) $(raw (end 4 muc raw))]
+      =+  day=(div sec day:yo)
+      =>  .(sec (mod sec day:yo))
+      =+  hor=(div sec hor:yo)
+      =>  .(sec (mod sec hor:yo))
+      =+  mit=(div sec mit:yo)
+      =>  .(sec (mod sec mit:yo))
+      [day hor mit sec fan]
+
+
+##++yule
+
+###Examples
+    ~dovryp-toblug/try=> (yule (yell ~2014.3.20..05.42.53..7456))
+    0x8000000d21c88d5d7456000000000000
+
+###Summary
+    
+    ++  yule                                                 ::  time atom?
+      |=  rip=tarp
+      ^-  @d
+      =+  ^=  sec  ;:  add
+                     (mul d.rip day:yo)
+                     (mul h.rip hor:yo)
+                     (mul m.rip mit:yo)
+                     s.rip
+                   ==
+      =+  ^=  fac  =+  muc=4
+                   |-  ^-  @
+                   ?~  f.rip
+                     0
+                   =>  .(muc (dec muc))
+                   (add (lsh 4 muc i.f.rip) $(f.rip t.f.rip))
+      (con (lsh 6 1 sec) fac)
+
+
+##++yall
+
+###Examples
+    ~dovryp-toblug/try=> (yawn 2.014 3 1)
+    735.658
+    ~dovryp-toblug/try=> (yall (yawn 2.014 3 1))
+    [y=2.014 m=3 d=1]
+
+###Summary
+    ++  yall                                               ::  day # to day of year
+      |=  day=@ud
+      ^-  [y=@ud m=@ud d=@ud]
+      =+  [era=0 cet=0 lep=_?]
+      =>  .(era (div day era:yo), day (mod day era:yo))
+      =>  ^+  .
+          ?:  (lth day +(cet:yo))
+            .(lep &, cet 0)
+          =>  .(lep |, cet 1, day (sub day +(cet:yo)))
+          .(cet (add cet (div day cet:yo)), day (mod day cet:yo))
+      =+  yer=(add (mul 400 era) (mul 100 cet))
+      |-  ^-  [y=@ud m=@ud d=@ud]
+      =+  dis=?:(lep 366 365)
+      ?.  (lth day dis)
+        =+  ner=+(yer)
+        $(yer ner, day (sub day dis), lep =(0 (end 0 2 ner)))
+      |-  ^-  [y=@ud m=@ud d=@ud]
+      =+  [mot=0 cah=?:(lep moy:yo moh:yo)]
+      |-  ^-  [y=@ud m=@ud d=@ud]
+      =+  zis=(snag mot cah)
+      ?:  (lth day zis)
+        [yer +(mot) +(day)]
+      $(mot +(mot), day (sub day zis))
+
+
+##++yawn
+
+###Examples
+    ~dovryp-toblug/try=> (yawn 2.014 3 1)
+    735.658
+    ~dovryp-toblug/try=> (yall (yawn 2.014 3 1))
+    [y=2.014 m=3 d=1]
+
+###Summary
+    ++  yawn                                                ::  day # from AD    
+      |=  [yer=@ud mot=@ud day=@ud]
+      ^-  @ud
+      =>  .(mot (dec mot), day (dec day))
+      =>  ^+  .
+          %=    .
+              day
+            =+  cah=?:((yelp yer) moy:yo moh:yo)
+            |-  ^-  @ud
+            ?:  =(0 mot)
+              day
+            $(mot (dec mot), cah (slag 1 cah), day (add day (snag 0 cah)))
+          ==
+      |-  ^-  @ud
+      ?.  =(0 (mod yer 4))
+        =+  ney=(dec yer)
+        $(yer ney, day (add day ?:((yelp ney) 366 365)))
+      ?.  =(0 (mod yer 100))
+        =+  nef=(sub yer 4)
+        $(yer nef, day (add day ?:((yelp nef) 1.461 1.460)))
+      ?.  =(0 (mod yer 400))
+        =+  nec=(sub yer 100)
+        $(yer nec, day (add day ?:((yelp nec) 36.525 36.524)))
+      (add day (mul (div yer 400) (add 1 (mul 4 36.524))))
+
+##++yelp
+###Examples
+    ~dovryp-toblug/try=> (yelp 2.014)
+    %.n
+
+###Summary
+    ++  yelp                                                ::  leap year
+      |=  yer=@ud  ^-  ?
+      &(=(0 (mod yer 4)) |(!=(0 (mod yer 100)) =(0 (mod yer 400))))
+
+##++yo
+
+####Time constants.
+###Examples
+
+###Summary
+    ++  yo
+      |%  ++  cet  36.524                 ::  (add 24 (mul 100 365))
+          ++  day  86.400                 ::  (mul 24 hor)
+          ++  era  146.097                ::  (add 1 (mul 4 cet))
+          ++  hor  3.600                  ::  (mul 60 mit)
+          ++  jes  106.751.991.084.417    ::  (mul 730.692.561 era)
+          ++  mit  60
+          ++  moh  `(list ,@ud)`[31 28 31 30 31 30 31 31 30 31 30 31 ~]
+          ++  moy  `(list ,@ud)`[31 29 31 30 31 30 31 31 30 31 30 31 ~]
+          ++  qad  126.144.001            ::  (add 1 (mul 4 yer))
+          ++  yer  31.536.000             ::  (mul 365 day)
+      --
+
+#Almost Macros
+
+##++hard
+###Examples
+
+###Summary
+    ++  hard
+      |*  han=$+(* *)
+      |=  fud=*  ^-  han
+      ~|  %hard
+      =+  gol=(han fud)
+      ?>(=(gol fud) gol)
+
+##++soft
+###Examples
+
+###Summary
+    ++  soft
+      |*  han=$+(* *)
+      |=  fud=*  ^-  (unit han)
+      =+  gol=(han fud)
+      ?.(=(gol fud) ~ [~ gol])
