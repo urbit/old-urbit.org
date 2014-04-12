@@ -41,7 +41,7 @@ Otherwise, open up your terminal and let's get started:
      Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
      will install it.
 
-     And follow up with `brew install git gmp libsigsegv openssl`
+     And follow up with `brew install git gmp libsigsegv openssl re2 autoconf automake`
 
      This will ask you for the root password, which ideally you know.
 
@@ -49,19 +49,21 @@ Otherwise, open up your terminal and let's get started:
 
      Otherwise go [here](http://www.macports.org/install.php "here").
 
-     Then `sudo port install git gmp libsigsegv openssl`
+     Then `sudo port install git gmp libsigsegv openssl re2 autoconf automake`
 
      Enter your root password at the prompt.
 
 
 ###Configure Linux (Ubuntu or Debian)###
 
-1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags`
+1. Install [RE2](https://code.google.com/p/re2/wiki/Install).
+
+2. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags autoconf automake`
 
 
 ###Configure Linux (AWS)###
 
-1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags`
+1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags re2 autoconf automake`
 
 ###Get the source###
 

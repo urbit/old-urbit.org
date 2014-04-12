@@ -8,28 +8,50 @@ title: dotket
 
 
 
+#[dotket, `.^`, %dtkt](#dtkt)
+
+##Syntax
+
 `.^`, `dotket`, `[%dtkt p=twig]` is a natural hoon that generates
 nock operator `11`, which in virtual userspace nock (`mock`)
 loads a file from the global namespace.
 
-###Definition###
+
+###Form
+
+`p` is a twig
+
+####Tall
+
+    .^  p
+
+####Wide
+
+    .^(p)
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%dtkt p=twig]
       ==
 
-###Regular form (tall)###
 
-    .^  p
-
-###Regular form (wide)###
-
-    .^(p)
-
-###Compilation###
+###Expansion
    
     ++  mint
       ?-    gen
         [%dtkt *]  [(nice %noun) [%11 q:$(gen p.gen, gol %noun)]]
       ==
+
+##Notes
 
