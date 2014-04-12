@@ -11,7 +11,7 @@ This section covers the containers sets maps and trees.
 
 #Sets
 
-##++apt
+<h2 id="++apt">++&nbsp;&nbsp;apt</h2>
 ####Sets invariant
 `++apt` takes any tree `a` and produces a loobean indicating whether that tree is a set.
 
@@ -26,7 +26,7 @@ This section covers the containers sets maps and trees.
           ?@(r.a & ?&((vor n.a n.r.a) (hor n.a n.r.a)))
       ==
 
-##++in
+<h2 id="++in">++&nbsp;&nbsp;in</h2>
 
 ####Sets container.
 `++in` is the container arm for all the set arms. The contained arms inherit its sample, the set `a`.
@@ -47,7 +47,7 @@ Debugging traces are enabled with [!:]().
 `++in` creates a [vulcanized %gold tray]() that takes a set `a`.
 The wet (+-) arms below inherit the sample `a`.
 
-##+-all  ++in
+<h2 id="all:in">all:in</h2>
 
 ####Logical AND
 `+-all` takes a gate `b` that accepts any noun and produces a loobean representing the logical AND of all the values (`n.a`) in `a`.
@@ -72,7 +72,7 @@ If `a` is an atom ([?@]()), produce yes.
 Otherwise produce the logical AND ([?&]()) of `(b n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
 
-##+-any  ++in
+<h2 id="any:in">any:in</h2>
 
 ####Logical and
 `+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`.
@@ -96,7 +96,7 @@ A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-
 Otherwise produce the logical OR ([?|]()) of `(b n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
 
-##+-del  ++in
+<h2 id="del:in">del:in</h2>
 
 ####Delete at `b`
 `+-del` takes any noun b and removes the member of the set `a` where `n.a` is `b`.
@@ -136,7 +136,7 @@ If the `++vor` of `n.l.a` and `n.r.a` is `%.y` produce a tuple replacing `l.a` w
 Otherwise produce a tuple replacing `r.a` with `l.r.a` in the middle value.  
 
 
-##+-dig  ++in
+<h2 id="dig:in">dig:in</h2>
 
 ####Get axis.
 `+-dig` takes any noun `b` and produces the axis of `b` within the `++set` `a`.
@@ -173,7 +173,7 @@ If the `++gor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.a` and `c` 
 Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [++peg]().  
 
 
-##+-gas  ++in
+<h2 id="gas:in">gas:in</h2>
 
 ####Concatinate
 `+-gas` takes a list `b` with members of the same type as `a` and produces `b` concatenated with `a`.
@@ -198,7 +198,7 @@ If `b` is an atom ([?@]()), produce `a`.
 Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](), below.
 
 
-##+-has  ++in
+<h2 id="has:in">has:in</h2>
 
 ####Existence check
 `+-has` accepts any noun `b` and produces a loobean indicating whether that value (`n.a`) exists in `a`.
@@ -230,7 +230,7 @@ If `b` is `n.a` produce %.y.
 Otherwise, if the `++hor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.a` or `a` set to `r.a` if `%.n`.  
 
 
-##+-put  ++in
+<h2 id="put:in">put:in</h2>
 
 ####Insert
 `+-put` accepts any noun `b` and produces `a` with `b` added to the sorted loaction in `a`.
@@ -264,6 +264,7 @@ Otherwise, if the `++hor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.
       ?:  (vor n.a n.c)
         [n.a l.a c]
       [n.c [n.a l.a l.c] r.c]
+
 `+-put` is a [jetted arm (~/)]().  
 `+-put` creates a [wet vulcanized gate |*]() which accepts any noun, `b`.  
 A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^+]()) to type of `a` (a set).  
@@ -281,7 +282,7 @@ If the `++vor` of `n.a` and `n.c` is `%.y`, produce `[n.a l.a c]`.
 Otherwise produce `[n.c [n.a l.a l.c] r.c]`.
 
 
-##+-rep  ++in
+<h2 id="rep:in">rep:in</h2>
 
 ####Reduce
 `+-rep` accepts a cell with any noun `b` and a tile `c`. `+-rep` produces `a` with each `n.a` replaced with `(c n.a b)`.
@@ -305,7 +306,7 @@ If `a` is null ([?~]()), produce `b`.
 Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` set to `l.a` and `b` set to `(c n.a b)`.
 
 
-##+-tap  ++in
+<h2 id="tap:in">tap:in</h2>
 
 ####??
 `+-tap` accepts list tile with members of the same type as `a`. `+-tap` produces the set `a` converted to a list using `b`.
@@ -330,7 +331,7 @@ Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` s
       $(a r.a, b [n.a $(a l.a)])
 
 
-##+-wyt  ++in
+<h2 id="wyt:in">wyt:in</h2>
 
 ####Depth.
 `+-wyt` produces the depth of set `a`.
@@ -354,7 +355,8 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 
 #Maps
 
-##++ept
+<h2 id="++ept">++&nbsp;&nbsp;ept</h2>
+
     ++  ept                                                 ::  map invariant
       |=  a=(tree ,[p=* q=*])
       ?@  a
@@ -366,7 +368,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 ??  Not sure about this one.
 
 
-##++by
+<h2 id="++by">++&nbsp;&nbsp;by</h2>
 
 ###Maps container.
 `++by` is the container for all the map arms. The contained arms inherit its sample, the map `a`.
@@ -385,7 +387,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 `++by` creates a [vulcanized %gold tray]() that takes a map `a`.  
 
 
-##+-all  ++by
+<h2 id="all:by">all:by</h2>
 
 ####Logical AND
 `+-all` takes a gate `b` that accepts any noun and produces a loobean representing the logical AND of all the values (`n.a`) in `a`.
@@ -411,7 +413,7 @@ Otherwise produce the logical AND ([?&]()) of `(b q.n.a)`, the gate called again
 
 
 
-##+-any  ++by
+<h2 id="any:by">any:by</h2>
 
 ####Logical OR
 `+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`.
@@ -434,7 +436,7 @@ Otherwise produce the logical AND ([?&]()) of `(b q.n.a)`, the gate called again
 A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to a loobean.  
 Otherwise produce the logical OR ([?|]()) of `(b q.n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
-##+-del  ++by
+<h2 id="del:by">del:by</h2>
 
 ####Delete at `b`
 `+-del` takes any noun b and removes the member of the set `a` where `n.a` is `b`.
@@ -474,7 +476,7 @@ If the `++vor` of `p.n.l.a` and `p.n.r.a` is `%.y` produce a tuple replacing `l.
 Otherwise produce a tuple replacing `r.a` with `l.r.a` in the middle value.  
 
 
-##+-dig  ++by
+<h2 id="dig:by">dig:by</h2>
 
 ####Get axis
 `+-dig` takes any noun `b` and produces the axis of `b` within the values (`p.a`) of map `a`.
@@ -503,7 +505,7 @@ If the `++gor` of `b` and `p.n.a` is `%.y`, recurse with `a` set to `l.a` and `c
 Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [++peg]().  
 
 
-##+-gas ++by
+<h2 id="gas:y">gas:y</h2>
 
 ####Concat list.
 `+-gas` takes a list `b` of cells of any noun and produces a new map with the members of `b` added to `a`.
@@ -531,7 +533,7 @@ If `b` is an atom ([?@]()), produce `a`.
 Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](), below.
 
 
-##+-get ++by
+<h2 id="get:y">get:y</h2>
 
 ####Grab.
 `+-get` takes any noun `b` and produces the value (`q.a`) at key (`p.a`) `b` or ~ if the key doesn't exist.
@@ -563,7 +565,7 @@ If the `++gor` of `b` and `p.n.a` is `%.y` recurse with `a` set to `l.a`.
 Otherwise, recurse with `a` set to `r.a`.
 
 
-##+-has  ++by
+<h2 id="has:by">has:by</h2>
 
 ####Existence check.
 `+-has` takes any noun `b` and produces a loobean whether that key (`p.a`) exists in `a`.
@@ -585,7 +587,7 @@ Otherwise, recurse with `a` set to `r.a`.
 `+-has` produces the result of `+-get` `b` as a twig using [!=]().
   
 
-##+-mar  ++by
+<h2 id="mar:by">mar:by</h2>
 
 ####??
 If you send it null, it deletes if you send it a value it adds
@@ -601,7 +603,7 @@ If you send it null, it deletes if you send it a value it adds
       (put b u.c)
 
 
-##+-put  ++by
+<h2 id="put:by">put:by</h2>
 
 ####Insert
 `+-put` takes a cell of two nouns `[b=* c=*]` and produces the map `a` with added `[b=* c=*]`.
@@ -650,7 +652,7 @@ If the `++hor` of `b` and `n.a` is `%.n` ([?:]()),
 If the `++vor` of `p.n.a` and `p.n.d` is `%.y`, produce `[n.a l.a d]`.  
 Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
 
-##+-rep  ++by
+<h2 id="rep:by">rep:by</h2>
 
 ####Reduce
 `+-rep` walks through the map `a` replacing `b` with the product of calling `c` with `n.a` and `b`.
@@ -670,7 +672,7 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
       $(a r.a, b $(a l.a, b (c n.a b)))
 
 
-##+-rib  ++by
+<h2 id="rib:by">rib:by</h2>
 
 ####Map??
 `+-rib` takes any noun `b` and a gate `c`. `+-rib` walks through the map `a` replacing the values `n.a` with `(c n.a b)` and produces a transformed `a` and the accumulated `b`.
@@ -690,7 +692,7 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
 `+-rib` creates a [wet vulcanized gate |*]() which accepts a cell of any two nouns, `[b=* c=*]`.
 
 
-##+-run  ++by
+<h2 id="run:by">run:by</h2>
 
 ####Map / Each
 `+-run` takes a gate `b`. `+-run` walks through the map `a` and produces a null-terminated tuple with `[p.n.a (b q.n.a)]`.
@@ -712,7 +714,7 @@ If `a` is null, return `a` ([?~]()).
 Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called with `a` replaced by `l.a` and the containing gate called with `a` replaced by `r.a`.
   
 
-##+-tap  ++by
+<h2 id="tap:by">tap:by</h2>
 
 ####Listify
 
@@ -732,7 +734,7 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
       $(a r.a, b [n.a $(a l.a)])
 
 
-##+-wyt  ++by
+<h2 id="wyt:by">wyt:by</h2>
 
 ####Depth
 `+-wyt` produces the depth of `a`.
@@ -778,7 +780,7 @@ Note: `++to` is not used alone, but is used to call the arms it contains.
 The wet (+-) arms below inherit the sample `a`.
 
 
-##+-bal  ++to
+<h2 id="bal:to">bal:to</h2>
 
 ####Vor??
 `+-bal` walks through `a` using `++vor`
@@ -801,7 +803,7 @@ The wet (+-) arms below inherit the sample `a`.
       a
 
 
-##+-dep ++to
+<h2 id="dep:to">dep:to</h2>
 
 ####Depth
 `+-dep` produces the maximum depth of leaves (`l.a` and `r.a`) of queue `a`.
@@ -828,7 +830,7 @@ Otherwise produce the `++max` of the containing gate called with `a` replaced wi
 Increment that product using `+`, the irregular form of `.+`.
 
 
-##+-gas  ++to
+<h2 id="gas:to">gas:to</h2>
 
 ####Insert
 `+-gas` accepts a `++list` `b` whose members share the same type as `a` and produces a new qeu with `b` added to `a`.
@@ -853,7 +855,7 @@ Otherwise, call the containing gate replacing `b` with `t.b` and `a` with `(put(
 See `+-put` below.
 
 
-##+-get  ++to
+<h2 id="get:to">get:to</h2>
 
 ####p-q ify
 `+-get` produces the qeu `a` in the format [p=* q=*].
@@ -884,7 +886,7 @@ If ([?:]()) `q.b` is null ([?=]()) or ([|, irregular form of ?|]()) the `++vor` 
 Otherwise, produce `[n.q.b [n.a l.a l.q.b] r.q.b]`.
 
 
-##+-nap  ++to
+<h2 id="nap:to">nap:to</h2>
 
 ####Unshift
 `+-nap` removes the head from the qeu `a` and produces a new qeu.
@@ -913,7 +915,7 @@ If [?:]() `l.a` is null, produce `r.a`.
 `bal(+< ^+(a [p.b q.b r.a]))`
 
 
-##+-put  ++to
+<h2 id="put:to">put:to</h2>
 
 ####Shift
 `+-put` accepts any noun, `b` and produces the qeu `a` with `b` added to the head.
@@ -936,7 +938,7 @@ If `a` is null, produce `[b ~ ~]`.
 Otherwise, produce `bal(+< a(l $(a l.a)))`.
 
 
-##+-tap  ++to
+<h2 id="tap:to">tap:to</h2>
 
 ####Push
 `+-tap` takes a list whose icon corresponds to the icon of `n.a`. `+-tap` produces a qeu with the members of `b` added to the end.
@@ -959,7 +961,7 @@ If `a` is null, produce `b`.
 Recurse, replacing `a` with `r.a` and `b` with the cell `n.a` and the containing gate called with `a` replaced with `l.a`.
 
 
-##+-top  ++to
+<h2 id="top:to">top:to</h2>
 
 ####First
 `+-top` produces the rightmost item in the tree of qeu `a`.
