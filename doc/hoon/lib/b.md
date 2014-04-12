@@ -10,7 +10,7 @@ sort: 2
 
 This section convers the basic container functions. Basic containers are [++unit]() and [++list](). 
 
-##++bind
+<h2 id="++bind">++&nbsp;&nbsp;bind</h2>
 
 ####Apply `b`
 `++bind` takes a [++unit]() and a [gate]() and produces a [++unit]() with `b` applied to `u.a` or null if a is null.
@@ -34,7 +34,7 @@ If `a` is null ([?~]()) `++bind` produces null.
 Otherwise, `++bind` produces a new [++unit]() where the face `u` is set to the product of the gate `b` with sample `a`, `(b u.a)`.  
 
 
-##++clap
+<h2 id="++clap">++&nbsp;&nbsp;clap</h2>
 
 ####Combine
 `++clap` passes the `u.a` and `u.b` in two [++unit]() `a` and `b` to the gate `c` and produces a new [++unit]() with the result. If `a` or `b` is null, `++clap` produces null.
@@ -60,7 +60,7 @@ If `b` is null ([?~]()) `++clap` produces null.
 Otherwise `++clap` produces a new [++unit]() with the `u` set to the product of the gate `c` with the sample of `[u.a u.b]`, `[~ u=(c u.a u.b)]`.  
 
 
-##++drop
+<h2 id="++drop">++&nbsp;&nbsp;drop</h2>
 
 ####Listify
 `++drop` takes a unit `a` and produces a list `[u.a ~]`, or null if `a` is null.
@@ -84,7 +84,7 @@ If `a` is null ([?~]()) `++drop` produces null.
 Otherwise `++drop` produces a [++list]() [u.a ~].  
 
 
-##++fall
+<h2 id="++fall">++&nbsp;&nbsp;fall</h2>
 
 ####Default
 `++fall` takes a [++unit]() `a` and any noun `b`. If `a` is null produce `b` else `u.a`.
@@ -104,7 +104,7 @@ If `a` is null ([?~]()) `++drop` produces `b`.
 Otherwise `++drop` produces `u.a`.
 
 
-##++mate
+<h2 id="++mate">++&nbsp;&nbsp;mate</h2>
 
 ####Choose
 `++mate` takes two [++unit]() `a` and `b` and produces either the [++unit]() `a` or `b` that is not null, `a` if they are equal or crashes with `'mate'` if they are not.
@@ -140,7 +140,7 @@ If they are equal `++mate` produces `a`.
 Otherwise a crash is produced with the message `'mate'`, using [~|].
 
 
-##++need
+<h2 id="++need">++&nbsp;&nbsp;need</h2>
 
 ####Demand
 `++need` takes a unit `a` and produces `u.a`. If `a` is null `++need` crashes.
@@ -164,7 +164,7 @@ If `a` is an atom ([?@]()) `++need` produces a crash.
 Otherwise `++need` produces `u.a`.
 
 
-##++some
+<h2 id="++some">++&nbsp;&nbsp;some</h2>
 
 ####Lift
 `++some` takes any noun `a` and produces the [++unit]() `[~ u=a]`.
@@ -185,7 +185,7 @@ Otherwise `++need` produces `u.a`.
 
 #Lists
 
-##++flop
+<h2 id="++flop">++&nbsp;&nbsp;flop</h2>
 
 ####Reverse
 `++flop` takes a list `a` and produces `a` with the elements reversed.
@@ -219,7 +219,7 @@ Otherwise, produce a call to [$]() with `a` set to `t.a` and b set to `[i.a b]`.
 Note: Refer to the [list]() documentation for clarification of `t.a` and `i.a`.  
 
 
-##++homo
+<h2 id="++homo">++&nbsp;&nbsp;homo</h2>
 
 `++homo` takes a list `a` and produces a [++list]() with the type information homogenized.
 
@@ -244,7 +244,7 @@ The product of `++homo` is cast, using [^+]() to the type of the product of [=<]
 ??  this seems like a pretty unconventional kind of recursion
 
 
-##++limo
+<h2 id="++limo">++&nbsp;&nbsp;limo</h2>
 
 ####Listify.
 
@@ -269,7 +269,7 @@ A [%gold core |%]() is created.
 ??  similarly strange recursion here
 
 
-##++lent
+<h2 id="++lent">++&nbsp;&nbsp;lent</h2>
 
 ####Length
 `++lent` takes a list `a` and produces an atom equal to the length of `a`.
@@ -297,7 +297,7 @@ If `a` is an atom ([?@]()) b is produced.
 Otherwise, `a` is replaced by `t.a` (descending in to the list) and `b` is replaced by `+(b)` (incrementing `b`)
 
 
-##++levy
+<h2 id="++levy">++&nbsp;&nbsp;levy</h2>
 
 ####Test every
 `++levy` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++levy` sends each member of `a` to `b` and produces `%.y` if each result is `%.y` and `%.n` if not.
@@ -328,7 +328,7 @@ If `a` is an atom ([?@]()) produce `%.y` (??  since lists have faces, this only 
 If the product of `(b i.a)` is `%.y` ([?:]()) recurse replacing `a` with `t.a` using `$` and the irregular form of [%=](), `( )`.
 
 
-##++lien
+<h2 id="++lien">++&nbsp;&nbsp;lien</h2>
 
 ####Test any
 `++levy` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++levy` sends each member of `a` to `b` and produces `%.y` if any result is `%.y` and `%.n` if none are `%.y`.
@@ -358,7 +358,7 @@ If the product of `(b i.a)` is `%.y` ([?:]()) produce `%.y`.
 Otherwise recurse, replacing `a` with `t.a` using `$` and the irregular form of [%=](), `( )`.
 
 
-##++reel
+<h2 id="++reel">++&nbsp;&nbsp;reel</h2>
 
 ####Right fold
 `++reel` takes a [++list]() `a` and a [gate]() `b` that takes two nouns. `++reel` recursively calls `b` with the right side of `a`.
@@ -387,7 +387,7 @@ If `a` is an atom ([?@]()), `q.b` is produced.
 Otherwise `b` is called with the left side of `a` (i.a), and the product of the trap with `a` replaced with `t.a` (the 'right side' of `a`). 
 
 
-##++roll
+<h2 id="++roll">++&nbsp;&nbsp;roll</h2>
     
 ####Left fold
 `++roll` takes a [++list]() `a` and a [gate]() `b` that takes two nouns. `++reel` recursively calls `b` with the left side of `a`.
@@ -416,7 +416,7 @@ If `a` is an atom ([?@]()), `q.b` is produced.
 Otherwise the trap is called with `a` replaced with `t.a` and `b` where `q.b` is replaced with the product of `(b i.a q.b)` .
 
 
-##++skid
+<h2 id="++skid">++&nbsp;&nbsp;skid</h2>
 
 ####Separate
 `++skid` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++skid` recursively calls `b` separating `a` into two lists: `p` that produced `%.y` and `q` that produced `%.n`.
@@ -442,7 +442,7 @@ If the product of `(b i.a)` is `%.y`, produce `[[i.a p.c] q.c]`.
 Otherwise produce `[p.c [i.a q.c]]`.
 
 
-##++skim
+<h2 id="++skim">++&nbsp;&nbsp;skim</h2>
 
 ####Filter %.y
 `++skim` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++skim` calls `b` with each member of `a` to produce a list containing the values in `a` that return `%.y` from `b`. Inverse of `++skip`.
@@ -469,7 +469,7 @@ If `a` is an atom ([?@]()) return null.
 Otherwise if the product of `(b i.a)` is `%.y` produce `[i.a $(a t.a)]`, if not recurse (using the empty name `$` and the irregular form of [%=], `( )`) with `a` set to `t.a`.
 
 
-##++skip
+<h2 id="++skip">++&nbsp;&nbsp;skip</h2>
 
 ####Filter %.n
 `++skip` takes a [++list]() `a` and a [gate]() `b` that produces a loobean. `++skip` recursively calls `b` to produce a list containing the values in `a` that return `%.n` from `b`. Inverse of `++skim`.
@@ -496,7 +496,7 @@ If `a` is an atom ([?@]()) return null.
 Otherwise if the product of `(b i.a)` is `%.y` recurse (using the empty name `$` and the irregular form of [%=]()) with `a` set to `t.a`, if not produce `[i.a $(a t.a)]`.
 
 
-##++scag
+<h2 id="++scag">++&nbsp;&nbsp;scag</h2>
     
 ####Prefix
 `++scag` takes an atom `a` and a [++list]() `b`. Produces the first `a` members of `b`. Inverse of `++slag`.
@@ -519,7 +519,7 @@ If either ([logical or |, irregular form of ?|]()) `b` is null ([?=]()) or `a` i
 Otherwise produce a cell with `i.b` and the product of the trap with `b` replaced with `t.b` and `a` replaced with `([dec]() a)`.
 
 
-##++slag
+<h2 id="++slag">++&nbsp;&nbsp;slag</h2>
 
 ####Suffix
 `++slag` takes an atom `a` and a [++list]() `b`. Produces the last `a` members of `b`. Inverse of `++scag`.
@@ -545,7 +545,7 @@ If `b` is an atom ([?@]()), produce null.
 Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` replaced with `([dec]() a)`.
 
 
-##++snag
+<h2 id="++snag">++&nbsp;&nbsp;snag</h2>
 
 ####Index
 `++snag` takes an atom `a` and a [++list]() `b`. Produces the value of `b` at position `a`.
@@ -572,7 +572,7 @@ If ([?:]()) `a` is 0 (irregular [.=](), =), produce `i.b`.
 Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` replaced with `(dec a)`.  
 
 
-##++sort
+<h2 id="++sort">++&nbsp;&nbsp;sort</h2>
     
 ####Quicksort
 `++sort` takes a [++list]() `a` and a [gate]() `b` that takes two nouns and produces a loobean. `++sort` recursively calls `b` to produce a new list with the members of `a` sorted according to `b`.
@@ -606,7 +606,7 @@ The cell composed of `i.a` and the result of calling the trap with `a` replaced 
 ??  this needs work. why do those gates use _i.a?
 
 
-##++swag
+<h2 id="++swag">++&nbsp;&nbsp;swag</h2>
 
 ####Infix
 `++swag` takes a cell of atoms `[a b]` and a list `c`. `++swag` produces the values between the indices `a` and `b` in `c`.
@@ -623,7 +623,7 @@ The cell composed of `i.a` and the result of calling the trap with `a` replaced 
 `[++scag]()` produces the first `b` members of `[++slag]()`, which produces the last `a` members of `c`.
 
 
-##++turn
+<h2 id="++turn">++&nbsp;&nbsp;turn</h2>
 
 ####Transform
 `++turn` takes a list `a` and the clam of a noun `b`. `++turn` produces a new list with all the values of `a` produced by `b`.
@@ -647,7 +647,7 @@ If `a` is an atom ([?@]()) produce null.
 Otherwise, produce a cell where i is (b i.a) and t is the product of the gate with a replaced with t.a. 
 
 
-##++weld
+<h2 id="++weld">++&nbsp;&nbsp;weld</h2>
 
 ####Concatenate
 `++weld` takes two `++list` `a` and `b` and produces a list with `a` and `b` concatenated.
@@ -673,7 +673,7 @@ If `a` is null ([?~]()) produce `b`.
 Otherwise produce a cell containing i.a and the product of the gate with `a` replaced with `t.a`.
 
 
-##++wild
+<h2 id="++wild">++&nbsp;&nbsp;wild</h2>
 
 ####Concatenate, no type
 `++wild` takes two `++list`, `a` and `b` and produces a cell with the values of `a` and `b`. Same as `++weld`, but without casting back to a `++list`.
@@ -703,7 +703,8 @@ Otherwise produce a cell containing i.a and the product of the gate with `a` rep
 
 Gears are no longer used in this version of hoon.
 
-##++from
+<h2 id="++from">++&nbsp;&nbsp;from</h2>
+
     ++  from                                                ::  range
       |=  [a=@ b=@]
       ^-  (gear ,@)
@@ -713,7 +714,8 @@ Gears are no longer used in this version of hoon.
         ~
       [i=a t=^?(..$(a +(a), c +(c)))]
 
-##++long
+<h2 id="++long">++&nbsp;&nbsp;long</h2>
+
     ++  long                                                ::
       |*  a=(gear)
       =+  b=0
@@ -723,10 +725,12 @@ Gears are no longer used in this version of hoon.
         b
       $(b +(b), a t.c)
 
-##++lone
+<h2 id="++lone">++&nbsp;&nbsp;lone</h2>
+
     ++  lone  |*(a=* |?([i=a t=none]))                      ::
 
-##++mill
+<h2 id="++mill">++&nbsp;&nbsp;mill</h2>
+
     ++  mill
       |*  [a=_,* b=(gear)]
       |?
@@ -735,10 +739,12 @@ Gears are no longer used in this version of hoon.
         ~
       [i=(a i.c) t=^?(..$(b t.c))]
 
-##++none
+<h2 id="++none">ne&nbsp;&nbsp;</h2>
+
     ++  none  |?(~)                                         ::
 
-##++over
+<h2 id="++over">++&nbsp;&nbsp;over</h2>
+
     ++  over                                                ::
       |=  [a=@ b=@]
       ^-  (gear ,@)
@@ -747,7 +753,8 @@ Gears are no longer used in this version of hoon.
         [i=a t=none]
       [i=a t=^?(..$(a +(a)))]
 
-##++pull
+<h2 id="++pull">++&nbsp;&nbsp;pull</h2>
+
     ++  pull                                                ::
       |*  a=(gear)
       |=  b=_^+(|-(=+(b=(a) ?~(b ~ [i=i.b t=$(a t.b)]))) ~)
@@ -757,7 +764,8 @@ Gears are no longer used in this version of hoon.
         b
       $(b [i.c b], a t.c)
 
-##++push
+<h2 id="++push">++&nbsp;&nbsp;push</h2>
+
     ++  push                                                ::
       |*  a=(gear)
       |=  b=_^+(|-(=+(b=(a) ?~(b ~ [i=i.b t=$(a t.b)]))) ~)
@@ -765,7 +773,8 @@ Gears are no longer used in this version of hoon.
       =+  c=((pull a) ~)
       ((pull (spin c)) b)
 
-##++spin
+<h2 id="++spin">++&nbsp;&nbsp;spin</h2>
+
     ++  spin                                                ::
       |*  a=(list)
       =>  .(a `_(homo a)`a)
