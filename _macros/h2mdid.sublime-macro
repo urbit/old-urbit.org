@@ -1,0 +1,175 @@
+[
+	{
+		"args":
+		{
+			"characters": "<h2 id=\"++"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"to": "eol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"by": "words",
+			"forward": false
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"to": "eol",
+			"extend": true
+		},
+		"command": "move_to"
+	},
+	{
+		"command": "copy"
+	},
+	{
+		"args":
+		{
+			"to": "bol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"command": "paste"
+	},
+	{
+		"command": "right_delete"
+	},
+	{
+		"command": "right_delete"
+	},
+	{
+		"args":
+		{
+			"characters": "\">"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"by": "characters",
+			"forward": true
+		},
+		"command": "move"
+	},
+	{
+		"args":
+		{
+			"characters": "&nbsp;&nbsp;"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"to": "eol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"characters": "</h2>"
+		},
+		"command": "insert"
+	}
+]
