@@ -464,7 +464,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         &
       (lth a b)
 
-##++gor
+<h2 id="++gor">++&nbsp;&nbsp;gor</h2>
 ###Examples
 
 ###Summary
@@ -477,7 +477,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         (dor a b)
       (lth c d)
 
-##++hor
+<h2 id="++hor">++&nbsp;&nbsp;hor</h2>
 ###Examples
 
 ###Summary
@@ -495,7 +495,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         (gor +.a +.b)
       (gor -.a -.b)
 
-##++vor
+<h2 id="++vor">++&nbsp;&nbsp;vor</h2>
 ###Examples
 
 ###Summary
@@ -508,13 +508,13 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         (dor a b)
       (lth c d)
 
-##++fnv
+<h2 id="++fnv">++&nbsp;&nbsp;fnv</h2>
 ###Examples
 
 ###Summary
     ++  fnv  |=(a=@ (end 5 1 (mul 16.777.619 a)))           ::  FNV scrambler
 
-##++mug
+<h2 id="++mug">++&nbsp;&nbsp;mug</h2>
 ###Examples
 
 ###Summary
@@ -539,7 +539,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         ^$(b +(b))
       $(c (fnv (mix c (cut 3 [d 1] a))), d +(d))
 
-##++po
+<h2 id="++po">++&nbsp;&nbsp;po</h2>
 ###Examples
 
 ###Summary
@@ -616,7 +616,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Signed integers
 
-##++si
+<h2 id="++si">++&nbsp;&nbsp;si</h2>
 ###Examples
 
 ###Summary
@@ -726,7 +726,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  %.y if a is positive, %.n if a is negative
 
 
-##++fe
+<h2 id="++fe">++&nbsp;&nbsp;fe</h2>
 ###Examples
 
 ###Summary
@@ -798,49 +798,49 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Floating Point
 
-##++rlyd
+<h2 id="++rlyd">++&nbsp;&nbsp;rlyd</h2>
 ###Examples
 
 ###Summary
     ++  rlyd  |=(red=@rd ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
 
-##++rlyh
+<h2 id="++rlyh">++&nbsp;&nbsp;rlyh</h2>
 ###Examples
 
 ###Summary
     ++  rlyh  |=(reh=@rh ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
 
-##++rlyq
+<h2 id="++rlyq">++&nbsp;&nbsp;rlyq</h2>
 ###Examples
 
 ###Summary
     ++  rlyq  |=(req=@rq ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
 
-##++rlys
+<h2 id="++rlys">++&nbsp;&nbsp;rlys</h2>
 ###Examples
 
 ###Summary
     ++  rlys  |=(res=@rs ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
 
-##++ryld
+<h2 id="++ryld">++&nbsp;&nbsp;ryld</h2>
 ###Examples
 
 ###Summary
     ++  ryld  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rd !!)))
 
-##++rylh
+<h2 id="++rylh">++&nbsp;&nbsp;rylh</h2>
 ###Examples
 
 ###Summary
     ++  rylh  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rh !!)))
 
-##++rylq
+<h2 id="++rylq">++&nbsp;&nbsp;rylq</h2>
 ###Examples
 
 ###Summary
     ++  rylq  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rq !!)))
 
-##++ryls
+<h2 id="++ryls">++&nbsp;&nbsp;ryls</h2>
 ###Examples
 
 ###Summary
@@ -849,7 +849,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Urbit Time
 
-##++year
+<h2 id="++year">++&nbsp;&nbsp;year</h2>
 ###Examples
     ~dovryp-toblug/try=> =a [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
     ~dovryp-toblug/try=> (year a)
@@ -868,7 +868,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       (yule day h.t.det m.t.det s.t.det f.t.det)
 
 
-##++yore
+<h2 id="++yore">++&nbsp;&nbsp;yore</h2>
 
 ###Examples
     ~dovryp-toblug/try=> (yore a)
@@ -886,7 +886,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       [m.ger d.ger h.rip m.rip s.rip f.rip]
 
 
-##++yell
+<h2 id="++yell">++&nbsp;&nbsp;yell</h2>
 
 ###Examples
     ~dovryp-toblug/try=> (yell ~2014.3.20..05.42.53..7456)
@@ -914,7 +914,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       [day hor mit sec fan]
 
 
-##++yule
+<h2 id="++yule">++&nbsp;&nbsp;yule</h2>
 
 ###Examples
     ~dovryp-toblug/try=> (yule (yell ~2014.3.20..05.42.53..7456))
@@ -940,7 +940,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       (con (lsh 6 1 sec) fac)
 
 
-##++yall
+<h2 id="++yall">++&nbsp;&nbsp;yall</h2>
 
 ###Examples
     ~dovryp-toblug/try=> (yawn 2.014 3 1)
@@ -974,7 +974,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       $(mot +(mot), day (sub day zis))
 
 
-##++yawn
+<h2 id="++yawn">++&nbsp;&nbsp;yawn</h2>
 
 ###Examples
     ~dovryp-toblug/try=> (yawn 2.014 3 1)
@@ -1008,7 +1008,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         $(yer nec, day (add day ?:((yelp nec) 36.525 36.524)))
       (add day (mul (div yer 400) (add 1 (mul 4 36.524))))
 
-##++yelp
+<h2 id="++yelp">++&nbsp;&nbsp;yelp</h2>
 ###Examples
     ~dovryp-toblug/try=> (yelp 2.014)
     %.n
@@ -1018,7 +1018,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       |=  yer=@ud  ^-  ?
       &(=(0 (mod yer 4)) |(!=(0 (mod yer 100)) =(0 (mod yer 400))))
 
-##++yo
+<h2 id="++yo">++&nbsp;&nbsp;yo</h2>
 
 ####Time constants.
 ###Examples
@@ -1039,7 +1039,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Almost Macros
 
-##++hard
+<h2 id="++hard">++&nbsp;&nbsp;hard</h2>
 ###Examples
 
 ###Summary
@@ -1050,7 +1050,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       =+  gol=(han fud)
       ?>(=(gol fud) gol)
 
-##++soft
+<h2 id="++soft">++&nbsp;&nbsp;soft</h2>
 ###Examples
 
 ###Summary
