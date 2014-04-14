@@ -8,11 +8,11 @@ rune: $|
 tile: bcbr
 ---
 
-#[bucbar,`$|`, %bcbr](#bcbr)
+<h1 id="bcbr">bucbar <code>$|</code> %bcbr</h1>
 
 ##Syntax
 
-`$|`, `bucbar`, is a tile rune that produces a `%reed`,  
+`$|`, `bucbar`, is a tile rune that takes `++tile` `p` and `q` and produces a `%reed`,  
 
     [%reed p=tile q=tile]
 

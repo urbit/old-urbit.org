@@ -11,22 +11,22 @@ title: dottar
 `.*`, `dottar`, `[%dttr p=twig q=twig]` is a natural hoon that
 calculates the nock of subject `p`, formula `q`.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%dttr p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Regular form (tall)
 
     .*  p
     q
 
-###Regular form (wide)###
+###Regular form (wide)
 
     .*(p q)
 
-###Compilation###
+###Compilation
     
     ++  mint
       ?-    gen

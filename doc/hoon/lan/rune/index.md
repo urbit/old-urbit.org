@@ -3,7 +3,7 @@ layout: subpage
 title: Rune
 axis: doc-hoon
 categories: lan overview
-sort: 1
+sort: 4
 ---
 
 {% for page in site.axis.doc-hoon %}

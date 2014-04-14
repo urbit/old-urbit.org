@@ -12,9 +12,7 @@ title: dotket
 
 ##Syntax
 
-`.^`, `dotket`, `[%dtkt p=twig]` is a natural hoon that generates
-nock operator `11`, which in virtual userspace nock (`mock`)
-loads a file from the global namespace.
+`.^`, `dotket`, `[%dtkt p=twig]` is a natural hoon that generates nock operator `11`, which in virtual userspace nock (`mock`) loads a file from the global namespace.
 
 
 ###Form
