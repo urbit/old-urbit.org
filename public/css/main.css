@@ -23,11 +23,17 @@
 }
 
 .sidebar-about h1.logo {
-	font-size: 2rem;
-	width: 3rem;
-	margin-top: .3rem;
+	margin-top: .6rem;
+	margin-right: .6rem;
+	margin-left: -2rem;
 	margin-bottom: 0;
+	height: 1rem;
 	float: left;
+}
+
+img.logo {
+	width: 1.2rem;
+	height: 1.2rem;
 }
 
 .sidebar-about p.lead {
