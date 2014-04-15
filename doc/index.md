@@ -44,7 +44,7 @@ If you want to build a deep understanding of how Urbit works, start with Nock. I
     ###Library Reference
     {% for page in site.axis.doc-hoon %}
     {% if page.categories contains 'lib' %}
-    [{{ page.title }}](/doc/hoon/lib/#{{ page.section }})
+    [{{ page.title }}](/doc/hoon/lib/#{{ page.title | handleize }})
     {% endif %}
     {% endfor %}
 
