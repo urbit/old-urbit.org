@@ -1,6 +1,6 @@
 ---
 layout: subpage
-title: Tiles
+title: Tile
 axis: doc-hoon
 categories: lan overview
 sort: 3
@@ -8,7 +8,9 @@ sort: 3
 
 #Tiles — 
 
-Tiles, as defined in `++tile`, are AST subtrees that can be statically reduced in to twigs using a subset of the entries in `++twig`. For a more thorough overview of how tiles work, see the Hoon tutorial, [chapter 5](/doc/hoon/tut/5/).
+Tiles, as defined in `++tile`, are AST subtrees that can be statically reduced into twigs. For a more thorough overview of how tiles work, see the Hoon tutorial, [chapter 5](/doc/hoon/tut/5/).
+
+The formal definitions for `++tile` runes are somewhat spread out in `hoon.hoon`, so we will define them all here by stepping through `++tile`. A good way to get a sense of the common usage of `++tile`s is to look at how default samples are constructed in the arms of `hoon.hoon`.
 
 <h2 id="++tile">++&nbsp;&nbsp;tile</h2>
 
@@ -27,115 +29,97 @@ Tiles, as defined in `++tile`, are AST subtrees that can be statically reduced i
               ==  
 
 <h3 id="%axil">%axil</h3>
-An `%axil` is a simple built-in mechanism for a few basic
-icons: an atom of any odor ([`@odor`](#@odor), or just `@` for the
-odorless base atom); a noun (`*`); a cell of nouns (`^`); a
-loobean `?`; and null `~`. 
+    [%axil p=base]                            ::  base type
+A simple built-in mechanism for a few basic icons: 
 
-<h3 id="%bark">%bark</h3>
-Wrap a name round a tile.  `a=*` parses as `[%bark %a %noun]`.
++ An atom of any odor, [`@odor`](/doc/hoon/lan/odor/) such as `@ud` or just `@` for the
+odorless base atom.
++ A noun, `*`.
++ A cell of nouns, `^`.
++ A loobean, `?`
++ Null, `~`. 
 
-This is another case where the tile syntax matches the twig
-syntax, but only in the irregular form.  The twig equivalent of
-`%bark` is of course `^=` (`kettis`, `%ktts`).  But the tile is
-`$=` (`buctis`):
+See also: [`++base`](/doc/hoon/lib/#++base).
+
+####Examples
+    ~talsur-todres/try=> =b |=(a=@ a)
+    ~talsur-todres/try=> (b 2)
+    2
+    ~talsur-todres/try=> =b |=(a=? a)
+    ~talsur-todres/try=> (b 2)
+    ! type-fail
+    ! exit
+    ~talsur-todres/try=> (b %.y)
+    %.y
+
+<h3 id="%bark">%bark, $=</h3>
+    [%bark p=term q=tile]                     ::  name
+Wrap a name round a tile. For example, `a=*` parses as `[%bark %a %noun]`.
+
+This is a case where the tile syntax matches the twig syntax, but only in the irregular form.  The twig equivalent of `%bark` is `^=` (`kettis`, `%ktts`), but the tile is `$=` (`buctis`):
 
     $=  a
     *
 
-Obviously a silly syntactic arrangement.  But you can need it if
-`q` is really big.
+See also: [$=](/doc/hoon/lan/rune/#bcts) in the rune index.
 
-<h3 id="%bush">%bush</h3>
-A `%bush` is a tile in which there are two kinds of nouns: cells
-whose head is a cell (tile `p`) and cells whose head is an atom
-(tile `q`).  Its default value is the value of `q`.
+####Examples
+    ~talsur-todres/try=> =b |=($=(a *) a)
+    ~talsur-todres/try=> (b 'try')
+    7.959.156
+    ~talsur-todres/try=> `*`'try'
+    7.959.156
 
-We don't have to look very far to find a bush - `++tile` is one,
-as is `++twig` and `++nock`.  The rune is `$&` (`bucpam`).  See
-`++tile` above - `p` is `[p=tile q=tile]`, `q` is the `$%`.
-There is no irregular form.
+<h3 id="%bush">%bush, $&</h3>
+    [%bush p=tile q=tile]                     ::  pair/tag
+A tile in which there are two kinds of nouns: cells whose head is a cell (tile `p`) and cells whose head is an atom (tile `q`).  Its default value is the value of `q`.
 
-What's the use of a bush?  Often in a variety of data structures
-we have something like autocons, in which forming a cell of two
-instances has an obvious default semantics.  
+See also: [$&](/doc/hoon/lan/rune/#bcpm) in the rune index.
 
-Sure, we could attach these semantics to an atom, and just use a
-`%kelp`.  In twigs, tiles, or nock formulas, we could have an
-explicit *cons* stem of some sort.  But it would be a bulky and
-annoying pain in the butt as compared to autocons.
+####Examples
+`++tile` itself is a `%bush`. As is `++twig` and `++nock`.  The rune is [`$&`](/doc/hoon/lan/rune/#bcpm). See `++tile` above - `p` is `[p=tile q=tile]`, `q` is the `$%`. There is no irregular form.
 
-<h3 id="%fern">%fern</h3>
-A `fern` is a non-empty list of cases; its icon is naturally
-a `%fork`.  The programmer is responsible for ensuring that the
-cases are actually orthogonal (unlike with the structured forks,
-`%bush`, `%kelp` and `%reed`).  A good general practice is to use
-ferns only with leaves (see below).
+<h3 id="%fern">%fern, $?</h3>
+    [%fern p=[i=tile t=(list tile)]]          ::  plain selection
+A non-empty list of cases; its icon is naturally a `%fork`. The default value of a `%fern` is the first case. The programmer is responsible for ensuring that the cases are actually orthogonal (unlike with the structured forks, `%bush`, `%kelp` and `%reed`).  A good general practice is to use ferns only with leaves.
 
-For example, a fern that could be `%foo` or `%bar` has the
-irregular form `?(%foo %bar)`, or the regular form
+See also: [$?](/doc/hoon/lan/rune/#bcwt) in the rune index.
+
+####Examples
+A `%fern` that could be `%foo` or `%bar` has the irregular form `?(%foo %bar)`, or the regular form
 
     $?  %foo
         %bar
     ==
 
-The default value is the first - in this case, `%foo`.
-
-But wait. Why do we need these other selection tiles, `%bush` and
-`%reed` and `%kelp`, if we have `%fern`?
-
-The answer is that tiles aren't magic.  They are really just ways
-of generating specific twigs that do useful things with nouns.
-Suppose, for instance, you use a `%fern` as a `%kelp`.  You can
-do this - but we may well generate more effective validation code
-for a `%kelp`, whose structure we understand how to search for.
-
-And even if were this not the case, anyone creating complex tiles
-and icons should use one of these standard structures - simply
-because it is never really worth varying from this set of
-patterns, even if small structural efficiencies can be extracted.
-Therefore, it's worth telling both the compiler and the reader
-exactly what the programmer is trying to do in each case.
-
 <h3 id="%herb">%herb</h3>
-You can write your own tile which is just a gate, accepting a
-sample of `*` and normalizing it as you choose.  If you use a
-twig as a tile, it's treated as an herb.
+    [%herb p=twig]                            ::  function
+A tile that's just a gate, accepting a sample of `*` and normalizing as you choose. If you use a twig as a tile, it's treated as an herb.
 
-For example, when we define a gate like `++base`, as defined
-above (remember that when we use a tile as a twig, we get the
-clam, ie, the normalizing gate) `base` is just an arm which
-produces a gate.  Nothing has any idea that this gate is built
-from a tile of its own.
+####Examples
+When we use a gate like [`++base`](/doc/hoon/lib/#++base), as defined above in `%axil`, we are using `%herb`. Remember that when we use a tile as a twig, we get the clam, ie, the normalizing gate. `base` is just an arm which produces a gate.  Nothing has any idea that this gate is built from a tile of its own.
 
-So when we parse `[p=base q=base]` as a tile, the parser builds
-the noun:
+So when we parse `[p=base q=base]` as a tile, the parser builds the noun:
 
     [[%bark %p %herb %cnzy %base] [%bark %q %herb %cnzy %base]]
 
-In other words, `base` in `p=base` is actually a *twig*, but this
-twig happens to produce a normalizing gate generated by clamming
-a tile.  In time this will come to seem totally straightforward,
-but don't be surprised if it confuses you now.
+In other words, `base` in `p=base` is actually a *twig*, but this twig happens to produce a normalizing gate generated by clamming a tile.
 
-The important thing to remember about `%herb` is that the actual
-twig we provide will be applied when we whip or clam.  Hence,
-arbitrary normalization and/or verification procedures may be
-part of the herbaceous custom tile.
+The important thing to remember about `%herb` is that the actual twig we provide will be applied when we whip or clam.
 
-<h3 id="%kelp">%kelp</h3>
-A `kelp` is the workhorse of tiles - it provides the most common
-data structure in any language, the discriminated union.  
+<h3 id="%kelp">%kelp, $%</h3>
+    [%kelp p=[i=line t=(list line)]]          ::  tag selection
+The discriminated union.
 
-In Hoon, the head (which must be a `leaf`) is called the `stem`.
-The tail (which can be anything) is the `bulb`.  Cases of a kelp
-are known inevitably as `fronds`.  
+See also: [$%](/doc/hoon/lan/rune/#bccn) in the rune index.
 
-(Yes.  We're aware that "kelp" is not properly a singular noun.
-In Hoon - it is properly a singular noun.  And that's that.  And 
-oddly, it's not that hard to run out of four-letter plants.)
+In Hoon, the head (which must be a `leaf`) is called the `stem`. The tail (which can be anything) is the `bulb`.  Cases of a kelp are known inevitably as `fronds`.  
+
+###Examples
+
 
 <h3 id="%leaf">%leaf</h3>
+    [%leaf p=term q=@]                        ::  constant atom
 A `%leaf` is an atomic constant of value `q` and odor `p`.
 Obviously its icon is a `%cube`.
 
@@ -145,7 +129,8 @@ twig, `7` has a type of [%atom %ud]; `%7` has a type of
 `[%cube 7 [%atom %ud]]`.  But the icon of the leaf `7` is,
 again, `[%cube 7 [%atom %ud]]`.
 
-<h3 id="%reed">%reed</h3>
+<h3 id="%reed">%reed, $|</h3>
+    [%reed p=tile q=tile]                     ::  atom/cell
 A `%reed` is a tile whose icon contains two kinds of nouns: atoms
 of tile `p` and cells of tile `q`.
 
@@ -157,9 +142,14 @@ There is no irregular form of `%reed`.  The regular form is:
 
 or in wide mode, of course, `$|(~ [@ @])`.
 
+See also: [$|](/doc/hoon/lan/rune/#bcbr) in the rune index.
+
 <h3 id="%weed">%weed</h3>
+    [%weed p=twig]                            ::  example
 `%weed` is the lamest kind of tile - tile by example.  A `%weed`
 is defined by its example twig `p`, which produces the icon.
+
+See also: [$__](/doc/hoon/lan/rune/#bccb) in the rune index.
 
 One limitation is obvious - it is essentially useless to whip or
 clam for a `%weed`.  Whipping or clamming on a `%weed` simply
@@ -173,72 +163,10 @@ form is `$_` (`buccab`):
     $_  foo
 
 
-<h1 id="@odor">Odors —</h1>
-
-    @c              UTF-32 codepoint
-    @d              date
-      @da           absolute date
-      @dr           relative date (ie, timespan)
-    @f              yes or no (inverse boolean)
-    @n              nil
-    @p              phonemic base
-    @r              IEEE floating-point
-      @rd           double precision  (64 bits)
-      @rh           half precision (16 bits)
-      @rq           quad precision (128 bits)
-      @rs           single precision (32 bits)
-    @s              signed integer, sign bit low
-      @sb           signed binary
-      @sd           signed decimal
-      @sv           signed base32
-      @sw           signed base64
-      @sx           signed hexadecimal
-    @t              UTF-8 text (cord)
-      @ta           ASCII text (span)
-        @tas        ASCII symbol (term)
-    @u              unsigned integer
-      @ub           unsigned binary
-      @ud           unsigned decimal
-      @uv           unsigned base32
-      @uw           unsigned base64
-      @ux           unsigned hexadecimal
-
-
-##Size
-    A   1 bit
-    B   2 bits
-    C   4 bits
-    D   1 byte
-    E   2 bytes
-    F   4 bytes
-    G   8 bytes
-    H   16 bytes
-    I   32 bytes
-    J   64 bytes
-    K   128 bytes
-    L   256 bytes
-    M   512 bytes
-    N   1K
-    O   2K
-    P   4K
-    Q   8K
-    R   16K
-    S   32K
-    T   64K
-    U   128K
-    V   256K
-    W   512K
-    X   1MB
-    Y   2MB
-    Z   4MB
-
-
 ##Reducitons
 
 <h3 id="bunt">Bunt $_ $*</h3>
-Bunting a tile - if `sec` is a tile, `~(bunt al sec)` produces
-its bunt - makes a twig that *creates a blank default example*
-of the tile's icon. 
+Bunting a tile - if `sec` is a tile, `~(bunt al sec)` produces its bunt - makes a twig that creates a blank default example of the tile's icon. 
 
 See also: [%bctr](/doc/hoon/lan/rune/#bctr) in the runes index.
 
@@ -266,6 +194,12 @@ See also: [%bccm](/doc/hoon/lan/rune/#bccm) in the runes index.
     ~barred-tidset/try=> (b 97)
     ~.a
 
-<h3 id="whip">Whip</h3>
+<h3 id="whip">Whip $@</h3>
+`whip` normalizes any leg `p` to any tile `q`. 
 
-<h3 id="fish">Fish</h3>
+####Examples
+
+<h3 id="fish">Fish ?=</h3>
+The `fish` reduction lets us test if a noun matches the tile.
+
+####Examples

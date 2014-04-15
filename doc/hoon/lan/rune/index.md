@@ -3,7 +3,7 @@ layout: subpage
 title: Rune
 axis: doc-hoon
 categories: lan overview
-sort: 4
+sort: 5
 ---
 
 ## Runes
