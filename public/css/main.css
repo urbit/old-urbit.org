@@ -1,7 +1,3 @@
-.sidebar-sticky {
-	height: 6rem;
-}
-
 .sidebar-about {
 	height: 3rem;
 }
@@ -31,6 +27,12 @@
 	float: left;
 }
 
+@media only screen and (max-width: 500px) {
+	.sidebar-about h1.logo {
+		margin-left: 0;
+	}
+}
+
 img.logo {
 	width: 1.2rem;
 	height: 1.2rem;
@@ -48,6 +50,7 @@ img.logo {
 
 .sidebar-nav li > a {
 	border: none;
+	border-bottom: 3px solid #fff;	
 }
 
 .sidebar-about h1.title:focus,
