@@ -14,7 +14,7 @@ This library is a work in progress. Feedback and corrections are welcome. Pull r
 
 <div class="subnav">
 <ul>
-{% assign prefixes = "buc|cen|dot|hax|ket|sig|sem|tis|wut|zap" | split: "|" %}
+{% assign prefixes = "bar|buc|cen|dot|hax|ket|sig|sem|tis|wut|zap" | split: "|" %}
 {% for prefix in prefixes %}
 <li>
 <a href="#{{ prefix }}" class="section"><code>{{ prefix }}</code></a>
@@ -33,7 +33,7 @@ This library is a work in progress. Feedback and corrections are welcome. Pull r
 </ul>
 </div>
 
-{% assign prefixes = "buc|cen|dot|hax|ket|sig|sem|tis|wut|zap" | split: "|" %}
+{% assign prefixes = "bar|buc|cen|dot|hax|ket|sig|sem|tis|wut|zap" | split: "|" %}
 {% for prefix in prefixes %}
 <h1 id="{{ prefix }}">{{ prefix }}</h1>
 {% for page in site.axis.doc-hoon %}

@@ -9,6 +9,8 @@ Arvo runs on top of Hoon, Hoon runs on top of Nock, and that's all we know.
 
 If you want to build a deep understanding of how Urbit works, start with Nock. If you'd prefer to just start trying stuff out, start with Hoon. 
 
+This documentation is a work in progress. Feedback and corrections are welcome. Pull requests are encouraged. The repo for this site lives [here](https://github.com/urbit/urbit.github.io). We would love your help in making this reference useful.
+
 +   <h2>Nock</h2>
 
     ###Tutorial
@@ -50,7 +52,16 @@ If you want to build a deep understanding of how Urbit works, start with Nock. I
 
 +   <h2>Arvo</h2>
     {% for page in site.axis.doc-arvo %}
+    {% if page.categories contains 'overview' %}
     [{{ page.title }}]({{ page.url }})
+    {% endif %}
+    {% endfor %}
+
+    ###Tutorial
+    {% for page in site.axis.doc-arvo %}
+    {% if page.categories contains 'tut' %}
+    [{{ page.title }}]({{ page.url }})
+    {% endif %}
     {% endfor %}
 
 

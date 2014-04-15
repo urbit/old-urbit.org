@@ -10,7 +10,7 @@ sort: 3
 
 Tiles, as defined in `++tile`, are AST subtrees that can be statically reduced into twigs. For a more thorough overview of how tiles work, see the Hoon tutorial, [chapter 5](/doc/hoon/tut/5/).
 
-The formal definitions for `++tile` runes are somewhat spread out in `hoon.hoon`, so we will define them all here by stepping through `++tile`. A good way to get a sense of the common usage of `++tile`s is to look at how default samples are constructed in the arms of `hoon.hoon`.
+The formal definitions for `++tile` runes are somewhat spread out in `hoon.hoon`, so we will define them all here by stepping through `++tile`. A good way to get a sense of the common usage of `++tile`s is to look at how samples are constructed in the arms of `hoon.hoon`.
 
 <h2 id="++tile">++&nbsp;&nbsp;tile</h2>
 
