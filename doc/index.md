@@ -11,6 +11,8 @@ If you want to build a deep understanding of how Urbit works, start with Nock. I
 
 This documentation is a work in progress. Feedback and corrections are welcome. Pull requests are encouraged. The repo for this site lives [here](https://github.com/urbit/urbit.github.io). We would love your help in making this reference useful.
 
+Arvo is still actively being changed and updated. As Arvo development cools, more documentation will emerge.
+
 +   <h2>Nock</h2>
 
     ###Tutorial
@@ -51,12 +53,6 @@ This documentation is a work in progress. Feedback and corrections are welcome. 
     {% endfor %}
 
 +   <h2>Arvo</h2>
-    {% for page in site.axis.doc-arvo %}
-    {% if page.categories contains 'overview' %}
-    [{{ page.title }}]({{ page.url }})
-    {% endif %}
-    {% endfor %}
-
     ###Tutorial
     {% for page in site.axis.doc-arvo %}
     {% if page.categories contains 'tut' %}
