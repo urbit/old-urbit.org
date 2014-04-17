@@ -6,7 +6,7 @@ sort: 1
 title: buccab
 ---
 
-#[buccab, `$_`, %bccb](#bccb)
+#buccab `$_` %bccb
 
 ##Syntax
 

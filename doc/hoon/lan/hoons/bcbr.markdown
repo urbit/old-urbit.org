@@ -8,7 +8,7 @@ rune: $|
 tile: bcbr
 ---
 
-<h1 id="bcbr">bucbar <code>$|</code> %bcbr</h1>
+#bucbar `$|` %bcbr
 
 ##Syntax
 
