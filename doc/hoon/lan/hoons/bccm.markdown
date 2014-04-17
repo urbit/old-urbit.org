@@ -6,7 +6,7 @@ sort: 3
 title: buccom
 ---
 
-#[buccom, `$,`, %bccm](#bccm)
+#buccom `$,` %bccm
 
 ##Syntax
 

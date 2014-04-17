@@ -4,7 +4,7 @@ title: 2c Noun Surgery
 arms: [++bex, ++can, ++cat, ++cut, ++end, ++lsh, ++met, ++rap, ++rep, ++rsh, ++con, ++dis, ++mix, ++aor, ++dor, ++gor, ++hor, ++vor, ++fnv, ++mug, ++po, ++ind, ++ins, ++tod, ++tos, ++si, ++abs ++si, ++dif ++si, ++dul ++si, ++fra ++si, ++new ++si, ++old ++si, ++pro ++si, ++rem ++si, ++sum ++si, ++sun ++si, ++syn ++si, ++fe, ++dif ++fe, ++inv ++fi, ++net ++fi, ++out ++fi, ++rol ++fi, ++ror ++fi, ++sum ++fi, ++sit ++fi, ++rlyd, ++rlyh, ++rlyq, ++rlys, ++ryld, ++rylh, ++rylq, ++ryls, ++year, ++yore, ++yell, ++yule, ++yall, ++yawn, ++yelp, ++yo, ++hard, ++soft]
 axis: doc-hoon
 categories: lib
-sort: 3
+sort: 4
 ---
 
 <h2 id="++bex">++&nbsp;&nbsp;bex</h2>

@@ -6,7 +6,7 @@ sort: 9
 title: buctar
 ---
 
-#[buctar, `$*`, %bctr](#bctr)
+#buctar `$*` %bctr
 
 ##Syntax
 

@@ -1,29 +1,28 @@
-title: 2e miscellaneous libraries
+---
+title: 2e Miscellaneous Libraries
 section: 2e
-arms: 
 axis: doc-hoon
 categories: lib
-sort: 2
+arms: [++cue, ++jam, ++mat, ++rub, ++last, ++lust, ++cold, ++cook, ++easy, ++fail, ++full, ++funk, ++here, ++jest, ++just, ++knee, ++mask, ++next, ++sear, ++shim, ++stag, ++stet, ++stew, ++stir, ++stun, ++bend, ++comp, ++glue, ++pfix, ++plug, ++pose, ++sfix]
+sort: 6
 ---
 
-section 2eA, packing
+#section 2eA, packing
    
-##++cue
+<h2 id="++cue">++&nbsp;&nbsp;cue</h2>
 
 ####Unpack an atom
 
-`++cue` is the inverse of [++jam](), which compresses a noun into an atom.++jam and ++cue create a reversible mapping between nouns and atoms.
+`++cue` is the inverse of [++jam](), which compresses a noun into an atom. `++jam` and `++cue` create a reversible mapping between nouns and atoms.
 
 ###Examples
 
-~midlys-rocpet/try=> (cue (jam 1))
-1
-
-~midlys-rocpet/try=> (cue 4.657)
-[1 2]
-
-~midlys-rocpet/try=> (cue (jam [1 1]))
-[1 1]
+    ~midlys-rocpet/try=> (cue (jam 1))
+    1
+    ~midlys-rocpet/try=> (cue 4.657)
+    [1 2]
+    ~midlys-rocpet/try=> (cue (jam [1 1]))
+    [1 1]
 
 ###Summary
 
@@ -48,21 +47,23 @@ section 2eA, packing
       [(add 2 p.d) (need (~(get by m) q.d)) m]
     ::
 
-`++cue` is a jetted function [~/]() that creates a [dry %gold gate]() that accepts an atomic sample labeled `a` [^=](). `++cue` produces a noun [^-]()
+`++cue` is a jetted function [`~/`]().
+`++cue` creates a [dry %gold gate]() that accepts an atomic sample labeled `a`, [`^=`]().  
+`++cue` produces a noun [`^-`]()
 
-##++jam
+
+<h2 id="++jam">++&nbsp;&nbsp;jam</h2>
 
 ####Pack a noun 
 
-`++jam` compresses a noun into an atom , which can be decompressed with `++cue`. ++jam and ++cue create a reversible mapping between nouns and atoms.
+`++jam` compresses a noun into an atom , which can be decompressed with [`++cue`](#++cue). `++jam` and `++cue` create a reversible mapping between nouns and atoms.
 
 ###Examples
 
-~midlys-rocpet/try=> (jam 1)
-12
-
-~midlys-rocpet/try=> (jam [1 1])
-817
+    ~midlys-rocpet/try=> (jam 1)
+    12
+    ~midlys-rocpet/try=> (jam [1 1])
+    817
 
 ###Summary
 
@@ -91,9 +92,12 @@ section 2eA, packing
       [(add 2 p.d) (mix 3 (lsh 0 2 q.d)) m]
     ::
 
-`++jam` is a jetted function [~/]() that creates a [dry %gold gate]() that accepts an atomic sample labeled `a` [^=]() and produces a noun [^-]()
+`++jam` is a jetted function [~/]().  
+`++jam` creates a [dry %gold gate]() that accepts an atomic sample labeled `a`.[^=]().  
+`++jam` produces a noun [^-]().  
 
-##++mat
+
+<h2 id="++mat">++&nbsp;&nbsp;mat</h2>
 
 ####Length encode
 
@@ -112,12 +116,14 @@ section 2eA, packing
     ::
 
 
-##++rub
+<h2 id="++rub">++&nbsp;&nbsp;rub</h2>
 
 
 ####Length decode
 
 `++rub` is only used internally to `++jam` and `++cue`.
+
+###Summary
 
     ++  rub                                                 ::  length-decode
       ~/  %rub
@@ -133,17 +139,17 @@ section 2eA, packing
 
 #section 2eB, parsing (tracing)
 
-##++last
+
+<h2 id="++last">++&nbsp;&nbsp;last</h2>
 
 ####Farther trace
 
-++last compares two [line column] pairs (`++hair`)[] and produces the one that is farther along.   
+`++last` compares two `[line column]` pairs [`++hair`]() and produces the one that is farther along.   
 
 ###Examples
 
     ~midlys-rocpet/try=> (last [1 1] [1 2])
     [p=1 q=2]
-
     ~midlys-rocpet/try=> (last [2 1] [1 2])
     [p=2 q=1]
 
@@ -156,17 +162,16 @@ section 2eA, packing
               ?:((gth p.zyc p.naz) zyc naz)
 
 
-##++lust
+<h2 id="++lust">++&nbsp;&nbsp;lust</h2>
 
 ####Trace newline
 
-`++lust` takes a character (++char) and sets a [line column] pair (++hair) to the beginning of the next line if the character is a newline character (ASCII 10), otherwise it increments the column number. 
+`++lust` takes a character, [`++char`]() and sets a `[line column]` pair ([`++hair`]()) to the beginning of the next line if the character is a newline character (ASCII 10), otherwise it increments the column number. 
 
 ###Examples
 
     ~midlys-rocpet/try=> (lust 'a' [1 1])
     [p=1 q=2]
-
     ~midlys-rocpet/try=> (lust `@t`10 [1 1])
     [p=2 q=1]
 
@@ -175,25 +180,23 @@ section 2eA, packing
     ++  lust  |=  [weq=char naz=hair]
               ^-  hair
               ?:(=(10 weq) [+(p.naz) 1] [p.naz +(q.naz)])
-    
-    
-    
-    
-section 2eC, parsing (custom rules)
 
 
-##++cold
+#section 2eC, parsing (custom rules)
+
+
+<h2 id="++cold">++&nbsp;&nbsp;cold</h2>
 
 ####Replace
 
-++cold creates a gate that applies a ++rule to a nail, and replaces the parsed product with a constant.
+`++cold` creates a gate that applies a `++rule` to a nail, and produces the parsed product replaced with a constant.
 
 ###Examples
 
-~midlys-rocpet/try=> ((cold %foo (just 'a')) [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((cold %foo (just 'a')) [[1 1] "bc"])
-[p=[p=1 q=1] q=~]
+    ~midlys-rocpet/try=> ((cold %foo (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((cold %foo (just 'a')) [[1 1] "bc"])
+    [p=[p=1 q=1] q=~]
 
 ###Summary
 
@@ -209,22 +212,22 @@ section 2eC, parsing (custom rules)
 
 
 
-##++cook
+<h2 id="++cook">++&nbsp;&nbsp;cook</h2>
 
 ####Modify
 
-++cook creates a gate that applies a ++rule to a ++nail, and modifies the parsed product with an expression.
+`++cook` creates a gate that applies a `++rule` to a `++nail`, and produces the parsed product modified with an expression.
 
 ###Examples
 
-~midlys-rocpet/try=> ((cook ,@ud (just 'a')) [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((cook ,@tas (just 'a')) [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ u=[p=%a q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((cook |=(a=@ +(a)) (just 'a')) [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ u=[p=98 q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just 'a')) [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ u=[p='b' q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((cook ,@ud (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((cook ,@tas (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=%a q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((cook |=(a=@ +(a)) (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=98 q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p='b' q=[p=[p=1 q=2] q="bc"]]]]
 
 
 ###Summary
@@ -237,20 +240,22 @@ section 2eC, parsing (custom rules)
       ?@  q.vex
         vex
       [p=p.vex q=[~ u=[p=(poq p.u.q.vex) q=q.u.q.vex]]]
-    ::
 
-##++easy
+
+<h2 id="++easy">++&nbsp;&nbsp;easy</h2>
 
 ####always parses
 
-++easy always succeeds and consumes no characters.
+`++easy` always succeeds and consumes no characters.
 
 ###Examples
 
-~midlys-rocpet/try=> ((easy %foo) [[1 1] "abc"])
-[p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
-~midlys-rocpet/try=> ((easy %foo) [[1 1] "bc"])
-[p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="bc"]]]]
+    ~midlys-rocpet/try=> ((easy %foo) [[1 1] "abc"])
+    [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
+    ~midlys-rocpet/try=> ((easy %foo) [[1 1] "bc"])
+    [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="bc"]]]]
+
+###Summary
     ++  easy
       ~/  %easy
       |*  huf=*
@@ -260,37 +265,38 @@ section 2eC, parsing (custom rules)
       [p=p.tub q=[~ u=[p=huf q=tub]]]
     ::
 
-##++fail
+
+<h2 id="++fail">++&nbsp;&nbsp;fail</h2>
 
 ####never parses
 
-++fail always fails to parse.
+`++fail` always fails to parse.
 
 ###Examples
 
-~midlys-rocpet/try=> (fail [[1 1] "abc"])
-[p=[p=1 q=1] q=~]
+    ~midlys-rocpet/try=> (fail [[1 1] "abc"])
+    [p=[p=1 q=1] q=~]
 
 ###Summary
 
     ++  fail  |=(tub=nail [p=p.tub q=~])
 
 
-##++full
+<h2 id="++full">++&nbsp;&nbsp;full</h2>
 
 ####end of nail
 
-++full only succeeds if given a rule that successfully parses the entire nail to the end.
+`++full` only succeeds if given a rule that successfully parses the entire nail to the end.
 
 ###Examples
 
-~midlys-rocpet/try=> ((full (just 'a')) [[1 1] "ab"])
-[p=[p=1 q=2] q=~]
-~midlys-rocpet/try=> ((full (jest 'ab')) [[1 1] "ab"])
-[p=[p=1 q=3] q=[~ u=[p='ab' q=[p=[p=1 q=3] q=""]]]]
-~midlys-rocpet/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
-[p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
-~midlys-rocpet/try=> 
+    ~midlys-rocpet/try=> ((full (just 'a')) [[1 1] "ab"])
+    [p=[p=1 q=2] q=~]
+    ~midlys-rocpet/try=> ((full (jest 'ab')) [[1 1] "ab"])
+    [p=[p=1 q=3] q=[~ u=[p='ab' q=[p=[p=1 q=3] q=""]]]]
+    ~midlys-rocpet/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
+    [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
+    ~midlys-rocpet/try=> 
 
 ###Summary
 
@@ -302,9 +308,11 @@ section 2eC, parsing (custom rules)
 
 
     
-##++funk
+<h2 id="++funk">++&nbsp;&nbsp;funk</h2>
 
-XX not used
+Not used.
+
+###Summary
 
     ++  funk
       |*  [pre=tape sef=_rule]
@@ -312,7 +320,7 @@ XX not used
       (sef p.tub (weld pre q.tub))
 
 
-##++here
+<h2 id="++here">++&nbsp;&nbsp;here</h2>
 
     ++  here
       ~/  %here
@@ -323,25 +331,28 @@ XX not used
       ?@  q.vex
         vex
       [p=p.vex q=[~ u=[p=(hez [p.tub p.q.u.q.vex] p.u.q.vex) q=q.u.q.vex]]]
-    
-##++jest
+
+
+<h2 id="++jest">++&nbsp;&nbsp;jest</h2>
 
 ####match a cord
 
-++jest matches matches and consumes a cord.
+`++jest` matches matches and consumes a cord.
 
 ###Examples
 
-~midlys-rocpet/try=> ((jest 'abc') [[1 1] "abcd"])
-[p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q="d"]]]]
-~midlys-rocpet/try=> ((jest 'foo') [[1 1] "foo"])
-[p=[p=1 q=4] q=[~ [p='foo' q=[p=[p=1 q=4] q=""]]]]
-~midlys-rocpet/try=> ((jest 'foo') [[1 1] "bar"])
-[p=[p=1 q=1] q=~]
-~midlys-rocpet/try=> ((jest 'foo') [[1 1] "fo"])
-[p=[p=1 q=3] q=~]
-~midlys-rocpet/try=> ((jest 'foo') [[1 1] "food"])
-[p=[p=1 q=4] q=[~ [p='foo' q=[p=[p=1 q=4] q="d"]]]]
+    ~midlys-rocpet/try=> ((jest 'abc') [[1 1] "abcd"])
+    [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q="d"]]]]
+    ~midlys-rocpet/try=> ((jest 'foo') [[1 1] "foo"])
+    [p=[p=1 q=4] q=[~ [p='foo' q=[p=[p=1 q=4] q=""]]]]
+    ~midlys-rocpet/try=> ((jest 'foo') [[1 1] "bar"])
+    [p=[p=1 q=1] q=~]
+    ~midlys-rocpet/try=> ((jest 'foo') [[1 1] "fo"])
+    [p=[p=1 q=3] q=~]
+    ~midlys-rocpet/try=> ((jest 'foo') [[1 1] "food"])
+    [p=[p=1 q=4] q=[~ [p='foo' q=[p=[p=1 q=4] q="d"]]]]
+
+###Summary
 
     ++  jest
       |=  daf=@t
@@ -354,18 +365,18 @@ XX not used
         (fail tub)
       $(p.tub (lust i.q.tub p.tub), q.tub t.q.tub, daf (rsh 3 1 daf))
 
-##++just
+<h2 id="++just">++&nbsp;&nbsp;just</h2>
 
 ####match a char
 
-++just matches matches and consumes a single character.
+`++just` matches matches and consumes a single character.
 
 ###Examples
 
-~midlys-rocpet/try=> ((just 'a') [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((just 'b') [[1 1] "abc"])
-[p=[p=1 q=1] q=~]
+    ~midlys-rocpet/try=> ((just 'a') [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((just 'b') [[1 1] "abc"])
+    [p=[p=1 q=1] q=~]
 
 ###Summary
 
@@ -380,10 +391,11 @@ XX not used
       ?.  =(daf i.q.tub)
         (fail tub)
       (next tub)
-    
-##++knee 
+
+
+<h2 id="++knee">++&nbsp;&nbsp;knee</h2>
   
-####callback
+####Callback
 
     ++  knee
       |*  [gar=* sef=_|.(rule)]
@@ -392,19 +404,19 @@ XX not used
       ((sef) tub)
     ::
 
-##++mask
 
-####match with list of characters
+<h2 id="++mask">++&nbsp;&nbsp;mask</h2>
 
-++match matches the next character to a list of characters.
+####Match with list of characters
+`++match` matches the next character to a list of characters.
 
 ###Examples
-~midlys-rocpet/try=> ((mask "abc") [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((mask "abc") [[1 1] "bbc"])
-[p=[p=1 q=2] q=[~ [p=~~b q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((mask "abc") [[1 1] "dbc"])
-[p=[p=1 q=1] q=~]
+    ~midlys-rocpet/try=> ((mask "abc") [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((mask "abc") [[1 1] "bbc"])
+    [p=[p=1 q=2] q=[~ [p=~~b q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((mask "abc") [[1 1] "dbc"])
+    [p=[p=1 q=1] q=~]
 
 ###Summary
 
@@ -422,16 +434,15 @@ XX not used
     ::
 
 
-##++next
+<h2 id="++next">++&nbsp;&nbsp;next</h2>
 
 ####consume a character
-
-++next always succeeds and consumes a character.
+`++next` always succeeds and consumes a character.
 
 ###Examples
 
-~midlys-rocpet/try=> (next [[1 1] "ebc"])
-[p=[p=1 q=2] q=[~ [p=~~e q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> (next [[1 1] "ebc"])
+    [p=[p=1 q=2] q=[~ [p=~~e q=[p=[p=1 q=2] q="bc"]]]]
 
 ###Summary
 
@@ -443,20 +454,20 @@ XX not used
       =+  zac=(lust i.q.tub p.tub)
       [zac [~ i.q.tub [zac t.q.tub]]]
 
-##++sear
 
-####test and transform, or fail
+<h2 id="++sear">++&nbsp;&nbsp;sear</h2>
 
-++sear applies a rule to a nail, applies a test to the product in the edge, and transforms the product if the test succeeded. Otherwise ++sear fails.
+####Test and transform, or fail
+`++sear` applies a rule to a nail, applies a test to the product in the edge, and transforms the product if the test succeeded. Otherwise `++sear` fails.
 
 ###Examples
 
-~midlys-rocpet/try=> ((sear |=(a=* ?@(a (some a) ~)) (just 'a')) [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((sear |=(a=* ?@(a [~ u=a] ~)) (just 'a')) [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((sear |=(a=* ?@(a (some a) ~)) (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((sear |=(a=* ?@(a [~ u=a] ~)) (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
 
-###summary
+###Summary
 
     ++  sear
       ~/  %sear
@@ -473,20 +484,19 @@ XX not used
 
 
 
-##++shim
+<h2 id="++shim">++&nbsp;&nbsp;shim</h2>
 
 ####range of values
-
-++shim succeeds if the character is within a range.
+`++shim` succeeds if the character is within a range.
 
 ###Examples
 
-~midlys-rocpet/try=> ((shim 'a' 'z') [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
-~midlys-rocpet/try=> ((shim 'A' 'Z') [[1 1] "abc"])
-[p=[p=1 q=1] q=~]
-~midlys-rocpet/try=> ((shim 'A' 'Z') [[1 1] "Abc"])
-[p=[p=1 q=2] q=[~ [p=~~~41. q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((shim 'a' 'z') [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((shim 'A' 'Z') [[1 1] "abc"])
+    [p=[p=1 q=1] q=~]
+    ~midlys-rocpet/try=> ((shim 'A' 'Z') [[1 1] "Abc"])
+    [p=[p=1 q=2] q=[~ [p=~~~41. q=[p=[p=1 q=2] q="bc"]]]]
 
 ###Summary
 
@@ -502,11 +512,18 @@ XX not used
         (fail tub)
       (next tub)
 
-##++stag
+
+<h2 id="++stag">++&nbsp;&nbsp;stag</h2>
 
 ####add label
+`++stag` adds a label to the product of a rule if the rule successfully parses.
 
-++stag adds a label to the product of a rule if the rule successfully parses
+###Examples
+
+    ~midlys-rocpet/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=[%foo ~~a] q=[p=[p=1 q=2] q="bc"]]]]
+
+###Summary
 
     ++  stag
       ~/  %stag
@@ -519,11 +536,10 @@ XX not used
       [p=p.vex q=[~ u=[p=[gob p.u.q.vex] q=q.u.q.vex]]]
     ::
 
-~midlys-rocpet/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
-[p=[p=1 q=2] q=[~ u=[p=[%foo ~~a] q=[p=[p=1 q=2] q="bc"]]]]
 
-##++stet
+<h2 id="++stet">++&nbsp;&nbsp;stet</h2>
 
+###Summary
 
     ++  stet
       |*  leh=(list ,[?(@ [@ @]) _rule])
@@ -532,7 +548,10 @@ XX not used
         ~ 
       [i=[p=-.i.leh q=+.i.leh] t=$(leh t.leh)]
 
-##++stew
+
+<h2 id="++stew">++&nbsp;&nbsp;stew</h2>
+
+###Summary
 
     ++  stew
       ~/  %stew
@@ -579,8 +598,9 @@ XX not used
       $(hel r.hel)
 
 
-##++stir
+<h2 id="++stir">++&nbsp;&nbsp;stir</h2>
 
+###Summary
 
     ++  stir
       ~/  %stir
@@ -596,9 +616,9 @@ XX not used
       [(last p.vex p.wag) [~ (raq p.u.q.vex p.u.q.wag) q.u.q.wag]]
 
 
-##++stun
+<h2 id="++stun">++&nbsp;&nbsp;stun</h2>
 
-
+###Summary
 
     ++  stun
       ~/  %stun
@@ -624,9 +644,11 @@ XX not used
 
 
 
-section 2eD, parsing (combinators)
+#section 2eD, parsing (combinators)
 
+<h2 id="++bend">++&nbsp;&nbsp;bend</h2>
 
+###Summary
 
     ++  bend
       ~/  %bend
@@ -646,6 +668,9 @@ section 2eD, parsing (combinators)
     ::
 
 
+<h2 id="++comp">++&nbsp;&nbsp;comp</h2>
+
+###Summary
 
     ++  comp
       ~/  %comp
@@ -662,6 +687,9 @@ section 2eD, parsing (combinators)
     ::
 
 
+<h2 id="++glue">++&nbsp;&nbsp;glue</h2>
+
+###Summary
 
     ++  glue
       ~/  %glue
@@ -672,6 +700,9 @@ section 2eD, parsing (combinators)
     ::
 
 
+<h2 id="++pfix">++&nbsp;&nbsp;pfix</h2>
+
+###Summary
 
     ++  pfix
       ~/  %pfix
@@ -683,6 +714,9 @@ section 2eD, parsing (combinators)
     ::
 
 
+<h2 id="++plug">++&nbsp;&nbsp;plug</h2>
+
+###Summary
 
     ++  plug
       ~/  %plug
@@ -697,6 +731,9 @@ section 2eD, parsing (combinators)
     ::
 
 
+<h2 id="++pose">++&nbsp;&nbsp;pose</h2>
+
+###Summary
 
     ++  pose
       ~/  %pose
@@ -708,6 +745,9 @@ section 2eD, parsing (combinators)
     ::
 
 
+<h2 id="++sfix">++&nbsp;&nbsp;sfix</h2>
+
+###Summary
 
     ++  sfix
       ~/  %sfix

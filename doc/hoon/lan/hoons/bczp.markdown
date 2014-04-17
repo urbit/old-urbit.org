@@ -7,7 +7,7 @@ title: buczap
 ---
 
 
-#[buczap, %brhp](#brhp)
+#buczap `$!` %bczp
 
 ##Syntax
 

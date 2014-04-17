@@ -8,7 +8,7 @@ title: bucwut
 
 
 
-#[bucwut, `$?`](#bcwt)
+#bucwut `$?` %bcwt
 
 ##Syntax
 

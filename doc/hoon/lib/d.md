@@ -4,7 +4,7 @@ title: 2d Containers
 axis: doc-hoon
 arms: [++apt, ++in, +-all ++in, +-any ++in, +-del ++in, +-dig ++in, +-gas ++in, +-has ++in, +-put ++in, +-rep ++in, +-tap ++in, +-wyt ++in, ++by, +-all ++by, +-any ++by, +-del ++by, +-dig ++by, +-gas ++by, +-get ++by, +-has ++by, +-mar ++by, +-put ++by, +-rep ++by, +-rib ++by, +-run ++by, +-tap ++by, +-wyt ++by, ++to, +-bal ++to, +-dep ++to, +-gas ++to, +-get ++to, +-nap ++to, +-put ++to, +-tap ++to, +-top ++to, ++mo, ++sa]
 categories: lib
-sort: 4
+sort: 5
 ---
 
 This section covers the containers sets maps and trees.

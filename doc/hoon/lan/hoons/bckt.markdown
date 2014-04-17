@@ -6,7 +6,7 @@ sort: 5
 title: bucket
 ---
 
-#[bucket `$^`](#bckt)
+#bucket `$^` %bckt
 
 ##Syntax
 

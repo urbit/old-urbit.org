@@ -6,7 +6,7 @@ sort: 2
 title: buccol
 ---
 
-#[buccol, `$:`](#bccl)
+#buccol `$:` %bccl
 
 ##Syntax
 

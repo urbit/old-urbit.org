@@ -6,7 +6,7 @@ sort: 8
 title: bucpat
 ---
 
-#[bucpat, `$@`, %bcpt](#bcpt)
+#bucpat `$@` %bcpt
 
 ##Syntax
 

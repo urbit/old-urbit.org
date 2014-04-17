@@ -7,7 +7,7 @@ title: buctis
 ---
 
 
-#[buctis, `$=`](#bcts)
+#buctis `$=` %bcts
 
 
 ##Syntax

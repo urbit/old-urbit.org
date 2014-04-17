@@ -6,7 +6,7 @@ sort: 6
 title: buclus
 ---
 
-#[buclus,`$+`](#bcls)
+#buclus `$+` %bcls
 
 ##Syntax
 

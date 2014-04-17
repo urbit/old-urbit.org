@@ -6,7 +6,7 @@ sort: 4
 title: buccen
 ---
 
-#[buccen, `$%`](#bccn)
+#buccen `$%` %bccn
 
 ##Syntax
 

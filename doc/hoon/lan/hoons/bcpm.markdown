@@ -6,7 +6,7 @@ sort: 7
 title: bucpam
 ---
 
-#[bucpam, `$&`](#bcpm)
+#bucpam `$&` %bcpm
 
 ##Syntax
 
