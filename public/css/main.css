@@ -92,11 +92,7 @@ ul.chat {
 	list-style-type: none;
 }
 
-.doc-hoon h1 {
-	margin-top: 6rem;
-}
-
-.doc-hoon h2 {
+.doc-hoon h1, .doc-hoon h2 {
 	margin-top: 3rem;
 }
 
