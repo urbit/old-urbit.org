@@ -8,28 +8,45 @@ title: wutcol
 
 
 
+#[wutcl, %wtcl](#wtcl)
+
+##Syntax
+
 `?:`, `wutcol`, `[%wtcl p=twig q=twig r=twig]` is a natural hoon
 that produces `q` if `p` is yes (`&`, `0`), or `r` if `p` is no
 (`|`, 1).
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%wtcl p=twig q=twig r=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
     ?:  p
       q
     r
 
-###Regular form (wide)###
+####Wide
 
     ?:(p q r)
 
-###Compilation###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtcl p=twig q=twig r=twig]
+      ==
+
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -126,8 +143,6 @@ that produces `q` if `p` is yes (`&`, `0`), or `r` if `p` is no
         *      [%6 pex yom woq]
       ==
 
-###Notes###
+##Notes
 
 It's not unheard of to say `?:` as "if."
-
-See chapter 10 for a discussion of type inference through `?:`.

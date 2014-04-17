@@ -8,34 +8,51 @@ title: sigtis
 
 
 
+#[sigtis, `~=`, %sgts](#sgts)
+
+##Syntax
+
 `~=`, `sigtis`, `[%sgts p=twig q=twig]` is a synthetic hoon that
 hints to the interpreter that `q` may produce a noun equal to the
 already existing `p`, avoiding duplication.
 
-###Definition###
+###Form
+
+####Tall
+
+    ~=  p
+        q
+
+####Wide
+
+    ~=(p q)
+
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%sgts p=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ~=  p
-    q
-
-###Regular form (wide)###
-
-    ~=(p q)
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-  gen
         [%sgts *]  [%sggr [%germ p.gen] q.gen]
       ==
 
-###Notes###
+##Notes
 
 Where to use `%sgts`?  In any traversal that selectively
 reconstructs a noun.  If a traversal can change the head and/or

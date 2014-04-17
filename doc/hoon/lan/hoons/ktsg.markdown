@@ -8,26 +8,41 @@ title: ketsig
 
 
 
-`^~`, `ketsig`, `[%ktsg p=twig]` is a natural hoon that
-tries to execute `p` statically at compile time; if this fails,
-`p` remains dynamic.
+#[ketsig, `^~`, %ktsg](#ktsg)
 
-###Definition###
+##Syntax
+
+`^~`, `ketsig`, `[%ktsg p=twig]` is a natural hoon that
+tries to execute `p` statically at compile time; if this fails, `p` remains dynamic.
+
+###Form
+
+####Tall
+
+    ^~  a
+
+####Wide
+
+    ^~(a)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%ktsg p=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ^~  a
-
-###Regular form (wide)###
-
-    ^~(a)
-
-###Compilation###
-    
     ++  mint
       ?-    gen
           [%ktsg *]  
@@ -54,7 +69,7 @@ tries to execute `p` statically at compile time; if this fails,
           %void       ~|(%burn-void !!)
       ==
 
-###Notes###
+##Notes
 
 To fold constants with `^~`, we use the crudest possible tools.
 We simply compute the best plausible constant noun that fits the

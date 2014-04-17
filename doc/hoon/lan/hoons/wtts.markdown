@@ -8,26 +8,42 @@ title: wuttis
 
 
 
+#[wuttis %wtts](#wtts)
+
+##Syntax
+
 `?=`, `wuttis`, `[%wtts p=tile q=wing]` is a natural hoon that
 produces true if the leg at wing `q` is in tile `p`.
 
-###Definition###
+###Form
+
+####Tall
+
+    ?=  p
+        q
+
+####Wide
+
+    ?=(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%wtts p=tile q=wing]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ?=  p
-    q
-
-###Regular form (wide)###
-
-    ?=(p q)
-
-###Compilation###
-    
     ++  mint
       ?-    gen
           [%wtts *]  
@@ -100,7 +116,7 @@ produces true if the leg at wing `q` is in tile `p`.
         ==
       ==
 
-###Notes###
+##Notes
 
 Note that as presently implemented this is a type operation, not
 a tile operation; we just bunt tile `p` and produce a formula

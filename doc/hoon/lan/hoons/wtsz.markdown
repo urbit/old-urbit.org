@@ -8,31 +8,43 @@ title: wutsaz
 
 
 
+#[wutsaz %wtsz](#wtsz)
+
+##Syntax
+
 `wutsaz`, `[%wtsz p=tiki q=twig r=twig]` is a synthetic hoon 
 that produces `q` if `p` is `~`, `r` otherwise.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%wtsz p=tiki q=twig r=twig]
-      ==
-    ++  tiki
-      $%  [& p=(unit term) q=wing]
-          [| p=(unit term) q=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
     ?~  p
-      q
-    r
+          q
+        r
 
-###Regular form (wide)###
+####Wide
 
     ?~(p q r)
 
-###Expansion###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtsg p=wing q=twig r=twig]
+      ==
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -65,6 +77,6 @@ that produces `q` if `p` is `~`, `r` otherwise.
         ==
       --
 
-###Notes###
+##Notes
 
 See the discussion of tikis in chapter 11.

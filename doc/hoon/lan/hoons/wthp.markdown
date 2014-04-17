@@ -8,19 +8,18 @@ title: wuthep
 
 
 
+#[wutgar %wtgr](#wtgr)
+
+##Syntax
+
 `?-`, `wuthep`, `[%wthp p=wing q=tine]` is a synthetic hoon that
 selects a case in `q` for the actual type of `p`.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%wthp p=wing q=tine]
-      ==
-    ++  tine  (list ,[p=tile q=twig])
+####Tall
 
-###Regular form (tall)###
-
-Kingside:
+    Kingside:
 
     ?-  p
       p.i.q      q.i.q
@@ -39,12 +38,30 @@ Queenside:
       q.i.t.t.q
     ==
 
-###Regular form (wide)###
+####Wide
 
     ?-(p p.i.q q.i.q, p.i.t.q q.i.t.q, p.i.t.t.q q.i.t.t.q)
 
-###Expansion###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wthp p=wing q=tine]
+      ==
+    ++  tine  (list ,[p=tile q=twig])
+
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -58,7 +75,7 @@ Queenside:
         $(q.gen t.q.gen)
       ==
 
-###Notes###
+##Notes
 
 `%wthp` is best understood by its expansion, which is a simple
 use of `%wtts`.  Note that because `%wtts` does proper inference,

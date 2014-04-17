@@ -8,22 +8,41 @@ title: ketdot
 
 
 
-`^.`, `ketdot`, `[%ktdt p=twig q=twig]` is a synthetic hoon that
-casts `q` to the type of `(p q)`.
+#[ketdot, `^.`, %ktdt](#ktdt)
 
-###Definition###
+##Syntax
+
+`^.`, `ketdot`, `[%ktdt p=twig q=twig]` is a synthetic hoon that casts `q` to the type of `(p q)`.
+
+###Form
+
+####Tall
+
+    ^.  p
+        q
+
+####Wide
+
+    None
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%ktdt p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ^.  p
-    q
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-    gen
@@ -31,4 +50,6 @@ casts `q` to the type of `(p q)`.
         [%ktls [%cnhp p.gen q.gen ~] q.gen]
       ==
 
-###Notes###
+##Notes
+
+None

@@ -8,33 +8,45 @@ title: wutpam
 
 
 
+#[wutpam %wtpm](#wtpm)
+
+##Syntax
+
 `?&`, `wutpam`, `[%wtpm p=tusk]` is a synthetic hoon that
 computes the "and" of the loobeans in `p`.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%wtpm p=tusk]
-      ==
-    ++  tusk  (list twig)
-
-###Regular form (tall)###
+####Tall
 
     ?&  i.p
         i.t.p
         i.t.t.p
     ==
 
-###Regular form (wide)###
+####Wide
 
     ?&(i.p i.t.p i.t.t.p)
 
-###Irregular form###
+####Irregular
 
     &(i.p i.t.p i.t.t.p)
 
-###Expansion###
-    
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtpm p=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -43,6 +55,6 @@ computes the "and" of the loobeans in `p`.
         ?~(p.gen [%dtzz %f 0] [%wtcl i.p.gen $(p.gen t.p.gen) [%dtzz %f 1]])
       ==
 
-###Notes###
+##Notes
 
 Short-circuiting and type inference work as expected in `?&`.

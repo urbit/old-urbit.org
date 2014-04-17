@@ -8,35 +8,48 @@ title: tisgal
 
 
 
+#[tisgal, %tsgl](#tsgl)
+
+##Syntax
+
 `=<`, `tisgal`, `[%tsgl p=twig q=twig]` is a synthetic hoon that
 uses the product of `q` as the subject of `p`.
 
-###Definition###
+###Form
+
+####Tall
+
+    =<  p
+    q
+
+####Wide
+
+    =<(p q)
+
+####Irregular
+
+    p:q
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%tsgl p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    =<  p
-    q
-
-###Regular form (wide)###
-
-    =<(p q)
-
-###Irregular form###
-
-    p:q
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-  gen
         [%tsgl *]  [%tsgr q.gen p.gen]
       ==
 
-###Notes###
+##Notes
 
+None

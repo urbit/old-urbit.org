@@ -8,16 +8,16 @@ title: sigcen
 
 
 
+#[sigcen, `~%`, %sgcn](#sgcn)
+
+##Syntax
+
 `~%`, `sigcen`, `[%sgcn p=term q=twig r=tyre s=twig]`, a  
 synthetic hoon, identifies a core for specific optimization.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%sgcn p=term q=twig r=tyre s=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
     ~%    p
         q
@@ -32,8 +32,28 @@ synthetic hoon, identifies a core for specific optimization.
       ~
     s
 
-###Expansion###
-    
+####Wide
+
+    None
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgcn p=term q=twig r=tyre s=twig]
+      ==
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -53,7 +73,7 @@ synthetic hoon, identifies a core for specific optimization.
           [%sgcn *]
       ==
 
-###Notes###
+##Notes
 
 See the discussion of jet propulsion in Chapter 11.
 

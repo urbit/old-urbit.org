@@ -8,32 +8,48 @@ title: zapcom
 
 
 
+#[zapcom %zpcm](#zpcm)
+
+##Syntax
+
 `!,`, `zapcom`, `[%zpcm p=twig q=twig]` is a natural hoon that
 inserts twig `q` as a constant, typed with the type of twig `p`.
 
-###Definition###
+###Form
+
+####Tall
+
+    ?,  p
+        q
+
+####Wide
+
+    ?,(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%zpcm p=twig q=twig]
       ==
 
-###Compilation###
-    
+###Expansion
+
     ++  mint
       ?-  gen
         [%zpcm *]  [(nice (play p.gen)) [%1 q.gen]]
       ==
 
-###Regular form (tall)###
-
-    !,  p
-    q
-
-###Regular form (wide)###
-
-    !,(p q)
-
-###Notes###
+##Notes
 
 The compiler should verify that `p` is actually the type of the
 twigs it uses, but doesn't at present.

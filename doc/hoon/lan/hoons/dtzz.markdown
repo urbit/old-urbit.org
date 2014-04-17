@@ -8,27 +8,51 @@ title: dotzaz
 
 
 
+#[dotzaz, %dtzz](#dtzz)
+
 `dotzaz`, `[%dtzz p=term q=*]` is a natural hoon that produces an
 cubed noun constant of value `q` and odor `p`, if `q` is an atom.
 
-###Definition###
+###Form
+
+####Tall
+
+None
+
+####Wide
+
+None
+
+####Irregular
+See chapter 6 for constant forms.
+
+
+
+
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
-      $%  [%dtzz p=term q=*]
+      $%  [%dtts p=twig q=twig]
       ==
 
-###Irregular forms###
+###Expansion
 
-    See chapter 6 for constant forms.
-
-###Compilation###
-    
     ++  play
       ?-  gen
-        [%dtzz *]  [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
+        [%dtzz *]
+      [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
       ==
     ++  mint
       ?-  gen
-        [%dtzz *]  [(nice (play gen)) [%1 q.gen]]
+        [%dtzz *]
+      [(nice (play gen)) [%1 q.gen]]
       ==
 
+##Notes

@@ -8,29 +8,51 @@ title: wutpat
 
 
 
+#[wutpat %wtpt](#wtpt)
+
+##Syntax
+
 `?@`, `wutpat`, `[%wtpt p=wing q=twig r=twig]` is a synthetic hoon 
 that produces `q` if `p` is an atom, `r` otherwise.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%wtpt p=wing q=twig r=twig]
-      ==
+####Tall
 
-###Regular form (tall)###
+Kingside:
 
     ?@  p
       q
     r
 
-###Regular form (wide)###
+####Wide
 
     ?@(p q r)
 
-###Expansion###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtpt p=wing q=twig r=twig]
+      ==
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-  gen
         [%wtpt *]  [%wtcl [%wtts [%axil %atom %$] p.gen] q.gen r.gen]
       ==
+
+##Notes
+
+None

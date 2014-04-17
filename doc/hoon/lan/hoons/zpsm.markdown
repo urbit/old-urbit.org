@@ -8,27 +8,42 @@ title: zapsem
 
 
 
+#[zapsem %zpsm](#zpsm)
+
+##Syntax
+
 `!;`, `zapsem`, `[%zpsm p=twig q=twig]` is a natural hoon that
 produces the product of twig `q` as a `[type noun]` pair, with
 twig `p` defining the type of the type.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%zpsm p=twig q=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
     !;  p
-    q
-
-###Regular form (wide)###
+        q
+####Wide
 
     !;(p q)
 
-###Compilation###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%zpgr p=twig]
+      ==
+
+###Expansion
+
     ++  mint
       ?-  gen
           [%zpsm *]  
@@ -36,7 +51,7 @@ twig `p` defining the type of the type.
         [(nice (cell (play p.gen) p.vos)) (cons [%1 p.vos] q.vos)]
       ==
 
-###Notes###
+##Notes
 
 The compiler should verify that `p` is actually the type of the
 types it uses, but doesn't at present.

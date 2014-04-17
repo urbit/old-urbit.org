@@ -6,29 +6,47 @@ sort: 47
 title: dotwut
 ---
 
+#[dotwut,`.?`, %dtwt](#dtwt)
 
+##Syntax
 
 `.?`, `dotwut`, `[%dtwt p=twig]` is a natural hoon that
-calculates nock `3` (`&` for cell, `|` for atom) of `p`.
+applies nock `3` to a noun: if the noun is a cell, it returns the loobean `& (true)`; if the noun is an atom, it returns the loobean `| (false)`.
 
-###Definition###
+###Form
+`p` is a twig
 
-    ++  twig  
-      $%  [%dtwt p=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
     .?  p
 
-###Regular form (wide)###
+####Wide
 
     .?(p)
 
-###Compilation###
-    
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples 
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%dtwt p=twig]
+      ==  
+
+###Expansion
+
     ++  mint
-      ?-  gen
-        [%dtwt *]  [(nice bean) [%3 q:$(gen p.gen, gol %noun)]]
-      ==
+        ?-  gen
+          [%dtwt *]  
+        [(nice bean) [%3 q:$(gen p.gen, gol %noun)]]
+        ==  
+
+##Notes
 

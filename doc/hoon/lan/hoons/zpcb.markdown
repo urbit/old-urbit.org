@@ -8,10 +8,34 @@ title: zapcab
 
 
 
+#[zapcap %zpcb](#zpcb)
+
+##Syntax
+
 `!_`,`zapcab`, `[%zpcb p=spot q=twig]` is a natural hoon that puts
 debugging information in the stack trace.
 
-###Definition###
+###Form
+
+####Tall
+
+    ?!  p
+
+####Wide
+
+    ?!(p)
+
+####Irregular
+
+    !p
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  twig
@@ -22,8 +46,8 @@ debugging information in the stack trace.
     ++  span  ,@ta
     ++  pint  ,[p=[p=@ q=@] q=[p=@ q=@]]
 
-###Compilation###
-    
+###Expansion
+
     ++  mint
       ?-    gen
           [%zpcb *]  
@@ -32,7 +56,7 @@ debugging information in the stack trace.
         [p.hum [%10 [%spot %1 p.gen] q.hum]]
       ==
 
-###Notes###
+##Notes
 
 The parser produces `%zpcb` only within a `!:`.  `%zpcb` will
 also hose your tail call elimination, so beware.

@@ -8,26 +8,42 @@ title: semsem
 
 
 
+#[semsig, %smsg](#smsg)
+
+##Syntax
+
 `;;`, `semsem`, `[%smsm p=twig q=twig]` is a synthetic hoon that
 types `q` as a fixpoint of `p`.
 
-###Definition###
+###Form
+
+####Tall
+
+    ;;  p
+        q
+
+####Wide
+
+    ;;(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%smsm p=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ;;  p
-    q
-
-###Regular form (wide)###
-
-    ;;(p q)
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-    gen
@@ -40,7 +56,7 @@ types `q` as a fixpoint of `p`.
         [%wtgr [%dtts [%cnzy %c] [%cnzy %b]] [%cnzy %c]] ::  ?>(=(c b) c)
       ==
 
-###Notes###
+##Notes
 
 `;;` can be read as "make sure `q` is a `p`."  `p` should probably be
 a tile, not a twig.

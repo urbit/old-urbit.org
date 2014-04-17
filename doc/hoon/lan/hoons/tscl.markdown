@@ -8,17 +8,15 @@ title: tiscol
 
 
 
-`=:`, `tiscol`, `[%tscl p=tram q=twig]` is a synthetic hoon that
-produces `q` with the subject modified by `p`.
+#[tiscol, %tscl](#tscl)
 
-###Definition###
+##Syntax
 
-    ++  twig  
-      $%  [%tscl p=tram q=twig] 
-      ==
-    ++  tram  (list ,[p=wing q=twig])
+`=:`, `tiscol`, `[%tscl p=tram q=twig]` is a synthetic hoon that produces `q` with the subject modified by `p`.
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
     =:  p.i.p      q.i.p
         p.i.t.p    q.i.t.p
@@ -26,8 +24,29 @@ produces `q` with the subject modified by `p`.
       ==
     q
 
-###Expansion###
-    
+####Wide
+
+    None
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tscl p=tram q=twig] 
+      ==
+    ++  tram  (list ,[p=wing q=twig])
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -35,6 +54,6 @@ produces `q` with the subject modified by `p`.
         [%tsgr [%cncb [[~ 1] ~] p.gen] q.gen]
       ==
 
-###Notes###
+##Notes
 
 `%tscl` uses `%cncb`, so it cannot change the subject type.

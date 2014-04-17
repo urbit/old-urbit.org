@@ -8,11 +8,37 @@ title: wutkaz
 
 
 
+#[wutkaz %wtkz](#wtkz)
+
+##Syntax
+
 `wutkaz`, `[%wtkz p=tiki q=twig r=twig]` is a synthetic hoon that
 evaluates `r` if `p` is equal to the bunt for its tile, otherwise
 `q` is evaluated.
 
-###Definition###
+###Form
+
+####Tall
+
+    ?^  p
+      q
+    r
+
+####Wide
+
+    ?^(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%wtkz p=tiki q=twig r=twig]
@@ -22,18 +48,8 @@ evaluates `r` if `p` is equal to the bunt for its tile, otherwise
           [| p=(unit term) q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ?^  p
-      q
-    r
-
-###Regular form (wide)###
-
-    ?^(p q r)
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-    gen
@@ -66,6 +82,6 @@ evaluates `r` if `p` is equal to the bunt for its tile, otherwise
         ==
       --
 
-###Notes###
+##Notes
 
 See the discussion of tikis in chapter 11.

@@ -8,33 +8,45 @@ title: dottis
 
 
 
-`.=`, `dottis`, `[%dtts p=twig q=twig]` is a natural hoon that
-applies nock `5` (equals) to the products of p and q.
+#[dottis, `.=`, %dtts](#dtts)
 
-###Definition###
+##Syntax
+
+`.=`, `dottis`, `[%dtts p=twig q=twig]`is a natural hoon that applies nock 5 (equals) to determine if the products of p and q are equivalent.
+
+###Form
+
+####Tall
+
+    .=  p
+        q
+
+####Wide
+
+    .=(p q)
+
+####Irregular
+
+    =(p q)
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%dtts p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    .=  p
-    q
-
-###Regular form (wide)###
-
-    .=(p q)
-
-###Irregular form###
-
-    =(p q)
-
-###Compilation###
-    
     ++  mint
-      ?-    gen
-          [%dtts *]
-        [(nice bean) [%5 q:$(gen p.gen, gol %noun) q:$(gen q.gen, gol %noun)]]
+      ?-  gen
+        [%dtts *]
+      [(nice bean) [%5 q:$(gen p.gen, gol %noun) q:$(gen q.gen, gol %noun)]]
       ==
 
+##Notes

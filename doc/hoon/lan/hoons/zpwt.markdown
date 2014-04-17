@@ -8,18 +8,18 @@ title: zapwut
 
 
 
-`!?`, `zapwut`, `[%zpwt p=twig]` is a synthetic hoon that
+#[zapwut %zpwt](#zpwt)
+
+##Syntax
+
+    `!?`, `zapwut`, `[%zpwt p=twig]` is a synthetic hoon that
 enforces a Hoon version restriction.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%zpwt p=$|(p=@ [p=@ q=@]) q=twig]
-      ==
+####Tall
 
-###Regular form (tall)###
-
-To declare code that runs only in Hoon 164K or newer:
+    To declare code that runs only in Hoon 164K or newer:
 
     !?  164
     q
@@ -29,8 +29,28 @@ To declare code that runs only in 164K through 161K:
     !?  [164 161] 
     q
 
-###Expansion###
-    
+####Wide
+
+    None
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%zpwt p=$|(p=@ [p=@ q=@]) q=twig]
+      ==
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -41,3 +61,7 @@ To declare code that runs only in 164K through 161K:
           q.gen 
         ~|([%stub-fail stub p.gen] !!)
       ==
+
+##Notes
+
+None

@@ -8,21 +8,16 @@ title: wutlaz
 
 
 
+#[wutlaz %wtlz](#wtlz)
+
+##Syntax
+
 `wutlaz`, `[%wtlz p=wing q=twig r=tine]` is a synthetic
 hoon that selects a case in `q` for the actual type of `p`.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%wtlz p=tiki q=twig r=tine]
-      ==
-    ++  tine  (list ,[p=tile q=twig])
-    ++  tiki
-      $%  [& p=(unit term) q=wing]
-          [| p=(unit term) q=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
 Kingside:
 
@@ -45,12 +40,33 @@ Queenside:
       q.i.t.t.r
     ==
 
-###Regular form (wide)###
+####Wide
 
     ?+(p p.i.r q.i.r, p.i.t.r q.i.t.r, p.i.t.t.r q.i.t.t.r)
 
-###Expansion###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtlz p=tiki q=twig r=tine]
+      ==
+    ++  tine  (list ,[p=tile q=twig])
+    ++  tiki
+      $%  [& p=(unit term) q=wing]
+          [| p=(unit term) q=twig]
+      ==
+
+###Expansion
+
     ++  open
       ^-  twig
       ?+    gen
@@ -85,6 +101,6 @@ Queenside:
         ==
       --
 
-###Notes###
+##Notes
 
 See the discussion of tikis in chapter 11.

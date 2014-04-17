@@ -8,34 +8,51 @@ title: wutdot
 
 
 
+#[wutdot %wtdt](#wtdt)
+
+##Syntax
+
 `?.`, `wutdot`, `[%wtdt p=twig q=twig r=twig]` is a synthetic hoon
 that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
 (`|`, 1).
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%wtdt p=twig q=twig r=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
     ?.  p
       q
     r
 
-###Regular form (wide)###
+####Wide
 
     ?:(p q r)
 
-###Expansion###
+####Irregular
 
-  ++  open
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtdt p=twig q=twig r=twig]
+      ==
+
+
+###Expansion
+
+    ++  open
     ^-  twig
     ?-  gen
       [%wtdt *]   [%wtcl p.gen r.gen q.gen]
     ==
 
-###Notes###
+##Notes
 
 It's not unheard of to say `?.` as "unless."

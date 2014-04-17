@@ -8,31 +8,45 @@ title: wutzap
 
 
 
+#[wutzap %wtzp](#wtzp)
+
+##Syntax
+
 `?!`, `wutzap`, `[%wtzp p=twig]` is a synthetic hoon that
 produces the logical "not" of `p`.
 
-###Definition###
+###Form
+
+####Tall
+
+    ?!  p
+
+####Wide
+
+    ?!(p)
+
+####Irregular
+
+    !p
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%wtzp p=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ?!  p
-
-###Regular form (wide)###
-
-    ?!(p)
-
-###Irregular form###
-
-    !p
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-  gen
         [%wtzp *]  [%wtcl p.gen [%dtzz %f 1] [%dtzz %f 0]]
       ==
+
+##Notes

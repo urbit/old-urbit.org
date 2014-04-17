@@ -8,29 +8,50 @@ title: haxgar
 
 
 
-`#>`, `haxgar`, `[%hxgr p=tusk]` is a synthetic hoon that
+#[haxgar, `#>`, %hxgr](#hxgr)
+
+##Syntax
+
+`#>`, `haxgar`, `[%hxgr p=tusk]`is a synthetic hoon that
 slams the assumed gate `cain` on `[%zpgr %cntr p]`.
 
-###Definition###
+###Form
+
+####Tall
+
+    ?
+
+####Wide
+
+    ?
+
+####Irregular
+
+    <i.p i.t.p i.t.t.p>
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%hxgr p=tusk]
       ==
     ++  tusk  (list twig) 
 
-###Irregular form###
+###Expansion
 
-    <i.p i.t.p i.t.t.p>
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-  gen
-        [%hxgr *]  [%cnhp [%cnzy %cain] [%zpgr [%cltr p.gen]] ~]
+        [%hxgl *]
+      [%cnhp [%cnzy %noah] [%zpgr [%cltr p.gen]] ~]
       ==
 
-###Notes###
+##Notes
 
 `cain` is one of four "Biblical" names that the Hoon compiler,
 violating its usual principles, generates automatically.
