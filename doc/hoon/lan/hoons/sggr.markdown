@@ -8,36 +8,52 @@ title: siggar
 
 
 
+#[siggar, `~>`, %sggr](#sggr)
+
+##Syntax
+
 `~>`, `siggar`, `[%sggr p=$|(term [p=term q=twig]) q=twig]` is a
 natural hoon that applies arbitrary hint `p` to `q`.
 `q`.
 
-###Definition###
+###Form
+
+####Tall
+
+`p=%foo`:
+  
+    ~>  %foo
+        q
+
+    `p=[p=%foo q=bar]`:
+
+        ~>  %foo.bar
+        q
+
+####Wide
+
+    ~>(%foo q)
+    ~>(%foo.bar q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
         [%sggr p=$|(term [p=term q=twig]) q=twig]   ::
       $%  [%sggr p=twig]
       ==
 
-###Regular form (tall)###
-    
-`p=%foo`:
-  
-    ~>  %foo
-    q
+###Expansion
 
-`p=[p=%foo q=bar]`:
-
-    ~>  %foo.bar
-    q
-
-###Regular form (wide)###
-
-    ~>(%foo q)
-    ~>(%foo.bar q)
-
-###Compilation###
-    
     ++  mint
       ?-    gen
           [%sggr *]
@@ -51,6 +67,6 @@ natural hoon that applies arbitrary hint `p` to `q`.
         q.hum
       ==
 
-###Notes###
+##Notes
 
 Rather obviously, all other hinting `~` runes reduce to `~>`.

@@ -8,33 +8,49 @@ title: tishep
 
 
 
+#[tishep, %tshp](#tshp)
+
+##Syntax
+
 `=-`, `tishep`, `[%tshp p=twig q=twig]` is a synthetic hoon that
 pushes `q` on the subject and sends it to `p`.
 
-###Definition###
+###Form
+
+####Tall
+
+    =-  p
+    q
+
+####Wide
+
+    =-(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%tshp p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    =-  p
-    q
-
-###Regular form (wide)###
-
-    =-(p q)
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-    gen
           [%tshp *]  [%tsls q.gen p.gen]
       ==
 
-###Notes###
+##Notes
 
 `=-`, the opposite of `=+`, is very useful for code arrangement
 when `q` is much bigger than `p`.

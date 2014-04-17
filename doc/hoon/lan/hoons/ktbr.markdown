@@ -8,25 +8,41 @@ title: ketbar
 
 
 
+#[ketbar, `^|`, %ktbr](#ktbr)
+
+##Syntax
+
 `^|`, `ketbar`, `[%ktbr p=twig]` is a natural hoon that
 converts a gold core into an iron core.
 
-###Definition###
+###Form
+
+####Tall
+
+    ^|  p
+
+####Wide
+
+    ^|(p)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%ktbr p=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ^|  p
-
-###Regular form (wide)###
-
-    ^|(p)
-
-###Compilation###
-    
     ++  mint
       ?-  gen
         [%ktbr *]  =+(vat=$(gen p.gen) [(wrap(sut p.vat) %iron) q.vat])
@@ -42,6 +58,6 @@ converts a gold core into an iron core.
         *          ~|(%wrap-type !!)
       ==
 
-###Notes###
+##Notes
 
 See the discussion of geometric polymorphism in chapter 10.

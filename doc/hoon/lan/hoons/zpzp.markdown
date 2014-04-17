@@ -8,26 +8,47 @@ title: zapzap
 
 
 
-`!!`, `zapzap`, `[%zpzp p=~]` is a natural hoon that
-crashes every time.
+#[zapzap %zpzp](#zpzp)
 
-###Definition###
+##Syntax
 
     ++  twig  
       $%  [%zpzp p=~]
       ==
 
-###Regular form (wide)###
+###Form
+
+####Tall
+
+    None
+
+####Wide
 
     !!
 
-###Compilation###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%zpzp p=~]
+      ==
+
+###Expansion
+
     ++  mint
       ?-  gen
         [%zpzp *]  [%void [%0 0]]
       ==
 
-###Notes###
+##Notes
 
 Crashing in Hoon is the normal way to respond to an error.

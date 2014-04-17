@@ -8,26 +8,42 @@ title: tisgar
 
 
 
+#[tisgar, %tsgr](#tsgr)
+
+##Syntax
+
 `=>`, `tisgar`, `[%tsgr p=twig q=twig]` is a natural hoon that
 uses the product of `p` as the subject of `q`.
 
-###Definition###
+###Form
+
+####Tall
+
+    =>  p
+    q
+
+####Wide
+
+    =>(p q)
+
+####Irregular
+
+    =>(p q)
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%tsgr p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    =>  p
-    q
-
-###Regular form (wide)###
-
-    =>(p q)
-
-###Compilation###
-    
     ++  mint
       ?-    gen
           [%tsgr *]  
@@ -51,7 +67,7 @@ uses the product of `p` as the subject of `q`.
         mal
       [%7 mal buz]
 
-###Notes###
+##Notes
 
 Observe that `=>` strives to be at least slightly non-naive in
 composing Nock formulas.  This is why `=+` can be a synthetic

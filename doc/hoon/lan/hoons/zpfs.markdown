@@ -8,18 +8,43 @@ title: zapfas
 
 
 
+#[zapfas %zpfs](#zpfs)
+
+##Syntax
+
 `!/`, `zapfas`, `[%zpfs p=twig q=twig]` is a natural hoon that should
 never be compiled.  When compiled with error checking turned on,
 it reports its subject as an error.
 
-###Definition###
+###Form
+
+####Tall
+
+    ?,  p
+        q
+
+####Wide
+
+    ?,(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%zpfs p=twig]
       ==
 
-###Compilation###
-    
+###Expansion
+
     ++  mint
       ?-    gen
           [%zpfs *]  
@@ -29,6 +54,7 @@ it reports its subject as an error.
         [%void [%0 0]]
       ==
 
-###Notes###
+
+##Notes
 
 We use `%zpfs` in `?-` to make sure all cases are handled.

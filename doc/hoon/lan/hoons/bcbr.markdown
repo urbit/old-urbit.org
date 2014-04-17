@@ -54,7 +54,6 @@ In ++list, $| specifies that every element in a noun that can be cast to a ++lis
               ==
 
 ###Expansion
-None
 
 ##Notes
 

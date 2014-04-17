@@ -8,27 +8,43 @@ title: sigbar
 
 
 
+#[sigbar, `~|`, %sgbr](#sgbr)
+
+##Syntax
+
 `~|`, `sigbar`, `[%sgbr p=twig q=twig]` is a synthetic hoon that
 presents the product of `p` in the stack trace if `q` crashes.
 The computation is only performed if needed.
 
-###Definition###
+###Form
 
-    ++  twig  
+####Tall
+
+    ~|  p
+        q
+
+####Wide
+
+    ^|(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    +  twig  
       $%  [%sgbr p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ~|  p
-    q
-
-###Regular form (wide)###
-
-    ~|(p q)
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-    gen
@@ -50,7 +66,7 @@ The computation is only performed if needed.
         *               ~
       ==
 
-###Notes###
+##Notes
 
 Note that `~|` generates the Biblical name `%cain`, which
 conventionally converts a vase to a printable tank.  But we use

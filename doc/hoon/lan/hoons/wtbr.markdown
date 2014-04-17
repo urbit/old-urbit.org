@@ -46,4 +46,3 @@ computes the "or" of the loobeans in `p`.
 ###Notes###
 
 Short-circuiting and type inference work as expected in `?|`.
-

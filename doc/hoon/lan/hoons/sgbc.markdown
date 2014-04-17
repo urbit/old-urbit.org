@@ -8,32 +8,48 @@ title: sigbuc
 
 
 
+#[sigbuc, `~$`, %sgbc](#sgbc)
+
+##Syntax
+
 `~$`, `sigbuc`, `[%sgbc p=term q=twig]` is a synthetic hoon that
 labels computation `q` as `p` for profiling.
 
-###Definition###
+###Form
+
+####Tall
+
+    ~?  p
+        q
+
+####Wide
+
+    ^?(q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%sgbc p=term q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ~$  p
-    q
-
-###Regular form (wide)###
-
-    ~$(p q)
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-  gen
         [%sgbc *]  [%sggr [%live [%dtzz %$ p.gen]] q.gen]
       ==
 
-###Notes###
+##Notes
 
 The profiler is not currently enabled.

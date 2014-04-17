@@ -8,34 +8,47 @@ title: ketlus
 
 
 
-`^+`, `ketlus`, `[%ktls p=twig q=twig]` is a natural hoon that
-casts the product of `q` to the type of `p`, verifying that it
-contains the type of `q`.
+#[ketlus, `^+`, %ktls](#ktls)
 
-###Definition###
+##Syntax
+
+`^+`, `ketlus`, `[%ktls p=twig q=twig]` is a natural hoon that casts the product of `q` to the type of `p`, verifying that it contains the type of `q`.
+
+###Form
+
+####Tall
+
+    ^+  p
+        q
+
+####Wide
+
+    ^+(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%ktls p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ^+  p
-    q
-
-###Regular form (wide)###
-
-    ^+(p q)
-
-###Compilation###
-    
     ++  mint
       ?-    gen
           [%ktls *]
         =+(hif=(nice (play p.gen)) [hif q:$(gen q.gen, gol hif)])
       ==
 
-###Notes###
+##Notes
 
-`^+` is the dual, and natural form, of `^-`, ie, cast.  The
-difference is just that `^+` takes a twig and `^-` a tile.
+None

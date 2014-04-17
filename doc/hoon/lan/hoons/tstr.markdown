@@ -8,26 +8,42 @@ title: tistar
 
 
 
+#[tistar, %tstr](#tstr)
+
+##Syntax
+
 `=*`, `tistar`, `[%tstr p=term q=wing r=twig]` is a natural hoon
 that creates a `%bull`, or alias, type.
 
-###Definition###
+###Form
+
+####Tall
+
+    =*  p  q
+        r
+
+####Wide
+
+    =*(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%tstr p=term q=wing r=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    =*  p  q
-    r
-
-###Regular form (wide)###
-
-    =*(p q r)
-
-###Compilation###
-    
     ++  mint
       ?-  gen
         [%tstr *]  $(gen r.gen, sut (busk p.gen q.gen))
@@ -44,7 +60,7 @@ that creates a `%bull`, or alias, type.
       ^-  type
       ?:(|(=(%void der) =(%void s.bid)) %void [%bull bid der])
 
-###Notes###
+##Notes
 
 The `%bull` stem will be discussed more in chapter 11.  But
 essentially, it wraps the subject with an alias in which `p`

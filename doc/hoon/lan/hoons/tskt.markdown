@@ -8,21 +8,21 @@ title: tisket
 
 
 
+#[tisket, %tskt](#tskt)
+
+##Syntax
+
 `=^`, `tisket`, `[%tskt p=twig q=twig r=twig s=twig]` is a synthetic 
 hoon that handles a product which is a cell of a new result, and
 a mutation to the subject.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%tskt p=twig q=twig r=twig s=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
 Kingside:
 
-    =^    p 
+     =^    p 
         q
       r
     s
@@ -33,12 +33,28 @@ Queenside:
       r
     s
 
-###Regular form (wide)###
+####Wide
 
     =^(p q r s)
 
-###Expansion###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tskt p=twig q=twig r=twig s=twig]
+      ==
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -54,9 +70,9 @@ Queenside:
         s.gen                                             ::  s.gen
       ==
 
-###Notes###
+##Notes
 
-Language change alert: `p` should be a term, `q` should be a wing.
+`Language change alert: `p` should be a term, `q` should be a wing.
 
 We use `=^` for the common pattern of a state machine which
 exposes a gate that produces a cell `[result new-state]`.  When

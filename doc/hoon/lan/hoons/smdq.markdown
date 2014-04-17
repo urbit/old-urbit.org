@@ -8,18 +8,42 @@ title: semdoq
 
 
 
+#[semdoq, %smdq](#smdq)
+
+##Syntax
+
 `semdoq`, `[%smdq p=(list beer)]` is a synthetic hoon used to
 make strings, interpreted or not.
+###Form
 
-###Definition###
+####Tall
+
+    None
+
+####Wide
+
+    None
+
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%smdq p=twig]
       ==
     ++  beer  $|(@ [~ p=twig])
 
-###Expansion###
-    
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -58,7 +82,7 @@ make strings, interpreted or not.
         [[[%a ~] [%tsgl [~ 3] [%cnzy %a]]] ~]         ::  a  +.a
       ==
 
-###Notes###
+##Notes
 
 It's not necessary to understand this horrible thing.  All it
 does is to assemble a string, which is a list of either

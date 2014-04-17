@@ -8,17 +8,15 @@ title: semsig
 
 
 
-`;~`, `semsig`, `[%smsg p=twig q=tusk]` is a synthetic hoon that
-uses `p` to 
+#[semsig, %smsg](#smsg)
 
-###Definition###
+##Syntax
 
-    ++  twig  
-      $%  [%smsg p=twig q=tusk]
-      ==
-    ++  tusk  (list twig)
+`semsg`, `[%smsg p=(list beer)]` is a synthetic hoon used to
+make strings, interpreted or not.
+###Form
 
-###Regular form (tall)###
+####Tall
 
     ;~  p
       i.q
@@ -26,12 +24,30 @@ uses `p` to
       i.t.t.q
     ==
 
-###Regular form (wide)###
+####Wide
 
     ;~(p i.q i.t.q i.t.t.q)
 
-###Expansion###
-    
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%smsg p=twig q=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -57,6 +73,6 @@ uses `p` to
         ==
       ==
 
-###Notes###
+##Notes
 
 See the discussion of gonads in chapter 11.

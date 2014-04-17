@@ -8,25 +8,42 @@ title: ketwut
 
 
 
+#[ketwut, `^?`, %ktwt](#ktwt)
+
+##Syntax
+
 `^?`, `ketwut`, `[%ktwt p=twig]` is a natural hoon that
 converts a gold core into a lead core.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%ktwt p=twig]
-      ==
-
-###Regular form (tall)###
+####Tall
 
     ^?  p
 
-###Regular form (wide)###
+####Wide
 
     ^?(p)
 
-###Compilation###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%ktwt p=twig]
+      ==2 p=toga q=toga]
+              == 
+
+###Expansion
+
     ++  mint
       ?-  gen
         [%ktbr *]  =+(vat=$(gen p.gen) [(wrap(sut p.vat) %lead) q.vat])
@@ -42,6 +59,6 @@ converts a gold core into a lead core.
         *          ~|(%wrap-type !!)
       ==
 
-###Notes###
+##Notes
 
 See the discussion of geometric polymorphism in chapter 10.

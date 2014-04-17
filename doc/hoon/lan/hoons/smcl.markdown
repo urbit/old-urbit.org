@@ -8,17 +8,16 @@ title: semcol
 
 
 
+#[semcol, `;:`, %smcl](#smcl)
+
+##Syntax
+
 `;:`, `semcol`, `[%smcl p=twig q=tusk]` is a synthetic hoon that
 applies `p`, a binary gate, to the n-ary tuple `q`.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%smcl p=twig q=tusk]
-      ==
-    ++  tusk  (list twig)
-
-###Regular form (tall)###
+####Tall
 
     ;:  p
       i.q
@@ -26,16 +25,30 @@ applies `p`, a binary gate, to the n-ary tuple `q`.
       i.t.t.q
     ==
 
-###Regular form (wide)###
+####Wide
 
     ;:(p i.q i.t.q i.t.t.q)
 
-###Irregular form###
+
+####Irregular
 
     :(p i.q i.t.q i.t.t.q)
 
-###Expansion###
-    
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%smcl p=twig q=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Expansion
+
     ++  open
       ^-  twig
       ?-    gen
@@ -56,6 +69,7 @@ applies `p`, a binary gate, to the n-ary tuple `q`.
         ==
       ==
 
-###Notes###
+##Notes
 
 It's certainly nice to be able to say `:(add 2 3 4)` and get `9`.
+`~!` seems strange but is surprisingly useful.

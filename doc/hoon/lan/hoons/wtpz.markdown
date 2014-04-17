@@ -8,10 +8,36 @@ title: wutpaz
 
 
 
+#[wutpaz %wtpz](#wtpz)
+
+##Syntax
+
 `wutpaz`, `[%wtpz p=tiki q=twig r=twig]` is a synthetic hoon 
 that produces `q` if `p` is an atom, `r` otherwise.
 
-###Definition###
+###Form
+
+####Tall
+
+?@  p
+      q
+    r
+
+####Wide
+
+    ?@(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%wtpz p=tiki q=twig r=twig]
@@ -21,18 +47,8 @@ that produces `q` if `p` is an atom, `r` otherwise.
           [| p=(unit term) q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ?@  p
-      q
-    r
-
-###Regular form (wide)###
-
-    ?@(p q r)
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-    gen
@@ -62,6 +78,6 @@ that produces `q` if `p` is an atom, `r` otherwise.
         ==
       --
 
-###Notes###
+##Notes
 
 See the discussion of tikis in chapter 11.

@@ -8,19 +8,18 @@ title: wutlus
 
 
 
+#[wutlus %wtls](#wtls)
+
+##Syntax
+
 `?+`, `wutlus`, `[%wtls p=wing q=twig r=tine]` is a synthetic
 hoon that selects a case in `q` for the actual type of `p`.
 
-###Definition###
+###Form
 
-    ++  twig  
-      $%  [%wtls p=wing q=twig r=tine]
-      ==
-    ++  tine  (list ,[p=tile q=twig])
+####Tall
 
-###Regular form (tall)###
-
-Kingside:
+    Kingside:
 
     ?+  p
       q
@@ -41,12 +40,29 @@ Queenside:
       q.i.t.t.r
     ==
 
-###Regular form (wide)###
+####Wide
 
     ?+(p p.i.r q.i.r, p.i.t.r q.i.t.r, p.i.t.t.r q.i.t.t.r)
 
-###Expansion###
-    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtls p=wing q=twig r=tine]
+      ==
+    ++  tine  (list ,[p=tile q=twig])
+
+###Expansion
+
     ++  open
       ^-  twig
       ?+    gen
@@ -54,7 +70,7 @@ Queenside:
         [%wthp p.gen (weld r.gen `_r.gen`[[[%axil %noun] q.gen] ~])]
       ==
 
-###Notes###
+##Notes
 
 `%wtls` is best understood by its expansion, which is a simple
 use of `%wtts`.  Note that because `%wtts` does proper inference,

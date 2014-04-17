@@ -8,8 +8,31 @@ title: dottar
 
 
 
-`.*`, `dottar`, `[%dttr p=twig q=twig]` is a natural hoon that
-calculates the nock of subject `p`, formula `q`.
+#[dottar, `.*`, %dttr](#dttr)
+
+##Syntax
+
+`.*`, `dottr`, `[%dttr p=twig q=twig]` is a natural hoon that calculates the nock of subject `p`, formula `q`.
+
+###Form
+
+####Tall
+
+    .*  p
+        q
+
+####Wide
+
+    .=(p q)
+
+####Irregular
+None
+
+###Reduction
+
+###Examples
+
+##Semantics
 
 ###Definition
 
@@ -17,21 +40,13 @@ calculates the nock of subject `p`, formula `q`.
       $%  [%dttr p=twig q=twig]
       ==
 
-###Regular form (tall)
 
-    .*  p
-    q
+###Expansion
 
-###Regular form (wide)
-
-    .*(p q)
-
-###Compilation
-    
     ++  mint
       ?-    gen
-          [%dttr *]
-        [(nice %noun) [%2 q:$(gen p.gen, gol %noun) q:$(gen q.gen, gol %noun)]]
-      ==
+        [%dttr *]
+      [(nice %noun) [%2 q:$(gen p.gen, gol %noun) q:$(gen q.gen, gol %noun)]]
+  ==
 
-
+##Notes

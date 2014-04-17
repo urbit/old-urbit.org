@@ -8,27 +8,43 @@ title: wutsig
 
 
 
+#[wutsig %wtsg](#wtsg)
+
+##Syntax
+
 `?~`, `wutsig`, `[%wtsg p=wing q=twig r=twig]` is a synthetic hoon 
 that produces `q` if `p` is `~`, `r` otherwise.
 
-###Definition###
+###Form
+
+####Tall
+
+?~  p
+      q
+    r
+
+####Wide
+
+    ?~(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%wtsg p=wing q=twig r=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ?~  p
-      q
-    r
-
-###Regular form (wide)###
-
-    ?~(p q r)
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-    gen
@@ -36,3 +52,6 @@ that produces `q` if `p` is `~`, `r` otherwise.
         [%wtcl [%wtts [%axil %null] p.gen] q.gen r.gen]
       ==
 
+##Notes
+
+None

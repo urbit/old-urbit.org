@@ -8,36 +8,47 @@ title: kethep
 
 
 
-`^-`, `kethep`, `[%kthp p=tile q=twig]` is a synthetic hoon that
-casts `q` to `~(bunt al p)`, ie, the icon of `p`.
+#[kethep, `^-`, %kthp](#kthp)
 
-###Definition###
+##Syntax
+
+`^-`, `kethep`, `[%kthp p=tile q=twig]` is a synthetic hoon that casts `q` to `~(bunt al p)`, ie, the icon of `p`.
+
+###Form
+
+####Tall
+
+    ^-  p
+        q
+
+####Wide
+
+    ^-(p q)
+
+####Irregular
+
+    `p`q
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
 
     ++  twig  
       $%  [%kthp p=tile q=twig]
       ==
 
-###Regular form (tall)###
+###Expansion
 
-    ^-  p
-    q
-
-###Regular form (wide)###
-
-    ^-(p q)
-
-###Irregular form###
-
-    `p`q
-
-###Expansion###
-    
     ++  open
       ^-  twig
       ?-  gen
         [%kthp *]  [%ktls ~(bunt al p.gen) q.gen]
       ==
 
-###Notes###
+##Notes
 
-See the discussion of tiles in chapter 9.
+None
