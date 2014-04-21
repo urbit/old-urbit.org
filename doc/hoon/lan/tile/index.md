@@ -26,7 +26,7 @@ The formal definitions for `++tile` runes are somewhat spread out in `hoon.hoon`
                   [%weed p=twig]                            ::  example
               ==  
 
-<h3 id="%axil">%axil</h3>
+<h3 id="axil">%axil</h3>
     [%axil p=base]                            ::  base type
 A simple built-in mechanism for a few basic icons: 
 

@@ -35,8 +35,8 @@ This chapter covers basic mathematical operations on natural numbers (atoms), su
         b                                                   ::  then produce b
       $(b +(b))                                             ::  else loop trap
 
-`++dec` is a [jetted arm (~/)]().  
-`++dec` creates a dry `%gold` gate using [|=](), which accepts an atomic sample `a` of [axil @](), with [=, the irregular form of ^=]().  
+`++dec` is a [jetted arm (~/)](/doc/hoon/lan/hoons/sgfs).  
+`++dec` creates a dry `%gold` gate using [|=](), which accepts an atomic sample `a` of [axil @](/doc/hoon/lan/tile/#axil), with [=, the irregular form of ^=](/doc/hoon/lan/hoons/dtts).  
 If `a` is 0, `++dec` crashes [(?<)]() and a crash message of `%decrement-underflow` is inserted into the stack trace [(~|)]().  
 `b` is pushed on to the subject with [=+]() and set to `0` using [^=]().  
 A dry %gold trap is created using [|-](), and its product is cast to an atom with [^-]().  
