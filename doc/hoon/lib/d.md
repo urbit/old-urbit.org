@@ -533,7 +533,7 @@ If `b` is an atom ([?@]()), produce `a`.
 Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](), below.
 
 
-<h2 id="get:y">get:y</h2>
+<h2 id="get:y">get:by</h2>
 
 ####Grab.
 `+-get` takes any noun `b` and produces the value (`q.a`) at key (`p.a`) `b` or ~ if the key doesn't exist.
