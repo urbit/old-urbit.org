@@ -32,7 +32,7 @@ This section covers the containers sets maps and trees.
 `++in` is the container arm for all the set arms. The contained arms inherit its sample, the set `a`.
 
 ###Examples
-    ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+    ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
     ~talsur-todres/try=> ~(wyt in a)
     4
   Note: `++in` is not used alone, but is used to call the arms it contains.
@@ -42,18 +42,18 @@ This section covers the containers sets maps and trees.
       !:
       ~/  %in
       |/  a=(set)
-Debugging traces are enabled with [!:]().  
-`++in` is a [jetted arm (~/)]().  
-`++in` creates a [vulcanized %gold tray]() that takes a set `a`.
+Debugging traces are enabled with [!:](/doc/hoon/lan/rune/#zapcol).  
+`++in` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++in` creates a vulcanized %gold tray that takes a set `a`.
 The wet (+-) arms below inherit the sample `a`.
 
 <h2 id="all:in">all:in</h2>
 
 ####Logical AND
-`+-all` takes a gate `b` that accepts any noun and produces a loobean representing the logical AND of all the values (`n.a`) in `a`.
+`++all` takes a gate `b` that accepts any noun and produces a loobean representing the logical AND of all the values (`n.a`) in `a`.
 
 ###Examples
-    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
     ~dovryp-toblug/try=> (~(all in b) |=(a=* ?@(-.a & |)))
     %.n
 
@@ -65,20 +65,20 @@ The wet (+-) arms below inherit the sample `a`.
       ?@  a
         &
       ?&((b n.a) $(a l.a) $(a r.a))
-`+-all` is a [jetted arm (~/)]().  
-`+-all` creates a [wet vulcanized gate |*]() which accepts a [gate]() `b`. `b` ([$+]()) must accept any noun and produce a loobean.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to a loobean.  
-If `a` is an atom ([?@]()), produce yes.
-Otherwise produce the logical AND ([?&]()) of `(b n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
+`+-all` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-all` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts a `b`. `b` ([$+](/doc/hoon/lan/rune/#buclus)) must accept any noun and produce a loobean.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a loobean.  
+If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce yes.
+Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
 
 <h2 id="any:in">any:in</h2>
 
 ####Logical and
-`+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`.
+`+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`
 
 ###Examples
-    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
     ~dovryp-toblug/try=> (~(any in b) |=(a=* ?@(+.a & |)))
     %.y
 
@@ -90,10 +90,10 @@ Otherwise produce the logical AND ([?&]()) of `(b n.a)`, the gate called again w
       ?@  a
         |
       ?|((b n.a) $(a l.a) $(a r.a))
-`+-any` is a [jetted arm (~/)]().  
-`+-any` creates a [wet vulcanized gate |*]() which accepts a [gate]() `b`. `b` ([$+]()) must accept any noun and produce a loobean.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to a loobean.  
-Otherwise produce the logical OR ([?|]()) of `(b n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
+`+-any` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-any` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts a [gate](/doc/hoon/tut/4/) `b`. `b` ([$+](/doc/hoon/lan/rune/#buclus)) must accept any noun and produce a loobean.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a loobean.  
+Otherwise produce the logical OR ([?|](/doc/hoon/lan/rune/#wutbar)) of `(b n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
 
 <h2 id="del:in">del:in</h2>
@@ -102,9 +102,9 @@ Otherwise produce the logical OR ([?|]()) of `(b n.a)`, the gate called again wi
 `+-del` takes any noun b and removes the member of the set `a` where `n.a` is `b`.
 
 ###Examples
-    ~dovryp-toblug/try=> =b (sa `(list ,@t)`['a' 'b' 'c' ~])
-    ~dovryp-toblug/try=> (~(del in b) 'a')
-    {'c' 'b'}
+    ~dovryp-toblug/try=> =b (sa `(list ,@t)`[`a` `b` `c` ~])
+    ~dovryp-toblug/try=> (~(del in b) `a`)
+    {`c` `b`}
 
 ###Summary
     +-  del
@@ -123,13 +123,13 @@ Otherwise produce the logical OR ([?|]()) of `(b n.a)`, the gate called again wi
       ?:  (vor n.l.a n.r.a)
         [n.l.a l.l.a $(l.a r.l.a)]
       [n.r.a $(r.a l.r.a) r.r.a]
-`+-del` is a [jetted arm (~/)]().  
-`+-del` creates a [wet vulcanized gate |*]() which accepts any noun, `b`.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to a set (the type of `a`).  
-If `a` is null ([?~]()), produce null.  
-If `b` is `n.a` ([=, irregular form of ^=]()) test the `++hor` of `b` and `n.a` with [?:]().  
+`+-del` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-del` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts any noun, `b`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a set (the type of `a`).  
+If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce null.  
+If `b` is `n.a` ([=, irregular form of ^=](/doc/hoon/lan/rune/#wutgar)) test the `++hor` of `b` and `n.a` with [?:](/doc/hoon/lan/rune/#wutcol).  
 If the `++hor` is `%.y`, produce a tuple recursing with `a` set to `l.a`. If the `++hor` is `%.n` produce a tuple recursing with `a` set to `r.a` (`$(a r.a)`).  
-If `b` is not `n.a` A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to either null or the [bunt]() of `a`, `?(~ _a)`.  
+If `b` is not `n.a` A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to either null or the [bunt](/doc/hoon/lan/tile/#bunt) of `a`, `?(~ _a)`.  
 If `l.a` is null, produce `r.a`.  
 If `r.a` is null, produce `l.a`.  
 If the `++vor` of `n.l.a` and `n.r.a` is `%.y` produce a tuple replacing `l.a` with `r.l.a` in the final value.  
@@ -164,13 +164,13 @@ Otherwise produce a tuple replacing `r.a` with `l.r.a` in the middle value.
       ?:  (gor b n.a)
         $(a l.a, c (peg c 6))
       $(a r.a, c (peg c 7))
-`+-dig` creates a [dry %gold gate |=]() that takes any noun `b`.  
+`+-dig` creates a [dry %gold gate |=](/doc/hoon/lan/rune/#bartis) that takes any noun `b`.  
 `c` is pushed on to the subject with `=+` and set to `1`.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast to a `++unit` atom.  
-If `a` is null, produce null ([?~]()).  
-If `b` is `n.a` ([?:]()) produce a `++unit` with `u=(peg c 2)`. See also: [++peg]().  
-If the `++gor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.a` and `c` set to `(peg c 6)`. See also: [++peg]().  
-Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [++peg]().  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast to a `++unit` atom.  
+If `a` is null, produce null ([?~](/doc/hoon/lan/rune/#wutsig)).  
+If `b` is `n.a` ([?:](/doc/hoon/lan/rune/#wutcol)) produce a `++unit` with `u=(peg c 2)`. See also: [++peg](/doc/hoon/lib/#++peg).  
+If the `++gor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.a` and `c` set to `(peg c 6)`. See also: [++peg](/doc/hoon/lib/#++peg).  
+Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [++peg](/doc/hoon/lib/#++peg).  
 
 
 <h2 id="gas:in">gas:in</h2>
@@ -179,9 +179,9 @@ Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [+
 `+-gas` takes a list `b` with members of the same type as `a` and produces `b` concatenated with `a`.
 
 ###Examples
-    ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
-    ~dovryp-toblug/try=> (~(gas in a) `(list ,@t)`['d' 'e' 'f' ~])
-    {'e' 'd' 'f' 'a' 'c' 'b'}
+    ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
+    ~dovryp-toblug/try=> (~(gas in a) `(list ,@t)`[`d` `e` 'f' ~])
+    {s `d` 'f' `a` `c` `b`}
 
 ###Summary
     +-  gas
@@ -191,11 +191,11 @@ Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [+
       ?@  b
         a
       $(b t.b, a (put(+< a) i.b))
-`+-gas` is a [jetted arm (~/)]().
-`+-gas` creates a [dry %gold gate |=]() that takes a `++list` whose members match the bunt of `n.a`s in `a`.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast to the type of `a` (a set).  
-If `b` is an atom ([?@]()), produce `a`.  
-Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](), below.
+`+-gas` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).
+`+-gas` creates a [dry %gold gate |=](/doc/hoon/lan/rune/#bartis) that takes a `++list` whose members match the bunt of `n.a`s in `a`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast to the type of `a` (a set).  
+If `b` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce `a`.  
+Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](/doc/hoon/lib/#put:in), below.
 
 
 <h2 id="has:in">has:in</h2>
@@ -204,8 +204,8 @@ Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See a
 `+-has` accepts any noun `b` and produces a loobean indicating whether that value (`n.a`) exists in `a`.
 
 ###Examples
-    ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
-    ~dovryp-toblug/try=> (~(has in a) 'a')
+    ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
+    ~dovryp-toblug/try=> (~(has in a) `a`)
     %.y
     ~dovryp-toblug/try=> (~(has in a) 'z')
     %.n
@@ -222,10 +222,10 @@ Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See a
       ?:  (hor b n.a)
         $(a l.a)
       $(a r.a)
-`+-has` is a [jetted arm (~/)]().  
-`+-has` creates a [wet vulcanized gate |*]() which accepts any noun, `b`.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to a loobean.  
-If `a` is an atom ([?@]()), produce `%.n`.
+`+-has` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-has` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts any noun, `b`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a loobean.  
+If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce `%.n`.
 If `b` is `n.a` produce %.y.
 Otherwise, if the `++hor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.a` or `a` set to `r.a` if `%.n`.  
 
@@ -236,12 +236,12 @@ Otherwise, if the `++hor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.
 `+-put` accepts any noun `b` and produces `a` with `b` added to the sorted loaction in `a`.
 
 ###Examples
-    ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
-    ~talsur-todres/try=> =b (~(put in a) 'd')
+    ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
+    ~talsur-todres/try=> =b (~(put in a) `d`)
     ~talsur-todres/try=> b
-    {'d' 'a' 'c' 'b'}
+    {`d` `a` `c` `b`}
     ~talsur-todres/try=> -.l.+.b
-    n='d'
+    n=`d`
 
 
 ###Summary
@@ -265,19 +265,19 @@ Otherwise, if the `++hor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.
         [n.a l.a c]
       [n.c [n.a l.a l.c] r.c]
 
-`+-put` is a [jetted arm (~/)]().  
-`+-put` creates a [wet vulcanized gate |*]() which accepts any noun, `b`.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^+]()) to type of `a` (a set).  
-If `a` is an atom ([?@]()) produce `[b ~ ~]`.
+`+-put` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-put` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts any noun, `b`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^+](/doc/hoon/lan/rune/#ketlus)) to type of `a` (a set).  
+If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)) produce `[b ~ ~]`.
 If `b` is `n.a` produce `a`.
-If the `++hor` of `b` and `n.a` is `%.y` ([?:]()),  
+If the `++hor` of `b` and `n.a` is `%.y` ([?:](/doc/hoon/lan/rune/#wutcol)),  
 `c` is pushed on to the subject with `=+` and set to the containing gate called with `a` set to `l.a`.  
-[?>]() asserts that `c` is not `^`.  
+[?>](/doc/hoon/lan/rune/#wutgar) asserts that `c` is not `^`.  
 If the `++vor` of `n.a` and `n.c` is `%.y`, produce `[n.a c r.a]`.  
 Otherwise produce `[n.c l.c [n.a r.c r.a]]`.  
-If the `++hor` of `b` and `n.a` is `%.n` ([?:]()),  
-`c` is pushed on to the subject with `=+` and set to the gate called with `a` set to `r.a`.  
-[?>]() asserts that `c` is not `^`.  
+If the `++hor` of `b` and `n.a` is `%.n` ([?:](/doc/hoon/lan/rune/#wutcol)),  
+`c` is pushed on to the subject with [=+](/doc/hoon/lan/rune/#tislus) and set to the gate called with `a` set to `r.a`.  
+[?>](/doc/hoon/lan/rune/#wutgar) asserts that `c` is not `^`.  
 If the `++vor` of `n.a` and `n.c` is `%.y`, produce `[n.a l.a c]`.  
 Otherwise produce `[n.c [n.a l.a l.c] r.c]`.
 
@@ -300,9 +300,9 @@ Otherwise produce `[n.c [n.a l.a l.c] r.c]`.
       |-
       ?~  a  b
       $(a r.a, b $(a l.a, b (c n.a b)))
-`+-put` creates a [wet vulcanized gate |*]() which accepts any noun, `b` and the bunt of the tile of any noun, `c`.
-A dry `%gold` gate is created and kicked with [|-]().
-If `a` is null ([?~]()), produce `b`.
+`+-put` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts any noun, `b` and the bunt of the tile of any noun, `c`.
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep).
+If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce `b`.
 Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` set to `l.a` and `b` set to `(c n.a b)`.
 
 
@@ -313,7 +313,7 @@ Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` s
 
 ###Examples
   ?? 
-  ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+  ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
   ~talsur-todres/try=> (~(tap in a) (list ,*))
   ! type-fail
   ! exit
@@ -337,7 +337,7 @@ Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` s
 `+-wyt` produces the depth of set `a`.
 
 ###Examples
-    ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`['a' 'b' 'c' ~])
+    ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
     ~talsur-todres/try=> ~(wyt in a)
     4
 
@@ -347,9 +347,9 @@ Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` s
     |-  ^-  @
     ?~(a 0 +((add $(a l.a) $(a r.a))))
   --
-[.+]() increments the subject.
-A dry `%gold` gate is created and kicked with [|-]() and the product is cast ([^-]()) to an atom.
-If `a` is null ([?~]()), produce `0`.
+[.+](/doc/hoon/lib/#dotlus) increments the subject.
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the product is cast ([^-](/doc/hoon/lan/rune/#kethep)) to an atom.
+If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce `0`.
 Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` and `a` replaced with `r.a`.
 
 
@@ -374,7 +374,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 `++by` is the container for all the map arms. The contained arms inherit its sample, the map `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
     ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
     %.n
   Note: `++by` is not used alone, but is used to call the arms it contains.
@@ -383,8 +383,8 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
     ++  by                                                  ::  map engine
       ~/  %by
       |/  a=(map)
-`++by` is a [jetted arm (~/)]().  
-`++by` creates a [vulcanized %gold tray]() that takes a map `a`.  
+`++by` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++by` creates a [vulcanized %gold tray](/doc/hoon/lan/rune/#barfas) that takes a map `a`.  
 
 
 <h2 id="all:by">all:by</h2>
@@ -393,7 +393,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 `+-all` takes a gate `b` that accepts any noun and produces a loobean representing the logical AND of all the values (`n.a`) in `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
     ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
     %.n
 
@@ -405,11 +405,11 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
       ?@  a
         &
       ?&((b q.n.a) $(a l.a) $(a r.a))
-`+-all` is a [jetted arm (~/)]().  
-`+-all` creates a [wet vulcanized gate |*]() which accepts a [gate]() `b`. `b` ([$+]()) must accept any noun and produce a loobean.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to a loobean.  
-If `a` is an atom ([?@]()), produce yes.
-Otherwise produce the logical AND ([?&]()) of `(b q.n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
+`+-all` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-all` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts a [gate](/doc/hoon/tut/4/) `b`. `b` ([$+](/doc/hoon/lan/rune/#buclus)) must accept any noun and produce a loobean.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a loobean.  
+If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce yes.
+Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b q.n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
 
 
@@ -419,7 +419,7 @@ Otherwise produce the logical AND ([?&]()) of `(b q.n.a)`, the gate called again
 `+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
     ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
     %.y
 
@@ -431,10 +431,10 @@ Otherwise produce the logical AND ([?&]()) of `(b q.n.a)`, the gate called again
       ?@  a
         |
       ?|((b q.n.a) $(a l.a) $(a r.a))
-`+-any` is a [jetted arm (~/)]().  
-`+-any` creates a [wet vulcanized gate |*]() which accepts a [gate]() `b`. `b` ([$+]()) must accept any noun and produce a loobean.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to a loobean.  
-Otherwise produce the logical OR ([?|]()) of `(b q.n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
+`+-any` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-any` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts a [gate](/doc/hoon/tut/4/) `b`. `b` ([$+](/doc/hoon/lan/rune/#buclus)) must accept any noun and produce a loobean.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a loobean.  
+Otherwise produce the logical OR ([?|](/doc/hoon/lan/rune/#wutbar)) of `(b q.n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
 <h2 id="del:by">del:by</h2>
 
@@ -442,9 +442,9 @@ Otherwise produce the logical OR ([?|]()) of `(b q.n.a)`, the gate called again 
 `+-del` takes any noun b and removes the member of the set `a` where `n.a` is `b`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
-    ~talsur-todres/try=> (~(del by b) 'a')
-    {[p='b' q=[2 3]]}
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> (~(del by b) `a`)
+    {[p=`b` q=[2 3]]}
 
 ###Summary
     +-  del
@@ -463,13 +463,13 @@ Otherwise produce the logical OR ([?|]()) of `(b q.n.a)`, the gate called again 
       ?:  (vor p.n.l.a p.n.r.a)
         [n.l.a l.l.a $(l.a r.l.a)]
       [n.r.a $(r.a l.r.a) r.r.a]
-`+-del` is a [jetted arm (~/)]().  
-`+-del` creates a [wet vulcanized gate |*]() which accepts any noun, `b`.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to a map (the type of `a`).  
-If `a` is null ([?~]()), produce null.  
-If `b` is `p.n.a` ([=, irregular form of ^=]()) test the `++gor` of `b` and `p.n.a` with [?:]().  
+`+-del` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-del` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts any noun, `b`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a map (the type of `a`).  
+If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce null.  
+If `b` is `p.n.a` ([=, irregular form of ^=](/doc/hoon/lan/rune/#wutgar)) test the `++gor` of `b` and `p.n.a` with [?:](/doc/hoon/lan/rune/#wutcol).  
 If the `++gor` is `%.y`, produce a tuple recursing with `a` set to `l.a` in the middle value. If the `++hor` is `%.n` produce a tuple recursing with `a` set to `r.a` (`$(a r.a)`) in the last value.  
-If `b` is not `p.n.a` A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^-]()) to either null or the [bunt]() of `a`, `?(~ _a)`.  
+If `b` is not `p.n.a` A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to either null or the [bunt](/doc/hoon/lan/tile/#bunt) of `a`, `?(~ _a)`.  
 If `l.a` is null, produce `r.a`.  
 If `r.a` is null, produce `l.a`.  
 If the `++vor` of `p.n.l.a` and `p.n.r.a` is `%.y` produce a tuple replacing `l.a` with `r.l.a` in the final value.  
@@ -482,8 +482,8 @@ Otherwise produce a tuple replacing `r.a` with `l.r.a` in the middle value.
 `+-dig` takes any noun `b` and produces the axis of `b` within the values (`p.a`) of map `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
-    ~talsur-todres/try=> (~(dig by b) 'b')
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> (~(dig by b) `b`)
     [~ 2]
 
 ###Summary
@@ -496,13 +496,13 @@ Otherwise produce a tuple replacing `r.a` with `l.r.a` in the middle value.
       ?:  (gor b p.n.a)
         $(a l.a, c (peg c 6))
       $(a r.a, c (peg c 7))
-`+-dig` creates a [dry %gold gate |=]() that takes any noun `b`.  
+`+-dig` creates a [dry %gold gate |=](/doc/hoon/lan/rune/#bartis) that takes any noun `b`.  
 `c` is pushed on to the subject with `=+` and set to `1`.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast to a `++unit` atom.  
-If `a` is null, produce null ([?~]()).  
-If `b` is `p.n.a` ([?:]()) produce a `++unit` with `u=(peg c 2)`. See also: [++peg]().  
-If the `++gor` of `b` and `p.n.a` is `%.y`, recurse with `a` set to `l.a` and `c` set to `(peg c 6)`. See also: [++peg]().  
-Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [++peg]().  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast to a `++unit` atom.  
+If `a` is null, produce null ([?~](/doc/hoon/lan/rune/#wutsig)).  
+If `b` is `p.n.a` ([?:](/doc/hoon/lan/rune/#wutcol)) produce a `++unit` with `u=(peg c 2)`. See also: [++peg](/doc/hoon/lib/#++peg).  
+If the `++gor` of `b` and `p.n.a` is `%.y`, recurse with `a` set to `l.a` and `c` set to `(peg c 6)`. See also: [++peg](/doc/hoon/lib/#++peg).  
+Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [++peg](/doc/hoon/lib/#++peg).  
 
 
 <h2 id="gas:y">gas:y</h2>
@@ -511,10 +511,10 @@ Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [+
 `+-gas` takes a list `b` of cells of any noun and produces a new map with the members of `b` added to `a`.
 
 ###Examples
-    ~talsur-todres/try=> =a (mo `(list ,[@t *])`[['a' 1] ['b' 2] ~])
-    ~talsur-todres/try=> =b `(list ,[@t *])`[['c' 3] ['d' 4] ~]
+    ~talsur-todres/try=> =a (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+    ~talsur-todres/try=> =b `(list ,[@t *])`[[`c` 3] [`d` 4] ~]
     ~talsur-todres/try=> (~(gas by a) b)
-    {[p='d' q=4] [p='a' q=1] [p='c' q=3] [p='b' q=2]}
+    {[p=`d` q=4] [p=`a` q=1] [p=`c` q=3] [p=`b` q=2]}
 
 ###Summary
     +-  gas
@@ -525,12 +525,12 @@ Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [+
       ?@  b
         a
       $(b t.b, a (put(+< a) p.i.b q.i.b))
-`+-gas` is a [jetted arm (~/)]().  
-`+-gas` creates a [wet vulcanized gate |*]() that takes a `++list` of cells of any noun `[p=* q=*]`.  
-`b` is cast (using `) to a list of the same type as the members of `a` and used as the subject for the remainder using [=>]().
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast to the type of `a` (a set).  
-If `b` is an atom ([?@]()), produce `a`.  
-Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](), below.
+`+-gas` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-gas` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) that takes a `++list` of cells of any noun `[p=* q=*]`.  
+`b` is cast (using `) to a list of the same type as the members of `a` and used as the subject for the remainder using [=>](/doc/hoon/lan/rune/#tisgar).
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast to the type of `a` (a set).  
+If `b` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce `a`.  
+Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](/doc/hoon/lib/#put:in), below.
 
 
 <h2 id="get:y">get:by</h2>
@@ -539,8 +539,8 @@ Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See a
 `+-get` takes any noun `b` and produces the value (`q.a`) at key (`p.a`) `b` or ~ if the key doesn't exist.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
-    ~talsur-todres/try=> (~(get by b) 'b')
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> (~(get by b) `b`)
     [~ [2 3]]
 
 ###Summary
@@ -555,11 +555,11 @@ Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See a
       ?:  (gor b p.n.a)
         $(a l.a)
       $(a r.a)
-`+-get` is a [jetted arm (~/)]().  
-`+-get` creates a [wet vulcanized gate |*]() that takes accepts any noun `b`.  
+`+-get` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-get` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) that takes accepts any noun `b`.  
 
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast to null or a `++unit` where the `u` is of the same type as `q.n.a`.
-If `a` is an atom, produce null ([?@]()).
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast to null or a `++unit` where the `u` is of the same type as `q.n.a`.
+If `a` is an atom, produce null ([?@](/doc/hoon/lan/rune/#wutpam)).
 If `b` is `p.n.a` produce `[~ u=p.n.a]`.
 If the `++gor` of `b` and `p.n.a` is `%.y` recurse with `a` set to `l.a`.
 Otherwise, recurse with `a` set to `r.a`.
@@ -571,10 +571,10 @@ Otherwise, recurse with `a` set to `r.a`.
 `+-has` takes any noun `b` and produces a loobean whether that key (`p.a`) exists in `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
-    ~talsur-todres/try=> (~(has by b) 'b')
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> (~(has by b) `b`)
     %.y
-    ~talsur-todres/try=> (~(has by b) 'c')
+    ~talsur-todres/try=> (~(has by b) `c`)
     %.n
 
 ###Summary
@@ -582,9 +582,9 @@ Otherwise, recurse with `a` set to `r.a`.
       ~/  %has
       |*  b=*
       !=(~ (get(+< a) b))
-`+-has` is a [jetted arm (~/)]().  
-`+-has` creates a [wet vulcanized gate |*]() that takes accepts any noun `b`.  
-`+-has` produces the result of `+-get` `b` as a twig using [!=]().
+`+-has` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-has` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) that takes accepts any noun `b`.  
+`+-has` produces the result of `+-get` `b` as a twig using [!=](/doc/hoon/lan/rune/#zaptis).
   
 
 <h2 id="mar:by">mar:by</h2>
@@ -609,9 +609,9 @@ If you send it null, it deletes if you send it a value it adds
 `+-put` takes a cell of two nouns `[b=* c=*]` and produces the map `a` with added `[b=* c=*]`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
-    ~talsur-todres/try=> (~(put by b) 'c' 1)
-    {[p='a' q=1] [p='c' q=1] [p='b' q=[2 3]]}
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> (~(put by b) `c` 1)
+    {[p=`a` q=1] [p=`c` q=1] [p=`b` q=[2 3]]}
 
 ###Summary
     +-  put
@@ -635,20 +635,20 @@ If you send it null, it deletes if you send it a value it adds
       ?:  (vor p.n.a p.n.d)
         [n.a l.a d]
       [n.d [n.a l.a l.d] r.d]
-`+-put` is a [jetted arm (~/)]().  
-`+-put` creates a [wet vulcanized gate |*]() which accepts a cell of any two nouns, `[b=* c=*]`.
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast ([^+]()) to type of `a` (a map).  
-If `a` is an atom ([?@]()) produce `[[b c] ~ ~]`.
+`+-put` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`+-put` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts a cell of any two nouns, `[b=* c=*]`.
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^+](/doc/hoon/lan/rune/#ketlus)) to type of `a` (a map).  
+If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)) produce `[[b c] ~ ~]`.
 If `b` is `p.n.a` and `c` is `q.n.a`, produce `a`.
 If `b` is `p.n.a` and `c` is not `q.n.a`, produce `[[b c] l.a r.a]`.
-If the `++gor` of `b` and `p.n.a` is `%.y` ([?:]()),  
+If the `++gor` of `b` and `p.n.a` is `%.y` ([?:](/doc/hoon/lan/rune/#wutcol)),  
 `d` is pushed on to the subject with `=+` and set to the containing gate called with `a` set to `l.a`.  
-[?>]() asserts that `d` is not `^`.  
+[?>](/doc/hoon/lan/rune/#wutgar) asserts that `d` is not `^`.  
 If the `++vor` of `p.n.a` and `p.n.d` is `%.y`, produce `[n.a d r.a]`.  
 Otherwise produce `[n.d l.d [n.a r.d r.a]]`.  
-If the `++hor` of `b` and `n.a` is `%.n` ([?:]()),  
+If the `++hor` of `b` and `n.a` is `%.n` ([?:](/doc/hoon/lan/rune/#wutcol)),  
 `d` is pushed on to the subject with `=+` and set to the gate called with `a` set to `r.a`.  
-[?>]() asserts that `d` is not `^`.  
+[?>](/doc/hoon/lan/rune/#wutgar) asserts that `d` is not `^`.  
 If the `++vor` of `p.n.a` and `p.n.d` is `%.y`, produce `[n.a l.a d]`.  
 Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
 
@@ -658,7 +658,7 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
 `+-rep` walks through the map `a` replacing `b` with the product of calling `c` with `n.a` and `b`.
 
 ###Examples
-    ~talsur-todres/try=> =a (~(gas by *(map ,@ ,@)) ['a' 1] ['b' 2] ~)
+    ~talsur-todres/try=> =a (~(gas by *(map ,@ ,@)) [`a` 1] [`b` 2] ~)
     ~talsur-todres/try=> a
     {[p=97 q=1] [p=98 q=2]}
     ~talsur-todres/try=> (~(rep by a) 0 |=([a=[p=@t q=@] b=@] (add q.a b)))
@@ -689,7 +689,7 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
       =+  e=$(a l.a, b -.d)
       =+  f=$(a r.a, b -.e)
       [-.f [n.a +.e +.f]]
-`+-rib` creates a [wet vulcanized gate |*]() which accepts a cell of any two nouns, `[b=* c=*]`.
+`+-rib` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts a cell of any two nouns, `[b=* c=*]`.
 
 
 <h2 id="run:by">run:by</h2>
@@ -698,9 +698,9 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
 `+-run` takes a gate `b`. `+-run` walks through the map `a` and produces a null-terminated tuple with `[p.n.a (b q.n.a)]`.
 
 ###Examples
-    ~talsur-todres/try=>  =b (mo `(list ,[@t *])`[['a' 97] ['b' 98] ~])  
+    ~talsur-todres/try=>  =b (mo `(list ,[@t *])`[[`a` 97] [`b` 98] ~])  
     ~talsur-todres/try=> (~(run by b) ,@t)
-    [['b' 'b'] [['a' 'a'] ~ ~] ~]
+    [[`b` `b`] [[`a` `a`] ~ ~] ~]
 
 ###Summary
     +-  run
@@ -708,9 +708,9 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
       |-
       ?~  a  a
       [[p.n.a (b q.n.a)] $(a l.a) $(a r.a)]
-`+-run` creates a [wet vulcanized gate |*]() which accepts any gate, `b`.  
-A dry `%gold` gate is created and kicked with [|-]().  
-If `a` is null, return `a` ([?~]()).
+`+-run` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts any gate, `b`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep).  
+If `a` is null, return `a` ([?~](/doc/hoon/lan/rune/#wutsig)).
 Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called with `a` replaced by `l.a` and the containing gate called with `a` replaced by `r.a`.
   
 
@@ -719,10 +719,10 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
 ####Listify
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 97] ['b' 98] ~])
-    ~talsur-todres/try=> =c `(list ,[@t @])`[['d' 4] ['e' 5] ~]
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 97] [`b` 98] ~])
+    ~talsur-todres/try=> =c `(list ,[@t @])`[[`d` 4] [`e` 5] ~]
     ~talsur-todres/try=> (~(tap by b) c)
-    ~[[p='b' q=98] [p='a' q=97] [p='d' q=4] [p='e' q=5]]
+    ~[[p=`b` q=98] [p=`a` q=97] [p=`d` q=4] [p=`e` q=5]]
 
 ###Summary
     +-  tap
@@ -740,10 +740,10 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
 `+-wyt` produces the depth of `a`.
 
 ###Examples
-    ~talsur-todres/try=>  =a (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+    ~talsur-todres/try=>  =a (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
     ~talsur-todres/try=> ~(wyt by a)
     3
-    ~talsur-todres/try=> =a (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ['c' [4 5]] ~])
+    ~talsur-todres/try=> =a (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] [`c` [4 5]] ~])
     ~talsur-todres/try=> ~(wyt by a)
     4
 
@@ -753,9 +753,9 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
       |-  ^-  @
       ?~(a 0 +((add $(a l.a) $(a r.a))))
     --
-[.+]() increments our subject.
-A dry `%gold` gate is created and kicked with [|-]() and the subject is cast ([^-]()) to an atom.
-If `a` is null ([?~]()), produce `0`.
+[.+](/doc/hoon/lib/#dotlus) increments our subject.
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the subject is cast ([^-](/doc/hoon/lan/rune/#kethep)) to an atom.
+If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce `0`.
 Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` and `a` replaced with `r.a`.
 
 
@@ -776,7 +776,7 @@ Note: `++to` is not used alone, but is used to call the arms it contains.
 ###Summary
     ++  to                                                  ::  queue engine
       |/  a=(qeu)
-`++to` creates a [vulcanized %gold tray]() that takes a qeu `a`.
+`++to` creates a [vulcanized %gold tray](/doc/hoon/lan/rune/#barfas) that takes a qeu `a`.
 The wet (+-) arms below inherit the sample `a`.
 
 
@@ -824,8 +824,8 @@ The wet (+-) arms below inherit the sample `a`.
       |-  ^-  @
       ?~  a  0
       +((max $(a l.a) $(a r.a)))
-`+-dep` creates a dry `%gold` gate kicks it with [|-]() and the result is cast ([^-]()) to an atom.  
-If `a` is null ([?~]()), produce 0.
+`+-dep` creates a dry `%gold` gate kicks it with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to an atom.  
+If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce 0.
 Otherwise produce the `++max` of the containing gate called with `a` replaced with `l.a` and `a` replaced with `r.a`.
 Increment that product using `+`, the irregular form of `.+`.
 
@@ -848,9 +848,9 @@ Increment that product using `+`, the irregular form of `.+`.
       |=  b=(list ,_?>(?=(^ a) n.a))
       |-  ^+  a
       ?~(b a $(b t.b, a (put(+< a) i.b)))
-`+-gas` creates a [dry %gold gate |=]() that takes any `++list` `b` whose members resemble the `n.a` in `a`.  
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast to the type of `a` (a qeu) using `^+`.  
-If `b` is null, produce `a` ([?~]()).
+`+-gas` creates a [dry %gold gate |=](/doc/hoon/lan/rune/#bartis) that takes any `++list` `b` whose members resemble the `n.a` in `a`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast to the type of `a` (a qeu) using `^+`.  
+If `b` is null, produce `a` ([?~](/doc/hoon/lan/rune/#wutsig)).
 Otherwise, call the containing gate replacing `b` with `t.b` and `a` with `(put(+< a) i.b)`.
 See `+-put` below.
 
@@ -877,12 +877,12 @@ See `+-put` below.
       ?:  |(?=(~ q.b) (vor n.a n.q.b))
         [n.a l.a q.b]
       [n.q.b [n.a l.a l.q.b] r.q.b]
-A dry `%gold` gate is created and kicked with [|-]() and the result is cast using [^+]()to a cell where `p` resembles `n.a` and `q` resmbles `a`.  
-If `a` is null ([?~]()), produce a crash ([!!]()).  
-If `r.a` is null ([?~]()), produce `[n.a l.a]`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast using [^+](/doc/hoon/lan/rune/#ketlus)to a cell where `p` resembles `n.a` and `q` resmbles `a`.  
+If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce a crash ([!!](/doc/hoon/lan/rune/#zapzap)).  
+If `r.a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce `[n.a l.a]`.  
 `b` is pushed on to the subject using `=+` and set to the containing gate called with `a` replaced with `r.a`.  
-[:-]() is used to produce our final result, p.b and:
-If ([?:]()) `q.b` is null ([?=]()) or ([|, irregular form of ?|]()) the `++vor` of `n.a` and `n.q.b` is `%.y`.  
+[:-](/doc/hoon/lan/rune/#c is used to produce our final result, p.b and:
+If ([?:](/doc/hoon/lan/rune/#wutcol)) `q.b` is null ([?=](/doc/hoon/lan/rune/#wuttis)) or ([|, irregular form of ?|](/doc/hoon/lan/rune/#wutbar) the `++vor` of `n.a` and `n.q.b` is `%.y`.  
 Otherwise, produce `[n.q.b [n.a l.a l.q.b] r.q.b]`.
 
 
@@ -909,9 +909,9 @@ Otherwise, produce `[n.q.b [n.a l.a l.q.b] r.q.b]`.
       ?:  =(~ l.a)  r.a
       =+  b=get(+< l.a)
       bal(+< ^+(a [p.b q.b r.a]))
-`+-nap` asserts that `a` is ([?=]()) not ([?>]()) `^`.
-If [?:]() `l.a` is null, produce `r.a`.
-`b` is pushed on to the subject using [=+]() and set to `get(+< l.a)`
+`+-nap` asserts that `a` is ([?=](/doc/hoon/lan/rune/#wuttis)) not ([?>](/doc/hoon/lan/rune/#wutgar)) `^`.
+If [?:](/doc/hoon/lan/rune/#wutcol) `l.a` is null, produce `r.a`.
+`b` is pushed on to the subject using [=+](/doc/hoon/lan/rune/#tislus) and set to `get(+< l.a)`
 `bal(+< ^+(a [p.b q.b r.a]))`
 
 
@@ -932,8 +932,8 @@ If [?:]() `l.a` is null, produce `r.a`.
       ?~  a
         [b ~ ~]
       bal(+< a(l $(a l.a)))
-`+-put`creates a [wet vulcanized gate |*]() which accepts any noun, `b`.  
-A dry `%gold` gate is created and kicked with [|-]() and the product is cast using [^+]() to the type of `a` (a qeu).  
+`+-put`creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts any noun, `b`.  
+A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the product is cast using [^+](/doc/hoon/lan/rune/#ketlus) to the type of `a` (a qeu).  
 If `a` is null, produce `[b ~ ~]`.
 Otherwise, produce `bal(+< a(l $(a l.a)))`.
 
@@ -955,8 +955,8 @@ Otherwise, produce `bal(+< a(l $(a l.a)))`.
       ?~  a
         b
       $(a r.a, b [n.a $(a l.a)])
-`+-tap` creates a [dry %gold gate |=]() that takes a `++list` whose tile corresponds to the icon of `n.a`.
-The product is cast using [^+]() to the type of `b`.
+`+-tap` creates a [dry %gold gate |=](/doc/hoon/lan/rune/#bartis) that takes a `++list` whose tile corresponds to the icon of `n.a`.
+The product is cast using [^+](/doc/hoon/lan/rune/#ketlus) to the type of `b`.
 If `a` is null, produce `b`.
 Recurse, replacing `a` with `r.a` and `b` with the cell `n.a` and the containing gate called with `a` replaced with `l.a`.
 
@@ -976,8 +976,8 @@ Recurse, replacing `a` with `r.a` and `b` with the cell `n.a` and the containing
       |-  ^-  (unit ,_?>(?=(^ a) n.a))
       ?~  a  ~
       ?~(r.a [~ n.a] $(a r.a))
-`+-top` creates a dry `%gold` gate and kicks it with [|-]() and the product is cast using [^-]() to a unit whose `u` has the same icon as `n.a`.
-If `a` is null ([?@]()), produce null. 
+`+-top` creates a dry `%gold` gate and kicks it with [|-](/doc/hoon/lan/rune/barhep) and the product is cast using [^-](/doc/hoon/lan/rune/#kethep) to a unit whose `u` has the same icon as `n.a`.
+If `a` is null ([?@](/doc/hoon/lan/rune/#wutpam)), produce null. 
 If `r.a` is null, produce `[~ n.a]`.
 Otherwise recurse, replacing `a` with `r.a`.
   
@@ -990,8 +990,8 @@ Otherwise recurse, replacing `a` with `r.a`.
 `++mo` takes a `++list` of cells `a` and produces a `map` with the members of `a`.
 
 ###Examples
-    ~talsur-todres/try=> (mo `(list ,[@t *])`[['a' 1] ['b' 2] ~])
-    {[p='a' q=1] [p='b' q=2]}
+    ~talsur-todres/try=> (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+    {[p=`a` q=1] [p=`b` q=2]}
 
 ###Summary
     ++  mo                                                  ::  make a map
@@ -1009,8 +1009,8 @@ Otherwise recurse, replacing `a` with `r.a`.
 ###Examples
     ~talsur-todres/try=> (sa `(list ,@)`[1 2 3 4 5 ~])
     {5 4 1 3 2}
-    ~talsur-todres/try=> (sa `(list ,[@t *])`[['a' 1] ['b' 2] ~])
-    {['a' 1] ['b' 2]}
+    ~talsur-todres/try=> (sa `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+    {[`a` 1] [`b` 2]}
 
 ###Summary
     ++  sa                                                  ::  make a set

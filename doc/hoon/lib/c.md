@@ -33,17 +33,17 @@ sort: 4
         1                                                   ::  then, produce 1
       (mul 2 $(a (dec a)))                                  ::  mul 2*2 n times 
 
-`++bex` is a [jetted arm (~/)]().  
-`++bex` creates a dry `%gold` gate using [|=](), which accepts an atomic sample `a`, [axil @](), with [=, the irregular form of ^=]().  
-The result of `++bex` is then cast to an atom with [^-]().  
+`++bex` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++bex` creates a dry `%gold` gate using [|=](/doc/hoon/lan/rune/#bartis), which accepts an atomic sample `a`, [axil @](/doc/hoon/lan/tile/#axil), with [^=](/doc/hoon/lan/rune/#kettis).  
+The result of `++bex` is then cast to an atom with [^-](/doc/hoon/lan/rune/#kethep).  
 If `a` is equal to 0, `++bex` produces 1.  
-Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` replaced by [dec a]().  
+Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` replaced by [dec a](/doc/hoon/lib/#++dec).  
 
 
 <h2 id="++can">++&nbsp;&nbsp;can</h2>
 
 ####Assemble
-`++can` accepts a bloq `a` and a list of cells `b`. `++can` assembles the tails of 'q'; the length of the tail is 'p' number of bloqs of size 'a'.
+`++can` accepts a bloq `a` and a list of cells `b`. `++can` assembles the tails of `q`; the length of the tail is `p` number of bloqs of size `a`.
 
 ###Examples
 
@@ -70,13 +70,13 @@ Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` re
         0                                                   ::  then, return 0
       (mix (end a p.i.b q.i.b) (lsh a p.i.b $(b t.b)))      ::  else,
 
-`++can` is a [jetted arm (~/)]().  
-`++can` takes a [bloq]() `a` and [list]() `b` using [=, the irregular form of ^=]().  
-The result is cast to an atom with [^-]().  
-If 'b' is null ([?~]()) `++can` produces 0.    
+`++can` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++can` takes a [bloq](/doc/hoon/lib/#++bloq) `a` and [list](/doc/hoon/lib/#++list) `b` using [^=](/doc/hoon/lan/rune/#kettis).  
+The result is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep).  
+If `b` is null ([?~](/doc/hoon/lan/rune/#wutsig)) `++can` produces 0.    
 Otherwise, `++can` calls `++mix` with two arguments:  
-1.`++end`, which produces the tail of the first 'q' in the list; the length of the tail is 'p' number of [bloqs]() of size 'a'.     
-2. `++lsh` with [bloq]() size 'a', the first 'p' of [list]() 'b', and the product of recursively calling ++can with the value of [list]() 'b' now set to its tail.
+1.`++end`, which produces the tail of the first `q` in the list; the length of the tail is `p` number of [bloqs](/doc/hoon/lib/#++bloq) of size `a`.     
+2. `++lsh` with [bloq](/doc/hoon/lib/#++bloq) size `a`, the first `p` of [list](/doc/hoon/lib/#++list) `b`, and the product of recursively calling `++can` with the value of [list](/doc/hoon/lib/#++list) `b` now set to its tail.
 
 
 <h2 id="++cat">++&nbsp;&nbsp;cat</h2>
@@ -115,16 +115,16 @@ Otherwise, `++can` calls `++mix` with two arguments:
           |=  [a=bloq b=@ c=@]                                  ::  gate, bloq, 2 @ sample
           (add (lsh a (met a b) c) b)                           ::  add b to c lshifted by # of bloqs in b
 
-`++cat` is a [jetted arm(~/)]().  
-`++cat` takes a [bloq]() 'a', and two atoms of [axil @]() labeled 'b' and 'c' with [=, the irregular form of ^=]().  
- ++cat uses [++met]() to measure the number of [bloqs]() of size 'a' that comprise 'b'.  
- 'c' is then left-shifted by the same number of [bloqs]() of size 'a', and then added ([++add]()) to 'b'.  
+`++cat` is a [jetted arm(~/)](/doc/hoon/lan/rune/#sigfas).  
+`++cat` takes a [bloq](/doc/hoon/lib/#++bloq) a', and two atoms of [axil @](/doc/hoon/lan/tile/#axil) labeled `b` and `c` with [^=](/doc/hoon/lan/rune/#kettis).  
+`++cat` uses [++met](/doc/hoon/lib/#++met) to measure the number of [bloqs](/doc/hoon/lib/#++bloq) of size `a` that comprise `b`.  
+`c` is then left-shifted ([++lsh](/doc/hoon/lib/#++lsh) by the same number of [bloqs](/doc/hoon/lib/#++bloq) of size `a`, and then added ([++add](/doc/hoon/lib/#++add)) to `b`.  
 
 <h2 id="++cut">++&nbsp;&nbsp;cut</h2>
 
 ####Slice
 `++cut` accepts a bloq `a`, a cell of atoms `b` and `c` and an atom `d`.
-`++cut` takes the [++tail]() of `d` right-shifted ([++rsh()) by a bloq of size `a`, `b` number of times.
+`++cut` takes the [tail](/doc/hoon/lib/#++tail) of `d` right-shifted ([++rsh](/doc/hoon/lib/#++rsh)) by a bloq of size `a`, `b` number of times.
 
 ###Examples
     ~ronrem-lonsem/try=> (cut 0 [1 1] 2)
@@ -147,10 +147,10 @@ Otherwise, `++can` calls `++mix` with two arguments:
       |=  [a=bloq [b=@ c=@] d=@]                            ::  gate, sample: bloq, cell of @, @
       (end a c (rsh a b d))
 
-`++cut` is a [jetted arm]().  
-`++cut` creates a dry %gold gate using [|=](), whose sample takes a [bloq]() `a`, a cell of two atoms of[axil @](), labeled `b` and `c` respectively, and an atom of [axil @](), labeled `d`.  
-All of these lables are produced by [=, the irregular form of ^=](). `++cut` then [right-shifts (++rsh)]() `d` by `b` number of bloqs of size `a`.  
-`++cut` calls the arm [++end]() to return the tail of the result of [right-shifting]() `d`.  
+`++cut` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++cut` creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) `a`, a cell of two atoms of[axil @](/doc/hoon/lan/tile/#axil), labeled `b` and `c` respectively, and an atom of [axil @](/doc/hoon/lan/tile/#axil), labeled `d`.  
+All of these lables are produced by [^=](/doc/hoon/lan/rune/#kettis). `++cut` then right-shifts [(++rsh)](/doc/hoon/lib/#++rsh) `d` by `b` number of bloqs of size `a`.  
+`++cut` calls the arm [++end](/doc/hoon/lib/ #++end) to return the tail of the result of [right-shifting](/doc/hoon/lib/#++rsh) `d`.  
 The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 <h2 id="++end">++&nbsp;&nbsp;end</h2>
@@ -182,13 +182,13 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       |=  [a=bloq b=@ c=@]                                  ::  gate, bloq, 2 @ sample
       (mod c (bex (mul (bex a) b)))                         ::  c % 2^(2^a * b)
 
-++end is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes a [bloq]() and two atoms of [axil @](), labeled 'b' and 'c' with [=, the irregular form of ^=](). ++end returns the remainder of dividing c by the result of [++bex]() of [++bex]() multiplied by b.
+`++end` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) and two atoms of [axil @](/doc/hoon/lan/tile/#axil), labeled `b` and `c` with [^=](/doc/hoon/lan/rune/#kettis). `++end` returns the remainder of dividing c by the result of [++bex](/doc/hoon/lib/#++bex)  of [++bex](/doc/hoon/lib/#++bex)  multiplied by `b`.
 
 
 <h2 id="++lsh">++&nbsp;&nbsp;lsh</h2>
 
 ####Left shift
-++lsh takes a bloq a and atoms b and c. ++lsh produces c shifted 'b' bloqs of size 'a' to the left.
+`++lsh` takes a bloq `a` and atoms `b` and `c`. `++lsh` produces c shifted `b` bloqs of size `a` to the left.
 
 ###Examples
     ~ronrem-lonsem/try=> `@ub`1
@@ -210,13 +210,13 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       ~/  %lsh                                              ::  jet
       |=  [a=bloq b=@ c=@]                                  ::  gate, bloq, 2 @ sample
       (mul (bex (mul (bex a) b)) c)                         ::  c * (2^(2^a * b))
-++lsh is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes a [bloq]() and two atoms of [axil @](), labeled 'b' and 'c' with [=, the irregular form of ^=](). ++lsh multiplies 'c' by the result of [++bex]() of the product of [++bex]() of 'a' multiplied by 'b'.
+`++lsh` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) and two atoms of [axil @](/doc/hoon/lan/tile/#axil), labeled `b` and `c` with [^=](/doc/hoon/lan/rune/#kettis). `++lsh` multiplies `c` by the result of [++bex](/doc/hoon/lib/#++bex)  of the product of [++bex](/doc/hoon/lib/#++bex)  of `a` multiplied by `b`.
 
 
 <h2 id="++met">++&nbsp;&nbsp;met</h2>
 
 ####Measure
-++met accepts a bloq a and an atom b. ++met produces a count of bloqs of size 'a' in atom 'b'.
+`++met` accepts a bloq `a` and an atom `b`. `++met` produces a count of bloqs of size `a` in atom `b`.
 
 ###Examples
     ~ronrem-lonsem/try=> (met 0 1)
@@ -240,7 +240,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         c                                                   ::  then return c
       $(b (rsh a 1 b), c +(c))                              ::  sub values, recurse
 
-++met is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes a [bloq]() and an atom of [axil @](), labeled 'b' with [=, the irregular form of ^=](). ++met uses [^-]() to cast its result to an atom of [axil @](), and uses [=+]() to push a variable 'c' onto the sample with a value of 0. Then ++met declares a [trap]() to enable recursion. If 'b' is equal to 0, then 'c' is returned. Otherwise, ++met recurses, this time with the value of 'b' set to the result of right-shifting ([++rsh]()) 'b' by one bloq of size 'a' to the right, with with the value of c set to +(c) [.+](). When the value of 'b' reaches 0, ++met returns the value of 'c', which will represent the number of bloqs of size 'a' b initially posessed.
+`++met` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) and an atom of [axil @](/doc/hoon/lan/tile/#axil), labeled `b` with [^=](/doc/hoon/lan/rune/#kettis). `++met` uses [^-](/doc/hoon/lan/rune/#kethep) to cast its result to an atom of [axil @](/doc/hoon/lan/tile/#axil), and uses [=+](/doc/hoon/lan/rune/#tislus) to push a variable `c` onto the sample with a value of 0. Then `++met` declares a trap with [|-](/doc/hoon/lan/rune/#barhep) to enable recursion. If `b` is equal to 0, then `c` is returned. Otherwise, `++met` recurses, this time with the value of `b` set to the result of right-shifting ([++rsh](/doc/hoon/lib/#++rsh)) `b` by one bloq of size `a` to the right, with with the value of c set to +(c) [.+](/doc/hoon/lib/#dotlus). When the value of `b` reaches 0, `++met` returns the value of `c`, which will represent the number of bloqs of size `a` b initially posessed.
 
 
 <h2 id="++rap">++&nbsp;&nbsp;rap</h2>
@@ -264,7 +264,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         0
       (con (lsh a c (end a 1 i.b)) $(c +(c), b t.b))
 
-++rep is a [jetted arm]() that takes a [bloq]() and [list](), labeled 'a' and 'b' respectively using [=, the irregular form of ^=](). ++rep casts its result to an atom using [^-]() and then, using [=+](), it pushes a variable 'c' onto the sample and sets its value equal to 0. In order to loop, ++rep then declares a [trap]() using [|-](). The trap uses [?@]() to test whether 'b' is an atom or not. If yes, ++rep returns 0. Otherwise, ++rep returns ++con, which it passes two arguments: 1. ++lsh with [bloq]() size 'a', number of times 'c', and the [tail] of the head of 'b'; and, 2.  
+`++rep` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) that takes a [bloq](/doc/hoon/lib/#++bloq) and [list](/doc/hoon/lib/#++list), labeled `a` and `b` respectively using [^=](/doc/hoon/lan/rune/#kettis). `++rep` casts its result to an atom using [^-](/doc/hoon/lan/rune/#kethep) and then, using [=+](/doc/hoon/lan/rune/#tislus), it pushes a variable `c` onto the sample and sets its value equal to 0. In order to loop, `++rep` then declares a using [|-](/doc/hoon/lan/rune/barhep). The trap uses [?@](/doc/hoon/lan/rune/#wutpam) to test whether `b` is an atom or not. If yes, `++rep` returns 0. Otherwise, `++rep` returns [++con](/doc/hoon/lib/#++con), which it passes two arguments: 1. ++lsh with [bloq](/doc/hoon/lib/#++bloq) size `a`, number of times `c`, and the [tail](/doc/hoon/lib/#++end) of the head of `b`; and, 2.  
 
 
 <h2 id="++rip">++&nbsp;&nbsp;rip</h2>
@@ -279,7 +279,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 <h2 id="++rsh">++&nbsp;&nbsp;rsh</h2>
 
-++rsh takes a bloq a and atoms b and c. ++rsh produces c shifted 'b' bloqs of size 'a' to the right.
+`++rsh` takes a bloq `a` and atoms `b` and `c`. ++rsh produces `c` shifted `b` bloqs of size `a` to the right.
 
 ###Examples
     ~ronrem-lonsem/try=> `@ub`145
@@ -312,12 +312,12 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       |=  [a=bloq b=@ c=@]                                  ::  gate, bloq, 2 @ sample
       (div c (bex (mul (bex a) b)))                         ::  c / 2^(2^a * b)
 
-++rsh [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes a [bloq]() and two atoms, [axil @](), labeled 'b' and 'c' with [=, the irregular form of ^=](). ++rsh divides 'c' by the result of [++bex]() of the product of [++bex]() of 'a' multiplied by 'b'. 
+`++rsh` [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) and two atoms, [axil @](/doc/hoon/lan/tile/#axil), labeled `b` and `c` with [^=](/doc/hoon/lan/rune/#kettis). `++rsh` divides `c` by the result of [++bex](/doc/hoon/lib/#++bex)  of the product of [++bex](/doc/hoon/lib/#++bex)  of `a` multiplied by `b`. 
 
 
 <h2 id="++con">++&nbsp;&nbsp;con</h2>
 
-++con accepts two atoms a and b and performs an inclusive binary OR.
+`++con` accepts two atoms a and b and performs an inclusive binary OR.
 
 ###Examples
 
@@ -335,12 +335,12 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         c   +(c)                                            ::  c incremented
         d   (add d (lsh 0 c ?&(=(0 (end 0 1 a)) =(0 (end 0 1 b))))) Tall form?
 
-++con is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes two atoms, labeled 'a' and 'b' using [=, the irregular form of ^=](). ++con then pushes two atomic variables onto the subject, labeled 'a' and 'b' again by using [=](). With [^-](), ++con ensures its result is cast to an atom. Subsequently, ++con declares a [trap](), thus allowing it to loop. Using [?:]() and [?&](), ++con checks if both 'a' and 'b' are equal to 0. If yes, then ++con returns 'd'. Else, ++con uses the trap to loop, this time with the values of 'a' and 'b' both [right-shifted]() by one bit, and the value of 'c' now incremented using [+, the irregular form of .+](). The value of 'd'can also change: if either the last bit of 'a' (found using [++end]()) and the last bit of 'b' are equal ([.=]())to 0, then the value of 'd' becomes the sum of d and the result of left-shifting 1 by 'c' number of bits. Otherwise, d remains the same.     
+`++con` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes two atoms, labeled `a` and `b` using [^=](/doc/hoon/lan/rune/#kettis). `++con` then pushes two atomic variables onto the subject, labeled `a` and `b` again by using [=, the irregular form of ^=](/doc/hoon/lan/rune/#kettis). With [^-](/doc/hoon/lan/rune/#kethep), `++con` ensures its result is cast to an atom. Subsequently, `++con` declares a trap with [|=](/doc/hoon/lan/rune/#bartis)), thus allowing it to loop. Using [?:](/doc/hoon/lan/rune/#wutcol) and [?&](/doc/hoon/lan/rune/#wutpam), `++con` checks if both `a` and `b` are equal to 0. If yes, then `++con` returns `d`. Else, `++con` uses the trap to loop, this time with the values of `a` and `b` both [right-shifted](/doc/hoon/lib/#++rsh) by one bit, and the value of `c` now incremented using [+, the irregular form of .+](/doc/hoon/lan/rune/#dotlus). The value of `d`can also change: if either the last bit of `a` (found using [++end](/doc/hoon/lib/#++end)) and the last bit of `b` are equal ([.=](/doc/hoon/lan/rune/#dottis))to 0, then the value of `d` becomes the sum of `d` and the result of left-shifting 1 by `c` number of bits. Otherwise, `d` remains the same.     
 
 
 <h2 id="++dis">++&nbsp;&nbsp;dis</h2>
 
-++dis accepts two atoms a and b and performs a binary AND.
+`++dis` accepts two atoms a and b and performs a binary AND.
 
 ###Examples
 
@@ -376,12 +376,12 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         c   +(c)                                            ::  c incremented
         d   (add d (lsh 0 c ?|(=(0 (end 0 1 a)) =(0 (end 0 1 b)))))  :: Tall form?
 
-++dis is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes two atoms, labeled 'a' and 'b' using [=, the irregular form of ^=](). Then, using [=|](), two tiles, labeled 'c' and 'd', are [bunted]() onto the subject. In order to loop, ++dis then calls a trap with [|-](), whose result is cast to an atom with [^-](). The trap then uses an if statement by using [?:]():it uses [=, the irregular form of .= to check if either 'a' or 'b' is equal to 0 (the inclusive OR statement is called with [?|]()). If either statement returns true, then ++dis produces d. Otherwise, the trap loops, this time with the values of 'a' and 'b' both [right-shifted]() by one bit, and the value of 'c' now incremented with [+, the irregular form of .+](). The value of 'd'can also change: if neither the last bit of 'a' nor the last bit of 'b' are equal ([.=]())to 0, then the value of 'd' becomes the sum of d and the result ofleft-shifting 1 by 'c' number of bits. Otherwise, d remains the same.     
+`++dis` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes two atoms, labeled `a` and `b` using [^=](/doc/hoon/lan/rune/#kettis). Then, using [=|](/doc/hoon/lan/rune/#tisbar), two tiles, labeled `c` and `d`, are [bunted](/doc/hoon/lan/tile/#bunt) onto the subject. In order to loop, `++dis` then calls a trap with [|-](/doc/hoon/lan/rune/barhep), whose result is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep). The trap then uses an if statement by using [?:](/doc/hoon/lan/rune/#wutcol):it uses [=, the irregular form of .= to check if either `a` or `b` is equal to 0 (the inclusive OR statement is called with [?|](/doc/hoon/lan/rune/#wutbar). If either statement returns true, then `++dis` produces d. Otherwise, the trap loops, this time with the values of `a` and `b` both [right-shifted](/doc/hoon/lib/#++rsh) by one bit, and the value of `c` now incremented with [+, the irregular form of .+](/doc/hoon/lan/rune/#dotlus). The value of `d`can also change: if neither the last bit of `a` nor the last bit of `b` are equal ([.=](/doc/hoon/lan/rune/#dottis))to 0, then the value of `d` becomes the sum of d and the result ofleft-shifting 1 by `c` number of bits. Otherwise, d remains the same.     
 
 
 <h2 id="++mix">++&nbsp;&nbsp;mix</h2>
 
-++mix accepts two atoms a and b and performs an exclusive binary OR.
+`++mix` accepts two atoms a and b and performs an exclusive binary OR.
 
 ###Examples:
     ~ronrem-lonsem/try=> `@ub`2
@@ -406,7 +406,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       ^-  @                                                 ::  cast result to atom
       =+  [c=0 d=0]                                         ::  c=0, d=0 to sample
       |-                                                    ::  trap
-      ?:  ?&(=(0 a) =(0 b))                                 ::  If 'a' & 'b' are 0
+      ?:  ?&(=(0 a) =(0 b))                                 ::  If `a` & `b` are 0
         d                                                   ::  Then, return 0, (d)
       %=  $                                                 ::  Recall ++ mix with:
         a   (rsh 0 1 a)                                     ::  a r-shifted 1 bit
@@ -414,7 +414,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         c   +(c)                                            ::  c incremented
         d   (add d (lsh 0 c =((end 0 1 a) (end 0 1 b))))    ::  Tall form?
 
-++mix is a [jetted arm]() which creates a dry %gold gate using [|=](), whose sample takes two atoms, labeled 'a' and 'b' using [=, the irregular form of ^=](). ++mix then uses [^-]() to cast its result to an atom. ++mix then pushes two atomic variables onto the subject, labeled 'a' and 'b' again by using [^-](). Subsequently, ++mix declares a [trap](), thus allowing it to loop. Using [?:]() and [?&](), ++mix checks if both 'a' and 'b' are equal to 0. If yes, then ++mix returns 'd'. Else, ++mix uses the trap to loop, this time with the values of 'a' and 'b' both [right-shifted]() by one bit, and the value of 'c' now incremented using [+, the irregular form of .+](). The value of 'd' is also replaced with the sum of 'd' and the result of [=(), the irregular form of .=]() then [left-shifted]() by 1 bit 'c' number of times.
+`++mix` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes two atoms, labeled `a` and `b` using [^=](/doc/hoon/lan/rune/#kettis). `++mix` then uses [^-](/doc/hoon/lan/rune/#kethep) to cast its result to an atom. `++mix` then pushes two atomic variables onto the subject, labeled `a` and `b` again by using [^-](/doc/hoon/lan/rune/#kethep). Subsequently, `++mix` declares a trap with [|-](/doc/hoon/lan/rune/#barhep), thus allowing it to loop. Using [?:](/doc/hoon/lan/rune/#wutcol) and [?&](/doc/hoon/lan/rune/#wutpam), `++mix` checks if both `a` and `b` are equal to 0. If yes, then `++mix` returns `d`. Else, `++mix` uses the trap to loop, this time with the values of `a` and `b` both [right-shifted](/doc/hoon/lib/#++rsh) by one bit, and the value of `c` now incremented using [+, the irregular form of .+](/doc/hoon/lan/rune/#dotlus). The value of `d` is also replaced with the sum of `d` and the result of [=(), the irregular form of .=](/doc/hoon/lan/rune/#dottis) then [left-shifted](/doc/hoon/lan/rune/#++lsh) by 1 bit `c` number of times.
 
 #Noun orders
 

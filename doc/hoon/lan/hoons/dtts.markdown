@@ -8,7 +8,6 @@ title: dottis
 
 
 
-
 #[dottis, `.=`, %dtts](#dtts)
 
 ##Syntax

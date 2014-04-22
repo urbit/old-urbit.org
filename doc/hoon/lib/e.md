@@ -13,7 +13,7 @@ sort: 6
 
 ####Unpack an atom
 
-`++cue` is the inverse of [++jam](), which compresses a noun into an atom. `++jam` and `++cue` create a reversible mapping between nouns and atoms.
+`++cue` is the inverse of [++jam](/doc/hoon/lib/#++jam), which compresses a noun into an atom. [++jam](/doc/hoon/lib/++jam) and `++cue` create a reversible mapping between nouns and atoms.
 
 ###Examples
 
@@ -47,16 +47,16 @@ sort: 6
       [(add 2 p.d) (need (~(get by m) q.d)) m]
     ::
 
-`++cue` is a jetted function [`~/`]().
-`++cue` creates a [dry %gold gate]() that accepts an atomic sample labeled `a`, [`^=`]().  
-`++cue` produces a noun [`^-`]()
+`++cue` is a [jetted function (~/)](/doc/hoon/lib/#++sigfas).
+`++cue` creates a [dry %gold gate (|=)](/doc/hoon/lan/rune/#bartis) that accepts an atomic sample labeled `a`, [^=](/doc/hoon/lan/rune/#kettis).  
+`++cue` produces a noun [^-](/doc/hoon/lan/rune/#kettis)
 
 
 <h2 id="++jam">++&nbsp;&nbsp;jam</h2>
 
 ####Pack a noun 
 
-`++jam` compresses a noun into an atom , which can be decompressed with [`++cue`](#++cue). `++jam` and `++cue` create a reversible mapping between nouns and atoms.
+`++jam` compresses a noun into an atom , which can be decompressed with [++cue](/doc/hoon/lan/rune/#++cue). `++jam` and `++cue` create a reversible mapping between nouns and atoms.
 
 ###Examples
 
@@ -92,9 +92,9 @@ sort: 6
       [(add 2 p.d) (mix 3 (lsh 0 2 q.d)) m]
     ::
 
-`++jam` is a jetted function [~/]().  
-`++jam` creates a [dry %gold gate]() that accepts an atomic sample labeled `a`.[^=]().  
-`++jam` produces a noun [^-]().  
+`++jam` is a [jetted function (~/)](/doc/hoon/lan/rune/#++sigfas).  
+`++jam` creates a [dry %gold gate (|=)](/doc/hoon(/lan/rune/#bartis) that accepts an atomic sample labeled `a`.[^=](/doc/hoon/lan/rune/#kettis).  
+`++jam` produces a noun [^-](/doc/hoon/lan/rune/#kethep).  
 
 
 <h2 id="++mat">++&nbsp;&nbsp;mat</h2>
@@ -144,7 +144,7 @@ sort: 6
 
 ####Farther trace
 
-`++last` compares two `[line column]` pairs [`++hair`]() and produces the one that is farther along.   
+`++last` compares two `[line column]` pairs [++hair](/doc/hoon/lib/#++hair) and produces the one that is farther along.   
 
 ###Examples
 
@@ -166,11 +166,11 @@ sort: 6
 
 ####Trace newline
 
-`++lust` takes a character, [`++char`]() and sets a `[line column]` pair ([`++hair`]()) to the beginning of the next line if the character is a newline character (ASCII 10), otherwise it increments the column number. 
+`++lust` takes a character, [++char](/doc/hoon/lib/#++char) and sets a `[line, column]` pair ([++hair](/doc/hoon/lib/#++hair)) to the beginning of the next line if the character is a newline character (ASCII 10), otherwise it increments the column number. 
 
 ###Examples
 
-    ~midlys-rocpet/try=> (lust 'a' [1 1])
+    ~midlys-rocpet/try=> (lust `a` [1 1])
     [p=1 q=2]
     ~midlys-rocpet/try=> (lust `@t`10 [1 1])
     [p=2 q=1]
@@ -193,9 +193,9 @@ sort: 6
 
 ###Examples
 
-    ~midlys-rocpet/try=> ((cold %foo (just 'a')) [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
-    ~midlys-rocpet/try=> ((cold %foo (just 'a')) [[1 1] "bc"])
+    ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "bc"])
     [p=[p=1 q=1] q=~]
 
 ###Summary
@@ -220,14 +220,14 @@ sort: 6
 
 ###Examples
 
-    ~midlys-rocpet/try=> ((cook ,@ud (just 'a')) [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((cook ,@ud (just `a`)) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
-    ~midlys-rocpet/try=> ((cook ,@tas (just 'a')) [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((cook ,@tas (just `a`)) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ u=[p=%a q=[p=[p=1 q=2] q="bc"]]]]
-    ~midlys-rocpet/try=> ((cook |=(a=@ +(a)) (just 'a')) [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((cook |=(a=@ +(a)) (just `a`)) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ u=[p=98 q=[p=[p=1 q=2] q="bc"]]]]
-    ~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just 'a')) [[1 1] "abc"])
-    [p=[p=1 q=2] q=[~ u=[p='b' q=[p=[p=1 q=2] q="bc"]]]]
+    ~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just `a`)) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=`b` q=[p=[p=1 q=2] q="bc"]]]]
 
 
 ###Summary
@@ -290,11 +290,11 @@ sort: 6
 
 ###Examples
 
-    ~midlys-rocpet/try=> ((full (just 'a')) [[1 1] "ab"])
+    ~midlys-rocpet/try=> ((full (just `a`)) [[1 1] "ab"])
     [p=[p=1 q=2] q=~]
     ~midlys-rocpet/try=> ((full (jest 'ab')) [[1 1] "ab"])
     [p=[p=1 q=3] q=[~ u=[p='ab' q=[p=[p=1 q=3] q=""]]]]
-    ~midlys-rocpet/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
+    ~midlys-rocpet/try=> ((full ;~(plug (just `a`) (just `b`))) [[1 1] "ab"])
     [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
     ~midlys-rocpet/try=> 
 
@@ -373,9 +373,9 @@ Not used.
 
 ###Examples
 
-    ~midlys-rocpet/try=> ((just 'a') [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((just `a`) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
-    ~midlys-rocpet/try=> ((just 'b') [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((just `b`) [[1 1] "abc"])
     [p=[p=1 q=1] q=~]
 
 ###Summary
@@ -462,9 +462,9 @@ Not used.
 
 ###Examples
 
-    ~midlys-rocpet/try=> ((sear |=(a=* ?@(a (some a) ~)) (just 'a')) [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((sear |=(a=* ?@(a (some a) ~)) (just `a`)) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
-    ~midlys-rocpet/try=> ((sear |=(a=* ?@(a [~ u=a] ~)) (just 'a')) [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((sear |=(a=* ?@(a [~ u=a] ~)) (just `a`)) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
 
 ###Summary
@@ -491,11 +491,11 @@ Not used.
 
 ###Examples
 
-    ~midlys-rocpet/try=> ((shim 'a' 'z') [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((shim `a` 'z') [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
-    ~midlys-rocpet/try=> ((shim 'A' 'Z') [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((shim `a` 'Z') [[1 1] "abc"])
     [p=[p=1 q=1] q=~]
-    ~midlys-rocpet/try=> ((shim 'A' 'Z') [[1 1] "Abc"])
+    ~midlys-rocpet/try=> ((shim `a` 'Z') [[1 1] "Abc"])
     [p=[p=1 q=2] q=[~ [p=~~~41. q=[p=[p=1 q=2] q="bc"]]]]
 
 ###Summary
@@ -520,7 +520,7 @@ Not used.
 
 ###Examples
 
-    ~midlys-rocpet/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
+    ~midlys-rocpet/try=> ((stag %foo (just `a`)) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ u=[p=[%foo ~~a] q=[p=[p=1 q=2] q="bc"]]]]
 
 ###Summary
@@ -865,13 +865,13 @@ Not used.
     ++  gul  ;~(pose (cold 2 gal) (cold 3 gar))
     ++  gon  ;~(pose ;~(plug bas gay fas) (easy ~))
     ++  hex  (bass 16 (most gon hit))
-    ++  hig  (shim 'A' 'Z')
+    ++  hig  (shim `a` 'Z')
     ++  hit  ;~  pose
                dit
-               (cook |=(a=char (sub a 87)) (shim 'a' 'f'))
-               (cook |=(a=char (sub a 55)) (shim 'A' 'F'))
+               (cook |=(a=char (sub a 87)) (shim `a` 'f'))
+               (cook |=(a=char (sub a 55)) (shim `a` 'F'))
              ==
-    ++  low  (shim 'a' 'z')
+    ++  low  (shim `a` 'z')
     ++  mes  (cook |=([a=@ b=@] (add (mul 16 a) b)) ;~(plug hit hit))
     ++  nix  (boss 256 (star ;~(pose aln cab)))
     ++  nud  (shim '0' '9')
@@ -897,8 +897,8 @@ Not used.
              ==
     ++  vit
       ;~  pose
-        (cook |=(a=@ (sub a 65)) (shim 'A' 'Z'))
-        (cook |=(a=@ (sub a 71)) (shim 'a' 'z'))
+        (cook |=(a=@ (sub a 65)) (shim `a` 'Z'))
+        (cook |=(a=@ (sub a 71)) (shim `a` 'z'))
         (cook |=(a=@ (add a 4)) (shim '0' '9'))
         (cold 62 (just '-'))
         (cold 63 (just '+'))
@@ -922,7 +922,7 @@ Not used.
     ++  cass                                                ::  case-insensitive
       |=  vib=tape
       %+  rap  3
-      (turn vib |=(a=@ ?.(&((gte a 'A') (lte a 'Z')) a (add 32 a))))
+      (turn vib |=(a=@ ?.(&((gte a `a`) (lte a 'Z')) a (add 32 a))))
     ::
     ++  crip  |=(a=tape `@t`(rap 3 a))
     ++  mesc
@@ -958,7 +958,7 @@ Not used.
         |-  ^-  ?
         ?:  =(inx len)  &
         =+  cur=(cut 3 [inx 1] b)
-        ?&  ?|  &((gte cur 'a') (lte cur 'z'))
+        ?&  ?|  &((gte cur `a`) (lte cur 'z'))
                 &(=('-' cur) !=(0 inx) !=(len inx))
             ==
             $(inx +(inx))
@@ -967,8 +967,8 @@ Not used.
         |-  ^-  ?
         ?:  =(inx len)  &
         =+  cur=(cut 3 [inx 1] b)
-        ?&  ?|  &((gte cur 'a') (lte cur 'z'))
-                &((gte cur 'A') (lte cur 'Z'))
+        ?&  ?|  &((gte cur `a`) (lte cur 'z'))
+                &((gte cur `a`) (lte cur 'Z'))
                 |(=('-' cur) =('~' cur) =('_' cur) =('.' cur))
             ==
             $(inx +(inx))
@@ -1118,7 +1118,7 @@ Not used.
                 d  %+  add  (mul 16 d)
                    %+  sub  b
                    ?:  &((gte b '0') (lte b '9'))  48
-                   ?>(&((gte b 'a') (lte b 'z')) 87)
+                   ?>(&((gte b `a`) (lte b 'z')) 87)
              ==
         %'.'  ['.' $(a c)]
         %'~'  ['~' $(a c)]
@@ -1134,7 +1134,7 @@ Not used.
       =+  b=(teff a)
       =+  c=(turf (end 3 b a))
       =+  d=$(a (rsh 3 b a))
-      ?:  ?|  &((gte c 'a') (lte c 'z'))
+      ?:  ?|  &((gte c `a`) (lte c 'z'))
               &((gte c '0') (lte c '9'))
               =('-' c)
           ==
@@ -1273,8 +1273,8 @@ Not used.
       ++  sex  ;~(pose sed sox)
       ++  sib  (cook |=(a=@ (sub a '0')) (shim '0' '1'))
       ++  siq  ;~  pose
-                 (shim 'a' 'z')
-                 (shim 'A' 'Z')
+                 (shim `a` 'z')
+                 (shim `a` 'Z')
                  (shim '0' '9')
                  hep
                  (cold 32 dot)
@@ -1284,14 +1284,14 @@ Not used.
       ++  siv  ;~(pose sid sov)
       ++  siw  ;~(pose sid sow)
       ++  six  ;~(pose sid sox)
-      ++  sov  (cook |=(a=@ (sub a 87)) (shim 'a' 'v'))
+      ++  sov  (cook |=(a=@ (sub a 87)) (shim `a` 'v'))
       ++  sow  ;~  pose
-                 (cook |=(a=@ (sub a 87)) (shim 'a' 'z'))
-                 (cook |=(a=@ (sub a 29)) (shim 'A' 'Z'))
+                 (cook |=(a=@ (sub a 87)) (shim `a` 'z'))
+                 (cook |=(a=@ (sub a 29)) (shim `a` 'Z'))
                  (cold 62 (just '-'))
                  (cold 63 (just '~'))
                ==
-      ++  sox  (cook |=(a=@ (sub a 87)) (shim 'a' 'f'))
+      ++  sox  (cook |=(a=@ (sub a 87)) (shim `a` 'f'))
       ++  ted  (bass 10 ;~(plug sed (stun [0 2] sid)))
       ++  tip  (sear |=(a=@ (ins:po a)) til)
       ++  tiq  (sear |=(a=@ (ind:po a)) til)
@@ -1380,7 +1380,7 @@ Not used.
                 =>  ^+(. ?:(=(0 s.yug) . .(rex ['.' 's' (a-co s.yug)])))
                 =>  ^+(. ?:(=(0 m.yug) . .(rex ['.' 'm' (a-co m.yug)])))
                 =>  ^+(. ?:(=(0 h.yug) . .(rex ['.' 'h' (a-co h.yug)])))
-                =>  ^+(. ?:(=(0 d.yug) . .(rex ['.' 'd' (a-co d.yug)])))
+                =>  ^+(. ?:(=(0 d.yug) . .(rex ['.' `d` (a-co d.yug)])))
                 +.rex
               ==
             ::
@@ -1441,7 +1441,7 @@ Not used.
               =-  (weld p.gam ?:(=(0 q.p.lot) `tape`['0' ~] q.gam))
               ^=  gam  ^-  [p=tape q=tape]
               ?+  hay  [~ ((ox-co [10 3] |=(a=@ ~(d ne a))) q.p.lot)]
-                %b  [['0' 'b' ~] ((ox-co [2 4] |=(a=@ ~(d ne a))) q.p.lot)]
+                %b  [['0' `b` ~] ((ox-co [2 4] |=(a=@ ~(d ne a))) q.p.lot)]
                 %x  [['0' 'x' ~] ((ox-co [16 4] |=(a=@ ~(x ne a))) q.p.lot)]
                 %v  [['0' 'v' ~] ((ox-co [32 5] |=(a=@ ~(x ne a))) q.p.lot)]
                 %w  [['0' 'w' ~] ((ox-co [64 5] |=(a=@ ~(w ne a))) q.p.lot)]
@@ -1453,7 +1453,7 @@ Not used.
               $(yed 'u', q.p.lot (abs:si q.p.lot))
             ::
                 %t
-              ?:  =('a' hay)
+              ?:  =(`a` hay)
                 ?:  =('s' (cut 3 [2 1] p.p.lot))
                   (weld (rip 3 q.p.lot) rex)
                 ['~' '.' (weld (rip 3 (wack q.p.lot)) rex)]
@@ -1541,7 +1541,7 @@ Not used.
         ;~  pose
           ;~  pfix  (just '0')
             ;~  pose
-              (stag %ub ;~(pfix (just 'b') bay:ag))
+              (stag %ub ;~(pfix (just `b`) bay:ag))
               (stag %ux ;~(pfix (just 'x') hex:ag))
               (stag %uv ;~(pfix (just 'v') viz:ag))
               (stag %uw ;~(pfix (just 'w') wiz:ag))
@@ -1589,7 +1589,7 @@ Not used.
             %+  most
               dot
             ;~  pose
-              ;~(pfix (just 'd') (stag %d dim:ag))
+              ;~(pfix (just `d`) (stag %d dim:ag))
               ;~(pfix (just 'h') (stag %h dim:ag))
               ;~(pfix (just 'm') (stag %m dim:ag))
               ;~(pfix (just 's') (stag %s dim:ag))
@@ -1606,7 +1606,7 @@ Not used.
         %+  knee  *coin  |.  ~+
         %-  stew  
         ^.  stet  ^.  limo
-        :~  :-  ['a' 'z']  (cook |=(a=@ta [~ %tas a]) sym)
+        :~  :-  [`a` 'z']  (cook |=(a=@ta [~ %tas a]) sym)
             :-  ['0' '9']  (stag ~ bisk)
             :-  '-'        (stag ~ tash)
             :-  '.'        ;~(pfix dot perd)
@@ -2507,7 +2507,7 @@ Not used.
                 ?:  =(0 a)
                   &
                 =+  vis=(end 3 1 a)
-                ?&  ?|(=('-' vis) ?&((gte vis 'a') (lte vis 'z')))
+                ?&  ?|(=('-' vis) ?&((gte vis `a`) (lte vis 'z')))
                     $(a (rsh 3 1 a))
                 ==
             ==
@@ -2521,7 +2521,7 @@ Not used.
       ++  rt    `tape`['\'' (weld (mesc (trip a)) `tape`['\'' ~])]
       ++  rta   rt
       ++  rtam  `tape`['%' (trip a)]
-      ++  rub   `tape`['0' 'b' (rum 2 ~ |=(b=@ (add '0' b)))]
+      ++  rub   `tape`['0' `b` (rum 2 ~ |=(b=@ (add '0' b)))]
       ++  rud   (rum 10 ~ |=(b=@ (add '0' b)))
       ++  rum
         |=  [b=@ c=tape d=$+(@ @)]

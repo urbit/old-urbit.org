@@ -35,13 +35,13 @@ This chapter covers basic mathematical operations on natural numbers (atoms), su
         b                                                   ::  then produce b
       $(b +(b))                                             ::  else loop trap
 
-`++dec` is a [jetted arm (~/)](/doc/hoon/lan/hoons/sgfs).  
-`++dec` creates a dry `%gold` gate using [|=](), which accepts an atomic sample `a` of [axil @](/doc/hoon/lan/tile/#axil), with [=, the irregular form of ^=](/doc/hoon/lan/hoons/dtts).  
-If `a` is 0, `++dec` crashes [(?<)]() and a crash message of `%decrement-underflow` is inserted into the stack trace [(~|)]().  
-`b` is pushed on to the subject with [=+]() and set to `0` using [^=]().  
-A dry %gold trap is created using [|-](), and its product is cast to an atom with [^-]().  
-If ([?:]()) the value of `b` incremented ([+, irregular form of .+]()) is equal ([.=]()) to `a`, then `b` is produced.  
-Else, the `$` arm of the trap is activated ([%=]()), with the value of `b` set to `+(b)`.  
+`++dec` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).
+`++dec` creates a dry `%gold` gate using [|=](/doc/hoon/lan/rune/#bartis), which accepts an atomic sample `a` of [axil @](/doc/hoon/lan/tile/#axil), with [=, the irregular form of ^=](/doc/hoon/lan/rune/#kettis).  
+If `a` is 0, `++dec` crashes [(?<)](/doc/hoon/lan/rune/#wutgal) and a crash message of `%decrement-underflow` is inserted into the stack trace [(~|)](/doc/hoon/lan/rune/#sigbar).  
+`b` is pushed on to the subject with [=+](/doc/hoon/lan/rune/#tislus) and set to `0` using [^=](/doc/hoon/lan/rune/#kettis).  
+A dry %gold trap is created using [|-](/doc/hoon/lan/rune/barhep), and its product is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep).  
+If ([?:](/doc/hoon/lan/rune/#wutcol)) the value of `b` incremented ([+, irregular form of .+](/doc/hoon/lan/rune/#dotlus)) is equal ([.=](/doc/hoon/lan/rune/#dottis)) to `a`, then `b` is produced.  
+Else, the `$` arm of the trap is activated ([%=](/doc/hoon/lan/rune/#centis)), with the value of `b` set to `+(b)`.  
 
 
 <h2 id="++add">++&nbsp;&nbsp;add</h2>
@@ -66,11 +66,11 @@ Given two atoms `a` and `b`, `++add` counts `a` down to `0` and `b` up to `b` + 
         b                                                   ::  then, produce b
       $(a (dec a), b +(b))                                  ::  loop, a - 1, b + 1
 
-`++add` is a [jetted arm (~/)]().  
-`++add` creates a dry %gold gate [|=](), which accepts a sample of a cell of atoms, labeled `a` and `b` with [=, the irregular form of ^=]().  
-The product of the gate is cast to an atom with [^-]().  
+`++add` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++add` creates a dry %gold gate [|=](/doc/hoon/lan/rune/#bartis), which accepts a sample of a cell of atoms, labeled `a` and `b` with [^=](/doc/hoon/lan/rune/#kettis).  
+The product of the gate is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep).  
 If `a` is equal to 0, then `b` is produced.  
-Otherwise, the `$` arm of the gate is activated [(%=)](), with the value of `a` set to (dec a) [%-](), and `b` set to +(b) [(.+)]().  
+Otherwise, the `$` arm of the gate is activated [(%=)](/doc/hoon/lan/rune/#centis), with the value of `a` set to (dec a)(/doc/hoon/lib/#++dec) [%-](/doc/hoon/lan/rune/#cenhep), and `b` set to +(b) [(.+)](/doc/hoon/lan/rune/#dotlus).  
 
 
 <h2 id="++sub">++&nbsp;&nbsp;sub</h2>
@@ -99,11 +99,11 @@ Otherwise, the `$` arm of the gate is activated [(%=)](), with the value of `a` 
         a                                                   ::  then, produce a  
       $(a (dec a), b (dec b))                               ::  loop, a - 1, b - 1  
 
-`++sub` is a [jetted arm (~/)]().
-`++sub` creates a dry %gold gate with [|=](), which accepts a sample of a cell of atoms, labeled `a` and `b` using [^=]().  
-`++sub` will crash if given values for `a` and `b` such that `a`, the minuend, is less than `b`, the subtrahend, as atoms are restricted to the non-negative integers; if this happens, %subtract underflow is inserted into the stack trace [~|]().  
-The product of ++sub is cast as an atom with [^-]().  
-If [(?:)]() `b` is [=]() 0, then `++sub` produces `a`. Else, the `$` arm of the gate is activated [%=](), with the value of `a` set to [(dec a)](), and the value of 'b' set to [(dec b)]().
+`++sub` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).
+`++sub` creates a dry %gold gate with [|=](/doc/hoon/lan/rune/#bartis), which accepts a sample of a cell of atoms, labeled `a` and `b` using [^=](/doc/hoon/lan/rune/#kettis).  
+`++sub` will crash if given values for `a` and `b` such that `a`, the minuend, is less than `b`, the subtrahend, as atoms are restricted to the non-negative integers; if this happens, %subtract underflow is inserted into the stack trace [~|](/doc/hoon/lan/rune/#sigbar).  
+The product of ++sub is cast as an atom with [^-](/doc/hoon/lan/rune/#kethep).  
+If [(?:)](/doc/hoon/lan/rune/#wutcol) `b` is [=, the irregular form of ^=](/doc/hoon/lan/rune/#kettis) 0, then `++sub` produces `a`. Else, the `$` arm of the gate is activated [%=](/doc/hoon/lan/rune/#centis), with the value of `a` set to [(dec a)](/doc/hoon/lib/#++dec), and the value of `b` set to [(dec b)](/doc/hoon/lib/#++dec).
 
 
 <h2 id="++mul">++&nbsp;&nbsp;mul</h2>
@@ -128,12 +128,12 @@ If [(?:)]() `b` is [=]() 0, then `++sub` produces `a`. Else, the `$` arm of the 
           c                                                   ::  then, produce c
         $(a (dec a), c (add b c))                             ::  loop, a - 1, c+b
 
-`++mul` is a [jetted arm]().  
-`++mul` creates a dry %gold gate (link) [|=](), accepting a sample cell of atoms, labeled `a` and 'b' with [^=]()).  
-The result of `++mul` is cast as an atom [^-]().  
-The variable `c` is pushed onto the sample and set equal to 0 with [=+]().  
-If [?:]() `a` is equal to 0, `++mul` produces `c`.  
-Otherwise, the `$` arm of the [trap]() is activated [%=]()), with the value of `a`set to [(dec a)], and the value of `c` set to [(add b c)]().
+`++mul` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++mul` creates a dry %gold gate (link) [|=](/doc/hoon/lan/rune/#bartis), accepting a sample cell of atoms, labeled `a` and `b` with [^=](/doc/hoon/lan/rune/#kettis)).  
+The result of `++mul` is cast as an atom [^-](/doc/hoon/lan/rune/#kethep).  
+The variable `c` is pushed onto the sample and set equal to 0 with [=+](/doc/hoon/lan/rune/#tislus).  
+If [?:](/doc/hoon/lan/rune/#wutcol) `a` is equal to 0, `++mul` produces `c`.  
+Otherwise, the `$` arm of the [trap (|-)](/doc/hoon/lan/rune/#barhep) is activated [%=](/doc/hoon/lan/rune/#centis)), with the value of `a`set to [(dec a)](/doc/hoon/lib/#++dec), and the value of `c` set to [(add b c)](/doc/hoon/lib/#++add).
 
 
 <h2 id="++div">++&nbsp;&nbsp;div</h2>
@@ -163,20 +163,20 @@ Otherwise, the `$` arm of the [trap]() is activated [%=]()), with the value of `
         c                                                   ::  then, produce c
       $(a (sub a b), c +(c))                                ::  loop, a - b, c + 1
  
-`++div` is a is a [jetted arm]().  
-`++div` creates a dry %gold gate [|=](), accepting a sample pair of atoms, labeled `a` and `b` using [=, the irregular form of ^=]().  
- The product is cast to an atom with [^-]().  
- If [?:]() `b` is equal to 0, `++div` crashes [(?<)](), and a crash message of %'div' is inserted into the stack trace [(~|)]().  
+`++div` is a is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++div` creates a dry %gold gate [|=](/doc/hoon/lan/rune/#bartis), accepting a sample pair of atoms, labeled `a` and `b` using [^=](/doc/hoon/lan/rune/#kettis).  
+ The product is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep).  
+ If [?:](/doc/hoon/lan/rune/#wutcol) `b` is equal to 0, `++div` crashes [(?<)](/doc/hoon/lan/rune/#wutgal), and a crash message of `%div' is inserted into the stack trace [(~|)](/doc/hoon/lan/rune/#sigbar).  
  The variable `c` is pushed onto the sample and set equal to 0.  
- A dry %gold trap is created with [|-](), giving its unnamed arm, `$`, the ability to loop if necessary.  
- If [?:]() `a` is less than `b`, then ++div returns `c`.  
- Otherwise the arm ['$']() is reactivated [%=]() with the value of `a` set to [(sub a b)](), and the value of `c` set to `+(c)` [.+](). 
+ A dry %gold trap is created with [|-](/doc/hoon/lan/rune/barhep), giving its unnamed arm, `$`, the ability to loop if necessary.  
+ If [?:](/doc/hoon/lan/rune/#wutcol) `a` is less than `b`, then `++div` returns `c`.  
+ Otherwise the arm `$` is reactivated [%=](/doc/hoon/lan/rune/#centis) with the value of `a` set to [(sub a b)](/doc/hoon/lib/#++sub), and the value of `c` set to `+(c)` [.+](/doc/hoon/lib/#dotlus). 
 
 
 <h2 id="++mod">++&nbsp;&nbsp;mod</h2>
 
 ####Modulus  
-++mod accepts two atoms a and b and produces a%b as an atom.
+`++mod` accepts two atoms `a` and `b` and produces a%b as an atom.
 
 ###Examples
     ~ronrem-lonsem/try=> (mod 20 5)
@@ -196,11 +196,11 @@ Otherwise, the `$` arm of the [trap]() is activated [%=]()), with the value of `
       ?<  =(0 b)                                            ::  assert b is not 0
       (sub a (mul b (div a b)))                             ::  a - (a / b) * b
 
-`++mod` is a [jetted arm ~/]().  
-`++mod` creates a %dry golden gate using [|=](), which accepts two atoms, labeled `a` and `b` with [=, the irregular form of ^=]().  
-The product is cast as an atom with [^=]().  
-`++mod` uses [?<]() to assert that `b` is not zero.  
-`++mod` produces the difference between `a` and the product of `b` and the quotient of `a` divided by `b`.  
+`++mod` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).
+`++mod` creates a %dry golden gate using [|=](/doc/hoon/lan/rune/#bartis), which accepts two atoms, labeled `a` and `b` with [^=](/doc/hoon/lan/rune/#kettis).  
+The product is cast as an atom with [^=](/doc/hoon/lan/rune/#kettis).  
+`++mod` uses [?<](/doc/hoon/lan/rune/#wutgal) to assert that `b` is not zero.  
+`++mod` produces the difference between `a` and the product of `b` ([++mul](/doc/hoon/lib/#++mul)) and the quotient of `a` divided by ([++div](/doc/hoon/lib/#++div)) `b`.  
 
 
 <h2 id="++lth">++&nbsp;&nbsp;lth</h2>
@@ -229,17 +229,16 @@ The product is cast as an atom with [^=]().
       &  !=(0 b)                                            ::  logical &, 0 != b
         $(a (dec a), b (dec b))                             ::  loop, a - 1, b -1
 
-`FIX ME`
-`++lth` is a [jetted arm (~/)]().  
-`++lth` creates a dry %gold gate using [\=](), accepting a sample pair of atoms, labeled `a` and `b` with [=, the irregular form of ^=]().  
-The product of `++lth` is cast to a loobean with [^-](). 
-The last five lines are encompassed by a logical and statement: `FIX ME`  
- If `a` is equal to `b`, ++lte immediately returns false.  
- If they are not equal, a trap is declared with [|-](), containing a logical or [|]() statement.  
+`++lth` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++lth` creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), accepting a sample pair of atoms, labeled `a` and `b` with [^=](/doc/hoon/lan/rune/#kettis).  
+The product of `++lth` is cast to a loobean with [^-](/doc/hoon/lan/rune/#kethep). 
+The last five lines are encompassed by a logical and statement:  
+ If `a` is equal to `b`, `++lth` immediately returns false. 
+ If they are not equal, a trap is declared with [|-](/doc/hoon/lan/rune/barhep), containing a logical or [|](the irregular form of ?|)](/doc/hoon/lan/rune/#wutbar) statement.  
  If `a` is 0, then true is returned.  
  If not, the next part of the or statement is examined, which is a logical and statement whose first condition is `b` not equal to 0.  
- If this is false, ++lth returns false.  
- If this is true, the `$` arm of the trap is reactivated, with the values of both `a` and `b` both decremented. 
+ If this is false, `++lth` returns false.  
+ If this is true, the `$` arm of the trap is reactivated, with the values of both `a` and `b` both decremented ([++dec](/doc/hoon/lib/#++dec)). 
 
 
 <h2 id="++lte">++&nbsp;&nbsp;lte</h2>
@@ -264,11 +263,11 @@ The last five lines are encompassed by a logical and statement: `FIX ME`
       |  =(a b)                                             ::  logical or, a == b
         (lth a b)                                           ::  a less than b 
 
-`++lte` is a [jetted arm (~/)]().  
-`++lte` creates a dry %gold gate with [|=](), accepting a sample pair of atoms, labeled 'a' and 'b' with [=, the irregular form of ^=]().  
-A logical `or`[|]() operator is then used:  
-The first condition is whether `a` is equal to `b` or not[.=]().  
-The second is whether `a` is less than `b`, which is determined by a call to [++lth]().  
+`++lte` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++lte` creates a dry %gold gate with [|=](/doc/hoon/lan/rune/#bartis), accepting a sample pair of atoms, labeled `a` and `b` with [^=](/doc/hoon/lan/rune/#kettis).  
+A logical `or`[|](the irregular form of ?|)](/doc/hoon/lan/rune/#wutbar) operator is then used:  
+The first condition is whether `a` is equal to `b` or not[.=](/doc/hoon/lan/rune/#dottis).  
+The second is whether `a` is less than `b`, which is determined by a call to [++lth](/doc/hoon/lib/#lth).  
 If either statement is `true`, `++lte` produces `true`.  
 Otherwise, `++lte` produces `false`.  
 
@@ -295,11 +294,12 @@ Otherwise, `++lte` produces `false`.
       ^-  ?                                                 ::  cast result loobean
       !(lte a b)                                            ::  a not <= b
 
-++gth is a [jetted arm (~/)]().  
-++gth creates a dry %gold gate with [|=](), accepting a sample pair of atoms, labeled `a` and `b`.  
-The product is cast to a loobean with [^-](). 
-++gth calls [++lte]() to test whether `a` is not less than or equal to `b`.    
-If the statement returns `true`, so does ++gth.   
+`++gth` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++gth` creates a dry %gold gate with [|=](/doc/hoon/lan/rune/#bartis), accepting a sample pair of atoms, labeled `a` and `b` with [=, the irregular form of ^=](/doc/hoon/lan/rune/#kettis).  
+The product is cast to a loobean with [^-](/doc/hoon/lan/rune/#kethep). 
+++gth calls [++lth](/doc/hoon/lib/#++lth) to test whether `a` is not less than or equal to `b`.    
+If the statement returns `true`, so does `++gth`.
+Otherwise, `++gth` returns false.   
 
 
 <h2 id="#++gte">++&nbsp;&nbsp;gte</h2>
@@ -325,19 +325,17 @@ If the statement returns `true`, so does ++gth.
       !(lth a b)                                            ::  if a ! <= b 
 
 
-Summary: ++gte takes two atoms a and b and produces a loobean `a>=b`.
-
-`++gte` is a [jetted arm (~/)]().  
-`++gte` creates a dry %gold gate with [|=](), accepting a pair of atoms into its sample, labeled `a` and `b` with [=, the irregular form of ^=]().  
-The product is cast to a loobean [^-]().  
-Using the [++lth]() function, [++gte]() tests whether `a` is not [!]() less than `b`.  
-If the statement returns `true`, so does `++gte`. Else, `++gte` returns false. 
+`++gte` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas). 
+`++gte` creates a dry %gold gate with [|=](/doc/hoon/lan/rune/#bartis), accepting a pair of atoms into its sample, labeled `a` and `b` with [([=, the irregular form of ^=](doc/hoon/lan/rune/#kettis).  
+The product is cast to a loobean [^-](/doc/hoon/lan/rune/#kethep).  
+Using the [++lth](/doc/hoon/lib/#++lth) function, `++gte` tests whether `a` is not [!, the irregular form of wutzap](/doc/hoon/lan/rune/#wutzap) less than `b`.  
+If the statement returns `true`, so does `++gte`. Else, `++gte` returns `false`. 
 
 
 <h2 id="++max">++&nbsp;&nbsp;max</h2>
 
 ####Maximum
-++max takes two atoms `a` and `b` and produces the larger of the two.
+`++max` takes two atoms `a` and `b` and produces the larger of the two.
 
 ###Examples
     ~ronrem-lonsem/try=> (max 5 4)
@@ -356,9 +354,9 @@ If the statement returns `true`, so does `++gte`. Else, `++gte` returns false.
           a                                                   ::  then, return a
         b                                                     ::  else, return b
 
-`++max` is a [jetted arm ~/]().  
-`++max` creates a dry %gold gate using [|=]()), which accepts a sample pair of atoms, labeled 'a' and 'b' using [=, the irregular form of ^=]().  
-The result is cast to an atom with [^-]().If [?:]() `a` is greater than `b`, `a` is returned.  
+`++max` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas)  
+`++max` creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis)), which accepts a sample pair of atoms, labeled `a` and `b` using [^=](/doc/hoon/lan/rune/#kettis).  
+The result is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep).If [?:](/doc/hoon/lan/rune/#wutcol) `a` is greater than `b`, `a` is returned.  
 Otherwise `b` is returned.  
 
 
@@ -385,10 +383,10 @@ Otherwise `b` is returned.
       b                                                     ::  else, return b
 
 
-`++min` is a [jetted arm (~/)]().  
-`++min` creates a dry %gold gate using [|=](), which accepts a sample pair of atoms, labeled `a` and `b`.  
-The result is cast to an atom with [^-]().  
-If [?:]() `a` is less than `b` ([`++lth`)](), `a` is returned.  
+`++min` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
+`++min` creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), which accepts a sample pair of atoms, labeled `a` and `b`.  
+The result is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep).  
+If [?:](/doc/hoon/lan/rune/#wutcol) `a` is less than `b` ([`++lth`)](/doc/hoon/lib/#++lth)) `a` is returned.  
 Else `b` is returned.
 
 
@@ -411,7 +409,7 @@ Else `b` is returned.
 ~ronrem-lonsem/try=> (cap 35)
 %2
 ~ronrem-lonsem/try=> (cap 0)
-! exit
+exit
 ~ronrem-lonsem/try=> (cap 1)
 ! exit
 
@@ -427,10 +425,10 @@ Else `b` is returned.
         *         $(a (div a 2))                            ::  *, loop a / 2
       ==
 
-`++cap` is a [jetted arm (~/]().  
-`++cap` creates a dry %gold gate [|=](), accepting an atomic sample labeled `a`.   The result is cast to either the [fern]() `%2`, or the [fern]() %3.  
+`++cap` is a [jetted arm (~/)](/doc/hoon/lan/tile/#sigfas).  
+`++cap` creates a dry %gold gate [|=](/doc/hoon/lan/rune/#bartis), accepting an atomic sample labeled `a`.   The result is cast to either the [fern](/doc/hoon/lan/tile/#%fern) `%2`, or the [fern](/doc/hoon/lan/tile/#%fern) %3.  
 If `a` is `%2` or `%3`, return either `%2` or `%3` respectively.  
-If `a` is either the [fern]() `%0` or `%1`, `++cap` crashes. If `a` is any other noun, the `$` arm ([%=])() is reactivated, this time with the value of `a` set to `a/2`. 
+If `a` is either the [fern](/doc/hoon/lan/tile/#%fern) `%0` or `%1`, `++cap` crashes. If `a` is any other noun, the `$` arm ([%=])(/doc/hoon/lan/rune/#centis) is reactivated, this time with the value of `a` set to `a/2`. 
 This recursive process repeats until `a` hits one of the aforementioned switches. 
 
 
@@ -470,15 +468,14 @@ This recursive process repeats until `a` hits one of the aforementioned switches
         *   (add (mod a 2) (mul $(a (div a 2)) 2))          ::  *, a%2 + recurse(a/2 *2=) 
       ==
 
-`++mas` is a [jetted arm (~/)]().
- `++mas` creates a dry %gold gate [|=](), accepting a sample labeled `a`.  
- Its result is cast to an atom using [^-]().   
-`++mas` uses a switch [?-]():  
+`++mas` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).
+ `++mas` creates a dry %gold gate [|=](/doc/hoon/lan/rune/#bartis), accepting a sample labeled `a`.  
+ Its result is cast to an atom using [^-](/doc/hoon/lan/rune/#kethep).   
+`++mas` uses a switch [?-](/doc/hoon/lan/rune/#wuthep):  
 If `a` is 1, `++mas` crashes. 
 If `a` is 2 or 3, `++mas` produces 1.  
-If `a` is any other noun [*]() , `++mas` produces the sum of `a` % 2 and the product of `++mas` (a/2) and 2. 
-
-HELP WITH THIS^^    
+If `a` is any other noun [*](/doc/hoon/lan/tile/#axil) , `++mas` produces the sum of `a` % 2 and the product of `++mas` (a/2) and 2. 
+   
 
 <h2 id="++peg">++&nbsp;&nbsp;peg</h2>
 
@@ -509,8 +506,8 @@ HELP WITH THIS^^
       ==
 
 `++peg` is a [jetted arm](~/).
-`++peg` creates a %dry golden gate using [|=](), which accepts two atoms into its sample, labeled `a` and `b`.  
-The result is cast to an atom using [^=](). 
+`++peg` creates a %dry golden gate using [|=](/doc/hoon/lan/rune/#bartis), which accepts two atoms into its sample, labeled `a` and `b`.  
+The result is cast to an atom using [^=](/doc/hoon/lan/rune/#kettis). 
 `++peg` uses a switch:  
 If `b` is 1, `a` is produced.  
 If `b` is 2, a * 2 is produced.  
