@@ -8,7 +8,7 @@ title: tissig
 
 
 
-#[tissig, %tssg](#tssg)
+#[tissig, `=~`, %tssg](#tssg)
 
 ##Syntax
 

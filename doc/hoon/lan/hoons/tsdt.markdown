@@ -8,7 +8,7 @@ title: tisdot
 
 
 
-#[tisdot, %tsdt](#tsdt)
+#[tisdot, `=.`, %tsdt](#tsdt)
 
 ##Syntax
 

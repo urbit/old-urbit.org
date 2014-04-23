@@ -6,35 +6,38 @@ sort: 30
 title: coltar
 ---
 
+#[coltar, `:*`, %cltr](#cltr)
 
-
+##Syntax
 
 `:*`, `coltar`, `[%cltr p=tusk]` is a synthetic hoon that
 produces a tuple.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%cltr p=tusk]
       ==
     ++  tusk  (list twig)
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
     :~  i.p
         i.t.p
         i.t.t.p
     ==
 
-###Regular form (wide)###
+####Wide
 
     :*(i.p i.t.p i.t.t.p)
 
-###Irregular form###
+####Irregular
 
     [i.p i.t.p i.t.t.p]
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -60,7 +63,7 @@ produces a tuple.
       [gen ~]
 
 
-###Notes###
+###Notes
 
 `%cltr` also helps us perform some black magic with string
 interpolation by automatically promoting `%clzz` twigs.

@@ -8,7 +8,7 @@ title: zaptis
 
 
 
-#[zaptis %zpts](#zpts)
+#[zaptis, `!=`, %zpts](#zpts)
 
 ##Syntax
 

@@ -11,7 +11,7 @@ title: buczap
 
 ##Syntax
 
-`buczap`, `[%bczp p=base]` is an synthetic internal twig that
+`$!`, `buczap`, `[%bczp p=base]` is an synthetic internal twig that
 produces the bunt (default value) for `[%axil p]`.
 
 ###Form

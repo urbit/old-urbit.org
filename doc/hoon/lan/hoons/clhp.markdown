@@ -6,32 +6,35 @@ sort: 26
 title: colhep
 ---
 
+#[colhep, `:-`, %clhp](#clhp)
 
-
+##Syntax
 
 `:-`, `colhep`, `[%clhp p=twig q=twig]` is a synthetic hoon that
 produces the cell `[p q]`.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%clhp p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
     :-  p
     q
 
-###Regular form (wide)###
+####Wide
 
     :-(p q)
 
-###Irregular form###
+####Irregular
 
     [p q]
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig

@@ -8,7 +8,7 @@ title: tistar
 
 
 
-#[tistar, %tstr](#tstr)
+#[tistar, `=*`, %tstr](#tstr)
 
 ##Syntax
 

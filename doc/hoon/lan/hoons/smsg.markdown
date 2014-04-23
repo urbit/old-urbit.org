@@ -8,11 +8,11 @@ title: semsig
 
 
 
-#[semsig, %smsg](#smsg)
+#[semsig, `;~`, %smsg](#smsg)
 
 ##Syntax
 
-`semsg`, `[%smsg p=(list beer)]` is a synthetic hoon used to
+`semsig`, `[%smsg p=(list beer)]` is a synthetic hoon used to
 make strings, interpreted or not.
 ###Form
 

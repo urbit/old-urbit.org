@@ -44,10 +44,10 @@ See chapter 6 for constant forms.
     ++  play
       ?-  gen
         [%dtzy *]  ?:(=(%f p.gen) ?>((lte q.gen 1) bean) [%atom p.gen])
-  ==
-++  mint
-  ?-  gen
-    [%dtzy *]  [(nice (play gen)) [%1 q.gen]]
-  ==
+      ==
+    ++  mint
+      ?-  gen
+        [%dtzy *]  [(nice (play gen)) [%1 q.gen]]
+      ==
 
 ##Notes

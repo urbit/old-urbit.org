@@ -8,7 +8,7 @@ title: zapgar
 
 
 
-#[zapgar %zpgr](#zpgr)
+#[zapgar, `!>`, %zpgr](#zpgr)
 
 ##Syntax
 

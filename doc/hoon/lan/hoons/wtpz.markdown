@@ -8,7 +8,7 @@ title: wutpaz
 
 
 
-#[wutpaz %wtpz](#wtpz)
+#[wutpaz, %wtpz](#wtpz)
 
 ##Syntax
 

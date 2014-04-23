@@ -8,7 +8,7 @@ title: zapwut
 
 
 
-#[zapwut %zpwt](#zpwt)
+#[zapwut, `!?`, %zpwt](#zpwt)
 
 ##Syntax
 

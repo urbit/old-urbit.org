@@ -8,7 +8,7 @@ title: wutket
 
 
 
-#[wutket %wtkt](#wtkt)
+#[wutket, `?^`, %wtkt](#wtkt)
 
 ##Syntax
 

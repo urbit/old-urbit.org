@@ -8,7 +8,7 @@ title: semsem
 
 
 
-#[semsig, %smsg](#smsg)
+#[semsem, `;;`, %smsm](#smsm)
 
 ##Syntax
 

@@ -8,7 +8,7 @@ title: zapzap
 
 
 
-#[zapzap %zpzp](#zpzp)
+#[zapzap, `!!`, %zpzp](#zpzp)
 
 ##Syntax
 

@@ -6,34 +6,38 @@ sort: 86
 title: wutbar
 ---
 
+#[wutbar, `?|`, %wtbr](#wtbr)
 
+##Syntax
 
 `?|`, `wutbar`, `[%wtbr p=tusk]` is a synthetic hoon that
 computes the "or" of the loobeans in `p`.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%wtbr p=tusk]
       ==
     ++  tusk  (list twig)
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
     ?|  i.p
         i.t.p
         i.t.t.p
     ==
 
-###Regular form (wide)###
+####Wide
 
     ?|(i.p i.t.p i.t.t.p)
 
-###Irregular form###
+####Irregular
 
     |(i.p i.t.p i.t.t.p)
 
-###Expansion###
+###Expansion
 
     ++  open
       ^-  twig
@@ -43,6 +47,6 @@ computes the "or" of the loobeans in `p`.
         ?~(p.gen [%dtzz %f 1] [%wtcl i.p.gen [%dtzz %f 0] $(p.gen t.p.gen)])
       ==
 
-###Notes###
+###Notes
 
 Short-circuiting and type inference work as expected in `?|`.

@@ -6,20 +6,21 @@ sort: 31
 title: colzaz
 ---
 
+#[colzaz, %clzz](#clzz)
 
-
+##Syntax
 
 `%clzz`, `[%clzz p=tusk]` is a synthetic hoon that promotes
 its tusk `p` within a `%clsg` or `%cltr` tusk.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%clzz p=twig]
       ==
     ++  tusk  (list twig)
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -27,6 +28,6 @@ its tusk `p` within a `%clsg` or `%cltr` tusk.
         [%clzz *]  open(gen [%clsg p.gen])
       ==
 
-###Notes###
+###Notes
 
 See `%clsg` and `%cltr` for how `%clzz` works.

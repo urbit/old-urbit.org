@@ -8,12 +8,12 @@ title: wutgar
 
 
 
-#[wutgar %wtgr](#wtgr)
+#[wutgar, `?>`, %wtgr](#wtgr)
 
 ##Syntax
 
 `?>`, `wutgar`, `[%wtgr p=twig q=twig]` is a synthetic hoon that
-produces `q`, asserting that `p` is no (`|`, 1).
+produces `q`, asserting that `p` is yes (`&`, 0).
 
 ###Form
 

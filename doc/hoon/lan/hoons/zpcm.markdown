@@ -8,7 +8,7 @@ title: zapcom
 
 
 
-#[zapcom %zpcm](#zpcm)
+#[zapcom, `!,`, %zpcm](#zpcm)
 
 ##Syntax
 

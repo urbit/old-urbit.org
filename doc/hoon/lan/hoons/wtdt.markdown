@@ -8,7 +8,7 @@ title: wutdot
 
 
 
-#[wutdot %wtdt](#wtdt)
+#[wutdot, `?.`, %wtdt](#wtdt)
 
 ##Syntax
 

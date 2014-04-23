@@ -8,7 +8,7 @@ title: wutcol
 
 
 
-#[wutcl, %wtcl](#wtcl)
+#[wutcol, `?:`, %wtcl](#wtcl)
 
 ##Syntax
 

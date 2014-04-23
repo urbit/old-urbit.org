@@ -8,7 +8,7 @@ title: zapsem
 
 
 
-#[zapsem %zpsm](#zpsm)
+#[zapsem, `!;`, %zpsm](#zpsm)
 
 ##Syntax
 

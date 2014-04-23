@@ -8,7 +8,7 @@ title: wutpam
 
 
 
-#[wutpam %wtpm](#wtpm)
+#[wutpam, `?&`, %wtpm](#wtpm)
 
 ##Syntax
 

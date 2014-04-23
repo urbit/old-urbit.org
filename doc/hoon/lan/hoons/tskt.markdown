@@ -8,7 +8,7 @@ title: tisket
 
 
 
-#[tisket, %tskt](#tskt)
+#[tisket, `=^`, %tskt](#tskt)
 
 ##Syntax
 
@@ -72,7 +72,7 @@ Queenside:
 
 ##Notes
 
-`Language change alert: `p` should be a term, `q` should be a wing.
+Language change alert: `p` should be a term, `q` should be a wing.
 
 We use `=^` for the common pattern of a state machine which
 exposes a gate that produces a cell `[result new-state]`.  When

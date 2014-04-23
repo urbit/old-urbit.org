@@ -8,7 +8,7 @@ title: zapcab
 
 
 
-#[zapcap %zpcb](#zpcb)
+#[zapcap, %zpcb](#zpcb)
 
 ##Syntax
 

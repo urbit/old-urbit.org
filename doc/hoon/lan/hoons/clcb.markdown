@@ -6,27 +6,31 @@ sort: 23
 title: colcab
 ---
 
+#[colcab, `:_`, %clcb](#clcb)
 
+##Syntax
 
 `:_`, `colcab`, `[%clcb p=twig q=twig]` is a synthetic hoon that
 produces the cell `[q p]`.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%clcb p=twig q=twig]
       ==
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
     :_  p
     q
 
-###Regular form (wide)###
+####Wide
 
     :_(p q)
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -34,6 +38,6 @@ produces the cell `[q p]`.
         [%clcb *]  [q.gen p.gen]
       ==
 
-###Notes###
+###Notes
 
 See also `%clhp`.

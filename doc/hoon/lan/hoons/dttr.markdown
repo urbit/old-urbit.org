@@ -47,6 +47,6 @@ None
       ?-    gen
         [%dttr *]
       [(nice %noun) [%2 q:$(gen p.gen, gol %noun) q:$(gen q.gen, gol %noun)]]
-  ==
+      ==
 
 ##Notes

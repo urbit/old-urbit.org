@@ -8,7 +8,7 @@ title: tishep
 
 
 
-#[tishep, %tshp](#tshp)
+#[tishep, `=-`, %tshp](#tshp)
 
 ##Syntax
 

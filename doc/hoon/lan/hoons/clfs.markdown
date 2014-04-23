@@ -6,26 +6,30 @@ sort: 25
 title: colfas
 ---
 
+#[colfas, `:/`, %clfs](#clfs)
 
+##Syntax
 
 `:/`, `colfas`, `[%clfs p=twig]` is a synthetic hoon that
 produces `[%$ [%$ p ~] ~]`, ie, `[0 [0 p 0] 0]`.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%clfs p=twig]
       ==
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
     :/  p
 
-###Regular form (wide)###
+####Wide
 
     :/(p)
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -34,6 +38,6 @@ produces `[%$ [%$ p ~] ~]`, ie, `[0 [0 p 0] 0]`.
         [%clfs *]  =+(zoy=[%dtzz %ta %$] [%clsg [zoy [%clsg [zoy p.gen] ~]] ~])
       ==
 
-###Notes###
+###Notes
 
 In practice, `:/` is only used in the bowels of string interpolation.

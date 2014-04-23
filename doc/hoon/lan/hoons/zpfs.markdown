@@ -8,7 +8,7 @@ title: zapfas
 
 
 
-#[zapfas %zpfs](#zpfs)
+#[zapfas, `!/`, %zpfs](#zpfs)
 
 ##Syntax
 

@@ -8,7 +8,7 @@ title: tislus
 
 
 
-#[tislus, %tsls](#tsls)
+#[tislus, `=+`, %tsls](#tsls)
 
 ##Syntax
 

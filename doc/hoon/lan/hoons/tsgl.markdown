@@ -8,7 +8,7 @@ title: tisgal
 
 
 
-#[tisgal, %tsgl](#tsgl)
+#[tisgal, `=<`, %tsgl](#tsgl)
 
 ##Syntax
 

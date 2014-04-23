@@ -8,7 +8,7 @@ title: tisgar
 
 
 
-#[tisgar, %tsgr](#tsgr)
+#[tisgar, `=>`, %tsgr](#tsgr)
 
 ##Syntax
 

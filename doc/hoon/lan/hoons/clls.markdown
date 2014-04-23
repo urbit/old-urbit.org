@@ -6,19 +6,22 @@ sort: 28
 title: collus
 ---
 
+#[collus, `:+`, %clls](#clls)
 
-
+##Syntax
 
 `:+`, `collus`, `[%clls p=twig q=twig r=twig]` is a synthetic hoon that
 produces a cell `[p q r]`.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%clls p=twig q=twig r=twig]
       ==
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
 Kingside:
 
@@ -31,11 +34,11 @@ Queenside:
     :+  p   q
     r
 
-###Regular form (wide)###
+####Wide
 
     :+(p q r)
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig

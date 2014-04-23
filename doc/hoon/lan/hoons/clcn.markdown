@@ -6,34 +6,38 @@ sort: 24
 title: colcen
 ---
 
+#[colcen, `:%`, $clcn](#clcn)
 
+##Syntax
 
 `:%`, `colcen`, `[%clcn p=tusk]` is a synthetic hoon that
 produces a cell `[[p ~] ~]`.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%clcn p=twig]
       ==
     ++  tusk  (list twig)
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
     :%  i.p
         i.t.p
         i.t.t.p
     ==
 
-###Regular form (wide)###
+####Wide
 
     :%(i.p i.t.p i.t.t.p)
 
-###Irregular form###
+####Irregular
 
     %[i.p i.t.p i.t.t.p]
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig

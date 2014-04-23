@@ -8,7 +8,7 @@ title: wuttis
 
 
 
-#[wuttis %wtts](#wtts)
+#[wuttis, `?=`, %wtts](#wtts)
 
 ##Syntax
 

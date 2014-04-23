@@ -8,7 +8,7 @@ title: wuthep
 
 
 
-#[wutgar %wtgr](#wtgr)
+#[wuthep, `?-`, %wthp](#wthp)
 
 ##Syntax
 

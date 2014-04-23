@@ -8,7 +8,7 @@ title: wutpat
 
 
 
-#[wutpat %wtpt](#wtpt)
+#[wutpat, `?@`, %wtpt](#wtpt)
 
 ##Syntax
 

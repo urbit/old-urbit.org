@@ -8,7 +8,7 @@ title: tiscol
 
 
 
-#[tiscol, %tscl](#tscl)
+#[tiscol, `=:`, %tscl](#tscl)
 
 ##Syntax
 

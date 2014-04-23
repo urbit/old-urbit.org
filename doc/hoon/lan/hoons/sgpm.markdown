@@ -6,19 +6,23 @@ sort: 68
 title: sigpam
 ---
 
+#[sigpam, `~&`, %sgpm)(#sgpm)
 
+##Syntax
 
 `~&`, `sigpam`, `[%sgpm p=@ud q=twig r=twig]` is a synthetic hoon 
 that prints `q` on the console before computing `r`.  `p` is the
 log priority, 0-3 defaulting to 0.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%sgpm p=twig]
       ==
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
 Priority 0 (debug):
 
@@ -40,11 +44,11 @@ Priority 3 (alarm):
     ~&  >>>  q
     r
 
-###Regular form (wide)###
+####Wide
 
     ~&(>> q r)
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -55,7 +59,7 @@ Priority 3 (alarm):
         r.gen
       ==
 
-###Notes###
+###Notes
 
 `%sgpm` uses the biblical name `%cain` for printing, so it won't
 work without some equivalent of

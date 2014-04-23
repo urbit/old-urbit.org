@@ -6,19 +6,22 @@ sort: 27
 title: colket
 ---
 
+#[colket, `:^`, %clkt](#clkt)
 
-
+##Syntax
 
 `:^`, `colket`, `[%clkt p=twig q=twig r=twig s=twig]` is a 
 synthetic hoon that produces a cell `[p q r s]`.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%clkt p=twig q=twig r=twig s=twig]
       ==
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
 Kingside:
 
@@ -36,11 +39,11 @@ Queenside:
     :^  p  q  r  
     s
 
-###Regular form (wide)###
+####Wide
 
     :^(p q r s)
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig

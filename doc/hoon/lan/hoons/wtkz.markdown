@@ -8,7 +8,7 @@ title: wutkaz
 
 
 
-#[wutkaz %wtkz](#wtkz)
+#[wutkaz, %wtkz](#wtkz)
 
 ##Syntax
 

@@ -8,7 +8,7 @@ title: tisbar
 
 
 
-#[tisbar, %tsbr](#tsbr)
+#[tisbar, `=|`, %tsbr](#tsbr)
 
 ##Syntax
 

@@ -8,7 +8,7 @@ title: wutgal
 
 
 
-#[wutgal %wtgl](#wtgl)
+#[wutgal, `?<`, %wtgl](#wtgl)
 
 ##Syntax
 

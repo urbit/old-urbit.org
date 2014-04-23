@@ -6,35 +6,38 @@ sort: 29
 title: colsig
 ---
 
+#[colsig, `:~`, %clsg](#clsg)
 
-
+##Syntax
 
 `:~`, `colsig`, `[%clsg p=tusk]` is a synthetic hoon that
 produces a null-terminated tuple.
 
-###Definition###
+###Definition
 
     ++  twig  
       $%  [%clsg p=tusk]
       ==
     ++  tusk  (list twig)
 
-###Regular form (tall)###
+###Form
+
+####Tall
 
     :~  i.p
         i.t.p
         i.t.t.p
     ==
 
-###Regular form (wide)###
+####Wide
 
     :~(i.p i.t.p i.t.t.p)
 
-###Irregular form###
+####Irregular
 
     ~[i.p i.t.p i.t.t.p]
 
-###Expansion###
+###Expansion
     
     ++  open
       ^-  twig
@@ -57,7 +60,7 @@ produces a null-terminated tuple.
         p.q.gen
       [gen ~]
 
-###Notes###
+###Notes
 
 `%clsg` also helps us perform some black magic with string
 interpolation by automatically promoting `%clzz` twigs.

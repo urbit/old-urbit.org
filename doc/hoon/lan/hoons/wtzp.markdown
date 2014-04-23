@@ -8,7 +8,7 @@ title: wutzap
 
 
 
-#[wutzap %wtzp](#wtzp)
+#[wutzap, `?!`, %wtzp](#wtzp)
 
 ##Syntax
 
