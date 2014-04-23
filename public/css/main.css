@@ -134,23 +134,41 @@ code, .subnav > ul > li > ul {
 
 .subnav > ul > li .expand:after {
 	content: "\25B6";
+	font-size: .6rem;
 }
 
 .subnav > ul > li.active .expand:after {
 	content: "\25BC";
+	font-size: .6rem;
 }
 
 .subnav, .subnav  ul {
 	list-style-type: none;
 	padding: 0;
+	margin: 0 0 .6rem 0;
 }
 
-.subnav {
+.subnav  ul > li > ul {
+	margin-right: 2rem; 
+}
+
+.subnav  ul > li > ul > li {
+	margin-bottom: .3rem;
+}
+
+/*.subnav {
 	font-size: .8rem;
+	position: fixed;
+	left: 50%;
+	top: 8rem;
+	margin-left: -25rem;
+	font-family: monospace;
+	width: 4rem;
+	text-align: right;
 }
-
+*/
 .subnav a {
-	margin-bottom: .5rem;
+	
 }
 
 .subnav a.active {

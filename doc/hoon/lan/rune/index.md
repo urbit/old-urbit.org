@@ -23,7 +23,7 @@ This library is a work in progress. Feedback and corrections are welcome. Pull r
 {% for page in site.axis.doc-hoon %}
 {% if page.categories contains prefix %}
 <li>
-<a href="#{{ page.title }}">{{ page.title }}</a>
+<a href="#{{ page.title }}"><code>{{ page.title }}</code></a>
 </li>
 {% endif %}
 {% endfor %}
