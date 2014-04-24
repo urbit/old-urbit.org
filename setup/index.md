@@ -9,8 +9,6 @@ sort: 3
 > by men, a labyrinth destined to be deciphered by men.  
 > - Tlön, Uqbar, Orbis Tertius
 
-##Prepare your computer##
-
 Urbit runs on Unix machines only.  It depends on:
 
 + gmp
@@ -23,9 +21,29 @@ Currently we support OSX, Linux (not all distributions have been
 tested) and \*BSD.  There are no instructions for BSD, because
 only people with a serious clue run BSD.  Intrepid ninjas may
 attempt ports to other OSes.  If you're not an intrepid ninja,
-try a VM (eg, VirtualBox).
+try a VM (eg, VirtualBox) or use one of our AMIs.
 
-Otherwise, open up your terminal and let's get started:
+###Amazon AMIs
+
+There are public AMIs at the following locations:
+
+        us-west (oregon) ami-6cf88d5c
+        us-west (n. california) ami-78d4ec3d
+        us-east (n. virginia) ami-cd819ba4
+
+These use Debian Wheezy, so you should be able to 
+        
+        ssh -i /path/to/your/key/file.pem admin@123.123.123.123
+
+to get in.
+
+Since the codebase is changing frequently, run the following once you have ssh-ed in.
+
+        cd /urbit/
+        git pull origin master
+        make clean; make;
+
+Then jump to "Run" below to get rolling.
 
 ###Configure OS X###
 
