@@ -92,6 +92,10 @@ ul.chat {
 	list-style-type: none;
 }
 
+ul.chat li {
+	margin-bottom: 2rem;
+}
+
 .doc-hoon h1, .doc-hoon h2 {
 	margin-top: 3rem;
 }

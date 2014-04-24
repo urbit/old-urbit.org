@@ -12,7 +12,8 @@ The Urbit community continuously interacts on Urbit itself using `:chat`. Check 
 Wednesdays at 6PM PST (UTC-8) we get together on Urbit `:chat` to discuss what we have been building, answer questions, and check in. Logs are below.
 
 <ul class="chat">
-{% for page in site.axis.chat-log %}
+{% assign chats = site.axis.chat-log | reverse %}
+{% for page in chats %}
 <li>
 <h4>{{ page.title }}</h4>
 {{ page.content }}
