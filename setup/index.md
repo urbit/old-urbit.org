@@ -45,7 +45,15 @@ Since the codebase is changing frequently, run the following once you have ssh-e
 
 Then jump to "Run" below to get rolling.
 
-###Configure OS X###
+
+###Docker
+
+[Docker](http://docker.io) is a very convenient way to get in to an Urbit ship quickly. `~simmev-rabryd` maintains the docker approach [here](https://github.com/yebyen/urbinit).
+
+Follow those instructions, then proceed to "Run" below.
+
+
+###OS X###
 
 1. Do you have XCode?  Type `gcc`.  If it says `no input files`, you have XCode.
 
@@ -72,12 +80,12 @@ Then jump to "Run" below to get rolling.
      Enter your root password at the prompt.
 
 
-###Configure Linux (Ubuntu or Debian)###
+###Linux (Ubuntu or Debian)###
 
 1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags`
 
 
-###Configure Linux (AWS)###
+###Linux (AWS)###
 
 1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags`
 
