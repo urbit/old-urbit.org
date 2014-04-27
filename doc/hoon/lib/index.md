@@ -12,14 +12,14 @@ Hoon is in a way self-documenting. You can look through the source of `hoon.hoon
 
 This library is a work in progress. Feedback and corrections are welcome. Pull requests are encouraged. The repo for this site lives [here](https://github.com/urbit/urbit.github.io). We would love your help in making this reference useful.
 
-<div class="subnav">
+<div class="subnav arms">
 <ul>
 {% for page in site.axis.doc-hoon %}
 {% if page.categories contains 'lib' %}
 {% if page.title != 'Overview' %}
 <li>
-	<a href="#{{ page.title | handleize }}" class="section">{{ page.title }}</a>
-	<a href="#" class="expand"></a>
+    <a href="#" class="expand"></a>
+	<a href="#{{ page.title | handleize }}" class="section">{{ page.title-short }}</a>
 	<ul>
 	{% for arm in page.arms %}
 	<li>

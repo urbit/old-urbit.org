@@ -1,6 +1,7 @@
 ---
 layout: subpage
 title: 2b Basic Containers
+title-short: Containers 1
 section: 2b
 arms: [++bind, ++clap, ++drop, ++fall, ++mate, ++need, ++some, ++flop, ++homo, ++limo, ++lent, ++levy, ++lien, ++reel, ++roll, ++skid, ++skim, ++skip, ++scag, ++slag, ++snag, ++sort, ++swag, ++turn, ++weld, ++wild]
 axis: doc-hoon

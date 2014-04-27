@@ -1,6 +1,7 @@
 ---
 layout: subpage
 title: 2a Unsigned Math
+title-short: Math
 arms: [++dec, ++add, ++sub, ++mul, ++div, ++mod, ++lth, ++lte, ++gth, ++gte, ++max, ++min, ++cap, ++mas, ++peg]
 axis: doc-hoon
 categories: lib

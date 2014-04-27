@@ -116,6 +116,18 @@ code, .subnav > ul > li > ul {
 	color: inherit;
 }
 
+@media only screen and (min-width: 48rem) {
+	.doc-hoon .subnav.arms a{
+		font-size: .8rem;
+	}
+	.doc-hoon .subnav.runes, .doc-hoon .subnav.arms {
+		position: fixed;
+		top: 8rem;
+		left: 50%;
+		margin-left: -26rem;
+	}
+}
+
 .subnav > ul > li > ul {
 	font-size: .9rem;
 	overflow: hidden;

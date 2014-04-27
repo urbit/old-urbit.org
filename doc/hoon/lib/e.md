@@ -1,5 +1,6 @@
 ---
 title: 2e Miscellaneous Libraries
+title-short: Misc
 section: 2e
 axis: doc-hoon
 categories: lib

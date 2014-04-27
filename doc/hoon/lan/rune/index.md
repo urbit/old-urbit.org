@@ -12,13 +12,13 @@ Hoon is free of reserved words. Instead, we use digraph pairs such as `|=` and c
 
 This library is a work in progress. Feedback and corrections are welcome. Pull requests are encouraged. The repo for this site lives [here](https://github.com/urbit/urbit.github.io). We would love your help in making this reference useful.
 
-<div class="subnav">
+<div class="subnav runes">
 <ul>
 {% assign prefixes = "bar|buc|cen|col|dot|hax|ket|sig|sem|tis|wut|zap" | split: "|" %}
 {% for prefix in prefixes %}
 <li>
-<a href="#{{ prefix }}" class="section"><code>{{ prefix }}</code></a>
 <a href="#" class="expand"></a>
+<a href="#{{ prefix }}" class="section"><code>{{ prefix }}</code></a>
 <ul>
 {% for page in site.axis.doc-hoon %}
 {% if page.categories contains prefix %}
