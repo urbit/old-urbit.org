@@ -50,7 +50,7 @@ img.logo {
 
 .sidebar-nav li > a {
 	border: none;
-	border-bottom: 3px solid #fff;	
+	border-bottom: 3px solid #fff;
 }
 
 .sidebar-about h1.title:focus,
@@ -59,7 +59,7 @@ img.logo {
 .sidebar-nav li > a:focus,
 .sidebar-nav li > a:hover {
 	text-decoration: none;
-	border-bottom: 3px solid #555;	
+	border-bottom: 3px solid #555;
 }
 
 .sidebar-about > a > img {
@@ -153,7 +153,7 @@ code, .subnav > ul > li > ul {
 }
 
 .subnav  ul > li > ul {
-	margin-right: 2rem; 
+	margin-right: 2rem;
 }
 
 .subnav  ul > li > ul > li {
@@ -172,12 +172,12 @@ code, .subnav > ul > li > ul {
 }
 */
 .subnav a {
-	
+
 }
 
 .subnav a.active {
 	font-size: 1rem;
 	font-weight: 700;
 	color: #333;
-	border-bottom: 2px solid #555;	
+	border-bottom: 2px solid #555;
 }
