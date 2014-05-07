@@ -64,7 +64,7 @@ Follow the instructions on the GitHub page, then proceed to "Run" below.
 
    - Homebrew? Type `brew`.  If it does something, you have Homebrew.
 
-     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
+     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`
      will install it.
 
      And follow up with `brew install git gmp libsigsegv openssl`
