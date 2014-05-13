@@ -12,6 +12,8 @@ Hoon is in a way self-documenting. You can look through the source of `hoon.hoon
 
 This library is a work in progress. Feedback and corrections are welcome. Pull requests are encouraged. The repo for this site lives [here](https://github.com/urbit/urbit.github.io). We would love your help in making this reference useful.
 
+<script type="text/javascript" src="/public/js/subnav.js"></script>
+
 <div class="subnav arms">
 <ul>
 {% for page in site.axis.doc-hoon %}

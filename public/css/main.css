@@ -116,22 +116,11 @@ code, .subnav > ul > li > ul {
 	color: inherit;
 }
 
-@media only screen and (min-width: 54rem) {
-	.doc-hoon .subnav.arms a{
-		font-size: .8rem;
-	}
-	.doc-hoon .subnav.runes, .doc-hoon .subnav.arms {
-		position: fixed;
-		top: 8rem;
-		left: 50%;
-		margin-left: -26rem;
-	}
-}
-
 .subnav > ul > li > ul {
 	font-size: .9rem;
 	overflow: hidden;
 	height: 0;
+	margin-right: 2rem;
 }
 
 .subnav > ul > li.active > ul {
@@ -164,27 +153,8 @@ code, .subnav > ul > li > ul {
 	margin: 0 0 .6rem 0;
 }
 
-.subnav  ul > li > ul {
-	margin-right: 2rem;
-}
-
 .subnav  ul > li > ul > li {
 	margin-bottom: .3rem;
-}
-
-/*.subnav {
-	font-size: .8rem;
-	position: fixed;
-	left: 50%;
-	top: 8rem;
-	margin-left: -25rem;
-	font-family: monospace;
-	width: 4rem;
-	text-align: right;
-}
-*/
-.subnav a {
-
 }
 
 .subnav a.active {
@@ -193,3 +163,20 @@ code, .subnav > ul > li > ul {
 	color: #333;
 	border-bottom: 2px solid #555;
 }
+
+@media only screen and (min-width: 54rem) {
+	.doc-hoon .subnav.arms a{
+		font-size: .8rem;
+	}
+	.doc-hoon .subnav.runes, .doc-hoon .subnav.arms {
+		position: fixed;
+		top: 8rem;
+		left: 50%;
+		margin-left: -26rem;
+		overflow-y: scroll;
+	}
+	.subnav > ul > li > ul {
+		margin-right: 0;
+	}
+}
+
