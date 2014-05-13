@@ -172,7 +172,7 @@ code, .subnav > ul > li > ul {
 		position: fixed;
 		top: 8rem;
 		left: 50%;
-		margin-left: -26rem;
+		margin-left: -30rem;
 		overflow-y: scroll;
 	}
 	.subnav > ul > li > ul {
