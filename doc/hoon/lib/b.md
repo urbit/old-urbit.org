@@ -35,6 +35,7 @@ If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)) `++bind` produces null.
 Otherwise, `++bind` produces a new [++unit](/doc/hoon/lib/#++unit) where the face `u` is set to the product of the gate `b` with sample `a`, `(b u.a)`.  
 
 
+---
 <h2 id="++clap">++&nbsp;&nbsp;clap</h2>
 
 ####Combine
@@ -61,6 +62,7 @@ If `b` is null ([?~](/doc/hoon/lan/rune/#wutsig)) `++clap` produces null.
 Otherwise `++clap` produces a new [++unit](/doc/hoon/lib/#++unit) with the `u` set to the product of the gate `c` with the sample of `[u.a u.b]`, `[~ u=(c u.a u.b)]`.  
 
 
+---
 <h2 id="++drop">++&nbsp;&nbsp;drop</h2>
 
 ####Listify
@@ -85,6 +87,7 @@ If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)) `++drop` produces null.
 Otherwise `++drop` produces a [++list](/doc/hoon/lib/#++list) [u.a ~].  
 
 
+---
 <h2 id="++fall">++&nbsp;&nbsp;fall</h2>
 
 ####Default
@@ -105,6 +108,7 @@ If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)) `++drop` produces `b`.
 Otherwise `++drop` produces `u.a`.
 
 
+---
 <h2 id="++mate">++&nbsp;&nbsp;mate</h2>
 
 ####Choose
@@ -141,6 +145,7 @@ If they are equal `++mate` produces `a`.
 Otherwise a crash is produced with the message `'mate'`, using [~|](/doc/hoon/lan/rune/#sigbar).
 
 
+---
 <h2 id="++need">++&nbsp;&nbsp;need</h2>
 
 ####Demand
@@ -165,6 +170,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)) `++need` produces a crash.
 Otherwise `++need` produces `u.a`.
 
 
+---
 <h2 id="++some">++&nbsp;&nbsp;some</h2>
 
 ####Lift
@@ -186,6 +192,7 @@ Otherwise `++need` produces `u.a`.
 
 #Lists
 
+---
 <h2 id="++flop">++&nbsp;&nbsp;flop</h2>
 
 ####Reverse
@@ -220,6 +227,7 @@ Otherwise, produce a call to `$`, the empty arm of the trap, with `a` set to `t.
 Note: Refer to the [list](/doc/hoon/lib/#++list) documentation for clarification of `t.a` and `i.a`.  
 
 
+---
 <h2 id="++homo">++&nbsp;&nbsp;homo</h2>
 
 `++homo` takes a list `a` and produces a [++list](/doc/hoon/lib/#++list) with the type information homogenized.
@@ -245,6 +253,7 @@ The product of `++homo` is cast, using [^+](/doc/hoon/lan/rune/#ketlus) to the t
 ??  this seems like a pretty unconventional kind of recursion
 
 
+---
 <h2 id="++limo">++&nbsp;&nbsp;limo</h2>
 
 ####Listify.
@@ -269,6 +278,7 @@ The product of `++limo` is cast, using [^+](/doc/hoon/lan/rune/#ketlus), to the 
 A [%gold core |%](/doc/hoon/lan/rune/#barcen) is created.  
 
 
+---
 <h2 id="++lent">++&nbsp;&nbsp;lent</h2>
 
 ####Length
@@ -297,6 +307,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)) b is produced.
 Otherwise, `a` is replaced by `t.a` (descending in to the list) and `b` is replaced by `+(b)` (incrementing `b`)
 
 
+---
 <h2 id="++levy">++&nbsp;&nbsp;levy</h2>
 
 ####Test every
@@ -328,6 +339,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)) produce `%.y` (??  since li
 If the product of `(b i.a)` is `%.y` ([?:](/doc/hoon/lan/rune/#wutcol)) recurse replacing `a` with `t.a` using `$` and the irregular form of [%=](/doc/hoon/lan/rune/#centis), `( )`.
 
 
+---
 <h2 id="++lien">++&nbsp;&nbsp;lien</h2>
 
 ####Test any
@@ -358,6 +370,7 @@ If the product of `(b i.a)` is `%.y` ([?:](/doc/hoon/lan/rune/#wutcol)) produce 
 Otherwise recurse, replacing `a` with `t.a` using `$` and the irregular form of [%=](/doc/hoon/lan/rune/#centis), `( )`.
 
 
+---
 <h2 id="++reel">++&nbsp;&nbsp;reel</h2>
 
 ####Right fold
@@ -387,6 +400,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), `q.b` is produced.
 Otherwise `b` is called with the left side of `a` (i.a), and the product of the trap with `a` replaced with `t.a` (the 'right side' of `a`). 
 
 
+---
 <h2 id="++roll">++&nbsp;&nbsp;roll</h2>
     
 ####Left fold
@@ -416,6 +430,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), `q.b` is produced.
 Otherwise the trap is called with `a` replaced with `t.a` and `b` where `q.b` is replaced with the product of `(b i.a q.b)` .
 
 
+---
 <h2 id="++skid">++&nbsp;&nbsp;skid</h2>
 
 ####Separate
@@ -442,6 +457,7 @@ If the product of `(b i.a)` is `%.y`, produce `[[i.a p.c] q.c]`.
 Otherwise produce `[p.c [i.a q.c]]`.
 
 
+---
 <h2 id="++skim">++&nbsp;&nbsp;skim</h2>
 
 ####Filter %.y
@@ -469,6 +485,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)) return null.
 Otherwise if the product of `(b i.a)` is `%.y` produce `[i.a $(a t.a)]`, if not recurse (using the empty name `$` and the irregular form of [%=], `( )`) with `a` set to `t.a`.
 
 
+---
 <h2 id="++skip">++&nbsp;&nbsp;skip</h2>
 
 ####Filter %.n
@@ -496,6 +513,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)) return null.
 Otherwise if the product of `(b i.a)` is `%.y` recurse (using the empty name `$` and the irregular form of [%=](/doc/hoon/lan/rune/#centis)) with `a` set to `t.a`, if not produce `[i.a $(a t.a)]`.
 
 
+---
 <h2 id="++scag">++&nbsp;&nbsp;scag</h2>
     
 ####Prefix
@@ -519,6 +537,7 @@ If either (logical or |, irregular form of ?|](/doc/hoon/lan/rune/#wutbar)) `b` 
 Otherwise produce a cell with `i.b` and the product of the trap with `b` replaced with `t.b` and `a` replaced with ([dec](/doc/hoon/lib/#++dec)) a).
 
 
+---
 <h2 id="++slag">++&nbsp;&nbsp;slag</h2>
 
 ####Suffix
@@ -545,6 +564,7 @@ If `b` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce null.
 Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` replaced with ([dec](/doc/hoon/lib/#++dec)) a).
 
 
+---
 <h2 id="++snag">++&nbsp;&nbsp;snag</h2>
 
 ####Index
@@ -572,6 +592,7 @@ If ([?:](/doc/hoon/lan/rune/#wutcol)) `a` is 0 (irregular [.=](/doc/hoon/lan/run
 Otherwise produce the product of the trap with `b` replaced with `t.b` and `a` replaced with `(dec a)`.  
 
 
+---
 <h2 id="++sort">++&nbsp;&nbsp;sort</h2>
     
 ####Quicksort
@@ -606,6 +627,7 @@ The cell composed of `i.a` and the result of calling the trap with `a` replaced 
 ??  this needs work. why do those gates use _i.a?
 
 
+---
 <h2 id="++swag">++&nbsp;&nbsp;swag</h2>
 
 ####Infix
@@ -623,6 +645,7 @@ The cell composed of `i.a` and the result of calling the trap with `a` replaced 
 [++scag](/doc/hoon/lib/#++scag) produces the first `b` members of [++slag](/doc/hoon/lib/#++slag), which produces the last `a` members of `c`.
 
 
+---
 <h2 id="++turn">++&nbsp;&nbsp;turn</h2>
 
 ####Transform
@@ -647,6 +670,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)) produce null.
 Otherwise, produce a cell where i is (b i.a) and t is the product of the gate with a replaced with t.a. 
 
 
+---
 <h2 id="++weld">++&nbsp;&nbsp;weld</h2>
 
 ####Concatenate
@@ -673,6 +697,7 @@ If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)) produce `b`.
 Otherwise produce a cell containing i.a and the product of the gate with `a` replaced with `t.a`.
 
 
+---
 <h2 id="++wild">++&nbsp;&nbsp;wild</h2>
 
 ####Concatenate, no type
@@ -703,6 +728,7 @@ Otherwise produce a cell containing i.a and the product of the gate with `a` rep
 
 Gears are no longer used in this version of hoon.
 
+---
 <h2 id="++from">++&nbsp;&nbsp;from</h2>
 
     ++  from                                                ::  range
@@ -714,6 +740,7 @@ Gears are no longer used in this version of hoon.
         ~
       [i=a t=^?(..$(a +(a), c +(c)))]
 
+---
 <h2 id="++long">++&nbsp;&nbsp;long</h2>
 
     ++  long                                                ::
@@ -725,10 +752,12 @@ Gears are no longer used in this version of hoon.
         b
       $(b +(b), a t.c)
 
+---
 <h2 id="++lone">++&nbsp;&nbsp;lone</h2>
 
     ++  lone  |*(a=* |?([i=a t=none]))                      ::
 
+---
 <h2 id="++mill">++&nbsp;&nbsp;mill</h2>
 
     ++  mill
@@ -739,10 +768,12 @@ Gears are no longer used in this version of hoon.
         ~
       [i=(a i.c) t=^?(..$(b t.c))]
 
+---
 <h2 id="++none">ne&nbsp;&nbsp;</h2>
 
     ++  none  |?(~)                                         ::
 
+---
 <h2 id="++over">++&nbsp;&nbsp;over</h2>
 
     ++  over                                                ::
@@ -753,6 +784,7 @@ Gears are no longer used in this version of hoon.
         [i=a t=none]
       [i=a t=^?(..$(a +(a)))]
 
+---
 <h2 id="++pull">++&nbsp;&nbsp;pull</h2>
 
     ++  pull                                                ::
@@ -764,6 +796,7 @@ Gears are no longer used in this version of hoon.
         b
       $(b [i.c b], a t.c)
 
+---
 <h2 id="++push">++&nbsp;&nbsp;push</h2>
 
     ++  push                                                ::
@@ -773,6 +806,7 @@ Gears are no longer used in this version of hoon.
       =+  c=((pull a) ~)
       ((pull (spin c)) b)
 
+---
 <h2 id="++spin">++&nbsp;&nbsp;spin</h2>
 
     ++  spin                                                ::

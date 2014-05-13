@@ -45,6 +45,7 @@ If ([?:](/doc/hoon/lan/rune/#wutcol)) the value of `b` incremented ([+, irregula
 Else, the `$` arm of the trap is activated ([%=](/doc/hoon/lan/rune/#centis)), with the value of `b` set to `+(b)`.  
 
 
+---
 <h2 id="++add">++&nbsp;&nbsp;add</h2>
 
 ####Addition  
@@ -74,6 +75,7 @@ If `a` is equal to 0, then `b` is produced.
 Otherwise, the `$` arm of the gate is activated [(%=)](/doc/hoon/lan/rune/#centis), with the value of `a` set to (dec a)(/doc/hoon/lib/#++dec) [%-](/doc/hoon/lan/rune/#cenhep), and `b` set to +(b) [(.+)](/doc/hoon/lan/rune/#dotlus).  
 
 
+---
 <h2 id="++sub">++&nbsp;&nbsp;sub</h2>
 
 ####Subtraction  
@@ -107,6 +109,7 @@ The product of ++sub is cast as an atom with [^-](/doc/hoon/lan/rune/#kethep).
 If [(?:)](/doc/hoon/lan/rune/#wutcol) `b` is [=, the irregular form of ^=](/doc/hoon/lan/rune/#kettis) 0, then `++sub` produces `a`. Else, the `$` arm of the gate is activated [%=](/doc/hoon/lan/rune/#centis), with the value of `a` set to [(dec a)](/doc/hoon/lib/#++dec), and the value of `b` set to [(dec b)](/doc/hoon/lib/#++dec).
 
 
+---
 <h2 id="++mul">++&nbsp;&nbsp;mul</h2>
 
 ####Multiply  
@@ -137,6 +140,7 @@ If [?:](/doc/hoon/lan/rune/#wutcol) `a` is equal to 0, `++mul` produces `c`.
 Otherwise, the `$` arm of the [trap (|-)](/doc/hoon/lan/rune/#barhep) is activated [%=](/doc/hoon/lan/rune/#centis)), with the value of `a`set to [(dec a)](/doc/hoon/lib/#++dec), and the value of `c` set to [(add b c)](/doc/hoon/lib/#++add).
 
 
+---
 <h2 id="++div">++&nbsp;&nbsp;div</h2>
 
 ####Division  
@@ -174,6 +178,7 @@ Otherwise, the `$` arm of the [trap (|-)](/doc/hoon/lan/rune/#barhep) is activat
  Otherwise the arm `$` is reactivated [%=](/doc/hoon/lan/rune/#centis) with the value of `a` set to [(sub a b)](/doc/hoon/lib/#++sub), and the value of `c` set to `+(c)` [.+](/doc/hoon/lib/#dotlus). 
 
 
+---
 <h2 id="++mod">++&nbsp;&nbsp;mod</h2>
 
 ####Modulus  
@@ -204,6 +209,7 @@ The product is cast as an atom with [^=](/doc/hoon/lan/rune/#kettis).
 `++mod` produces the difference between `a` and the product of `b` ([++mul](/doc/hoon/lib/#++mul)) and the quotient of `a` divided by ([++div](/doc/hoon/lib/#++div)) `b`.  
 
 
+---
 <h2 id="++lth">++&nbsp;&nbsp;lth</h2>
 
 ####Less than  
@@ -242,6 +248,7 @@ The last five lines are encompassed by a logical and statement:
  If this is true, the `$` arm of the trap is reactivated, with the values of both `a` and `b` both decremented ([++dec](/doc/hoon/lib/#++dec)). 
 
 
+---
 <h2 id="++lte">++&nbsp;&nbsp;lte</h2>
 
 ####Less than or equal to.  
@@ -273,6 +280,7 @@ If either statement is `true`, `++lte` produces `true`.
 Otherwise, `++lte` produces `false`.  
 
 
+---
 <h2 id="++gth">++&nbsp;&nbsp;gth</h2>
 
 ####Greater than.  
@@ -303,6 +311,7 @@ If the statement returns `true`, so does `++gth`.
 Otherwise, `++gth` returns false.   
 
 
+---
 <h2 id="#++gte">++&nbsp;&nbsp;gte</h2>
 
 ####Greater than or equal to.  
@@ -333,6 +342,7 @@ Using the [++lth](/doc/hoon/lib/#++lth) function, `++gte` tests whether `a` is n
 If the statement returns `true`, so does `++gte`. Else, `++gte` returns `false`. 
 
 
+---
 <h2 id="++max">++&nbsp;&nbsp;max</h2>
 
 ####Maximum
@@ -361,6 +371,7 @@ The result is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep).If [?:](/doc
 Otherwise `b` is returned.  
 
 
+---
 <h2 id="++min">++&nbsp;&nbsp;min</h2>
 
 ####Minimum.  
@@ -393,6 +404,7 @@ Else `b` is returned.
 
 ::::::  Nock tree calculations
 
+---
 <h2 id="++cap">++&nbsp;&nbsp;cap</h2>
 
 ####++Tree Head.  
@@ -433,6 +445,7 @@ If `a` is either the [fern](/doc/hoon/lan/tile/#%fern) `%0` or `%1`, `++cap` cra
 This recursive process repeats until `a` hits one of the aforementioned switches. 
 
 
+---
 <h2 id="++mas">++&nbsp;&nbsp;mas</h2>
 
 ####Axis in Head/Tail.  
@@ -478,6 +491,7 @@ If `a` is 2 or 3, `++mas` produces 1.
 If `a` is any other noun [*](/doc/hoon/lan/tile/#axil) , `++mas` produces the sum of `a` % 2 and the product of `++mas` (a/2) and 2. 
    
 
+---
 <h2 id="++peg">++&nbsp;&nbsp;peg</h2>
 
 ###Axis in axis

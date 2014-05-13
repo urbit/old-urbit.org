@@ -20,8 +20,8 @@ This library is a work in progress. Feedback and corrections are welcome. Pull r
 {% if page.categories contains 'lib' %}
 {% if page.title != 'Overview' %}
 <li>
-    <a href="#" class="expand"></a>
 	<a href="#{{ page.title | handleize }}" class="section">{{ page.title-short }}</a>
+    <a href="#" class="expand"></a>
 	<ul>
 	{% for arm in page.arms %}
 	<li>

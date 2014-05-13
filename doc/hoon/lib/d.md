@@ -27,6 +27,7 @@ This section covers the containers sets maps and trees.
           ?@(r.a & ?&((vor n.a n.r.a) (hor n.a n.r.a)))
       ==
 
+---
 <h2 id="++in">++&nbsp;&nbsp;in</h2>
 
 ####Sets container.
@@ -48,6 +49,7 @@ Debugging traces are enabled with [!:](/doc/hoon/lan/rune/#zapcol).
 `++in` creates a vulcanized %gold tray that takes a set `a`.
 The wet (+-) arms below inherit the sample `a`.
 
+---
 <h2 id="all:in">all:in</h2>
 
 ####Logical AND
@@ -73,6 +75,7 @@ If `a` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce yes.
 Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
 
+---
 <h2 id="any:in">any:in</h2>
 
 ####Logical and
@@ -97,6 +100,7 @@ A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) an
 Otherwise produce the logical OR ([?|](/doc/hoon/lan/rune/#wutbar)) of `(b n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
 
+---
 <h2 id="del:in">del:in</h2>
 
 ####Delete at `b`
@@ -137,6 +141,7 @@ If the `++vor` of `n.l.a` and `n.r.a` is `%.y` produce a tuple replacing `l.a` w
 Otherwise produce a tuple replacing `r.a` with `l.r.a` in the middle value.  
 
 
+---
 <h2 id="dig:in">dig:in</h2>
 
 ####Get axis.
@@ -174,6 +179,7 @@ If the `++gor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.a` and `c` 
 Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [++peg](/doc/hoon/lib/#++peg).  
 
 
+---
 <h2 id="gas:in">gas:in</h2>
 
 ####Concatinate
@@ -199,6 +205,7 @@ If `b` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce `a`.
 Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](/doc/hoon/lib/#put:in), below.
 
 
+---
 <h2 id="has:in">has:in</h2>
 
 ####Existence check
@@ -231,6 +238,7 @@ If `b` is `n.a` produce %.y.
 Otherwise, if the `++hor` of `b` and `n.a` is `%.y`, recurse with `a` set to `l.a` or `a` set to `r.a` if `%.n`.  
 
 
+---
 <h2 id="put:in">put:in</h2>
 
 ####Insert
@@ -283,6 +291,7 @@ If the `++vor` of `n.a` and `n.c` is `%.y`, produce `[n.a l.a c]`.
 Otherwise produce `[n.c [n.a l.a l.c] r.c]`.
 
 
+---
 <h2 id="rep:in">rep:in</h2>
 
 ####Reduce
@@ -307,6 +316,7 @@ If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce `b`.
 Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` set to `l.a` and `b` set to `(c n.a b)`.
 
 
+---
 <h2 id="tap:in">tap:in</h2>
 
 ####??
@@ -332,6 +342,7 @@ Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` s
       $(a r.a, b [n.a $(a l.a)])
 
 
+---
 <h2 id="wyt:in">wyt:in</h2>
 
 ####Depth.
@@ -356,6 +367,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 
 #Maps
 
+---
 <h2 id="++ept">++&nbsp;&nbsp;ept</h2>
 
     ++  ept                                                 ::  map invariant
@@ -369,6 +381,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 ??  Not sure about this one.
 
 
+---
 <h2 id="++by">++&nbsp;&nbsp;by</h2>
 
 ###Maps container.
@@ -388,6 +401,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 `++by` creates a [vulcanized %gold tray](/doc/hoon/lan/rune/#barfas) that takes a map `a`.  
 
 
+---
 <h2 id="all:by">all:by</h2>
 
 ####Logical AND
@@ -414,6 +428,7 @@ Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b q.n.
 
 
 
+---
 <h2 id="any:by">any:by</h2>
 
 ####Logical OR
@@ -437,6 +452,7 @@ Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b q.n.
 A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a loobean.  
 Otherwise produce the logical OR ([?|](/doc/hoon/lan/rune/#wutbar)) of `(b q.n.a)`, the gate called again with `a` replaced with `l.a` and the gate called again with `a` replaced with `r.a`.
 
+---
 <h2 id="del:by">del:by</h2>
 
 ####Delete at `b`
@@ -477,6 +493,7 @@ If the `++vor` of `p.n.l.a` and `p.n.r.a` is `%.y` produce a tuple replacing `l.
 Otherwise produce a tuple replacing `r.a` with `l.r.a` in the middle value.  
 
 
+---
 <h2 id="dig:by">dig:by</h2>
 
 ####Get axis
@@ -506,6 +523,7 @@ If the `++gor` of `b` and `p.n.a` is `%.y`, recurse with `a` set to `l.a` and `c
 Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [++peg](/doc/hoon/lib/#++peg).  
 
 
+---
 <h2 id="gas:y">gas:y</h2>
 
 ####Concat list.
@@ -534,6 +552,7 @@ If `b` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce `a`.
 Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](/doc/hoon/lib/#put:in), below.
 
 
+---
 <h2 id="get:y">get:by</h2>
 
 ####Grab.
@@ -566,6 +585,7 @@ If the `++gor` of `b` and `p.n.a` is `%.y` recurse with `a` set to `l.a`.
 Otherwise, recurse with `a` set to `r.a`.
 
 
+---
 <h2 id="has:by">has:by</h2>
 
 ####Existence check.
@@ -588,6 +608,7 @@ Otherwise, recurse with `a` set to `r.a`.
 `+-has` produces the result of `+-get` `b` as a twig using [!=](/doc/hoon/lan/rune/#zaptis).
   
 
+---
 <h2 id="mar:by">mar:by</h2>
 
 ####??
@@ -604,6 +625,7 @@ If you send it null, it deletes if you send it a value it adds
       (put b u.c)
 
 
+---
 <h2 id="put:by">put:by</h2>
 
 ####Insert
@@ -653,6 +675,7 @@ If the `++hor` of `b` and `n.a` is `%.n` ([?:](/doc/hoon/lan/rune/#wutcol)),
 If the `++vor` of `p.n.a` and `p.n.d` is `%.y`, produce `[n.a l.a d]`.  
 Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
 
+---
 <h2 id="rep:by">rep:by</h2>
 
 ####Reduce
@@ -673,6 +696,7 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
       $(a r.a, b $(a l.a, b (c n.a b)))
 
 
+---
 <h2 id="rib:by">rib:by</h2>
 
 ####Map??
@@ -693,6 +717,7 @@ Otherwise produce `[n.d [n.a l.a l.d] r.d]`.
 `+-rib` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts a cell of any two nouns, `[b=* c=*]`.
 
 
+---
 <h2 id="run:by">run:by</h2>
 
 ####Map / Each
@@ -715,6 +740,7 @@ If `a` is null, return `a` ([?~](/doc/hoon/lan/rune/#wutsig)).
 Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called with `a` replaced by `l.a` and the containing gate called with `a` replaced by `r.a`.
   
 
+---
 <h2 id="tap:by">tap:by</h2>
 
 ####Listify
@@ -735,6 +761,7 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
       $(a r.a, b [n.a $(a l.a)])
 
 
+---
 <h2 id="wyt:by">wyt:by</h2>
 
 ####Depth
@@ -781,6 +808,7 @@ Note: `++to` is not used alone, but is used to call the arms it contains.
 The wet (+-) arms below inherit the sample `a`.
 
 
+---
 <h2 id="bal:to">bal:to</h2>
 
 ####Vor??
@@ -804,6 +832,7 @@ The wet (+-) arms below inherit the sample `a`.
       a
 
 
+---
 <h2 id="dep:to">dep:to</h2>
 
 ####Depth
@@ -831,6 +860,7 @@ Otherwise produce the `++max` of the containing gate called with `a` replaced wi
 Increment that product using `+`, the irregular form of `.+`.
 
 
+---
 <h2 id="gas:to">gas:to</h2>
 
 ####Insert
@@ -856,6 +886,7 @@ Otherwise, call the containing gate replacing `b` with `t.b` and `a` with `(put(
 See `+-put` below.
 
 
+---
 <h2 id="get:to">get:to</h2>
 
 ####p-q ify
@@ -887,6 +918,7 @@ If ([?:](/doc/hoon/lan/rune/#wutcol)) `q.b` is null ([?=](/doc/hoon/lan/rune/#wu
 Otherwise, produce `[n.q.b [n.a l.a l.q.b] r.q.b]`.
 
 
+---
 <h2 id="nap:to">nap:to</h2>
 
 ####Unshift
@@ -916,6 +948,7 @@ If [?:](/doc/hoon/lan/rune/#wutcol) `l.a` is null, produce `r.a`.
 `bal(+< ^+(a [p.b q.b r.a]))`
 
 
+---
 <h2 id="put:to">put:to</h2>
 
 ####Shift
@@ -939,6 +972,7 @@ If `a` is null, produce `[b ~ ~]`.
 Otherwise, produce `bal(+< a(l $(a l.a)))`.
 
 
+---
 <h2 id="tap:to">tap:to</h2>
 
 ####Push
@@ -962,6 +996,7 @@ If `a` is null, produce `b`.
 Recurse, replacing `a` with `r.a` and `b` with the cell `n.a` and the containing gate called with `a` replaced with `l.a`.
 
 
+---
 <h2 id="top:to">top:to</h2>
 
 ####First

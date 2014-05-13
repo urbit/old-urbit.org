@@ -41,6 +41,7 @@ If `a` is equal to 0, `++bex` produces 1.
 Otheriwse, `++bex` returns the product of 2 and `++bex` with the value of `a` replaced by [dec a](/doc/hoon/lib/#++dec).  
 
 
+---
 <h2 id="++can">++&nbsp;&nbsp;can</h2>
 
 ####Assemble
@@ -80,6 +81,7 @@ Otherwise, `++can` calls `++mix` with two arguments:
 2. `++lsh` with [bloq](/doc/hoon/lib/#++bloq) size `a`, the first `p` of [list](/doc/hoon/lib/#++list) `b`, and the product of recursively calling `++can` with the value of [list](/doc/hoon/lib/#++list) `b` now set to its tail.
 
 
+---
 <h2 id="++cat">++&nbsp;&nbsp;cat</h2>
 
 ####Concatenate
@@ -121,6 +123,7 @@ Otherwise, `++can` calls `++mix` with two arguments:
 `++cat` uses [++met](/doc/hoon/lib/#++met) to measure the number of [bloqs](/doc/hoon/lib/#++bloq) of size `a` that comprise `b`.  
 `c` is then left-shifted ([++lsh](/doc/hoon/lib/#++lsh) by the same number of [bloqs](/doc/hoon/lib/#++bloq) of size `a`, and then added ([++add](/doc/hoon/lib/#++add)) to `b`.  
 
+---
 <h2 id="++cut">++&nbsp;&nbsp;cut</h2>
 
 ####Slice
@@ -154,6 +157,7 @@ All of these lables are produced by [^=](/doc/hoon/lan/rune/#kettis). `++cut` th
 `++cut` calls the arm [++end](/doc/hoon/lib/ #++end) to return the tail of the result of [right-shifting](/doc/hoon/lib/#++rsh) `d`.  
 The size of the tail is determined by the number of bloqs `c` of size `a`.
 
+---
 <h2 id="++end">++&nbsp;&nbsp;end</h2>
 
 ####Tail
@@ -186,6 +190,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 `++end` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) and two atoms of [axil @](/doc/hoon/lan/tile/#axil), labeled `b` and `c` with [^=](/doc/hoon/lan/rune/#kettis). `++end` returns the remainder of dividing c by the result of [++bex](/doc/hoon/lib/#++bex)  of [++bex](/doc/hoon/lib/#++bex)  multiplied by `b`.
 
 
+---
 <h2 id="++lsh">++&nbsp;&nbsp;lsh</h2>
 
 ####Left shift
@@ -214,6 +219,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 `++lsh` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) and two atoms of [axil @](/doc/hoon/lan/tile/#axil), labeled `b` and `c` with [^=](/doc/hoon/lan/rune/#kettis). `++lsh` multiplies `c` by the result of [++bex](/doc/hoon/lib/#++bex)  of the product of [++bex](/doc/hoon/lib/#++bex)  of `a` multiplied by `b`.
 
 
+---
 <h2 id="++met">++&nbsp;&nbsp;met</h2>
 
 ####Measure
@@ -244,6 +250,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 `++met` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) and an atom of [axil @](/doc/hoon/lan/tile/#axil), labeled `b` with [^=](/doc/hoon/lan/rune/#kettis). `++met` uses [^-](/doc/hoon/lan/rune/#kethep) to cast its result to an atom of [axil @](/doc/hoon/lan/tile/#axil), and uses [=+](/doc/hoon/lan/rune/#tislus) to push a variable `c` onto the sample with a value of 0. Then `++met` declares a trap with [|-](/doc/hoon/lan/rune/#barhep) to enable recursion. If `b` is equal to 0, then `c` is returned. Otherwise, `++met` recurses, this time with the value of `b` set to the result of right-shifting ([++rsh](/doc/hoon/lib/#++rsh)) `b` by one bloq of size `a` to the right, with with the value of c set to +(c) [.+](/doc/hoon/lib/#dotlus). When the value of `b` reaches 0, `++met` returns the value of `c`, which will represent the number of bloqs of size `a` b initially posessed.
 
 
+---
 <h2 id="++rap">++&nbsp;&nbsp;rap</h2>
     ++  rap                                                 ::  assemble nonzero
       ~/  %rap                                              ::  jet
@@ -254,6 +261,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       (cat a i.b $(b t.b))                                  ::  else ++cat
 
 
+---
 <h2 id="++rsh">++&nbsp;&nbsp;rep</h2>
     ++  rep                                                 ::  assemble single
       ~/  %rep
@@ -268,6 +276,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 `++rep` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) that takes a [bloq](/doc/hoon/lib/#++bloq) and [list](/doc/hoon/lib/#++list), labeled `a` and `b` respectively using [^=](/doc/hoon/lan/rune/#kettis). `++rep` casts its result to an atom using [^-](/doc/hoon/lan/rune/#kethep) and then, using [=+](/doc/hoon/lan/rune/#tislus), it pushes a variable `c` onto the sample and sets its value equal to 0. In order to loop, `++rep` then declares a using [|-](/doc/hoon/lan/rune/barhep). The trap uses [?@](/doc/hoon/lan/rune/#wutpam) to test whether `b` is an atom or not. If yes, `++rep` returns 0. Otherwise, `++rep` returns [++con](/doc/hoon/lib/#++con), which it passes two arguments: 1. ++lsh with [bloq](/doc/hoon/lib/#++bloq) size `a`, number of times `c`, and the [tail](/doc/hoon/lib/#++end) of the head of `b`; and, 2.  
 
 
+---
 <h2 id="++rip">++&nbsp;&nbsp;rip</h2>
     ++  rip                                                 ::  disassemble
       ~/  %rip
@@ -278,6 +287,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       [(end a 1 b) $(b (rsh a 1 b))]
 
 
+---
 <h2 id="++rsh">++&nbsp;&nbsp;rsh</h2>
 
 `++rsh` takes a bloq `a` and atoms `b` and `c`. ++rsh produces `c` shifted `b` bloqs of size `a` to the right.
@@ -316,6 +326,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 `++rsh` [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes a [bloq](/doc/hoon/lib/#++bloq) and two atoms, [axil @](/doc/hoon/lan/tile/#axil), labeled `b` and `c` with [^=](/doc/hoon/lan/rune/#kettis). `++rsh` divides `c` by the result of [++bex](/doc/hoon/lib/#++bex)  of the product of [++bex](/doc/hoon/lib/#++bex)  of `a` multiplied by `b`. 
 
 
+---
 <h2 id="++con">++&nbsp;&nbsp;con</h2>
 
 `++con` accepts two atoms a and b and performs an inclusive binary OR.
@@ -339,6 +350,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 `++con` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes two atoms, labeled `a` and `b` using [^=](/doc/hoon/lan/rune/#kettis). `++con` then pushes two atomic variables onto the subject, labeled `a` and `b` again by using [=, the irregular form of ^=](/doc/hoon/lan/rune/#kettis). With [^-](/doc/hoon/lan/rune/#kethep), `++con` ensures its result is cast to an atom. Subsequently, `++con` declares a trap with [|=](/doc/hoon/lan/rune/#bartis)), thus allowing it to loop. Using [?:](/doc/hoon/lan/rune/#wutcol) and [?&](/doc/hoon/lan/rune/#wutpam), `++con` checks if both `a` and `b` are equal to 0. If yes, then `++con` returns `d`. Else, `++con` uses the trap to loop, this time with the values of `a` and `b` both [right-shifted](/doc/hoon/lib/#++rsh) by one bit, and the value of `c` now incremented using [+, the irregular form of .+](/doc/hoon/lan/rune/#dotlus). The value of `d`can also change: if either the last bit of `a` (found using [++end](/doc/hoon/lib/#++end)) and the last bit of `b` are equal ([.=](/doc/hoon/lan/rune/#dottis))to 0, then the value of `d` becomes the sum of `d` and the result of left-shifting 1 by `c` number of bits. Otherwise, `d` remains the same.     
 
 
+---
 <h2 id="++dis">++&nbsp;&nbsp;dis</h2>
 
 `++dis` accepts two atoms a and b and performs a binary AND.
@@ -380,6 +392,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 `++dis` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas) which creates a dry %gold gate using [|=](/doc/hoon/lan/rune/#bartis), whose sample takes two atoms, labeled `a` and `b` using [^=](/doc/hoon/lan/rune/#kettis). Then, using [=|](/doc/hoon/lan/rune/#tisbar), two tiles, labeled `c` and `d`, are [bunted](/doc/hoon/lan/tile/#bunt) onto the subject. In order to loop, `++dis` then calls a trap with [|-](/doc/hoon/lan/rune/barhep), whose result is cast to an atom with [^-](/doc/hoon/lan/rune/#kethep). The trap then uses an if statement by using [?:](/doc/hoon/lan/rune/#wutcol):it uses [=, the irregular form of .= to check if either `a` or `b` is equal to 0 (the inclusive OR statement is called with [?|](/doc/hoon/lan/rune/#wutbar). If either statement returns true, then `++dis` produces d. Otherwise, the trap loops, this time with the values of `a` and `b` both [right-shifted](/doc/hoon/lib/#++rsh) by one bit, and the value of `c` now incremented with [+, the irregular form of .+](/doc/hoon/lan/rune/#dotlus). The value of `d`can also change: if neither the last bit of `a` nor the last bit of `b` are equal ([.=](/doc/hoon/lan/rune/#dottis))to 0, then the value of `d` becomes the sum of d and the result ofleft-shifting 1 by `c` number of bits. Otherwise, d remains the same.     
 
 
+---
 <h2 id="++mix">++&nbsp;&nbsp;mix</h2>
 
 `++mix` accepts two atoms a and b and performs an exclusive binary OR.
@@ -419,6 +432,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Noun orders
 
+---
 <h2 id="++aor">++&nbsp;&nbsp;aor</h2>
 
 ###Examples
@@ -444,6 +458,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         $(a (rsh 3 1 a), b (rsh 3 1 b))
       (lth c d)
 
+---
 <h2 id="++dor">++&nbsp;&nbsp;dor</h2>
 
 ###Examples
@@ -465,6 +480,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         &
       (lth a b)
 
+---
 <h2 id="++gor">++&nbsp;&nbsp;gor</h2>
 ###Examples
 
@@ -478,6 +494,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         (dor a b)
       (lth c d)
 
+---
 <h2 id="++hor">++&nbsp;&nbsp;hor</h2>
 ###Examples
 
@@ -496,6 +513,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         (gor +.a +.b)
       (gor -.a -.b)
 
+---
 <h2 id="++vor">++&nbsp;&nbsp;vor</h2>
 ###Examples
 
@@ -509,12 +527,14 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         (dor a b)
       (lth c d)
 
+---
 <h2 id="++fnv">++&nbsp;&nbsp;fnv</h2>
 ###Examples
 
 ###Summary
     ++  fnv  |=(a=@ (end 5 1 (mul 16.777.619 a)))           ::  FNV scrambler
 
+---
 <h2 id="++mug">++&nbsp;&nbsp;mug</h2>
 ###Examples
 
@@ -540,6 +560,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         ^$(b +(b))
       $(c (fnv (mix c (cut 3 [d 1] a))), d +(d))
 
+---
 <h2 id="++po">++&nbsp;&nbsp;po</h2>
 ###Examples
 
@@ -617,6 +638,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Signed integers
 
+---
 <h2 id="++si">++&nbsp;&nbsp;si</h2>
 ###Examples
 
@@ -727,6 +749,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  %.y if a is positive, %.n if a is negative
 
 
+---
 <h2 id="++fe">++&nbsp;&nbsp;fe</h2>
 ###Examples
 
@@ -799,48 +822,56 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Floating Point
 
+---
 <h2 id="++rlyd">++&nbsp;&nbsp;rlyd</h2>
 ###Examples
 
 ###Summary
     ++  rlyd  |=(red=@rd ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
 
+---
 <h2 id="++rlyh">++&nbsp;&nbsp;rlyh</h2>
 ###Examples
 
 ###Summary
     ++  rlyh  |=(reh=@rh ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
 
+---
 <h2 id="++rlyq">++&nbsp;&nbsp;rlyq</h2>
 ###Examples
 
 ###Summary
     ++  rlyq  |=(req=@rq ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
 
+---
 <h2 id="++rlys">++&nbsp;&nbsp;rlys</h2>
 ###Examples
 
 ###Summary
     ++  rlys  |=(res=@rs ~|(%real-nyet ^-([s=? h=@ f=@] !!)))
 
+---
 <h2 id="++ryld">++&nbsp;&nbsp;ryld</h2>
 ###Examples
 
 ###Summary
     ++  ryld  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rd !!)))
 
+---
 <h2 id="++rylh">++&nbsp;&nbsp;rylh</h2>
 ###Examples
 
 ###Summary
     ++  rylh  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rh !!)))
 
+---
 <h2 id="++rylq">++&nbsp;&nbsp;rylq</h2>
 ###Examples
 
 ###Summary
     ++  rylq  |=([syn=? hol=@ fac=@] ~|(%real-nyet ^-(@rq !!)))
 
+---
 <h2 id="++ryls">++&nbsp;&nbsp;ryls</h2>
 ###Examples
 
@@ -850,6 +881,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Urbit Time
 
+---
 <h2 id="++year">++&nbsp;&nbsp;year</h2>
 ###Examples
     ~dovryp-toblug/try=> =a [[a=%.y y=2.014] m=3 t=[d=20 h=5 m=42 s=53 f=~[0x7456]]]
@@ -869,6 +901,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       (yule day h.t.det m.t.det s.t.det f.t.det)
 
 
+---
 <h2 id="++yore">++&nbsp;&nbsp;yore</h2>
 
 ###Examples
@@ -887,6 +920,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       [m.ger d.ger h.rip m.rip s.rip f.rip]
 
 
+---
 <h2 id="++yell">++&nbsp;&nbsp;yell</h2>
 
 ###Examples
@@ -915,6 +949,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       [day hor mit sec fan]
 
 
+---
 <h2 id="++yule">++&nbsp;&nbsp;yule</h2>
 
 ###Examples
@@ -941,6 +976,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       (con (lsh 6 1 sec) fac)
 
 
+---
 <h2 id="++yall">++&nbsp;&nbsp;yall</h2>
 
 ###Examples
@@ -975,6 +1011,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       $(mot +(mot), day (sub day zis))
 
 
+---
 <h2 id="++yawn">++&nbsp;&nbsp;yawn</h2>
 
 ###Examples
@@ -1009,6 +1046,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
         $(yer nec, day (add day ?:((yelp nec) 36.525 36.524)))
       (add day (mul (div yer 400) (add 1 (mul 4 36.524))))
 
+---
 <h2 id="++yelp">++&nbsp;&nbsp;yelp</h2>
 ###Examples
     ~dovryp-toblug/try=> (yelp 2.014)
@@ -1019,6 +1057,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       |=  yer=@ud  ^-  ?
       &(=(0 (mod yer 4)) |(!=(0 (mod yer 100)) =(0 (mod yer 400))))
 
+---
 <h2 id="++yo">++&nbsp;&nbsp;yo</h2>
 
 ####Time constants.
@@ -1040,6 +1079,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
 
 #Almost Macros
 
+---
 <h2 id="++hard">++&nbsp;&nbsp;hard</h2>
 ###Examples
 
@@ -1051,6 +1091,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
       =+  gol=(han fud)
       ?>(=(gol fud) gol)
 
+---
 <h2 id="++soft">++&nbsp;&nbsp;soft</h2>
 ###Examples
 

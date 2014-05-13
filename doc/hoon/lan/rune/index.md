@@ -19,8 +19,8 @@ This library is a work in progress. Feedback and corrections are welcome. Pull r
 {% assign prefixes = "bar|buc|cen|col|dot|hax|ket|sig|sem|tis|wut|zap" | split: "|" %}
 {% for prefix in prefixes %}
 <li>
-<a href="#" class="expand"></a>
 <a href="#{{ prefix }}" class="section"><code>{{ prefix }}</code></a>
+<a href="#" class="expand"></a>
 <ul>
 {% for page in site.axis.doc-hoon %}
 {% if page.categories contains prefix %}

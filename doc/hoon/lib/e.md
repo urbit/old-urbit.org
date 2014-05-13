@@ -53,6 +53,7 @@ sort: 6
 `++cue` produces a noun [^-](/doc/hoon/lan/rune/#kettis)
 
 
+---
 <h2 id="++jam">++&nbsp;&nbsp;jam</h2>
 
 ####Pack a noun 
@@ -98,6 +99,7 @@ sort: 6
 `++jam` produces a noun [^-](/doc/hoon/lan/rune/#kethep).  
 
 
+---
 <h2 id="++mat">++&nbsp;&nbsp;mat</h2>
 
 ####Length encode
@@ -117,6 +119,7 @@ sort: 6
     ::
 
 
+---
 <h2 id="++rub">++&nbsp;&nbsp;rub</h2>
 
 
@@ -141,6 +144,7 @@ sort: 6
 #section 2eB, parsing (tracing)
 
 
+---
 <h2 id="++last">++&nbsp;&nbsp;last</h2>
 
 ####Farther trace
@@ -163,6 +167,7 @@ sort: 6
               ?:((gth p.zyc p.naz) zyc naz)
 
 
+---
 <h2 id="++lust">++&nbsp;&nbsp;lust</h2>
 
 ####Trace newline
@@ -186,6 +191,7 @@ sort: 6
 #section 2eC, parsing (custom rules)
 
 
+---
 <h2 id="++cold">++&nbsp;&nbsp;cold</h2>
 
 ####Replace
@@ -213,6 +219,7 @@ sort: 6
 
 
 
+---
 <h2 id="++cook">++&nbsp;&nbsp;cook</h2>
 
 ####Modify
@@ -243,6 +250,7 @@ sort: 6
       [p=p.vex q=[~ u=[p=(poq p.u.q.vex) q=q.u.q.vex]]]
 
 
+---
 <h2 id="++easy">++&nbsp;&nbsp;easy</h2>
 
 ####always parses
@@ -267,6 +275,7 @@ sort: 6
     ::
 
 
+---
 <h2 id="++fail">++&nbsp;&nbsp;fail</h2>
 
 ####never parses
@@ -283,6 +292,7 @@ sort: 6
     ++  fail  |=(tub=nail [p=p.tub q=~])
 
 
+---
 <h2 id="++full">++&nbsp;&nbsp;full</h2>
 
 ####end of nail
@@ -309,6 +319,7 @@ sort: 6
 
 
     
+---
 <h2 id="++funk">++&nbsp;&nbsp;funk</h2>
 
 Not used.
@@ -321,6 +332,7 @@ Not used.
       (sef p.tub (weld pre q.tub))
 
 
+---
 <h2 id="++here">++&nbsp;&nbsp;here</h2>
 
     ++  here
@@ -334,6 +346,7 @@ Not used.
       [p=p.vex q=[~ u=[p=(hez [p.tub p.q.u.q.vex] p.u.q.vex) q=q.u.q.vex]]]
 
 
+---
 <h2 id="++jest">++&nbsp;&nbsp;jest</h2>
 
 ####match a cord
@@ -366,6 +379,7 @@ Not used.
         (fail tub)
       $(p.tub (lust i.q.tub p.tub), q.tub t.q.tub, daf (rsh 3 1 daf))
 
+---
 <h2 id="++just">++&nbsp;&nbsp;just</h2>
 
 ####match a char
@@ -394,6 +408,7 @@ Not used.
       (next tub)
 
 
+---
 <h2 id="++knee">++&nbsp;&nbsp;knee</h2>
   
 ####Callback
@@ -406,6 +421,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++mask">++&nbsp;&nbsp;mask</h2>
 
 ####Match with list of characters
@@ -435,6 +451,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++next">++&nbsp;&nbsp;next</h2>
 
 ####consume a character
@@ -456,6 +473,7 @@ Not used.
       [zac [~ i.q.tub [zac t.q.tub]]]
 
 
+---
 <h2 id="++sear">++&nbsp;&nbsp;sear</h2>
 
 ####Test and transform, or fail
@@ -485,6 +503,7 @@ Not used.
 
 
 
+---
 <h2 id="++shim">++&nbsp;&nbsp;shim</h2>
 
 ####range of values
@@ -514,6 +533,7 @@ Not used.
       (next tub)
 
 
+---
 <h2 id="++stag">++&nbsp;&nbsp;stag</h2>
 
 ####add label
@@ -538,6 +558,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++stet">++&nbsp;&nbsp;stet</h2>
 
 ###Summary
@@ -550,6 +571,7 @@ Not used.
       [i=[p=-.i.leh q=+.i.leh] t=$(leh t.leh)]
 
 
+---
 <h2 id="++stew">++&nbsp;&nbsp;stew</h2>
 
 ###Summary
@@ -599,6 +621,7 @@ Not used.
       $(hel r.hel)
 
 
+---
 <h2 id="++stir">++&nbsp;&nbsp;stir</h2>
 
 ###Summary
@@ -617,6 +640,7 @@ Not used.
       [(last p.vex p.wag) [~ (raq p.u.q.vex p.u.q.wag) q.u.q.wag]]
 
 
+---
 <h2 id="++stun">++&nbsp;&nbsp;stun</h2>
 
 ###Summary
@@ -647,6 +671,7 @@ Not used.
 
 #section 2eD, parsing (combinators)
 
+---
 <h2 id="++bend">++&nbsp;&nbsp;bend</h2>
 
 ###Summary
@@ -669,6 +694,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++comp">++&nbsp;&nbsp;comp</h2>
 
 ###Summary
@@ -688,6 +714,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++glue">++&nbsp;&nbsp;glue</h2>
 
 ###Summary
@@ -701,6 +728,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++pfix">++&nbsp;&nbsp;pfix</h2>
 
 ###Summary
@@ -715,6 +743,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++plug">++&nbsp;&nbsp;plug</h2>
 
 ###Summary
@@ -732,6 +761,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++pose">++&nbsp;&nbsp;pose</h2>
 
 ###Summary
@@ -746,6 +776,7 @@ Not used.
     ::
 
 
+---
 <h2 id="++sfix">++&nbsp;&nbsp;sfix</h2>
 
 ###Summary
