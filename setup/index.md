@@ -48,9 +48,9 @@ Then jump to "Run" below to get rolling.
 
 ###Docker
 
-[Docker](http://docker.io) is a very convenient way to get in to an Urbit ship quickly. `~simmev-rabryd` maintains the docker approach [here](https://github.com/yebyen/urbinit).
+[Docker](http://docker.io) is a very convenient way to get in to an Urbit ship quickly. `~simmev-rabryd` maintains the docker approach on GitHub [here](https://github.com/yebyen/urbinit).
 
-Follow those instructions, then proceed to "Run" below.
+Follow the instructions on the GitHub page, then proceed to "Run" below.
 
 
 ###OS X###
@@ -64,7 +64,7 @@ Follow those instructions, then proceed to "Run" below.
 
    - Homebrew? Type `brew`.  If it does something, you have Homebrew.
 
-     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
+     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`
      will install it.
 
      And follow up with `brew install git gmp libsigsegv openssl`
