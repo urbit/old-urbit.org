@@ -56,7 +56,7 @@ The wet (+-) arms below inherit the sample `a`.
 `++all` takes a gate `b` that accepts any noun and produces a loobean representing the logical AND of all the values (`n.a`) in `a`.
 
 ###Examples
-    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
+    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~dovryp-toblug/try=> (~(all in b) |=(a=* ?@(-.a & |)))
     %.n
 
@@ -82,7 +82,7 @@ Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b n.a)
 `+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`
 
 ###Examples
-    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
+    ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~dovryp-toblug/try=> (~(any in b) |=(a=* ?@(+.a & |)))
     %.y
 
@@ -388,7 +388,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 `++by` is the container for all the map arms. The contained arms inherit its sample, the map `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
     %.n
   Note: `++by` is not used alone, but is used to call the arms it contains.
@@ -408,7 +408,7 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 `+-all` takes a gate `b` that accepts any noun and produces a loobean representing the logical AND of all the values (`n.a`) in `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
     %.n
 
@@ -435,7 +435,7 @@ Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b q.n.
 `+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
     %.y
 
@@ -459,7 +459,7 @@ Otherwise produce the logical OR ([?|](/doc/hoon/lan/rune/#wutbar)) of `(b q.n.a
 `+-del` takes any noun b and removes the member of the set `a` where `n.a` is `b`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
     ~talsur-todres/try=> (~(del by b) `a`)
     {[p=`b` q=[2 3]]}
 
@@ -500,7 +500,7 @@ Otherwise produce a tuple replacing `r.a` with `l.r.a` in the middle value.
 `+-dig` takes any noun `b` and produces the axis of `b` within the values (`p.a`) of map `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
     ~talsur-todres/try=> (~(dig by b) `b`)
     [~ 2]
 
@@ -559,7 +559,7 @@ Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See a
 `+-get` takes any noun `b` and produces the value (`q.a`) at key (`p.a`) `b` or ~ if the key doesn't exist.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
     ~talsur-todres/try=> (~(get by b) `b`)
     [~ [2 3]]
 
@@ -592,7 +592,7 @@ Otherwise, recurse with `a` set to `r.a`.
 `+-has` takes any noun `b` and produces a loobean whether that key (`p.a`) exists in `a`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
     ~talsur-todres/try=> (~(has by b) `b`)
     %.y
     ~talsur-todres/try=> (~(has by b) `c`)
@@ -632,7 +632,7 @@ If you send it null, it deletes if you send it a value it adds
 `+-put` takes a cell of two nouns `[b=* c=*]` and produces the map `a` with added `[b=* c=*]`.
 
 ###Examples
-    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])  
+    ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
     ~talsur-todres/try=> (~(put by b) `c` 1)
     {[p=`a` q=1] [p=`c` q=1] [p=`b` q=[2 3]]}
 
@@ -768,7 +768,7 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
 `+-wyt` produces the depth of `a`.
 
 ###Examples
-    ~talsur-todres/try=>  =a (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] ~])
+    ~talsur-todres/try=>  =a (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~talsur-todres/try=> ~(wyt by a)
     3
     ~talsur-todres/try=> =a (mo `(list ,[@t *])`[[`a` 1] [`b` [2 3]] [`c` [4 5]] ~])
@@ -1020,7 +1020,7 @@ Otherwise recurse, replacing `a` with `r.a`.
 
 #Casual containers
 
-##++mo
+<h2 id="++mo">++&nbsp;&nbsp;mo</h2>
 
 ####Mapify
 `++mo` takes a `++list` of cells `a` and produces a `map` with the members of `a`.
@@ -1038,7 +1038,7 @@ Otherwise recurse, replacing `a` with `r.a`.
       (~(gas by b) a)
 
 
-##++sa
+<h2 id="++sa">++&nbsp;&nbsp;sa</h2>
 ####Setify
 `++sa` takes a list `a` and produces a set with the members of `a`.
 
