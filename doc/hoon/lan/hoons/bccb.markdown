@@ -111,48 +111,51 @@ reduces to
 
 ###Notes###
 
-Bunting a tile - if sec is a tile, ~(bunt al sec) produces its bunt - makes a twig that creates a blank default example of the tile's icon.
+Bunting a tile - if `sec` is a tile, `~(bunt al sec)` produces its bunt - makes a twig that creates a blank default example of the tile's icon.
 
 Bunting is actually the most common use of a tile. Consider the gates we've just been defining - how do we build a gate? With
 
-++  deq
-  =+  x=0
-  |.  
-  =+  y=0
-  |-  
-  ?:  =(x +(y))
-    y
-  $(y +(y))
+    ++  deq
+      =+  x=0
+      |.  
+      =+  y=0
+      |-  
+      ?:  =(x +(y))
+        y
+      $(y +(y))
 
-The value x=0 is a useless default. It's in our gate only because the gate is built first, then modified with the real sample. Accordingly, in practice to build a gate we use the synthetic hoon |= (bartis, %brts), which is defined as
+The value `x=0` is a useless default. It's in our gate only because the gate is built first, then modified with the real sample. Accordingly, in practice to build a gate we use the synthetic hoon `|=` (bartis, %brts), which is defined as
 
-++  twig  $%  [%brts p=tile q=hoon]
-          ==
+    ++  twig  $%  [%brts p=tile q=hoon]
+              ==
+
 and
 
-++  open
-  ^-  twig
-  ?-    gen
-    [%bctr *]  [%ktsg ~(bunt al p.gen)]
-    [%brcb *]  [%tsls [%bctr p.gen] [%brcn q.gen]]
-    [%brts *]  [%brcb p.gen (~(put by *(map term foot)) %$ [%ash q.gen])]
-  ==
+    ++  open
+      ^-  twig
+      ?-    gen
+        [%bctr *]  [%ktsg ~(bunt al p.gen)]
+        [%brcb *]  [%tsls [%bctr p.gen] [%brcn q.gen]]
+        [%brts *]  [%brcb p.gen (~(put by *(map term foot)) %$ [%ash q.gen])]
+      ==
 
-(The only hoon we haven't met here is ^~ (ketsig, %ktsg), which tells the compiler to compute a constant expression at compile time. Obviously, the default sample in a gate should under almost every circumstance be a constant.)
+(The only hoon we haven't met here is `^~` (ketsig, %ktsg), which tells the compiler to compute a constant expression at compile time. Obviously, the default sample in a gate should under almost every circumstance be a constant.)
 
-With |= we have:
+With `|=` we have:
 
-++  deq
-  |=  x=@
-  =+  y=0
-  |-  
-  ?:  =(x +(y))
-    y
-  $(y +(y))
+    ++  deq
+      |=  x=@
+      =+  y=0
+      |-  
+      ?:  =(x +(y))
+        y
+      $(y +(y))
+
 or if we prefer
 
-++  deq  |=(x=@ =+(y=0 |-(?:(=(x +(y)) y $(y +(y))))))
-What is x=@? A tile. And the tile in |= is always bunted to create the default sample.
+    ++  deq  |=(x=@ =+(y=0 |-(?:(=(x +(y)) y $(y +(y))))))
+
+What is `x=@`? A tile. And the tile in `|=` is always bunted to create the default sample.
 
 Furthermore, it's wrong to say that the default sample is useless. It generates a corresponding default product. It is perfectly legitimate to simply apply a gate, even a previously unviolated gate, without changing the sample at all.
 
