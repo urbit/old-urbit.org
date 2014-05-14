@@ -42,22 +42,22 @@ reduces to
 
 ###Examples
 
-~waclux-tomwyc/try=> %.(42 dec)
-41
+    ~waclux-tomwyc/try=> %.(42 dec)
+    41
 
-In the above example, `%.` slams ++dec with the sample 42. 
+In the above example, `%.` slams ++dec with the sample 42.
 
 ##Semantics
 
 ###Definition
 
-    ++  twig  
+    ++  twig
       $%  [%cndt p=twig q=twig]
       ==
 
 
 ###Expansion
- 
+
     ++  open
       ^-  twig
       ?-    gen
@@ -67,4 +67,4 @@ In the above example, `%.` slams ++dec with the sample 42.
 
 ##Notes
 
-   
+

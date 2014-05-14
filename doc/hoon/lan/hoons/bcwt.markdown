@@ -14,7 +14,7 @@ title: bucwut
 
 `$?`, `bucwut`, is a tile hoon that produces a `%fern`:
 
-    [%fern p=[i=tile t=(list tile)]]  
+    [%fern p=[i=tile t=(list tile)]]
 
 A non-empty list of cases; its icon is naturally a `%fork`. The programmer is
 responsible for ensuring that the cases are actually orthogonal (unlike with
@@ -43,7 +43,7 @@ None
 
 ###Examples
 
-++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::  axils, @ * ^ ? ~
+    ++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::  axils, @ * ^ ? ~
 
 In ++base, `?` (the irregular form of $?) specifies a list of orthoganal casesfor the %axil tile.
 

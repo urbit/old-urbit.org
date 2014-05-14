@@ -11,7 +11,7 @@ title: buccom
 ##Syntax
 
 `$,`, `buccom`, `[%bccm p=tile]` is a synthetic rune that produces a
-normalizing gate (clam) for `p`. 
+normalizing gate (clam) for `p`.
 
 ###Form
 
@@ -38,9 +38,9 @@ reduces to
 
 ###Examples
 
-++  cord  ,@t                                           ::  text atom (UTF-8)
+    ++  cord  ,@t                                           ::  text atom (UTF-8)
 
-In ++cord, `,` creates a gate that validates atoms of the odor @t. 
+In ++cord, `,` creates a gate that validates atoms of the odor @t.
 
 ##Semantics
 
@@ -48,12 +48,12 @@ In ++cord, `,` creates a gate that validates atoms of the odor @t.
 
 ###Definition
 
-    ++  twig  
+    ++  twig
       $%  [%bccm p=tile]
       ==
 
 ###Expansion
-    
+
     ++  open
       ^-  twig
       ?-    gen

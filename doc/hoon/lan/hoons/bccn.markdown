@@ -14,7 +14,7 @@ title: buccen
 
 ###Form
 
-`p`,`q` and `r` are ++line, which look like `[%foo *]`, where `*` is any noun. 
+`p`,`q` and `r` are ++line, which look like `[%foo *]`, where `*` is any noun.
 ####Tall
 
     $%  p
@@ -33,11 +33,11 @@ None
 
 ###Examples
 
-++  foot  $%  [%ash p=twig]                             ::  dry, geometric
-              [%elm p=twig]                             ::  wet, generic
-              [%oak ~]                                  ::  XX not used
-              [%yew p=(map term foot)]                  ::  XX not used
-          ==     
+    ++  foot  $%  [%ash p=twig]                             ::  dry, geometric
+                  [%elm p=twig]                             ::  wet, generic
+                  [%oak ~]                                  ::  XX not used
+                  [%yew p=(map term foot)]                  ::  XX not used
+              ==
 
 In ++foot, `$%` creates a %kelp, which is a list of possible cases. That is, a ++foot can be either %ash, %elm, %oak or %yew.
 
