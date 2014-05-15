@@ -50,13 +50,13 @@ reduces to [`|_` link]
 
 ###Examples
 
-++  add                                                 ::  add
-  ~/  %add
-  |=  [a=@ b=@]
-  ^-  @
-  ?:  =(0 a)
-    b
-  $(a (dec a), b +(b))
+    ++  add                                                 ::  add
+      ~/  %add
+      |=  [a=@ b=@]
+      ^-  @
+      ?:  =(0 a)
+        b
+      $(a (dec a), b +(b))
 
 In ++add, `|=` creates a gate whose sample takes two atoms
 labeled `a` and `b`, and whose arm evaluates an expression that
@@ -68,12 +68,12 @@ produces the sum of the atoms.
 
 ###Definition###
 
-    ++  twig  
+    ++  twig
       $%  [%brts p=tile q=twig]
       ==
 
 ###Expansion###
-    
+
     ++  open
       ^-  twig
       ?-    gen
