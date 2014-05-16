@@ -12,17 +12,17 @@ title: kettis
 
 ##Syntax
 
-`^=`, `kettis`, `[%ktts p=togo q=twig]` is a natural hoon that wraps `q` in the toga `p`.
+`^=`, `kettis`, `[%ktts p=toga q=twig]` is a natural hoon that wraps `q` in the toga `p`.
 
 ###Form
 
 ####Tall
 
-    ^~  a
+    ^=  a
 
 ####Wide
 
-    ^~(a)
+    ^=(a)
 
 ####Irregular
 
