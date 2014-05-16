@@ -4,7 +4,7 @@ category: ket
 title: kettis
 ---
 
-`^=`, `kettis`, `[%ktts p=togo q=twig]` is a natural hoon that
+`^=`, `kettis`, `[%ktts p=toga q=twig]` is a natural hoon that
 wraps `q` in the toga `p`.
 
 ###Definition###
