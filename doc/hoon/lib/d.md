@@ -524,7 +524,7 @@ Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [+
 
 
 ---
-<h2 id="gas:y">gas:y</h2>
+<h2 id="gas:by">gas:by</h2>
 
 ####Concat list.
 `+-gas` takes a list `b` of cells of any noun and produces a new map with the members of `b` added to `a`.
@@ -553,7 +553,7 @@ Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See a
 
 
 ---
-<h2 id="get:y">get:by</h2>
+<h2 id="get:by">get:by</h2>
 
 ####Grab.
 `+-get` takes any noun `b` and produces the value (`q.a`) at key (`p.a`) `b` or ~ if the key doesn't exist.
