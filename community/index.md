@@ -32,7 +32,7 @@ Urbit is 100% open source. [Check it out](https://github.com/urbit/urbit).
 A fair bit has been written about what Urbit is, was or could be. This is a only a subset, but could help to give you an idea of where we're coming from.
 
 <ul>
-<li><a href="http://vimeo.com/75312418">Urbit demo ~2013.9.23</a></li>
+<li><a href="http://vimeo.com/75312418">Urbit demo video ~2013.9.23</a></li>
 {% for page in site.axis.further-reading %}
 <li><a href="{{ page.url }}">{{ page.title }}</a></li>
 {% endfor %}
