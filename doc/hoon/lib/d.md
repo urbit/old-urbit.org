@@ -545,11 +545,12 @@ Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [+
         a
       $(b t.b, a (put(+< a) p.i.b q.i.b))
 `+-gas` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
-`+-gas` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) that takes a `++list` of cells of any noun `[p=* q=*]`.  
-`b` is cast (using `) to a list of the same type as the members of `a` and used as the subject for the remainder using [=>](/doc/hoon/lan/rune/#tisgar).
-A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast to the type of `a` (a set).  
-If `b` is an atom ([?@](/doc/hoon/lan/rune/#wutpam)), produce `a`.  
-Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`. See also: [+-put](/doc/hoon/lib/#put:in), below.
+`+-gas` creates a [wet vulcanized gate `|*`](/doc/hoon/lan/rune/#bartar) that takes a `++list` of cells of any noun `[p=* q=*]`.  
+`b` is cast (using `` ` ``) to a list of the same type as the members of `a` and used as the subject for the remainder using [`=>`](/doc/hoon/lan/rune/#tisgar).
+A dry `%gold` gate is created and kicked with [`|-`](/doc/hoon/lan/rune/#barhep) and the result is cast to the type of `a` (a set).  
+If `b` is an atom ([`?@`](/doc/hoon/lan/rune/#wutpam)), produce `a`.  
+Otherwise, recurse with `b` set to `t.b` and `a` set to `(put(+< a) i.b)`.  
+See also: [`+-put`](/doc/hoon/lib/#put:in), below.
 
 
 ---
