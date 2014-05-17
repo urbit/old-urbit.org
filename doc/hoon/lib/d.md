@@ -3,7 +3,7 @@ layout: subpage
 title: 2d Containers
 title-short: Containers 2
 axis: doc-hoon
-arms: [++apt, ++in, +-all ++in, +-any ++in, +-del ++in, +-dig ++in, +-gas ++in, +-has ++in, +-put ++in, +-rep ++in, +-tap ++in, +-wyt ++in, ++by, +-all ++by, +-any ++by, +-del ++by, +-dig ++by, +-gas ++by, +-get ++by, +-has ++by, +-mar ++by, +-put ++by, +-rep ++by, +-rib ++by, +-run ++by, +-tap ++by, +-wyt ++by, ++to, +-bal ++to, +-dep ++to, +-gas ++to, +-get ++to, +-nap ++to, +-put ++to, +-tap ++to, +-top ++to, ++mo, ++sa]
+arms: [++apt, ++in, 'all:in', 'any:in', 'del:in', 'dig:in', 'gas:in', 'has:in', 'put:in', 'rep:in', 'tap:in', 'wyt:in', ++by, 'all:by', 'any:by', 'del:by', 'dig:by', 'gas:by', 'get:by', 'has:by', 'mar:by', 'put:by', 'rep:by', 'rib:by', 'run:by', 'tap:by', 'wyt:by', ++to, 'bal:to', 'dep:to', 'gas:to', 'get:to', 'nap:to', 'put:to', 'tap:to', 'top:to', ++mo, ++sa]
 categories: lib
 sort: 5
 ---
@@ -524,7 +524,7 @@ Otherwise recurse with `a` set to `r.a` and `c` set to `(peg c 7)`. See also: [+
 
 
 ---
-<h2 id="gas:y">gas:y</h2>
+<h2 id="gas:by">gas:by</h2>
 
 ####Concat list.
 `+-gas` takes a list `b` of cells of any noun and produces a new map with the members of `b` added to `a`.
@@ -554,7 +554,7 @@ See also: [`+-put`](/doc/hoon/lib/#put:in), below.
 
 
 ---
-<h2 id="get:y">get:by</h2>
+<h2 id="get:by">get:by</h2>
 
 ####Grab.
 `+-get` takes any noun `b` and produces the value (`q.a`) at key (`p.a`) `b` or ~ if the key doesn't exist.

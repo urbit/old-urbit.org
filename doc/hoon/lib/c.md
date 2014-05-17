@@ -2,7 +2,7 @@
 layout: subpage
 title: 2c Noun Surgery
 title-short: Nouns
-arms: [++bex, ++can, ++cat, ++cut, ++end, ++lsh, ++met, ++rap, ++rep, ++rsh, ++con, ++dis, ++mix, ++aor, ++dor, ++gor, ++hor, ++vor, ++fnv, ++mug, ++po, ++ind, ++ins, ++tod, ++tos, ++si, ++abs ++si, ++dif ++si, ++dul ++si, ++fra ++si, ++new ++si, ++old ++si, ++pro ++si, ++rem ++si, ++sum ++si, ++sun ++si, ++syn ++si, ++fe, ++dif ++fe, ++inv ++fi, ++net ++fi, ++out ++fi, ++rol ++fi, ++ror ++fi, ++sum ++fi, ++sit ++fi, ++rlyd, ++rlyh, ++rlyq, ++rlys, ++ryld, ++rylh, ++rylq, ++ryls, ++year, ++yore, ++yell, ++yule, ++yall, ++yawn, ++yelp, ++yo, ++hard, ++soft]
+arms: [++bex, ++can, ++cat, ++cut, ++end, ++lsh, ++met, ++rap, ++rep, ++rsh, ++con, ++dis, ++mix, ++aor, ++dor, ++gor, ++hor, ++vor, ++fnv, ++mug, ++po, ++ind, ++ins, ++tod, ++tos, ++si, 'abs:si', 'dif:si', 'dul:si', 'fra:si', 'new:si', 'old:si', 'pro:si', 'rem:si', 'sum:si', 'sun:si', 'syn:si', ++fe, 'dif:fe', 'inv:fi', 'net:fi', 'out:fi', 'rol:fi', 'ror:fi', 'sum:fi', 'sit:fi', ++rlyd, ++rlyh, ++rlyq, ++rlys, ++ryld, ++rylh, ++rylq, ++ryls, ++year, ++yore, ++yell, ++yule, ++yall, ++yawn, ++yelp, ++yo, ++hard, ++soft]
 axis: doc-hoon
 categories: lib
 sort: 4
@@ -603,7 +603,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
           /lyrtesmudnytbyrsenwegfyrmurtelreptegpecnelnevfes'
       |%
 
-##ind:po
+<h2 id="ind:po">ind:po</h2>
 ###Examples
 
 ###Summary
@@ -613,7 +613,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
                |-  ^-  (unit ,@)
                ?:(=(256 b) ~ ?:(=(a (tod b)) [~ b] $(b +(b))))
 
-##ins:po
+<h2 id="ins:po">ins:po</h2>
 ###Examples
 
 ###Summary
@@ -623,13 +623,13 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
                |-  ^-  (unit ,@)
                ?:(=(256 b) ~ ?:(=(a (tos b)) [~ b] $(b +(b))))
 
-##tod:po
+<h2 id="tod:po">tod:po</h2>
 ###Examples
 
 ###Summary
     ++  tod  ~/(%tod |=(a=@ ?>((lth a 256) (cut 3 [(mul 3 a) 3] dex))))
 
-##tos:po
+<h2 id="tos:po">tos:po</h2>
 ###Examples
 
 ###Summary
@@ -646,7 +646,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ++  si                                                  ::  signed integer
       |%
 
-##abs:si
+<h2 id="abs:si">abs:si</h2>
 ###Examples
 
 ###Summary
@@ -654,7 +654,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  absolute value of a
     ::
 
-##dif:si
+<h2 id="dif:si">dif:si</h2>
 ###Examples
 
 ###Summary
@@ -662,7 +662,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  signed subtraction
     ::
 
-##dul:si
+<h2 id="dul:si">dul:si</h2>
 ###Examples
 
 ###Summary
@@ -670,7 +670,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  signed mod ??
     ::
 
-##fra:si
+<h2 id="fra:si">fra:si</h2>
 ###Examples
 
 ###Summary
@@ -679,7 +679,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  signed division
     ::
 
-##new:si
+<h2 id="new:si">new:si</h2>
 ###Examples
 
 ###Summary
@@ -687,7 +687,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  convert [sign magnitude] pair to @s
     ::
 
-##old:si
+<h2 id="old:si">old:si</h2>
 ###Examples
 
 ###Summary
@@ -695,7 +695,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  sign magnitude pair
     ::
 
-##pro:si
+<h2 id="pro:si">pro:si</h2>
 ###Examples
 
 ###Summary
@@ -704,7 +704,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  signed multiplication
     ::
 
-##rem:si
+<h2 id="rem:si">rem:si</h2>
 ###Examples
 
 ###Summary
@@ -712,7 +712,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  signed remainder
     ::
 
-##sum:si
+<h2 id="sum:si">sum:si</h2>
 ###Examples
 
 ###Summary
@@ -733,7 +733,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  signed addition
     ::
 
-##sun:si
+<h2 id="sun:si">sun:si</h2>
 ###Examples
 
 ###Summary
@@ -741,7 +741,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ::  convert @u to @s
     ::
 
-##syn:si
+<h2 id="syn:si">syn:si</h2>
 ###Examples
 
 ###Summary
@@ -757,19 +757,19 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
     ++  fe                                                  ::  modulo bloq
       |_  a=bloq
 
-##dif:fe
+<h2 id="dif:fe">dif:fe</h2>
 ###Examples
 
 ###Summary
       ++  dif  |=([b=@ c=@] (sit (sub (add out (sit b)) (sit c))))
 
-##inv:fe
+<h2 id="inv:fe">inv:fe</h2>
 ###Examples
 
 ###Summary
       ++  inv  |=(b=@ (sub (dec out) (sit b)))
 
-##net:fe
+<h2 id="net:fe">net:fe</h2>
 ###Examples
 
 ###Summary
@@ -782,13 +782,13 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
                  (lsh c 1 $(a c, b (cut c [0 1] b)))
                $(a c, b (cut c [1 1] b))
 
-##out:fe
+<h2 id="out:fe">out:fe</h2>
 ###Examples
 
 ###Summary
       ++  out  (bex (bex a))
 
-##rol:fe
+<h2 id="rol:fe">rol:fe</h2>
 ###Examples
 
 ###Summary
@@ -798,7 +798,7 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
                =+  g=(mod c f)
                (sit (con (lsh b g e) (rsh b (sub f g) e)))
 
-##ror:fe
+<h2 id="ror:fe">ror:fe</h2>
 ###Examples
 
 ###Summary
@@ -808,13 +808,13 @@ The size of the tail is determined by the number of bloqs `c` of size `a`.
                =+  g=(mod c f)
                (sit (con (rsh b g e) (lsh b (sub f g) e)))
 
-##sum:fe
+<h2 id="sum:fe">sum:fe</h2>
 ###Examples
 
 ###Summary
       ++  sum  |=([b=@ c=@] (sit (add b c)))
 
-##sit:fe
+<h2 id="sit:fe">sit:fe</h2>
 ###Examples
 
 ###Summary
