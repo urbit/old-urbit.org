@@ -6,7 +6,7 @@ sort: 68
 title: sigpam
 ---
 
-#[sigpam, `~&`, %sgpm)(#sgpm)
+#[sigpam, `~&`, %sgpm](#sgpm)
 
 ##Syntax
 
