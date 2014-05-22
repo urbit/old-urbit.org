@@ -67,6 +67,7 @@ body {
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
+  line-height: 1.1rem;
   color: #555;
   text-decoration: none;
 }

@@ -1,13 +1,19 @@
-We're going to walk through the creation of [fizzbuzz](http://en.wikipedia.org/wiki/Fizz_buzz#Other_uses) in hoon. You can find the relevant source at `/~sarlug-picwep/pike=/jpt4/fizzbuzz/fzbz/hoon` in the Urbit namespace, or on GitHub [here](http://github.com/urbit.walkthroughs/lib/fzzbzz/hoon). 
+---
+layout: page
+axis: doc-hoon
+title: fzzbzz
+---
 
-It's recommended that you keep that file open for reference while reading this walkthrough. To get it in to your Urbit ship drop it in `/urb/$SHIP_NAME/try/bin/` where `$SHIP_NAME` is the name of your ship that looks like `talsur-todres`. To run the file you should be able to run something like:
+We're going to walk through the creation of [fizzbuzz](http://en.wikipedia.org/wiki/Fizz_buzz#Other_uses) in Hoon. You can find the relevant source at `/~sarlug-picwep/pike=/jpt4/fizzbuzz/fzbz/hoon` in the Urbit namespace, or on GitHub [here](http://github.com/urbit.walkthroughs/lib/fzzbzz/hoon). 
+
+It's recommended that you keep that file open for reference while reading this walkthrough. To get the file in to your Urbit ship drop it in `/urb/$SHIP_NAME/try/bin/` where `$SHIP_NAME` is the name of your ship that looks like `talsur-todres`. To run the file you should be able to run something like:
 
     ~talsur-todres/try=> :fzbz [1 20]
 
 at your Arvo prompt.
 
 Traditionally, the FizzBuzz Problem tasks the programmer to implement
-the following function:
+the following function, given in math notation:
 
     f(x)={fizz, x=0 (mod 3)
           buzz, x=0 (mod 5)
@@ -39,7 +45,7 @@ The "If-Else-Then" (note this is the reverse of "If-Then-Else") rune, `?.`:
 
     ?.  (lte a b)
 
-evaluates a loobean ("yes" or "no") expression. In this case `(lte a b)` checks if `a` is less than or equal to `b`. performing the *second* subsequent branch of code if true (aka `%.y`, yes or `&`).  This prevents nesting of the longer of the two cases. If `a` is greater than `b`, ++fizz yields the error message:
+evaluates a loobean ("yes" or "no") expression. In this case `(lte a b)` checks if `a` is less than or equal to `b`. performing the *second* subsequent branch of code if true (aka `%.y`, yes or `&`).  This prevents nesting of the longer of the two cases. If `a` is greater than `b`, `++fizz` yields the error message:
 
     "startpoint is greater than endpoint, please reconsider"
 
@@ -49,11 +55,11 @@ So long as `a` is not greater than `b`, flow to the heavier branch, a convention
 
     ?: =(a b)
 
-which checks if `a` equals `b`. If so, evaluate, non-recursively,
+which checks if `a` equals `b`. If `%y`, evaluate, non-recursively,
 
     (buzz a)
 
-that is, `++buzz` called with the value of `a` (that is, the value of `b` since they are equal).
+that is, `++buzz` called with the value of `a` (or the value of `b` since they are equal).
 
 Jumping to:
 
@@ -73,7 +79,7 @@ The nested wutcols flow, producing either "fizzbuzz", "fizz", or "buzz" dependin
 
     =((mod a 3) 0)
 
-evaluates `&` (read "`=((mod a n) 0)`" as "zero tis a mod n").
+evaluates `&` (read "`=((mod a n) 0)`" as "0 = a mod n").
 
 Until the final branch, however, when `a` is transformed from an unsigned decimal (as opposed to binary, hex, etc.) integer into a tape via [`++scow`]():
 
@@ -86,7 +92,7 @@ Back to `++fizz`, the last line:
 
     :(welp (buzz a) " " $(a +(a)))
 
-packs three operations into one. The structure it builds is a `welp` (tape concatenation), the first element of which is the product of a call to `++buzz` with a. The next is the tape " " (a space character). The last is whatever the expression is produced by:
+packs three operations into one. The structure it builds is a `welp` (tape concatenation), the first element of which is the product of a call to `++buzz` with `a`. The next is the tape " " (a space character). The last is whatever the expression is produced by:
 
     $(a +(a))
 
