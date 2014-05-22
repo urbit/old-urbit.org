@@ -130,7 +130,7 @@ If this didn't work, you'll have to do this the hard way. run `vi ~/.bash_profil
 
 `make`.  Sometimes things are just easy.
 
-###Run###
+<h3 id="run">Run</h3>
 
 Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this
