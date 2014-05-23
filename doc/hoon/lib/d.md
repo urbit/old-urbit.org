@@ -129,7 +129,7 @@ Otherwise produce the logical OR ([?|](/doc/hoon/lan/rune/#wutbar)) of `(b n.a)`
         [n.l.a l.l.a $(l.a r.l.a)]
       [n.r.a $(r.a l.r.a) r.r.a]
 `+-del` is a [jetted arm (~/)](/doc/hoon/lan/rune/#sigfas).  
-`+-del` creates a [wet vulcanized gate |*](/doc/hoon/lan/rune/#bartar) which accepts any noun, `b`.  
+`+-del` creates a [wet vulcanized gate `|*`](/doc/hoon/lan/rune/#bartar) which accepts any noun, `b`.  
 A dry `%gold` gate is created and kicked with [|-](/doc/hoon/lan/rune/barhep) and the result is cast ([^-](/doc/hoon/lan/rune/#kethep)) to a set (the type of `a`).  
 If `a` is null ([?~](/doc/hoon/lan/rune/#wutsig)), produce null.  
 If `b` is `n.a` ([=, irregular form of ^=](/doc/hoon/lan/rune/#wutgar)) test the `++hor` of `b` and `n.a` with [?:](/doc/hoon/lan/rune/#wutcol).  
