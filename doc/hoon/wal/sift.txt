@@ -1,0 +1,52 @@
+At the risk of furthering the superficial parallels between Hoon and
+APL (or rather its ASCII offspring, J), this exercise flexes Hoon's
+array programming abilities.
+
+Sift.hoon implements a kind of prime number sieve <wiki-link>only slightly
+more complicated than direct trial division. Visually, the
+procedure is: 
+
+Create a list of numbers, 2 to some upper bound n
+
+n=20
+
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+
+Beginning with the first prime "2", eliminate every multiple of 2
+except 2 itself
+
+2 3 5 7 9 11 13 15 17 19
+
+In the reduced list, select the next number greater than 2, and eliminate its multiples.
+
+2 3 5 7 11 13 17 19
+
+Continue filtering the list until there is no next largest number, at which
+point it will contain only prime numbers (as seen in the example
+above, this is a somewhat naive algorithm - but it works). <note 1>
+
+When implementing the Sieve programmatically in Hoon, the first thing is to 
+construct the initial list.
+
+++  iota
+
+The name comes from APL, and builds a list from 1 to n
+
+  |=  [a=@ b=(list ,@)]
+  ?:  =(a 1)
+    b
+  $(a (dec a), b [a b])
+
+or in this case, 2 to a.
+
+Note that this process is properly tail-recursive <wiki-link>, because of
+argument acc, or accumulator, which passes the partially constructed list
+forward to each call of ++iota.
+
+
+
+<note 1>
+Once the prime to filter over the list (e.g. 5) is greater than the
+square root of the largest number in the list (5^2 > 19) there is no
+reason to continue.
+
