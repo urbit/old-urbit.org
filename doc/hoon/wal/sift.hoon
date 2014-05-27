@@ -22,11 +22,12 @@
       ++  sift-aux
         |=  [quarry=(list ,@) primes=(list ,@)]
         ^-  (list ,@)
-          ?~  quarry
-            primes
-          =+  lquarry=((list ,@) quarry)
-          =+  mask=i.-.lquarry
-          =+  new-q=(skip lquarry |=(a=@ &(=(0 (mod a mask)) !=(a mask))))
+          ?~  quarry  primes
+::           =+  lquarry=quarry
+::          =+  lquarry=((list ,@) quarry)
+          =+  mask=-.quarry
+          =+  ^=  new-q
+            (skip `(list ,@)`quarry |=(a=@ &(=(0 (mod a mask)) !=(a mask))))
         $(quarry t.+.new-q, primes [i.-.new-q primes])
       --
     ==
