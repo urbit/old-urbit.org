@@ -1,0 +1,233 @@
+#  The problem
+
+This is an exercise in parsing Hoon source code using Hoon parsing
+functionality.  Our sample text will be an excerpt of hoon.hoon itself.
+
+The following is an example of the transform from Hoon to Markdown:
+
+
+    ++  star
+      |*  fel=_rule
+      (stir `(list ,_(wonk *fel))`~ |*([a=* b=*] [a b]) fel)
+
+
+    ---
+    <h2 id="++star">++&nbsp;&nbsp;star</h2>
+    
+    ###Summary
+    
+        ++  star
+          |*  fel=_rule
+          (stir `(list ,_(wonk *fel))`~ |*([a=* b=*] [a b]) fel)
+
+
+Note that this program contains almost none of the standard boilerplate square
+except the zapcol (!:) <link>
+
+    !:
+    ::  /=try=/bin/doc/hoon
+    ::
+
+which adds strack traces to any error messages, for convenient debugging.
+
+This program accepts a path to the source file to be parsed
+
+    |=  *
+    |=  [pax=path ~]
+
+and produces a `bowl` <link> containing a `%ok` gift with the instruction to
+write the product of the rest of the program to a file.
+
+    ^-  bowl
+
+A bowl <link> is a list of gifts <link> followed by a list of slips <link>.
+Since we only have one gift and no slips, we create the structure
+`[[write-gift ~] ~]` using nested `colcab`s (:_) <link>,
+
+    :_  ~  :_  ~
+
+which is the dual of `colehp` (:-).  Because `:_  p  q` produces the cell
+`[q p]`, we are able to write the contents of the bowl in reverse order.  This
+is an example of a general Hoon principle that prevents excessive indentation by
+allowing nested structures to flow down the page instead of rightward.
+
+We populate `write-gift` with a cell constructed using `colhep` (:-) <link>.
+The head of the cell, a `%ok` cube, tags the gift as an instruction to save
+changes to a file.
+
+    :-  %ok
+
+`++foal` is a gate that accepts a path to a file and a value to be written to
+it.  `cenlus` (%+) <link> slams this gate with the location of our output file
+and the Markdown-ed source code.
+
+    %+  foal  /=try=/web/docs/md
+    [...]
+
+The remaining code performs the actual Hoon-to-Markdown conversion.
+
+For convenience, `nl` is assigned the value of ASCII 10, the newline character,
+typed as a `tape` <link> using the irregular form of `kettis` (^=) <link>.  This
+is pushed onto the subject with `tislus` (=+) <link> for use further down.
+
+    =+  nl=`tape``(list ,@)`~[10]
+
+The contents of the source file, stored as an atom, are accessed using `dotket` (.^) <link> and parsed into a list of `cord`s <link> using `++lore`.  In order
+to parse over tapes, we must `++turn` over this list of cords, converting each
+element to a tape with `++trip`.  The product of this conversion is assigned the
+toga `lines` and pushed onto the subject.
+
+    =+  lines=(turn (lore ((hard ,@) .^(%cx pax))) trip)
+
+The overall structure of our product needs to be a cord so that it may be
+written to a file.  Since parsing is done over tapes, an outer `++crip` converts
+the final parsed tape into a cord.  `cenhep` (%-) <link> slams a gate with a
+single argument.
+
+    %-  crip
+
+`++roll` left-folds over `lines` of Hoon, parsing them with the given gate and
+accumulating the resulting Markdown into a single tape.
+
+    %+  roll  lines
+    |=  [p=tape q=tape]
+    [...]
+
+We parse the source, modifying it in three special cases, passing it through
+unchanged otherwise.
+
+First, we identify the long lines of cols (":::::...") bounding volume, chapter,
+and section headers.
+
+        =+  ^=  colline
+
+`++rust` scans a tape, `p`,
+
+        %+  rust  p
+
+with a given rule
+
+        ;~  plug
+          (star ace)
+          col  col  col
+          (star (shim 32 126))
+        ==
+
+that matches on the `++plug` (concatenation) of:  `++star` (zero or more)
+`ace`; three successive `col`s; and the `++star` of `++shim` from 32 to 126,
+i.e. any number of ASCII characters with a numeric code in the range from 32 to
+126 (Hoon code may contain full UTF-8 sans tabs, but this is not needed for
+hoon.hoon).
+
+Second, we identify the volume, chapter, and section title text itself.
+
+    =+  ^=  section
+
+If the line is not longer than two characters,
+
+        ?.  (gth (lent p) 2)
+
+then it is not a volume, chapter, or section header.
+
+          ~
+
+Otherwise, we `++rust`
+
+        %+  rust
+
+over the entire line save the final two characters, which in a title line are
+`col`s.
+ 
+          (scag (sub (lent p) 2) p)
+
+We match on lines of text prepended with a pair of `col`s and `++plus` (one or
+more) `ace`.
+
+        ;~  plug
+          col  col  (plus ace)
+          (plus (shim 32 126))
+        ==
+
+Third, we identify arm declarations.
+
+    =+  ^=  arm
+
+We match on lines consisting of:
+*  possible leading whitespace
+*  `lus lus` -- aka `slus`
+*  `ace ace`
+*  any number of any of (`++pose`) the following: `++low` (lowercase letter),
+   `hep` (-), or ++nud` (number)
+*  and possible trailing text.
+
+        %+  rust  p
+        ;~  plug
+          (star ace)
+          lus  lus  ace  ace
+          (plus ;~(pose low hep nud))
+          (star (shim 32 126))
+        ==
+
+Each of the above produces a `(unit)` of the parsing output, which is to say
+that it "maybe" produces a parsing output.  If the parsing rule does not match,
+then `++rust` produces `sig`, else a cell `[~ \i parsing-output\i]`.  The
+parsing output of a `++plug` is a tuple of the parsing outputs of each of the
+component rules.
+
+Ex:  "  ++  star      :: apply parsing rules" -->
+[~ ["  " "+" "+" " " " " "star" "      :: apply parsing rules"]]
+
+Every line is tested against the parsing rules, from most to least specific.
+
+    ?~  arm
+      ?~  section
+        ?~  colline
+
+If all fail to identify the current line `p`, it is unexceptional and should
+be `weld`ed to `q` only slightly modified, with four aces prepended.
+
+          :(weld q "    " p nl)
+
+Recall that `:(f ...)` is the irregular form of `semcol`(;:), which extends an
+otherwise binary function `f` to consume a tuple of any number of arguments.
+
+If the `colline` rule matches `p`, do not add it to the accumulator, i.e.
+yield q alone.
+
+        q
+
+If the `section` rule matches `p`, append `q` with two newlines
+
+      ;:  weld
+        q  nl  nl
+
+and replaces `p` with the appropriate Markdown string.
+
+        "#"  `tape`+>+>.section  nl  nl
+      ==
+
+`+>+>.x` is the "tail of the tail of the tail of the tail of the tuple x".
+Because a tape is a list (that is, a null terminated tuple) of `char`s,
+`+>+>.section` returns all but the first four elements of the product
+of the `section` rule.
+
+Finally, if the `arm` rule yields a match, `q` and three newlines are
+`weld`ed together
+
+    ;:  weld
+      q  nl  nl  nl
+
+along with a Markdown block interspersed with "{...h...}"
+
+      "---"  nl
+      "<h2 id=\"++{+>+>+>-.arm}\">++&nbsp;&nbsp;{+>+>+>-.arm}</h2>"  nl  nl
+      "###Summary"  nl  nl
+      "    "  p  nl
+    ==
+
+`kel`({)<link> and `ker`(})<link> intersperses code to be evaluated within a
+tape.
+
+Modulo the the complexity of the parsing rules, from an eagle's eye view, 
+parse.hoon is nothing more than a left-fold of a comparison function over
+a list of lines of text, yielding a single Markdown string.
