@@ -78,7 +78,7 @@ Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b n.a)
 ---
 <h2 id="any:in">any:in</h2>
 
-####Logical and
+####Logical OR
 `+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`
 
 ###Examples
