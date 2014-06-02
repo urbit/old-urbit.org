@@ -613,8 +613,9 @@ Otherwise, recurse with `a` set to `r.a`.
 <h2 id="mar:by">mar:by</h2>
 
 ####??
-If you send it null, it deletes if you send it a value it adds
-`b` is the key
+Accepts two nouns of the types of the map's keys and values, respectively.
+Validates that the value is not null and puts the pair in the map.  If the value
+is null, it deletes the key.
 
 ###Examples
 
@@ -744,7 +745,7 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
 ---
 <h2 id="tap:by">tap:by</h2>
 
-####Listify
+####Listify pairs
 
 ###Examples
     ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 97] [`b` 98] ~])
@@ -763,9 +764,27 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
 
 
 ---
+<h2 id="uni:by">uni:by</h2>
+
+####Union, merge
+`+-uni` produces the union of map `b` with `a`.
+
+###Examples
+
+###Summary
+    +-  uni
+      ~/  %uni
+      |=  b=_a
+      ?@  b  a
+      %=  $
+        a  (~(put by a) p.n.b q.n.b)
+        b  (~(uni by l.b) r.b)
+      ==
+
+---
 <h2 id="wyt:by">wyt:by</h2>
 
-####Depth
+####Depth of map
 `+-wyt` produces the depth of `a`.
 
 ###Examples

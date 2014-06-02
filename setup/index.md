@@ -37,7 +37,7 @@ Urbit depends on:
 
 ###Linux (Fedora)###
 
-1.  `sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags`
+1.  `sudo yum install gcc gcc-c++ fedora-packager git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags`
 
 ###Linux (AWS)###
 
@@ -84,9 +84,9 @@ throughout that section because you've installed Urbit to your system and "vere"
 
 Getting Urbit working on Red Hat Linux is almost as easy.
 
-First of all, get a tarball of the source code using the curl command below:
+First of all, get a tarball of the source code using the ugly tar command below.  It makes all of our lives easier for now, trust us:
 
-2.  curl -L https://api.github.com/repos/urbit/urbit/tarball > urbit.zip
+2.  git clone https://github.com/urbit/urbit.git ; mv urbit urbit-0.2 ; tar -czvf urbit.tar.gz urbit-0.2 ; rm -rf urbit-0.2
 
 To build that into an rpm:
 
