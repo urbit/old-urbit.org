@@ -111,23 +111,325 @@ volume 2, Hoon libraries and compiler
 
 chapter 2a, basic unsigned math
 
-++  add  
-++  cap  
+++  add 
+  Comment:
+        add
+  Description:
+        Sums two numbers.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        It must yield an atom.
+        Check if a is equal to 0.
+        If it is, the arm produces b.
+        Else, the arm is called again with a replaced by (dec a) and b by +(b).
+  Examples:
+        ~palryp-hocsyt/try=> (add 2 2)
+        4
+        ~palryp-hocsyt/try=> (add 1 1.000.000)
+        1.000.001
+        ~palryp-hocsyt/try=> (add 1.333 (mul 2 2))
+        1.337
+++  cap
+  Comment:
+        tree head
+  Description:
+        Yields whether an atom is in the head or tail of a noun.
+  Explanation:
+        This arm is jetted.
+        It must yield either %2 or %3.
+        Selects a case below for the actual type of a.
+        Yield %2 if a is %2.
+        %3 if it is %3.
+        Fail if a is either %0 or %1.
+        Else, call cap recursively with a replaced by a/2.
+        The case statement is closed.
+  Examples:
+        ~palryp-hocsyt/try=> (cap 4)
+        %2
+        ~palryp-hocsyt/try=> (cap 6)
+        %3
+        ~palryp-hocsyt/try=> (cap (add 10 9))
+        %2
 ++  dec  
+  Comment:
+        decrement
+  Description:
+        Decrements a number - Subtracts one.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        When the following code crashes, print "%decrement-underflow" in the stack trace.
+        Produce the next gate asserting a is not 0.
+        Let b be 0.
+        Creates a dry %gold trap which yields an atom.
+        Check if a is equal to the increment of b.
+        If so, produce b.
+        Else, recursively call dec by replacing the argument b with the increment of b.
+  Examples:
+        ~palryp-hocsyt/try=> (dec 7)
+        6
+        ~palryp-hocsyt/try=> (dec 0)
+        ! decrement-underflow
+        ! exit
 ++  div  
+  Comment:
+        divide
+  Description:
+        Divides one number by another.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which  accepts two atoms.
+        It must yield an atom.
+        When the following code crashes, print "div" in the stack trace.
+        Produce the next trap asserting that b is not 0.
+        Let c be 0.
+        Create a dry %gold trap
+        Build an if-then-else statement on whether a is less than b.
+        If so, produce c.
+        Else, recursively call with a replaced by the difference of a and b and c by 
+        the increment of c.
+  Examples:
+        ~palryp-hocsyt/try=> (div 4 2)
+        2
+        ~palryp-hocsyt/try=> (div 17 8)
+        2
+        ~palryp-hocsyt/try=> (div 20 30)
+        0 
 ++  fac  
-++  gte  
-++  gth  
+  Comment:
+        factorial
+  Description:
+        Produces the factorial of a number n, n!.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        It must yield an atom.
+        Build an if-then-else statement on whether a is equal to 0.
+        If so, produce 1.
+        Else, multiply a by the recursive call of factorial with the decrement of a.
+  Examples:
+        ~palryp-hocsyt/try=> (fac 3)
+        6
+        ~palryp-hocsyt/try=> (fac 0)
+        1
+        ~palryp-hocsyt/try=> (fac 11)
+        39.916.800
+++  gte
+  Comment:
+        greater than or equal
+  Description:
+        Produces the loobean a>=b.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce a loobean.
+        Yield false if a is less than b, true else.
+  Examples:
+        ~palryp-hocsyt/try=> (gte 100 10)
+        %.y
+        ~palryp-hocsyt/try=> (gte 4 4)
+        %.y
+        ~palryp-hocsyt/try=> (gte 3 4)
+        %.n
+++  gth
+  Comment:
+        greater than
+  Description:
+        Producces the loobean a>b.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce a loobean.
+        Yield false if a is less than or equal to b, true else.
+  Examples:
+        ~ronrem-lonsem/try=> (gth 4 5)
+        %.n
+        ~ronrem-lonsem/try=> (gth 5 4)
+        %.y
+        ~ronrem-lonsem/try=> (gth 5 5)
+        %.n
+        ~ronrem-lonsem/try=> (gth 0 0)
+        %.n
 ++  lte  
+  Comment:
+        less than or equal to
+  Description:
+        Produces the loobean a<=b.
+  Explanation:
+        This is a jetted arm.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce a loobean.
+        Use logical OR to yield true if either a=b or (lth a b) is true.
+  Examples:
+        ~ronrem-lonsem/try=> (lte 4 5)
+        %.y
+        ~ronrem-lonsem/try=> (lte 5 4)
+        %.n
+        ~ronrem-lonsem/try=> (lte 5 5)
+        %.y
+        ~ronrem-lonsem/try=> (lte 0 0)
+        %.y
 ++  lth  
+  Comment:
+        less than
+  Description:
+        Produces the loobean a<b.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce a loobean.
+        Use logical AND, thus immediately returning false if a=b.
+        Then, create and kick a dry %gold trap which returns true on a=0,
+        or false if a!=0 and b=0.
+        If none of these cases are met, recursively call lth with both a and b decremented.
+  Examples:
+        ~ronrem-lonsem/try=> (lth 4 5)
+        %.y
+        ~ronrem-lonsem/try=> (lth 5 4)
+        %.n
+        ~ronrem-lonsem/try=> (lth 5 5)
+        %.n
+        ~ronrem-lonsem/try=> (lth 5 0)
+        %.n
 ++  mas  
+  Comment:
+        tree body
+  Description:
+       Produces the axis of a within the head or the tail. 
+  Explanation:
+        This arm is jetted.
+        Creates a dry gold gate with a sample which accepts an atom.
+        Must return an atom.
+        Selects a case below for the actual type of a.
+        Exit if a is 1.
+        Produce 1 if a is either 2 or 3.
+        Else, sum the modulus of a and 2 with the 2 multiplied by the recursive call of 
+        mas with a replaced by a/2.
+  Examples:
+        1 ~ronrem-lonsem/try=> (mas 3)
+        1
+        ~ronrem-lonsem/try=> (mas 4)
+        2
+        ~ronrem-lonsem/try=> (mas 5)
+        3
+        ~ronrem-lonsem/try=> (mas 6)
+        2
+        ~ronrem-lonsem/try=> (mas 7)
+        3
+        ~ronrem-lonsem/try=> (mas 8)
+        4
+        ~ronrem-lonsem/try=> (mas 0)
+        ! exit
+        ~ronrem-lonsem/try=> (mas 1)
+        ! exit
 ++  max  
+  Comment:
+        maximum
+  Description:
+        Yields the larger of two atoms.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce an atom.
+        Build an if-else-then statement on a>b.
+        If so, produce a.
+        Else, produce b.
+  Examples:
+        ~palryp-hocsyt/try=> (max 10 100)
+        100
+        ~palryp-hocsyt/try=> (max 10.443 9)
+        10.443
+        ~palryp-hocsyt/try=> (max 0 1)
+        1
 ++  min  
+  Comment:
+        minimum
+  Description:
+        Yields the smaller of two atoms.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce an atom.
+        Build an if-then-else statement on a<b.
+        If so, produce a.
+        Else, produce b.
+  Examples:
+        ~palryp-hocsyt/try=> (min 10 100)
+        10
+        ~palryp-hocsyt/try=> (min 10.443 9)
+        9
+        ~palryp-hocsyt/try=> (min 0 1)
+        0
 ++  mod  
+  Comment:
+        remainder
+  Description:
+        Yields the modulus of (a mod b).
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce an atom.
+        Assert that b is not 0 before producing the below.
+        Produce the difference of a and the product of b times a/b.
+  Examples:
 ++  mul  
+  Comment:
+        multiply
+  Description:
+        Multiplies two numbers.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce an atom.
+        Let c be 0.
+        Create and kick a dry %gold trap.
+        Build an if-then-else statement on a=0.
+        If so, produce c.
+        Else, recursively call multiply with a replaced by decremented a and c replaced by b+c.
+  Examples:
 ++  peg  
+  Comment:
+        tree connect
+  Description:
+        Produces the axis of b within the axis of a.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Must produce an atom.
+        Select a case below for the actual type of b.
+        Yield a on b=1.
+        Yield (mul a 2) on b=2.
+        Yield the increment of (mul a 2) on b=3.
+        Else, sum (b mod 2) with the product of 2 and the recursive call to peg with b replaced by b/2.
+  Examples:
+        ~ronrem-lonsem/try=> (mul 5 3)
+        15
+        ~ronrem-lonsem/try=> (mul 1 0)
+        0
 ++  sub  
-
+  Comment:
+        subtract
+  Description:
+        Accepts two atoms, a and b, and produces a-b.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        When the following code crashes, print "%subtract-underflow" in the stack trace.
+        Must produce an atom.
+        Build an if-then-else statement on b=0.
+        If so, produce a.
+        Else, produce the recursive call of subtract with a and b replaced by their respective decrements.
+  Examples:
+        ~ronrem-lonsem/try=> (sub 10 5)
+        5
+        ~ronrem-lonsem/try=> (sub 243 44)
+        199
+        ~ronrem-lonsem/try=> (sub 5 0)
+        5
+        ~ronrem-lonsem/try=> (sub 0 5)
+        ! subtract-underflow
+        ! exit
 
 chapter 2b, basic containers
 
