@@ -761,7 +761,7 @@ Section 2bB, lists
         right fold
   Description:
         Accepts a list 'a' and a gate 'b' which accepts two nouns, then folds (recursively calls 'b' across) the 
-        list, producing a value of of the list element's type.
+        list right to left, producing a value of the list element's type.
   Explanation:
         This arm is jetted.
         Creates a vulcanized wet gate with a sample which accepts a list and a trap which accepts two nouns.
@@ -783,71 +783,102 @@ Section 2bB, lists
         ! exit
 ++  roll 
   Comments:
+        left fold
   Description:
+        Accepts a list 'a' and a gate 'b' which accepts two nouns, then folds (recursively calls 'b' across) the
+        list left to right, producing a value of the list of the element's type.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate with a sample which accepts a list and a trap which accepts two nouns.
+        A dry %gold trap is then created and kicked.  It must produce the type of the list's elements.
+        Build an if-then-else statement on "Is a an atom?"
+        If so, produce q.b.
+        Else, recursively call roll with a replaced by the tail of a and b by the recursive call of b
+        with q replaced by (b i.a q.b).
   Examples:
+        ~barred-tidset/try=> =a =|([p=@ q=@] |.((sub p q)))
+        ~barred-tidset/try=> (roll (limo [1 2 3 ~]) a)
+        2
+        ~barred-tidset/try=> (roll (limo [3 6 3 ~]) a)
+        0
 ++  skid 
   Comments:
+       separate
   Description:
+        Accepts a list and a gate which takes any noun and produces a loobean.  Produces two lists, one who's elements
+        produce true and one who's produce false.
   Explanation:
+        
   Examples:
 ++  skim 
   Comments:
+        only
   Description:
   Explanation:
   Examples:
 ++  skip 
   Comments:
+        except
   Description:
   Explanation:
   Examples:
 ++  scag 
   Comments:
+        prefix
   Description:
   Explanation:
   Examples:
 ++  slag 
   Comments:
+        suffix
   Description:
   Explanation:
   Examples:
 ++  snag 
   Comments:
+        index
   Description:
   Explanation:
   Examples:
 ++  sort 
   Comments:
+        quicksort
   Description:
   Explanation:
   Examples:
 ++  swag 
   Comments:
+        infix
   Description:
   Explanation:
   Examples:
 ++  turn 
   Comments:
+        transform
   Description:
   Explanation:
   Examples:
 ++  weld 
   Comments:
+        concatenate
   Description:
   Explanation:
   Examples:
 ++  welp 
   Comments:
+        perfect weld
   Description:
   Explanation:
   Examples:
 ++  wild 
   Comments:
+        concatenate
   Description:
   Explanation:
   Examples:
 ++  zing 
   Comments:
+        promote
   Description:
   Explanation:
   Examples:
