@@ -594,7 +594,7 @@ Section 2bA, units
         Retrieves the value from a unit, crashing if the unit is null.
   Explanation:
         Creates a vulcanized wet gate with a sample which accepts a unit.
-        Build an if-then-else statement on "Is a an atom?"
+        Build an if-then-else statement on "a is an atom."
         If so, crash.
         Else, produce u.a from the unit a.
   Examples:
@@ -634,7 +634,7 @@ Section 2bB, lists
         The type of the result must be the same as a, our argument list.
         Let b be a list of the type of the icon of a, as it is bunted.
         Create and kick a dry %gold trap
-        Build an if-then-else statement on "Is a an atom?"
+        Build an if-then-else statement on "a is an atom."
         If so, produce b.
         Else, recursively call flop with a replaced by it's tail and b replaced by [i.a b], where
         i.a is the head of a.
@@ -704,7 +704,7 @@ Section 2bB, lists
         Must produce an atom.
         Let b be 0.
         Creates and kicks a dry %gold trap.
-        Builds an if-then-else statement on "Is a an atom?"  If so, produces b.
+        Builds an if-then-else statement on "a is an atom."  If so, produces b.
         Else, recursively calls length with the list set to the tail of a and the accumulator, b, incremented.
   Examples:
         ~palryp-hocsyt/try=> (lent (limo [1 2 3 4 ~]))
@@ -742,7 +742,7 @@ Section 2bB, lists
         Applies the loobean gate 'b' to every element of the list 'a', producing the logical OR of all the results.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a list and a gate with a sample of any nouno
+        Creates a vulcanized wet gate with a sample which accepts a list and a gate with a sample of any noun
         and produces a loobean.
         Then, a dry %gold trap is created and kicked.  It must produce a loobean.
         Build an if-then-else gate on "a is null."  If so, produce false.
@@ -766,7 +766,7 @@ Section 2bB, lists
         This arm is jetted.
         Creates a vulcanized wet gate with a sample which accepts a list and a trap which accepts two nouns.
         A dry %gold trap is created and kicked.  It must produce the type of the list's elements.
-        Build a if-then-else statement on "Is a a noun?"
+        Build a if-then-else statement on "a is an atom."
         If so, produce q.b.
         Else, recursivley call b with the head of a and the rest of a replaced by the tail of a.
   Examples:     
@@ -791,7 +791,7 @@ Section 2bB, lists
         This arm is jetted.
         Creates a vulcanized wet gate with a sample which accepts a list and a trap which accepts two nouns.
         A dry %gold trap is then created and kicked.  It must produce the type of the list's elements.
-        Build an if-then-else statement on "Is a an atom?"
+        Build an if-then-else statement on "a is an atom."
         If so, produce q.b.
         Else, recursively call roll with a replaced by the tail of a and b by the recursive call of b
         with q replaced by (b i.a q.b).
@@ -799,6 +799,7 @@ Section 2bB, lists
         ~barred-tidset/try=> =a =|([p=@ q=@] |.((sub p q)))
         ~barred-tidset/try=> (roll (limo [1 2 3 ~]) a)
         2
+        ---
         ~barred-tidset/try=> (roll (limo [3 6 3 ~]) a)
         0
 ++  skid 
@@ -806,101 +807,337 @@ Section 2bB, lists
        separate
   Description:
         Accepts a list and a gate which takes any noun and produces a loobean.  Produces two lists, one who's elements
-        produce true and one who's produce false.
+        produce true and one who's produce false by slamming the gate with them.
   Explanation:
-        
+        Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts any noun and 
+        produces a loobean.
+        Creates and kicks a dry %gold trap.  It must produce a tuple of two lists af a's type
+        Build an if-then-else statement on "a is null"  If so, produce a tuple of two nulls.
+        Else, let c be the recursive call of skid with a replaced by the tail of a.
+        Build an if-then-else statement on (b i.a).  If so, produce [[i.a p.c] q.c].
+        Else, produce [p.c [i.a q.c]] where p.c and q.c are the separate list results of c.
   Examples:
+        ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
+        ~dovryp-toblug/try=> (skid (limo [0 1 2 3 ~]) a)
+        [p=[i=2 t=[i=3 t=~]] q=[i=0 t=[i=1 t=~]]]
 ++  skim 
   Comments:
         only
   Description:
+        Accepts a list 'a' and a gate 'b' which takes any noun and produces loobean.  
+        Produces the sublist of 'a' whose elements produce true by slamming the gate with them.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts any noun and 
+        produces a loobean.
+        Creates and kicks a dry %gold trap.
+        Which must return a list of a's type.
+        Build an if-then-else statement on "a is an atom."
+        If so, prodoce null.
+        Else, build an if-then-else statement on (b i.a).  If so, produce [i.a $(a t.a)], where $(a t.a) is the recursive
+        call of skim with a replaced by the tail of a.
+        Else, produce $(a t.a).
   Examples:
+        ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
+        ~dovryp-toblug/try=> (skim (limo [0 1 2 3 ~]) a)
+        [i=2 t=[i=3 t=~]]
 ++  skip 
   Comments:
         except
   Description:
+        Accepts a 'a' list and a gate 'b' which takes any noun and produces a loobean.
+        Produces the sublist of 'a' whose elments produce false by slamming the gate with them.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts any noun and 
+        produces a loobean.
+        Creates and kicks a dry %gold trap.
+        Which must return a list of a's type.
+        Build an if-then-else statement on "a is an atom."
+        If so, produce null.
+        Else build na if-then-else statement on (b i.a).  If so, produce the recursive call of skip with a replacd by
+        the tail of a.
+        Else, produce [i.a $(a t.a)].
   Examples:
+        ~dovryp-toblug/try=> =a |=(a=@ (gth a 1))
+        ~dovryp-toblug/try=> (skip (limo [0 1 2 3 ~]) a)
+        [i=0 t=[i=1 t=~]]
 ++  scag 
   Comments:
         prefix
   Description:
+        Accepts an atom 'n' and list 'b',  producing the first n elements at the front of the list.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate which accepts an atom and a list.
+        A dry %gold trap is created and kicked.  It must produce a list of the same type as 'b'.
+        Build an if-then-else statement on the logical OR statement (a=0 or b is in null).
+        If so, produce null.
+        Else, produce [i.b $(b t.b, a (dec a))] where 'i.b' is the head of 'b' and $(b t.b, a (dec a))
+        is the recursive call of scag with 'b' replaced by the tail of 'b' and 'a' decremented.
   Examples:
+        ~palryp-hocsyt/try=> (scag 2 (limo [0 1 2 3 ~]))
+        [i=0 t=[i=1 t=~]]
+        ---
+        ~palryp-hocsyt/try=> (scag 10 (limo [1 2 3 4 ~]))
+        [i=1 t=[i=2 t=[i=3 t=[i=4 t=~]]]]
 ++  slag 
   Comments:
         suffix
   Description:
+        Accepts an atom 'n' and a list 'b', producing the last n elemnents at the back of the list.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate which accepts an atom and a list.
+        A dry %gold trap is created and kicked.  It must produce a list of the same type as 'b'.
+        Build an if-then-else statement on a=0.
+        If so, produce 'b'.
+        Else, build an if-then-else statement on "b is an atom."
+        If so, produce null.
+        Else, call slag recursively with b replaced by the tail of b, a replaced by the decrement of a.
   Examples:
+        ~palryp-hocsyt/try=> (slag 2 (limo [0 1 2 3 ~]))
+        [i=2 t=[i=3 t=~]] 
+        ---
+        ~palryp-hocsyt/try=> (slag 2 (limo [1 2 3 4 ~]))
+        [i=3 t=[i=4 t=~]]
 ++  snag 
   Comments:
         index
   Description:
+        Accepts an atom and a list, producing the element at the index of the atom in the list and failing is the list
+        is null.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate which accepts an atom and a list.
+        A dry %gold trap is created and kicked.
+        Build an if-then-else statement on "b is null."
+        If so, fail with "snag-fail" in the stack trace.
+        Else, build an if-then-else statement on a=0.
+        If so, produce the head of 'b'.
+        Else, recursively call snag with 'b' replaced by the tail of 'b' and 'a' decremented.
   Examples:
+        ~palryp-hocsyt/try=> (snag 2 (limo [3 2 1 0 ~]))
+        1
+        ---
+        ~palryp-hocsyt/try=> (snag 4 (limo [1 2 3 4 5 6 7 8 ~]))
+        5
 ++  sort 
   Comments:
         quicksort
   Description:
+        Accepts a list and a gate with a sample which accepts two nouns and produces a loobean.  'sort' then produces a 
+        list of the elements of 'a' sorted according to 'b'.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts two nouns and
+        produces a loobean.
+        Homogenizes the list and makes it the subject of the following code, casting the following to the
+        homogenized list type.
+        Creates and kicks dry %gold trap.  It must produce a list of a's type.
+        Builds an if-then-else statement on "a is null."  If so, produce null.
+        Slam the weld gate with the q and r below.
+        The q and r are then defined to be the recursive call of the trap with the skim of the tail by our sort gate.
+        For q, it skims by (b c i.a).  For r, by !(b c i.a).
+        r is first cast to the type of the tail of 'a' and produced as a tuple behind the head of 'a'.
   Examples:
+        ~dovryp-toblug/try=> =a =|([p=@ q=@] |.((gth p q)))
+        ~dovryp-toblug/try=> (sort (limo [0 1 2 3 ~]) a)
+        ~[3 2 1 0]
 ++  swag 
   Comments:
         infix
   Description:
+        A range in a list - Produces the values in list 'c' starting at index 'a' and spanning 'b' elements
+        more than that.
   Explanation:
+        Creates a vulcanized wet with a sample which gate which accepts a tuple of atoms and a list 'c'.
+        The last 'a' elements in 'c' are selected by slag.  Then the first 'b' elements of 
+        those last elements are selected and produced by scag.
   Examples:
+        ~palryp-hocsyt/try=> (swag [0 5] (limo [1 2 3 4 5 6 7 8 9 10 ~]))
+        [i=1 t=[i=2 t=[i=3 t=[i=4 t=[i=5 t=~]]]]]
+        ---
+        ~palryp-hocsyt/try=> (swag [3 5] (limo [1 2 3 4 5 6 7 8 9 10 ~]))
+        [i=4 t=[i=5 t=[i=6 t=[i=7 t=[i=8 t=~]]]]]
+        ---
+        ~palryp-hocsyt/try=> (swag [1 2] (limo [1 2 3 ~]))
+        [i=2 t=[i=3 t=~]] 
 ++  turn 
   Comments:
         transform
   Description:
+        Accepts a list and a gate.  Produces the list with the gate applied to each element of the original list.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate which accepts a list and a gate.
+        Creates and kicks a dry %gold trap.
+        Build an if-then-else statement on "a is an atom."
+        If so, produce null.
+        Else, produce the tuple with head (b i.a) and tail that is turn applied recursively to the tail of 'a'.
   Examples:
+        ~dovryp-toblug/try=> (turn (limo [104 111 111 110 ~]) ,@t)
+        <|h o o n|>
 ++  weld 
   Comments:
         concatenate
   Description:
+        Concatenates two lists.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate which accepts two lists.
+        Homogenizes both lists and makes them the subject of the following code.
+        A dry %gold trap is created and kicked.  It must return the type of list 'b'.
+        Build an if-then-else statement on "a is null."  If so, produce 'b'.
+        Else, produce the tuple [i.a $(a t.a)].  'i.a' is the head of 'a', $(a t.a) the recursive call of weld
+        with 'a' replaced by the tail of a.
   Examples:
+        ~palryp-hocsyt/try=> (weld (limo [1 2 3 ~]) (limo [4 5 6 ~]))
+        ~[1 2 3 4 5 6]
+        ~palryp-hocsyt/try=> (weld "foo" "bar")
+        ~[~~f ~~o ~~o ~~b ~~a ~~r]
 ++  welp 
   Comments:
         perfect weld
   Description:
+        Concatenates two lists without losing their type information to homogenization.
+        Produces a tape when passed two tapes.
   Explanation:
+        XXX DON'T WORRY ABOUT HOW THIS WORKS, IT IS A PERPETUAL MIYSTERY TO US ALL. XXX
   Examples:
+        ~palryp-hocsyt/try=> (welp "foo" "bar")
+        "foobar"
 ++  wild 
   Comments:
         concatenate
   Description:
+        Concatenates two lists without casting the product back to a list.
   Explanation:
+        Creates a vulcanized wet gate with a sample which accepts two lists.
+        Homogenizes both lists and makes them the subject of the following code.
+        A dry %gold gate is created and kicked.
+        Build an if-then-else statement on "a is null."  If so, produce 'b'.
+        Else, produce the tuple with head (b i.a) and tail that is turn applied recursively to the tail of 'a'.
   Examples:
+        ~palryp-hocsyt/try=> =norm (limo [1 2 3 4 5 ~])
+        ~palryp-hocsyt/try=> =norm2 (limo [6 7 8 ~])
+        ~palryp-hocsyt/try=> (wild norm norm2)
+        ~[1 2 3 4 5 6 7 8]
+        ---
+        ~palryp-hocsyt/try=> (wild "foo" "bar")
+        ~[~~f ~~o ~~o ~~b ~~a ~~r]
+        ---
+        ~palryp-hocsyt/try=> (homo (weld "foo" "bar"))
+        ~[~~f ~~o ~~o ~~b ~~a ~~r]
+        ~palryp-hocsyt/try=> (homo (wild "foo" "bar"))
+        ! -find-limb.t
+        ! find-fork
+        ! exit
 ++  zing 
   Comments:
         promote
   Description:
+        Turns a list of lists into a single list by promoting the elements of each sublist into the higher.
   Explanation:
+        Creates a vulcanized wet gate with a sample that accepts a list of lists.
+        Casts the result to the type the homogenized list head, asserting that 'a' is at least a cell.
+        A dry %gold trap is created and kicked.
+        Build an if-then-else statement on "a is null."  If so, produce null.
+        Else, weld together the head of a with the recrusive call of zing on the tail of a.
   Examples:
+        ~palryp-hocsyt/try=> (zing (limo [(limo ['a' 'b' 'c' ~]) (limo ['e' 'f' 'g' ~]) (limo ['h' 'i' 'j' ~]) ~]))
+        ~['a' 'b' 'c' 'e' 'f' 'g' 'h' 'i' 'j']
+        ~palryp-hocsyt/try=> (zing (limo [(limo [1 'a' 2 'b' ~]) (limo [3 'c' 4 'd' ~]) ~]))
+        ~[1 97 2 98 3 99 4 100]
 
 chapter 2c, simple noun surgery
 
 section 2cA, bit surgery              **capitalization of "section" inconsistent in source**
 
 ++  bex  
+  Comments:
+        binary exponent
+  Description:
+        Produces 2 to the nth power for some atom 'n'.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts a single atom.
+        Casts the result to an atom.
+        Build an if-then-else statement on a=0.
+        If so, produce 1.
+        Else, multiply two by the recursive call of bex on the decrement of a.
+  Examples:
+        ~palryp-hocsyt/try=> (bex 4)
+        16
+        ~palryp-hocsyt/try=> (bex (add 19 1))
+        1.048.576
+        ~palryp-hocsyt/try=> (bex 0)
+        1
 ++  xeb  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  can  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  cat  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  cut  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  end  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  fil  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  lsh  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  met  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  rap  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  rep  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  rip  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  rsh  
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  swap 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 
 section 2cB, bit logic                
 
