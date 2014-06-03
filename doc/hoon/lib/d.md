@@ -78,7 +78,7 @@ Otherwise produce the logical AND ([?&](/doc/hoon/lan/rune/#wutpam)) of `(b n.a)
 ---
 <h2 id="any:in">any:in</h2>
 
-####Logical and
+####Logical OR
 `+-any` takes a gate `b` that accepts any noun and produces a loobean of the logical OR of all the values (`n.a`) in `a`
 
 ###Examples
@@ -319,18 +319,18 @@ Recurse, with `a` set to `r.a` and `b` set to the product of the gate with `a` s
 ---
 <h2 id="tap:in">tap:in</h2>
 
-####??
-`+-tap` accepts list tile with members of the same type as `a`. `+-tap` produces the set `a` converted to a list using `b`.
+####???
+"`+-tap` accepts list tile with members of the same type as `a`. `+-tap` produces the set `a` converted to a list using `b`."
+
+Note:  This appears to roughly be doing the same thing as 'gas' and in fact takes a list, not a list tile.
+What is happening here?
 
 ###Examples
-  ?? 
-  ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
-  ~talsur-todres/try=> (~(tap in a) (list ,*))
-  ! type-fail
-  ! exit
-  ~talsur-todres/try=> (~(tap in a) (list ,@t))
-  ! type-fail
-  ! exit
+    ~palryp-hocsyt/try=> =s (sa `(list ,@t)`['a' 'b' 'c' ~])
+    ~palryp-hocsyt/try=> s
+    {'a' 'c' 'b'}
+    ~palryp-hocsyt/try=> (~(tap in s) `(list ,@t)`['1' '2' '3' ~])
+    ~['b' 'c' 'a' '1' '2' '3']
 
 ###Summary
     +-  tap
@@ -370,6 +370,8 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
 ---
 <h2 id="++ept">++&nbsp;&nbsp;ept</h2>
 
+###Map invariant
+
     ++  ept                                                 ::  map invariant
       |=  a=(tree ,[p=* q=*])
       ?@  a
@@ -377,9 +379,6 @@ Otherwise, `++add` the products of the gate called with `a` replaced with `l.a` 
       ?&  ?@(l.a & ?&((vor p.n.a p.n.l.a) (hor p.n.l.a p.n.a)))
           ?@(r.a & ?&((vor p.n.a p.n.r.a) (hor p.n.a p.n.r.a)))
       ==
-
-??  Not sure about this one.
-
 
 ---
 <h2 id="++by">++&nbsp;&nbsp;by</h2>
@@ -612,11 +611,13 @@ Otherwise, recurse with `a` set to `r.a`.
 ---
 <h2 id="mar:by">mar:by</h2>
 
-####??
-If you send it null, it deletes if you send it a value it adds
-`b` is the key
+####Put with validation
+Accepts two nouns of the types of the map's keys and values, respectively.
+Validates that the value is not null and puts the pair in the map.  If the value
+is null, it deletes the key.
 
 ###Examples
+
 
 ###Summary
     +-  mar
@@ -625,6 +626,7 @@ If you send it null, it deletes if you send it a value it adds
         (del b)
       (put b u.c)
 
+`+-mar` produces a [vulcanized wet gate |*](/doc/hoon/lan/run/#bartar) which accepts two nouns of the map's key-value types.
 
 ---
 <h2 id="put:by">put:by</h2>
@@ -744,7 +746,7 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
 ---
 <h2 id="tap:by">tap:by</h2>
 
-####Listify
+####Listify pairs
 
 ###Examples
     ~talsur-todres/try=> =b (mo `(list ,[@t *])`[[`a` 97] [`b` 98] ~])
@@ -763,9 +765,27 @@ Otherwise, produce a tuple with `[p.n.a (b q.n.a)]`, the containing gate called 
 
 
 ---
+<h2 id="uni:by">uni:by</h2>
+
+####Union, merge
+`+-uni` produces the union of map `b` with `a`.
+
+###Examples
+
+###Summary
+    +-  uni
+      ~/  %uni
+      |=  b=_a
+      ?@  b  a
+      %=  $
+        a  (~(put by a) p.n.b q.n.b)
+        b  (~(uni by l.b) r.b)
+      ==
+
+---
 <h2 id="wyt:by">wyt:by</h2>
 
-####Depth
+####Depth of map
 `+-wyt` produces the depth of `a`.
 
 ###Examples
