@@ -279,8 +279,8 @@ chapter 2a, basic unsigned math
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce a loobean.
-        Use logical AND, thus immediately returning false if a=b.
-        Then, create and kick a dry %gold trap which returns true on a=0,
+        Use logical AND, thus immediately producing false if a=b.
+        Then, create and kick a dry %gold trap which produces true on a=0,
         or false if a!=0 and b=0.
         If none of these cases are met, recursively call lth with both a and b decremented.
   Examples:
@@ -300,7 +300,7 @@ chapter 2a, basic unsigned math
   Explanation:
         This arm is jetted.
         Creates a dry gold gate with a sample which accepts an atom.
-        Must return an atom.
+        Must produce an atom.
         Selects a case below for the actual type of a.
         Exit if a is 1.
         Produce 1 if a is either 2 or 3.
@@ -436,37 +436,253 @@ chapter 2b, basic containers
 Section 2bA, units                    
 
 ++  biff 
+  Comments:
+        apply
+  Description:
+        Accepts a unit 'a' and a gate 'b' which produces a unit from the type of u.a, slamming the gate 
+        with the value of a when a isn't null and producing ~ when it is.
+  Explanation:
+        Creates a vulanixed wet gate with a sample which accepts a unit and a $+(* (unit)) tiled gate.
+        Build an if-then-else statement "a is null."
+        If so, produce null.
+        Else, produce b slammed with u.a.
+  Examples:
+        ~palryp-hocsyt/try=> (biff (some 5) |=(a=@ (some (add a 2))))
+        [~ u=7]
+        palryp-hocsyt/try=> (biff ~ |=(a=@ (some (add a 2))))
+        ~
 ++  bind 
+  Comments:
+        argue
+  Description:
+        Accepts a unit 'a' and a gate 'b', producing a unit with value (b u.a) or, when a is null, null.
+  Explanation:
+        Creates a vulcanized wet gate with a sample which accepts a unit and a gate.
+        Build an if-then-else statement on "a is null."
+        If so, produce null.
+        Else, produce the a unit with value (b u.a), gate 'b' slammed with u.a.
+  Examples:
+        ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
+        [~ `a`]
+        ~talsur-todres/try=> =a |=(a=@ (add a 1))
+        ~talsur-todres/try=> (bind ((unit ,@) [~ 2]) a)
+        [~ 3]
 ++  clap 
+  Comments:
+        combine
+  Description:
+        Applies a binary operation to the values of two units, producing the product as a unit.
+  Explanation:
+        Creates a vulcanized wet gate with a sample which accepts two units and a gate.
+        Build an if-then-else statment on "a is null."
+        If so, produce b.
+        Else, build an if-then-else statement on "b is null."
+        If so, produce a.
+        Else, produce the unit with value (c u.a u.b)
+  Examples:
+        ~palryp-hocsyt/try=> =u ((unit ,@t) [~ 'a'])
+        ~palryp-hocsyt/try=> =v ((unit ,@t) [~ 'b'])
+        ~palryp-hocsyt/try=> (clap u v |=([a=@t b=@t] (welp (trip a) (trip b))))
+        [~ u="ab"]
+        ~talsur-todres/try=> =a ((unit ,@u) [~ 1])
+        ~talsur-todres/try=> =b ((unit ,@u) [~ 2])
+        ~talsur-todres/try=> =c |=([a=@ b=@] (add a b))
+        ~talsur-todres/try=> (clap a b c)
+        [~ 3]
 ++  drop 
+  Comments:
+        enlist
+  Description:
+        Accepts a unit and produces the list [u.a ~] or null when the unit is null.
+  Explanation:
+        Creates a vulcanized wet gate with a sample which accepts a unit.
+        Builds an if-then-else statement on "a is null."
+        If so, produces null.
+        Else, produce the list [u.a ~].
+  Examples:
+        ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
+        ~divreg-misdef/try=> (drop a)
+        [i=97 t=~]
+        ~divreg-misdef/try=> =a ((unit ,@) [~])
+        ~divreg-misdef/try=> (drop a)
+        ~
 ++  fall 
+  Comments:
+        default
+  Description:
+         a default value 'b' for the unit 'a' when it is null.
+  Explanation:
+        Creates a vulcanized wet gate with a sample which accepts a unit and any noun.
+        Produces b if a is null and u.a if it is not.
+  Examples:
+        ~talsur-todres/try=> (fall ~ `a`)
+        `a`
+        ~talsur-todres/try=> (fall [~ u=0] `a`)
+        0
 ++  mate 
+  Comments:
+        choose
+  Description:
+        Produces the unit 'a' or 'b' which is not null and crashes with error "mate" if they are equal.
+  Explanation:
+        Creates a vulcanized wet gate with a sample which accepts a two units.
+        Build an if-then-else statement on "b is null."
+        If so, produce a.
+        Else, build an if-then-else statement on "a is null."
+        If so, produce b.
+        Else, build an if-else-then statement on  u.a=u.b.  Crash on "mate" if false, produce a if true.
+  Examples:
+        ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
+        ~divreg-misdef/try=> =b ((unit ,@) [~ 97])
+        ~divreg-misdef/try=> (mate a b)
+        [~ 97]
+        ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
+        ~divreg-misdef/try=> =b ((unit ,@) [~])
+        ~divreg-misdef/try=> (mate a b)
+        [~ 97]
+        ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
+        ~divreg-misdef/try=> =b ((unit ,@) [~ 98])
+        ~divreg-misdef/try=> (mate a b)
+        ! 'mate'
+        ! exit
 ++  need 
+  Comments:
+        demand
+  Description:
+        Retrieves the value from a unit, crashing if the unit is null.
+  Explanation:
+        Creates a vulcanized wet gate with a sample which accepts a unit.
+        Build an if-then-else statement on "Is a an atom?"
+        If so, crash.
+        Else, produce u.a from the unit a.
+  Examples:
+        ~divreg-misdef/try=> =a ((unit ,[@t @t]) [~ [`a` ' b']])
+        ~divreg-misdef/try=> (need a)
+        [`a` ' b']
+        ~divreg-misdef/try=> =a ((unit ,@) [~])
+        ~divreg-misdef/try=> (need a)
+        ! exit
 ++  some 
+  Comments:
+        lift
+  Description:
+        Casts any noun a to its unit, [~ a].
+  Explanation:
+        Creates a vulcanized wet gate with a sample which accepts any noun.
+        Produces the tuple [~ u=a], the unit of value a.
+  Examples:
+        ~divreg-misdef/try=> (some [`a` `b`])
+        [~ u=[`a` `b`]]
+        ~divreg-misdef/try=> (some &)
+        [~ u=%.y]
 
 Section 2bB, lists                    
 
 ++  flop 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  homo 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  limo 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  lent 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  levy
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  lien 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  reel 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  roll 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  skid 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  skim 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  skip 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  scag 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  slag 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  snag 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  sort 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  swag 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  turn 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  weld 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  welp 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  wild 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 ++  zing 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
 
 chapter 2c, simple noun surgery
 
