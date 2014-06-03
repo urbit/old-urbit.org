@@ -126,8 +126,10 @@ chapter 2a, basic unsigned math
   Examples:
         ~palryp-hocsyt/try=> (add 2 2)
         4
+        ---
         ~palryp-hocsyt/try=> (add 1 1.000.000)
         1.000.001
+        ---
         ~palryp-hocsyt/try=> (add 1.333 (mul 2 2))
         1.337
 ++  cap
@@ -147,8 +149,10 @@ chapter 2a, basic unsigned math
   Examples:
         ~palryp-hocsyt/try=> (cap 4)
         %2
+        ---
         ~palryp-hocsyt/try=> (cap 6)
         %3
+        ---
         ~palryp-hocsyt/try=> (cap (add 10 9))
         %2
 ++  dec  
@@ -169,6 +173,7 @@ chapter 2a, basic unsigned math
   Examples:
         ~palryp-hocsyt/try=> (dec 7)
         6
+        ---
         ~palryp-hocsyt/try=> (dec 0)
         ! decrement-underflow
         ! exit
@@ -192,8 +197,10 @@ chapter 2a, basic unsigned math
   Examples:
         ~palryp-hocsyt/try=> (div 4 2)
         2
+        ---
         ~palryp-hocsyt/try=> (div 17 8)
         2
+        ---
         ~palryp-hocsyt/try=> (div 20 30)
         0 
 ++  fac  
@@ -211,8 +218,10 @@ chapter 2a, basic unsigned math
   Examples:
         ~palryp-hocsyt/try=> (fac 3)
         6
+        ---
         ~palryp-hocsyt/try=> (fac 0)
         1
+        ---
         ~palryp-hocsyt/try=> (fac 11)
         39.916.800
 ++  gte
@@ -228,15 +237,17 @@ chapter 2a, basic unsigned math
   Examples:
         ~palryp-hocsyt/try=> (gte 100 10)
         %.y
+        ---
         ~palryp-hocsyt/try=> (gte 4 4)
         %.y
+        ---
         ~palryp-hocsyt/try=> (gte 3 4)
         %.n
 ++  gth
   Comment:
         greater than
   Description:
-        Producces the loobean a>b.
+        Produces the loobean a>b.
   Explanation:
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
@@ -245,10 +256,13 @@ chapter 2a, basic unsigned math
   Examples:
         ~ronrem-lonsem/try=> (gth 4 5)
         %.n
+        ---
         ~ronrem-lonsem/try=> (gth 5 4)
         %.y
+        ---
         ~ronrem-lonsem/try=> (gth 5 5)
         %.n
+        ---
         ~ronrem-lonsem/try=> (gth 0 0)
         %.n
 ++  lte  
@@ -264,10 +278,13 @@ chapter 2a, basic unsigned math
   Examples:
         ~ronrem-lonsem/try=> (lte 4 5)
         %.y
+        ---
         ~ronrem-lonsem/try=> (lte 5 4)
         %.n
+        ---
         ~ronrem-lonsem/try=> (lte 5 5)
         %.y
+        ---
         ~ronrem-lonsem/try=> (lte 0 0)
         %.y
 ++  lth  
@@ -286,10 +303,13 @@ chapter 2a, basic unsigned math
   Examples:
         ~ronrem-lonsem/try=> (lth 4 5)
         %.y
+        ---
         ~ronrem-lonsem/try=> (lth 5 4)
         %.n
+        ---
         ~ronrem-lonsem/try=> (lth 5 5)
         %.n
+        ---
         ~ronrem-lonsem/try=> (lth 5 0)
         %.n
 ++  mas  
@@ -309,18 +329,25 @@ chapter 2a, basic unsigned math
   Examples:
         1 ~ronrem-lonsem/try=> (mas 3)
         1
+        ---
         ~ronrem-lonsem/try=> (mas 4)
         2
+        ---
         ~ronrem-lonsem/try=> (mas 5)
         3
+        ---
         ~ronrem-lonsem/try=> (mas 6)
         2
+        ---
         ~ronrem-lonsem/try=> (mas 7)
         3
+        ---
         ~ronrem-lonsem/try=> (mas 8)
         4
+        ---
         ~ronrem-lonsem/try=> (mas 0)
         ! exit
+        ---
         ~ronrem-lonsem/try=> (mas 1)
         ! exit
 ++  max  
@@ -338,8 +365,10 @@ chapter 2a, basic unsigned math
   Examples:
         ~palryp-hocsyt/try=> (max 10 100)
         100
+        ---
         ~palryp-hocsyt/try=> (max 10.443 9)
         10.443
+        ---
         ~palryp-hocsyt/try=> (max 0 1)
         1
 ++  min  
@@ -357,8 +386,10 @@ chapter 2a, basic unsigned math
   Examples:
         ~palryp-hocsyt/try=> (min 10 100)
         10
+        ---
         ~palryp-hocsyt/try=> (min 10.443 9)
         9
+        ---
         ~palryp-hocsyt/try=> (min 0 1)
         0
 ++  mod  
@@ -405,6 +436,7 @@ chapter 2a, basic unsigned math
   Examples:
         ~ronrem-lonsem/try=> (mul 5 3)
         15
+        ---
         ~ronrem-lonsem/try=> (mul 1 0)
         0
 ++  sub  
@@ -423,10 +455,13 @@ chapter 2a, basic unsigned math
   Examples:
         ~ronrem-lonsem/try=> (sub 10 5)
         5
+        ---
         ~ronrem-lonsem/try=> (sub 243 44)
         199
+        ---
         ~ronrem-lonsem/try=> (sub 5 0)
         5
+        ---
         ~ronrem-lonsem/try=> (sub 0 5)
         ! subtract-underflow
         ! exit
@@ -449,7 +484,8 @@ Section 2bA, units
   Examples:
         ~palryp-hocsyt/try=> (biff (some 5) |=(a=@ (some (add a 2))))
         [~ u=7]
-        palryp-hocsyt/try=> (biff ~ |=(a=@ (some (add a 2))))
+        ---
+        ~palryp-hocsyt/try=> (biff ~ |=(a=@ (some (add a 2))))
         ~
 ++  bind 
   Comments:
@@ -464,6 +500,7 @@ Section 2bA, units
   Examples:
         ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
         [~ `a`]
+        ---
         ~talsur-todres/try=> =a |=(a=@ (add a 1))
         ~talsur-todres/try=> (bind ((unit ,@) [~ 2]) a)
         [~ 3]
@@ -484,6 +521,7 @@ Section 2bA, units
         ~palryp-hocsyt/try=> =v ((unit ,@t) [~ 'b'])
         ~palryp-hocsyt/try=> (clap u v |=([a=@t b=@t] (welp (trip a) (trip b))))
         [~ u="ab"]
+        ---
         ~talsur-todres/try=> =a ((unit ,@u) [~ 1])
         ~talsur-todres/try=> =b ((unit ,@u) [~ 2])
         ~talsur-todres/try=> =c |=([a=@ b=@] (add a b))
@@ -503,6 +541,7 @@ Section 2bA, units
         ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
         ~divreg-misdef/try=> (drop a)
         [i=97 t=~]
+        ---
         ~divreg-misdef/try=> =a ((unit ,@) [~])
         ~divreg-misdef/try=> (drop a)
         ~
@@ -517,6 +556,7 @@ Section 2bA, units
   Examples:
         ~talsur-todres/try=> (fall ~ `a`)
         `a`
+        ---
         ~talsur-todres/try=> (fall [~ u=0] `a`)
         0
 ++  mate 
@@ -536,10 +576,12 @@ Section 2bA, units
         ~divreg-misdef/try=> =b ((unit ,@) [~ 97])
         ~divreg-misdef/try=> (mate a b)
         [~ 97]
+        ---
         ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
         ~divreg-misdef/try=> =b ((unit ,@) [~])
         ~divreg-misdef/try=> (mate a b)
         [~ 97]
+        ---
         ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
         ~divreg-misdef/try=> =b ((unit ,@) [~ 98])
         ~divreg-misdef/try=> (mate a b)
@@ -559,6 +601,7 @@ Section 2bA, units
         ~divreg-misdef/try=> =a ((unit ,[@t @t]) [~ [`a` ' b']])
         ~divreg-misdef/try=> (need a)
         [`a` ' b']
+        ---
         ~divreg-misdef/try=> =a ((unit ,@) [~])
         ~divreg-misdef/try=> (need a)
         ! exit
@@ -573,6 +616,7 @@ Section 2bA, units
   Examples:
         ~divreg-misdef/try=> (some [`a` `b`])
         [~ u=[`a` `b`]]
+        ---
         ~divreg-misdef/try=> (some &)
         [~ u=%.y]
 
@@ -580,39 +624,163 @@ Section 2bB, lists
 
 ++  flop 
   Comments:
+        reverse
   Description:
+        Produces the list 'a' with the elements reversed.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate with a sample which accepts a single list.
+        'a' is then replaced with (homo a) and used as the subject for the code below (=>).
+        The type of the result must be the same as a, our argument list.
+        Let b be a list of the type of the icon of a, as it is bunted.
+        Create and kick a dry %gold trap
+        Build an if-then-else statement on "Is a an atom?"
+        If so, produce b.
+        Else, recursively call flop with a replaced by it's tail and b replaced by [i.a b], where
+        i.a is the head of a.
   Examples:
+        ~palryp-hocsyt/try=> =lyst (limo [1 2 3 4 ~])
+        ~palryp-hocsyt/try=> lyst
+        [i=1 t=[i=2 t=[i=3 t=[i=4 t=~]]]]
+        ~palryp-hocsyt/try=> (flop lyst)
+        ~[4 3 2 1]
+        ---
+        ~palryp-hocsyt/try=> (flop (limo [1 'a' 2 'b' (some 10) ~]))
+        ~[[~ u=10] 98 2 97 1]
 ++  homo 
   Comments:
+        homogenize
   Description:
+        Homogenizes a lists' type information.
   Explanation:
+        Creates a vulcanized wet gate with a sample which accepts a single list.
+        Makes the type of the result the type of the product of the code below (^+).
+        The subject of the arm ($) is then the product of the barcen statement below (=<).
+        Creates a %gold core (|%) and the arm '+-  $'.
+        XXX BLACK BOX, ABANDON ALL HOPE YE WHO ENTER HERE XXX
+        Terminates the core.
+        Produces list a.
   Examples:
+        ~palryp-hocsyt/try=> lyst
+        [i=1 t=[i=97 t=[i=2 t=[i=98 t=[i=[~ u=10] t=~]]]]]
+        ~palryp-hocsyt/try=> (homo lyst)
+        ~[1 97 2 98 [~ u=10]]
+        ---
+        ~palryp-hocsyt/try=> =a (limo [1 2 3 ~])
+        ~palryp-hocsyt/try=> a
+        [i=1 t=[i=2 t=[i=3 t=~]]]
+        ~palryp-hocsyt/try=> (homo a)
+        ~[1 2 3]
 ++  limo 
   Comments:
+        listify
   Description:
+        Produces a list from any null-terminated tuple.
   Explanation:
+        Creates a vulcanized wet gate with a sample which accepts a single list.
+        Makes the type of the result the type of the product of the code below (^+).
+        The subject of the arm ($) is then the product of the barcen statement below (=<).
+        Creates a %gold core (|%) and the arm '+-  $'.
+        XXX BLACK BOX, ABANDON ALL HOPE YE WHO ENTER HERE XXX
+        Terminates the core.
+        Produces list a.
   Examples:
+        ~palryp-hocsyt/try=> (limo [1 'a' 2 'b' (some 10) ~])
+        [i=1 t=[i=97 t=[i=2 t=[i=98 t=[i=[~ u=10] t=~]]]]]
+        ---
+        ~palryp-hocsyt/try=> (limo [`a` `b` ~])
+        [i=`a` t=[i=`b` t=~]]
+        ---
+        ~palryp-hocsyt/try=> (limo [2 1 ~])
+        [i=2 t=[i=1 t=~]]
 ++  lent 
   Comments:
+        length
   Description:
+        Produces the atomic length of any list.
   Explanation:
+        This is a jetted arm.
+        Creates a dry %gold gate with a sample which accpets a single list.
+        Must produce an atom.
+        Let b be 0.
+        Creates and kicks a dry %gold trap.
+        Builds an if-then-else statement on "Is a an atom?"  If so, produces b.
+        Else, recursively calls length with the list set to the tail of a and the accumulator, b, incremented.
   Examples:
+        ~palryp-hocsyt/try=> (lent (limo [1 2 3 4 ~]))
+        4
+        ---
+        ~palryp-hocsyt/try=> (lent (limo [1 'a' 2 'b' (some 10) ~]))
+        5
 ++  levy
   Comments:
+       all of
   Description:
+        Applies the loobean gate 'b' to every element of the list 'a', producing the logical AND of all the results.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate with a sample which accepts a list and a gate with a sample of any noun
+        and produces a loobean.
+        Then, a dry %gold trap is created and kicked.  It must produce a loobean.
+        Build an if-then-else statement on "a is an atom."
+        If so, produce true.
+        Else, build an if-then-else statement on (b i.a)
+        If so, then recursively call levy with a replaced by the tail of a.
+        Else, produce no.
   Examples:
+        ~palryp-hocsyt/try=> =b |=(a=@ (gte a 1))
+        ~palryp-hocsyt/try=> (levy (limo [0 1 2 1 ~]) b)
+        %.n
+        ---
+        ~palryp-hocsyt/try=> =b |=(a=@ (gte a 0))
+        ~palryp-hocsyt/try=> (levy (limo [0 1 2 1 ~]) b)
+        %.y        
 ++  lien 
   Comments:
+        some of
   Description:
+        Applies the loobean gate 'b' to every element of the list 'a', producing the logical OR of all the results.
   Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate with a sample which accepts a list and a gate with a sample of any nouno
+        and produces a loobean.
+        Then, a dry %gold trap is created and kicked.  It must produce a loobean.
+        Build an if-then-else gate on "a is null."  If so, produce false.
+        Else, build an if-then-else gate on (b i.a).  If so, produce true.
+        Else, recursively call lien with a replaced by the tail of a (t.a).
   Examples:
+        ~palryp-hocsyt/try=> =a |=(a=@ (gte a 1))
+        ~palryp-hocsyt/try=> (lien (limo [0 1 2 1 ~]) a)
+        %.y
+        ---
+        ~palryp-hocsyt/try=> =a |=(a=@ (gte a 3))
+        ~palryp-hocsyt/try=> (lien (limo [0 1 2 1 ~]) a)
+        %.n
 ++  reel 
   Comments:
+        right fold
   Description:
+        Accepts a list 'a' and a gate 'b' which accepts two nouns, then folds (recursively calls 'b' across) the 
+        list, producing a value of of the list element's type.
   Explanation:
-  Examples:
+        This arm is jetted.
+        Creates a vulcanized wet gate with a sample which accepts a list and a trap which accepts two nouns.
+        A dry %gold trap is created and kicked.  It must produce the type of the list's elements.
+        Build a if-then-else statement on "Is a a noun?"
+        If so, produce q.b.
+        Else, recursivley call b with the head of a and the rest of a replaced by the tail of a.
+  Examples:     
+        ~palryp-hocsyt/try=> =sum =|([p=@ q=@] |.((add p q)))
+        ~palryp-hocsyt/try=> (reel (limo [1 2 3 4 5 ~]) sum)
+        15
+        ---
+        ~palryp-hocsyt/try=> =a =|([p=@ q=@] |.((sub p q)))
+        ~palryp-hocsyt/try=> (reel (limo [6 3 1 ~]) a)
+        4
+        ---
+        ~palryp-hocsyt/try=> (reel (limo [3 6 1 ~]) a)
+        ! subtract-underflow
+        ! exit
 ++  roll 
   Comments:
   Description:
