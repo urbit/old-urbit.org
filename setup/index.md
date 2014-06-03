@@ -9,39 +9,49 @@ sort: 3
 > by men, a labyrinth destined to be deciphered by men.  
 > - Tlön, Uqbar, Orbis Tertius
 
-Urbit runs on Unix machines only.  Currently we support OSX, Linux (Ubuntu and Fedora have been well tested),
-and BSD.  There are no instructions for BSD, because only people with a serious clue run BSD.
+Urbit runs on Unix machines only.  It depends on:
 
-You can install Urbit to your Red Hat and Debian Linux distributions
-with ease using our rpm and deb packages.  For other needs,
-you'll have to download and build the source from Github.
-
-Intrepid ninjas may attempt ports to other OSes.
-If you're not an intrepid ninja, try a VM (eg, VirtualBox) or feel 
-free to try Urbit out on one of our Amazon Machine Instances (AMIs).
-
-###Dependency Installation###
-
-Urbit depends on:
-
-+ gcc
 + gmp
 + libsigsegv
 + openssl
 + libssl-dev (Linux only)
 + ncurses (Linux only)
 
-###Linux (Ubuntu or Debian)###
+Currently we support OSX, Linux (not all distributions have been
+tested) and \*BSD.  There are no instructions for BSD, because
+only people with a serious clue run BSD.  Intrepid ninjas may
+attempt ports to other OSes.  If you're not an intrepid ninja,
+try a VM (eg, VirtualBox) or use one of our AMIs.
 
-1.  `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags`
+###Amazon AMIs
 
-###Linux (Fedora)###
+There are public AMIs at the following locations:
 
-1.  `sudo yum install gcc gcc-c++ fedora-packager git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags`
+        us-west (oregon) ami-6cf88d5c
+        us-west (n. california) ami-78d4ec3d
+        us-east (n. virginia) ami-cd819ba4
 
-###Linux (AWS)###
+These use Debian Wheezy, so you should be able to 
+        
+        ssh -i /path/to/your/key/file.pem admin@123.123.123.123
 
-1.  `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags`
+to get in.
+
+Since the codebase is changing frequently, run the following once you have ssh-ed in.
+
+        cd /urbit/
+        git pull origin master
+        make clean; make;
+
+Then jump to "Run" below to get rolling.
+
+
+###Docker
+
+[Docker](http://docker.io) is a very convenient way to get in to an Urbit ship quickly. `~simmev-rabryd` maintains the docker approach on GitHub [here](https://github.com/yebyen/urbinit).
+
+Follow the instructions on the GitHub page, then proceed to "Run" below.
+
 
 ###OS X###
 
@@ -69,66 +79,17 @@ Urbit depends on:
 
      Enter your root password at the prompt.
 
-###Debian Package Installaion
 
-2.  Download the urbit.deb package for your Debian machine from /[here]() to the directory you'd like to install Urbit in.
+###Linux (Ubuntu or Debian)###
 
-Then, to install:
+1. `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags`
 
-3.  dpkg -i urbit.deb
 
-That's it!  Now you can go to "Run" to launch a ship.  However, you will use the "vere" command instead of "bin/vere"
-throughout that section because you've installed Urbit to your system and "vere" can be called without referencing the "bin" directory.
+###Linux (AWS)###
 
-###RPM Package Installion
+1. `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags`
 
-Getting Urbit working on Red Hat Linux is almost as easy.
-
-First of all, get a tarball of the source code using the ugly tar command below.  It makes all of our lives easier for now, trust us:
-
-2.  git clone https://github.com/urbit/urbit.git ; mv urbit urbit-0.2 ; tar -czvf urbit.tar.gz urbit-0.2 ; rm -rf urbit-0.2
-
-To build that into an rpm:
-
-3.  rpmbuild -ta urbit.tar.gz
-
-This should create an .rpm package in the directory /rpmbuild/RPMS/x86_64/.  Then, build your binaries from that .rpm with 'rpm -vhU' like so:
-
-4.  rpm -vhU /rpmbuild/RPMS/x86_64/urbit-0.2-1.fc20.x86_64.rpm
-
-You are all ready to continue to "Run" and launch a ship.  However, you will use the "vere" command instead of "bin/vere"
-throughout that section because you've installed Urbit to your system!
-
-###Amazon AMIs
-
-There are public AMIs at the following locations:
-
-        us-west (oregon) ami-6cf88d5c
-        us-west (n. california) ami-78d4ec3d
-        us-east (n. virginia) ami-cd819ba4
-
-These use Debian Wheezy, so you should be able to 
-        
-        ssh -i /path/to/your/key/file.pem admin@123.123.123.123
-
-to get in.
-
-Since the codebase is changing frequently, run the following once you have ssh-ed in.
-
-        cd /urbit/
-        git pull origin master
-        make clean; make;
-
-Then jump to "Run" below to get rolling.
-
-###Docker
-
-[Docker](http://docker.io) is a very convenient way to get in to an Urbit ship quickly if you have an unsupported OS.  
-`~simmev-rabryd` maintains the docker approach on GitHub [here](https://github.com/yebyen/urbinit).
-
-Follow the instructions on the GitHub page, then proceed to "Run" below.
-
-###Get the source
+###Get the source###
 
 Urbit uses git for its revision control. Eventually, Urbit will use itself, but for now,
 you need git. If you've followed the above instructions correctly then typing `git` in your terminal should do something. 
@@ -147,25 +108,38 @@ If for some reason you have moral qualms about using Git, you can also just down
 
     cd urbit
 
-If this works, `ls .urb/` should show:
+If this works, `ls urb` should show:
 
     urbit.pill  zod/
+
+Great!  Now, let's do some dirty Unix stuff to set up your environment.
+If you know what this is doing, feel free to do it right.  Otherwise:
+
+    echo "export URBIT_HOME=`pwd`/urb" >>~/.bash_profile
+    source ~/.bash_profile
+
+To make sure this worked,
+
+    echo $URBIT_HOME
+
+should show `/urb` within the current directory.
+
+If this didn't work, you'll have to do this the hard way. run `vi ~/.bash_profile` and fix it.
 
 ###Build###
 
 `make`.  Sometimes things are just easy.
 
-
-###Run###
+<h3 id="run">Run</h3>
 
 Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this
 directory.  Its name doesn't matter and is not visible internally.
 
 A _pier_ is an Urbit virtual machine that hosts one or more Urbit identities,
-or _ships_.  When you run `bin/vere -c`, it automatically creates a 128-bit ship,
+or _ships_.  When you run `vere -c`, it automatically creates a 128-bit ship,
 or `submarine`.  Your name (a hash of a randomly-generated public key) will
-look something like:
+look like:
 
     ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted
 
@@ -196,52 +170,40 @@ is also a Hoon REPL):
 
     ~machec-binnev-dordeb-sogduc--dosmul-sarrum-faplec-nidted/try=>
 
-If you would like to safely bring this ship back into port (End the Unix process),
-just enter Control-D.  To 
+###Register###
 
-###Registration###
+Next, you need to decide whether a mere submarine is enough for
+you right now.  This monicker is a mouthful.  You can stick with
+it (for now), but you're going to need a wider xterm.
 
-Arvo instances in the Urbit network, called "ships", are addresses in a finite namespace much
-like IP numbers.  You should be able to remember your personal IP number.
-However, numbers are cumbersome for humans to memorize.  Urbit solves this problem by mapping
-each address to a phonetic name, whose length is proportional to how many of that type of ship
-there are.  In this section, we'll get you registered with some Urbit ships.
-One of these ships, a destroyer, will be both your personal cloud computer and identity in the
-social network of Urbit.
-
-The long name in your prompt now is that of a submarine. Submarines are 
-cheap, temporary ships that are tiring to remember but useful for trying Urbit out or browsing anonymously.
-But this moniker is mouthful.  You can stick with it for now, but you're going to need 
-a wider xterm.
-
-Instead, registering for a destroyer with Tlon will get you a nice short name like
+Which might be fine!  However, please note that just by sending a
+simple email, you can get a much better ship - a `destroyer`,
+with a nice short name like
 
     ~waclux-tomwyc
 
-Destroyers are rarer ships meant to be associated with a user's digital identity.
-They are far fewer destroyers in the Urbit namespace than submarines.  But, we want you to have some of
-Tlon's!
-
-Just email `ship@urbit.org`, with your submarine in the subject.
+Just email `urbit@urbit.org`, with your submarine in the subject.
 We'll send you destroyers - not one, but _two_.  Yes, two!  Tell
 us something cool in the body, and we'll send you even more.
+
+If you have a destroyer, you need to configure it.  Otherwise,
+just stretch that xterm wide and skip to section 1.2.
 
 Your destroyers will arrive in the form of `[ship ticket]` pairs.
 Let's say one of your ships is `~waclux-tomwyc` and its ticket is
 
     ~ribdyr-famtem-larrun-figtyd
 
-(Where do we get these phonetic strings from, anyway?  Just random unsigned integers,
+(What are these strings, anyway?  Just random unsigned integers,
 rendered in Hoon's syllabic base, `@p`.)
 
 A new life awaits you on the off-world colonies!  To begin, just
-type at the submarine prompt:
+type at the prompt:
 
     :begin ~waclux-tomwyc
 
 and follow the directions.  When the script completes, hit return
-and you'll be the `~waclux-tomwyc` you wanted to be.  Now, when other user's see you in chat or look at your 
-Urbit social profile (a fasplan), they can learn whatever information you gave the :begin process.
+and you'll be the `~waclux-tomwyc` you wanted to be.
 
 ##Play with Arvo##
 
@@ -432,7 +394,7 @@ line will log out - as in Unix:
     oxford:~/urbit;
 
 Then you can restart and be right back where you were - just
-run `bin/vere` without `-c`:
+run `vere` without `-c`:
 
     oxford:~/urbit; bin/vere mypier
     vere: urbit home is /Users/cyarvin/urb
