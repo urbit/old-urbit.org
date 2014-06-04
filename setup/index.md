@@ -48,7 +48,7 @@ Please select your distro for specific instructions:
         <div class="toggle">
             <ol>
             <li>Install the dependencies: <code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags</code></li>
-            <li>Download <code><a href="/packages/urbit_0.2-1_amd64.deb">urbit.deb</a></code> in to the directory you would like to install Urbit into.</li>
+            <li>Download <code><a href="/packages/urbit_0.2-1_amd64.deb">urbit.deb</a></code>.</li>
             <li>Run <code>dpkg -i urbit.deb</code> to install.</li>
             <li>Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.</li>
             </ol>
@@ -60,7 +60,7 @@ Please select your distro for specific instructions:
         <div class="toggle">
             <ol>
             <li>Install the dependencies: <code>sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags</code></li>
-            <li>Download <code><a href="/packages/urbit-0.2-1.fc20.x86_64.rpm">urbit.rpm</a></code> in to the directory you would like to install Urbit into.</li>
+            <li>Download <code><a href="/packages/urbit-0.2-1.fc20.x86_64.rpm">urbit.rpm</a></code>.</li>
             <li>Run <code>rpm -vhU urbit.rpm</code> to install.</li>
             <li>Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.</li>
             </ol>
