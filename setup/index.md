@@ -21,38 +21,49 @@ sort: 3
 
 ###Install
 
-Please select your distro:
+Urbit runs on Unix machines only. If you don't have a Unix machine, try a VM (such as Virtual Box) or one of our Docker containers. 
+
+Please select your distro for specific instructions:
 
 <ul class="subnav">
     <li>
         <a href="#" class="expand"></a>
         <a href="#" class="distro">OS X</a>
         <div class="toggle">
-            1. Download and run <code><a href="#">urbit.pkg</a></code>.
-            <br>
-            2. Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.
+            <ol>
+            <li>Install the dependencies: 
+                <ul>
+                <li>Homebrew: <code>brew install git gmp libsigsegv openssl</code></li>
+                <li>Macports: <code>sudo port install git gmp libsigsegv openssl</code></li>
+                </ul>
+            </li>
+            <li>Download and run <code><a href="/packages/urbit.pkg">urbit.pkg</a></code>.</li>
+            <li>Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.</li>
+            </ol>
         </div>
     </li>
     <li>
         <a href="#" class="expand"></a>
         <a href="#" class="distro">Debian</a>
         <div class="toggle">
-            1. Download <code><a href="#">urbit.deb</a></code> in to the directory you would like to install Urbit into.
-            <br>
-            2. Run <code>dpkg -i urbit.deb</code> to install.
-            <br>
-            3. Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.
+            <ol>
+            <li>Install the dependencies: <code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags</code></li>
+            <li>Download <code><a href="/packages/urbit_0.2-1_amd64.deb">urbit.deb</a></code> in to the directory you would like to install Urbit into.</li>
+            <li>Run <code>dpkg -i urbit.deb</code> to install.</li>
+            <li>Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.</li>
+            </ol>
         </div>
     </li>
     <li>
         <a href="#" class="expand"></a>
         <a href="#" class="distro">Fedora</a>
         <div class="toggle">
-            1. Download <code><a href="#">urbit.rpm</a></code> in to the directory you would like to install Urbit into.
-            <br>
-            2. Run <code>rpm -vhU urbit.rpm</code> to install.
-            <br>
-            3. Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.
+            <ol>
+            <li>Install the dependencies: <code>sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags</code></li>
+            <li>Download <code><a href="/packages/urbit-0.2-1.fc20.x86_64.rpm">urbit.rpm</a></code> in to the directory you would like to install Urbit into.</li>
+            <li>Run <code>rpm -vhU urbit.rpm</code> to install.</li>
+            <li>Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.</li>
+            </ol>
         </div>
     </li>
     <li>
@@ -140,9 +151,7 @@ make clean; make;</code></pre>
 
 <h3 id="run">Run</h3>
 
-Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
-All your state (an append-only log and a memory checkpoint) will live in this
-directory.  Its name doesn't matter and is not visible internally.
+Run `bin/vere -c mypier` (or just `vere -c mypier`), where `mypier` is a directory that doesn't yet exist. All your state (an append-only log and a memory checkpoint) will live in this directory.  The name of your pier doesn't matter and is not visible internally.
 
 A _pier_ is an Urbit virtual machine that hosts one or more Urbit identities,
 or _ships_.  When you run `bin/vere -c`, it automatically creates a 128-bit ship,
@@ -183,30 +192,18 @@ just enter Control-D.  To
 
 ###Registration###
 
-Arvo instances in the Urbit network, called "ships", are addresses in a finite namespace much
-like IP numbers.  You should be able to remember your personal IP number.
-However, numbers are cumbersome for humans to memorize.  Urbit solves this problem by mapping
-each address to a phonetic name, whose length is proportional to how many of that type of ship
-there are.  In this section, we'll get you registered with some Urbit ships.
-One of these ships, a destroyer, will be both your personal cloud computer and identity in the
+Arvo instances in the Urbit network, called "ships", are addresses in a finite namespace much like IP numbers.  You should be able to remember your personal IP number. However, numbers are cumbersome for humans to memorize.  Urbit solves this problem by mapping each address to a phonetic name, whose length is proportional to how many of that type of ship there are.  In this section, we'll get you registered with some Urbit ships. One of these ships, a destroyer, will be both your personal cloud computer and identity in the
 social network of Urbit.
 
-The long name in your prompt now is that of a submarine. Submarines are 
-cheap, temporary ships that are tiring to remember but useful for trying Urbit out or browsing anonymously.
-But this moniker is mouthful.  You can stick with it for now, but you're going to need 
-a wider xterm.
+The long name in your prompt now is that of a submarine. Submarines are  cheap, temporary ships that are tiring to remember but useful for trying Urbit out or browsing anonymously. But this moniker is mouthful.  You can stick with it for now, but you're going to need a wider xterm.
 
-Instead, registering for a destroyer with Tlon will get you a nice short name like
+Instead, registering for a destroyer will get you a nice short name like
 
     ~waclux-tomwyc
 
-Destroyers are rarer ships meant to be associated with a user's digital identity.
-They are far fewer destroyers in the Urbit namespace than submarines.  But, we want you to have some of
-Tlon's!
+Destroyers are rarer ships meant to be associated with a user's digital identity. They are far fewer destroyers in the Urbit namespace than submarines. 
 
-Just email `ship@urbit.org`, with your submarine in the subject.
-We'll send you destroyers - not one, but _two_.  Yes, two!  Tell
-us something cool in the body, and we'll send you even more.
+Tlon would be glad to give you a destroyer from the batch that they own. Head over to [tlon.io](http://tlon.io) to complete the automated registration process. 
 
 Your destroyers will arrive in the form of `[ship ticket]` pairs.
 Let's say one of your ships is `~waclux-tomwyc` and its ticket is
