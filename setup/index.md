@@ -9,154 +9,136 @@ sort: 3
 > by men, a labyrinth destined to be deciphered by men.  
 > - Tlön, Uqbar, Orbis Tertius
 
-Urbit runs on Unix machines only.  Currently we support OSX, Linux (Ubuntu and Fedora have been well tested),
-and BSD.  There are no instructions for BSD, because only people with a serious clue run BSD.
+<script type="text/javascript">
+    $(function() {
+        $('.distro').click(function(e) {
+            e.preventDefault()
+            $t = $(e.target)
+            $t.closest('li').toggleClass('active')
+        })
+    })
+</script>
 
-You can install Urbit to your Red Hat and Debian Linux distributions
-with ease using our rpm and deb packages.  For other needs,
-you'll have to download and build the source from Github.
+###Install
 
-Intrepid ninjas may attempt ports to other OSes.
-If you're not an intrepid ninja, try a VM (eg, VirtualBox) or feel 
-free to try Urbit out on one of our Amazon Machine Instances (AMIs).
+Please select your distro:
 
-###Dependency Installation###
+<ul class="subnav">
+    <li>
+        <a href="#" class="expand"></a>
+        <a href="#" class="distro">OS X</a>
+        <div class="toggle">
+            1. Download and run <code><a href="#">urbit.pkg</a></code>.
+            <br>
+            2. Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.
+        </div>
+    </li>
+    <li>
+        <a href="#" class="expand"></a>
+        <a href="#" class="distro">Debian</a>
+        <div class="toggle">
+            1. Download <code><a href="#">urbit.deb</a></code> in to the directory you would like to install Urbit into.
+            <br>
+            2. Run <code>dpkg -i urbit.deb</code> to install.
+            <br>
+            3. Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.
+        </div>
+    </li>
+    <li>
+        <a href="#" class="expand"></a>
+        <a href="#" class="distro">Fedora</a>
+        <div class="toggle">
+            1. Download <code><a href="#">urbit.rpm</a></code> in to the directory you would like to install Urbit into.
+            <br>
+            2. Run <code>rpm -vhU urbit.rpm</code> to install.
+            <br>
+            3. Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.
+        </div>
+    </li>
+    <li>
+        <a href="#" class="expand"></a>
+        <a href="#" class="distro">Amazon</a>
+        <div class="toggle">
+        <ol>
+        <li>Grab an AMI from any of the following locations:
+        <pre><code>us-west (oregon) ami-6cf88d5c
+us-west (n. california) ami-78d4ec3d
+us-east (n. virginia) ami-cd819ba4</code></pre>
+        </li>
+        <li><code>ssh -i /path/to/your/key/file.pem admin@123.123.123.123</code> with the IP of your instance to get in.
+        </li><li>Run the following on the server:
+        <pre><code>cd /urbit/
+git pull origin master
+make clean; make;</code></pre>
+        </li>
+        <li>Proceed to <a href="#run">run</a></li>
+        </ol>
+    </li>
+    <li>
+        <a href="#" class="expand"></a>
+        <a href="#" class="distro">Docker</a>
+        <div class="toggle">
+        <a href="http://docker.io">Docker</a> is a very convenient way to get in to an Urbit ship quickly on any OS.
+        <br><br>
+        <code>~simmev-rabryd</code> maintains docker containers and utilities on GitHub <a href="https://github.com/yebyen/urbinit">here</a>.
+        <br><br>
+        Follow the instructions on the GitHub page, then proceed to <a href="#run">run</a>.
+        </div>
+    </li>
+    <li>
+        <a href="#" class="expand"></a>
+        <a href="#" class="distro">From Source</a>
+        <div class="toggle">
+        <h3>1. Install Dependencies</h3>
+        <p>Urbit depends on:</p>
+        <ul>
+        <li>gcc</li>
+        <li>gmp</li>
+        <li>libsigsegv</li>
+        <li>openssl</li>
+        <li>libssl-dev (Linux only)</li>
+        <li>ncurses (Linux only)</li>
+        </ul>
 
-Urbit depends on:
+        <h4>Ubuntu or Debian</h4>
+        <ol><li><code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags</code></li></ol>
 
-+ gcc
-+ gmp
-+ libsigsegv
-+ openssl
-+ libssl-dev (Linux only)
-+ ncurses (Linux only)
+        <h4>Fedora</h4>
 
-###Linux (Ubuntu or Debian)###
+        <ol><li><code>sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags</code></li></ol>
 
-1.  `sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags`
+        <h4>AWS</h4>
 
-###Linux (Fedora)###
+        <ol><li><code>sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags</code></li></ol>
 
-1.  `sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags`
+        <h4>OS X</h4>
+        <ol>
+        <li>
+            <p>Do you have XCode?  Type <code>gcc</code> at your terminal prompt.</p>
+            <p>If it says `no input files`, you have XCode.</p>
+            <p>Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the command line tools.</p>
+        </li>
+        <li>
+        To install dependencies pick either one of Homebrew or Macports, but not both:  
+        <ul>
+        <li>Homebrew? <code>brew install git gmp libsigsegv openssl</code></li>
+        <li>Macports? <code>sudo port install git gmp libsigsegv openssl</code></li>
+        </ul>
+        </li>
+        </ol>
 
-###Linux (AWS)###
+        <h3>2. Build</h3>
+        <p>`cd` to the unpacked Urbit directory you just created:</p>
+        <pre><code>cd urbit</code></pre>
+        <p>If this works, `ls .urb/` should show:</p>
+        <pre><code>urbit.pill  zod/</code></pre>
+        <p>Then just run <code>make</code> in the <code>urbit</code> directory.</p>
+        <p>Sometimes things are just easy.</p>
+        </div>
+    </li>
+</ul>
 
-1.  `sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags`
-
-###OS X###
-
-1. Do you have XCode?  Type `gcc`.  If it says `no input files`, you have XCode.
-
-   Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the
-   command line tools.
-
-2. Install dependencies. Pick either one of Homebrew or Macports, but not both.  
-
-   - Homebrew? Type `brew`.  If it does something, you have Homebrew.
-
-     Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`
-     will install it.
-
-     And follow up with `brew install git gmp libsigsegv openssl`
-
-     This will ask you for the root password, which ideally you know.
-
-   - Macports? Type `port`.  If it does something, you have Macports.
-
-     Otherwise go [here](http://www.macports.org/install.php "here").
-
-     Then `sudo port install git gmp libsigsegv openssl`
-
-     Enter your root password at the prompt.
-
-###Debian Package Installaion
-
-2.  Download the urbit.deb package for your Debian machine from /[here]() to the directory you'd like to install Urbit in.
-
-Then, to install:
-
-3.  dpkg -i urbit.deb
-
-That's it!  Now you can go to "Run" to launch a ship.  However, you will use the "vere" command instead of "bin/vere"
-throughout that section because you've installed Urbit to your system and "vere" can be called without referencing the "bin" directory.
-
-###RPM Package Installion
-
-Getting Urbit working on Red Hat Linux is almost as easy.
-
-First of all, get a tarball of the source code using the curl command below:
-
-2.  curl -L https://api.github.com/repos/urbit/urbit/tarball > urbit.zip
-
-To build that into an rpm:
-
-3.  rpmbuild -ta urbit.tar.gz
-
-This should create an .rpm package in the directory /rpmbuild/RPMS/x86_64/.  Then, build your binaries from that .rpm with 'rpm -vhU' like so:
-
-4.  rpm -vhU /rpmbuild/RPMS/x86_64/urbit-0.2-1.fc20.x86_64.rpm
-
-You are all ready to continue to "Run" and launch a ship.  However, you will use the "vere" command instead of "bin/vere"
-throughout that section because you've installed Urbit to your system!
-
-###Amazon AMIs
-
-There are public AMIs at the following locations:
-
-        us-west (oregon) ami-6cf88d5c
-        us-west (n. california) ami-78d4ec3d
-        us-east (n. virginia) ami-cd819ba4
-
-These use Debian Wheezy, so you should be able to 
-        
-        ssh -i /path/to/your/key/file.pem admin@123.123.123.123
-
-to get in.
-
-Since the codebase is changing frequently, run the following once you have ssh-ed in.
-
-        cd /urbit/
-        git pull origin master
-        make clean; make;
-
-Then jump to "Run" below to get rolling.
-
-###Docker
-
-[Docker](http://docker.io) is a very convenient way to get in to an Urbit ship quickly if you have an unsupported OS.  
-`~simmev-rabryd` maintains the docker approach on GitHub [here](https://github.com/yebyen/urbinit).
-
-Follow the instructions on the GitHub page, then proceed to "Run" below.
-
-###Get the source
-
-Urbit uses git for its revision control. Eventually, Urbit will use itself, but for now,
-you need git. If you've followed the above instructions correctly then typing `git` in your terminal should do something. 
-
-If that works, run:
-
-    git clone https://github.com/urbit/urbit.git
-
-to download Urbit from its repository. 
-
-If for some reason you have moral qualms about using Git, you can also just download and unzip `https://github.com/urbit/urbit/archive/master.zip`. This won't provide any version control
-
-###Set up your enviroment###
-
-`cd` to the unpacked Urbit directory you just created:
-
-    cd urbit
-
-If this works, `ls .urb/` should show:
-
-    urbit.pill  zod/
-
-###Build###
-
-`make`.  Sometimes things are just easy.
-
-
-###Run###
+<h3 id="run">Run</h3>
 
 Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist.
 All your state (an append-only log and a memory checkpoint) will live in this

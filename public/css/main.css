@@ -1,3 +1,16 @@
+.toggle {
+	display: none;
+}
+.subnav li.active .toggle, .toggle.active {
+	display: block;
+}
+
+.setup .subnav li.active > a {
+	border-color: #000;
+	font-weight: bold;
+	color: #000;
+}
+
 .sidebar-about {
 	height: 3rem;
 }
@@ -132,17 +145,21 @@ code, .subnav > ul > li > ul {
 	display: inline-block;
 }
 
-.subnav > ul > li .expand {
+.setup .subnav li > a.expand, .subnav > ul > li .expand {
 	font-size: .6rem;
 	border: 0;
 }
 
-.subnav > ul > li .expand:after {
+.setup .subnav li > a.expand:before, .subnav > ul > li .expand:before {
 	content: "\25B6";
 	font-size: .6rem;
 }
 
-.subnav > ul > li.active .expand:after {
+.setup .subnav li > a.expand:before {
+	margin-right: .6rem;
+}
+
+.setup .subnav li.active > a.expand:before, .subnav > ul > li.active .expand:before {
 	content: "\25BC";
 	font-size: .6rem;
 }
@@ -162,6 +179,10 @@ code, .subnav > ul > li > ul {
 	font-weight: 700;
 	color: #333;
 	border-bottom: 2px solid #555;
+}
+
+.page.setup .subnav .toggle {
+	margin: 1rem 0 2rem 1.6rem;
 }
 
 @media only screen and (min-width: 54rem) {
