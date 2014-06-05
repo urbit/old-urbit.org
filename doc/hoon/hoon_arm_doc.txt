@@ -112,7 +112,7 @@ volume 2, Hoon libraries and compiler
 chapter 2a, basic unsigned math
 
 ++  add 
-  Comment:
+  Comments:
         add
   Description:
         Sums two numbers.
@@ -133,7 +133,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (add 1.333 (mul 2 2))
         1.337
 ++  cap
-  Comment:
+  Comments:
         tree head
   Description:
         Yields whether an atom is in the head or tail of a noun.
@@ -156,7 +156,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (cap (add 10 9))
         %2
 ++  dec  
-  Comment:
+  Comments:
         decrement
   Description:
         Decrements a number - Subtracts one.
@@ -178,7 +178,7 @@ chapter 2a, basic unsigned math
         ! decrement-underflow
         ! exit
 ++  div  
-  Comment:
+  Comments:
         divide
   Description:
         Divides one number by another.
@@ -204,7 +204,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (div 20 30)
         0 
 ++  fac  
-  Comment:
+  Comments:
         factorial
   Description:
         Produces the factorial of a number n, n!.
@@ -225,7 +225,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (fac 11)
         39.916.800
 ++  gte
-  Comment:
+  Comments:
         greater than or equal
   Description:
         Produces the loobean a>=b.
@@ -244,7 +244,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (gte 3 4)
         %.n
 ++  gth
-  Comment:
+  Comments:
         greater than
   Description:
         Produces the loobean a>b.
@@ -266,7 +266,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (gth 0 0)
         %.n
 ++  lte  
-  Comment:
+  Comments:
         less than or equal to
   Description:
         Produces the loobean a<=b.
@@ -288,7 +288,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (lte 0 0)
         %.y
 ++  lth  
-  Comment:
+  Comments:
         less than
   Description:
         Produces the loobean a<b.
@@ -313,7 +313,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (lth 5 0)
         %.n
 ++  mas  
-  Comment:
+  Comments:
         tree body
   Description:
        Produces the axis of a within the head or the tail. 
@@ -351,7 +351,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (mas 1)
         ! exit
 ++  max  
-  Comment:
+  Comments:
         maximum
   Description:
         Yields the larger of two atoms.
@@ -372,7 +372,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (max 0 1)
         1
 ++  min  
-  Comment:
+  Comments:
         minimum
   Description:
         Yields the smaller of two atoms.
@@ -393,7 +393,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (min 0 1)
         0
 ++  mod  
-  Comment:
+  Comments:
         remainder
   Description:
         Yields the modulus of (a mod b).
@@ -405,7 +405,7 @@ chapter 2a, basic unsigned math
         Produce the difference of a and the product of b times a/b.
   Examples:
 ++  mul  
-  Comment:
+  Comments:
         multiply
   Description:
         Multiplies two numbers.
@@ -420,7 +420,7 @@ chapter 2a, basic unsigned math
         Else, recursively call multiply with a replaced by decremented a and c replaced by b+c.
   Examples:
 ++  peg  
-  Comment:
+  Comments:
         tree connect
   Description:
         Produces the axis of b within the axis of a.
@@ -440,7 +440,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (mul 1 0)
         0
 ++  sub  
-  Comment:
+  Comments:
         subtract
   Description:
         Accepts two atoms, a and b, and produces a-b.
@@ -1590,7 +1590,7 @@ section 2cB, bit logic
 ++  not  
   Comments:
         binary not (sized)
-  Descriptions:
+  Description:
         Produces the bit-wise logical NOT over 'b' blocks of the given blocksize.
   Explanation:
         First produces the binary exponent of the binary exponent of the block size times       
@@ -1620,30 +1620,30 @@ section 2cC, noun orders
 ++  aor  
   Comments:
         a-order
-  Descriptions:
+  Description:
   Explanation:
   Examples:
 ++  dor  
   Comments:
         d-order
-  Descriptions:
+  Description:
   Explanation:
   Examples:
 ++  gor  
   Comments:
         g-order
-  Descriptions:
+  Description:
   Explanation:
   Examples:
 ++  hor  
   Comments:
         h-order
-  Descriptions:
+  Description:
   Explanation:
   Examples:
 ++  vor
   Comments:
-  Descriptions:
+  Description:
   Explanation:
   Examples:
 
@@ -1652,7 +1652,7 @@ section 2cD, insecure hashing
 ++  fnv
   Comments:
         FNV scrambler
-  Descriptions:
+  Description:
         Hashes an atom with the 32-bit FNV non-cryptographic hash algorithm.
   Explanationj
         Multiplies 'a' by the prime number 16,777,619 and then takes the block of
@@ -1669,7 +1669,7 @@ section 2cD, insecure hashing
 ++  mug
   Comments:
         31bit nonzero FNV1a
-  Descriptions:
+  Description:
         Hashes any noun with the 31-bit nonzero FNV-1a non-cryptographic hash algorithm.
   Explanation:
         This arm is jetted.
@@ -1744,23 +1744,53 @@ section 2cF, signed and modular ints
         Produces the difference between two signed integers.
   Explanation:
         Creates a dry %gold gate with a sample which accepts two signed integers.
-        Sums the first 
+        Sums the first signed integer with a new signed integer, made from the second by
+        (new !(syn b) (abs b)), where !(syn b) is the negative of the second integer's sign.
+        This sum, produced, is the difference.
   Examples:
-        
+        ~palryp-hocsyt/try=> (dif:si --10 -7)
+        --17
+        ---
+        ~palryp-hocsyt/try=> (dif:si --10 --7)
+        --3
+        ---
+        ~palryp-hocsyt/try=> (dif:si `@s`0 --7)
+        -7
+        ---
+        ~palryp-hocsyt/try=> (dif:si `@s`0 `@s`7)
+        --4
   ++  dul 
   Comments:
         modulus
-  Descriptions:
+  Description:
         Produces the modulus of two signed integers.
-  Explanations:
-        
+  Explanation:
+        Creates a dry %gold gate which accepts a signed integer and an atom.
+        Let 'c' be the [sign value] representation of 'a'.
+        Builds an if-then-else statement on -.c, the sign of 'a'.
+        If so ('a' is positive.), produce the modulus of the absolute value of 'c' and 'b'.
+        Else, produce the differenece between 'b' and the absolute value of 'c'.
   Examples:
+        ~palryp-hocsyt/try=> (dul:si --9 3)
+        0
+        ---
+        ~palryp-hocsyt/try=> (dul:si --9 4)
+        1
+        ---
+        ~palryp-hocsyt/try=> (dul:si --9 5)
+        4
+        ---
+        ~palryp-hocsyt/try=> (dul:si --9 6)
+        3
+        ---
+        ~palryp-hocsyt/try=> (dul:si --90 --10)
+        10
   ++  fra 
   Comments:
         divide
-  Descriptions:
+  Description:
         Produces the quotient of two signed integers.
-  Explanations:
+  Explanation:
         Creates a dry %gold gate with a sample which accepts two signed integers.
         Divides the absolute value of 'a', the dividend, and 'b', the divisor, and
         passes that value as the unsigned integer value of a new signed integer.
@@ -1789,8 +1819,15 @@ section 2cF, signed and modular ints
   ++  new 
   Comments:
         [sign value] to @s
-  Descriptions:
-  Explanations:
+  Description:
+        Produces a signed integer from a sign value (either & or |) and an atom.
+  Explanation:
+        Creates a dry %gold gate with a sample which acccepts a loobean and an atom
+        Builds an if-then-else statement on the sign value 'a'.
+        If so, just produce 'b' multiplied by 2.
+        Else, build an if-then-else statement on b=0.  If so, produce 0.
+        Else, produce the increment of (2*(dec b)).
+        The result is then cast to an integer and produced from new:si.
   Examples:
         ~palryp-hocsyt/try=> (new:si [& 10])
         --10
@@ -1801,39 +1838,112 @@ section 2cF, signed and modular ints
   ++  old
   Comments:
         [sign value]
-  Descriptions:
-  Explanations:
+  Description:
+        Produces the cell [sign value] representations of a signed integer.
+  Explanation:
+        Create a dry %gold date with a with a sample which accepts a signed integer.
+        Produce a cell with head (syn a), the sign of 'a', and tail (abs), the absolute value of 'a'.
   Examples:
+        ~palryp-hocsyt/try=> (old:si 7)
+        ! type-fail
+        ! exit
+        ---
+        ~palryp-hocsyt/try=> (old:si -7)
+        [%.n 7]
+        ---
+        ~palryp-hocsyt/try=> (old:si --7)
+        [%.y 7]
+        ---
+        ~palryp-hocsyt/try=> (old:si `@s`7)
+        [%.n 4]
+        ---
+        ~palryp-hocsyt/try=> (old:si -0)
+        [%.y 0]
   ++  pro       
   Comments:
         multiplication
-  Descriptions:
-  Explanations:
+  Description:
+        Produces the product of two signed integers.
+  Explanation:
+        Creates a dry %gold gate with a sample which accepts two signed integers.
+        Produces their product by evaluating a new signed integer whose sign is the bitwise 
+        XOR of the two number's signs and whose value is the product of their two absolute values.
   Examples:
+        palryp-hocsyt/try=> (pro:si -4 --2)
+        -8
+        ---
+        ~palryp-hocsyt/try=> (pro:si -4 -2)
+        --8
+        ---
+        ~palryp-hocsyt/try=> (pro:si --10.000.000 -10)
+        -100.000.000
+        ---
+        ~palryp-hocsyt/try=> (pro:si -1.337 --0)
+        --0
   ++  rem 
   Comments:
         remainder
-  Descriptions:
-  Explanations:
+  Description:
+        Produces the remainder from a division of two signed integers.
+  Explanation:
+        Creates a dry %gold gate with a sample which accepts two signed integers.
+        Produces the difference between 'a' and the (b*(a/b)).
   Examples:
+        ~palryp-hocsyt/try=> (rem:si -10 -4)
+        -2
+        ---
+        ~palryp-hocsyt/try=> (rem:si --10 --4)
+        --2
+        ---
+        ~palryp-hocsyt/try=> (rem:si --10 -4)
+        --2
+        ---
+        ~palryp-hocsyt/try=> (rem:si --7 --3)
+        --1
+        ---
+        ~palryp-hocsyt/try=> (rem:si --0 --10.000)
+        --0
   ++  sum 
   Comments:
         addition
-  Descriptions:
+  Description:
         Sums two signed integers.
-  Explanations:
+  Explanation:
         Creates a dry %gold gate which accepts two signed integers.
         Prints '%si-sum' in the stack trace if the following code crashes.
-        Let 'c' be , 'd' be
+        Let 'c' and 'd' be the [sign value] representation of 'a' and 'b', respectively.
+        Builds an if-then-else statement on "c is positive".
+        If so, build an if-then-else statement on "d is positive".
+        If so, produce a new, positive signed integer with value ((abs a)+(abs b))
+        Else, build an if-then-else statement on (abs a)>=(abs b)
+        If so, produce a new, positive integer with value ((abs a)-(abs d)).
+        Else (if !((abs a)>=(abs b))), produce a new, negative signed integer
+        with value ((abs d)-(abs c)).
+        Else (if c is not positive), build an if-then-else statement on "d is positive".
+        If so, build an if-then-else statement on (abs a)>=(abs b).
+        If so, produce a new, negative signed intger with value ((abs a)-(abs b))
+        Else, produce a new, positive signed integer with value ((abs c)-(abs d))
+        Else (if d is not positive), produce a new, negative signed with value ((abs c)+(abs d)).
   Examples:
+        ~palryp-hocsyt/try=> (sum:si --10 --10)
+        --20
+        ---
+        ~palryp-hocsyt/try=> (sum:si --10 -0)
+        --10
+        ---
+        ~palryp-hocsyt/try=> (sum:si -10 -7)
+        -17
+        ---
+        ~palryp-hocsyt/try=> (sum:si -10 --7)
+        -3
   ++  sun 
   Comments:
         @u to @s
-  Descriptions:
+  Description:
         Produces a signed integer from an unsigned integer.
         Note that the result must be manually cast to some @s odor to be inferred as an
         unsigned integer in the type system.
-  Explanations:
+  Explanation:
         Creates a dry %gold gate with a sample which accepts any unsigned integer.
         Produces the integer multiplied by 2.
   Examples:
@@ -1854,9 +1964,9 @@ section 2cF, signed and modular ints
   ++  syn 
   Comments:
         sign test
-  Descriptions:
+  Description:
         Produces the sign of the signed integer, & being positive and | being negative.
-  Explanations:
+  Explanation:
         Creates a dry %gold gate with a sample which accepts a signed integer.
         Produces the loobean of 0=(last bit in the signed integer)
   Examples:
