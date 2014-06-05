@@ -831,7 +831,7 @@ Section 2bB, lists
         Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts any noun and 
         produces a loobean.
         Creates and kicks a dry %gold trap.
-        Which must return a list of a's type.
+        Which must produce a list of a's type.
         Builds an if-then-else statement on "a is an atom."
         If so, prodoce null.
         Else, build an if-then-else statement on (b i.a).  If so, produce [i.a $(a t.a)], where $(a t.a) is the recursive
@@ -852,7 +852,7 @@ Section 2bB, lists
         Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts any noun and 
         produces a loobean.
         Creates and kicks a dry %gold trap.
-        Which must return a list of a's type.
+        Which must produce a list of a's type.
         Builds an if-then-else statement on "a is an atom."
         If so, produce null.
         Else build na if-then-else statement on (b i.a).  If so, produce the recursive call of skip with a replacd by
@@ -987,7 +987,7 @@ Section 2bB, lists
         This arm is jetted.
         Creates a vulcanized wet gate which accepts two lists.
         Homogenizes both lists and makes them the subject of the following code.
-        A dry %gold trap is created and kicked.  It must return the type of list 'b'.
+        A dry %gold trap is created and kicked.  It must produce the type of list 'b'.
         Builds an if-then-else statement on "a is null."  If so, produce 'b'.
         Else, produce the tuple [i.a $(a t.a)].  'i.a' is the head of 'a', $(a t.a) the recursive call of weld
         with 'a' replaced by the tail of a.
@@ -1491,8 +1491,8 @@ section 2cB, bit logic
         Builds an if-then-else statement on a=b AND b=0.
         If so, produce 'd'.
         Else, recursively call the trap with:
-        'a' replaced by the single 0 block right shift of 'a'.
-        'b' replaced by the single 0 block right-shift of 'b'.
+        'a' replaced by the single 0-block right shift of 'a'.
+        'b' replaced by the single 0-block right-shift of 'b'.
         'c' replaced by the increment of c.
         'd' replaced by the sum of 'd' and the 'c' 0-block left-shift of the
             logical AND of (last bit of 'a')=0 AND (last bit of 'b')=0.
@@ -1500,12 +1500,16 @@ section 2cB, bit logic
   Examples:
         ~palryp-hocsyt/try=> (con 0 1)
         1
+        ---
         ~palryp-hocsyt/try=> (con 1 0)
         1
+        ---
         ~palryp-hocsyt/try=> (con 0 0)
         0
+        ---
         ~palryp-hocsyt/try=> (con 4 4)
         4
+        ---
         ~palryp-hocsyt/try=> (con 10.000 234)
         10.234
 ++  dis  
@@ -1515,7 +1519,42 @@ section 2cB, bit logic
         Produces the bit-wise logical AND of two atoms.
   Explanation:
         This arm is jetted.
+        Creates a dry %gold gate with a sample which accepts two atoms.
+        Pushes the bunt of a two atom tuple onto the subject.
+        Creates and kicks a dry %gold trap.  Casts its result to an atom.
+        Builds an if-then-else statement on a=0 or b=0.
+        If so, produce 'd'.
+        Else, recursively call the trap with:
+        'a' replaced by the single 0-block right-shift of 'a'.
+        'b' replaced by the single 0-block right-shift of 'b'.
+        'c' replaced by the increent of 'c'.
+        'd' replaced by the sum of 'd' and the 'c' 0-block left-shift of the
+        logical OR of (last bit of 'a')=0 OR (last bit of 'b')=0.
+        (==)  terminates the list of changes.
   Examples:
+        ~ronrem-lonsem/try=> `@ub`9
+        0b1001
+        ---
+        ~ronrem-lonsem/try=> `@ub`5
+        0b101
+        ---
+        ~ronrem-lonsem/try=> `@ub`(dis 9 5)
+        0b1
+        ---
+        ~ronrem-lonsem/try=> (dis 9 5)
+        1
+        ---
+        ~ronrem-lonsem/try=> `@ub`534
+        0b10.0001.0110
+        ---
+        ~ronrem-lonsem/try=> `@ub`987
+        0b11.1101.1011
+        ---
+        ~ronrem-lonsem/try=> `@ub`(dis 534 987)
+        0b10.0001.0010
+        ---
+        ~ronrem-lonsem/try=> (dis 534 987)
+        530
 ++  mix  
   Comments:
         binary xor
@@ -1550,22 +1589,122 @@ section 2cB, bit logic
         0
 ++  not  
   Comments:
+        binary not (sized)
   Descriptions:
+        Produces the bit-wise logical NOT over 'b' blocks of the given blocksize.
   Explanation:
+        First produces the binary exponent of the binary exponent of the block size times       
+        'b'.  This is decremented before being multiplied by 'c'.
+        Finally, this product is exclusive ORed and produced.
   Examples:
+        ~palryp-hocsyt/try=> `@ub`24
+        0b1.1000
+        ---
+        ~palryp-hocsyt/try=> (not 0 5 24)
+        7
+        ---
+        ~palryp-hocsyt/try=> `@ub`7
+        0b111
+        ---
+        ~palryp-hocsyt/try=> (not 2 5 24)
+        1.048.551
+        ---
+        ~palryp-hocsyt/try=> (not 2 5 1.048.551)
+        24
+        ---
+        ~palryp-hocsyt/try=> (not 1 1 (not 1 1 10))
+        10
 
 section 2cC, noun orders              
 
 ++  aor  
+  Comments:
+        a-order
+  Descriptions:
+  Explanation:
+  Examples:
 ++  dor  
+  Comments:
+        d-order
+  Descriptions:
+  Explanation:
+  Examples:
 ++  gor  
+  Comments:
+        g-order
+  Descriptions:
+  Explanation:
+  Examples:
 ++  hor  
+  Comments:
+        h-order
+  Descriptions:
+  Explanation:
+  Examples:
 ++  vor
+  Comments:
+  Descriptions:
+  Explanation:
+  Examples:
 
 section 2cD, insecure hashing         
 
 ++  fnv
+  Comments:
+        FNV scrambler
+  Descriptions:
+        Hashes an atom with the 32-bit FNV non-cryptographic hash algorithm.
+  Explanationj
+        Multiplies 'a' by the prime number 16,777,619 and then takes the block of
+        size 5 off the product's end.
+  Examples:
+        ~palryp-hocsyt/try=> (fnv 10.000)
+        272.465.456
+        ---
+        ~palryp-hocsyt/try=> (fnv 10.001)
+        289.243.075
+        ---
+        ~palryp-hocsyt/try=> (fnv 1)
+        16.777.619
 ++  mug
+  Comments:
+        31bit nonzero FNV1a
+  Descriptions:
+        Hashes any noun with the 31-bit nonzero FNV-1a non-cryptographic hash algorithm.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate with a sample accepting any noun.
+        
+
+        Let 'b' be 2,166,136,261.
+        Create and kick a dry %gold gate.  Cast its result to an atom.
+        Let 'c' be 'b'.
+        Let 'd' be 0, 'e' be the number of bytes in 'a'.
+        Create and kick a dry %gold gate.  Cast its result to an atom.
+        Builds an if-then-else statement on d=e.
+        If so, let 'f' be the bit-wise XOR on the 31 0-block shift on 'c' and the last
+        31 blocks of 'c'.
+        Builds an unless-then-else statement on f=0.  If then, produce 'f'.
+        Else, recursively call the trap above our current trap with 'b' replaced by +(b).
+        Else (d isn't equal to e), then recursively call the trap with 'c' replaced by
+        the fnv hash of the logical XOR of 'c' and (cut 3 [d 1] a), 'd' replaced by
+        the increment of 'd'.
+        
+  Examples:
+        ~palryp-hocsyt/try=> (mug 10.000)
+        178.152.889
+        ---
+        ~palryp-hocsyt/try=> (mug 10.001)
+        714.838.017
+        ---
+        ~palryp-hocsyt/try=> (mug 1)
+        67.918.732
+        ---
+        ~palryp-hocsyt/try=> (mug (some 10))
+        1.872.403.737
+        ---
+        ~palryp-hocsyt/try=> (mug (limo [1 2 3 4 5 ~]))
+        1.067.931.605
 
 section 2cE, phonetic base            
 
@@ -1578,18 +1717,167 @@ section 2cE, phonetic base
 section 2cF, signed and modular ints  
 
 ++  si    
+  Comments:
+        signed integer
   ++  abs 
+  Comments:
+        absolute value
+  Description:
+        Produces the absolute value of a signed integer.
+  Explanation:
+        Creates a dry %gold gate with a sample which accepts a single atom.
+        Sums the last bit of the atom with the single bit-wise block right-shift of the atom,
+        producing the absolute value.
+  Examples:
+        ~palryp-hocsyt/try=> (abs:si -2)
+        2
+        ---
+        ~palryp-hocsyt/try=> (abs:si -10.000)
+        10.000
+        ---
+        ~palryp-hocsyt/try=> (abs:si --2)
+        2
   ++  dif 
+  Comments:
+        subtraction
+  Description:
+        Produces the difference between two signed integers.
+  Explanation:
+        Creates a dry %gold gate with a sample which accepts two signed integers.
+        Sums the first 
+  Examples:
+        
   ++  dul 
+  Comments:
+        modulus
+  Descriptions:
+        Produces the modulus of two signed integers.
+  Explanations:
+        
+  Examples:
   ++  fra 
+  Comments:
+        divide
+  Descriptions:
+        Produces the quotient of two signed integers.
+  Explanations:
+        Creates a dry %gold gate with a sample which accepts two signed integers.
+        Divides the absolute value of 'a', the dividend, and 'b', the divisor, and
+        passes that value as the unsigned integer value of a new signed integer.
+        The sign of the new signed integer is the bitwise logical XOR of the two integer's 
+        signs, meaning the quotient is only positive when both factors are positive.
+        This new signed integer is produced.
+  Examples:
+        ~palryp-hocsyt/try=> (fra:si --4 --2)
+        --2
+        ---
+        ~palryp-hocsyt/try=> (fra:si -4 -2)
+        --2
+        ---
+        ~palryp-hocsyt/try=> (fra:si -4 --2)
+        -2
+        ---
+        ~palryp-hocsyt/try=> (fra:si --4 -2)
+        -2
+        ---
+        ~palryp-hocsyt/try=> (fra:si `@s`4 `@s`2)
+        --2
+        ---
+        ~palryp-hocsyt/try=> (fra:si `@s`4 2)
+        ! type-fail
+        ! exit
   ++  new 
-  ++  old 
-  ++  pro 
+  Comments:
+        [sign value] to @s
+  Descriptions:
+  Explanations:
+  Examples:
+        ~palryp-hocsyt/try=> (new:si [& 10])
+        --10
+        ~palryp-hocsyt/try=> (new:si [| 10])
+        -10
+        ~palryp-hocsyt/try=> (new:si [%.y 7])
+        --7
+  ++  old
+  Comments:
+        [sign value]
+  Descriptions:
+  Explanations:
+  Examples:
+  ++  pro       
+  Comments:
+        multiplication
+  Descriptions:
+  Explanations:
+  Examples:
   ++  rem 
+  Comments:
+        remainder
+  Descriptions:
+  Explanations:
+  Examples:
   ++  sum 
+  Comments:
+        addition
+  Descriptions:
+        Sums two signed integers.
+  Explanations:
+        Creates a dry %gold gate which accepts two signed integers.
+        Prints '%si-sum' in the stack trace if the following code crashes.
+        Let 'c' be , 'd' be
+  Examples:
   ++  sun 
+  Comments:
+        @u to @s
+  Descriptions:
+        Produces a signed integer from an unsigned integer.
+        Note that the result must be manually cast to some @s odor to be inferred as an
+        unsigned integer in the type system.
+  Explanations:
+        Creates a dry %gold gate with a sample which accepts any unsigned integer.
+        Produces the integer multiplied by 2.
+  Examples:
+        ~palryp-hocsyt/try=> `@s`10
+        --5
+        ---
+        ~palryp-hocsyt/try=> (sun:si 10)
+        20
+        ---
+        ~palryp-hocsyt/try=> `@s`(sun:si 10)
+        --10
+        ---
+        ~palryp-hocsyt/try=> `@sd`(sun:si 10)
+        --10
+        ---
+        ~palryp-hocsyt/try=> `@sd`(sun:si 12.345)
+        --12.345
   ++  syn 
+  Comments:
+        sign test
+  Descriptions:
+        Produces the sign of the signed integer, & being positive and | being negative.
+  Explanations:
+        Creates a dry %gold gate with a sample which accepts a signed integer.
+        Produces the loobean of 0=(last bit in the signed integer)
+  Examples:
+        ~palryp-hocsyt/try=> (syn:si -7)
+        %.n
+        ---
+        ~palryp-hocsyt/try=> (syn:si --7)
+        %.y
+        ---
+        ~palryp-hocsyt/try=> (syn:si (new:si [& 7]))
+        %.y
+        ---
+        ~palryp-hocsyt/try=> (syn:si -0)
+        %.y
+        ---
+        ~palryp-hocsyt/try=> (syn:si --0)
+        %.y
+        
 ++  fe    
+  Comments:
+        modulo bloq
   ++  dif 
   ++  inv 
   ++  net 
