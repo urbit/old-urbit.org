@@ -188,7 +188,7 @@ chapter 2a, basic unsigned math
         It must yield an atom.
         When the following code crashes, print "div" in the stack trace.
         Produce the next trap asserting that b is not 0.
-        Let c be 0.
+        Let 'c' be 0.
         Create a dry %gold trap
         Builds an if-then-else statement on whether a is less than b.
         If so, produce c.
@@ -319,7 +319,7 @@ chapter 2a, basic unsigned math
        Produces the axis of a within the head or the tail. 
   Explanation:
         This arm is jetted.
-        Creates a dry gold gate with a sample which accepts an atom.
+        Creates a dry %gold gate with a sample which accepts an atom.
         Must produce an atom.
         Selects a case below for the actual type of a.
         Exit if a is 1.
@@ -413,7 +413,7 @@ chapter 2a, basic unsigned math
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce an atom.
-        Let c be 0.
+        Let 'c' be 0.
         Create and kick a dry %gold trap.
         Builds an if-then-else statement on a=0.
         If so, produce c.
@@ -813,7 +813,7 @@ Section 2bB, lists
         produces a loobean.
         Creates and kicks a dry %gold trap.  It must produce a tuple of two lists af a's type
         Builds an if-then-else statement on "a is null"  If so, produce a tuple of two nulls.
-        Else, let c be the recursive call of skid with a replaced by the tail of a.
+        Else, let 'c' be the recursive call of skid with a replaced by the tail of a.
         Builds an if-then-else statement on (b i.a).  If so, produce [[i.a p.c] q.c].
         Else, produce [p.c [i.a q.c]] where p.c and q.c are the separate list results of c.
   Examples:
@@ -1171,7 +1171,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         slice
   Description:
         Accepts a block size 'a', a cell of two atoms 'b' and 'c' and another atom 'd'.
-        Produces the tail of 'd' that is 'c' blocks long after right-shifting 'd' 'b' blocks.
+        Produces the tail of 'd' that is 'c' blocks long after right-shifting 'd' 'b'-blocks.
   Explanation:
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block size (an atom),
@@ -1233,7 +1233,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         two other atoms.
         Let 'n' be 0.
         Let 'd' be 'c'.
-        Creates and kicks a %dry gold trap whose result is cast to a atom.
+        Creates and kicks a dry %gold trap whose result is cast to a atom.
         Builds an if-then-else statement on n=b.
         If so, produce the right-shift of 'd' by one block.
         Else, recursively call the trap with 'd' replaced by the sum of 'c' and the one block
@@ -1280,7 +1280,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and
         an atom.
         Casts the result to an atom.
-        Let c be 0.
+        Let 'c' be 0.
         Creates and kicks a dry %gold trap.
         Builds an if-then-else statement on b=0.
         If so, produce c.
@@ -1331,7 +1331,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and
         a list of atoms.
         Casts the result to an atom.
-        Let c be 0.
+        Let 'c' be 0.
         Creates and kicks a dry %gold trap.
         Build an if-then-else statement on "b is an atom."
         If so, produce 0.
@@ -1486,7 +1486,7 @@ section 2cB, bit logic
   Explanation:
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
-        Let c be 0, d be 0.
+        Let 'c' be 0, d be 0.
         Creates and kicks a dry %gold trap.  Casts the result to an atom.
         Builds an if-then-else statement on a=b AND b=0.
         If so, produce 'd'.
@@ -1621,31 +1621,161 @@ section 2cC, noun orders
   Comments:
         a-order
   Description:
+        Alphabetic comparator gate.
   Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts two nouns.
+        Casts the result to a loobean.
+        Builds an if-then-else statement on a=b.
+        If so, produce true.
+        Else, build an unless-then-else statement on "a is an atom."
+        If 'a' is not an atom, build an unless-then-else statement on "b is an atom."
+        If so, build an if-then-else statement on (-.a=-.b) where -.a is the head of 'a'.
+        If so, recursively call aor with 'a' and 'b' replaced by their respecitve tails.
+        Else, recursively call aor with 'a' and 'b' replaced by their respective heads.
+        Else (if 'b' is an atom), produce false.
+        Else (if 'a' is an atom), build an unless-then-else statement on "b is an atom."
+        If so, produce true.
+        Else, create and kick a dry %gold gate.
+        Let 'c' be the byte tail of 'a', 'd' be the byte tail of 'b'.
+        Builds an if-then-else statement on (c=d).
+        If so, produce the recursive call to the trap with 'a' replaced by the byte right-shift of 'a'
+        and 'b' replaced by the byte right-shift of 'b'.
+        Else (if !(c=d)), produce (c<d).
   Examples:
+       ~tadbyl-hilbel/try=> (aor 'a' 'b')
+        %.y
+        ~tadbyl-hilbel/try=> (aor 'b' 'a')
+        %.n
+        ---
+        ~tadbyl-hilbel/try=> (aor "foo" "bar")
+        %.n
+        ~tadbyl-hilbel/try=> (aor "bar" "foo")
+        %.y
+        ---
+        ~tadbyl-hilbel/try=> (aor "abcdefz" "abcdefa")
+        %.n
+        ~tadbyl-hilbel/try=> (aor "abcdefa" "abcdefz")
+        %.y
+        ---
+        ~tadbyl-hilbel/try=> (aor 10.000 17.000)
+        %.y
+        ~tadbyl-hilbel/try=> (aor 10 9)
+        %.n
 ++  dor  
   Comments:
         d-order
   Description:
+        Numeric comparator gate.
   Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts two nouns.
+        Casts the result to a loobean.
+        Builds an if-then-else statement on a=b.
+        If so, produce true.
+        Else, build an unless-then-else statement on "a is an atom."
+        If 'a' is not an atom, build an unless-then-else statement on "b is an atom."
+        If so, build an if-then-else statement on (-.a=-.b) where -.a is the head of 'a'.
+        If so, recursively call dor with 'a' and 'b' replaced by their respecitve tails.
+        Else, recursively call dor with 'a' and 'b' replaced by their respective heads.
+        Else ('b' is an atom), produce false.
+        Else ('a' is an atom), build an unless-then-else statement on "b is an atom."
+        If so, produce true.
+        Else, produce (a<b).
   Examples:
+        ~tadbyl-hilbel/try=> (dor 1 2)
+        %.y
+        ~tadbyl-hilbel/try=> (dor 2 1)
+        %.n
+        ---
+        ~tadbyl-hilbel/try=> (dor ~[1 2 3] ~[1 2 4])
+        %.y
+        ~tadbyl-hilbel/try=> (dor ~[1 2 4] ~[1 2 3])
+        %.n
+        ---
+        ~tadbyl-hilbel/try=> (dor (limo ~[99 100 10.000]) ~[99 101 10.000])
+        %.y
+        ~tadbyl-hilbel/try=> (dor ~[99 101 10.999] (limo ~[99 100 10.000]))
+        %.n
 ++  gor  
   Comments:
         g-order
   Description:
+        Hash comparator gate.
   Explanation:
-  Examples:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts two nouns.
+        Casts the result to a loobean.
+        Let 'c' be the mug (FNV-1a hash) of 'a' an 'd' the mug of 'b'.
+        Create an if-then-else statement on c=d.
+        If so, produce the d-order of 'a' and 'd'.
+        Else, produce the loobean (c<d).
+  Examples
+        ~palryp-hocsyt/try=> (gor 'd' 'c')
+        %.y
+        ~palryp-hocsyt/try=> 'd'
+        'd'
+        ~palryp-hocsyt/try=> 'c'
+        ~palryp-hocsyt/try=> `@ud`'d'
+        100
+        ~palryp-hocsyt/try=> `@ud`'c'
+        99
+        ~palryp-hocsyt/try=> (mug 'd')
+        1.628.185.714
+        ~palryp-hocsyt/try=> (mug 'c')
+        1.712.073.811
+        ~palryp-hocsyt/try=> (gor 'd' 'c')
+        %.y
+        ~palryp-hocsyt/try=> (gor 'c' 'd')
+        %.n
+        ---
+        ~palryp-hocsyt/try=> (gor "foo" "bar")
+        %.n
+        ---
+        ~palryp-hocsyt/try=> (gor (some 10) (limo [1 2 3 ~]))
+        %.n
 ++  hor  
   Comments:
         h-order
   Description:
+        Recursive hash comparator gate.
   Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts two nouns.
+        Casts the result to a loobean.
+        Build an if-then-else statement on "a is an atom."
+        If so, build na if-then-else statment on "b is an atom."
+        If so, produce  the g-order of 'a' and 'b'.
+        Else (if 'b' is not an atom), produce true.
+        Else (if 'a' is not an atom), build an if-then-else statement on "b is an atom."
+        If so, produce false.
+        Else, build an if-then-else statement on (-.a=-.b), where '-.a' is the head of 'a'. 
+        If so, produce the g-order of the tails of 'a' and 'b'.
+        Else (if the heads of 'a' and 'b' are not equal), produce the g-order of the tails of 'a', 'b'.
   Examples:
+        
 ++  vor
   Comments:
+        v-order
   Description:
+        Double hash comparator gate.
   Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts two nouns.
+        Casts the result to a loobean.
+        Let 'c' be the double mug (FNV-1a hash) of 'a', 'd' that of 'b'.
+        Builds an if-then-else statement on (c=d).
+        If so, produce the d-order of 'a' and 'b'.
+        Else, produce the loobean of (c<d).
   Examples:
+        ~palryp-hocsyt/try=> (vor 'f' 'g')
+        %.y
+        ---
+        ~palryp-hocsyt/try=> (vor 'a' 'z')
+        %.n
+        ---
+        ~palryp-hocsyt/try=> (vor 43.326 41.106)
+        %.n
 
 section 2cD, insecure hashing         
 
@@ -1674,7 +1804,8 @@ section 2cD, insecure hashing
   Explanation:
         This arm is jetted.
         Creates a dry %gold gate with a sample accepting any noun.
-        
+
+        (?^ and 'p' subsection fill in.)      
 
         Let 'b' be 2,166,136,261.
         Create and kick a dry %gold gate.  Cast its result to an atom.
@@ -1709,11 +1840,75 @@ section 2cD, insecure hashing
 section 2cE, phonetic base            
 
 ++  po
+  Comments:
+        left-right syllable
+  Description:
+        Provides the phonetic syllables and name generators for the Urbit naming system.
+  Explanation:
+        This arm is jetted.
+        Create the cell [sis dex] where 'sis' and 'dex' are the togas on the 
+        left-hand ("sinister") and right-hand ("Dexter") phonetic syllable cords, respectively.
+        Build a %gold core to contain the following arms.
   ++  ind 
+  Comments:
+        
+  Description:
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts and atom.
+        Let 'b' be 0.
+        Creates and kicks a dry %gold trap, casting the result to an atomic unit.
+        Builds an if-then-else statement on (b=256).  If so, produce null.
+        Else, build an if-then-else statement on (a=(tod b)).  If so, produce the atomic unit [~ b].
+        Else, recursively call the trap with 'b' replaced by the increment of 'b'.
+  Examples:
+  
   ++  ins 
-  ++  tod 
-  ++  tos 
+  Comments:
+        
+  Description:
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts and atom.
+        Let 'b' be 0.
+        Creates and kicks a dry %gold trap with the result cast to an atomic unit.
+        Builds an if-then-else statement on (b=256). If so, produce null.
+        Else, build an if-then-else statement on (a=(tos b)).  If so, produce the atomic unit [~ b].
+        Else, recursively call the trap with 'b' replaced by the increment of 'b'.
+  Examples:
 
+  ++  tod 
+  Comments:
+  Description:
+        Selects right-hand phonetic syllable from 'dex'.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts and atom.
+        Assert that 'a' is less than 256.
+        Produce the three tail-end byte blocks in the rght-shift of dex.
+  Examples:
+        ~palryp-hocsyt/try=> (tod:po 98)
+        6.514.020
+        ---
+        ~palryp-hocsyt/try=> (tod:po 150)       
+        6.781.298
+        ---
+        ~palryp-hocsyt/try=> (tod:po 255)
+        7.562.598
+        ---
+        ~palryp-hocsyt/try=> (tod:po 256)
+        ! exit
+  ++  tos 
+  Comments:
+
+  Description:
+        Selects left-hand phonetic syllable from 'sin'.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts and atom.
+        Assert that 'a' is less than 256.
+        Produce the three tail-end byte blocks in the rght-shift of dex.
+  Examples:
 section 2cF, signed and modular ints  
 
 ++  si    
@@ -1988,15 +2183,94 @@ section 2cF, signed and modular ints
 ++  fe    
   Comments:
         modulo bloq
+  Description:
+        Binary block modulo math engine.  Defaults to bloq size 1.
+  Explanation:
+        Builds an %gold tray with a sample accepting a bloq size (an atom).
   ++  dif 
-  ++  inv 
-  ++  net 
-  ++  out 
-  ++  rol 
-  ++  ror 
-  ++  sum 
-  ++  sit 
+  Comments:
+        subtraction
+  Description:
+        Produces the difference between two atoms in the modular basis representation.
+  Explanation:
+        Creates a dry %gold gate which accepts two atoms.
+        Evaluate the difference between the sum of the 'out' and 
+        
+  Examples:
 
+  ++  inv 
+  Comments:
+        invert
+  Description:
+        Inverts the order of the modular field.
+  Explanation:
+  Examples:
+        palryp-hocsyt/try=> (~(inv fe 3) 255)
+        0
+        ~palryp-hocsyt/try=> (~(inv fe 3) 256)
+        255
+        ~palryp-hocsyt/try=> (~(inv fe 3) 0)
+        255
+        ~palryp-hocsyt/try=> (~(inv fe 3) 1)
+        254
+        ~palryp-hocsyt/try=> (~(inv fe 3) 2)
+        253
+        ~palryp-hocsyt/try=> (~(inv fe 3) 3)
+        252
+  ++  net 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
+
+  ++  out 
+  Comments:
+  Description:
+  Explanation:
+  Examples:
+
+  ++  rol 
+  Comments:
+  Description:
+  Explanation:
+        Creates a dry %gold gate which accepts a block size (an atom) and two other atoms.
+        The result of cast to an atom.  'd' is expressed in the modular base as 'e'.
+        Let 'f' be the binary exponential difference between 'a' and 'b'.
+        Let 'g' be (c mod f).
+        Right-shift 'e' by (sub f g) (The difference between 'f' and 'g') blocks of size 'b'.
+        Left-shift 'e' by 'g' blocks of size 'b'.
+        Take the binary logical OR of these two results and represent them in our modular basis.
+  Examples:
+
+  ++  ror 
+  Comments:
+  Description:
+  Explanation:
+        Creates a dry %gold gate which accepts a block size (an atom) and two other atoms.
+        The result of cast to an atom.  'd' is expressed in the modular base as 'e'.
+        Let 'f' be the binary exponential difference between 'a' and 'b'.
+        Let 'g' be (c mod f).
+        Left-shift 'e' by (sub f g) (The difference between 'f' and 'g') blocks of size 'b'.
+        Right-shift 'e' by 'g' blocks of size 'b'.
+        Take the binary logical OR of these two results and represent them in our modular basis.
+  Examples:
+
+  ++  sum 
+  Comments:
+        
+  Description:
+  Explanation:
+  Examples:
+  ++  sit 
+  Comments:
+        present
+  Description:
+        Produces the representation of any atom in the given bloq arithmetic.
+  Explanation:
+        Creates a dry %gold date that accepts an atom.
+        Produces the trailing binary 'a'-block of the number.
+  Examples:
+        
 section 2cG, floating point           
 
 ++  rlyd  
@@ -2030,19 +2304,137 @@ section 2cH, urbit time
 
 section 2cI, almost macros            
 ++  hard
+  Comments:
+        demand result type
+  Description:
+        Demands that a gate produce an argument of type 
+  Explanation:
+        Creates a vulanized wet gate which accepts any gate which accepts any noun and produces
+        any noun.
+        Creates a dry %gold gate which accepts any noun and casts the result to the 
+        higher gate argument's icon.
+        Prints "%hard" in the stack trace if the code below crashes.
+        Let gol be the higher gate argument slammed with the lower arbitrary noun.
+        Assert that the result's icon is equal to that of the lower arbitrary noun
+        before producing said result.
+  Examples:
+        ~palryp-hocsyt/try=> ((hard (list)) (limo [1 2 3 ~]))
+        ~[1 2 3]
 ++  soft
-
+  Comments:
+        politely demand
+  Description:
+  Explanation:
+        Creates a vulanized wet gate which accepts any gate which accepts any noun and produces
+        any noun.
+        Creates a dry %gold gate which accepts any noun and casts the result to the 
+        a unit of the higher gate argument's icon.
+        Let gol be the higher gate argument slammed with the lower arbitrary noun.
+        Build an unless-then-else statement on the result icon's being equal to that of 
+        the lower arbitrary noun.
+        If so, produce null.
+        Else, produce the unit of the result.
+  Examples:
+        
 chapter 2d, containers
 
 section 2dA, sets     
                 
 ++  apt       
+  Comments:
+        set invariant
+  Description:
+        Accepts any tree and produces a loobean indicting whether the tree is a set.
+  Explanation:
+        Creates a dry %gold gate which accepts a tree.
+        Builds an if-then-else statement on "a is an atom."
+        If so, produce true.
+        Else, compute and produce the logical AND of:
+        The if "l.a is an atom" then produce true, else (produce the logical AND of the
+        v-order of n.a and n.l.a and the h-order of n.l.a and n.a) if-then-else statement.
+        The if "r.a is an atom" then prodcue true, else (produce the logical AND of the 
+        v-order of n.a and n.r.a and the h-roder of n.a and n.r.a) if-then-else statement.
+        (==)  terminates the tall logical AND statement.
+  Examples:
+        
 ++  in        
+  Comments:
+        set engine
+  Description:
+        Container arm for set set operation arms.  The contained arms inherit it's sample set, 'a'. 
+  Explanation:
+        This arm is jetted.
+        Creates a %gold trap with sample 'a', a set.
+  Examples:
+
   +-  all
+  Comments:
+        logical AND
+  Description:
+        Accepts a gate which accepts any noun and produces a loobean.  Slams the gate with each member
+        of set 'a', produce the logical AND of the transformed set.
+  Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate which accepts any gate which produces a loobean.
+        Creates and kicks a dry %gold gate, casts the result to a loobean.
+        Builds an if-then-else statement on "a is an atom."
+        If so, produce true.
+        Else, produce the logical AND of (b n.a) and the recursive calls of the trap with
+        'a' replaced by 'l.a' and 'a' replaced by 'r.a'.
+  Examples:
+
   +-  any
+  Comments:
+        logical OR
+  Description:
+        Accepts a gate which accepts any noun and produces a loobean.  Slams the gate with each member
+        of set 'a', produce the logical OR of the transformed set.
+  Explanation:
+        This arm is jetted.
+        Creates a vulcanized wet gate which accepts any gate which produces a loobean.
+        Creates and kicks a dry %gold gate, casts the result to a loobean.
+        Builds an if-then-else statement on "a is an atom."
+        If so, produce false.
+        Else, produce the logical OR of (b n.a) and the recursive calls of the trap with
+        'a' replaced by 'l.a' and 'a' replaced by 'r.a'.
+  Examples:
+
   +-  del
+  Comments:
+        b without any a
+  Description:
+        Accepts any noun 'b' and removes it from the set 'a'.
+  Explanations:
+        This arm is jetted.
+        Creates a vulcanized wet gate which accepts any noun.
+        Creates and kicks a dry %gold gate, casts the result to the type of 'a'.
+        Builds an if-then-else statement on "a is null."
+        If so, produce null.
+        Else, builds an unless-then-else on (b=n.a)
+        If so, build an if-then-else statement by testing the h-order of 'b' and 'n.a'.
+        If so, produce a the cell [n.a $(a l.a) r.a], where $(a l.a) is the recursive call of 
+        the trap with 'a' replaced by the left 
+  Examples:
   +-  dig
+  Comments:
+  Description:
+  Explanations:
+  Examples:
   +-  gas
+  Comments:
+        concatenate
+  Description:
+        Accepts a list 'b' with members of the same type as the set 'a' and produces 
+        the union set of 'a' and 'b'.
+  Explanation:
+        This arm is jetted.
+        Creates a dry %gold gate which accepts a list of elements of the same type as 'a'.
+        Creates and kicks a dry %gold trap whose result is cast to the type of 'a'.
+        Builds an if-then-else statement on "b is an atom."
+        If so, produce 'a'.
+        Else, recursively call the trap with 'b' replaced by the tail of 'b' and the head of 'b'
+        put into 'a'.
+  Examples:
   +-  has
   +-  put
   +-  rep
