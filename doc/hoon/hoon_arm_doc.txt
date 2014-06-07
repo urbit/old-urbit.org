@@ -112,7 +112,7 @@ volume 2, Hoon libraries and compiler
 chapter 2a, basic unsigned math
 
 ++  add 
-  Comments:
+  Comment:
         add
   Description:
         Sums two numbers.
@@ -133,7 +133,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (add 1.333 (mul 2 2))
         1.337
 ++  cap
-  Comments:
+  Comment:
         tree head
   Description:
         Yields whether an atom is in the head or tail of a noun.
@@ -156,7 +156,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (cap (add 10 9))
         %2
 ++  dec  
-  Comments:
+  Comment:
         decrement
   Description:
         Decrements a number - Subtracts one.
@@ -178,7 +178,7 @@ chapter 2a, basic unsigned math
         ! decrement-underflow
         ! exit
 ++  div  
-  Comments:
+  Comment:
         divide
   Description:
         Divides one number by another.
@@ -204,7 +204,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (div 20 30)
         0 
 ++  fac  
-  Comments:
+  Comment:
         factorial
   Description:
         Produces the factorial of a number n, n!.
@@ -225,7 +225,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (fac 11)
         39.916.800
 ++  gte
-  Comments:
+  Comment:
         greater than or equal
   Description:
         Produces the loobean a>=b.
@@ -244,7 +244,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (gte 3 4)
         %.n
 ++  gth
-  Comments:
+  Comment:
         greater than
   Description:
         Produces the loobean a>b.
@@ -266,7 +266,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (gth 0 0)
         %.n
 ++  lte  
-  Comments:
+  Comment:
         less than or equal to
   Description:
         Produces the loobean a<=b.
@@ -288,7 +288,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (lte 0 0)
         %.y
 ++  lth  
-  Comments:
+  Comment:
         less than
   Description:
         Produces the loobean a<b.
@@ -313,7 +313,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (lth 5 0)
         %.n
 ++  mas  
-  Comments:
+  Comment:
         tree body
   Description:
        Produces the axis of a within the head or the tail. 
@@ -351,7 +351,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (mas 1)
         ! exit
 ++  max  
-  Comments:
+  Comment:
         maximum
   Description:
         Yields the larger of two atoms.
@@ -372,7 +372,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (max 0 1)
         1
 ++  min  
-  Comments:
+  Comment:
         minimum
   Description:
         Yields the smaller of two atoms.
@@ -393,7 +393,7 @@ chapter 2a, basic unsigned math
         ~palryp-hocsyt/try=> (min 0 1)
         0
 ++  mod  
-  Comments:
+  Comment:
         remainder
   Description:
         Yields the modulus of (a mod b).
@@ -405,7 +405,7 @@ chapter 2a, basic unsigned math
         Produce the difference of a and the product of b times a/b.
   Examples:
 ++  mul  
-  Comments:
+  Comment:
         multiply
   Description:
         Multiplies two numbers.
@@ -420,7 +420,7 @@ chapter 2a, basic unsigned math
         Else, recursively call multiply with a replaced by decremented a and c replaced by b+c.
   Examples:
 ++  peg  
-  Comments:
+  Comment:
         tree connect
   Description:
         Produces the axis of b within the axis of a.
@@ -440,7 +440,7 @@ chapter 2a, basic unsigned math
         ~ronrem-lonsem/try=> (mul 1 0)
         0
 ++  sub  
-  Comments:
+  Comment:
         subtract
   Description:
         Accepts two atoms, a and b, and produces a-b.
@@ -471,7 +471,7 @@ chapter 2b, basic containers
 Section 2bA, units                    
 
 ++  biff 
-  Comments:
+  Comment:
         apply
   Description:
         Accepts a unit 'a' and a gate 'b' which produces a unit from the type of u.a, slamming the gate 
@@ -488,7 +488,7 @@ Section 2bA, units
         ~palryp-hocsyt/try=> (biff ~ |=(a=@ (some (add a 2))))
         ~
 ++  bind 
-  Comments:
+  Comment:
         argue
   Description:
         Accepts a unit 'a' and a gate 'b', producing a unit with value (b u.a) or, when a is null, null.
@@ -505,7 +505,7 @@ Section 2bA, units
         ~talsur-todres/try=> (bind ((unit ,@) [~ 2]) a)
         [~ 3]
 ++  clap 
-  Comments:
+  Comment:
         combine
   Description:
         Applies a binary operation to the values of two units, producing the product as a unit.
@@ -528,7 +528,7 @@ Section 2bA, units
         ~talsur-todres/try=> (clap a b c)
         [~ 3]
 ++  drop 
-  Comments:
+  Comment:
         enlist
   Description:
         Accepts a unit and produces the list [u.a ~] or null when the unit is null.
@@ -546,7 +546,7 @@ Section 2bA, units
         ~divreg-misdef/try=> (drop a)
         ~
 ++  fall 
-  Comments:
+  Comment:
         default
   Description:
          a default value 'b' for the unit 'a' when it is null.
@@ -560,7 +560,7 @@ Section 2bA, units
         ~talsur-todres/try=> (fall [~ u=0] `a`)
         0
 ++  mate 
-  Comments:
+  Comment:
         choose
   Description:
         Produces the unit 'a' or 'b' which is not null and crashes with error "mate" if they are equal.
@@ -588,7 +588,7 @@ Section 2bA, units
         ! 'mate'
         ! exit
 ++  need 
-  Comments:
+  Comment:
         demand
   Description:
         Retrieves the value from a unit, crashing if the unit is null.
@@ -606,7 +606,7 @@ Section 2bA, units
         ~divreg-misdef/try=> (need a)
         ! exit
 ++  some 
-  Comments:
+  Comment:
         lift
   Description:
         Casts any noun a to its unit, [~ a].
@@ -623,7 +623,7 @@ Section 2bA, units
 Section 2bB, lists                    
 
 ++  flop 
-  Comments:
+  Comment:
         reverse
   Description:
         Produces the list 'a' with the elements reversed.
@@ -648,7 +648,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (flop (limo [1 'a' 2 'b' (some 10) ~]))
         ~[[~ u=10] 98 2 97 1]
 ++  homo 
-  Comments:
+  Comment:
         homogenize
   Description:
         Homogenizes a lists' type information.
@@ -672,7 +672,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (homo a)
         ~[1 2 3]
 ++  limo 
-  Comments:
+  Comment:
         listify
   Description:
         Produces a list from any null-terminated tuple.
@@ -694,7 +694,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (limo [2 1 ~])
         [i=2 t=[i=1 t=~]]
 ++  lent 
-  Comments:
+  Comment:
         length
   Description:
         Produces the atomic length of any list.
@@ -713,7 +713,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (lent (limo [1 'a' 2 'b' (some 10) ~]))
         5
 ++  levy
-  Comments:
+  Comment:
        all of
   Description:
         Applies the loobean gate 'b' to every element of the list 'a', producing the logical AND of all the results.
@@ -736,7 +736,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (levy (limo [0 1 2 1 ~]) b)
         %.y        
 ++  lien 
-  Comments:
+  Comment:
         some of
   Description:
         Applies the loobean gate 'b' to every element of the list 'a', producing the logical OR of all the results.
@@ -757,7 +757,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (lien (limo [0 1 2 1 ~]) a)
         %.n
 ++  reel 
-  Comments:
+  Comment:
         right fold
   Description:
         Accepts a list 'a' and a gate 'b' which accepts two nouns, then folds (recursively calls 'b' across) the 
@@ -782,7 +782,7 @@ Section 2bB, lists
         ! subtract-underflow
         ! exit
 ++  roll 
-  Comments:
+  Comment:
         left fold
   Description:
         Accepts a list 'a' and a gate 'b' which accepts two nouns, then folds (recursively calls 'b' across) the
@@ -803,7 +803,7 @@ Section 2bB, lists
         ~barred-tidset/try=> (roll (limo [3 6 3 ~]) a)
         0
 ++  skid 
-  Comments:
+  Comment:
        separate
   Description:
         Accepts a list and a gate which takes any noun and produces a loobean.  Produces two lists, one who's elements
@@ -821,7 +821,7 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (skid (limo [0 1 2 3 ~]) a)
         [p=[i=2 t=[i=3 t=~]] q=[i=0 t=[i=1 t=~]]]
 ++  skim 
-  Comments:
+  Comment:
         only
   Description:
         Accepts a list 'a' and a gate 'b' which takes any noun and produces loobean.  
@@ -842,7 +842,7 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (skim (limo [0 1 2 3 ~]) a)
         [i=2 t=[i=3 t=~]]
 ++  skip 
-  Comments:
+  Comment:
         except
   Description:
         Accepts a 'a' list and a gate 'b' which takes any noun and produces a loobean.
@@ -863,7 +863,7 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (skip (limo [0 1 2 3 ~]) a)
         [i=0 t=[i=1 t=~]]
 ++  scag 
-  Comments:
+  Comment:
         prefix
   Description:
         Accepts an atom 'n' and list 'b',  producing the first n elements at the front of the list.
@@ -882,7 +882,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (scag 10 (limo [1 2 3 4 ~]))
         [i=1 t=[i=2 t=[i=3 t=[i=4 t=~]]]]
 ++  slag 
-  Comments:
+  Comment:
         suffix
   Description:
         Accepts an atom 'n' and a list 'b', producing the last n elemnents at the back of the list.
@@ -902,7 +902,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (slag 2 (limo [1 2 3 4 ~]))
         [i=3 t=[i=4 t=~]]
 ++  snag 
-  Comments:
+  Comment:
         index
   Description:
         Accepts an atom and a list, producing the element at the index of the atom in the list and failing is the list
@@ -923,7 +923,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (snag 4 (limo [1 2 3 4 5 6 7 8 ~]))
         5
 ++  sort 
-  Comments:
+  Comment:
         quicksort
   Description:
         Accepts a list and a gate with a sample which accepts two nouns and produces a loobean.  'sort' then produces a 
@@ -945,7 +945,7 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (sort (limo [0 1 2 3 ~]) a)
         ~[3 2 1 0]
 ++  swag 
-  Comments:
+  Comment:
         infix
   Description:
         A range in a list - Produces the values in list 'c' starting at index 'a' and spanning 'b' elements
@@ -964,7 +964,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (swag [1 2] (limo [1 2 3 ~]))
         [i=2 t=[i=3 t=~]] 
 ++  turn 
-  Comments:
+  Comment:
         transform
   Description:
         Accepts a list and a gate.  Produces the list with the gate applied to each element of the original list.
@@ -979,7 +979,7 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (turn (limo [104 111 111 110 ~]) ,@t)
         <|h o o n|>
 ++  weld 
-  Comments:
+  Comment:
         concatenate
   Description:
         Concatenates two lists.
@@ -997,7 +997,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (weld "foo" "bar")
         ~[~~f ~~o ~~o ~~b ~~a ~~r]
 ++  welp 
-  Comments:
+  Comment:
         perfect weld
   Description:
         Concatenates two lists without losing their type information to homogenization.
@@ -1008,7 +1008,7 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (welp "foo" "bar")
         "foobar"
 ++  wild 
-  Comments:
+  Comment:
         concatenate
   Description:
         Concatenates two lists without casting the product back to a list.
@@ -1034,7 +1034,7 @@ Section 2bB, lists
         ! find-fork
         ! exit
 ++  zing 
-  Comments:
+  Comment:
         promote
   Description:
         Turns a list of lists into a single list by promoting the elements of each sublist into the higher.
@@ -1055,7 +1055,7 @@ chapter 2c, simple noun surgery
 section 2cA, bit surgery              **capitalization of "section" inconsistent in source**
 
 ++  bex  
-  Comments:
+  Comment:
         binary exponent
   Description:
         Produces 2 to the nth power for some atom 'n'.
@@ -1074,7 +1074,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~palryp-hocsyt/try=> (bex 0)
         1
 ++  xeb  
-  Comments:
+  Comment:
         binary logarithm
   Description:
         Takes the base-2 logarithm of an atom.
@@ -1101,7 +1101,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~palryp-hocsyt/try=> (xeb 2)
         2
 ++  can  
-  Comments:
+  Comment:
         assemble
   Description:
         Assembles a 
@@ -1132,7 +1132,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> `@ub`(can 1 ~[[2 4]])
         0b100
 ++  cat  
-  Comments:
+  Comment:
         concatenate
   Description:
         Concatenates two atoms, obeying the given block size.
@@ -1167,7 +1167,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (cat 3 256 255)
         16.711.936        
 ++  cut  
-  Comments:
+  Comment:
         slice
   Description:
         Accepts a block size 'a', a cell of two atoms 'b' and 'c' and another atom 'd'.
@@ -1191,7 +1191,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (cut 1 [1 2] 255)
         15
 ++  end  
-  Comments:
+  Comment:
         tail
   Description:
         Accepts a block 'a' and two atoms, 'b' and 'c'.
@@ -1224,7 +1224,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (end 3 1 255)
         255 
 ++  fil  
-  Comments:
+  Comment:
         fill bloqstream
   Description:
         
@@ -1241,7 +1241,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
   Examples:
         
 ++  lsh  
-  Comments:
+  Comment:
         left shift
   Description:
         Accepts a block size 'a' and two atoms 'b' and 'c'.  Produces 'c' left-shifted 
@@ -1271,7 +1271,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (lsh 3 1 255)
         65.280
 ++  met  
-  Comments:
+  Comment:
         measure
   Description:
         Measures the number of blocks of size 'a' are in 'b'.
@@ -1296,7 +1296,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (met 3 256)
         2
 ++  rap  
-  Comments:
+  Comment:
         assemble nonzero
   Description:
         Concatenates a list of atoms, obeying a given blocksize.
@@ -1322,7 +1322,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~palryp-hocsyt/try=> (rap 0 (limo [0 0 1 ~]))
         1
 ++  rep  
-  Comments:
+  Comment:
         assemble single
   Description:
         Assembles 
@@ -1361,7 +1361,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~palryp-hocsyt/try=> (rep 0 (limo [0 1 0 1 0 1 ~]))
         42
 ++  rip  
-  Comments:
+  Comment:
         disassemble
   Description:
         Produces a list of the bits of an atom, in little endian order, according to
@@ -1402,7 +1402,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~[0 1]
         
 ++  rsh  
-  Comments:
+  Comment:
         right shift
   Description:
         Accepts a block size 'a' and two atoms, 'b' and 'c'.  Right-shifts 'c' by 'b' blocks
@@ -1448,7 +1448,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (rsh 0 1 1)
         0
 ++  swap 
-  Comments:
+  Comment:
         reverse bloq order
   Description:
         Produces the reversed block order of a number, obeying block number.
@@ -1479,7 +1479,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
 section 2cB, bit logic                
 
 ++  con  
-  Comments:
+  Comment:
         binary or
   Description:
         Produces the bit-wise logical OR of two atoms.
@@ -1513,7 +1513,7 @@ section 2cB, bit logic
         ~palryp-hocsyt/try=> (con 10.000 234)
         10.234
 ++  dis  
-  Comments:
+  Comment:
         binary and
   Description:
         Produces the bit-wise logical AND of two atoms.
@@ -1556,7 +1556,7 @@ section 2cB, bit logic
         ~ronrem-lonsem/try=> (dis 534 987)
         530
 ++  mix  
-  Comments:
+  Comment:
         binary xor
   Description:
         Produces the bit-wise logical exclusive OR of two atoms.
@@ -1588,7 +1588,7 @@ section 2cB, bit logic
         ~ronrem-lonsem/try=> (mix 2 2)
         0
 ++  not  
-  Comments:
+  Comment:
         binary not (sized)
   Description:
         Produces the bit-wise logical NOT over 'b' blocks of the given blocksize.
@@ -1618,7 +1618,7 @@ section 2cB, bit logic
 section 2cC, noun orders              
 
 ++  aor  
-  Comments:
+  Comment:
         a-order
   Description:
         Alphabetic comparator gate.
@@ -1663,7 +1663,7 @@ section 2cC, noun orders
         ~tadbyl-hilbel/try=> (aor 10 9)
         %.n
 ++  dor  
-  Comments:
+  Comment:
         d-order
   Description:
         Numeric comparator gate.
@@ -1698,7 +1698,7 @@ section 2cC, noun orders
         ~tadbyl-hilbel/try=> (dor ~[99 101 10.999] (limo ~[99 100 10.000]))
         %.n
 ++  gor  
-  Comments:
+  Comment:
         g-order
   Description:
         Hash comparator gate.
@@ -1735,7 +1735,7 @@ section 2cC, noun orders
         ~palryp-hocsyt/try=> (gor (some 10) (limo [1 2 3 ~]))
         %.n
 ++  hor  
-  Comments:
+  Comment:
         h-order
   Description:
         Recursive hash comparator gate.
@@ -1755,7 +1755,7 @@ section 2cC, noun orders
   Examples:
         
 ++  vor
-  Comments:
+  Comment:
         v-order
   Description:
         Double hash comparator gate.
@@ -1780,7 +1780,7 @@ section 2cC, noun orders
 section 2cD, insecure hashing         
 
 ++  fnv
-  Comments:
+  Comment:
         FNV scrambler
   Description:
         Hashes an atom with the 32-bit FNV non-cryptographic hash algorithm.
@@ -1797,7 +1797,7 @@ section 2cD, insecure hashing
         ~palryp-hocsyt/try=> (fnv 1)
         16.777.619
 ++  mug
-  Comments:
+  Comment:
         31bit nonzero FNV1a
   Description:
         Hashes any noun with the 31-bit nonzero FNV-1a non-cryptographic hash algorithm.
@@ -1840,7 +1840,7 @@ section 2cD, insecure hashing
 section 2cE, phonetic base            
 
 ++  po
-  Comments:
+  Comment:
         left-right syllable
   Description:
         Provides the phonetic syllables and name generators for the Urbit naming system.
@@ -1850,7 +1850,7 @@ section 2cE, phonetic base
         left-hand ("sinister") and right-hand ("Dexter") phonetic syllable cords, respectively.
         Build a %gold core to contain the following arms.
   ++  ind 
-  Comments:
+  Comment:
         
   Description:
   Explanation:
@@ -1864,7 +1864,7 @@ section 2cE, phonetic base
   Examples:
   
   ++  ins 
-  Comments:
+  Comment:
         
   Description:
   Explanation:
@@ -1878,7 +1878,7 @@ section 2cE, phonetic base
   Examples:
 
   ++  tod 
-  Comments:
+  Comment:
   Description:
         Selects right-hand phonetic syllable from 'dex'.
   Explanation:
@@ -1899,7 +1899,7 @@ section 2cE, phonetic base
         ~palryp-hocsyt/try=> (tod:po 256)
         ! exit
   ++  tos 
-  Comments:
+  Comment:
 
   Description:
         Selects left-hand phonetic syllable from 'sin'.
@@ -1912,10 +1912,10 @@ section 2cE, phonetic base
 section 2cF, signed and modular ints  
 
 ++  si    
-  Comments:
+  Comment:
         signed integer
   ++  abs 
-  Comments:
+  Comment:
         absolute value
   Description:
         Produces the absolute value of a signed integer.
@@ -1933,7 +1933,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (abs:si --2)
         2
   ++  dif 
-  Comments:
+  Comment:
         subtraction
   Description:
         Produces the difference between two signed integers.
@@ -1955,7 +1955,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (dif:si `@s`0 `@s`7)
         --4
   ++  dul 
-  Comments:
+  Comment:
         modulus
   Description:
         Produces the modulus of two signed integers.
@@ -1981,7 +1981,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (dul:si --90 --10)
         10
   ++  fra 
-  Comments:
+  Comment:
         divide
   Description:
         Produces the quotient of two signed integers.
@@ -2012,7 +2012,7 @@ section 2cF, signed and modular ints
         ! type-fail
         ! exit
   ++  new 
-  Comments:
+  Comment:
         [sign value] to @s
   Description:
         Produces a signed integer from a sign value (either & or |) and an atom.
@@ -2031,7 +2031,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (new:si [%.y 7])
         --7
   ++  old
-  Comments:
+  Comment:
         [sign value]
   Description:
         Produces the cell [sign value] representations of a signed integer.
@@ -2055,7 +2055,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (old:si -0)
         [%.y 0]
   ++  pro       
-  Comments:
+  Comment:
         multiplication
   Description:
         Produces the product of two signed integers.
@@ -2076,7 +2076,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (pro:si -1.337 --0)
         --0
   ++  rem 
-  Comments:
+  Comment:
         remainder
   Description:
         Produces the remainder from a division of two signed integers.
@@ -2099,7 +2099,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (rem:si --0 --10.000)
         --0
   ++  sum 
-  Comments:
+  Comment:
         addition
   Description:
         Sums two signed integers.
@@ -2132,7 +2132,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (sum:si -10 --7)
         -3
   ++  sun 
-  Comments:
+  Comment:
         @u to @s
   Description:
         Produces a signed integer from an unsigned integer.
@@ -2157,7 +2157,7 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> `@sd`(sun:si 12.345)
         --12.345
   ++  syn 
-  Comments:
+  Comment:
         sign test
   Description:
         Produces the sign of the signed integer, & being positive and | being negative.
@@ -2181,14 +2181,14 @@ section 2cF, signed and modular ints
         %.y
         
 ++  fe    
-  Comments:
+  Comment:
         modulo bloq
   Description:
         Binary block modulo math engine.  Defaults to bloq size 1.
   Explanation:
         Builds an %gold tray with a sample accepting a bloq size (an atom).
   ++  dif 
-  Comments:
+  Comment:
         subtraction
   Description:
         Produces the difference between two atoms in the modular basis representation.
@@ -2199,7 +2199,7 @@ section 2cF, signed and modular ints
   Examples:
 
   ++  inv 
-  Comments:
+  Comment:
         invert
   Description:
         Inverts the order of the modular field.
@@ -2218,19 +2218,19 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (~(inv fe 3) 3)
         252
   ++  net 
-  Comments:
+  Comment:
   Description:
   Explanation:
   Examples:
 
   ++  out 
-  Comments:
+  Comment:
   Description:
   Explanation:
   Examples:
 
   ++  rol 
-  Comments:
+  Comment:
   Description:
   Explanation:
         Creates a dry %gold gate which accepts a block size (an atom) and two other atoms.
@@ -2243,7 +2243,7 @@ section 2cF, signed and modular ints
   Examples:
 
   ++  ror 
-  Comments:
+  Comment:
   Description:
   Explanation:
         Creates a dry %gold gate which accepts a block size (an atom) and two other atoms.
@@ -2256,13 +2256,13 @@ section 2cF, signed and modular ints
   Examples:
 
   ++  sum 
-  Comments:
+  Comment:
         
   Description:
   Explanation:
   Examples:
   ++  sit 
-  Comments:
+  Comment:
         present
   Description:
         Produces the representation of any atom in the given bloq arithmetic.
@@ -2302,12 +2302,13 @@ section 2cH, urbit time
       ++  qad 
       ++  yer 
 
-section 2cI, almost macros            
+section 2cI, almost macros
+
 ++  hard
-  Comments:
+  Comment:
         demand result type
   Description:
-        Demands that a gate produce an argument of type 
+        Ruthlessly demands that a specific type be produced, crashing the program is it is not.
   Explanation:
         Creates a vulanized wet gate which accepts any gate which accepts any noun and produces
         any noun.
@@ -2320,10 +2321,18 @@ section 2cI, almost macros
   Examples:
         ~palryp-hocsyt/try=> ((hard (list)) (limo [1 2 3 ~]))
         ~[1 2 3]
+        ~tadbyl-hilbel/try=> ((hard ,@) (add 2 2))
+        4
+        ~tadbyl-hilbel/try=> ((hard ,@t) (crip "Tape to cord, bro!"))
+        'Tape to cord, bro'
+        ~tadbyl-hilbel/try=> ((hard tape) (crip "...Tape to cord, bro?..."))
+        ! hard
+        ! exit
 ++  soft
-  Comments:
+  Comment:
         politely demand
   Description:
+        Politely requests a specific type to be produced, producing null if it is not.
   Explanation:
         Creates a vulanized wet gate which accepts any gate which accepts any noun and produces
         any noun.
@@ -2335,13 +2344,23 @@ section 2cI, almost macros
         If so, produce null.
         Else, produce the unit of the result.
   Examples:
+        ~tadbyl-hilbel/try=> ((soft ,%4) (add 2 2))
+        [~ %4]
+        ~tadbyl-hilbel/try=> ((soft ,@) (add 2 2))
+        [~ 4]
+        ~tadbyl-hilbel/try=> ((soft ,%5) (add 2 2))
+        ~
+        ~tadbyl-hilbel/try=> ((soft ,@t) (crip "Tape to cord, Woohoo!"))
+        [~ 'Tape to cord, Woohoo!']
+        ~tadbyl-hilbel/try=> ((soft ,@t) (trip 'Cmon man... Tape to cord? Please?!'))
+        ~
         
 chapter 2d, containers
 
 section 2dA, sets     
                 
 ++  apt       
-  Comments:
+  Comment:
         set invariant
   Description:
         Accepts any tree and produces a loobean indicting whether the tree is a set.
@@ -2358,17 +2377,15 @@ section 2dA, sets
   Examples:
         
 ++  in        
-  Comments:
+  Comment:
         set engine
   Description:
         Container arm for set set operation arms.  The contained arms inherit it's sample set, 'a'. 
   Explanation:
         This arm is jetted.
         Creates a %gold trap with sample 'a', a set.
-  Examples:
-
   +-  all
-  Comments:
+  Comment:
         logical AND
   Description:
         Accepts a gate which accepts any noun and produces a loobean.  Slams the gate with each member
@@ -2382,9 +2399,10 @@ section 2dA, sets
         Else, produce the logical AND of (b n.a) and the recursive calls of the trap with
         'a' replaced by 'l.a' and 'a' replaced by 'r.a'.
   Examples:
+        
 
   +-  any
-  Comments:
+  Comment:
         logical OR
   Description:
         Accepts a gate which accepts any noun and produces a loobean.  Slams the gate with each member
@@ -2400,7 +2418,7 @@ section 2dA, sets
   Examples:
 
   +-  del
-  Comments:
+  Comment:
         b without any a
   Description:
         Accepts any noun 'b' and removes it from the set 'a'.
@@ -2416,12 +2434,12 @@ section 2dA, sets
         the trap with 'a' replaced by the left 
   Examples:
   +-  dig
-  Comments:
+  Comment:
   Description:
   Explanations:
   Examples:
   +-  gas
-  Comments:
+  Comment:
         concatenate
   Description:
         Accepts a list 'b' with members of the same type as the set 'a' and produces 
@@ -2482,9 +2500,44 @@ section 2dC, queues
 
 section 2dD, casual containers        
 
-++  mo        
+++  mo
+  Comment:
+        make a map
+  Description:
+        Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the left-right cell pairs of the list.
+  Explanation:
+        Creates a vulcanized wet gate which accepts a list, 'a'.
+        Pushes the homogenized list onto the context.
+        Casts the list 'a' to a list of cells whose left-right types correspond to the key-value type pairs.
+        Let 'b' be the bunt of the map with the properly typed keys and values from the cell at the head of our list.
+        Concatenate the elements of 'a' into the empty map of bunt 'b', and produce the result.
+  Examples:
+        ~talsur-todres/try=> (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+        {[p=`a` q=1] [p=`b` q=2]}
+        
 ++  sa        
-++  qu        
+  Comment:
+        make a set
+  Description:
+        Setify.  Accepts a list and produces a set of the list's elements.
+  Explanation:
+        Creates a vulcanized wet gate which accepts a list, 'a'.
+        Pushes the homogenized list onto the context.
+        Let 'b' be the bunt of the set with elements of the same type of the elements of 'a'.
+        Concatenate the elements of 'a' into the empty set of bunt 'b', and produce the result.
+  Examples:
+        ~talsur-todres/try=> (sa `(list ,@)`[1 2 3 4 5 ~])
+        {5 4 1 3 2}
+        ---
+        ~talsur-todres/try=> (sa `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+        {[`a` 1] [`b` 2]}
+++  qu
+  Comment:
+        make a set
+  Description:
+        XXX THIS APPEARS TO BE A COPY OF ++sa. QUEUIFY IS NOT IMPLEMENTED YET. XXX
+  Explanation:
+  Examples:
 
 chapter 2e, miscellaneous libs
 
@@ -2498,7 +2551,7 @@ section 2eA, packing
 section 2eB, parsing (tracing)        
 
 ++  last  
-++  lust  
+++  lust
 
 section 2eC, parsing (custom rules)   
 
@@ -2507,6 +2560,27 @@ section 2eC, parsing (custom rules)
 ++  easy  
 ++  fail  
 ++  full  
+  Comment:
+        has to fully parse
+  Description:
+        Only succeeds if given a rule that successfully parses the entire nail to the end, producing
+        a null hair if the rules fails.
+  Explanation:
+        Creates a vulcanized wet  gate which accepts a rule.
+        Creates a dry %gold gate which accepts a nail.
+        Let 'vex' be the rule slammed with the nail.
+        Builds an if-then-else statement on "q.vex is an atom."  If so, produce 'vex'.
+        Else, build an if-then-else statement on "q.q.u.q.vex is null."  If so, produce 'vex'.
+        Else, produce the cell [p=p.vex q=~].
+  Examples:
+        ~tadbyl-hilbel/try=> ((full (just 'a')) [[1 1] "ab"])
+        [p=[p=1 q=2] q=~]
+        ---
+        ~tadbyl-hilbel/try=> ((full (jest 'ab')) [[1 1] "ab"])
+        [p=[p=1 q=3] q=[~ u=[p='ab' q=[p=[p=1 q=3] q=""]]]]
+        ---
+        ~tadbyl-hilbel/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
+        [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
 ++  funk  
 ++  here  
 ++  jest  
@@ -2545,7 +2619,7 @@ section 2eE, parsing (composers)
 
 section 2eF, parsing (ascii)          
 
-++  ace 
+++  ace
 ++  bar 
 ++  bas 
 ++  buc 
@@ -2615,15 +2689,109 @@ section 2eH, parsing (idioms)
 ++  qit 
 ++  qut 
 ++  sym
+  Comment:
+  Description:
+  Explanation:
+  Examples:
 ++  ven 
+  Comment:
+  Description:
+  Explanation:
+  Examples:
 ++  vit 
+  Comment:
+        base64 digit
+  Description:
+        Builds a list of falling rules to match on with ';~' and pose.
+        Cooks capital letters by matching on them and 
+  Explanation:
+        Creates a 
+        Parses 
+  Examples:
 
 section 2eI, parsing (external)       
 
 ++  rash
+  Comment:
+        demand parse cord
+  Description:
+        Parse a given cord with a given rule, crashing if the cord isn't entirely parsed.
+  Explanation:
+        Creates a vulcanized wet gate which accepts an atom (cord) and a rule.
+        Trips the cord to a tape and produces the result that is parsed with scan.
+  Examples:
+        ~tadbyl-hilbel/try=> (rash 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
+        "I was the world in which I walked, and what I saw"
+        ~tadbyl-hilbel/try=> (rash 'abc' (just 'a'))
+        ! {1 2}
+        ! 'syntax-error'
+        ! exit
+        ~tadbyl-hilbel/try=> (rash 'abc' (jest 'abc'))
+        'abc'
+        `~tadbyl-hilbel/try=> (rash 'abc' (jest 'ab'))
+        ! {1 3}
+        ! 'syntax-error'
+        ! exit
+
 ++  rush
+  Comment:
+        politely parse cord
+  Description:
+        Parse a given cord with a given rule, producing null if the cord isn't entirely parsed.
+  Explanation:
+        Creates a vulcanized wet gate which accepts an atom (cord) and a rule.
+        Trips a cord to a tape and a produces the result that is parsed with rust.
+  Examples:
+        ~tadbyl-hilbel/try=> (rush 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
+        [~ "I was the world in which I walked, and what I saw"]
+        ~tadbyl-hilbel/try=> (rush 'abc' (just 'a'))
+        ~
+        ~tadbyl-hilbel/try=> (rush 'abc' (jest 'abc'))
+        [~ 'abc']
+        ~tadbyl-hilbel/try=> (rush 'abc' (jest 'ac'))
+        ~
+        ~tadbyl-hilbel/try=> (rush 'abc' (jest 'ab'))
+        ~
+
 ++  rust
+  Comment:
+        demand parse tape
+  Description:
+        Parse a given tape with a given rule, producing null if the tape isn't entirely parsed.
+  Explanation:
+        Creates a vulcanized wet gate which accepts a tape and a rule.
+        Let 'vex' be the full parse of the tape using the rule.
+        Builds an if-then-else statement on "q.vex is an atom."  If so, produce null.
+        Else, produce the unit with value 'p.u.q.vex'.
+  Examples 
+        ~tadbyl-hilbel/try=> (rust "I was the world in which I walked, and what I saw" (star (shim 0 200)))
+        [~ "I was the world in which I walked, and what I saw"]
+        ~tadbyl-hilbel/try=> (rust "Or heard or felt came not but from myself;" (star (shim 0 200)))
+        [~ "Or heard or felt came not but from myself;"]
+        ~tadbyl-hilbel/try=> (rust "And there I found myself more truly and more strange." (jest 'And there I'))
+        ~
+
 ++  scan
+  Comment:
+        demand parse tape
+  Description:
+        Parses a given tape with a given rule, crashing if the tape isn't entirely parsed.
+  Explanation:
+        Creates a dry %gold gatet which accepts a tape and a rule.
+        Let 'vex' be the full parse of the text by the rule.
+        Builds an if-then-else statement on "q.vex is an atom."
+        If so, insert the 'tank' producing trap (show [%m '{%d %d}'] p.p.vex q.p.vex ~),
+        Then, crash the program and print "syntax-error" in the stack trace.
+        Else, produce 'p.u.q.vex'.
+  Examples:
+        ~tadbyl-hilbel/try=> (scan "I was the world in which I walked, and what I saw" (star (shim 0 200)))
+        "I was the world in which I walked, and what I saw"
+        ~tadbyl-hilbel/try=> (scan "Or heard or felt came not but from myself;" (star (shim 0 200)))
+        "Or heard or felt came not but from myself;"
+        ~tadbyl-hilbel/try=> (scan "And there I found myself more truly and more strange." (jest 'And there I'))
+        ! {1 12}
+        ! 'syntax-error'
+        ! exit
 
 section 2eJ, formatting (basic text)  
 
