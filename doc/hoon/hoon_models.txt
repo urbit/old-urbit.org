@@ -1,0 +1,8437 @@
+Foreword
+Nock
+
+Hoon
+Preface
+
+volume 0, version stub
+++ stub 
+  Description:
+    Declares the current version number.
+  Explanation:
+    Labels the version number within an arm, to be referenced by name elsewhere.
+  Example(s):
+    ~fantyv-ralpen/try=> stub
+    164
+
+volume 1, Hoon models
+Declares the structure of the data models of the Hoon language.
+
+++  abel  
+  Description:
+    Aliases the model ++typo.
+  Explanation:
+    **? Biblical name feature. Legacy?
+  Example(s):
+    ~fantyv-ralpen/try=> _abel
+    %void
+
+++  axis  
+  Description:
+    The irregular form of `buccom` (`$,`) is used to produce the clam for tile `@`.
+  Explanation:
+    Axes are atoms, natural numbers, which address elements within a Nock tree; ++axis names the gate which validates that values are atoms.
+  Example(s):
+    ~fantyv-ralpen/try=> _axis
+    0
+  ----
+    ~fantyv-ralpen/try=> `axis`a
+    ! -find-limb.a
+    ! find-none
+    ! exit
+  ----
+    ~fanytv-ralpen/try=> `axis`'a'
+    97
+
+++  also  
+***? not used in h.h
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _also
+    [p=%$ q=~ r=%void]
+
+++  base  
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _base
+    %null
+
+A %fern of the basic icons, using the irregular form of `$?`
+
+++  beer    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _beer
+    0
+**? A %reed of atoms null-headed cells containing a twig.
+
+++  beet    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _beet
+    0
+**? A %reed of atoms and a five-entry %kelp of tagged twigs.
+
+++  bloq    
+  Description:
+      Creates a gate normalizing against atoms.
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _bloq
+    0
+
+Identical to ++axis: names the gate which normalizes against atoms, for use in specifying the number of elements in a "block" of data, e.g. for bitwise operations like 
+
+++  calf    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _calf
+    [p={} q=%yarn]
+The clam of a cell, the head of which is a map of decimal numbers to ++wine objects, the tail of which is a particular ++wine object.
+
+++  char    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _char
+    ~~
+The clam of an atom with the odor tD, specifying it as a Unicode byte. **? Byte or codepoint
+
+++  chum    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _chum
+    0v0
+The %fern of possible structures of the jet hint information that must be present in the body of a ~/ or ~% rune.
+
+++  claw    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _claw
+    [joy=~ ran=~ pux=~ jiv=~ kyq=~ gam=~]
+*? XX not used
+
+++  coat    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _coat
+    [p=/ q=[p=%void q=0]]
+***? not used in h.h
+
+++  coil    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _coil
+    [p=%zinc q=%void r=[p=~ q={}]]
+*? Variance and type information of a core
+
+++  coin    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _coin
+    [% p=[p=~. q=0]]
+A %kelp of labelled atoms, arbitrary nouns, or a list of `++coin`s.
+
+++  cord    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _cord
+    ''
+Names for reference elsewhere the clam for an atom of UTF-8 encoded text.
+
+++  date    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _date
+    [[a=%.y y=0] m=0 t=[d=0 h=0 m=0 s=0 f=~]]
+The clam for the structure of a parsed date: **** absolute/relative year, month, and ++ tarp
+
+++  dime    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _dime
+    [p=~. q=0]
+Normalizes for a cell of an ASCII span and a natural number.
+
+++  dram    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _dram
+    [%.y p=0 q=0]
+A %kelp to model the structure of a unix filesystem tree: either text-labelled directories containing deeper tree levels, or decimal-labelled atoms of
+individual files.
+
+++  each    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> 
+
+
+++  edge    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _edge
+    [p=[p=0 q=0] q=~]
+The clam for a cell containing the pars
+
+++  foot    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _foot
+    [%yew {}]
+A cell of a ++twig tagged as %ash or %elm. 
+
+++  gear    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> 
+
+++  hair    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _hair
+    [p=0 q=0]
+
+++  hapt    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _hapt
+    /
+An alias for a list of ASCII characters. XX not used
+++  like    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> 
+
+
+++  limb    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _limb
+    %$
+
+++  line    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _line
+    [p=[%leaf p=~. q=0] q=[%weed p=[% p=0]]]
+
+
+++  list    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> 
+
+++  mane    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _mane
+    %$
+
+++  mano    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _mano
+    [g=%$ c=~]
+
+++  manx    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _manx
+    %$
+XML nodes are either ASCII labels or pairs of ++marx and ++marl structures.
+
+++  marl    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _marl
+    ~
+
+++  mars    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _mars
+    [t=[n=% a=[i=[n=% v=""] t=~]] c=~]
+
+++  mart    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _mart
+    ~
+
+++  marx    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _marx
+    %$
+
+++  metl    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _metl
+    %lead
+A %kelp of core variance labels.
+
+++  null 
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _null
+    ~
+Clams against ~, the null character.
+
+++  odor    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _odor
+    ~.
+
+++  tarp    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tarp
+    [d=0 h=0 m=0 s=0 f=~]
+
+++  time    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _time
+    ~292277024401-.1.1
+
+++  tree    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=>
+
+++  nail    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _nail
+    [p=[p=0 q=0] q=""]
+
+++  numb    
+  Description:
+    It's just a number.
+  Explanation:
+    We promise, it's just a number (and will type-fail if it's not).
+  Example(s):
+    ~fantyv-ralpen/try=> _^numb
+    _numb
+    Cleary I am not just a number...
+    ~ /a/~zod/name/~292277024401-.1.1
+
+++  pair    
+  Description:
+    
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _(pair)
+    [p=0 q=0]
+
+++  pass    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _pass
+    0
+
+++  path    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _path
+    /
+
+++  pint    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _pint
+    [p=[p=0 q=0] q=[pp=0 q=0]]
+
+++  port    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _port
+    [p=0 q=[%.y p=%void]]
+
+++  post    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _post
+    [p=0 q=[0 p=%void]]
+
+++  prop    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _prop
+    [p=0 q=[p=~ q=~]]
+
+++  qual    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _(qual)
+    [p=0 q=0 r=0 s=0]
+
+++  rege    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _rege
+    %bout
+
+++  ring    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _ring
+    0
+
+++  rule    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _rule
+    [p=[p=0 q=0] q=[~ [p=0 q=[p=[p=0 q=0] q=""]]]]
+
+++  span    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _span
+    ~.
+
+++  spot    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _spot
+    [p=/ q=[p=[p=0 q=0] q=[p=0 q=0]]]
+
+++  tank    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tank
+    [%rose p=[p="" q="" r=""] q=~]
+
+++  tape    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tape
+    ""
+
+++  term    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _term
+    %$
+
+++  tiki    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tiki
+    [%.y p=~ q=~]
+    ---
+    ~fantyv-ralpen/try=> `tiki`[& test-wing 
+++  tile    
+  Description:
+    A tile is either a cell of tiles, or one of nine labelled forms, created 
+    by specific tile runes.
+    See the discussion of tiles in chapter 9.
+
+  Explanation:
+
+    [p=tile q=tile]    
+
+#buccol `$:` %bccl
+
+##Syntax
+
+`$:`, `buccol`, is a tile hoon that declares a tile autocons,`[p=tile q=tile]`.
+
+###Form
+`p` is a tile
+`q` is a tile
+
+####Tall
+
+    $:  p
+        q
+    ==
+
+####Wide
+
+    $:(p q)
+
+####Irregular
+
+    [p q]
+
+###Reduction
+None
+
+##Semantics
+
+`$:` is tile.
+
+###Definition###
+
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+
+###Expansion
+None
+
+
+###Notes###
+
+Tiles autocons, just like twigs - a cell of tiles is a tile of a cell. But we shouldn't skip the differences too lightly.
+
+A cell of twigs is also a twig of a cell. But in the cell of twigs, the subject of either leg is the original subject. Whereas when applying a tile in a whip or clam, the subject is split in half for equally obvious reasons.
+
+(Otherwise, how would `(,[@ @] [4 5])` be `[4 5]`? Clearly, this should be the same as `[(,@ 4) (,@ 5)]`. Clearly, it should not be the same as `[(,@ [4 5]) (,@ [4 5])]` - which would produce merely `[0 0]`.)    
+
+    [%axil p=base]                            ::  base type
+A simple built-in mechanism for a few basic icons: 
+
++ An atom of any odor, [`@odor`](/doc/hoon/lan/odor/) such as `@ud` or just `@` for the
+odorless base atom.
++ A noun, `*`.
++ A cell of nouns, `^`.
++ A loobean, `?`
++ Null, `~`. 
+
+See also: [`++base`](/doc/hoon/lib/#++base).
+
+####Examples
+    ~talsur-todres/try=> =b |=(a=@ a)
+    ~talsur-todres/try=> (b 2)
+    2
+    ~talsur-todres/try=> =b |=(a=? a)
+    ~talsur-todres/try=> (b 2)
+    ! type-fail
+    ! exit
+    ~talsur-todres/try=> (b %.y)
+    %.y
+
+::BARK    
+    [%bark p=term q=tile]                     ::  name
+Wrap a name round a tile. For example, `a=*` parses as `[%bark %a %noun]`.
+
+This is a case where the tile syntax matches the twig syntax, but only in the irregular form.  The twig equivalent of `%bark` is `^=` (`kettis`, `%ktts`), but the tile is `$=` (`buctis`):
+
+    $=  a
+    *
+
+See also: [$=](/doc/hoon/lan/rune/#bcts) in the rune index.
+
+####Examples
+    ~talsur-todres/try=> =b |=($=(a *) a)
+    ~talsur-todres/try=> (b 'try')
+    7.959.156
+    ~talsur-todres/try=> `*`'try'
+    7.959.156
+
+#buctis `$=` %bcts
+
+
+##Syntax
+
+`$=`, `bucts`, is a tile hoon that produces a `%bark`:
+
+    [%bark p=term q=tile] 
+
+A %bark wraps a name around a tile. `a=*` parses as `[%bark %a %noun]`.
+
+###Form
+
+`p` is a term
+`q` is a tile
+
+####Tall
+
+pp    $=  p
+    q
+
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+##Semantics
+
+`%bark` is a tile.
+
+###Definition
+
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%bark p=term q=tile]                     ::  name
+              ==
+
+##Notes
+
+::BUSH
+  [%bush p=tile q=tile]                     ::  pair/tag
+
+A tile in which there are two kinds of nouns: cells whose head is a cell (tile `p`) and cells whose head is an atom (tile `q`).  Its default value is the value of `q`.
+
+::BUCPAM
+#bucpam `$&` %bcpm
+
+##Syntax
+
+`$&`, `bucpam`, is a tile rune that produces a `%bush`, `[%bush p=tile q=tile]`, a tile in which there are two kinds of nouns: cells whose head is a cell `(tile p)` and cells whose head is an atom `(tile q)`. Its default value is the value of `q`.
+
+###Form
+
+`p` is a tile
+`q` is a tile
+
+####Tall
+
+    $&  p
+        q
+    ==
+
+####Wide
+
+    $&(p q)
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+We don't have to look very far to find a bush - ++tile is one, as is ++twig and ++nock. The rune is $& (bucpam). See ++tile above - p is [p=tile q=tile], q is the $%.
+
+##Semantics
+
+`$&` is a tile.
+
+###Definition
+
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%bush p=tile q=tile]                     ::  pair/tag  
+              ==
+###Expansion
+None
+
+###Notes
+What's the use of a bush? Often in a variety of data structures we have something like autocons, in which forming a cell of two instances has an obvious default semantics.
+
+Sure, we could attach these semantics to an atom, and just use a %kelp. In twigs, tiles, or nock formulas, we could have an explicit cons stem of some sort. But it would be a bulky and annoying pain in the butt as compared to autocons
+
+::FERN
+    [%fern p=[i=tile t=(list tile)]]          ::  plain selection
+A non-empty list of cases; its icon is naturally a `%fork`. The default value of a `%fern` is the first case. The programmer is responsible for ensuring that the cases are actually orthogonal (unlike with the structured forks, `%bush`, `%kelp` and `%reed`).  A good general practice is to use ferns only with leaves.
+
+####Examples
+A `%fern` that could be `%foo` or `%bar` has the irregular form `?(%foo %bar)`, or the regular form
+
+    $?  %foo
+        %bar
+    ==
+
+::BUCWUT
+#bucwut `$?` %bcwt
+
+##Syntax
+
+`$?`, `bucwut`, is a tile hoon that produces a `%fern`:
+
+    [%fern p=[i=tile t=(list tile)]]
+
+A non-empty list of cases; its icon is naturally a `%fork`. The programmer is
+responsible for ensuring that the cases are actually orthogonal (unlike with
+the structured forks, `%bush`, `%kelp` and `%reed`). A good general practice
+is to use ferns only with leaves.
+
+###Form
+`p` is a tile
+`q` is a tile
+
+####Tall
+
+    $?  p
+        q
+    ==
+
+####Wide
+None
+
+####Irregular
+
+    ?(p q)
+
+###Reduction
+None
+
+###Examples
+
+    ++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::  axils, @ * ^ ? ~
+
+In ++base, `?` (the irregular form of $?) specifies a list of orthoganal casesfor the %axil tile.
+
+##Semantics
+
+`%fern` is a ++tile.
+
+###Definition
+
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%fern p=[i=tile t=(list tile)]]          ::  plain selection
+              ==
+
+###Expansion
+None
+
+##Notes
+
+::HERB
+    [%herb p=twig]                            ::  function
+A tile that's just a gate, accepting a sample of `*` and normalizing as you choose. If you use a twig as a tile, it's treated as an herb.
+
+####Examples
+When we use a gate like [`++base`](/doc/hoon/lib/#++base), as defined above in `%axil`, we are using `%herb`. Remember that when we use a tile as a twig, we get the clam, ie, the normalizing gate. `base` is just an arm which produces a gate.  Nothing has any idea that this gate is built from a tile of its own.
+
+So when we parse `[p=base q=base]` as a tile, the parser builds the noun:
+
+    [[%bark %p %herb %cnzy %base] [%bark %q %herb %cnzy %base]]
+
+In other words, `base` in `p=base` is actually a *twig*, but this twig happens to produce a normalizing gate generated by clamming a tile.
+
+The important thing to remember about `%herb` is that the actual twig we provide will be applied when we whip or clam.
+
+::KELP
+    [%kelp p=[i=line t=(list line)]]          ::  tag selection
+The discriminated union.
+
+In Hoon, the head (which must be a `leaf`) is called the `stem`. The tail (which can be anything) is the `bulb`.  Cases of a kelp are known inevitably as `fronds`.  
+
+###Examples
+
+::BUCCEN
+#buccen `$%` %bccn
+
+##Syntax
+
+`$%`, `buccen`, is a tile hoon that produces a %kelp. `$%` takes a list of lines, which are labeleed cases, closed by `==`.
+
+###Form
+
+`p`,`q` and `r` are ++line, which look like `[%foo *]`, where `*` is any noun.
+####Tall
+
+    $%  p
+        q
+        q
+    ==
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+    ++  foot  $%  [%ash p=twig]                             ::  dry, geometric
+                  [%elm p=twig]                             ::  wet, generic
+                  [%oak ~]                                  ::  XX not used
+                  [%yew p=(map term foot)]                  ::  XX not used
+              ==
+
+In ++foot, `$%` creates a %kelp, which is a list of possible cases. That is, a ++foot can be either %ash, %elm, %oak or %yew.
+
+##Semantics
+
+`$%` is a tile.
+
+###Definition###
+
+
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%kelp p=[i=line t=(list line)]]          ::  tag selection
+              ==
+
+    ++  line  ,[p=[%leaf p=odor q=@] q=tile]                ::  kelp case labels
+
+###Notes###
+
+A kelp is the workhorse of tiles - it provides the most common data structure in any language, the discriminated union.
+
+In Hoon, the head (which must be a leaf) is called the stem. The tail (which can be anything) is the bulb. Cases of a kelp are known inevitably as fronds.
+
+::LEAF
+    [%leaf p=term q=@]                        ::  constant atom
+
+A `%leaf` is an atomic constant of value `q` and odor `p`.
+Obviously its icon is a `%cube`.
+
+The syntax for a leaf is the same as the twig syntax, except that
+`%` is never required to generate a cube.  For instance, as a
+twig, `7` has a type of [%atom %ud]; `%7` has a type of 
+`[%cube 7 [%atom %ud]]`.  But the icon of the leaf `7` is,
+again, `[%cube 7 [%atom %ud]]`.
+
+::REED
+    [%reed p=tile q=tile]                     ::  atom/cell
+A `%reed` is a tile whose icon contains two kinds of nouns: atoms
+of tile `p` and cells of tile `q`.
+
+There is no irregular form of `%reed`.  The regular form is:
+
+    $|  ~
+        [@ @]
+    ==
+
+or in wide mode, of course, `$|(~ [@ @])`.
+
+::BUCBAR
+#bucbar `$|` %bcbr
+
+##Syntax
+
+`$|`, `bucbar`, is a tile rune that takes `++tile` `p` and `q` and produces a `%reed`,  
+
+    [%reed p=tile q=tile]
+
+a `%reed` is a tile whose icon contains two kinds of nouns: atoms of tile `p` and cells of tile `q`.
+
+###Form
+`p` is a tile
+`q` is a tile
+
+####Tall
+
+    $|  p
+        q
+    ==
+
+####Wide
+
+    $|(p q)
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+    ++  list  |*  a=_,*                                     ::  null-terminated list
+              $|(~ [i=a t=(list a)])                        ::
+
+In ++list, $| specifies that every element in a noun that can be cast to a ++list is either the atom ~ or the cell [i=a t=(list a)]. 
+
+##Semantics
+
+###Definition
+
+    ++  tile  $&  [p=tile q=tile]                           ::  ordered pair
+              $%  [%reed p=tile q=tile]                     ::  atom/cell
+              ==
+
+###Expansion
+
+##Notes
+
+::WEED
+    [%weed p=twig]                            ::  example
+`%weed` is the lamest kind of tile - tile by example.  A `%weed`
+is defined by its example twig `p`, which produces the icon.
+
+See also: [$__](/doc/hoon/lan/rune/#bccb) in the rune index.
+
+One limitation is obvious - it is essentially useless to whip or
+clam for a `%weed`.  Whipping or clamming on a `%weed` simply
+ignores the sample and reproduces the example - as does bunting,
+of course.  However, `%weed` remains quite useful.
+
+The irregular syntax for a `%weed` is a `_` prefix - for example,
+to use a twig `foo` as a `%weed`, we write `_foo`.  The regular
+form is `$_` (`buccab`):
+
+    $_  foo
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tile
+    [%weed p=[% q=0]]
+
+++  toga  
+  Comment:
+    face control  
+  Description:
+    
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _toga
+    p=%$ 
+
+++  trel 
+  Comment:
+    just a triple
+  Description:
+    Creates a gate which validates
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> (_trel)
+    [p=0 q=0 r=0]
+
+++  tuna    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tuna
+    [%f p=~]
+
+::TWIGS
+++  twig
+    
+  Description:
+    Defines the internal structures of the Hoon runes.
+  Explanation:
+
+::BUCCAB
+    [%bccb p=tile]
+#buccab `$_` %bccb
+
+##Syntax
+
+`$_`, `buccab`, `[%bccb p=tile]` is a synthetic hoon that
+produces the bunt (default value) for `p`.
+
+##Form
+
+`p` is a tile.
+
+####Tall
+
+    $_  p
+
+####Wide
+
+    $_(p)
+
+####Irregular
+
+    _p
+
+###Reduction
+
+    $_  p
+
+reduces to
+
+    ~(bunt al p)
+
+###Examples
+
+##Semantics
+
+`%bccb` is a twig.
+
+###Definition###
+
+    ++  twig  
+      $%  [%bccb p=tile]
+      ==
+
+###Expansion###
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%bccb *]
+        ~(bunt al p.gen)
+      ==
+
+    ++  al
+      =+  [nag=`*`& gom=`axis`1]
+      |_  sec=tile
+      :::: 
+      ++  bunt
+        |-  ^-  twig
+        ?-    sec
+            [^ *]
+          [$(sec p.sec) $(sec q.sec)]
+        ::
+            [%axil *]
+          ?-  p.sec
+            [%atom *]  [%dtzy p.p.sec 0]
+            %noun      [%dttr [%dtzz %$ 0] [[%dtzz %$ 0] [%dtzz %$ 1]]]
+            %cell      =+(nec=$(sec [%axil %noun]) [nec nec])
+            %bean      [%dtts [%dtzz %$ 0] [%dtzz %$ 0]]
+            %null      [%dtzz %n %$]
+          ==
+        ::
+            [%bark *]
+          [%ktts p.sec $(sec q.sec)]
+        ::
+            [%bush *]
+          [%wtcl [%bczp %bean] $(sec p.sec) $(sec q.sec)]
+        ::
+            [%fern *]
+          |-  ^-  twig
+          ?@  t.p.sec
+            ^$(sec i.p.sec)
+          [%wtcl [%bczp %bean] ^$(sec i.p.sec) $(p.sec t.p.sec)]
+        ::
+            [%herb *]
+          (home [%tsgl [%cnzy %$] p.sec])
+        ::
+            [%kelp *]
+          |-  ^-  twig
+          ?@  t.p.sec
+            ^$(sec i.p.sec)
+          [%wtcl [%bczp %bean] ^$(sec i.p.sec) $(p.sec t.p.sec)]
+        ::
+            [%leaf *]
+          [%dtzz p.sec q.sec]
+        ::
+            [%reed *]
+          [%wtcl [%bczp %bean] $(sec p.sec) $(sec q.sec)]
+        ::
+            [%weed *]
+          (home p.sec)
+        ==
+
+
+###Notes###
+
+Bunting a tile - if `sec` is a tile, `~(bunt al sec)` produces its bunt - makes a twig that creates a blank default example of the tile's icon.
+
+Bunting is actually the most common use of a tile. Consider the gates we've just been defining - how do we build a gate? With
+
+    ++  deq
+      =+  x=0
+      |.  
+      =+  y=0
+      |-  
+      ?:  =(x +(y))
+        y
+      $(y +(y))
+
+The value `x=0` is a useless default. It's in our gate only because the gate is built first, then modified with the real sample. Accordingly, in practice to build a gate we use the synthetic hoon `|=` (bartis, %brts), which is defined as
+
+    ++  twig  $%  [%brts p=tile q=hoon]
+              ==
+
+and
+
+    ++  open
+      ^-  twig
+      ?-    gen
+        [%bctr *]  [%ktsg ~(bunt al p.gen)]
+        [%brcb *]  [%tsls [%bctr p.gen] [%brcn q.gen]]
+        [%brts *]  [%brcb p.gen (~(put by *(map term foot)) %$ [%ash q.gen])]
+      ==
+
+(The only hoon we haven't met here is `^~` (ketsig, %ktsg), which tells the compiler to compute a constant expression at compile time. Obviously, the default sample in a gate should under almost every circumstance be a constant.)
+
+With `|=` we have:
+
+    ++  deq
+      |=  x=@
+      =+  y=0
+      |-  
+      ?:  =(x +(y))
+        y
+      $(y +(y))
+
+or if we prefer
+
+    ++  deq  |=(x=@ =+(y=0 |-(?:(=(x +(y)) y $(y +(y))))))
+
+What is `x=@`? A tile. And the tile in `|=` is always bunted to create the default sample.
+
+Furthermore, it's wrong to say that the default sample is useless. It generates a corresponding default product. It is perfectly legitimate to simply apply a gate, even a previously unviolated gate, without changing the sample at all.
+
+For example, one type of tile is simply a gate. When we bunt such a gate, we have no choice but to produce the default product. Thus any gate arm that wants to be used as a tile has the responsibility to produce a useful default product.
+
+::BUCCOM
+#buccom `$,` %bccm
+
+##Syntax
+
+`$,`, `buccom`, `[%bccm p=tile]` is a synthetic rune that produces a
+normalizing gate (clam) for `p`.
+
+###Form
+
+`p` is a tile.
+
+####Tall
+
+    $,  p
+
+####Wide
+None
+
+####Irregular
+
+    ,p
+
+###Reduction
+
+    $,  p
+
+reduces to
+
+    ~(clam al p)
+
+###Examples
+
+    ++  cord  ,@t                                           ::  text atom (UTF-8)
+
+In ++cord, `,` creates a gate that validates atoms of the odor @t.
+
+##Semantics
+
+`%bccm` is a twig.
+
+###Definition
+
+    ++  twig
+      $%  [%bccm p=tile]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%bccm *]
+        ~(clam al p.gen)
+      ==
+
+###Notes
+
+The clam reduction generates a gate which accepts an arbitrary noun and produces a member of the tile's icon. Ie, clam generates a validator function for the icon. Perhaps you can see how this might be useful, at least, on the Internets.
+
+Moreover, a clam for any tile, if passed a member of the type, is guaranteed to produce its sample. If passed a noun outside the type, it will normalize and/or default. It won't crash - except for the custom cases of %herb and %weed.
+
+::BUCPAT
+#bucpat `$@` %bcpt
+
+##Syntax
+
+`$@`, `bucpat`, `[%bcpt p=wing q=tile]` is a (just barely) natural 
+hoon that whips (normalizes) wing `p` into tile `q`.
+
+###Form
+`p` is a wing
+`q` is a tile
+
+####Tall
+
+    $@  p
+    q
+
+####Wide
+
+    $@(p q)
+
+####Irregular
+
+    p@q
+
+###Reduction
+None
+
+###Examples
+
+##Semantics
+
+`%bcpt` is a twig
+
+###Definition
+
+    ++  twig  
+      $%  [%bcpt p=wing q=tile]
+      ==
+    ++  wing  (list limb)
+    ++  limb  $|(term $%([%& p=axis] [%| p=@ud q=term]))
+
+###Compilation
+ 
+    ++  mint
+      ?-    gen
+          [%bcpt *]  
+        $(gen (~(whip al q.gen) p:(seep %read p.gen)))
+    ==
+
+###Notes
+
+Not only is whip the same thing as clam, it's what clam uses internally. All clam does is make a gate whose sample, an arbitrary noun +< (glus, .6), it whips into its tile.
+
+::BUCTAR
+#buctar `$*` %bctr
+
+##Syntax
+
+`$*`, `buctar`, `[%bctr p=tile]` is a synthetic rune that
+produces the bunt (default value) for `p` as a compile-time
+constant.
+
+###Form
+
+`p` is a tile.
+
+####Tall
+
+    $*  p
+
+####Wide
+
+    $*(p)
+
+####Irregular
+
+    *p
+
+###Reduction
+
+    $*  p
+
+reduces to
+
+    ^~  ~(bunt al p)
+
+###Examples
+
+##Semantics
+
+`%bctr` is a twig.
+
+###Definition
+
+    ++  twig  
+      $%  [%bctr p=tile]
+      ==
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%bctr *]
+        [%ktsg ~(bunt al p.gen)]
+      ==
+
+###Notes
+
+::BUCZAP
+#buczap `$!` %bczp
+
+##Syntax
+
+`$!`, `buczap`, `[%bczp p=base]` is an synthetic internal twig that
+produces the bunt (default value) for `[%axil p]`.
+
+###Form
+
+None, `buczap` is only used as a shorthand for macro expansion in ++open.
+
+####Tall
+None
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+None
+
+##Semantics
+%bczp is a ++twig.
+
+###Definition
+
+    ++  twig  
+      $%  [%bczp p=base]
+      ==
+    ++  base  ?([%atom p=odor] %noun %cell %bean %null)
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%bczp *]
+        [%bccb %axil p.gen]
+      ==
+
+##Notes
+
+::BARCAB
+#[barcab, `|_`, %brcb](#brcb)
+
+##Syntax
+
+`|_`, `barcab`, `[%brcb p=tile q=(map term foot)]` is a synthetic hoon that
+produces a `%gold` tray with sample `p`, arms `q`. `|_` takes an associative
+array of names (++term) and expressions (++foot), each pair of which is called
+an arm. A dry, or %ash, arm is denoted with `++`. `|_` can take an arbitrary
+number of arms, but the arm array must be terminated with a `--`
+
+###Form
+
+`p` is a ++tile
+
+`q` is a {term foot} ++map.
+
+`p.n.q` is ++term
+
+`q.n.q` is a ++twig
+
+####Tall
+
+    |_  p
+    ++  p.n.q
+      q.n.q
+    --
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+
+     |_  p
+    ++  p.n.q
+      q.n.q
+    --
+
+reduces to
+
+    =+  $*(p)
+    |% 
+    ++  p.n.q
+      q.n.q
+    --
+
+###Examples
+
+    ++  fe                                                  ::  modulo bloq
+      |_  a=bloq
+      ++  dif  |=([b=@ c=@] (sit (sub (add out (sit b)) (sit c))))
+      ++  inv  |=(b=@ (sub (dec out) (sit b)))
+      ++  net  |=  b=@  ^-  @
+               =>  .(b (sit b))
+               ?:  (lte a 3)
+                 b
+               =+  c=(dec a)
+               %+  con
+                 (lsh c 1 $(a c, b (cut c [0 1] b)))
+               $(a c, b (cut c [1 1] b))
+      ++  out  (bex (bex a))
+      ++  rol  |=  [b=bloq c=@ d=@]  ^-  @
+               =+  e=(sit d)
+               =+  f=(bex (sub a b))
+               =+  g=(mod c f)
+               (sit (con (lsh b g e) (rsh b (sub f g) e)))
+      ++  ror  |=  [b=bloq c=@ d=@]  ^-  @
+               =+  e=(sit d)
+               =+  f=(bex (sub a b))
+               =+  g=(mod c f)
+               (sit (con (rsh b g e) (lsh b (sub f g) e)))
+      ++  sum  |=([b=@ c=@] (sit (add b c)))
+      ++  sit  |=(b=@ (end a 1 b))
+      --
+
+In ++fe, `|_` creates a tray whose arms contain gates used to calculate modular
+arithmetic on bitstrings. The sample of `|_` is the tile `a=bloq` which is a
+block size argument that gets passed to each of the arms.
+
+###Semantics
+
+`%brcb` is a twig.
+
+###Definition
+
+    ++  twig  
+      $%  [%brcb p=tile q=(map term foot)]
+      ==
+
+    ++  map  |*  [a=_,* b=_,*]                              ::  associative array
+             $|(~ [n=[p=a q=b] l=(map a b) r=(map a b)])    ::
+ 
+    ++  term  ,@tas                                         ::
+
+    ++  foot  $%  [%ash p=twig]                             ::
+                  [%elm p=twig]                             ::
+              ==                                            ::
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brcb *]
+        [%tsls [%bctr p.gen] [%brcn q.gen]]
+      ==
+
+::BARCEN
+#[barcen, `|%`, %brcn](#brcn)
+
+##Syntax
+
+`|%`, `barcen`, `[%brcn p=(map term foot)]` is a natural rune that produces a
+`%gold` core (cores, link). `|%` takes an associative array of names (++term)
+and expressions (++foot), each pair of which is called an arm. A dry, or %ash,
+arm is denoted with `++`, a wet, or %elm, arm is denoted with `+-`. `|%` can
+take an arbitrary number of arms, but the arm array must be terminated with a
+`--`
+
+###Form
+
+`++` is a dry arm
+`+-` is a wet arm
+
+`--` terminates the arm array
+
+`p.n.q` is a term
+`q.n.q` is a twig
+`p.n.l.q` is a term
+`q.n.l.q` is a twig
+
+####Tall
+
+    |%  
+    ++  p.n.q
+      q.n.q
+    +-  p.n.l.q
+      q.n.l.q
+    --
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+None, `|%` is natural.
+
+###Examples
+
+    ++  yo
+      |%  ++  cet  36.524                 ::  (add 24 (mul 100 365))
+          ++  day  86.400                 ::  (mul 24 hor)
+          ++  era  146.097                ::  (add 1 (mul 4 cet))
+          ++  hor  3.600                  ::  (mul 60 mit)
+          ++  jes  106.751.991.084.417    ::  (mul 730.692.561 era)
+          ++  mit  60
+          ++  moh  `(list ,@ud)`[31 28 31 30 31 30 31 31 30 31 30 31 ~]
+          ++  moy  `(list ,@ud)`[31 29 31 30 31 30 31 31 30 31 30 31 ~]
+          ++  qad  126.144.001            ::  (add 1 (mul 4 yer))
+          ++  yer  31.536.000             ::  (mul 365 day)
+      --
+
+In ++yo, `|%` creates a core whose arms contain useful constant data for calculating time.
+
+    ++  si                                                  ::  signed integer
+      |%
+      ++  abs  |=(a=@s (add (end 0 1 a) (rsh 0 1 a)))
+      ++  dif  |=([a=@s b=@s] (sum a (new !(syn b) (abs b))))
+      ++  dul  |=([a=@s b=@] =+(c=(old a) ?:(-.c (mod +.c b) (sub b +.c))))
+      ++  fra  |=  [a=@s b=@s]
+               (new =(0 (mix (syn a) (syn b))) (div (abs a) (abs b)))
+      ++  new  |=([a=? b=@] `@s`?:(a (mul 2 b) ?:(=(0 b) 0 +((mul 2 (dec b))))))
+      ++  old  |=(a=@s [(syn a) (abs a)])
+      ++  pro  |=  [a=@s b=@s]
+               (new =(0 (mix (syn a) (syn b))) (mul (abs a) (abs b)))
+      ++  rem  |=([a=@s b=@s] (dif a (pro b (fra a b))))
+      ++  sum  |=  [a=@s b=@s]
+               ~|  %si-sum
+               =+  [c=(old a) d=(old b)]
+               ?:  -.c
+                 ?:  -.d
+                   (new & (add +.c +.d))
+                 ?:  (gte +.c +.d)
+                   (new & (sub +.c +.d))
+                 (new | (sub +.d +.c))
+               ?:  -.d
+                 ?:  (gte +.c +.d)
+                   (new | (sub +.c +.d))
+                 (new & (sub +.d +.c))
+               (new | (add +.c +.d))
+      ++  sun  |=(a=@u (mul 2 a))
+      ++  syn  |=(a=@s =(0 (end 0 1 a)))
+      --
+
+In ++si, `|%` creates a core whose arms contain gates used to calculate with signed integers (@s, link).
+
+##Semantics
+
+`%brcn` is a twig.
+
+###Definition
+
+    ++  twig  
+      $%  [%brcn p=(map term foot)]
+      ==
+    
+    ++  term  ,@tas
+
+    ++  foot  
+      $%  [%ash p=twig]
+          [%elm p=twig]
+      ==
+
+See maps (link), polymorphism (link), term (link)
+
+###Compilation
+
+    ++  mint
+      ?-    gen
+          [%bcpt *]  
+        (grow %gold [~ 1] p.gen)
+    ==
+ 
+    ++  grow
+      |=  [mel=?(%gold %iron %lead %zinc) ruf=twig dab=(map term foot)]
+      ^-  [p=type q=nock]
+      =+  dan=^$(gen ruf, gol %noun)
+      =+  toc=(core p.dan [%gold p.dan [~ dab]])
+      =+  dez=(harp(sut toc) dab)
+      :-  (nice (core p.dan mel p.dan [dez dab]))
+      (cons [%1 dez] q.dan)
+
+    ++  harp
+      |=  dab=(map term foot)
+      ^-  ?(~ ^)
+      ?:  ?=(~ dab)
+        ~
+      =+  ^=  vad
+          ?+  -.q.n.dab  !!
+            %ash  q:(mint %noun p.q.n.dab)
+            %elm  q:(mint(vet |) %noun p.q.n.dab)
+          ==
+      ?-    dab
+          [* ~ ~]   vad
+          [* ~ *]   [vad $(dab r.dab)]
+          [* * ~]   [vad $(dab l.dab)]
+          [* * *]   [vad $(dab l.dab) $(dab r.dab)]
+      ==
+
+::BARDOT
+#[bardot, `|.`, %brdt](#brdt)
+
+
+##Syntax
+
+`|.`, `bardot`, `[%brdt p=twig]` is a synthetic hoon that produces
+a dry `%gold` trap (cores, link). `|.` takes a twig.
+
+###Form
+
+`p` is a twig.
+  
+###Tall
+
+    |.  p 
+
+###Wide
+
+    |.(p)
+
+###Irregular
+None
+
+###Reduction
+
+    |.  p
+
+reduces to 
+
+    |%  ++  $
+        p
+    --
+
+###Examples
+
+    ++  reel                                                ::  right fold
+      ~/  %reel
+      |*  [a=(list) b=_=|([p=* q=*] |.(q))]
+      |-  ^+  q.b
+      ?@  a
+        q.b
+      (b i.a $(a t.a))
+
+In ++reel, `|.` is used to specify the body of the expression to right fold over a given list.
+
+##Semantics
+
+`%brdt` is a twig.
+
+###Definition
+
+    ++  twig  
+      $%  [%brdt p=twig]
+      ==
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brdt *]  
+        [%brcn (~(put by *(map term foot)) %$ [%ash p.gen])]
+      ==
+
+##Notes
+
+::BARFAS
+#[barfas, `|/`, %brfs](#brfs)
+
+`|/`, `barfas`, `[%brfs p=tile q=(map term foot)]` is a synthetic hoon
+that produces a vulcanized `%gold` tray with arms `q`, sample `[%bctr p]`.
+
+###Form
+
+`p` is a tile
+`q` is a map
+`p.n.q` is a term
+`q.n.q` is a twig
+
+####Tall
+
+    |/  p
+      +-  p.n.q
+        q.n.q
+      --
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+
+    |/  p
+      +-  p.n.q
+        q.n.q
+      --
+
+reduces to
+
+    =+  lyg=~(cloq al p)
+    |_  q.lyg
+    %-  ~(run by q)
+    |=  a=foot
+    ^-  foot
+    ?.  ?=(elm -.a)
+      a
+    :-  -.a
+    :+  =<  p.a
+    %=  .
+    +<  p.lyg=+<
+
+
+###Examples
+
+    ++  by                                                  ::  map engine
+      ~/  %by
+      |/  a=(map)
+
+      +-  all
+      ~/  %all
+      |*  b=$+(* ?)
+      |-  ^-  ?
+      ?@  a
+        &
+      ?&((b q.n.a) $(a l.a) $(a r.a))
+
+
+In ++by, |/ creates a tray that takes a map that is passed to its arms, designated with `+-`, since the arms of `|/` are wet.
+
+##Semantics
+
+`%brfs` is a twig.
+
+###Definition###
+
+    ++  twig  
+      $%  [%brfs p=tile q=(map term foot]
+      ==
+ 
+    ++  term  ,@tas
+
+    ++  foot  
+      $%  [%ash p=twig]
+          [%elm p=twig]
+      ==
+
+###Expansion###
+    
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%brfs *]  =+  lyg=~(cloq al p.gen)
+                   :+  %brcb  q.lyg
+                   %-  ~(run by q.gen)
+                   |=  a=foot  ^-  foot
+                   ?.  ?=(%elm -.a)  a
+                   :-  -.a
+                   :+  %tsgl  p.a
+                   :+  %cnts  ~
+                   :~  [[[%& 6] ~] [%ktts p.lyg [~ 6]]]
+                   ==
+      ==
+
+    ++  al
+      |_  sec=tile
+      ++  cloq
+        |-  ^-  [p=toga q=tile]
+        ?:  ?=(^ -.sec)
+          =+  [one=$(sec p.sec) two=$(sec q.sec)]
+          [[%2 p.one p.two] [q.one q.two]]
+        ?.  ?=(%bark -.sec)  [[%0 ~] sec]
+        =+  got=$(sec q.sec)
+        :_  q.got
+        ?:(?=([%0 ~] p.got) p.sec [%1 p.sec p.got])
+      --
+
+##Notes
+
+See the bestiary of core patterns in chapter 11.  See also the
+discussion of vulcanization - the vulcanizing code is above.
+
+::BARKET
+#[barket, `|^`, %brkt](#brkt)
+
+##Syntax
+
+`|^`, `barket`, `[%brkt p=twig q=(map term foot)]` is a synthetic hoon
+that produces a `%gold` book with arms `q`, plus `p` as `%$`, and 
+kicks it.
+
+###Form
+
+`p` is a twig
+`q` is a map
+`p.n.q` is a term
+`q.n.q` is a twig
+
+####Tall
+  
+    |^  p
+      ++  p.n.q
+        q.n.q
+    --
+
+####Wide
+None
+
+####Irregular
+None
+
+###Reduction
+
+    =<  $
+    |%
+    ++  p.n.q
+      q.n.q
+    ++  $
+      p
+    --
+
+###Examples
+
+In ++mint, |^ creates a book whose `$` arm compiles twigs to Nock, and whose other arms contain useful expressions for that compilation.
+
+##Semantics
+
+`%brkt` is a twig.
+
+###Definition###
+
+    ++  twig  
+      $%  [%brkt p=twig q=(map term foot)]
+      ==
+
+
+    ++  map  |*  [a=_,* b=_,*]                              ::  associative array
+             $|(~ [n=[p=a q=b] l=(map a b) r=(map a b)])    ::
+ 
+    ++  term  ,@tas                                         ::
+
+    ++  foot  $%  [%ash p=twig]                             ::
+                  [%elm p=twig]                             ::
+              ==                                            ::
+
+
+###Expansion###
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brkt *]
+        [%tsgr [%brcn (~(put by q.gen) %$ [%ash p.gen])] [%cnzy %$]]
+      ==
+
+###Notes###
+
+See the bestiary of cores in Chapter 11.
+
+`|^` is kind of pointless and may be deprecated in future releases.
+
+::BARHEP
+#[barhep, `|-`, %brhp](#brhp)
+
+##Syntax
+
+`|-`, `barhep`, `[%brhp p=twig]` is a synthetic rune that produces
+a dry `%gold` trap and kicks it (cores, link). `|-` takes a twig. 
+
+###Form
+
+`p` is a twig
+
+####Tall
+
+    |-
+    p
+
+####Wide
+
+    |-(p)
+
+####Irregular
+None
+
+###Reduction
+
+    |-  p
+
+reduces to
+
+    =<  $
+    |.  p
+
+which further reduces [|. link] to
+
+    =<  $
+    |%  ++  $
+        p
+    --
+
+###Examples
+
+++  dec                                                 ::  decrement
+  ~/  %dec
+  |=  a=@
+  ~|  %decrement-underflow
+  ?<  =(0 a)
+  =+  b=0
+  |-  ^-  @
+  ?:  =(a +(b))
+    b
+  $(b +(b))
+
+In ++dec, `|-` creates a trap that contains the test and looping semantics. For looping, the `$` arm of the trap is called using `$(b +(b))`. (See `%=`)
+
+++  mul                                                 ::  multiply
+  ~/  %mul
+  |=  [a=@ b=@]
+  ^-  @
+  =+  c=0
+  |-
+  ?:  =(0 a)
+    c
+  $(a (dec a), c (add b c))
+
+In ++mul, we create a counter `c` (with =+, link) that we test against and
+update each loop. That is, we loop we want to preserve the value of `c` from
+the last loop.  If we push `c=0` onto our subject within the loop, we will set
+the value of `c` as 0 every loop. We use `|-` to create an inner core, so that
+when we loop (`%=`, link) we only loop over the expressions within the `|-`.
+
+##Semantics
+
+`%brhp` is a twig.
+
+###Definition###
+
+    ++  twig  
+      $%  [%brhp p=twig]
+      ==
+
+###Expansion###
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brhp *]  [%tsgl [%cnzy %$] [%brdt p.gen]]
+      ==
+
+##Notes
+
+::BARLUS
+#[barlus, `|+`, %brls](#brls)
+
+##Syntax
+
+`|+`, `barlus`, `[%brls p=tile q=twig]` is a synthetic hoon that
+produces a dry `%iron` gate with arm `q`, sample `[%bctr p]`.
+
+###Forms
+
+`p` is a tile
+`q` is a twig
+
+###Tall
+
+    |+  p
+    q
+
+###Wide
+
+    |+(p q)
+
+###Irregular
+None
+
+###Reduction
+
+    |+  p
+    q
+
+reduces to
+
+    ^|  
+    |=  p
+    q
+
+reduces to [|= link]
+
+    ^|
+    =+  $*(p)
+    |%  ++  $
+      q
+    --
+
+###Examples
+
+
+##Semantics
+
+`%brls` is a twig. 
+
+###Definition
+
+    ++  twig  
+      $%  [%brls p=tile q=twig]
+      ==
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brls *]
+        [%ktbr [%brts p.gen q.gen]]
+      ==
+
+##Notes
+
+::BARPAT
+XX not used
+
+::BARTAR
+#[bartar, `|*`, %brtr](#brtr)
+
+##Syntax
+
+`|*`, `bartar`, `[%brtr p=tile q=twig]` is a synthetic hoon that
+produces a vulcanized wet gate with arm `q`, sample `[%bctr p]`.
+
+###Form
+`p` is a tile
+`q` is a twig
+
+####Tall
+
+    |*  p
+    q
+
+####Wide
+
+    |*(p q)
+
+####Irregular
+None
+
+###Reduction
+
+    |*  p
+    q
+
+reduces to
+
+    |/  p
+    +-  $
+      q
+    --
+
+###Examples
+
+
+    ++  flop                                                ::  reverse
+      ~/  %flop
+      |*  a=(list)
+      =>  .(a (homo a))
+      ^+  a
+      =+  b=`_a`~
+      |-
+      ?@  a
+        b
+      $(a t.a, b [i.a b])
+
+In ++flop, `|*` creates a wet gate that takes a ++list (link).
+
+##Semantics
+
+`%brtr` is a twig.
+
+###Definition###
+
+    ++  twig  
+      $%  [%brtr p=tile q=twig]
+      ==
+
+###Expansion###
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brtr *]
+        [%brfs p.gen (~(put by *(map term foot)) %$ [%elm q.gen])]
+      ==
+
+##Notes
+
+::BARTIS
+#[bartis, `|=`, %brts](#brts)
+
+##Syntax
+
+`|=`, `bartis`, `[%brts p=tile q=twig]` is a synthetic hoon that
+produces a dry `%gold` gate with arm `q`, sample `[%bctr p]`.
+
+###Form
+`p` is a tile
+`q` is a twig
+
+####Tall
+
+    |=  p
+    q
+
+####Wide
+
+    |=(p q)
+
+####Irregular
+None
+
+###Reduction
+
+    |=  p
+      q
+
+reduces to
+
+    |_  p
+    ++  $
+      q
+    --
+
+reduces to [`|_` link]
+
+    =+  $*(p)
+    |%  ++  $
+      q
+    --
+
+###Examples
+
+    ++  add                                                 ::  add
+      ~/  %add
+      |=  [a=@ b=@]
+      ^-  @
+      ?:  =(0 a)
+        b
+      $(a (dec a), b +(b))
+
+In ++add, `|=` creates a gate whose sample takes two atoms
+labeled `a` and `b`, and whose arm evaluates an expression that
+produces the sum of the atoms.
+
+##Semantics
+
+`%brts` is a twig.
+
+###Definition###
+
+    ++  twig
+      $%  [%brts p=tile q=twig]
+      ==
+
+###Expansion###
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brts *]
+        [%brcb p.gen (~(put by *(map term foot)) %$ [%ash q.gen])]
+      ==
+
+::BARWUT
+#[barwut, `|?`, %brwt](#brwt)
+
+##Syntax
+
+`|?`, `barwut`, `[%brwt q=twig]` is a synthetic hoon that produces a
+dry `%lead` trap.
+
+###Form
+
+`p` is a twig
+
+####Tall
+
+    |?  p
+
+####Wide
+
+    |?(p)
+
+####Irregular
+None
+
+###Reduction
+
+    |?  p
+
+reduces to
+
+    ^?  |. p
+
+reduces to [`|.` link]
+
+    ^?
+    |%  ++  $
+        p
+    --
+
+###Examples
+
+
+##Semantics
+
+`%brwt` is a twig.
+
+###Definition###
+
+    ++  twig  
+      $%  [%brwt p=twig]
+      ==
+
+###Expansion###
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%brwt *]
+        [%ktwt %brdt p.gen]
+      ==
+
+###Notes###
+
+See the bestiary of core patterns in chapter 11.
+
+::COLCAB
+#[colcab, `:_`, %clcb](#clcb)
+
+##Syntax
+
+`:_`, `colcab`, `[%clcb p=twig q=twig]` is a synthetic hoon that
+produces the cell `[q p]`.
+
+###Definition
+
+    ++  twig  
+      $%  [%clcb p=twig q=twig]
+      ==
+
+###Form
+
+####Tall
+
+    :_  p
+    q
+
+####Wide
+
+    :_(p q)
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%clcb *]  [q.gen p.gen]
+      ==
+
+###Notes
+
+See also `%clhp`.
+
+::COLCEN
+#[colcen, `:%`, $clcn](#clcn)
+
+##Syntax
+
+`:%`, `colcen`, `[%clcn p=tusk]` is a synthetic hoon that
+produces a cell `[[p ~] ~]`.
+
+###Definition
+
+    ++  twig  
+      $%  [%clcn p=twig]
+      ==
+    ++  tusk  (list twig)
+
+###Form
+
+####Tall
+
+    :%  i.p
+        i.t.p
+        i.t.t.p
+    ==
+
+####Wide
+
+    :%(i.p i.t.p i.t.t.p)
+
+####Irregular
+
+    %[i.p i.t.p i.t.t.p]
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%clcn *]  [[%clsg p.gen] [%bczp %null]]
+      ==
+
+::COLFAS
+#[colfas, `:/`, %clfs](#clfs)
+
+##Syntax
+
+`:/`, `colfas`, `[%clfs p=twig]` is a synthetic hoon that
+produces `[%$ [%$ p ~] ~]`, ie, `[0 [0 p 0] 0]`.
+
+###Definition
+
+    ++  twig  
+      $%  [%clfs p=twig]
+      ==
+
+###Form
+
+####Tall
+
+    :/  p
+
+####Wide
+
+    :/(p)
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%clfs *]
+        [%clfs *]  =+(zoy=[%dtzz %ta %$] [%clsg [zoy [%clsg [zoy p.gen] ~]] ~])
+      ==
+
+###Notes
+
+In practice, `:/` is only used in the bowels of string interpolation.
+
+::COLKET
+#[colket, `:^`, %clkt](#clkt)
+
+##Syntax
+
+`:^`, `colket`, `[%clkt p=twig q=twig r=twig s=twig]` is a 
+synthetic hoon that produces a cell `[p q r s]`.
+
+###Definition
+
+    ++  twig  
+      $%  [%clkt p=twig q=twig r=twig s=twig]
+      ==
+
+###Form
+
+####Tall
+
+Kingside:
+
+    :^    p
+        q
+      r
+    s
+
+Queenside:
+
+    :^  p  q
+      r
+    s
+
+    :^  p  q  r  
+    s
+
+####Wide
+
+    :^(p q r s)
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%clkt *]  [p.gen q.gen r.gen s.gen]
+      ==
+
+::COLHEP
+#[colhep, `:-`, %clhp](#clhp)
+
+##Syntax
+
+`:-`, `colhep`, `[%clhp p=twig q=twig]` is a synthetic hoon that
+produces the cell `[p q]`.
+
+###Definition
+
+    ++  twig  
+      $%  [%clhp p=twig q=twig]
+      ==
+
+###Form
+
+####Tall
+
+    :-  p
+    q
+
+####Wide
+
+    :-(p q)
+
+####Irregular
+
+    [p q]
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%clhp *]  [p.gen q.gen]
+      ==
+
+::COLLUS
+#[collus, `:+`, %clls](#clls)
+
+##Syntax
+
+`:+`, `collus`, `[%clls p=twig q=twig r=twig]` is a synthetic hoon that
+produces a cell `[p q r]`.
+
+###Definition
+
+    ++  twig  
+      $%  [%clls p=twig q=twig r=twig]
+      ==
+
+###Form
+
+####Tall
+
+Kingside:
+
+    :+  p
+      q
+    r
+
+Queenside:
+
+    :+  p   q
+    r
+
+####Wide
+
+    :+(p q r)
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%clls *]
+      ==
+
+::COLSIG
+#[colsig, `:~`, %clsg](#clsg)
+
+##Syntax
+
+`:~`, `colsig`, `[%clsg p=tusk]` is a synthetic hoon that
+produces a null-terminated tuple.
+
+###Definition
+
+    ++  twig  
+      $%  [%clsg p=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Form
+
+####Tall
+
+    :~  i.p
+        i.t.p
+        i.t.t.p
+    ==
+
+####Wide
+
+    :~(i.p i.t.p i.t.t.p)
+
+####Irregular
+
+    ~[i.p i.t.p i.t.t.p]
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%clsg *]
+        |-  ^-  twig
+        ?~  p.gen
+          [%dtzz %n ~]
+        =+  mow=jone(gen i.p.gen)
+        ?:  =(mow [i.p.gen ~])
+          [i.p.gen $(p.gen t.p.gen)]
+        $(p.gen (weld mow t.p.gen))
+      ==
+    ::
+    ++  jone
+      ^-  (list twig)
+      ?:  ?=([%clzz *] gen)
+        p.gen
+      ?:  ?=([%zpcb * [%clzz *]] gen)
+        p.q.gen
+      [gen ~]
+
+###Notes
+
+`%clsg` also helps us perform some black magic with string
+interpolation by automatically promoting `%clzz` twigs.
+Otherwise, `%clsg` would simply expand as
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%clsg *]
+        $(gen [%cltr (weld p.gen ~[[%bczp %null]])])
+      ==
+
+::COLTAR
+#[coltar, `:*`, %cltr](#cltr)
+
+##Syntax
+
+`:*`, `coltar`, `[%cltr p=tusk]` is a synthetic hoon that
+produces a tuple.
+
+###Definition
+
+    ++  twig  
+      $%  [%cltr p=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Form
+
+####Tall
+
+    :~  i.p
+        i.t.p
+        i.t.t.p
+    ==
+
+####Wide
+
+    :*(i.p i.t.p i.t.t.p)
+
+####Irregular
+
+    [i.p i.t.p i.t.t.p]
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cltr *]
+        |-  ^-  twig
+        ?~  p.gen
+          [%zpzp ~]
+        =+  mow=jone(gen i.p.gen)
+        ?:  =(mow [i.p.gen ~])
+          ?~  t.p.gen
+            i.p.gen
+          [i.p.gen $(p.gen t.p.gen)]
+        $(p.gen (weld mow t.p.gen))
+      ==
+    ::
+    ++  jone
+      ^-  (list twig)
+      ?:  ?=([%clzz *] gen)
+        p.gen
+      ?:  ?=([%zpcb * [%clzz *]] gen)
+        p.q.gen
+      [gen ~]
+
+
+###Notes
+
+`%cltr` also helps us perform some black magic with string
+interpolation by automatically promoting `%clzz` twigs.
+Otherwise, `%cltr` would simply expand as
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cltr *]
+        |-  ^-  twig
+        ?~  p.gen
+          [%zpzp ~]
+        ?~  t.p.gen  i.p.gen
+        [i.p.gen $(gen t.p.gen)]
+      ==
+
+::COLZAZ
+#[colzaz, %clzz](#clzz)
+
+##Syntax
+
+`%clzz`, `[%clzz p=tusk]` is a synthetic hoon that promotes
+its tusk `p` within a `%clsg` or `%cltr` tusk.
+
+###Definition
+
+    ++  twig  
+      $%  [%clzz p=twig]
+      ==
+    ++  tusk  (list twig)
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%clzz *]  open(gen [%clsg p.gen])
+      ==
+
+###Notes
+
+See `%clsg` and `%cltr` for how `%clzz` works.
+
+::CENCAB
+#[cencab, `%_`, %cncb](#cncb)
+
+##Syntax
+
+`%_`, `cencab`, `[%cncb p=wing q=tram]` is a synthetic hoon that
+evaluates `p` with the changes specified in `q`, then casts the
+product back to `p`.
+
+###Form
+
+`p` is a wing
+`q` is a tram, a list of wing twig pairs 
+`p.i.q` is a wing
+`q.i.q` is a twig
+`p.i.t.q` is a wing 
+`q.i.t.q` is a twig
+
+####Tall
+
+    %_  p
+      p.i.q  q.i.q
+      p.i.t.q  q.i.t.q
+    ==
+
+####Wide
+
+    %_(p p.i.q q.i.q, p.i.t.q q.i.t.q)
+
+####Irregular
+None
+
+###Reduction
+ 
+    %_  p
+      p.i.q  q.i.q
+      p.i.t.q  q.i.t.q
+    ==
+    
+reduces to
+
+    ^+  p
+    %=  p
+       p.i.q  q.i.q
+      p.i.t.q  q.i.t.q
+    ==
+
+###Examples
+
+##Semantics
+
+`%cncb` is a twig.
+
+###Definition
+
+    ++  twig  
+      $%  [%cncb p=wing q=tram]
+      ==
+    ++  tram  (list ,[p=wing q=twig]) 
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cncb *]
+        [%ktls [%cnzz p.gen] %cnts p.gen q.gen]
+      ==
+
+##Notes
+
+::CENCOL
+#[cencol, `%:`, %cncl](#cncl)
+
+##Syntax
+
+`%:`, `cencol`, `[%cncl p=twig q=twig]` is a synthetic rune that
+that pulls `%$` from the tray `p` with its sample set to `q`.
+
+###Form
+
+`p` is a twig
+`q` is a twig
+
+####Tall
+
+    %:  p
+    p
+
+####Wide
+
+    %:('twig' 'twig')
+
+####Irregular
+
+None
+
+###Reduction
+
+    %:  p
+    q
+
+reduces to
+
+    %~  $
+    p  q
+
+reduces to
+
+    %*  $  p
+      +<  q
+    ==
+      
+###Examples
+
+##Semantics
+
+%cncl is a twig.
+
+###Definition
+
+    ++  twig  
+      $%  [%cncl p=twig q=twig]
+      ==
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%cncl *]  [%cnsg [%$ ~] p.gen q.gen]
+      ==
+
+###Notes
+
+::CENDOT
+#[cendot, `%.`, %cndt](#cndt)
+
+##Syntax
+
+`%.`, `cendot`, `[%cndt p=twig q=twig]` is a synthetic hoon that
+reverses the order of `%cnhp`.
+
+###Form
+`p` is a twig
+`q` is a twig
+
+####Tall
+
+    %.  p
+    q
+
+####Wide
+
+    %.(p q)
+
+####Irregular
+None
+
+###Reduction
+
+    %.  p
+    q
+
+reduces to
+
+    %-  q
+    p
+
+###Examples
+
+    ~waclux-tomwyc/try=> %.(42 dec)
+    41
+
+In the above example, `%.` slams ++dec with the sample 42.
+
+##Semantics
+
+###Definition
+
+    ++  twig
+      $%  [%cndt p=twig q=twig]
+      ==
+
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cndt *]
+        [%cnhp q.gen [p.gen ~]]
+      ==
+
+##Notes
+
+::CENHEP
+#[cenhep, `%-`, %cnhp](#cnhp)
+
+##Syntax
+
+`%-`, `cenhep`, `[%cnhp p=twig q=tusk]` is a synthetic rune that
+slams the gate `p` with `[%cltr q]`
+
+###Form
+`p` is a twig
+`q` is a tusk, which is a list of twigs.
+
+####Tall
+  
+    %-  p
+    q
+
+
+####Wide
+
+    %-(p q)
+
+####Irregular
+
+    (p q)
+
+###Reduction
+
+     %-  p
+     q
+
+reduces to
+
+    ?~  q
+      =>  p  $
+    %:  p
+    q
+
+reduces to
+
+    ?~  q
+      =>  p  $
+    %*  $  p
+      +<  q
+    ==
+    
+###Examples
+
+##Semantics
+
+%cnhp is a twig
+
+###Definition
+
+    ++  twig  
+      $%  [%cnhp p=twig q=tusk]
+      ==
+    
+    ++  tusk  (list twig)
+    
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cnhp *]
+        ?~(q.gen [%tsgr p.gen [%cnzy %$]] [%cncl p.gen [%cltr q.gen]])
+      ==
+##Notes
+
+::CENTAR
+#[centar, `%*`, %cntr](#cntr)
+
+##Syntax
+
+`%*`, `centar`, `[%cntr p=wing q=twig r=tram]` is a synthetic rune that pull the wing `p` from a tray `q` with changes `r`.
+
+###Form
+
+`p` is a ++wing
+
+++  wing  (list limb)                                   ::  part of subject
+
+`q` is a twig. Should be a tray.
+
+`r` is a tram
+
+    ++  tram  (list ,[p=wing q=twig])                       ::
+
+####Tall
+
+    %*  p  q
+    p.i.r  q.i.r
+    p.i.t.r  q.i.t.r
+    ==
+
+####Wide
+
+    %*(p q p.i.r q.i.r, p.i.t.r q.i.t.r)
+
+####Irregular
+None
+
+###Reduction
+
+    %*  wing
+    'twig'
+    tram 
+
+reduces to
+
+    =+  q
+    %=  (weld p `wing`[[~ 2] ~])
+    (turn r |=([p=wing q=twig] [p =>(+ q)]))
+
+###Examples
+
+##Semantics
+
+%cntr is a twig.
+
+###Definition
+
+    ++  twig  
+      $%  [%cntr p=wing q=twig r=tram]
+      ==
+
+
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cntr *]
+        :+  %tsls
+          q.gen
+        :+  %cnts
+          (weld p.gen `wing`[[~ 2] ~])
+        (turn r.gen |=([p=wing q=twig] [p [%tsgr [~ 3] q]]))
+      ==
+
+###Notes
+
+::CENKET
+#[cenket, `%^`, %cnkt](#cnkt)
+
+##Syntax
+
+`%^`, `cenket`, `[%cnkt p=twig q=twig r=twig s=twig]` is a 
+synthetic hoon that slams gate `p` with `[%cntr q r s]`.
+
+###Form
+
+`p` `q` `r` and `s` are twigs.
+
+####Tall
+
+    %^    p
+        q
+      r
+    s
+
+####Wide
+
+    %^(p q r s)
+
+####Irregular
+None
+
+###Reduction
+
+    %^    p
+        q
+      r
+    s
+
+reduces to
+
+    %-  p
+    [q r s]
+
+reduces to
+
+    ?~  [q r s]
+      =>  p  $
+    %*  $  p
+      +<  [q r s]
+    ==
+    
+###Examples
+
+##Semantics
+
+%cnkt is a twig
+
+###Definition
+
+    ++  twig  
+      $%  [%cnkt p=twig q=twig r=twig s=twig]
+      ==
+
+###Expansion
+ 
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cnkt *]
+        [%cnhp p.gen q.gen r.gen s.gen ~]
+      ==
+
+##Notes
+
+::CENLUS
+#[cenlus, `%+`, %cnls](#cnls)
+
+##Syntax
+
+`%+`, `cenlus`, `[%cnls p=twig q=twig r=twig]` is a synthetic hoon 
+that slams gate `p` with `[%cntr q r]`.
+
+###Form
+
+####Tall
+
+    %+  p
+      q
+    r
+
+
+####Wide
+
+    %+(p q r)
+
+####Irregular
+None
+
+###Reduction
+
+    %+  p
+      q
+    r
+
+reduces to
+
+    %-  p
+      [q r]
+
+reduces to
+
+    ?~  [q r]
+      =>  p  $
+    %:  p
+    [q r]
+
+reduces to
+
+    ?~  [q r]
+      =>  p  $
+    %*  $  p
+      +<  [q r]
+    ==
+
+###Examples
+
+##Semantics
+
+`%cnls` is a twig
+
+###Definition
+
+    ++  twig  
+      $%  [%cnls p=twig q=twig r=twig]
+      ==
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cnls *]
+        [%cnhp p.gen q.gen r.gen ~]
+      ==
+
+##Notes
+
+::CENSIG
+#[censig, `%~`, %cnsg](#cnsg)
+
+##Syntax
+
+`%~`, `censig`, `[%cnsg p=wing q=twig r=twig]` is a synthetic
+hoon that pulls `p` from the tray `q` with its sample set to `r`.
+
+###Form
+`p` is a wing
+`q` is a twig
+`r` is a twig
+
+####Tall
+
+    %~  p
+      q
+    r
+
+####Wide
+
+    %~(p q r)
+
+####Irregular
+
+    ~(p q r)
+
+###Reduction
+
+    %~  p
+      q
+    r
+
+reduces to
+
+    %*  p  q
+    +<  r
+    ==
+  
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%cnsg p=twig]
+      ==
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%cnsg *]
+        [%cntr p.gen q.gen [[[[%& 6] ~] r.gen] ~]]
+      ==
+##Notes
+
+::CENTIS
+#[centis, `%=`, %cnts](#cnts)
+
+##Syntax
+
+`%=`, `centis`, `[%cnts p=wing q=tram]` is a natural hoon that
+evaluates `p` with the changes specified in `q`.
+
+
+###Form
+
+`p` is a wing
+
+`q` is a tram
+
+`p.i.q` is a wing
+`q.i.q` is a twig
+`p.i.t.q` is a wing
+`q.i.t.q` is a twig
+
+####Tall
+
+    %=  p
+      p.i.q    q.i.q
+      p.i.t.q  q.i.t.q
+    ==
+
+####Wide
+
+    %=(p p.i.q q.i.q, p.i.t.q q.i.t.q)
+
+####Irregular
+
+    p(p.i.q q.i.q, p.i.t.q q.i.t.q)
+
+###Reduction
+None, `%=` is Natural
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%cnts p=wing q=tram]
+      ==
+    ++  tram  (list ,[p=wing q=twig]) 
+
+
+###Expansion
+
+###Compilation###
+   
+You are not expected to understand this:
+
+    ++  mint
+      ?-    gen
+          [%cnts *]  
+        =+  lar=(foil (seek %read p.gen))
+        =+  mew=(snub q.gen)
+        =-  [(nice p.yom) ?:(=(0 p.q.lar) q.yom [%9 p.q.lar q.yom])]
+        ^=  yom
+        =+  hej=*(list ,[p=axis q=nock])
+        |-  ^-  [p=type q=nock]
+        ?~  mew
+          [(fire q.q.lar) (hike p.lar hej)]
+        =+  zil=^$(gen q.i.mew, gol %noun)
+        =+  wip=(tock p.i.mew p.zil q.q.lar)
+        $(mew t.mew, q.q.lar q.wip, hej [[p.wip q.zil] hej])
+      ==
+    ::
+    ++  fino
+      |=  [dep=@ud way=?(%read %rite %both %free) cog=term]
+      =+  gil=*(set type)
+      |-  ^-  [p=@ud q=(unit post)]
+      ?+    sut  [dep ~]
+          [%bull *]
+        ?.  =(cog p.p.sut)
+          $(sut q.sut)
+        ?.  ?=(0 dep)
+          $(dep (dec dep), sut q.sut)
+        [0 ~ 1 %2 p.sut q.sut]
+      ::
+          [%cell *]
+        =+  taf=$(sut p.sut)
+        ?~  q.taf
+          =+  bov=$(dep p.taf, sut q.sut)
+          ?~  q.bov
+            bov
+          [p.bov ~ (peg 3 p.u.q.bov) q.u.q.bov]
+        [p.taf ~ (peg 2 p.u.q.taf) q.u.q.taf]
+      ::
+          [%core *]
+        =+  zem=(look cog q.r.q.sut)
+        =>  ^+(. ?:(|(=(~ zem) =(0 dep)) . .(dep (dec dep), zem ~)))
+        ?^  zem
+          [dep ~ 1 [%1 (peg 2 p.u.zem) [[sut(p.q %gold) q.u.zem] ~]]]
+        =+  taf=$(sut p.sut)
+        ?~  q.taf
+          taf
+        ?.  (park way p.u.q.taf)
+          ~|(%find-park !!)
+        [p.taf ~ (peg 3 p.u.q.taf) q.u.q.taf]
+      ::
+          [%cube *]
+        $(sut repo)
+      ::
+          [%face *]
+        ?:  =(cog p.sut)
+          ?.  ?=(0 dep)
+            [(dec dep) ~]
+          [0 ~ 1 %0 q.sut]
+        [dep ~]
+      ::
+          [%fork *]
+        ~|  %fork
+        ?:  (~(has in gil) q.sut)
+          $(sut p.sut)
+        ?:  (~(has in gil) p.sut)
+          $(sut q.sut)
+        =+  [hax=$(sut p.sut) yor=$(sut q.sut)]
+        ~|  %find-fork
+        ?:  =(hax yor)
+          hax
+        ?>  &(?=(^ q.hax) ?=(^ q.yor) =(p.hax p.yor) =(p.u.q.hax p.u.q.yor))
+        :-   p.hax
+        ?-  -.q.u.q.hax
+          0  ?>  ?=(0 -.q.u.q.yor)
+             [~ p.u.q.hax %0 (fork p.q.u.q.hax p.q.u.q.yor)]
+          1  ?>  &(?=(1 -.q.u.q.yor) =(p.q.u.q.yor p.q.u.q.hax))
+             [~ p.u.q.hax %1 p.q.u.q.hax (weld q.q.u.q.hax q.q.u.q.yor)]
+          2  ?>  ?&  ?=(2 -.q.u.q.yor) 
+                     =(p.p.q.u.q.hax p.p.q.u.q.yor)
+                     =(q.p.q.u.q.hax q.p.q.u.q.yor)
+                     =(r.p.q.u.q.hax r.p.q.u.q.yor)
+                 ==
+             :*  ~
+                 p.u.q.hax
+                 %2
+                 :*  p.p.q.u.q.hax 
+                     q.p.q.u.q.hax 
+                     r.p.q.u.q.hax 
+                     (fork s.p.q.u.q.hax s.p.q.u.q.yor)
+                 ==
+                 (fork q.q.u.q.hax q.q.u.q.yor)
+             ==
+        ==
+      ::
+          [%hold *]
+        ?:  (~(has in gil) sut)
+          [dep ~]
+        $(gil (~(put in gil) sut), sut repo)
+      ==
+    ::
+    ++  fink
+      ~/  %fink
+      |=  [dep=@ud way=?(%read %rite %both %free) cog=term]
+      ^-  port
+      ~_  (dunk 'type')
+      ~_  (show [%c 'find-limb'] ?:(=(%$ cog) '$' [%a cog]))
+      =+  hoq=(fino dep way cog)
+      ?~  q.hoq
+        ~|(%find-none !!)
+      (flee u.q.hoq)
+    ::
+    ++  seek
+      ~/  %seek
+      |=  [way=?(%read %rite %both %free) hyp=wing]
+      ^-  port
+      ?~  hyp
+        [1 %& sut]
+      =>  .(i.hyp ?^(i.hyp i.hyp [%| p=0 q=i.hyp]))
+      =+  zar=$(hyp t.hyp)
+      =+  ^=  syp
+          ?-    -.q.zar
+              &  p.q.zar
+              |  (fire (turn q.q.zar |=([p=type q=foot] [p [%ash ~ 1]])))
+          ==
+      ?-    i.hyp
+          [& *]
+        [(peg p.zar p.i.hyp) %& (peek(sut syp) way p.i.hyp)]
+      ::
+          [| *]
+        =>  .(sut syp)
+        =+  hud=(fink p.i.hyp way q.i.hyp)
+        [(peg p.zar p.hud) q.hud]
+      ==
+    ::
+    ++  snub
+      ~/  %snub
+      |=  har=(list ,[p=wing q=twig])
+      ^-  (list ,[p=wing q=twig])
+      (turn har |=([a=wing b=twig] [(flop a) b]))
+    ::
+    ++  tock
+      ~/  %tock
+      |=  [peh=wing mur=type men=(list ,[p=type q=foot])]
+      ^-  [p=axis q=(list ,[p=type q=foot])]
+      =-  [(need p.wib) q.wib]
+      ^=  wib
+      |-  ^-  [p=(unit axis) q=(list ,[p=type q=foot])]
+      ?@  men
+        [*(unit axis) ~]
+      =+  geq=(tack(sut p.i.men) peh mur)
+      =+  mox=$(men t.men)
+      [(mate p.mox `_p.mox`[~ p.geq]) [[q.geq q.i.men] q.mox]]
+    ::
+    ++  fire
+      ~/  %fire
+      |=  hag=(list ,[p=type q=foot])
+      ^-  type
+      ?:  ?=([[* [%elm ~ 1]] ~] hag)
+        p.i.hag
+      :-  %hold
+      %+  turn
+        hag.$
+      |=  [p=type q=foot]
+      ?.  ?=([%core *] p)
+        ~|(%fire-core !!)
+      =+  dox=[%core q.q.p q.p]
+      ?:  ?=(%ash -.q)
+        ~|  %fire-ash
+        ::  ~_  (dunk(sut [%cell q.q.p p.p]) %fire-dry)
+        ?>  ?|(!vet (nest(sut q.q.p) & p.p))
+        [dox p.q]
+      ~|  [%fire-odd -.q]
+      ?>  ?=(%elm -.q)
+      ~|  %fire-elm
+      ::  ~_  (dunk(sut [%cell q.q.p p.p]) %fire-wet)
+      ?>  ?|  !vet
+              (~(has in rib) [sut dox p.q])
+              (mull(sut p, rib (~(put in rib) [sut dox p.q])) %noun dox p.q)
+          ==
+      [p p.q]
+    ::
+    ++  foil
+      ~/  %foil
+      |=  pok=port
+      ^-  prop
+      ?-  -.q.pok
+        &  [p.pok [~ [[p.q.pok [%elm ~ 1]] ~]]]
+        |  [p.pok [p.q.pok q.q.pok]]
+      ==
+
+
+##Notes
+
+See the explanation in Chapter 7.
+
+::CENZAY
+#[cenzey, %cnzy](#cnzy)
+
+##Syntax
+
+`cenzey`, `[%cnzy p=term]` is a synthetic internal twig that pulls limb
+`p` from the subject.
+
+###Form
+None, cenzey is only used internally
+
+####Tall
+
+####Wide
+
+####Irregular
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+%cnzy is a twig
+
+###Definition
+
+    ++  twig  
+      $%  [%cnzy p=term]
+      ==
+
+###Expansion
+
+  ++  open
+      ^-  twig
+      ?-  gen
+        [%cnzy *]  [%cnts [p.gen ~] ~]
+      ==
+
+##Notes
+
+::CENZAZ
+#[cenzaz, %cnzz](#cnzz)
+
+##Syntax
+
+`cenzaz`, `[%cnzz p=wing]` is a synthetic hoon that pulls
+wing `p` from the subject.
+
+###Form
+None, cenzaz is only used internally
+
+####Tall
+
+####Wide
+
+####Irregular
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+%cnzz is a twig
+
+###Definition
+
+    ++  twig  
+      $%  [%cnzz p=wing]
+      ==
+
+###Expansion
+ 
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%cnzz *]  [%cnts p.gen ~]
+      ==
+
+##Notes
+
+::DOTKET
+#[dotket, `.^`, %dtkt](#dtkt)
+
+##Syntax
+
+`.^`, `dotket`, `[%dtkt p=twig]` is a natural hoon that generates nock operator `11`, which in virtual userspace nock (`mock`) loads a file from the global namespace.
+
+
+###Form
+
+`p` is a twig
+
+####Tall
+
+    .^  p
+
+####Wide
+
+    .^(p)
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%dtkt p=twig]
+      ==
+
+
+###Expansion
+   
+    ++  mint
+      ?-    gen
+        [%dtkt *]  [(nice %noun) [%11 q:$(gen p.gen, gol %noun)]]
+      ==
+
+##Notes
+
+::DOTLUS
+#[dotlus, `.+`, %dtls](#dtls)
+
+##Syntax
+
+`.+`, `dotlus`, `[%dtls p=twig]` is a natural hoon that generates
+nock operator `4`, which increments an atomic operand.
+
+###Form
+
+####Tall
+
+    .+  p
+
+####Wide
+
+    .+(p)
+
+####Irregular
+
+    +(p)
+
+###Reduction
+None, .+ is natural
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%dtls p=twig]
+      ==
+
+
+###Expansion
+
+    ++  mint
+      ?-    gen
+        [%dtls *]  [(nice [%atom %$]) [%4 q:$(gen p.gen, gol [%atom %$])]]
+      ==
+
+##Notes
+
+::DOTZAY
+#[dotzay, %dtzy](#dttr)
+
+`dotzay`, `[%dtzy p=term q=@]` is a natural hoon that produces a non-cubed atomic constant of odor `p` and value `q`.
+
+##Syntax
+
+`dotzay`, `[%dtzy p=term q=@]` is a natural hoon that produces a non-cubed atomic constant of odor p and value q.
+
+###Form
+
+####Tall
+None
+
+####Wide
+None
+
+####Irregular
+See chapter 6 for constant forms.
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%dtzy p=term q=@]
+      ==
+
+###Expansion
+
+    ++  play
+      ?-  gen
+        [%dtzy *]  ?:(=(%f p.gen) ?>((lte q.gen 1) bean) [%atom p.gen])
+      ==
+    ++  mint
+      ?-  gen
+        [%dtzy *]  [(nice (play gen)) [%1 q.gen]]
+      ==
+
+##Notes
+
+::DOTZAZ
+#[dotzaz, %dtzz](#dtzz)
+
+`dotzaz`, `[%dtzz p=term q=*]` is a natural hoon that produces an
+cubed noun constant of value `q` and odor `p`, if `q` is an atom.
+
+###Form
+
+####Tall
+
+None
+
+####Wide
+
+None
+
+####Irregular
+See chapter 6 for constant forms.
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%dtts p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  play
+      ?-  gen
+        [%dtzz *]
+      [%cube q.gen ?:(.?(q.gen) %noun [%atom p.gen])]
+      ==
+    ++  mint
+      ?-  gen
+        [%dtzz *]
+      [(nice (play gen)) [%1 q.gen]]
+      ==
+
+##Notes
+
+::DOTTAR
+#[dottar, `.*`, %dttr](#dttr)
+
+##Syntax
+
+`.*`, `dottr`, `[%dttr p=twig q=twig]` is a natural hoon that calculates the nock of subject `p`, formula `q`.
+
+###Form
+
+####Tall
+
+    .*  p
+        q
+
+####Wide
+
+    .=(p q)
+
+####Irregular
+None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%dttr p=twig q=twig]
+      ==
+
+
+###Expansion
+
+    ++  mint
+      ?-    gen
+        [%dttr *]
+      [(nice %noun) [%2 q:$(gen p.gen, gol %noun) q:$(gen q.gen, gol %noun)]]
+      ==
+
+##Notes
+
+::DOTTIS
+#[dottis, `.=`, %dtts](#dtts)
+
+##Syntax
+
+`.=`, `dottis`, `[%dtts p=twig q=twig]`is a natural hoon that applies nock 5 (equals) to determine if the products of p and q are equivalent.
+
+###Form
+
+####Tall
+
+    .=  p
+        q
+
+####Wide
+
+    .=(p q)
+
+####Irregular
+
+    =(p q)
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%dtts p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-  gen
+        [%dtts *]
+      [(nice bean) [%5 q:$(gen p.gen, gol %noun) q:$(gen q.gen, gol %noun)]]
+      ==
+
+##Notes
+::DOTWUT
+#[dotwut,`.?`, %dtwt](#dtwt)
+
+##Syntax
+
+`.?`, `dotwut`, `[%dtwt p=twig]` is a natural hoon that
+applies nock `3` to a noun: if the noun is a cell, it returns the loobean `& (true)`; if the noun is an atom, it returns the loobean `| (false)`.
+
+###Form
+`p` is a twig
+
+####Tall
+
+    .?  p
+
+####Wide
+
+    .?(p)
+
+####Irregular
+None
+
+###Reduction
+None
+
+###Examples 
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%dtwt p=twig]
+      ==  
+
+###Expansion
+
+    ++  mint
+        ?-  gen
+          [%dtwt *]  
+        [(nice bean) [%3 q:$(gen p.gen, gol %noun)]]
+        ==  
+
+##Notes
+
+::HEXGAL
+#[haxgal, `#<`, %hxgl](#hxgl)
+
+##Syntax
+
+`#<`, `haxgal`, `[%hxgl p=tusk]`is a synthetic hoon that
+slams the assumed gate `noah` on `[%zpgr %cntr p]`.
+
+###Form
+
+####Tall
+
+    ?
+
+####Wide
+
+    ?
+
+####Irregular
+
+    >i.p i.t.p i.t.t.p<
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%hxgl p=tusk]
+      ==
+++  tusk  (list twig)
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%hxgl *]
+      [%cnhp [%cnzy %noah] [%zpgr [%cltr p.gen]] ~]
+      ==
+
+##Notes
+
+`noah` is one of four "Biblical" names that the Hoon compiler, violating its usual principles, generates automatically.
+
+Of course the compiler cannot control what `noah` produces when pulled from the subject, but the convention is that it should be a gate that accepts a `vase` (type-value cell) and produces a `tank` (pretty-printer input).
+
+::HEXGAR
+#[haxgar, `#>`, %hxgr](#hxgr)
+
+##Syntax
+
+`#>`, `haxgar`, `[%hxgr p=tusk]`is a synthetic hoon that
+slams the assumed gate `cain` on `[%zpgr %cntr p]`.
+
+###Form
+
+####Tall
+
+    ?
+
+####Wide
+
+    ?
+
+####Irregular
+
+    <i.p i.t.p i.t.t.p>
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%hxgr p=tusk]
+      ==
+    ++  tusk  (list twig) 
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%hxgl *]
+      [%cnhp [%cnzy %noah] [%zpgr [%cltr p.gen]] ~]
+      ==
+
+##Notes
+
+`cain` is one of four "Biblical" names that the Hoon compiler,
+violating its usual principles, generates automatically.
+
+Of course the compiler cannot control what `noah` produces when
+pulled from the subject, but the convention is that it should be
+a gate that accepts a `vase` (type-value cell) and produces a 
+`tape` (list of UTF-8 bytes).
+
+::KETBAR
+#[ketbar, `^|`, %ktbr](#ktbr)
+
+##Syntax
+
+`^|`, `ketbar`, `[%ktbr p=twig]` is a natural hoon that
+converts a gold core into an iron core.
+
+###Form
+
+####Tall
+
+    ^|  p
+
+####Wide
+
+    ^|(p)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%ktbr p=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-  gen
+        [%ktbr *]  =+(vat=$(gen p.gen) [(wrap(sut p.vat) %iron) q.vat])
+      ==
+    ++  wrap
+      ~/  %wrap
+      |=  yoz=?(%lead %iron %zinc)
+      ^-  type
+      ?-  sut
+        [%core *]  ?.(=(%gold p.q.sut) ~|(%wrap-metl !!) sut(p.q yoz))
+        [%fork *]  (fork $(sut p.sut) $(sut q.sut))
+        [%hold *]  $(sut repo)
+        *          ~|(%wrap-type !!)
+      ==
+
+##Notes
+
+See the discussion of geometric polymorphism in chapter 10.
+
+::KETDOT
+#[ketdot, `^.`, %ktdt](#ktdt)
+
+##Syntax
+
+`^.`, `ketdot`, `[%ktdt p=twig q=twig]` is a synthetic hoon that casts `q` to the type of `(p q)`.
+
+###Form
+
+####Tall
+
+    ^.  p
+        q
+
+####Wide
+
+    None
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%ktdt p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%ktdt *]
+        [%ktls [%cnhp p.gen q.gen ~] q.gen]
+      ==
+
+##Notes
+
+::KETLUS
+#[ketlus, `^+`, %ktls](#ktls)
+
+##Syntax
+
+`^+`, `ketlus`, `[%ktls p=twig q=twig]` is a natural hoon that casts the product of `q` to the type of `p`, verifying that it contains the type of `q`.
+
+###Form
+
+####Tall
+
+    ^+  p
+        q
+
+####Wide
+
+    ^+(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%ktls p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-    gen
+          [%ktls *]
+        =+(hif=(nice (play p.gen)) [hif q:$(gen q.gen, gol hif)])
+      ==
+
+##Notes
+
+::KETHEP
+#[kethep, `^-`, %kthp](#kthp)
+
+##Syntax
+
+`^-`, `kethep`, `[%kthp p=tile q=twig]` is a synthetic hoon that casts `q` to `~(bunt al p)`, ie, the icon of `p`.
+
+###Form
+
+####Tall
+
+    ^-  p
+        q
+
+####Wide
+
+    ^-(p q)
+
+####Irregular
+
+    `p`q
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%kthp p=tile q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%kthp *]  [%ktls ~(bunt al p.gen) q.gen]
+      ==
+
+##Notes
+
+::KETPAM
+#[ketpam, `^&`, %ktpm](#ktpm)
+
+##Syntax
+
+`^&`, `ketpam`, `[%ktpm p=twig]` is a natural hoon that
+converts a gold core into a zinc core.
+
+###Form
+
+####Tall
+
+    ^&  p
+
+####Wide
+
+    ^&(p)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%ktwt p=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-  gen
+        [%ktbr *]  =+(vat=$(gen p.gen) [(wrap(sut p.vat) %zinc) q.vat])
+      ==
+    ++  wrap
+      ~/  %wrap
+      |=  yoz=?(%lead %iron %zinc)
+      ^-  type
+      ?-  sut
+        [%core *]  ?.(=(%gold p.q.sut) ~|(%wrap-metl !!) sut(p.q yoz))
+        [%fork *]  (fork $(sut p.sut) $(sut q.sut))
+        [%hold *]  $(sut repo)
+        *          ~|(%wrap-type !!)
+      ==
+
+##Notes
+
+See the discussion of geometric polymorphism in chapter 10.
+
+::KETSIG
+#[ketsig, `^~`, %ktsg](#ktsg)
+
+##Syntax
+
+`^~`, `ketsig`, `[%ktsg p=twig]` is a natural hoon that
+tries to execute `p` statically at compile time; if this fails, `p` remains dynamic.
+
+###Form
+
+####Tall
+
+    ^~  a
+
+####Wide
+
+    ^~(a)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%ktsg p=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-    gen
+          [%ktsg *]  
+        =+  nef=$(gen p.gen)
+        =+  moc=(mink [burn q.nef] |=(* ~))
+        [p.nef ?:(?=(0 -.moc) [%1 p.moc] q.nef)]
+      ==
+    ++  burn
+      =+  gil=*(set type)
+      |-  ^-  *
+      ?-    sut
+          [%atom *]   0
+          [%bull *]   ~|(%burn-bull !!)
+          [%cell *]   [$(sut p.sut) $(sut q.sut)]
+          [%core *]   [p.r.q.sut $(sut p.sut)]
+          [%cube *]   p.sut
+          [%face *]   $(sut repo)
+          [%fork *]   $(sut p.sut)
+          [%hold *]   ?:  (~(has in gil) sut)
+                        ~_  (dunk %type)
+                      ~|(%burn-loop !!)
+                      $(sut repo, gil (~(put in gil) sut))
+          %noun       0
+          %void       ~|(%burn-void !!)
+      ==
+
+##Notes
+
+To fold constants with `^~`, we use the crudest possible tools.
+We simply compute the best plausible constant noun that fits the
+subject, and apply the formula of `p` to it.
+
+One common problem with `^~` is that while compiling the arms of
+a core, we do not have the battery of the core as a constant.
+We simply put `0` in our subject instead.  The result is that
+anything which uses the core crashes, and `^~` falls back to the
+dynamic formula.  The usual workaround, which may be a good idea,
+is to use two layers of reef and put tile arms in an inner core.
+
+(This circularity could be defeated by some kind of iteration,
+but it's not clear that we want the complexity right now.)
+
+::KETTIS
+#[kettis, `^=`, %ktts](#ktts)
+
+##Syntax
+
+`^=`, `kettis`, `[%ktts p=toga q=twig]` is a natural hoon that wraps `q` in the toga `p`.
+
+###Form
+
+####Tall
+
+    ^=  a
+
+####Wide
+
+    ^=(a)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%ktts p=toga q=twig]
+      ==
+    ++  toga
+              $|  p=term
+              $%  [0 ~]
+                  [1 p=term q=toga]
+                  [2 p=toga q=toga]
+              == 
+
+###Expansion
+
+    +  mint
+      ?-  gen
+        [%ktts *]  =+(vat=$(gen q.gen) [(conk(sut p.vat) p.gen) q.vat])
+      ==
+    ++  conk
+      |=  got=toga
+      ^-  type
+      ?@  got  [%face got sut]
+      ?-  -.got
+        0  sut
+        1  [%face p.got $(got q.got)]
+        2  ?>  |(!vet (nest(sut [%cell %noun %noun]) & sut))
+           :+  %cell
+             $(got p.got, sut (peek %both 2)) 
+           $(got q.got, sut (peek %both 3))
+      ==
+
+##Notes
+
+The mighty `toga` is a powerful naming device that can assign an
+entire name tree to a properly typed result.  For instance, if
+`foo` produces an unlabeled tuple `[x y z]`, `[a b=[c d]]=foo` produces `[a=x b=[c=y d=z]]`.
+
+::KETWUT
+#[ketwut, `^?`, %ktwt](#ktwt)
+
+##Syntax
+
+`^?`, `ketwut`, `[%ktwt p=twig]` is a natural hoon that
+converts a gold core into a lead core.
+
+###Form
+
+####Tall
+
+    ^?  p
+
+####Wide
+
+    ^?(p)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%ktwt p=twig]
+      ==2 p=toga q=toga]
+              == 
+
+###Expansion
+
+    ++  mint
+      ?-  gen
+        [%ktbr *]  =+(vat=$(gen p.gen) [(wrap(sut p.vat) %lead) q.vat])
+      ==
+    ++  wrap
+      ~/  %wrap
+      |=  yoz=?(%lead %iron %zinc)
+      ^-  type
+      ?-  sut
+        [%core *]  ?.(=(%gold p.q.sut) ~|(%wrap-metl !!) sut(p.q yoz))
+        [%fork *]  (fork $(sut p.sut) $(sut q.sut))
+        [%hold *]  $(sut repo)
+        *          ~|(%wrap-type !!)
+      ==
+
+##Notes
+
+See the discussion of geometric polymorphism in chapter 10.
+
+::SIGBAR
+#[sigbar, `~|`, %sgbr](#sgbr)
+
+##Syntax
+
+`~|`, `sigbar`, `[%sgbr p=twig q=twig]` is a synthetic hoon that
+presents the product of `p` in the stack trace if `q` crashes.
+The computation is only performed if needed.
+
+###Form
+
+####Tall
+
+    ~|  p
+        q
+
+####Wide
+
+    ^|(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    +  twig  
+      $%  [%sgbr p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%sgbr *]
+        :+  %sggr
+          :-  %mean
+          =+  fek=~(feck ap p.gen)
+          ?^  fek  [%dtzz %tas u.fek]
+          [%brdt [%cnhp [%cnzy %cain] [%zpgr p.gen] ~]]
+        q.gen 
+      ==
+    ::
+    ++  feck
+      |-  ^-  (unit term)
+      ?-  gen
+        [%dtzy %tas *]  [~ q.gen]
+        [%dtzz %tas @]  [~ q.gen]
+        [%zpcb *]       $(gen q.gen)
+        *               ~
+      ==
+
+##Notes
+
+Note that `~|` generates the Biblical name `%cain`, which
+conventionally converts a vase to a printable tank.  But we use
+`++feck` to make simple uses of `~|` work before `++cain` is
+defined.
+
+::SIGCAB
+#[sigcab, `~_`, %sgcb](#sgcb)
+
+##Syntax
+
+`~_`, `sigcab`, `[%sgcb p=twig q=twig]` is a synthetic hoon
+that inserts `p`, a trap producing `tank`, in the trace of `q`.
+
+###Form
+
+####Tall
+
+    ~_  p
+        q
+
+####Wide
+
+    ^_(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgcb p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%sgcb *]  [%sggr [%mean [%brdt p.gen]] q.gen]
+      ==
+
+##Notes
+
+`~_` is useful if you want to define and present your own
+debugging representation of an ongoing computation, which will
+appear in the trace of any crash within that computation.
+
+::SIGCEN
+#[sigcen, `~%`, %sgcn](#sgcn)
+
+##Syntax
+
+`~%`, `sigcen`, `[%sgcn p=term q=twig r=tyre s=twig]`, a  
+synthetic hoon, identifies a core for specific optimization.
+
+###Form
+
+####Tall
+
+    ~%    p
+        q
+      ==
+        p.i.r    q.i.r
+        p.i.t.r  q.i.t.r
+      ==
+    s
+
+    ~%    p
+        q
+      ~
+    s
+
+####Wide
+
+    None
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgcn p=term q=twig r=tyre s=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%sgcn *]
+        :+  %sggl
+          :-  %fast
+          :-  %clls
+          :+  [%dtzz %$ p.gen]
+            [%zpts q.gen]
+          :-  %clsg
+          =+  nob=`(list twig)`~
+          |-  ^-  (list twig)
+          ?@  r.gen
+            nob
+          [[[%dtzz %$ p.i.r.gen] [%zpts q.i.r.gen]] $(r.gen t.r.gen)]
+        s.gen
+          [%sgcn *]
+      ==
+
+##Notes
+
+See the discussion of jet propulsion in Chapter 11.
+
+The Chapter 11 way is the way it should work.  In Chapter 11, `p`
+is the algorithm version (an arbitrary `@tas`).  In the current
+`master`, `p` is the core's name relative to the parent (which
+should be derived from `r` in the parent), and `q`, which should
+be a wing, is actually a twig.
+
+::SIGFAS
+#[sigfas, `~/`, %sgfs](#sgfs)
+
+##Syntax
+
+`~/`, `sigfas`, `[%sgfs p=term q=twig]` is a synthetic hoon that
+implements one common case - a gate arm in a book, ie, a library
+function - of the `%sgcn` jet hint.  `%sgfs` assumes the parent
+axis is `7` and there are no children.
+
+###Form
+
+####Tall
+
+    ~/  p
+        q
+
+####Wide
+
+    ~/(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgfs p=term q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%sgfs *]  [%sgcn [~ 7] p.gen ~ q.gen]
+      ==
+
+##Notes
+
+See the discussion of jet propulsion in Chapter 11.
+
+The Chapter 11 way is the way it should work.  In Chapter 11, `p`
+is the algorithm version (an arbitrary `@tas`).  In the current
+`master`, `p` is the core's name relative to the parent (which
+should be derived from `r` in the parent), and `q`, which should
+be a wing, is actually a twig.
+
+::SIGGAL
+#[siggal, `~<`, %sggl](#sggl)
+
+##Syntax
+
+`~<`, `siggal`, `[%sggl p=$|(term [p=term q=twig]) q=twig]` is a
+synthetic hoon that applies arbitrary hint `p` to the product of 
+`q`.
+
+###Form
+
+####Tall
+
+        `p=%foo`:
+      
+        ~<  %foo
+        q
+
+    `p=[p=%foo q=bar]`:
+
+        ~<  %foo.bar
+        q
+
+####Wide
+
+    ~<(%foo q)
+    ~<(%foo.bar q)
+    
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+        [%sggl p=$|(term [p=term q=twig]) q=twig]   ::
+      $%  [%sggl p=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%sggl *]
+        [%tsgl [%sggr p.gen [~ 1]] q.gen]
+      ==
+
+##Notes
+
+For some hints we'd rather just wake the hint engine up when the
+computation is done.
+
+::SIGGAR
+#[siggar, `~>`, %sggr](#sggr)
+
+##Syntax
+
+`~>`, `siggar`, `[%sggr p=$|(term [p=term q=twig]) q=twig]` is a
+natural hoon that applies arbitrary hint `p` to `q`.
+`q`.
+
+###Form
+
+####Tall
+
+`p=%foo`:
+  
+    ~>  %foo
+        q
+
+    `p=[p=%foo q=bar]`:
+
+        ~>  %foo.bar
+        q
+
+####Wide
+
+    ~>(%foo q)
+    ~>(%foo.bar q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+        [%sggr p=$|(term [p=term q=twig]) q=twig]   ::
+      $%  [%sggr p=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-    gen
+          [%sggr *]
+        =+  hum=$(gen q.gen)
+        :-  p.hum
+        :+  %10
+          ?-    p.gen
+              @   p.gen
+              ^   [p.p.gen q:$(gen q.p.gen, gol %noun)]
+          ==
+        q.hum
+      ==
+
+##Notes
+
+Rather obviously, all other hinting `~` runes reduce to `~>`.At present, the memo cache is cleared on every event.
+
+::SIGBUC
+#[sigbuc, `~$`, %sgbc](#sgbc)
+
+##Syntax
+
+`~$`, `sigbuc`, `[%sgbc p=term q=twig]` is a synthetic hoon that
+labels computation `q` as `p` for profiling.
+
+###Form
+
+####Tall
+
+    ~?  p
+        q
+
+####Wide
+
+    ^?(q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgbc p=term q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%sgbc *]  [%sggr [%live [%dtzz %$ p.gen]] q.gen]
+      ==
+
+##Notes
+
+The profiler is not currently enabled.
+
+::SIGLUS
+#[siglus, `~+`, %sgls](#sgls)
+
+##Syntax
+
+`~+`, `siglus`, `[%sgls p=twig]` is a synthetic hoon that
+hints to the interpreter to memoize (cache) the computation 
+of `p`.
+
+###Form
+
+####Tall
+  
+    ~+  p
+
+####Wide
+
+    ~+(p)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgls p=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%sgls *]  [%sggr [%memo %dtzz %$ p.gen] q.gen]
+      ==
+
+##Notes
+
+At present, the memo cache is cleared on every event.
+
+::SIGPAM
+#[sigpam, `~&`, %sgpm](#sgpm)
+
+##Syntax
+
+`~&`, `sigpam`, `[%sgpm p=@ud q=twig r=twig]` is a synthetic hoon 
+that prints `q` on the console before computing `r`.  `p` is the
+log priority, 0-3 defaulting to 0.
+
+###Definition
+
+    ++  twig  
+      $%  [%sgpm p=twig]
+      ==
+
+###Form
+
+####Tall
+
+Priority 0 (debug):
+
+    ~&  q
+    r
+
+Priority 1 (notice):
+
+    ~&  >  q
+    r
+
+Priority 2 (warning):
+
+    ~&  >>  q
+    r
+
+Priority 3 (alarm):
+
+    ~&  >>>  q
+    r
+
+####Wide
+
+    ~&(>> q r)
+
+###Expansion
+    
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%sgpm *]
+        :+  %sggr
+          [%slog [%dtzy %$ p.gen] [%cnhp [%cnzy %cain] [%zpgr q.gen] ~]]
+        r.gen
+      ==
+
+###Notes
+
+`%sgpm` uses the biblical name `%cain` for printing, so it won't
+work without some equivalent of
+
+    ++  cain  |=(vax=vase (sell vax))
+
+in the subject.
+
+::SIGTIS
+#[sigtis, `~=`, %sgts](#sgts)
+
+##Syntax
+
+`~=`, `sigtis`, `[%sgts p=twig q=twig]` is a synthetic hoon that
+hints to the interpreter that `q` may produce a noun equal to the
+already existing `p`, avoiding duplication.
+
+###Form
+
+####Tall
+
+    ~=  p
+        q
+
+####Wide
+
+    ~=(p q)
+
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgts p=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%sgts *]  [%sggr [%germ p.gen] q.gen]
+      ==
+
+##Notes
+
+Where to use `%sgts`?  In any traversal that selectively
+reconstructs a noun.  If a traversal can change the head and/or
+tail of a cell, if it leaves both head and tail unchanged, by
+default it will recreate a new copy of the old cell.  Using
+`%sgts` to force a comparison with the old cell lets the
+interpreter discard the copy right away.
+
+::SIGWUT
+#[sigwut, `~?`, %sgwt](#sgwt)
+
+##Syntax
+
+`~?`, `sigwut`, `[%sgwt p=@ud q=twig r=twig s=twig]` is a
+synthetic hoon with the same hint effect, printing `r`,
+as `[%sgpm p r s]`, iff `q` produces yes.
+
+###Form
+
+####Tall
+
+    Priority 0 (debug):
+
+        ~&  q
+        r
+
+    Priority 1 (notice):
+
+        ~&  >  q
+        r
+
+    Priority 2 (warning):
+
+        ~&  >>  q
+        r
+
+    Priority 3 (alarm):
+
+        ~&  >>>  q
+        r
+
+####Wide
+
+    ~&(>> q r)
+
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgwt p=@ud q=twig r=twig s=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%sgwt *]
+        [%tsgl s.gen %wtdt q.gen [~ 1] %sgpm p.gen r.gen [~ 1]]
+      ==
+
+##Notes
+
+We often want to print a value for debugging, but it's also easy
+to be overwhelmed with unconditional printfs.ll lets the
+interpreter discard the copy right away.
+
+::SIGZAP
+#[sigzap, `~!`, %sgzp](#sgzp)
+
+##Syntax
+
+`~!`, `sigzap`, `[%sgzp p=twig q=twig]` is a natural hoon for 
+debugging uses only, semantically equivalent to its own twig `q`.
+But if compilation fails within `q`, `~!` will show the type of
+`p` on the stacktrace.
+
+###Form
+
+####Tall
+
+    ~!  p
+        q
+
+####Wide
+
+    ~!(p q)
+
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%sgzp p=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-  gen
+        [%sgzp *]  ~_(duck(sut (play p.gen)) $(gen q.gen))
+      ==
+
+##Notes
+
+`~!` seems strange but is surprisingly useful.
+
+::SEMCOL
+#[semcol, `;:`, %smcl](#smcl)
+
+##Syntax
+
+`;:`, `semcol`, `[%smcl p=twig q=tusk]` is a synthetic hoon that
+applies `p`, a binary gate, to the n-ary tuple `q`.
+
+###Form
+
+####Tall
+
+    ;:  p
+      i.q
+      i.t.q
+      i.t.t.q
+    ==
+
+####Wide
+
+    ;:(p i.q i.t.q i.t.t.q)
+
+
+####Irregular
+
+    :(p i.q i.t.q i.t.t.q)
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%smcl p=twig q=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%smcl *]
+        ?-    q.gen
+            ~       [%zpzp ~]
+            [* ~]   i.q.gen
+            ^
+          :+  %tsls
+            p.gen
+          =+  yex=`(list twig)`q.gen
+          |-  ^-  twig
+          ?-  yex
+            [* ~]  [%tsgr [~ 3] i.yex]
+            [* ^]  [%cnhp [~ 2] [%tsgr [~ 3] i.yex] $(yex t.yex) ~]
+            ~      !!
+          ==
+        ==
+      ==
+
+##Notes
+
+It's certainly nice to be able to say `:(add 2 3 4)` and get `9`.
+
+::SEMDOT
+XX NOT PRESENT IN EXISTING DOC
+
+::SEMDOQ
+#[semdoq, %smdq](#smdq)
+
+##Syntax
+
+`semdoq`, `[%smdq p=(list beer)]` is a synthetic hoon used to
+make strings, interpreted or not.
+###Form
+
+####Tall
+
+    None
+
+####Wide
+
+    None
+
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%smdq p=twig]
+      ==
+    ++  beer  $|(@ [~ p=twig])
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%smdq *]                                   ::
+        :+  %tsgr  [%ktts %v ~ 1]                     ::  =>  v=.
+        :-  %brhp                                     ::  |-
+        :+  %ktls                                     ::  ^+
+          :-  %brhp                                   ::  |-
+          :^    %wtcl                                 ::  ?:
+              [%bczp %bean]                           ::  ?
+            [%bczp %null]                             ::  ~
+          :-  [%ktts %i [%dtzy 'tD' _@]]              ::  :-  i=~~
+          [%ktts %t [%cnzy %$]]                       ::  t=$
+        |-  ^-  twig                                  ::
+        ?~  p.gen                                     ::
+          [%bczp %null]                               ::  ~
+        =+  res=$(p.gen t.p.gen)                      ::
+        ^-  twig                                      ::
+        ?@  i.p.gen                                   ::
+          [[%dtzy 'tD' i.p.gen] res]                  ::  [~~{i.p.gen} {res}]
+        :+  %tsls                                     ::
+          :-  :+  %ktts                               ::  ^=
+                %a                                    ::  a
+              :+  %ktls                               ::  ^+
+                [%cnzy %$]                            ::  $
+              [%tsgr [%cnzy %v] p.i.p.gen]            ::  =>(v {p.i.p.gen})
+          [%ktts %b res]                              ::  b={res}
+        ^-  twig                                      ::
+        :-  %brhp                                     ::  |-
+        :^    %wtpt                                   ::  ?@
+            [%a ~]                                    ::  a
+          [%cnzy %b]                                  ::  b
+        :-  [%tsgl [~ 2] [%cnzy %a]]                  ::  :-  -.a
+        :+  %cnts                                     ::  %=
+          [%$ ~]                                      ::  $
+        [[[%a ~] [%tsgl [~ 3] [%cnzy %a]]] ~]         ::  a  +.a
+      ==
+
+##Notes
+
+It's not necessary to understand this horrible thing.  All it
+does is to assemble a string, which is a list of either
+Unicode bytes or interpolation twigs which produce a list of
+Unicode bytes, without depending on any functionality in the 
+target subject.
+
+::SEMSIG
+#[semsig, `;~`, %smsg](#smsg)
+
+##Syntax
+
+`semsig`, `[%smsg p=(list beer)]` is a synthetic hoon used to
+create gonads.
+
+###Form
+
+####Tall
+
+    ;~  p
+      i.q
+      i.t.q
+      i.t.t.q
+    ==
+
+####Wide
+
+    ;~(p i.q i.t.q i.t.t.q)
+
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%smsg p=twig q=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%smsg *]                                   ::
+        |-  ^-  twig                                  ::
+        ?-  q.gen                                     ::
+            ~       ~|(%open-smsg !!)                 ::
+            ^                                         ::
+          :+  %tsgr  [%ktts %v ~ 1]                   ::  =>  v=.
+          |-  ^-  twig                                ::
+          ?:  ?=(~ t.q.gen)                           ::
+            [%tsgr [%cnzy %v] i.q.gen]                ::  =>(v {i.q.gen})
+          :+  %tsls  [%ktts %a $(q.gen t.q.gen)]      ::  =+  ^=  a
+          :+  %tsls                                   ::    {$(q.gen t.q.gen)}
+            [%ktts %b [%tsgr [%cnzy %v] i.q.gen]]     ::  =+  ^=  b
+          :+  %tsls                                   ::    =>(v {i.q.gen})
+            [%ktts %c [%tsgl [~ 6] [%cnzy %b]]]       ::  =+  c=+6.b
+          :-  %brdt                                   ::  |.
+          :^    %cnls                                 ::  %+
+              [%tsgr [%cnzy %v] p.gen]                ::      =>(v {p.gen})
+            [%cnhp [%cnzy %b] [%cnzy %c] ~]           ::    (b c)
+          [%cnts [%a ~] [[[[%& 6] ~] [%cnzy %c]] ~]]  ::  a(+6 c)
+        ==
+      ==
+
+##Notes
+
+See the discussion of gonads in chapter 11.
+
+::SEMSEM
+#[semsem, `;;`, %smsm](#smsm)
+
+##Syntax
+
+`;;`, `semsem`, `[%smsm p=twig q=twig]` is a synthetic hoon that
+types `q` as a fixpoint of `p`.
+
+###Form
+
+####Tall
+
+    ;;  p
+        q
+
+####Wide
+
+    ;;(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%smsm p=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%smsm *]
+        :+  %tsgr  [%ktts %v ~ 1]                        ::  =>  v=.
+        :+  %tsls  [%ktts %a [%tsgr [%cnzy %v] p.gen]]   ::  =+  a==>(v {p.gen})
+        :+  %tsls  [%ktts %b [%tsgr [%cnzy %v] q.gen]]   ::  =+  b==>(v {q.gen})
+        :+  %tsls                                        ::  =+  c=(a b)
+          [%ktts %c [%cnhp [%cnzy %a] [%cnzy %b] ~]]     ::
+        [%wtgr [%dtts [%cnzy %c] [%cnzy %b]] [%cnzy %c]] ::  ?>(=(c b) c)
+      ==
+
+##Notes
+
+`;;` can be read as "make sure `q` is a `p`."  `p` should probably be
+a tile, not a twig.
+
+The semantics are the same as the present `hoon.hoon` gate
+`hard` - ie, `;;(p q)` is `((hard p) q)`.
+
+::TISBAR
+#[tisbar, `=|`, %tsbr](#tsbr)
+
+##Syntax
+
+`=|`, `tisbar`, `[%tsbr p=tile q=twig]` is a synthetic hoon that
+pushes `~(bunt al p)` on the subject and sends it to `q`.
+
+###Form
+
+####Tall
+
+    =|  p
+        q
+
+####Wide
+
+    =|(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tsbr p=tile q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%tsbr *]  [%tsls ~(bunt al p.gen) q.gen]
+      ==
+
+##Notes
+
+`=|(p q)` is the same as `=+(_p q)`.
+
+::TISCOL
+#[tiscol, `=:`, %tscl](#tscl)
+
+##Syntax
+
+`=:`, `tiscol`, `[%tscl p=tram q=twig]` is a synthetic hoon that produces `q` with the subject modified by `p`.
+
+###Form
+
+####Tall
+
+    =:  p.i.p      q.i.p
+        p.i.t.p    q.i.t.p
+        p.i.t.t.p  q.i.t.t.p
+      ==
+    q
+
+####Wide
+
+    None
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tscl p=tram q=twig] 
+      ==
+    ++  tram  (list ,[p=wing q=twig])
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%tscl *]
+        [%tsgr [%cncb [[~ 1] ~] p.gen] q.gen]
+      ==
+
+##Notes
+
+`%tscl` uses `%cncb`, so it cannot change the subject type.
+
+::TISCEN
+XX not used
+
+::TISDOT
+#[tisdot, `=.`, %tsdt](#tsdt)
+
+##Syntax
+
+`=.`, `tisdot`, `[%tsdt p=wing q=twig r=twig]` is a synthetic hoon that produces `r` with `p` in the subject set to `q`.
+
+###Form
+
+####Tall
+
+    =.  p 
+      q
+    r
+
+Queenside:
+
+    =.  p  q
+    r
+
+####Wide
+
+    =.(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tsdt p=wing q=twig r=twig
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%tsdt *]
+        [%tsgr [%cncb [[~ 1] ~] p.gen] q.gen]
+      ==
+
+##Notes
+
+`%tsdt` uses `%cncb`, so it cannot change the subject type.
+
+::TISFAS
+XX not used
+
+::TISGAL
+#[tisgal, `=<`, %tsgl](#tsgl)
+
+##Syntax
+
+`=<`, `tisgal`, `[%tsgl p=twig q=twig]` is a synthetic hoon that
+uses the product of `q` as the subject of `p`.
+
+###Form
+
+####Tall
+
+    =<  p
+    q
+
+####Wide
+
+    =<(p q)
+
+####Irregular
+
+    p:q
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tsgl p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%tsgl *]  [%tsgr q.gen p.gen]
+      ==
+
+##Notes
+
+::TISHEP
+#[tishep, `=-`, %tshp](#tshp)
+
+##Syntax
+
+`=-`, `tishep`, `[%tshp p=twig q=twig]` is a synthetic hoon that
+pushes `q` on the subject and sends it to `p`.
+
+###Form
+
+####Tall
+
+    =-  p
+    q
+
+####Wide
+
+    =-(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tshp p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%tshp *]  [%tsls q.gen p.gen]
+      ==
+
+##Notes
+
+`=-`, the opposite of `=+`, is very useful for code arrangement
+when `q` is much bigger than `p`.
+
+::TISGAR
+#[tisgar, `=>`, %tsgr](#tsgr)
+
+##Syntax
+
+`=>`, `tisgar`, `[%tsgr p=twig q=twig]` is a natural hoon that
+uses the product of `p` as the subject of `q`.
+
+###Form
+
+####Tall
+
+    =>  p
+    q
+
+####Wide
+
+    =>(p q)
+
+####Irregular
+
+    =>(p q)
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tsgr p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-    gen
+          [%tsgr *]  
+        =+  fid=$(gen p.gen, gol %noun)
+        =+  dov=$(sut p.fid, gen q.gen)
+        [p.dov (comb q.fid q.dov)]
+      ==
+
+    ++  comb
+      |=  [mal=nock buz=nock]
+      ^-  nock
+      ?:  ?&(?=([0 *] mal) !=(0 p.mal))
+        ?:  ?&(?=([0 *] buz) !=(0 p.buz))
+          [%0 (peg p.mal p.buz)]
+        ?:  ?=([2 [0 *] [0 *]] buz)
+          [%2 [%0 (peg p.mal p.p.buz)] [%0 (peg p.mal p.q.buz)]]
+        [%7 mal buz]
+      ?:  ?=([^ [0 1]] mal)
+        [%8 p.mal buz]
+      ?:  =([0 1] buz)
+        mal
+      [%7 mal buz]
+
+##Notes
+
+Observe that `=>` strives to be at least slightly non-naive in
+composing Nock formulas.  This is why `=+` can be a synthetic
+hoon, despite matching Nock `8`.
+
+::TISKET
+#[tisket, `=^`, %tskt](#tskt)
+
+##Syntax
+
+`=^`, `tisket`, `[%tskt p=twig q=twig r=twig s=twig]` is a synthetic 
+hoon that handles a product which is a cell of a new result, and
+a mutation to the subject.
+
+###Form
+
+####Tall
+
+Kingside:
+
+     =^    p 
+        q
+      r
+    s
+
+Queenside:
+
+    =^  p  q
+      r
+    s
+
+####Wide
+
+    =^(p q r s)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tskt p=twig q=twig r=twig s=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%tskt *]
+        =+  cog=rusk(gen p.gen)                           ::
+        =+  wuy=(weld rake(gen q.gen) `wing`[%v ~])       ::
+        :+  %tsgr  [%ktts %v ~ 1]                         ::  =>  v=.
+        :+  %tsls  [%ktts %a %tsgr [%cnzy %v] r.gen]      ::  =+  a==>(v \r.gen)
+        :^  %tsdt  wuy  [%tsgl [~ 3] [%cnzy %a]]          ::  =.  \wuy  +.a
+        :+  %tsgr  :-  :+  %ktts  cog                     ::  =>  :-  ^=  \cog
+                       [%tsgl [~ 2] [%cnzy %a]]           ::          -.a
+                   [%cnzy %v]                             ::      v
+        s.gen                                             ::  s.gen
+      ==
+
+##Notes
+
+Language change alert: `p` should be a term, `q` should be a wing.
+
+We use `=^` for the common pattern of a state machine which
+exposes a gate that produces a cell `[result new-state]`.  When
+the state machine is part of the subject - at wing `q` - we often
+want to push the result under a name, as in `=+  p=result`, and
+continue to twig `s` with the change `=.  q  new-state`.
+
+::TISLUS
+#[tislus, `=+`, %tsls](#tsls)
+
+##Syntax
+
+`=+`, `tislus`, `[%tsls p=twig q=twig]` is a synthetic hoon that
+pushes `p` on the subject and sends it to `q`.
+
+###Form
+
+####Tall
+
+     =+  p
+    q
+
+####Wide
+
+    =+(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tsls p=twig q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%tsls *]  [%tsgr [p.gen [~ 1]] q.gen]
+      ==
+
+##Notes
+
+`%tsls` is the Hoon equivalent of Nock `8`.  It is a synthetic
+hoon, though, because we recognize the Nock pattern and optimize
+it in code generation.
+
+::TISPAM
+XX not used
+
+::TISPAT
+XX not used
+
+::TISTAR
+#[tistar, `=*`, %tstr](#tstr)
+
+##Syntax
+
+`=*`, `tistar`, `[%tstr p=term q=wing r=twig]` is a natural hoon
+that creates a `%bull`, or alias, type.
+
+###Form
+
+####Tall
+
+    =*  p  q
+        r
+
+####Wide
+
+    =*(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tstr p=term q=wing r=twig]
+      ==
+
+###Expansion
+
+    ++  mint
+      ?-  gen
+        [%tstr *]  $(gen r.gen, sut (busk p.gen q.gen))
+      ==
+    ::
+    ++  busk
+      ~/  %busk
+      |=  [cog=term hyp=wing]
+      ^-  type
+      (bull [cog hyp (seep %both hyp)] sut)
+    ::
+    ++  bull
+      |=  [bid=twin der=type]
+      ^-  type
+      ?:(|(=(%void der) =(%void s.bid)) %void [%bull bid der])
+
+##Notes
+
+The `%bull` stem will be discussed more in chapter 11.  But
+essentially, it wraps the subject with an alias in which `p`
+means `q`.
+
+::TISSIG
+#[tissig, `=~`, %tssg](#tssg)
+
+##Syntax
+
+`=~`, `tissig`, `[%tssg p=tusk]` is a synthetic hoon that
+composes a list of twigs.
+
+###Form
+
+####Tall
+
+    =~    i.p
+        i.t.p
+        i.t.t.p
+    ==
+ 
+Queenside:
+
+    =~  i.p
+        i.t.p
+        i.t.t.p
+    ==
+
+####Wide
+
+    None
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%tssg p=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%tssg *]
+      ==
+
+##Notes
+
+`=~` is usually used for formatting high-level reefs without
+losing base indentation.
+
+::WUTBAR
+#[wutbar, `?|`, %wtbr](#wtbr)
+
+##Syntax
+
+`?|`, `wutbar`, `[%wtbr p=tusk]` is a synthetic hoon that
+computes the "or" of the loobeans in `p`.
+
+###Definition
+
+    ++  twig  
+      $%  [%wtbr p=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Form
+
+####Tall
+
+    ?|  i.p
+        i.t.p
+        i.t.t.p
+    ==
+
+####Wide
+
+    ?|(i.p i.t.p i.t.t.p)
+
+####Irregular
+
+    |(i.p i.t.p i.t.t.p)
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%wtbr *]
+        |-
+        ?~(p.gen [%dtzz %f 1] [%wtcl i.p.gen [%dtzz %f 0] $(p.gen t.p.gen)])
+      ==
+
+###Notes
+
+Short-circuiting and type inference work as expected in `?|`.
+
+::WUTHEP
+#[wuthep, `?-`, %wthp](#wthp)
+
+##Syntax
+
+`?-`, `wuthep`, `[%wthp p=wing q=tine]` is a synthetic hoon that
+selects a case in `q` for the actual type of `p`.
+
+###Form
+
+####Tall
+
+    Kingside:
+
+    ?-  p
+      p.i.q      q.i.q
+      p.i.t.q    q.i.t.q
+      p.i.t.t.q  q.i.t.t.q
+    ==
+
+Queenside:
+
+    ?-    p
+        p.i.q      
+      q.i.q
+        p.i.t.q    
+      q.i.t.q
+        p.i.t.t.q  
+      q.i.t.t.q
+    ==
+
+####Wide
+
+    ?-(p p.i.q q.i.q, p.i.t.q q.i.t.q, p.i.t.t.q q.i.t.t.q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wthp p=wing q=tine]
+      ==
+    ++  tine  (list ,[p=tile q=twig])
+
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%wthp *]
+        |-
+        ?@  q.gen
+          [%zpfs [%cnzz p.gen]]
+        :^    %wtcl
+            [%wtts p.i.q.gen p.gen]
+          q.i.q.gen
+        $(q.gen t.q.gen)
+      ==
+
+##Notes
+
+`%wthp` is best understood by its expansion, which is a simple
+use of `%wtts`.  Note that because `%wtts` does proper inference,
+a spurious, duplicate or missing case will be detected.
+
+::WUTHAZ
+#[wuthaz, %wthz](#wthz)
+
+##Syntax
+
+`wuthaz`, `[%wthz p=wing q=tine]` is a synthetic hoon that
+selects a case in `q` for the actual type of `p`.
+
+###Form
+
+####Tall
+
+    Kingside:
+
+    ?-  p
+      p.i.q      q.i.q
+      p.i.t.q    q.i.t.q
+      p.i.t.t.q  q.i.t.t.q
+    ==
+
+Queenside:
+
+    ?-    p
+        p.i.q      
+      q.i.q
+        p.i.t.q    
+      q.i.t.q
+        p.i.t.t.q  
+      q.i.t.t.q
+    ==
+
+####Wide
+
+    ?-(p p.i.q q.i.q, p.i.t.q q.i.t.q, p.i.t.t.q q.i.t.t.q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wthz p=tiki q=tine]
+      ==
+    ++  tine  (list ,[p=tile q=twig])
+    ++  tiki
+      $%  [& p=(unit term) q=wing]
+          [| p=(unit term) q=twig]
+      ==
+
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%wthz *]
+        =+  vaw=~(. ah p.gen)
+        %-  gray:vaw
+        [%wthp puce:vaw (turn q.gen |=([a=tile b=twig] [a (blue:vaw b)]))]
+      ==
+    ++  ah
+      |_  tig=tiki
+      ++  blue
+        |=  gen=twig 
+        ^-  twig
+        ?.  &(?=(| -.tig) ?=(~ p.tig))  gen
+        [%tsgr [~ 3] gen]
+      ::
+      ++  gray
+        |=  gen=twig
+        ^-  twig
+        ?-  -.tig
+          &  ?~(p.tig gen [%tstr u.p.tig q.tig gen])
+          |  [%tsls ?~(p.tig q.tig [%ktts u.p.tig q.tig]) gen]
+        ==
+      ::
+      ++  puce
+        ^-  wing
+        ?-  -.tig
+          &  ?~(p.tig q.tig [u.p.tig ~])
+          |  [[%& 2] ~]
+        ==
+      --
+
+##Notes
+
+See the discussion of tikis in chapter 11.
+
+::WUTCOL
+#[wutcol, `?:`, %wtcl](#wtcl)
+
+##Syntax
+
+`?:`, `wutcol`, `[%wtcl p=twig q=twig r=twig]` is a natural hoon
+that produces `q` if `p` is yes (`&`, `0`), or `r` if `p` is no
+(`|`, 1).
+
+###Form
+
+####Tall
+
+    ?:  p
+      q
+    r
+
+####Wide
+
+    ?:(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtcl p=twig q=twig r=twig]
+      ==
+
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%wtcl *]
+        =+  nor=$(gen p.gen, gol bean)
+        =+  fex=(gain p.gen)
+        =+  wux=(lose p.gen)
+        =+  ^=  duy
+            ?:  =(%void fex)
+              ?:(=(%void wux) [%0 0] [%1 1])
+            ?:(=(%void wux) [%1 0] q.nor)
+        =+  hiq=$(sut fex, gen q.gen)
+        =+  ran=$(sut wux, gen r.gen)
+        [(fork p.hiq p.ran) (cond duy q.hiq q.ran)]
+      ==
+    ::
+    ++  gain
+      |=  gen=twig  ^-  type
+      (chip & gen)
+    ::
+    ++  lose
+      |=  gen=twig  ^-  type
+      (chip | gen)
+    ::
+    ++  chip
+      ~/  %chip
+      |=  [way=? gen=twig]  ^-  type
+      ?:  ?=([%wtts *] gen)
+        (cool way q.gen (play ~(bunt al p.gen)))
+      ?:  ?&(way ?=([%wtpm *] gen))
+        |-(?~(p.gen sut $(p.gen t.p.gen, sut ^$(gen i.p.gen))))
+      ?:  ?&(!way ?=([%wtbr *] gen))
+        |-(?~(p.gen sut $(p.gen t.p.gen, sut ^$(gen i.p.gen))))
+      =+  neg=~(open ap gen)
+      ?:(=(neg gen) sut $(gen neg))
+    ::
+    ++  cool
+      |=  [pol=? hyp=wing ref=type]
+      ^-  type
+      =+  peh=`wing`(flop hyp)
+      |-  ^-  type
+      ?~  peh
+        ?:(pol (fuse ref) (crop ref))
+      =>  .(i.peh ?^(i.peh i.peh [%| p=0 q=i.peh]))
+      =+  ^=  poz  ^-  post
+          ?-  -.i.peh
+            &  [p.i.peh %& (peek %both p.i.peh)]
+            |  (finq p.i.peh %both q.i.peh)
+          ==
+      |-  ^-  type
+      ?:  =(1 p.poz)
+        ?-  -.q.poz
+          0  ?-  -.i.peh
+                &  ^$(peh t.peh)
+                |  (face q.i.peh ^$(peh t.peh, sut p.q.poz))
+             ==
+          1  ^$(peh t.peh)
+          2  %+  bull 
+               [p.p.q.poz q.p.q.poz r.p.q.poz ^$(peh t.peh, sut s.p.q.poz)] 
+             q.q.poz
+        ==
+      =+  [now=(cap p.poz) lat=(mas p.poz)]
+      =+  vil=*(set type)
+      |-  ^-  type
+      ?-    sut
+          [%atom *]   %void
+          [%bull *]   (reco |=(p=type (bull p.sut ^$(sut p))))
+          [%cell *]
+        ?:  =(2 now)
+          (cell ^$(p.poz lat, sut p.sut) q.sut)
+        (cell p.sut ^$(p.poz lat, sut q.sut))
+      ::
+          [%core *]   ?.(=(3 now) sut (core ^$(p.poz lat, sut p.sut) q.sut))
+          [%cube *]   (reco |=(p=type ^$(sut p)))
+          [%face *]   (reco |=(p=type (face p.sut ^$(sut p))))
+          [%fork *]
+        ?:  (~(has in vil) sut)
+          %void
+        =>  .(vil (~(put in vil) sut))
+        (fork $(sut p.sut) $(sut q.sut))
+      ::
+          [%hold *]   (reco |=(p=type ^$(sut p)))
+          %noun       (reco |=(p=type ^$(sut p)))
+          %void       %void
+      ==
+    ::
+    ++  cond
+      ~/  %cond
+      |=  [pex=nock yom=nock woq=nock]
+      ^-  nock
+      ?-  pex
+        [1 0]  yom
+        [1 1]  woq
+        *      [%6 pex yom woq]
+      ==
+
+##Notes
+
+It's not unheard of to say `?:` as "if."
+
+::WUTDOT
+#[wutdot, `?.`, %wtdt](#wtdt)
+
+##Syntax
+
+`?.`, `wutdot`, `[%wtdt p=twig q=twig r=twig]` is a synthetic hoon
+that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
+(`|`, 1).
+
+###Form
+
+####Tall
+
+    ?.  p
+      q
+    r
+
+####Wide
+
+    ?:(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtdt p=twig q=twig r=twig]
+      ==
+
+
+###Expansion
+
+    ++  open
+    ^-  twig
+    ?-  gen
+      [%wtdt *]   [%wtcl p.gen r.gen q.gen]
+    ==
+
+##Notes
+
+It's not unheard of to say `?.` as "unless."
+
+::WUTKET
+#[wutket, `?^`, %wtkt](#wtkt)
+
+##Syntax
+
+`?^`, `wutket`, `[%wtkt p=wing q=twig r=twig]` is a synthetic hoon
+that evaluates `r` if `p` is equal to the bunt for its tile, otherwise
+`q` is evaluated.
+
+###Form
+
+####Tall
+
+    ?^  p
+      q
+    r
+
+####Wide
+
+    ?^(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtkt p=wing q=twig r=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%wtkt *]   [%wtcl [%wtts [%axil %atom %$] p.gen] r.gen q.gen]
+      ==
+
+##Notes
+
+::WUTKAZ
+#[wutkaz, %wtkz](#wtkz)
+
+##Syntax
+
+`wutkaz`, `[%wtkz p=tiki q=twig r=twig]` is a synthetic hoon that
+evaluates `r` if `p` is equal to the bunt for its tile, otherwise
+`q` is evaluated.
+
+###Form
+
+####Tall
+
+    ?^  p
+      q
+    r
+
+####Wide
+
+    ?^(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtkz p=tiki q=twig r=twig]
+      ==
+    ++  tiki
+      $%  [& p=(unit term) q=wing]
+          [| p=(unit term) q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%wtkz *]
+        =+  vaw=~(. ah p.gen)
+        %-  gray:vaw
+        [%wtkt puce:vaw (blue:vaw q.gen) (blue:vaw r.gen)]
+      ==
+    ++  ah
+      |_  tig=tiki
+      ++  blue
+        |=  gen=twig 
+        ^-  twig
+        ?.  &(?=(| -.tig) ?=(~ p.tig))  gen
+        [%tsgr [~ 3] gen]
+      ::
+      ++  gray
+        |=  gen=twig
+        ^-  twig
+        ?-  -.tig
+          &  ?~(p.tig gen [%tstr u.p.tig q.tig gen])
+          |  [%tsls ?~(p.tig q.tig [%ktts u.p.tig q.tig]) gen]
+        ==
+      ::
+      ++  puce
+        ^-  wing
+        ?-  -.tig
+          &  ?~(p.tig q.tig [u.p.tig ~])
+          |  [[%& 2] ~]
+        ==
+      --
+
+##Notes
+
+See the discussion of tikis in chapter 11.
+
+::WUTGAL
+#[wutgal, `?<`, %wtgl](#wtgl)
+
+##Syntax
+
+`?<`, `wutgal`, `[%wtgl p=twig q=twig]` is a synthetic hoon that
+produces `q`, asserting that `p` is no (`|`, 1).
+
+###Form
+
+####Tall
+
+    ?<  p
+        q
+
+####Wide
+
+    ?<(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtgl p=twig]
+      ==
+
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%wtgl *]   [%wtcl p.gen [%zpzp ~] q.gen]
+      ==
+
+##Notes
+
+::WUTGAR
+#[wutgar, `?>`, %wtgr](#wtgr)
+
+##Syntax
+
+`?>`, `wutgar`, `[%wtgr p=twig q=twig]` is a synthetic hoon that
+produces `q`, asserting that `p` is yes (`&`, 0).
+
+###Form
+
+####Tall
+
+    ?>  p
+        q
+
+
+####Wide
+
+    ?>(p q)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtgr p=twig]
+      ==
+
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%wtgr *]   [%wtcl p.gen q.gen [%zpzp ~]]
+      ==
+
+##Notes
+
+::WUTLUS
+#[wutlus, `?+`, %wtls](#wtls)
+
+##Syntax
+
+`?+`, `wutlus`, `[%wtls p=wing q=twig r=tine]` is a synthetic
+hoon that selects a case in `q` for the actual type of `p`.
+
+###Form
+
+####Tall
+
+    Kingside:
+
+    ?+  p
+      q
+      p.i.r      q.i.r
+      p.i.t.r    q.i.t.r
+      p.i.t.t.r  q.i.t.t.r
+    ==
+
+Queenside:
+
+    ?+    p
+      q
+        p.i.r      
+      q.i.r
+        p.i.t.r    
+      q.i.t.r
+        p.i.t.t.r  
+      q.i.t.t.r
+    ==
+
+####Wide
+
+    ?+(p p.i.r q.i.r, p.i.t.r q.i.t.r, p.i.t.t.r q.i.t.t.r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtls p=wing q=twig r=tine]
+      ==
+    ++  tine  (list ,[p=tile q=twig])
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?+    gen
+          [%wtls *]
+        [%wthp p.gen (weld r.gen `_r.gen`[[[%axil %noun] q.gen] ~])]
+      ==
+
+##Notes
+
+`%wtls` is best understood by its expansion, which is a simple
+use of `%wtts`.  Note that because `%wtts` does proper inference,
+a spurious, duplicate or missing case will be detected.
+
+::WUTLAZ
+#[wutlaz, %wtlz](#wtlz)
+
+##Syntax
+
+`wutlaz`, `[%wtlz p=wing q=twig r=tine]` is a synthetic
+hoon that selects a case in `q` for the actual type of `p`.
+
+###Form
+
+####Tall
+
+Kingside:
+
+    ?+  p
+      q
+      p.i.r      q.i.r
+      p.i.t.r    q.i.t.r
+      p.i.t.t.r  q.i.t.t.r
+    ==
+
+Queenside:
+
+    ?+    p
+      q
+        p.i.r      
+      q.i.r
+        p.i.t.r    
+      q.i.t.r
+        p.i.t.t.r  
+      q.i.t.t.r
+    ==
+
+####Wide
+
+    ?+(p p.i.r q.i.r, p.i.t.r q.i.t.r, p.i.t.t.r q.i.t.t.r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtlz p=tiki q=twig r=tine]
+      ==
+    ++  tine  (list ,[p=tile q=twig])
+    ++  tiki
+      $%  [& p=(unit term) q=wing]
+          [| p=(unit term) q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?+    gen
+          [%wtlz *]
+        =+  vaw=~(. ah p.gen)
+        %-  gray:vaw
+        ^-  twig
+        :+  %wtls  puce:vaw 
+        [(blue:vaw q.gen) (turn r.gen |=([a=tile b=twig] [a (blue:vaw b)]))]
+      ==
+    ++  ah
+      |_  tig=tiki
+      ++  blue
+        |=  gen=twig 
+        ^-  twig
+        ?.  &(?=(| -.tig) ?=(~ p.tig))  gen
+        [%tsgr [~ 3] gen]
+      ::
+      ++  gray
+        |=  gen=twig
+        ^-  twig
+        ?-  -.tig
+          &  ?~(p.tig gen [%tstr u.p.tig q.tig gen])
+          |  [%tsls ?~(p.tig q.tig [%ktts u.p.tig q.tig]) gen]
+        ==
+      ::
+      ++  puce
+        ^-  wing
+        ?-  -.tig
+          &  ?~(p.tig q.tig [u.p.tig ~])
+          |  [[%& 2] ~]
+        ==
+      --
+
+##Notes
+
+See the discussion of tikis in chapter 11.
+
+::WUTPAM
+#[wutpam, `?&`, %wtpm](#wtpm)
+
+##Syntax
+
+`?&`, `wutpam`, `[%wtpm p=tusk]` is a synthetic hoon that
+computes the "and" of the loobeans in `p`.
+
+###Form
+
+####Tall
+
+    ?&  i.p
+        i.t.p
+        i.t.t.p
+    ==
+
+####Wide
+
+    ?&(i.p i.t.p i.t.t.p)
+
+####Irregular
+
+    &(i.p i.t.p i.t.t.p)
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtpm p=tusk]
+      ==
+    ++  tusk  (list twig)
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%wtpm *]
+        |-
+        ?~(p.gen [%dtzz %f 0] [%wtcl i.p.gen $(p.gen t.p.gen) [%dtzz %f 1]])
+      ==
+
+##Notes
+
+Short-circuiting and type inference work as expected in `?&`.
+
+::WUTPAT
+#[wutpat, `?@`, %wtpt](#wtpt)
+
+##Syntax
+
+`?@`, `wutpat`, `[%wtpt p=wing q=twig r=twig]` is a synthetic hoon 
+that produces `q` if `p` is an atom, `r` otherwise.
+
+###Form
+
+####Tall
+
+Kingside:
+
+    ?@  p
+      q
+    r
+
+####Wide
+
+    ?@(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtpt p=wing q=twig r=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-  gen
+        [%wtpt *]  [%wtcl [%wtts [%axil %atom %$] p.gen] q.gen r.gen]
+      ==
+
+##Notes
+
+::WUTPAZ
+#[wutpaz, %wtpz](#wtpz)
+
+##Syntax
+
+`wutpaz`, `[%wtpz p=tiki q=twig r=twig]` is a synthetic hoon 
+that produces `q` if `p` is an atom, `r` otherwise.
+
+###Form
+
+####Tall
+
+?@  p
+      q
+    r
+
+####Wide
+
+    ?@(p q r)
+
+####Irregular
+
+    None
+
+###Reduction
+
+###Examples
+
+##Semantics
+
+###Definition
+
+    ++  twig  
+      $%  [%wtpz p=tiki q=twig r=twig]
+      ==
+    ++  tiki
+      $%  [& p=(unit term) q=wing]
+          [| p=(unit term) q=twig]
+      ==
+
+###Expansion
+
+    ++  open
+      ^-  twig
+      ?-    gen
+          [%wtpz *]
+      =+  vaw=~(. ah p.gen)
+      %-  gray:vaw
+      [%wtpt puce:vaw (blue:vaw q.gen) (blue:vaw r.gen)]
+      ==
+    ++  ah
+      |_  tig=tiki
+      ++  blue
+        |=  gen=twig 
+        ^-  twig
+        ?.  &(?=(| -.tig) ?=(~ p.tig))  gen
+        [%tsgr [~ 3] gen]
+      ::
+      ++  gray
+        |=  gen=twig
+        ^-  twig
+        ?-  -.tig
+          &  ?~(p.tig gen [%tstr u.p.tig q.tig gen])
+          |  [%tsls ?~(p.tig q.tig [%ktts u.p.tig q.tig]) gen]
+        ==
+      ::
+      ++  puce
+        ^-  wing
+        ?-  -.tig
+          &  ?~(p.tig q.tig [u.p.tig ~])
+          |  [[%& 2] ~]
+        ==
+      --
+
+##Notes
+
+See the discussion of tikis in chapter 11.
+
+::WUTSIG
+::WUTSAZ
+::WUTTIS
+::WUTZAP
+::ZAPCAB
+::ZAPCOM
+::ZAPCEN
+::ZAPFAS
+::ZAPGAR
+::ZAPSEM
+::ZAPTIS
+::ZAPWUT
+::ZAPZAP
+
+#buclus `$+` %bcls
+
+##Syntax
+
+`$+`, `buclus`, a tile for a gate which accepts `p` and produces `q`. The spectre of function signatures once again rears its ugly head - but `$+(p q)` is no different from `$_(|+(p _q))`.
+
+###Form
+`p` is a tile 
+`q` is a tile
+
+
+####Tall
+
+    $+  p  q
+
+####Wide
+
+    $+(p q)
+
+####Irregular
+None
+
+###Reduction
+
+    $+  p  q
+
+reduces to
+
+    $_  |+  p  _q
+
+###Examples
+
+    ++  sort                                                ::  quicksort
+      ~/  %sort
+      !:
+      |*  [a=(list) b=$+([* *] ?)]
+      =>  .(a ^.(homo a))
+      |-  ^+  a
+      ?~  a  ~
+      %+  weld
+        $(a (skim t.a |=(c=_i.a (b c i.a))))
+      ^+  t.a
+      [i.a $(a (skim t.a |=(c=_i.a !(b c i.a))))]
+
+In ++sort, `$+` is a tile for a comparator gate, which takes two nouns and produces a loobean.
+
+##Semantics
+
+`$+` is a tile.
+
+###Definition
+
+     ++  noil
+      |=  tol=?
+      =<  ;~  pfix  buc
+            %-  stew  
+            ^.  stet  ^.  limo
+              :-  '+'
+                %+  cook
+                  |=([a=tile b=tile] [%weed [%brls a [%bccb b]]])
+                ;~(pfix lus (toad exqb))
+                ==
+            ==
+          ==
+
+###Expansion
+None
+
+###Notes
+
+
+
+
+
+
+  Example(s):
+    ~fantyv-ralpen/try=> _twig
+    [% p=0]
+
+++  tine    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tine
+    ~    
+
+++  tusk    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tusk
+    ~
+
+++  tyre    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tyre
+    ~
+
+++  tyke    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tyke
+    ~
+
+++  tram    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tram
+    ~    
+
+++  tone    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tone
+    [%0 p=0]
+
+++  nock    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _nock
+    [%0 p=0]
+
+Specifies the Nock expressions evaluated by the intra-Hoon implementation of Nock. 
+
+Expressions conforming to ++nock are either cells of two ++nock conformant expressions, or cells whose head indicates the Nock operation to be performed on 
+the tail. ++nock is a bush
+
+
+++  toon    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _toon
+    [%0 p=0]
+
+++  tune    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _tune
+    [%0 p=[p=%void q=0]]
+
+++  twin    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _twin
+    [p=%$ q=~ r=0 s=%void]    
+
+++  type    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _type
+    %void
+
+++  typo 
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _typo
+    %void
+
+++  udal 
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _udal
+    [p=0 q=~]
+
+++  udon    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _udon
+    [p=%c q=[%d p=[%0 p=0] q=[%0 p=0]]]
+
+++  umph    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _umph
+    %c
+
+++  unce    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> (_unce)
+    [%.y p=0]
+
+++  unit    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _(unit)
+    ~
+
+++  upas    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _upas
+    [%0 q=0]
+
+++  urge    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _(urge)
+    ~
+
+++  vase    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _vase
+    [p=%void q=0]
+
+++  vise    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _vise
+    [p=%void q=0]
+
+++  wall    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _wall
+    <<>>
+
+++  wain    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _wain
+    <||>
+
+++  wing    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _wing
+    ~
+
+++  wine    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _wine
+    %yarn    
+
+++  woof    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _woof
+    ~
+
+++  wonk    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _wonk
+    ! exit
+    
+++  map   
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _(map)
+    {}
+
+++  qeu    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> (_qeu)
+    {}
+
+++  set    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> (_set)
+    {}
+
+++  jar    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> _(jar)
+    {}
+
+++  jug    
+  Description:
+
+  Explanation:
+
+  Example(s):
+    ~fantyv-ralpen/try=> (_jug)
+    {}
+
+volume 2, Hoon libraries and compiler
+
+chapter 2a, basic unsigned math
+
+++  add  
+++  cap  
+++  dec  
+++  div  
+++  fac  
+++  gte  
+++  gth  
+++  lte  
+++  lth  
+++  mas  
+++  max  
+++  min  
+++  mod  
+++  mul  
+++  peg  
+++  sub  
+
+
+chapter 2b, basic containers
+
+Section 2bA, units                    
+
+++  biff 
+++  bind 
+++  clap 
+++  drop 
+++  fall 
+++  mate 
+++  need 
+++  some 
+
+Section 2bB, lists                    
+
+++  flop 
+++  homo 
+++  limo 
+++  lent 
+++  levy
+++  lien 
+++  reel 
+++  roll 
+++  skid 
+++  skim 
+++  skip 
+++  scag 
+++  slag 
+++  snag 
+++  sort 
+++  swag 
+++  turn 
+++  weld 
+++  welp 
+++  wild 
+++  zing 
+
+chapter 2c, simple noun surgery
+
+section 2cA, bit surgery              **capitalization of "section" inconsistent in source**
+
+++  bex  
+++  xeb  
+++  can  
+++  cat  
+++  cut  
+++  end  
+++  fil  
+++  lsh  
+++  met  
+++  rap  
+++  rep  
+++  rip  
+++  rsh  
+++  swap 
+
+section 2cB, bit logic                
+
+++  con  
+++  dis  
+++  mix  
+++  not  
+
+section 2cC, noun orders              
+
+++  aor  
+++  dor  
+++  gor  
+++  hor  
+++  vor
+
+section 2cD, insecure hashing         
+
+++  fnv
+++  mug
+
+section 2cE, phonetic base            
+
+++  po
+  ++  ind 
+  ++  ins 
+  ++  tod 
+  ++  tos 
+
+section 2cF, signed and modular ints  
+
+++  si    
+  ++  abs 
+  ++  dif 
+  ++  dul 
+  ++  fra 
+  ++  new 
+  ++  old 
+  ++  pro 
+  ++  rem 
+  ++  sum 
+  ++  sun 
+  ++  syn 
+++  fe    
+  ++  dif 
+  ++  inv 
+  ++  net 
+  ++  out 
+  ++  rol 
+  ++  ror 
+  ++  sum 
+  ++  sit 
+
+section 2cG, floating point           
+
+++  rlyd  
+++  rlyh  
+++  rlyq  
+++  rlys  
+++  ryld  
+++  rylh  
+++  rylq  
+++  ryls  
+
+section 2cH, urbit time               
+
+++  year  
+++  yore  
+++  yell  
+++  yule  
+++  yall  
+++  yawn  
+++  yelp  
+++  yo    
+      ++  day 
+      ++  era 
+      ++  hor 
+      ++  jes 
+      ++  mit 
+      ++  moh 
+      ++  moy 
+      ++  qad 
+      ++  yer 
+
+section 2cI, almost macros            
+++  hard
+++  soft
+
+chapter 2d, containers
+
+section 2dA, sets     
+                
+++  apt       
+++  in        
+  +-  all
+  +-  any
+  +-  del
+  +-  dig
+  +-  gas
+  +-  has
+  +-  put
+  +-  rep
+  +-  tap
+  +-  wyt
+
+section 2dB, maps                     
+
+++  ept       
+++  ja        
+  +-  get
+  +-  add
+++  ju        
+  +-  get
+  +-  has
+  +-  put
+++  by        
+  +-  all
+  +-  any
+  +-  del
+  +-  dig
+  +-  gas
+  +-  get
+  +-  has
+  +-  mar
+  +-  put
+  +-  rep
+  +-  rib
+  +-  run
+  +-  tap
+  +-  uni
+  +-  wyt
+
+section 2dC, queues                   
+
+++  to        
+  +-  bal
+  +-  dep
+  +-  gas
+  +-  get
+  +-  nap
+  +-  put
+  +-  tap
+  +-  top
+
+section 2dD, casual containers        
+
+++  mo        
+++  sa        
+++  qu        
+
+chapter 2e, miscellaneous libs
+
+section 2eA, packing          
+        
+++  cue       
+++  jam       
+++  mat       
+++  rub       
+
+section 2eB, parsing (tracing)        
+
+++  last  
+++  lust  
+
+section 2eC, parsing (custom rules)   
+
+++  cold  
+++  cook  
+++  easy  
+++  fail  
+++  full  
+++  funk  
+++  here  
+++  jest  
+++  just  
+++  knee  
+++  mask  
+++  next  
+++  sear  
+++  shim  
+++  stag  
+++  stet
+++  stew
+++  stir
+++  stun  
+
+section 2eD, parsing (combinators)    
+
+++  bend  
+++  comp
+++  glue  
+++  pfix  
+++  plug  
+++  pose  
+++  sfix  
+
+section 2eE, parsing (composers)      
+
+++  bass
+++  boss
+++  ifix
+++  more
+++  most
+++  plus  
+++  slug
+++  star
+
+section 2eF, parsing (ascii)          
+
+++  ace 
+++  bar 
+++  bas 
+++  buc 
+++  cab 
+++  cen 
+++  col 
+++  com 
+++  doq 
+++  dot 
+++  fas 
+++  gal 
+++  gar 
+++  hax 
+++  kel 
+++  ker 
+++  ket 
+++  lus 
+++  hep 
+++  pel 
+++  pam 
+++  per 
+++  pat 
+++  sel 
+++  sem 
+++  ser 
+++  sig 
+++  soq 
+++  tar 
+++  tec 
+++  tis 
+++  wut 
+++  zap 
+
+section 2eG, parsing (whitespace)     
+
+++  dog 
+++  doh 
+++  dun 
+++  duz 
+++  gah 
+++  gap 
+++  gaq 
+++  gay 
+++  vul 
+
+section 2eH, parsing (idioms)         
+
+++  alf 
+++  aln 
+++  alp 
+++  bet 
+++  bin 
+++  but 
+++  cit 
+++  dem 
+++  dit 
+++  gul 
+++  gon 
+++  hex 
+++  hig 
+++  hit 
+++  low 
+++  mes 
+++  nix 
+++  nud 
+++  poy 
+++  qit 
+++  qut 
+++  sym
+++  ven 
+++  vit 
+
+section 2eI, parsing (external)       
+
+++  rash
+++  rush
+++  rust
+++  scan
+
+section 2eJ, formatting (basic text)  
+
+++  cass
+++  cuss
+++  crip
+++  mesc
+++  runt
+++  sand
+++  sane
+++  trim
+++  trip
+++  teff
+++  turf
+++  tuba
+++  tufa
+++  tuft
+++  wack
+++  wick
+++  woad
+++  wood
+
+section 2eK, formatting (layout)      
+
+++  re
+  ++  ram
+  ++  win
+    ++  din 
+    ++  fit 
+    ++  rig
+    ++  wig
+
+section 2eL, formatting (path)        
+
+++  ab
+  ++  bix  
+  ++  hif  
+  ++  huf  
+  ++  hyf  
+  ++  pev  
+  ++  pew  
+  ++  piv  
+  ++  piw  
+  ++  qeb  
+  ++  qex  
+  ++  qib  
+  ++  qix  
+  ++  seb  
+  ++  sed  
+  ++  sev  
+  ++  sew  
+  ++  sex  
+  ++  sib  
+  ++  siq  
+  ++  sid  
+  ++  siv  
+  ++  siw  
+  ++  six  
+  ++  sov  
+  ++  sow  
+  ++  sox  
+  ++  ted  
+  ++  tip  
+  ++  tiq  
+  ++  tid  
+  ++  til  
+  ++  urs  
+  ++  urt  
+  ++  voy  
+  ++  vym  
+  ++  vyn  
+++  ag
+  ++  ape  
+  ++  bay  
+  ++  bip  
+  ++  dem  
+  ++  dim  
+  ++  dum  
+  ++  fed  
+  ++  hex  
+  ++  lip  
+  ++  qut  
+  ++  sym  
+  ++  tyq  
+  ++  viz  
+  ++  vum  
+  ++  wiz  
+++  co
+      ++  rear
+      ++  rent
+      ++  rend
+      ++  a-co
+      ++  d-co
+      ++  r-co
+      ++  s-co
+      ++  v-co
+      ++  w-co
+      ++  x-co
+      ++  y-co
+      ++  z-co
+  ++  em-co
+  ++  ox-co
+  ++  ro-co
+++  ne
+  ++  d  
+  ++  x  
+  ++  v  
+  ++  w  
+++  mu
+  ++  zag
+  ++  zig
+  ++  zug
+++  so
+  ++  bisk
+  ++  crub
+  ++  nuck
+  ++  nusk
+  ++  perd
+  ++  royl
+  ++  tash
+  ++  twid
+  ++  zust
+++  scot 
+++  scow 
+++  slav  
+++  slaw
+++  slay
+++  smyt
+
+section 2eM, regular-expressions      
+
+++  pars
+++  nor
+++  les  
+++  lep  
+++  alm  
+++  alb  
+++  mis  
+++  anns 
+++  mall
+++  bets
+++  ranc
+++  flap 
+++  rang
+++  chun
+++  seac
+++  sead
+++  sade
+++  seap
+++  cape
+++  lower
+++  upper
+++  digit
+++  print
+++  graph
+++  blank
+++  space
+++  cntrl
+++  alpha
+++  alnum
+++  punct
+++  wordc
+++  white
+++  xdigi
+++  chad
+++  escd
+++  escp
+++  unid
+++  proc 
+++  cont
+++  abor
+++  matc
+++  chet
+++  blak 
+++  deep
+++  rexp 
+++  repg 
+
+section 2eN, pseudo-cryptography      
+
+++  un   
+  ++  wre
+  ++  wre
+  ++  xaf
+  ++  xar
+  ++  zaf
+  ++  zar
+  ++  zyf
+  ++  zyr
+
+section 2eO, virtualization           
+
+++  mack
+++  mink
+++  mock
+++  mook
+++  mang
+++  mong
+++  mung
+++  mule 
+++  mute 
+
+section 2eP, diff          **noted as "(move me)" in source**
+
+++  berk 
+++  diff 
+++  loss 
+  ++  abet
+  ++  hink
+  ++  lonk
+  ++  lune
+  ++  merg
+  ++  main
+++  locz  
+++  lore  
+++  role  
+++  lump  
+++  lure  
+++  limp  
+++  hump  
+++  husk  
+++  lurk  
+++  lusk  
+  ++  abet
+  ++  done
+  ++  main
+++  nude   
+  ++  axes 
+  ++  tred 
+
+section 2eW, lite number theory           
+
+++  egcd   
+++  pram   
+++  ramp   
+++  fo     
+  ++  dif
+  ++  exp
+  ++  fra
+  ++  inv
+  ++  pro
+  ++  sit
+  ++  sum
+++  ga     
+      ++  dif 
+      ++  dub 
+      ++  pro 
+      ++  toe 
+      ++  sit 
+  ++  fra     
+  ++  inv     
+  ++  pow     
+  ++  pro     
+
+section 2eX, jetted crypto                
+
+++  aesc      
+  ++  en      
+  ++  de      
+++  ahem      
+        ++  cipa 
+          ++  co 
+          ++  ix 
+          ++  ro 
+          ++  su 
+    ++  pen      
+      ++  co  
+      ++  ix  
+      ++  ro  
+      ++  su  
+    ++  pin   
+      ++  co  
+      ++  ix  
+      ++  ro  
+      ++  su  
+    ++  mcol
+    ++  pode  
+    ++  sube  
+  ++  be      
+          ++  ankh
+          ++  sark
+          ++  srow
+          ++  subs
+  ++  ex      
+  ++  ix      
+++  curt      
+        ++  cla
+        ++  sqr
+        ++  inv
+        ++  cad
+        ++  cub
+++  ed         
+    ++  norm  
+    ++  xrec  
+    ++  ward  
+    ++  scam  
+    ++  etch  
+    ++  curv  
+    ++  deco  
+    ++  bb
+  ++  puck    
+  ++  suck    
+  ++  sign    
+  ++  veri    
+
+section 2eY, SHA-256 
+
+++  shad  
+++  shaf  
+++  shak  
+++  sham  
+++  shas  
+++  shax  
+++  shaw  
+++  og    
+  ++  rad 
+  ++  raw 
+++  shaz  
+++  shal  
+++  shan  
+
+section 2eZ, OLD rendering
+
+++  show  
+  ++  shep
+  ++  shop
+++  at
+  ++  r
+  ++  rf 
+  ++  rn 
+  ++  rt 
+  ++  rta
+  ++  rtam
+  ++  rub 
+  ++  rud 
+  ++  rum
+  ++  rup
+  ++  ruv
+  ++  rux 
+
+chapter 2f, Hoon proper
+
+section 2fA, miscellaneous funs       
+
+++  bull
+++  cain  
+++  cell
+++  core
+++  cube
+++  face
+++  bean  
+++  flay
+++  flee
+++  foil
+++  fork
+++  cove
+++  comb
+++  cond
+++  cons
+++  fitz
+++  flan
+++  flip
+++  flor
+++  hike
+++  hoax
+++  hoof
+++  jock
+++  look
+++  make
+++  noah  
+++  onan  
+++  rain
+++  ream
+++  reck
+++  seed
+++  seem  
+++  seer  
+++  sell
+++  pave
+++  loot
+++  slam
+++  slim
+++  slit
+++  slym
+++  slap
+++  slop
+++  skol
+++  spat  
+++  spuc
+++  spec
+++  spud  
+++  slot
+++  slum
+++  stab
+++  wash
+
+section 2fB, macro expansion          
+
+++  ah
+  ++  blue
+  ++  gray
+  ++  puce
+++  al
+  ++  blah
+  ++  home
+  ++  bunt
+  ++  clam
+  ++  cloq
+  ++  whip
+++  ap
+  ++  etch
+  ++  feck
+  ++  hock
+  ++  open
+  ++  rake
+  ++  rusk
+
+section 2fC, compilation proper       
+
+++  ut
+  ++  burn
+  ++  busk
+  ++  conk
+  ++  crop
+    ++  dext
+    ++  sint
+  ++  cool
+  ++  dank
+  ++  dart
+  ++  deal
+  ++  dial
+  ++  dish
+  ++  doge
+  ++  dole
+  ++  duck
+  ++  dune
+  ++  dunk
+  ++  fino
+  ++  fink
+  ++  finq
+  ++  fire
+  ++  firm
+  ++  fish
+  ++  fuse
+  ++  gain
+  ++  hang
+  ++  harp
+  ++  lose
+  ++  chip
+  ++  heal
+  ++  mint
+    ++  nice
+    ++  grow
+  ++  moot
+  ++  mull
+    ++  both
+    ++  nice
+    ++  grow
+    ++  bake
+  ++  meet  
+  ++  nest
+    ++  cong
+    ++  cram
+    ++  dext
+    ++  sint
+  ++  park
+  ++  peek
+  ++  play
+  ++  reco
+  ++  repo
+  ++  rest
+  ++  seek
+  ++  seep
+  ++  sift
+  ++  snub
+  ++  tack
+  ++  tock
+  ++  wrap
+
+section 2fD, grammar                  
+
+++  vang
+++  vast
+  ++  gash  
+  ++  gasp  
+  ++  glam  
+  ++  hasp  
+  ++  mota  
+  ++  plex
+  ++  pray
+  ++  prey
+  ++  phax
+  ++  posh
+  ++  poof
+  ++  poon
+  ++  poor
+  ++  porc
+  ++  rump
+  ++  rood
+  ++  rupl
+  ++  sail 
+    ++  ape
+    ++  amp
+    ++  bam
+    ++  bat
+    ++  bet
+    ++  fry
+    ++  hag
+    ++  hig
+    ++  hog
+    ++  hoy
+    ++  hul
+    ++  jaw
+    ++  lif
+    ++  luf
+    ++  nal
+    ++  nol
+    ++  nol
+    ++  nup
+    ++  pab
+    ++  ped
+    ++  pep
+    ++  puv
+    ++  rab
+    ++  sag
+  ++  scat
+  ++  soil
+  ++  sump 
+  ++  noil
+    ++  toad
+    ++  rung
+    ++  gunk
+    ++  muck
+    ++  butt
+    ++  loaf
+    ++  lobe
+    ++  exqa
+    ++  exqb
+    ++  exqc
+    ++  exqd
+    ++  exqe
+  ++  norm
+    ++  boog
+    ++  wisp
+    ++  toad
+    ++  rune
+    ++  glop
+    ++  gunk
+    ++  butt
+    ++  ulva
+    ++  hank
+    ++  loaf
+    ++  lobe
+    ++  mash
+    ++  muck
+    ++  teak
+    ++  race
+    ++  rack
+    ++  rick
+    ++  expa
+    ++  expb
+    ++  expc
+    ++  expd
+    ++  expe
+    ++  expf
+    ++  expg
+    ++  exph
+    ++  expi
+    ++  expj
+    ++  expk
+    ++  expm
+    ++  expn
+    ++  expo
+    ++  expp
+    ++  expq
+    ++  expr
+    ++  exps
+    ++  expt
+    ++  expu
+    ++  expv
+    ++  expw
+    ++  expx
+    ++  expy
+    ++  expz
+    ++  hina
+    ++  hinb
+    ++  hinc
+    ++  hind
+    ++  hine
+    ++  hinf
+    ++  hing
+    ++  bonk
+    ++  bont
+    ++  bony
+    ++  bonz
+  ++  lung
+  ++  long
+  ++  lobo
+  ++  loon
+  ++  lute
+  ++  rope
+  ++  tall
+  ++  wide
+  ++  hill
+  ++  howl
+  ++  toil
+  ++  wart
+++  vest
+++  vice
+
+volume 3, Arvo models and skeleton
+
+++  arch  
+++  bead  
+++  care  
+++  case  
+++  desk  
+++  cage  
+++  chop  
+++  curd  
+++  disk  
+++  duct  
+++  gene  
+++  glob  
+++  herd  
+++  hilt  
+++  hypo  
+++  khan  
+++  lens    
+      ++  v 
+      ++  w 
+      ++  x 
+      ++  y 
+      ++  z 
+++  logo 
+++  lode 
+++  mark 
+++  mill 
+++  milt 
+++  monk 
+++  mold 
+++  muse 
+++  mosh 
+++  move 
+++  ovum 
+++  pane 
+++  pone 
+++  ship 
+++  sled 
+++  slut 
+++  vile 
+++  wire 
+++  slod 
+++  slub 
+
+section 3bE, Arvo core                
+
+++  vent 
+  ++  ruck   
+  ++  wink   
+    ++  doze
+    ++  sike
+    ++  souk
+    ++  sunk
+    ++  song
+    ++  spuc
+    ++  sump
+    ++  said
+    ++  scry
+    ++  soar
+    ++  swim
+++  vint    
+++  viol    
+++  is      
+  ++  beck
+  ++  dink  
+  ++  dint  
+  ++  doos  
+  ++  hurl  
+  ++  race  
+  ++  fire  
+  ++  jack  
+  ++  kick  
+
+Postface
+
+    ++  come
+    ++  keep
+    ++  load
+    ++  peek
+    ++  poke
+    ++  wish
+++  come    
+++  keep    
+++  load    
+++  peek    
+++  poke    
+++  vega    
+++  veer    
+++  wish    
