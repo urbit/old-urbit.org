@@ -493,7 +493,7 @@ Section 2bA, units
   Description:
         Accepts a unit 'a' and a gate 'b', producing a unit with value (b u.a) or, when a is null, null.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts a unit and a gate.
+        Creates a wet %gold gate with a sample which accepts a unit and a gate.
         Builds an if-then-else statement on "a is null."
         If so, produce null.
         Else, produce the a unit with value (b u.a), gate 'b' slammed with u.a.
@@ -510,7 +510,7 @@ Section 2bA, units
   Description:
         Applies a binary operation to the values of two units, producing the product as a unit.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts two units and a gate.
+        Creates a wet %gold gate with a sample which accepts two units and a gate.
         Builds an if-then-else statment on "a is null."
         If so, produce b.
         Else, build an if-then-else statement on "b is null."
@@ -533,7 +533,7 @@ Section 2bA, units
   Description:
         Accepts a unit and produces the list [u.a ~] or null when the unit is null.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts a unit.
+        Creates a wet %gold gate with a sample which accepts a unit.
         Builds an if-then-else statement on "a is null."
         If so, produces null.
         Else, produce the list [u.a ~].
@@ -551,7 +551,7 @@ Section 2bA, units
   Description:
          a default value 'b' for the unit 'a' when it is null.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts a unit and any noun.
+        Creates a wet %gold gate with a sample which accepts a unit and any noun.
         Produces b if a is null and u.a if it is not.
   Examples:
         ~talsur-todres/try=> (fall ~ `a`)
@@ -565,7 +565,7 @@ Section 2bA, units
   Description:
         Produces the unit 'a' or 'b' which is not null and crashes with error "mate" if they are equal.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts a two units.
+        Creates a wet %gold gate with a sample which accepts a two units.
         Builds an if-then-else statement on "b is null."
         If so, produce a.
         Else, build an if-then-else statement on "a is null."
@@ -593,7 +593,7 @@ Section 2bA, units
   Description:
         Retrieves the value from a unit, crashing if the unit is null.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts a unit.
+        Creates a wet %gold gate with a sample which accepts a unit.
         Builds an if-then-else statement on "a is an atom."
         If so, crash.
         Else, produce u.a from the unit a.
@@ -611,7 +611,7 @@ Section 2bA, units
   Description:
         Casts any noun a to its unit, [~ a].
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts any noun.
+        Creates a wet %gold gate with a sample which accepts any noun.
         Produces the tuple [~ u=a], the unit of value a.
   Examples:
         ~divreg-misdef/try=> (some [`a` `b`])
@@ -629,7 +629,7 @@ Section 2bB, lists
         Produces the list 'a' with the elements reversed.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a single list.
+        Creates a wet %gold gate with a sample which accepts a single list.
         'a' is then replaced with (homo a) and used as the subject for the code below (=>).
         The type of the result must be the same as a, our argument list.
         Let b be a list of the type of the icon of a, as it is bunted.
@@ -653,7 +653,7 @@ Section 2bB, lists
   Description:
         Homogenizes a lists' type information.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts a single list.
+        Creates a wet %gold gate with a sample which accepts a single list.
         Makes the type of the result the type of the product of the code below (^+).
         The subject of the arm ($) is then the product of the barcen statement below (=<).
         Creates a %gold core (|%) and the arm '+-  $'.
@@ -677,7 +677,7 @@ Section 2bB, lists
   Description:
         Produces a list from any null-terminated tuple.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts a single list.
+        Creates a wet %gold gate with a sample which accepts a single list.
         Makes the type of the result the type of the product of the code below (^+).
         The subject of the arm ($) is then the product of the barcen statement below (=<).
         Creates a %gold core (|%) and the arm '+-  $'.
@@ -719,7 +719,7 @@ Section 2bB, lists
         Applies the loobean gate 'b' to every element of the list 'a', producing the logical AND of all the results.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a list and a gate with a sample of any noun
+        Creates a wet %gold gate with a sample which accepts a list and a gate with a sample of any noun
         and produces a loobean.
         Then, a dry %gold trap is created and kicked.  It must produce a loobean.
         Builds an if-then-else statement on "a is an atom."
@@ -742,7 +742,7 @@ Section 2bB, lists
         Applies the loobean gate 'b' to every element of the list 'a', producing the logical OR of all the results.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a list and a gate with a sample of any noun
+        Creates a wet %gold gate with a sample which accepts a list and a gate with a sample of any noun
         and produces a loobean.
         Then, a dry %gold trap is created and kicked.  It must produce a loobean.
         Builds an if-then-else gate on "a is null."  If so, produce false.
@@ -764,7 +764,7 @@ Section 2bB, lists
         list right to left, producing a value of the list element's type.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a list and a trap which accepts two nouns.
+        Creates a wet %gold gate with a sample which accepts a list and a trap which accepts two nouns.
         A dry %gold trap is created and kicked.  It must produce the type of the list's elements.
         Builds a if-then-else statement on "a is an atom."
         If so, produce q.b.
@@ -789,7 +789,7 @@ Section 2bB, lists
         list left to right, producing a value of the list of the element's type.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a list and a trap which accepts two nouns.
+        Creates a wet %gold gate with a sample which accepts a list and a trap which accepts two nouns.
         A dry %gold trap is then created and kicked.  It must produce the type of the list's elements.
         Builds an if-then-else statement on "a is an atom."
         If so, produce q.b.
@@ -809,7 +809,7 @@ Section 2bB, lists
         Accepts a list and a gate which takes any noun and produces a loobean.  Produces two lists, one who's elements
         produce true and one who's produce false by slamming the gate with them.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts any noun and 
+        Creates a wet %gold gate with a sample which accepts a list and a gate which accepts any noun and 
         produces a loobean.
         Creates and kicks a dry %gold trap.  It must produce a tuple of two lists af a's type
         Builds an if-then-else statement on "a is null"  If so, produce a tuple of two nulls.
@@ -828,7 +828,7 @@ Section 2bB, lists
         Produces the sublist of 'a' whose elements produce true by slamming the gate with them.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts any noun and 
+        Creates a wet %gold gate with a sample which accepts a list and a gate which accepts any noun and 
         produces a loobean.
         Creates and kicks a dry %gold trap.
         Which must produce a list of a's type.
@@ -849,7 +849,7 @@ Section 2bB, lists
         Produces the sublist of 'a' whose elments produce false by slamming the gate with them.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts any noun and 
+        Creates a wet %gold gate with a sample which accepts a list and a gate which accepts any noun and 
         produces a loobean.
         Creates and kicks a dry %gold trap.
         Which must produce a list of a's type.
@@ -869,7 +869,7 @@ Section 2bB, lists
         Accepts an atom 'n' and list 'b',  producing the first n elements at the front of the list.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts an atom and a list.
+        Creates a wet %gold gate which accepts an atom and a list.
         A dry %gold trap is created and kicked.  It must produce a list of the same type as 'b'.
         Builds an if-then-else statement on the logical OR statement (a=0 or b is in null).
         If so, produce null.
@@ -888,7 +888,7 @@ Section 2bB, lists
         Accepts an atom 'n' and a list 'b', producing the last n elemnents at the back of the list.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts an atom and a list.
+        Creates a wet %gold gate which accepts an atom and a list.
         A dry %gold trap is created and kicked.  It must produce a list of the same type as 'b'.
         Builds an if-then-else statement on a=0.
         If so, produce 'b'.
@@ -909,7 +909,7 @@ Section 2bB, lists
         is null.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts an atom and a list.
+        Creates a wet %gold gate which accepts an atom and a list.
         A dry %gold trap is created and kicked.
         Builds an if-then-else statement on "b is null."
         If so, fail with "snag-fail" in the stack trace.
@@ -930,7 +930,7 @@ Section 2bB, lists
         list of the elements of 'a' sorted according to 'b'.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate with a sample which accepts a list and a gate which accepts two nouns and
+        Creates a wet %gold gate with a sample which accepts a list and a gate which accepts two nouns and
         produces a loobean.
         Homogenizes the list and makes it the subject of the following code, casting the following to the
         homogenized list type.
@@ -951,7 +951,7 @@ Section 2bB, lists
         A range in a list - Produces the values in list 'c' starting at index 'a' and spanning 'b' elements
         more than that.
   Explanation:
-        Creates a vulcanized wet with a sample which gate which accepts a tuple of atoms and a list 'c'.
+        Creates a wet %gold gate with a sample which gate which accepts a tuple of atoms and a list 'c'.
         The last 'a' elements in 'c' are selected by slag.  Then the first 'b' elements of 
         those last elements are selected and produced by scag.
   Examples:
@@ -970,7 +970,7 @@ Section 2bB, lists
         Accepts a list and a gate.  Produces the list with the gate applied to each element of the original list.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts a list and a gate.
+        Creates a wet %gold gate which accepts a list and a gate.
         Creates and kicks a dry %gold trap.
         Builds an if-then-else statement on "a is an atom."
         If so, produce null.
@@ -985,7 +985,7 @@ Section 2bB, lists
         Concatenates two lists.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts two lists.
+        Creates a wet %gold gate which accepts two lists.
         Homogenizes both lists and makes them the subject of the following code.
         A dry %gold trap is created and kicked.  It must produce the type of list 'b'.
         Builds an if-then-else statement on "a is null."  If so, produce 'b'.
@@ -1013,7 +1013,7 @@ Section 2bB, lists
   Description:
         Concatenates two lists without casting the product back to a list.
   Explanation:
-        Creates a vulcanized wet gate with a sample which accepts two lists.
+        Creates a wet %gold gate with a sample which accepts two lists.
         Homogenizes both lists and makes them the subject of the following code.
         A dry %gold gate is created and kicked.
         Builds an if-then-else statement on "a is null."  If so, produce 'b'.
@@ -1039,7 +1039,7 @@ Section 2bB, lists
   Description:
         Turns a list of lists into a single list by promoting the elements of each sublist into the higher.
   Explanation:
-        Creates a vulcanized wet gate with a sample that accepts a list of lists.
+        Creates a wet %gold gate with a sample that accepts a list of lists.
         Casts the result to the type the homogenized list head, asserting that 'a' is at least a cell.
         A dry %gold trap is created and kicked.
         Builds an if-then-else statement on "a is null."  If so, produce null.
@@ -1176,7 +1176,7 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block size (an atom),
         a cell of two atoms, and another atom which will be "cut."
-        Right-shifts 'd' by 'b' blocks.  Then produces the tail of this of 'c' blocks.
+        Right-shifts 'd' by 'b' blocks.  Then produces the 'c' block long tail of this right-shift.
   Examples:
         ~ronrem-lonsem/try=> (cut 0 [1 1] 2)
         1
@@ -2284,23 +2284,239 @@ section 2cG, floating point
 
 section 2cH, urbit time               
 
-++  year  
+++  year
+  Comment:
+        date to @d
+  Description:
+        Accepts a parsed date of form [[a=? y=@ud] m=@ud t=tarp] and produces its @d representation.
+  Explanation:
+        Creates a dry %gold gate which accepts a parsed date of type 'date'.
+        Casts the result to @d.
+        Let 
+        Let 'day' be the
+  Examples:
+        
 ++  yore  
+  Comment:
+        @d to date
+  Description:
+        Produces the parsed date representation of a @d date. 
+  Explanation:
+        Creates a dry %gold gate which accepts a @d atomic date.
+        Casts the result to the parsed date form [[a=? y=@ud] m=@ud t=tarp].
+        Let 'rip' be the 'tarp' [day, hour, minute, second time] of the day.
+        Let 'ger' be the day of the year in [year month day] format.
+        
+  Examples:
 ++  yell  
+  Comment:
+        tarp from @d
+  Description:
+        Produces a parsed daily time format from an atomic date.
+  Explanation:
+        Creates a dry %gold gate which accepts an atomic date, @d.
+        Casts the result to a tarp.
+        Let 'sec' be the single 64-bit block right-shift of 'now'.
+               
+        Creates and kicks a dry %gold trap.  Casts the result to a list of unsigned hexadecimal atoms.
+        If (0=raw) OR (0=muc), produce null.
+        Replace 'muc' with the decrement of 'muc' (3).
+        Produce the cell [(cut 4 [muc 1] raw) $(raw (end 4 muc raw))], where
+        (cut 4 [muc 1] raw) is the cut of 'raw' of 1-block of size 4 starting at 'muc'.
+        $(raw (end 4 muc raw)) is the recursive call to the trap with 'raw' replaced by the last 'muc' blockcs of size
+        4 in 'raw'. 
+  Examples:
+        ~dovryp-toblug/try=> (yell ~2014.3.20..05.42.53..7456)
+        [d=106.751.991.820.094 h=5 m=42 s=53 f=~[0x7456]]
+        ---
+        ~tadbyl-hilbel/try=> (yell ~2014.6.9..19.09.40..8b66)
+        [d=106.751.991.820.175 h=19 m=9 s=40 f=~[0x8b66]]
+        ---
+        ~tadbyl-hilbel/try=> (yell ~1776.7.4)
+        [d=106.751.991.733.273 h=0 m=0 s=0 f=~]
 ++  yule  
-++  yall  
-++  yawn  
+  Comment:
+        time atom
+  Description:
+        Accepts a tarp, a parsed daily time, and produces a time atom, @d.
+  Explanation:
+        Creates a dry %gold gate which accepts a tarp.
+        Casts the result to an atomic date.
+        Let
+
+        The product of d.rip, , and day:yo, .
+        Let
+
+        
+  Examples:
+        ~tadbyl-hilbel/try=> =murica (yell ~1776.7.4)
+        ~tadbyl-hilbel/try=> murica
+        [d=106.751.991.733.273 h=0 m=0 s=0 f=~]
+        ~tadbyl-hilbel/try=> (yule murica)
+        0x8000000b62aaf5800000000000000000
+        ---
+        ~dovryp-toblug/try=> (yule (yell ~2014.3.20..05.42.53..7456))
+        0x8000000d21c88d5d7456000000000000
+        ---
+        ~tadbyl-hilbel/try=> (yule (yell ~2014.6.9..19.09.40..8b66))
+        0x8000000d223413f48b66000000000000
+++  yall
+  Comment:
+        day # to day of year
+  Description:
+        Produces what day of the year in year, month, day format a day of 
+  Explanation:
+  Examples:
+++  yawn
+  Comment:
+        days since Jesus
+  Description:
+        Accepts a year, month, and day (Three unsigned decimal integers) and produces the date's
+        CE representation.
+  Explanation:
+        Creates a dry %gold gate which accepts three unsigned decimal integers.
+        Casts the result to an unsigned decimal integer.
+        Replaces the month and day values on the subject with their decrements.
+        Replaces the subject of the following with the type of the context.
+        Evaluates the context with the changes specified below:
+
+        Lets 
+        
+  Examples:
 ++  yelp  
-++  yo    
+  Comment:
+        leap year
+  Description:
+        Produces a loobean indicating whether the given Commen Era year is a leap year.
+  Explanation:
+        Creates a dry %gold gate which accepts an unsigned decimal integer.  Casts the result to a loobean.
+        Produces the logical AND of (0=(mod yer 4)) and the logical OR of (0=(mod yer 100)) and
+        (0=(mod yer 400)).
+  Examples:
+        ~tadbyl-hilbel/try=> (yelp 2.014)
+        %.n
+        ---
+        ~tadbyl-hilbel/try=> (yelp 2.008)
+        %.y
+        ---
+        ~tadbyl-hilbel/try=> (yelp 0)
+        %.y
+        ---
+        ~tadbyl-hilbel/try=> (yelp 14.011)
+        %.n
+++  yo
+  Comment:
+        time constants
+  Description:
+        Constants of time referenced in the urbit time section.
+  Explanation:
+        Produces a %gold core with |%.
+      ++  cet
+      Comment:
+        (add 24 (mul 100 365))
+      Description:
+        The number of days in a century.
+      Explanation:
+        Derived by multiplying the number of days in a year (365) by the number of yaers in a century (100),
+        then adding the number days from leap years in a century (24).
+      Examples:
+        ~tadbyl-hilbel/try=> cet:yo
+        36.524
+        ---
+        ~tadbyl-hilbel/try=> (add 365 cet:yo)
+        36.889
+        ---
+        ~tadbyl-hilbel/try=> (sub (add 24 (mul 100 365)) cet:yo)
+        0
       ++  day 
+      Comment:
+        (mul 24 hor)
+      Description:
+        The number of seconds in a day.
+      Explanation:
+        Derived by multiplying the the number of seconds in an hour by the hours in a day.
+      Examples:
+        ~tadbyl-hilbel/try=> day:yo
+        86.400
+        ---
+        ~tadbyl-hilbel/try=> (add 60 day:yo)
+        86.460
       ++  era 
+      Comment:
+        (add 1 (mul 4 cet))
+      Description:
+        
+      Explanation:
+        
+      Examples:
+
       ++  hor 
-      ++  jes 
+      Comment:
+        (mul 60 mit)
+      Description:
+        The number of seconds in an hour.
+      Explanation:
+        Derived by multiplying the number of seconds in a minute by the minutes in an hour.
+      Examples:
+        ~tadbyl-hilbel/try=> hor:yo
+        3.600
+      ++  jes
+      Comment:
+        (mul 730.692.561 era)
+      Description:
+        
+      Explanation:
+        
+      Examples:
+
       ++  mit 
+      Comment:
+        seconds per minute
+      Description:
+        The number of seconds in a minute.
+      Explanation:
+        We just knew this one.
+      Examples:
+        ~tadbyl-hilbel/try=> mit:yo
+        60
       ++  moh 
+      Description:
+        The days in each month of the Gregorian common year.
+      Explanation:
+        A list of unsigned decimal atoms (Either 28, 30, or 31) denoting the number of days in the month at the 
+        year at that index.
+      Examples:
+        ~tadbyl-hilbel/try=> moh:yo
+        ~[31 28 31 30 31 30 31 31 30 31 30 31]
       ++  moy 
+      Description:
+        The days in each month of the Gregorian leap-year.
+      Explanation:
+        A list of unsigned decimal atoms (Either 29,30, or 31) denoting the number of days in the month at the
+        leap-year at that index.
+      Examples:
+        ~tadbyl-hilbel/try=> moy:yo
+        ~[31 29 31 30 31 30 31 31 30 31 30 31]
       ++  qad 
+      Comment:
+        (add 1 (mul 4 yer))
+      Description:
+        The number of seconds in four years
+      Explanation:
+        Derived by adding one second to the number of seconds in four years.
+      Examples:
+        ~tadbyl-hilbel/try=> qad:yo
+        126.144.001
       ++  yer 
+      Comment:
+        (mul 365 day)
+      Description:
+        The number of seconds in a year.
+      Explanation:
+        Derived by multiplying the number of seconds in a day by 365.
+      Examples:
+        ~tadbyl-hilbel/try=> yer:yo
+        31.536.000
 
 section 2cI, almost macros
 
@@ -2363,7 +2579,7 @@ section 2dA, sets
   Comment:
         set invariant
   Description:
-        Accepts any tree and produces a loobean indicting whether the tree is a set.
+        Accepts any tree and produces a loobean indicating whether the tree is a set.
   Explanation:
         Creates a dry %gold gate which accepts a tree.
         Builds an if-then-else statement on "a is an atom."
@@ -2371,11 +2587,11 @@ section 2dA, sets
         Else, compute and produce the logical AND of:
         The if "l.a is an atom" then produce true, else (produce the logical AND of the
         v-order of n.a and n.l.a and the h-order of n.l.a and n.a) if-then-else statement.
-        The if "r.a is an atom" then prodcue true, else (produce the logical AND of the 
+        The if "r.a is an atom" then produce true, else (produce the logical AND of the 
         v-order of n.a and n.r.a and the h-order of n.a and n.r.a) if-then-else statement.
         (==)  terminates the tall logical AND statement.
   Examples 
-        ~tadbyl-hilbel/try=> =b (sa `(list ,@t)`['john' 'bonita' 'rudolf' 'madeleine' ~])
+        ~tadbyl-hilbel/try=> =b (sa `(list ,@t)`['john' 'bonita' 'daniel' 'madeleine' ~])
         ~tadbyl-hilbel/try=> (apt b)
         %.y
         ---
@@ -2400,7 +2616,7 @@ section 2dA, sets
         of set 'a', produce the logical AND of the transformed set.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts any gate which produces a loobean.
+        Creates a wet %gold gate which accepts any gate which produces a loobean.
         Creates and kicks a dry %gold gate, casts the result to a loobean.
         Builds an if-then-else statement on "a is an atom."
         If so, produce true.
@@ -2410,7 +2626,7 @@ section 2dA, sets
         ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
         ~dovryp-toblug/try=> (~(all in b) |=(a=* ?@(-.a & |)))
         %.n
-        ~tadbyl-hilbel/try=> =b (sa `(list ,@t)`['john' 'bonita' 'rudolf' 'madeleine' ~])
+        ~tadbyl-hilbel/try=> =b (sa `(list ,@t)`['john' 'bonita' 'daniel' 'madeleine' ~])
         ~tadbyl-hilbel/try=> (~(all in b) |=(a=@t (gte a 100)))
         %.y
   +-  any
@@ -2421,7 +2637,7 @@ section 2dA, sets
         of set 'a', produce the logical OR of the transformed set.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts any gate which produces a loobean.
+        Creates a wet %gold gate which accepts any gate which produces a loobean.
         Creates and kicks a dry %gold gate, casts the result to a loobean.
         Builds an if-then-else statement on "a is an atom."
         If so, produce false.
@@ -2431,7 +2647,7 @@ section 2dA, sets
         ~dovryp-toblug/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
         ~dovryp-toblug/try=> (~(any in b) |=(a=* ?@(+.a & |)))
         %.y
-        ~tadbyl-hilbel/try=> =b (sa `(list ,@t)`['john' 'bonita' 'rudolf' 'madeleine' ~])
+        ~tadbyl-hilbel/try=> =b (sa `(list ,@t)`['john' 'bonita' 'daniel' 'madeleine' ~])
         ~tadbyl-hilbel/try=> (~(any in b) |=(a=@t (lte a 100)))
         %.n
   +-  del
@@ -2441,7 +2657,7 @@ section 2dA, sets
         Accepts any noun 'b' and removes it from the set 'a'.
   Explanations:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts any noun.
+        Creates a wet %gold gate which accepts any noun.
         Creates and kicks a dry %gold gate, casts the result to the type of 'a'.
         Builds an if-then-else statement on "a is null."
         If so, produce null.
@@ -2454,12 +2670,12 @@ section 2dA, sets
         ~dovryp-toblug/try=> (~(del in b) `a`)
         {`c` `b`}
         ---
-        ~tadbyl-hilbel/try=> =b (sa `(list ,@t)`['john' 'bonita' 'rudolf' 'madeleine' ~])
+        ~tadbyl-hilbel/try=> =b (sa `(list ,@t)`['john' 'bonita' 'daniel' 'madeleine' ~])
         ~tadbyl-hilbel/try=> (~(del in b) 'john')
-        {'bonita' 'madeleine' 'rudolf'}
+        {'bonita' 'madeleine' 'daniel'}
         ---
         ~tadbyl-hilbel/try=> (~(del in b) 'susan')
-        {'bonita' 'madeleine' 'rudolf' 'john'}
+        {'bonita' 'madeleine' 'daniel' 'john'}
 
   +-  dig
   Comment:
@@ -2502,17 +2718,21 @@ section 2dA, sets
         Else, recursively call the trap with 'b' replaced by the tail of 'b' and the head of 'b'
         put into 'a'.
   Examples:
-        ~dovryp-toblug/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
-        ~dovryp-toblug/try=> (~(gas in a) `(list ,@t)`[`d` `e` 'f' ~])
-        {s `d` 'f' `a` `c` `b`}
+        ~tadbyl-hilbel/try=> b
+        {'bonita' 'madeleine' 'rudolf' 'john'}
+        ~tadbyl-hilbel/try=> (~(gas in b) `(list ,@t)`['14' 'things' 'number' '1.337' ~])
+        {'1.337' '14' 'number' 'things' 'bonita' 'madeleine' 'rudolf' 'john'}
+        ---
+        ~tadbyl-hilbel/try=> (~(gas in s) `(list ,@t)`['1' '2' '3' ~])
+        {'1' '3' '2' 'e' 'd' 'a' 'c' 'b'}
   +-  has
   Comment:
         b exists in a check
   Description:
-        Accepts any noun and produces the loobean indicting whether or not that value (n.a) exists in 'a'.
+        Accepts any noun and produces the loobean indicating whether or not that value (n.a) exists in 'a'.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts any noun.
+        Creates a wet %gold gate which accepts any noun.
         Creates and kicks a dry %gold trap.  Casts the result to a loobean.
         Builds an if-then-else statement on "The set (a) is an atom."  If so, produce false.
         Else, build an if-then-else statement on (b=n.a).
@@ -2533,7 +2753,7 @@ section 2dA, sets
         Accepts any noun 'b' and produces the set 'a' with 'b' added to its sorted location.
   Explanation:  
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts any atom.
+        Creates a wet %gold gate which accepts any atom.
         Creates and kicks a dry %gold gate.  Casts the result to the type of set 'a'.
         Builds an if-then-else statement on "a is an atom."
         If so, produce the null-terminated tuple [b ~ ~].
@@ -2564,7 +2784,7 @@ section 2dA, sets
   Description:
         Accepts a noun and a binary gate.  Produces the 'a' with each member 'n.a' replaced by (c n.a b).
   Explanation:
-        Creates a vulcanized wet gate which accpets a noun and a tile, 'a' and 'b'.
+        Creates a wet %gold gate which accpets a noun and a tile, 'a' and 'b'.
         Creates and kicks a dry %gold gate.
         Builds an if-then-else statement on "a is null."  If so, produce 'b'.
         Else, recursively call the trap with 'a' replaced by 'r.a' and 
@@ -2577,14 +2797,31 @@ section 2dA, sets
         ~talsur-todres/try=> (~(rep in a) 0 |=([a=@ b=@] (add a b)))
         6
         ---
+        
   +-  tap
   Comment:
-        
+        cell from concat
   Description:
-        
-  Explanation:
+        Accepts a list of elements of the set and produces a cell of the set with the list concatenated.
+  Explanation:  
+        This arm is jetted.
+        Creates a dry %gold gate which accepts a list of elements with elements of the set's elements type.
+        Casts the result to the type of list 'b'.
+        If "a is an atom.", produce 'b'.
+        Else, produce the resursive call to 'tap' with 'a' replaced by 'r.a' and 'b' replaced by [n.a $(a l.a)]
+        where $(a l.a) is the recursive call to 'tap' with 'a' replaced by 'l.a'.
   Examples:
-
+        ~tadbyl-hilbel/try=> =s (sa `(list ,@t)`['a' 'b' 'c' 'd' 'e' ~])
+        ~tadbyl-hilbel/try=> s
+        {'e' 'd' 'a' 'c' 'b'}
+        ---
+        ~tadbyl-hilbel/try=> (~(tap by s) `(list ,@t)`['1' '2' '3' ~])
+        ~['b' 'c' 'a' 'd' 'e' '1' '2' '3']
+        ---
+        ~tadbyl-hilbel/try=> b
+        {'bonita' 'madeleine' 'daniel' 'john'}
+        ~tadbyl-hilbel/try=> (~(tap in b) `(list ,@t)`['david' 'people' ~])
+        ~['john' 'daniel' 'madeleine' 'bonita' 'david' 'people']
   +-  wyt
   Comment:
         depth of set
@@ -2602,7 +2839,7 @@ section 2dA, sets
         4
         ---
         ~tadbyl-hilbel/try=> b
-        {'bonita' 'madeleine' 'rudolf' 'john'}
+        {'bonita' 'madeleine' 'daniel' 'john'}
         ~tadbyl-hilbel/try=> ~(wyt in b)
         5
 
@@ -2612,8 +2849,30 @@ section 2dB, maps
   Comment:
         map invariant
   Description:
+        Accepts a tree of cell paris and produces the loobean indicating whther the tree is a map
+        or not.
   Explanation:
+        Creates a dry %gold gate which accepts a tree of cell pairs.
+        If "a is an atom", produce true.
+        Else, produce the logical AND of:
+        If "l.a is an atom", produce true.  Else, produce the logical AND of the v-order of 'p.n.a' precedes 'p.n.l.a'
+        and the h-order of 'p.n.l.a' precedes 'p.n.a'.
+        If "r.a is an atom" produce true.  Else, produce the logical AND of the v-oreder of 'p.n.a' precedes 'p.n.r.a'
+        and the h-roder of 'p.n.a' precedes 'p.n.r.a'.
+        (==) terminates the AND statement.
   Examples:
+        ~tadbyl-hilbel/try=> m
+        {[p='d' q=5] [p='a' q=1] [p='c' q=4] [p='b' q=[2 3]]}
+        ~tadbyl-hilbel/try=> (ept m)
+        %.y
+        ---
+        ~tadbyl-hilbel/try=> b
+        {'bonita' 'madeleine' 'daniel' 'john'}
+        ~tadbyl-hilbel/try=> (ept b)
+        ! type-fail
+        ! exit
+        ---
+        
         
 ++  ja        
   +-  get
@@ -2638,7 +2897,7 @@ section 2dB, maps
         of map 'a', produce the logical AND of the transformed map.
   Explanations:
         This arm is jetted.
-        Builds a vulcanized wet gate which accepts the tile of a gate accepts any noun and produces a loobean.
+        Builds a wet %gold gate which accepts the tile of a gate accepts any noun and produces a loobean.
         Creates and kicks a dry %gold gate.  Casts the result to loobean.
         Builds an if-then-else statement on "a is an atom."
         If so, produce true.
@@ -2662,7 +2921,7 @@ section 2dB, maps
         of map 'a', produce the logical OR of the transformed map.
   Explanations:
         This arm is jetted.
-        Builds a vulcanized wet gate which accepts the tile of a gate accepts any noun and produces a loobean.
+        Builds a wet %gold gate which accepts the tile of a gate accepts any noun and produces a loobean.
         Creates and kicks a dry %gold gate.  Casts the result to loobean.
         Builds an if-then-else statement on "a is an atom."
         If so, produce false.
@@ -2683,7 +2942,7 @@ section 2dB, maps
         Accepts a noun 'b', producing the map with the key-value pair of key 'b' removed.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts a noun.
+        Creates a wet %gold gate which accepts a noun.
         Creates and kicks a dry %gold trap.  Casts the result to the type of map 'a'.
         Builds an if-then-else statement on "a is null."
         If so, produce null.
@@ -2712,7 +2971,7 @@ section 2dB, maps
   Description:
         Accepts any noun 'b' and produces the axis of 'b' in within the values of 'p.a' in map 'a'.
   Explanation:
-        Creates a vulcanized wet gate which accepts a noun.
+        Creates a wet %gold gate which accepts a noun.
         Let 'c' be 1.
         Creates and kicks a dry %gold gate.  Casts the result to an atomic unit. 
         Builds an if-then-else statement on "a is null."  If so, produce null.
@@ -2732,7 +2991,7 @@ section 2dB, maps
         Accepts any list 'b' of key-value pair cells and produces the map 'a' with the members of 'b' added.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts a list of cells.
+        Creates a wet %gold gate which accepts a list of cells.
         Replaces 'b' in the subject with the cast of 'b' to a list whose members have the 
         same type as the members of 'a'.
         Creates and kicks a dry %gold trap.  Casts the result to the type of map 'a'.
@@ -2751,7 +3010,7 @@ section 2dB, maps
   Description:
         Produces the value in the map at key 'b'.
   Explanation:
-        Creates a vulcanized wet gate which accepts a noun.
+        Creates a wet %gold gate which accepts a noun.
         Creates and kicks a dry %gold trap.  Casts its result to the type of the map's values.
         Builds an if-then-else statement on "a is an atom."
         If so, produces null.
@@ -2768,10 +3027,10 @@ section 2dB, maps
   Comment:
         key existence check
   Description:
-        Accepts any noun 'b' and produces the loobean indicting whether the noun exists in map 'a'.
+        Accepts any noun 'b' and produces the loobean indicating whether the noun exists in map 'a'.
   Explanation:
         This arm is jetted.
-        Creates a vulcanized wet gate which accepts a noun.
+        Creates a wet %gold gate which accepts a noun.
         Attempts to get 'b' from 'a', then produces the logical NOT of the loobean "get 'b' in 'a' is null"
   Examples:
         ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
@@ -2787,7 +3046,7 @@ section 2dB, maps
         Validates that the value is not null and puts the pair in the map. If the value is null, 
         it deletes the key.
   Explanation:
-        Creates a vulcanized wet gate which accepts
+        Creates a wet %gold gate which accepts
   Examples:
   +-  put
   Comment:
@@ -2845,7 +3104,7 @@ section 2dD, casual containers
   Description:
         Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the left-right cell pairs of the list.
   Explanation:
-        Creates a vulcanized wet gate which accepts a list, 'a'.
+        Creates a wet %gold gate which accepts a list, 'a'.
         Pushes the homogenized list onto the context.
         Casts the list 'a' to a list of cells whose left-right types correspond to the key-value type pairs.
         Let 'b' be the bunt of the map with the properly typed keys and values from the cell at the head of our list.
@@ -2860,7 +3119,7 @@ section 2dD, casual containers
   Description:
         Setify.  Accepts a list and produces a set of the list's elements.
   Explanation:
-        Creates a vulcanized wet gate which accepts a list, 'a'.
+        Creates a wet %gold gate which accepts a list, 'a'.
         Pushes the homogenized list onto the context.
         Let 'b' be the bunt of the set with elements of the same type of the elements of 'a'.
         Concatenate the elements of 'a' into the empty set of bunt 'b', and produce the result.
@@ -2905,7 +3164,7 @@ section 2eC, parsing (custom rules)
         Only succeeds if given a rule that successfully parses the entire nail to the end, producing
         a null hair if the rules fails.
   Explanation:
-        Creates a vulcanized wet  gate which accepts a rule.
+        Creates a wet %gold gate which accepts a rule.
         Creates a dry %gold gate which accepts a nail.
         Let 'vex' be the rule slammed with the nail.
         Builds an if-then-else statement on "q.vex is an atom."  If so, produce 'vex'.
@@ -3055,7 +3314,7 @@ section 2eI, parsing (external)
   Description:
         Parse a given cord with a given rule, crashing if the cord isn't entirely parsed.
   Explanation:
-        Creates a vulcanized wet gate which accepts an atom (cord) and a rule.
+        Creates a wet %gold gate which accepts an atom (cord) and a rule.
         Trips the cord to a tape and produces the result that is parsed with scan.
   Examples:
         ~tadbyl-hilbel/try=> (rash 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
@@ -3077,7 +3336,7 @@ section 2eI, parsing (external)
   Description:
         Parse a given cord with a given rule, producing null if the cord isn't entirely parsed.
   Explanation:
-        Creates a vulcanized wet gate which accepts an atom (cord) and a rule.
+        Creates a wet %gold gate which accepts an atom (cord) and a rule.
         Trips a cord to a tape and a produces the result that is parsed with rust.
   Examples:
         ~tadbyl-hilbel/try=> (rush 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
@@ -3097,7 +3356,7 @@ section 2eI, parsing (external)
   Description:
         Parse a given tape with a given rule, producing null if the tape isn't entirely parsed.
   Explanation:
-        Creates a vulcanized wet gate which accepts a tape and a rule.
+        Creates a wet %gold gate which accepts a tape and a rule.
         Let 'vex' be the full parse of the tape using the rule.
         Builds an if-then-else statement on "q.vex is an atom."  If so, produce null.
         Else, produce the unit with value 'p.u.q.vex'.
@@ -3323,14 +3582,232 @@ section 2eN, pseudo-cryptography
 section 2eO, virtualization           
 
 ++  mack
+  Comment:
+        XX
+  Description:
+        Accepts a nock subject-formula cell.
+        Produces a unit result, treating 11 as a crash (i.e. pure nock).
+  Explanation:
+        Creates a dry %gold gate accepting cell ['sub' 'fol'].
+        Its output is a unit (of a noun).
+        Let 'ton' be the result of minking the sample, with a sky that produces
+        ~ on any input, halting interpretation.
+        Unless ton has stem 0, produce the empty unit, otherwise produce one
+        containing ton's bulb.
+  Examples 
+        ~zod/try=> (mack [[1 2 3] [0 1]])
+        [~ [1 2 3]]
+        ~zod/try=> (mack [41 4 0 1])
+        [~ 42]
+        ~zod/try=> (mack [4 0 4])
+        ~
+        ~zod/try=> (mack [[[0 2] [1 3]] 4 4 4 4 0 5])
+        [~ 6]
+        ~zod/try=> ;;((unit ,@tas) (mack [[1 %yes %no] 6 [0 2] [0 6] 0 7]))
+        [~ %no]
 ++  mink
+  Comment:
+        XX
+  Description:
+        Bottom-level mock (virtual nock) interpreter.
+        Accepts a nock subject-formula cell, and an %iron gate which 
+          accepts any noun and produces a unit, which is defined to be mock 11.
+        Produces a ++tone, which is the result of the virtualized computation.
+  Explanation:
+        For clarity, a ++tone with stem %0 will be referred to as a "success",
+        one with stem %1 as a "block", and one with stem %2 as a "crash".
+        ---
+        This arm is jetted.
+        Creates a dry %gold gate accepting cell ['sub' 'fol'] and gate 'sky'.
+        Let 'tax' be a statically bunted list of term-noun pairs. (hint list)
+        Do (recursion point) produce a tone:
+        If fol is an atom
+          Produce a crash of fol.
+        Else if the head of fol is a cell
+          Let hed be the result of recurring with fol replaced by its head.
+          If hed is a crash
+            Yield it
+          Otherwise let 'tal' be the result of recurring with fol replaced 
+          by its tail.
+          Switch on the type of tal by stem:
+            If tal is a success
+              If hed is a block produce hed.
+              Else (success) produce a success of a cell of the bulbs of hed 
+              and tal.
+            If tal is a block
+              If hed is a success produce tal.
+              Else (block) produce a block of welding the bulbs of hed and tal.
+            Else (crash) produce tal
+        Otherwise (the head of fol is an atom) switch on fol,
+          by default producing a crash of tax.
+            If fol has stem 0 and an atom bulb we name 'b'
+          If b is 0 produce a crash of tax.
+          If b is 1 produce a success of sub.
+          If sub is an atom produce a crash of tax
+          Otherwise let 'now' be the cap of b, and 'lat' be the mas of b
+          Tail-recur with b replaced by lat, and sub replaced by: if now is 2,
+          its head, else its tail.
+            If fol has stem 1 and a bulb we name 'b'
+          Produce a success of b
+            If fol has stem 2 and a bulb whose head is a cell.
+          Let 'ben' be the result of recurring with fol replaced by its bulb.
+          Unless ben is a success, produce ben.
+          Else assert that ben contains a cell, and tail-recur with 
+          sub and fol replaced by the head and tail of ben's bulb
+            If fol has stem 3 and a bulb we name 'b'
+          Let 'ben' be the result of recurring with fol replaced by b.
+          Unless ben is a success, produce ben.
+          Else produce a success of (loobean) whether ben contains a cell.
+            If fol has stem 4 and a bulb we name 'b'
+          Let 'ben' be the result of recurring with fol replaced by b.
+          Unless ben is a success, produce ben.
+          Else unless ben contains an atom produce a crash of tax.
+          Otherwise produce a success of ben's contents, incremented.
+            If fol has stem 5 and a bulb we name 'b'
+          Let 'ben' be the result of recurring with fol replaced by b.
+          Unless ben is a success, produce ben.
+          Else unless ben contains a cell produce a crash of tax.
+          Otherwise produce a success of (loobean) whether the bulb of ben has
+          a tail equal to its head.
+            If fol has stem 6, 7, 8, or 9
+          Tail-recur with its bulb expanded per nock specification.
+            If fol has stem 10 and a cell bulb whose head is an atom
+          Tail-recur with for replaced by its bulb's tail
+            If fol has stem 10 and a bulb that can be destructured as [[b c] d]
+          Let ben be the result of recurring with fol replaced by v.
+          Unless ben is a success, produce ben.
+          If b is %hunk, %lose, %mean, or %spot
+            Tail-recur with fol replaced by d and tax prepended with a pair of
+            b and the bulb of ben.
+          Else tail-recur with just fol replaced by d.
+  Examples:
+        XX
 ++  mock
+  Comment:
+        XX
+  Description:
+        Accepts a nock subject-formula cell and an %iron gate which
+          accepts any noun and produces a unit (this is used as nock 11).
+        Produces a ++toon, which is a sucesful, blocked, or crashed result.
+  Explanation:
+        Compose ++mook and ++mink.
+  Examples 
+        ~zod/try=> (mock [5 4 0 1] ,~)
+        [%0 p=6]
+        ~zod/try=> (mock [~ 11 1 0] |=(* `999))
+        [%0 p=999]
+        ~zod/try=> (mock [~ 0 1.337] ,~)
+        [%2 p=~]
+        ~zod/try=> (mock [~ 11 1 1.337] ,~)
+        [%1 p=~[1.337]]
+        ~zod/try=> (mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[+<]))
+        [%0 p=14]
+        ~zod/try=> (mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[<+<>]))
+        [%0 p=[49 52 0]]
+        ~zod/try=> ;;(tape +:(mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[<+<>])))
+        "14"
+
 ++  mook
+  Comment:
+        XX
+  Description:
+        Intelligently render crash annotation.
+        Accepts a ++tone, produces a ++toon
+  Explanation:
+        Create a dry %gold gate accepting a tone we name 'ton'
+        Its output is a toon.
+        Unless the stem of ton is %2, produce ton.
+        Produce a frond with a stem of 2 and the following bulb:
+        Let yel be the length of ton's bulb.
+        Replace the bulb of ton,
+          If yel > 256 (otherwise keep it static)
+          With the weld of
+            its top 128 elements
+          And a list of term-noun pairs:
+          The last 128 elements of ton's bulb
+          Preceded by a %lose-stemmed frond of
+          A cord from the tape
+            "[skipped "
+            A @ud rendering of yel - 256
+            " frames]"
+        Do (*recursion point*) produce a list of tanks:
+        For each element in the bulb of ton
+        Switch on its leaf, by default leaving the element out of the product
+          For each %hunk, clam it to a tank
+          For each %lose, produce a leaf with the element clammed to an atom 
+          and tripped (to a tape).
+          For each %mean, if the elment is an atom treat it as a %lose
+              Otherwise let mac be the element macked by its tail.
+              If the computation fails, produce a "####" leaf, else clam
+              the result to a tank.
+          For each %spot, let sot be the element clammed to a spot.
+              Produce a leaf with
+              The weld of
+                The path in sot converted to a tank and then a tape
+                ":<["
+                [[p.p ] ] in the pint in sot rendered as @ud
+                " "
+                [[ q.p] ] in the pint in sot rendered as @ud
+                "].["
+                [ [p.q ]] in the pint in sot rendered as @ud
+                " "
+                [ [ q.p]] in the pint in sot rendered as @ud
+                "]>"
+                
+  Examples 
+        ~zod/try=> (mook [%0 5 4 5 1])
+        [%0 p=[5 4 5 1]]
+        ~zod/try=> (mook [%2 ~[[%hunk %rose ["<" "," ">"] ~[[%leaf "err"]]]]])
+        [%2 p=~[[%rose p=[p="<" q="," r=">"] q=[i=[%leaf p="err"] t=~]]]]
+        ~zod/try=> (mook [%2 ~[[%malformed %elem] [%lose 'do print']]])
+        [%2 p=~[[%leaf p="do print"]]]
+        ~zod/try=> (mook [%2 ~[[%spot /b/repl [[1 1] 1 2]] [%mean |.(!!)]]])
+        [%2 p=~[[%leaf p="/b/repl/:<[1 1].[1 2]>"] [%leaf p="####"]]]
 ++  mang
+  Comment:
+        XX
+  Description:
+        XX
+  Explanation:
+        XX
+  Examples 
+        XX
 ++  mong
+  Comment:
+        XX
+  Description:
+        XX
+  Explanation:
+        XX
+  Examples 
+        XX
 ++  mung
+  Comment:
+        XX
+  Description:
+        XX
+  Explanation:
+        XX
+  Examples 
+        XX
 ++  mule 
+  Comment:
+        XX
+  Description:
+        XX
+  Explanation:
+        XX
+  Examples 
+        XX
 ++  mute 
+  Comment:
+        XX
+  Description:
+        XX
+  Explanation:
+        XX
+  Examples 
+        XX
 
 section 2eP, diff          **noted as "(move me)" in source**
 
