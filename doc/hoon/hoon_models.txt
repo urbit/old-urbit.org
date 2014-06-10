@@ -465,12 +465,12 @@ Clams against ~, the null character.
 
 ++  pint    
   Description:
-
+    A line-column range.
   Explanation:
-
+    p is the beginning, q is the end.
   Example(s):
     ~fantyv-ralpen/try=> _pint
-    [p=[p=0 q=0] q=[pp=0 q=0]]
+    [p=[p=0 q=0] q=[p=0 q=0]]
 
 ++  port    
   Description:
@@ -546,9 +546,10 @@ Clams against ~, the null character.
 
 ++  spot    
   Description:
-
+    A path-pint pair, generally describing an error location
   Explanation:
-
+    p is the path at which the error occured.
+    q is the pint describing a range within the implied text buffer.
   Example(s):
     ~fantyv-ralpen/try=> _spot
     [p=/ q=[p=[p=0 q=0] q=[p=0 q=0]]]
@@ -7123,9 +7124,13 @@ None
 
 ++  tone    
   Description:
-
+      A tone is produced by ++mink, and has three fronds: success, block,
+      and crash.
   Explanation:
-
+     Stem 0 indicates sucess, and contains the computation result
+     Stem 1 indicates a block, and contains a list of nouns that the sky has
+     refused to yield a result for.
+     Stem 2 indicates a crash, and contains the [stack trace?] XX
   Example(s):
     ~fantyv-ralpen/try=> _tone
     [%0 p=0]
@@ -7147,9 +7152,13 @@ the tail. ++nock is a bush
 
 ++  toon    
   Description:
-
+     A tone is produced by ++mock, and has three fronds: success, block,
+     and crash. It is similar ++tone, but errors are tanks, ready for output.
   Explanation:
-
+     Stem 0 indicates sucess, and contains the computation result
+     Stem 1 indicates a block, and contains a list of nouns that the sky has
+     refused to yield a result for.
+     Stem 2 indicates a crash, and contains the pretty-printed stack trace.
   Example(s):
     ~fantyv-ralpen/try=> _toon
     [%0 p=0]
