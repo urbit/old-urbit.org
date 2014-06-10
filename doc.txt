@@ -27,9 +27,8 @@ volume 1, Hoon models
         --- 
 
     ++  axis 
-        A Nock axis, an address inside a Nock noun. [#nockdoc]
-        ---
-        Clammed atom [#clam] [#axil].
+        A Nock axis, an address inside a Nock noun. ---
+        Clammed atom [#axil].
         ---
 
     ++  also
@@ -38,8 +37,7 @@ volume 1, Hoon models
     ++  base  
         The cases of an %axil tile [#tile]. 
         ---
-        See %axil in ++tile. [#tile]
-        --- 
+        See %axil in ++tile. --- 
 
     ++  beer  
     ++  beet  
@@ -47,9 +45,9 @@ volume 1, Hoon models
     ++  bloq 
         An atom representing a blocksize, by convention expressed as a power of 2.
 
-        Clammed atom [#clam] [#axil].
+        Clammed atom [#axil].
         ---
-        ++met [#met] measures how many bloqs long an atom is. It takes a bloq
+        ++met measures how many bloqs long an atom is. It takes a bloq
         and an atom. In the below example, the 256 is 2 bloqs of 2^3 long. That
         is, it takes two bytes to represent the atom 256
 
@@ -63,15 +61,15 @@ volume 1, Hoon models
         ---
         Atom with odor [#type]. A @tD is a single Unicode byte. 
         ---
-        ++tape [#tape], which is a string type, is a list [#list] of chars.
+        ++tape [#tape], which is a string type, is a list of chars.
 
     ++  chum  
         The jet hint information that must be present in the body of a ~/
-        [#twig] or ~% [#twig] rune.
+        or ~% rune.
         ---
-        A %fern [#tile] of the following cases:
+        A %fern of the following cases:
         -  the jet's name
-        -  the jet's name and the kelvin [#stub] number
+        -  the jet's name and the kelvin number
         -  the jet's vendor, name and kelvin number
         -  the jet's vendor, name, legacy major.minor version and kelvin number
         ---
@@ -98,7 +96,7 @@ volume 1, Hoon models
         A point in time. 
         ---
         A loobean designating AD or BC, a year atom, a month atom, and a ++tarp
-        [#tarp], which is a day atom and a time.
+        , which is a day atom and a time.
         ---
         ++yell produces a ++date from a @da (a date atom)
 
@@ -162,8 +160,8 @@ volume 1, Hoon models
     ++  tile  
 
         A tile is a convenient way of making a well-typed noun.  It can be
-        reduced in four ways - cryptically called bunt [#bunt], clam [#clam],
-        fish [#fish], and whip [#whip]. each tile corresponds to a well-defined
+        reduced in four ways - cryptically called bunt, clam,
+        fish, and whip. each tile corresponds to a well-defined
         type, called its icon. A tile is converted statically into a twig,
         which in turn may (depending on the conversion) produce the icon, test
         for it, etc. And always, the icon is some function of the tile and its
@@ -358,35 +356,35 @@ volume 1, Hoon models
             value) for p.
 
             Tall
-                $_  p
+              $_  p
 
             Wide
-                $_(p)
+              $_(p)
 
             Irregular
-                _p
+              _p
             
             Reduction
-                See ++open [#open]
+              See ++open 
 
         [%bccm p=tile]
 
             $, ("buccom") is a synthetic rune that produces a normalizing gate
             (clam) for p.
 
-            Tall
-                $,  p
+            Talln
+              $,  p
 
             Wide
-                none
+              none
 
             Irregular
-                ,p
+              ,p
 
             Reduction
-                ~(clam al p) 
+              ~(clam al p) 
             
-            See ++clam in ++al. [#clam]
+            See ++clam in ++al. 
 
         [%bcpt p=wing q=tile]
 
@@ -394,17 +392,17 @@ volume 1, Hoon models
             into tile q.
 
             Tall
-                $@  p
-                q
+              $@  p
+              q
 
             Wide
-                $@(p q)
+              $@(p q)
 
             Irregular
-                p@q
+              p@q
 
             Reduction
-                none, natural
+              none, natural
 
         [%bctr p=tile]
 
@@ -412,15 +410,15 @@ volume 1, Hoon models
             value) for p as a compile-time constant.
 
             Tall
-                $*  p
+              $*  p
 
             Wide
-                $*(p)
+              $*(p)
 
             Reduction
-                ^~ ~(bunt al p)
+              ^~ ~(bunt al p)
                 
-             See ++bunt in al.
+              See ++bunt in al.
 
         [%bczp p=base]
 
@@ -428,7 +426,7 @@ volume 1, Hoon models
             (default value) for [%axil p].
 
             Reduction
-            See ++open
+              See ++open
 
         [%brcb p=tile q=(map term foot)]
 
@@ -439,20 +437,19 @@ volume 1, Hoon models
             terminated with --
 
             Tall
-            |_  p
-            ++  p.n.q
-              q.n.q
-            --
+              |_  p
+              ++  p.n.q
+                q.n.q
+              --
 
             Wide
-                none
+              none
           
             Irregular
-                none
+              none
 
             Reduction
-            
-            See ++open
+              See ++open
 
         [%brcn p=(map term foot)]
 
@@ -462,41 +459,38 @@ volume 1, Hoon models
             +-) arms, the array is terminated with --
 
             Tall
-                |%
-                ++  p.n.q
-                  q.n.q
-                +-  p.n.l.q
-                  q.n.l.q
-                --
+              |%
+              ++  p.n.q
+                q.n.q
+              +-  p.n.l.q
+                q.n.l.q
+              --
 
             Wide
-                none
+              none
 
             Irregular
-                none
+              none
 
             Reduction
-                none, natural
+              none, natural
 
         [%brdt p=twig]
 
             |. ("bardot") is a synthetic rune that produces a dry %gold trap
             from twig p.
 
-            Form
-                p is a twig
-
             Tall
-                |.  p
+              |.  p
 
             Wide
-                |.(p)
+              |.(p)
 
             Irregular
-                none
+              none
 
             Reduction
-                See ++open
+              See ++open
 
         [%brfs p=tile q=(map term foot)]
 
@@ -504,20 +498,19 @@ volume 1, Hoon models
             tray with arms q, sample p.
 
             Tall
-                |/  p
-                +-  p.n.q
-                  q.n.q
-                --
+              |/  p
+              +-  p.n.q
+                q.n.q
+              --
 
             Wide
-                none
+              none
 
             Irregular
-                none
+              none
 
             Reduction
-
-            See ++open
+              See ++open
 
         [%brkt p=twig q=(map term foot)]
 
@@ -525,20 +518,19 @@ volume 1, Hoon models
             arms q, with p as %$, and kicks it.
 
             Tall
-                |^  p
-                ++  p.n.q
-                  q.n.q
-                -- 
+              |^  p
+              ++  p.n.q
+                q.n.q
+              -- 
          
             Wide
-                none
+              none
 
             Irregular
-                none
+              none
 
             Reduction
-            
-            See ++open 
+              See ++open 
 
         [%brhp p=twig]
 
@@ -546,18 +538,17 @@ volume 1, Hoon models
             from twig p, and kicks it.
 
             Tall
-                |-
-                p
+              |-
+              p
 
             Wide
-                |-(p)
+              |-(p)
 
             Irregular
-                none
+              none
 
             Reduction
-
-            See ++open
+              See ++open
 
         [%brls p=tile q=twig]
 
@@ -565,18 +556,17 @@ volume 1, Hoon models
             with arm q, sample p.
 
             Tall
-                |+  p
-                q
+              |+  p
+              q
 
             Wide
-                |+(p q)
+              |+(p q)
 
             Irregular
-                none
+              none
 
             Reduction
-
-            See ++open
+              See ++open
 
         [%brpt p=tile q=tile r=twig]
 
@@ -588,18 +578,17 @@ volume 1, Hoon models
             gate with arm q, sample p.
 
             Tall
-                |*  p
-                q
+              |*  p
+              q
 
             Wide
-                |*(p q)
+              |*(p q)
 
             Irregular
-                none
+              none
 
             Reduction
-
-            See ++open
+              See ++open
 
         [%brts p=tile q=twig]
 
@@ -607,50 +596,50 @@ volume 1, Hoon models
             with arm q, sample p.
 
             Tall
-            |=  p
-            q
+              |=  p
+              q
 
             Wide
-            |=(p q)
+              |=(p q)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
         [%brwt p=twig]
 
             |? ("barwut") is a synthetic rune that produces a dry %lead trap.
 
             Tall
-            |?  p
+              |?  p
 
             Wide
-            |?(p)
+              |?(p)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
         [%clcb p=twig q=twig]
 
             :_ ("colcab") is a synthetic rune that produces the cell [q p].
 
             Tall
-            :_  p
-            q
+              :_  p
+              q
 
             Wide
-            :_(p q)
+              :_(p q)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
         [%clcn p=tusk]
 
@@ -658,19 +647,19 @@ volume 1, Hoon models
             from a list of twigs p, terminated by a ==
 
             Tall
-            :%  i.p
-                i.t.p
-                i.t.t.p
-            ==
+              :%  i.p
+                  i.t.p
+                  i.t.t.p
+              ==
 
             Wide
-            :%(i.p i.t.p i.t.t.p)
+              :%(i.p i.t.p i.t.t.p)
 
             Irregular
-            %[i.p i.t.p i.t.t.p]
+              %[i.p i.t.p i.t.t.p]
 
             Reduction
-            See ++open
+              See ++open
 
         [%clfs p=twig]
 
@@ -679,16 +668,16 @@ volume 1, Hoon models
             string interpolation.
 
             Tall
-            :/  p
+              :/  p
 
             Wide
-            :/(p)
+              :/(p)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
              
         [%clkt p=twig q=twig r=twig s=twig]
 
@@ -696,20 +685,19 @@ volume 1, Hoon models
             from twigs p, q, r, and s.
 
             Tall
-                :^    p     
-                    q
-                  r
-                s
+              :^    p     
+                  q
+                r
+              s
             
             Wide
-                :^(p q r s)
+              :^(p q r s)
 
             Irregular
-                none
+              none
 
             Reduction
-
-            See ++open
+              See ++open
 
         [%clhp p=twig q=twig]
 
@@ -717,17 +705,17 @@ volume 1, Hoon models
             twigs p and q.
 
             Tall
-            :-  p
-            q
+              :-  p
+              q
 
             Wide
-            :-(p q)
+              :-(p q)
 
             Irregular
-            [p q]
+              [p q]
 
             Reduction
-            See ++open
+              See ++open
 
         [%clls p=twig q=twig r=twig]
 
@@ -735,19 +723,18 @@ volume 1, Hoon models
             twigs p, q, and r.
 
             Tall
-                :+  p
-                  q
-                r
+              :+  p
+                q
+              r
 
             Wide
-                :+(p q r)
+              :+(p q r)
             
             Irregular
-                none
+              none
 
             Reduction
-
-            See ++open
+              See ++open
 
         [%clsg p=tusk]
 
@@ -755,20 +742,19 @@ volume 1, Hoon models
             tuple of a list of twigs p.
 
             Tall
-                :~  i.p
-                    i.t.p
-                    i.t.t.p
-                ==
+              :~  i.p
+                  i.t.p
+                  i.t.t.p
+              ==
 
             Wide
-                :~(i.p i.t.p i.t.t.p)
+              :~(i.p i.t.p i.t.t.p)
             
             Irregular
-                ~[i.p i.t.p i.t.t.p]
+              ~[i.p i.t.p i.t.t.p]
 
             Reduction
-
-            See ++open
+              See ++open
 
         [%cltr p=tusk]
 
@@ -776,19 +762,19 @@ volume 1, Hoon models
             list of twigs.
 
             Tall
-            :*  i.p
-                i.t.p
-                i.t.t.p
-            ==
+              :*  i.p
+                  i.t.p
+                  i.t.t.p
+              ==
 
             Wide
-            :*(i.p i.t.p i.t.t.p)
+              :*(i.p i.t.p i.t.t.p)
 
             Irregular
-            [i.p i.t.p i.t.t.p]
+              [i.p i.t.p i.t.t.p]
 
             Reduction
-            See ++open
+              See ++open
 
         [%clzz p=tusk]
 
@@ -797,520 +783,430 @@ volume 1, Hoon models
 
             Not used at present.
 
-        [%cncb p=wing q=tram]                       ::  %=, then cast to p
+        [%cncb p=wing q=tram]                  
 
             %_ ("cencab") is a synthetic rune that evaluates the wing p with
             the changes specified in tram q, then casts the product back to p.
 
             Tall
-                %_  p
-                  p.i.q  q.i.q
-                  p.i.t.q  q.i.t.q
-                ==
+              %_  p
+                p.i.q  q.i.q
+                p.i.t.q  q.i.t.q
+              ==
 
             Wide
-                %_(p p.i.q q.i.q, p.i.t.q q.i.t.q)
+              %_(p p.i.q q.i.q, p.i.t.q q.i.t.q)
 
             Irregular
-                none
+              none
 
-            Reduction
-            
-            See ++open
+            Reduction            
+              See ++open
 
-        [%cncl p=twig q=twig]                       ::  pull $.p w/ sample q
+        [%cncl p=twig q=twig]                  
 
             %: ("cencol") is a synthetic rune that pulls %$ from the twig p
             with the with its sample set to q.
 
             Tall
-                %:  p
-                q
+              %:  p
+              q
 
             Wide
-                %:(p q)
+              %:(p q)
             
             Irregular
-                none
+              none
           
             Reduction
-            
-            See ++open
+              See ++open
 
-        [%cndt p=twig q=twig]                       ::  %-(q p)
+        [%cndt p=twig q=twig]                  
 
-            %. ("cendot") is a synthetic rune that slams the gate q with [%cltr p].
-            The dual of %cnhp.
-
-            Tall
-                %.  p
-                q
-
-            Wide
-                %.(p q)
-
-            Irregular
-                none
-
-            Reduction
-                %-  q
-                p
-
-            See ++open
-
-        [%cnhp p=twig q=tusk]                       ::  slam p w/ sample q
-
-            %- ("cenhep") is a synthetic rune that slams the gate p with [%cltr q].
+            %. ("cendot") is a synthetic rune that slams the gate q with 
+            [%cltr p]. The dual of %cnhp.
 
             Tall
-            %-  p
-            q
+              %.  p
+              q
 
             Wide
-            %-(p q)
+              %.(p q)
 
             Irregular
-            (p q)
+              none
 
             Reduction
-            See ++open
+              %-  q
+              p
 
-        [%cntr p=wing q=twig r=tram]                ::  pull p from q w/ r changes
+              See ++open
+
+        [%cnhp p=twig q=tusk]                  
+
+            %- ("cenhep") is a synthetic rune that slams the gate p with 
+            [%cltr q].
+
+            Tall
+              %-  p
+              q
+
+            Wide
+              %-(p q)
+
+            Irregular
+              (p q)
+
+            Reduction
+              See ++open
+
+        [%cntr p=wing q=twig r=tram]           
 
             %* is a synthetic rune that pulls the wing p from tray q with changes r.
 
-            Form
-            p is a wing
-            q is a twig in the pattern of a tray
-            r is a tram
-
             Tall
-            %*  p  q
-            p.i.r  q.i.r
-            p.i.t.r  q.i.t.r
-            ==
+              %*  p  q
+              p.i.r  q.i.r
+              p.i.t.r  q.i.t.r
+              ==
 
             Wide
-            %*(p q p.i.r q.i.r, p.i.t.r q.i.t.r)
+              %*(p q p.i.r q.i.r, p.i.t.r q.i.t.r)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
-        [%cnkt p=twig q=twig r=twig s=twig]         ::  slam p w/ %*(q r s)
+        [%cnkt p=twig q=twig r=twig s=twig]         
 
             %^ ("cenket") is a synthetic rune that slams gate p with [%cntr q r s].
 
-            Form
-            p is a twig
-            q is a twig
-            r is a twig
-            s is a twig
-
             Tall
-            %^    p
-                q
-              r
-            s
+              %^    p
+                  q
+                r
+              s
 
             Wide
-            %^(p q r s)
+              %^(p q r s)
           
             Irregular
-            none  
+              none  
 
             Reduction
-            See ++open
+              See ++open
 
-        [%cnls p=twig q=twig r=twig]                ::  slam p w/ %*(q r)
+        [%cnls p=twig q=twig r=twig]                
 
             %+ ("cenlus") is a synthetic rune that slams gate p with [%cntr q r].
 
-            Form
-            p is a twig
-            q is a twig
-            r is a twig
-
             Tall
-            %+  p
-              r
-            s
+              %+  p
+                r
+              s
 
             Wide
-            %+(p q r)
+              %+(p q r)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
-        [%cnsg p=wing q=twig r=twig]                ::  pull p from q with r
+        [%cnsg p=wing q=twig r=twig]                
 
             %~ ("censig") is a synthetic rune that pulls p from the tray q with its
             sample set to r.
 
-            Form
-            p is a wing
-            q is a twig in the tray pattern
-            r is a twig
-
             Tall
-            %~  p
-              q
-            r
+              %~  p
+                q
+              r
 
             Wide
-            %~(p q r)
+              %~(p q r)
 
             Irregular
-            ~(p q r)
+              ~(p q r)
 
             Reduction
-            See ++open
+              See ++open
 
-        [%cnts p=wing q=tram]                       ::  eval. p w/ q changes
+        [%cnts p=wing q=tram]                       
 
             %= ("centis") is a natural rune that evaluates p with the changes 
             specified in q.
 
-            Form
-
-            p is a wing [#wing]
-
-            q is a tram [#tram]
-
             Tall
-
-            %=  p
-              p.i.q    q.i.q
-              p.i.t.q  q.i.t.q
-            ==
+              %=  p
+                p.i.q    q.i.q
+                p.i.t.q  q.i.t.q
+              ==
 
             Wide
-            %=(p p.i.q q.i.q, p.i.t.q q.i.t.q)
+              %=(p p.i.q q.i.q, p.i.t.q q.i.t.q)
 
             Irregular
-            p(p.i.q q.i.q, p.i.t.q q.i.t.q)
+              p(p.i.q q.i.q, p.i.t.q q.i.t.q)
 
             Reduction
-            See ++mint.
+              See ++open
 
-        [%cnzy p=term]                              ::  pulls limb p
+        [%cnzy p=term]                              
 
             "cenzey" is a synthetic internal rune that pulls limb p from the subject.
             
-            Form
-            p is a term, @ta    
-
             Tall/Wide/Irregular
-            none, internal
+              none, internal
 
             Reduction
-            See ++open
+              See ++open
 
-        [%cnzz p=wing]                              ::  pulls p
+        [%cnzz p=wing]                              
 
             "cenzaz" is a synthetic internal rune that pulls wing p from the subject.
             
             Form
-            none, internal
+              none, internal
 
             Reduction
-            See ++open
+              See ++open
 
-        [%dtkt p=twig]                              ::  nock 11 data skyhook
+        [%dtkt p=twig]                              
 
             .^ ("dotket") is a natural rune that generates Nock operator 11, which in
             virtual userspace Nock (++mock) loads a file from the global namespace.
 
-            Form
-            p is a twig
-
             Tall
-            .^  p
+              .^  p
 
             Wide
-            .^(p)
+              .^(p)
 
             Irregular
-            ^:type/path
+              ^:type/path
 
-            ^/path
+              ^/path
 
             Reduction
-            none, natural
+              none, natural
 
-        [%dtls p=twig]                              ::  nock 4 increment
+        [%dtls p=twig]                              
 
             .+ ("dotlus") is a natural rune that generates Nock operator 4, which 
             increments an atomic operand.
           
-            Form
-            p is a twig
-
             Tall
-            .+  p
+              .+  p
 
             Wide
-            .+(p)
+              .+(p)
 
             Irregular
-            +(p)
+              +(p)
 
             Reduction
-            none, natural
+              none, natural
 
-        [%dtzy p=term q=@]                          ::  atom constant
+        [%dtzy p=term q=@]                          
 
             "dotzey" is a natural internal rune that produces a non-cubed atomic 
             constant of odor p and value q.
 
-            Form
-            p is a term, @ta
-            q is an atom, @
-
             Tall/Wide/Irregular
-            none, internal
+              none, internal
 
             Reduction
-            none, natural
+              none, natural
             
-        [%dtzz p=term q=*]                          ::  cubical constant
+        [%dtzz p=term q=*]                          
 
             "dotzaz" is a natural internal rune that produces a cubed noun constant of
             value q and odor p, if q is an atom.
 
-            Form
-            p is a term, @ta
-            q is a noun
-
             Tall/Wide/Irregular
-            none, internal
+              none, internal
 
             Reduction
-            none, natural
+              none, natural
 
-        [%dttr p=twig q=twig]                       ::  nock p w/ formula q
+        [%dttr p=twig q=twig]                       
 
             .* ("dottar") is a natural rune that calculates the Nock of subject p,
             formula q.
          
-            Form
-            p is a twig
-            q is a twig
-            
             Tall
-            .*  p
-                q
+              .*  p
+                  q
 
             Wide
-            .*(p q)
+              .*(p q)
 
             Irregular
-            none
+              none
 
             Reduction
-            none, natural
+              none, natural
 
-        [%dtts p=twig q=twig]                       ::  nock 5 equality test
+        [%dtts p=twig q=twig]                       
 
             .= ("dottis") is a natural rune that applies Nock 5 (equals) to determine
             if the products of p and q are equivalent.
 
-            Form
-            p is a twig
-            q is a twig
-
             Tall
-            .=  p
-                q
+              .=  p
+                  q
 
             Wide
-            .=(p q)
+              .=(p q)
 
             Irregular
-            =(p q)
+              =(p q)
 
             Reduction
-            none, natural
+              none, natural
 
-        [%dtwt p=twig]                              ::  nock 3 cell test
+        [%dtwt p=twig]                              
 
             .? ("dotwut") is a natural hoon that applies Nock 3 to a noun: if the 
             noun is a cell, it returns the loobean & (true); if the noun is an atom, 
             it returns the loobean | (false).
 
-            Form
-            p is a twig
-
             Tall
-            .?  p
+              .?  p
 
             Wide
-            .?(p)
+              .?(p)
 
             Irregular
-            none
+              none
 
             Reduction
-            none, natural
+              none, natural
 
-        [%hxgl p=tusk]                              ::  slam noah w/ !>:*(p)
+        [%hxgl p=tusk]                              
 
             #< ("haxgal") is a synthetic rune that slams the assumed gate noah on
             [%zpgr %cntr p]. See the Biblical names.
 
-            Form
-            p is a tusk
-            i.p is a twig
-            i.t.p is a twig
-            i.t.t.p is a twig
-            
             Tall/Wide
-            none
+              none
 
             Irregular
-            >i.p i.t.p i.t.t.p<
+              >i.p i.t.p i.t.t.p<
 
             Reduction
-            See ++open
+              See ++open
 
-        [%hxgr p=tusk]                              ::  slam cain w/ !>:*(p)
+        [%hxgr p=tusk]                              
 
             #> ("haxgar") is a synthetic rune that slams the assumed gate cain on
             [%zpgr %cntr p]. See the Biblical names.
 
-            Form
-            p is a tusk
-            i.p is a twig
-            i.t.p is a twig
-            i.t.t.p is a twig
-            
             Tall/Wide
-            none
+              none
 
             Irregular
-            <i.p i.t.p i.t.t.p>
+              <i.p i.t.p i.t.t.p>
 
             Reduction
-            See ++open
+              See ++open
 
-        [%ktbr p=twig]                              ::  %gold core to %iron
+        [%ktbr p=twig]                              
 
             ^| ("ketbar") is a natural rune that converts a %gold core into an %iron
             core. See geometric polymorphism.
 
-            Form
-            p is a twig
-
             Tall
-            ^|  p
+              ^|  p
 
             Wide
-            ^|(p)
+              ^|(p)
 
             Irregular
-            none
+              none
 
             Reduction
-            none, natural
+              none, natural
             
-        [%ktdt p=twig q=twig]                       ::  cast q to type (p q)
+        [%ktdt p=twig q=twig]                       
 
             ^. ("ketdot") is a synthetic rune that casts q to the type of (p q).
 
-            Form
-            p is a twig
-            q is a twig
-
             Tall
-            ^.  p
-                q
-
+              ^.  p
+                  q
+ 
             Wide
-            none
+              none
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
-        [%ktls p=twig q=twig]                       ::  cast q to p, verify
+        [%ktls p=twig q=twig]                       
 
-            ^+ ("ketlus") is a natural rune that casts the product of q to the type of
-            p, verifying that it contains the type of q.
-
-            Form
-            p is a twig
-            q is a twig
+            ^+ ("ketlus") is a natural rune that casts the product of q to the 
+            type of p, verifying that it contains the type of q.
 
             Tall
-            +^  p
-                q
+              +^  p
+                  q
 
             Wide
-            ^+(p q)
+              ^+(p q)
 
             Irregular
-            none
+              none
 
             Reduction
-            none, natural
+              none, natural
 
-        [%kthp p=tile q=twig]                       ::  cast q to icon of p
+        [%kthp p=tile q=twig]                       
 
-            ^- ("kethep") is a synthetic rune that casts q to ~(bunt al p), i.e., the
-            icon of p.
-
-            Form
-            p is a tile
-            q is a tile
+            ^- ("kethep") is a synthetic rune that casts q to ~(bunt al p), 
+            i.e., the icon of p.
 
             Tall
-            ^-  p
-                q
+              ^-  p
+                  q
 
             Wide
-            ^-(p q)
+              ^-(p q)
 
             Irregular
-            `p`q
+              `p`q
 
             Reduction
-            See ++open
+              See ++open
 
-        [%ktpm p=twig]                              ::  %gold core to %zinc
+        [%ktpm p=twig]                              
 
             ^& ("ketpam") is a natural rune that converts a %gold core to %zinc core.
             See geometric polymorphism.
 
-            Form
-            p is a twig
-
             Tall
-            ^&  p
+              ^&  p
 
             Wide
-            ^&(p)
+              ^&(p)
 
             Irregular
-            none
+              none
 
             Reduction
-            none, natural
+              none, natural
 
-        [%ktsg p=twig]                              ::  p as static constant
+        [%ktsg p=twig]                              
 
             ^~ ("ketsig") is a natural rune that tries to execute p statically at
             compile time; if this fails, p remains dynamic.
 
-            Form
-            p is a twig
-         
             Tall
             ^~  p
 
@@ -1318,219 +1214,1107 @@ volume 1, Hoon models
             ^~(a)
 
             Irregular
-            none
+              none
 
             Reduction
-            none, natural
+              none, natural
 
-        [%ktts p=toga q=twig]                       ::  wrap q in toga p
+        [%ktts p=toga q=twig]                       
 
-            ^= ("kettis") is a natural rune that wraps q in the toga p. The toga is a
-            powerful naming device that can assign an entire name tree to a properly
-            typed result. For instance, if foo produces an unlabeled tuple [x y z], 
-            [a b=[c d]]=foo produces [a=x b=[c=y d=z]].
-
-            Form
-            p is a toga
-            p is a twig
+            ^= ("kettis") is a natural rune that wraps q in the toga p. The 
+            toga is a powerful naming device that can assign an entire name 
+            tree to a properly typed result. For instance, if foo produces 
+            an unlabeled tuple [x y z], [a b=[c d]]=foo produces 
+            [a=x b=[c=y d=z]].
 
             Tall
-            ^=  p
-                q
+              ^=  p
+                  q
 
             Wide
-            ^=(p q)
+              ^=(p q)
 
             Irregular
-            none
+              none
 
             Reduction
-            none, natural
+              none, natural
 
-        [%ktwt p=twig]                              ::  %gold core to %lead
+        [%ktwt p=twig]                              
 
-            ^? ("ketwut") is a natural hoon that converts a %gold core into a %lead
-            core. See geometric polymorphism.
-
-            Form
-            p is a twig
+            ^? ("ketwut") is a natural hoon that converts a %gold core into a
+            %lead core. See geometric polymorphism.
 
             Tall
-            ^?  p
+              ^?  p
 
             Wide
-            ^?(p)
+              ^?(p)
 
             Irregular
-            none
+              none
 
             Reduction
-            none, natural
+              none, natural
 
-        [%sgbr p=twig q=twig]                       ::  print p if q fails
+        [%sgbr p=twig q=twig]                       
 
-            ~| ("sigbar") is a synthetic rune that presents the product of p in the
-            stack trace if q crashes. Only performed as needed. Generates %cain - see
-            the Biblical names.
-
-            Form
-            p is a twig
-            q is a twig
+            ~| ("sigbar") is a synthetic rune that presents the product of p
+            in the stack trace if q crashes. Only performed as needed. 
+            Generates %cain - see the Biblical names.
 
             Tall
-            ~|  p
-                q
+              ~|  p
+                  q
 
             Wide
-            ~|(p q)
+              ~|(p q)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open, ++feck
+              See ++open, ++feck
 
-        [%sgcb p=twig q=twig]                       ::  put p in q's trace
+        [%sgcb p=twig q=twig]                       
 
             ~_ ("sigcab") is a synthetic rune that inserts p, a trap producing a tank,
             into the trace of q.
 
-            Form
-            p is twig of the trap pattern
-            q is a twig
-
             Tall
-            ~_  p
-                q
+              ~_  p
+                  q
 
             Wide
-            ~_(p q)
+              ~_(p q)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
-        [%sgcn p=chum q=twig r=tyre s=twig]         ::  mark core for jets
+        [%sgcn p=chum q=twig r=tyre s=twig]         
 
             ~% ("sigcen") is a synthetic rune that identifies a core for specific
             optimization. See jet propulsion.
 
-            Form
-            p is a chum, formatted jet information
-            q is a twig
-            p.i.r is a term
-            q.i.r is a twig
-            p.i.t.r is a term
-            q.i.t.r is a twig
-            r is a tyre, list of [term twig] pairs
-            s is a twig
-
             Tall
-            ~%    p
-                q 
-              ==
-                p.i.r  q.i.r
-                p.i.t.r  q.i.t.r
-              ==
-            s
+              ~%    p
+                  q 
+                ==
+                  p.i.r  q.i.r
+                  p.i.t.r  q.i.t.r
+                ==
+              s
 
-            ~%    p
-                q
-              ~
-            s
+              ~%    p
+                  q
+                ~
+              s
 
             Wide
-            none
+              none
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
-        [%sgfs p=chum q=twig]                       ::  jet arm in ~% core
+        [%sgfs p=chum q=twig]                       
 
             ~/ ("sigfas") is a synthetic rune that identifies an arm for specific
             optimization. See jet propulsion.
 
-            Form
-            p is a chum, formatted jet information
-            q is a twig
-            
             Tall
-            ~/  p
-            q
+              ~/  p
+              q
 
             Wide
-            ~/(p q)
+              ~/(p q)
 
             Irregular
-            none
+              none
 
             Reduction
-            See ++open
+              See ++open
 
-        [%sggl p=$|(term [p=term q=twig]) q=twig]   ::  hint p to product q
+        [%sggl p=$|(term [p=term q=twig]) q=twig]   
 
-            ~< ("siggal") is a synthetic rune that applies arbitrary hint p to the 
-            product of q.
+            ~< ("siggal") is a synthetic rune that applies arbitrary hint p to 
+            the product of q. Does not wake the hint engine until the
+            computation is finished.
 
+            Tall
+              ~<  p
+                  q
+
+            Wide
+              ~<(p q)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
             
         [%sggr p=$|(term [p=term q=twig]) q=twig]
+            
+            ~> ("siggar") is a natural rune that applies arbitrary hint p to q.
+             
+            Tall
+              ~>  p
+                  q
+
+            Wide
+              ~>(p q)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open             
+
         [%sgbc p=term q=twig]
+       
+            ~$ ("sigbuc") is a synthetic rune that labels computation q as p 
+            for profiling (not currently enabled).
+ 
+            Tall
+              ~$  p
+                  q
+            
+            Wide
+              ~$(p q)
+            
+            Irregular
+              none
+
+            Reduction
+              See ++open
+      
         [%sgls p=@ q=twig]
+            
+XX Solve        ~+ ("siglus") is a synthetic rune that memoizes computation q
+            Tall
+
+            Wide
+
+            Irregular
+
+            Reduction
+              See ++open
+
         [%sgpm p=@ud q=twig r=twig]
+
+            ~& ("sigpam") is a synthetic rune that prints q on the console
+            before computing r. p is the log priority 0-3, defaulting to 0.
+
+            Tall
+              0, debug
+                ~&  q
+                r
+
+              1, notice
+                ~&  >  q
+                r
+
+              2, warning
+                ~&  >>  q
+                r
+
+              3, alarm
+                ~&  >>>  q
+                r              
+
+            Wide
+              ~&(>>> q r)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%sgts p=twig q=twig]
+
+            ~= ("sigtis") is a synthetic rune that hints to the interpreter
+            that q may produce a noun equal to the already existing p,
+            avoiding duplication.
+
+            Tall
+              ~=  p
+		  q
+
+            Wide
+              ~=(p q)
+            
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%sgwt p=@ud q=twig r=twig s=twig]
+
+            ~? ("sigwut") is a synthetic rune that prints r to the console
+            before computing s, iff q produces yes. p is the log priority,
+            0-3, 0 by default
+
+            Tall
+              0, debug
+                ~?  q
+                  r
+                s                
+
+              1, notice
+                ~?  >  q
+                  r 
+                s
+
+              2, warning
+                ~?  >>  q                
+                  r
+                s
+ 
+              3, alarm
+                ~?  >>>  q
+                  r
+                s
+                
+            Wide
+              ~?(>>> q r s)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%sgzp p=twig q=twig]
+  
+            ~! ("sigzap") is a natural rune for debugging uses only,
+            semantically equivalent to its own twig q. Should compilation
+            fail within q, ~! will show the type of p on the stacktrace.
+
+            Tall
+              ~!  p
+		  q
+
+            Wide
+              ~!(p q)
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%smcl p=twig q=tusk]
+
+            ;: ("semcol") is a synthetic gate that applies p, a binary gate,
+            to the n-ary tuple q.
+
+            Tall
+              ;:  p
+                i.q
+                i.t.q
+                i.t.t.q
+              ==
+
+            Wide
+              ;:(p i.q i.t.q i.t.t.q)
+
+            Irregular
+              :(p i.q i.t.q i.t.t.q)
+
+            Reduction
+              See ++open
+
         [%smdt p=twig q=tusk]
+XX determine function
+
+            Tall
+
+            Wide
+
+            Irregular
+
+            Reduction
+              See ++open
+
         [%smdq p=(list beer)]
+XX determine if internal/external
+
+            ;" ("semdoq") is a synthetic rune used to make strings,
+            interpolated or not.
+
+            Tall
+
+            Wide
+
+            Irregular
+
+            Reduction
+              See ++open
+
         [%smsg p=twig q=tusk]
+
+XX to do            
+
+            Tall
+
+            Wide
+
+            Irregular
+
+            Reduction
+              See ++open
+
         [%smsm p=twig q=twig]
+
+            ;; ("semsem") is a synthetic rune that types q as a fixpoint of p.
+            Semantically identical to ((hard p) q).
+
+            Tall
+              ;;  p
+                  q
+
+            Wide
+              ;;(p q)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%tsbr p=tile q=twig]
+
+            =| ("tisbar") is a synthetic rune that pushes ~(bunt al p) on the
+            subject and sends it to q.
+
+            Tall
+              =|  p
+                  q
+
+            Wide
+              =|(p q)
+
+            Irregular
+              none
+
+            Reduction
+              =+(_p q)
+              See ++open, ++bunt in ++al
+
         [%tscl p=tram q=twig]
+
+            =: ("tiscol") is a synthetic rune that produces q with the subject
+            by p. Uses %cncb, and so cannot change the subject type.
+
+            Tall
+              =:  p.i.p  q.i.p
+                  p.i.t.p  q.i.t.p
+                  p.i.t.t.p  q.i.t.t.p
+                ==
+              q
+
+            Wide
+              none
+
+            Irregular
+              noen
+
+            Reduction
+              See ++open
+
         [%tscn p=twig q=twig]
+XX to do
+            Tall
+
+            Wide
+
+            Irregular
+
+            Reduction
+              See ++open
+
         [%tsdt p=wing q=twig r=twig]
+
+            =. ("tisdot") is a synthetic rune that produces r with p in the
+            subject set to q. Uses %cncb, and so cannot change the subject
+            p.
+
+            Tall
+              =.  p
+                q
+              r
+            
+              =.  p  q
+              r
+
+            Wide
+              =.(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%tsfs p=twig q=twig]
+            XX not used
+
         [%tsgl p=twig q=twig]
+
+            =< ("tisgal") is a synthetic rune that uses the product of q as 
+           the subject of p.
+
+            Tall
+              =<  p
+              q
+            
+            Wide
+               =<(p q)
+
+            Irregular
+
+            Reduction
+              See ++open
+
         [%tshp p=twig q=twig]
+
+            =- ("tishep") is a synthetic rune that pushes q on the subject
+            and sends it to p. Dual of =+ ("tislup")
+            
+
+            Tall
+              =-  p
+              q
+
+            Wide
+              =-
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%tsgr p=twig q=twig]
+
+            => ("tisgar") is a natural rune that uses the product of p as the
+            subject of q.
+
+            Tall
+              =>  p
+              q
+
+            Wide
+              =>(p q)
+  
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%tskt p=twig q=twig r=twig s=twig]
+
+            =^ ("tisket") is a synthetic rune that handles a product which is
+            a cell of the new result, and a mutation to the subject.
+
+            Tall
+              Kingside
+                =^    p
+                    q
+                  r
+               s
+
+              Queenside
+                =^  p  q
+                  r
+                s      
+ 
+            Wide
+              =^(p q r s)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%tsls p=twig q=twig]
+
+            =+ ("tislus") is a synthetic rune that pushes p on the subject
+            and sends it to q. Semantically equavlent to Nock 8.Dual of =- ("tishep")
+
+            Tall
+              =+  p
+              q
+
+            Wide
+              =+(p q)
+
+            Irregular
+              none           
+
+            Reduction
+              See ++open
+
         [%tspm p=tile q=twig]
+
+            XX not used
+
         [%tspt p=tile q=twig]
+
+            XX not used
+
         [%tstr p=term q=wing r=twig]
+
+            =* ("tistar") is a natural rune that creates a %bull, or alias,
+            type.
+
+            Tall
+              =*  p  q
+                  r
+
+            Wide
+              =*(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%tssg p=tusk]
+
+            =~ ("tissig") is a synthetic rune that composes a list of twigs.
+
+            Tall
+              Kingside
+                =~    i.p
+                    i.t.p
+                    i.t.t.p
+                ==
+
+              Queenside
+                =~  i.p
+                    i.t.p
+                    i.t.t.p
+                ==
+
+            Wide
+              none
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%wtbr p=tusk]
+
+            ?| ("wutbar") is a synthetic rune that computes the "or" of the
+            loobeans in p.
+
+            Tall
+              ?|  i.p
+                  i.t.p
+                  i.t.t.p
+              ==            
+
+            Wide
+              ?|(i.p i.t.p i.t.t.p)
+
+            Irregular
+              |(i.p i.t.p i.t.t.p)
+
+            Reduction
+              See ++open
+
         [%wthp p=wing q=tine]
+
+            ?- ("wuthep") is a synthetic rune that selects a case in q for
+            the actual type of p.
+
+            Tall
+              Kingside
+                ?-  p
+                  p.i.q  q.i.q
+                  p.i.t.q  q.i.t.q
+                  p.i.t.t.q  q.i.t.t.q
+                ==  
+              
+              Queenside
+                ?-    p
+                    p.i.q
+                  q.i.q
+                    p.i.t.q
+                  q.i.t.q
+                    p.i.t.t.q
+                  q.i.t.t.q
+                ==
+
+            Wide
+              ?-(p p.i.q q.i.q, p.i.t.q q.i.t.q, p.i.t.t.q q.i.t.t.q) 
+
+            Irregular
+              none
+            
+            Reduction
+              See ++open
+
         [%wthz p=tiki q=tine]
+
+            "wuthaz" is a synthetic internal rune that selects a case in q 
+            for the actual type of p.
+
+            Tall/Wide/Irregular
+              none, internal            
+
+            Reduction
+              See ++open
+
         [%wtcl p=twig q=twig r=twig]
+
+            ?: ("wutcol") is a natural rune that produces q if p is yes (&, 0),
+            or r if p is no (|, 1).
+
+            Tall
+              ?:  p
+                q 
+              r
+
+            Wide
+              ?:(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%wtdt p=twig q=twig r=twig]
+
+            ?. ("wutdot") is a synthetic rune that prduces r if p is yes 
+            (&, 0), of q if p is no (|, 1).
+
+            Tall
+              ?.  p
+                q
+              r
+
+            Wide
+              ?:(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%wtkt p=wing q=twig r=twig]
+
+            ?^ ("wutkey") is a synthetic rune that evaluates r if p is 
+            equivalent to the bunt for its tile, otherwise q is evaluted.
+
+            Tall
+              ?^  p
+                q
+              r
+
+            Wide
+              ?^(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%wtkz p=tiki q=twig r=twig]
+
+            "wutkaz" is a synthetic, internal rune that evaluates r if p is
+            equivalent to the bunt for its tile, otherwise q is evaluated.
+            See tikis.            
+
+            Tall
+              ?^  p
+                q
+              r
+
+            Wide
+              ?^(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%wtgl p=twig q=twig]
+
+            ?< ("wutgal") is a synthetic hoon that produces q, asserting that
+            p is no (|, 1).
+
+            Tall
+              ?<  p
+                  q
+
+            Wide
+              ?<(p q)
+
+            Irregular
+              none 
+ 
+            Reduction
+              See ++open
+
         [%wtgr p=twig q=twig]
+
+            ?> ("wutgar") is a synthetic hoon that produces q, asserting that
+            p is yes (&, 0).
+
+            Tall
+              ?>  p
+                  q
+
+            Wide
+              ?>(p q)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%wtls p=wing q=twig r=tine]
+
+            ?+ ("wutlus") is a synthetic rune that selects a case in q for
+            the actual type of p.
+
+            Tall
+              Kingside
+                ?+  p
+                  q
+                  p.i.r  q.i.r
+                  p.i.t.r  q.i.t.r
+                  p.i.t.t.r  q.i.t.t.r
+                ==
+
+              Queenside
+                ?+    p
+                  q
+                    p.i.r
+                  q.i.r
+                    p.i.t.r
+                  q.i.t.r
+                    p.i.t.t.r
+                  q.i.t.t.r
+                ==
+
+            Wide
+              ?+(p p.i.r q.i.r, p.i.t.r q.i.t.r, p.i.t.t.r q.i.t.t.r)
+
+            Irregular
+              none
+            
+            Reduction
+              See ++open
+
         [%wtlz p=tiki q=twig r=tine]
+            
+            "wutlaz" is a synthetic, internal rune that selects a case in q for
+            the actual type of p.
+
+            Tall/Wide/Irregular
+              none, internal
+
+            Reduction
+              See ++open
+
         [%wtpm p=tusk]
+
+            ?& ("wutpam") is a synthetic hoon that computes the "and" of the 
+            loobeans in p.
+
+            Tall
+              ?&  i.p
+                  i.t.p
+                  i.t.t.p
+              ==
+
+            Wide
+              ?&(i.p i.t.p i.t.t.p)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%wtpt p=wing q=twig r=twig]
+
+            ?@ ("wutpat") is a synthetic hoon that produces q if p is an 
+            atom, r otherwise.
+
+            Tall
+              Kingside
+                ?@  p
+                  q
+                r
+          
+              Queenside
+                ?@  p
+                  q
+                r
+
+            Wide
+              ?@(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%wtpz p=tiki q=twig r=twig]
+
+            "wutpaz" is a synthetic hoon that produces q if p is an atom, r 
+            otherwise.
+
+            Tall
+              ?@  p
+                q
+              r
+
+            Wide
+              ?@(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%wtsg p=wing q=twig r=twig]
+
+            ?~ ("wutsig") is a synthetic rune that produces q if p is ~, r
+            otherwise.
+
+            Tall
+              ?~  p
+                q
+              r
+
+            Wide
+              ?~(p q r)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%wtsz p=tiki q=twig r=twig]
+
+            "wutsaz" is a synthetic internal rune that produces q if p is ~, 
+            r otherwise.
+
+            Tall/Wide/Irregular
+              none, internal
+
+            Reduction
+              See ++open
+
         [%wtts p=tile q=wing]
+
+            ?= ("wuttis") is a natural rune that produces true if the leg at
+            wing q is in tile p.
+
+            Tall
+              ?=  p
+                  q
+
+            Wide
+              ?=(p q)
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%wtzp p=twig]
+ 
+            ?! ("wutzap") is a synthetic rune that produces the logical "not"
+            of p. 
+
+            Tall
+              ?!  p
+
+            Wide
+              ?!(p)
+
+            Irregular
+              !p
+
+            Reduction
+              See ++open
+
         [%zpcb p=spot q=twig]
+XX tall/wide form
+            !_ ("zapcab") is a natural rune that puts debugging information
+            in the stack trace.
+
+            Tall
+                 
+            Wide
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%zpcm p=twig q=twig]
+
+            !, ("zapcom") is a natural rune that inserts twig q as a 
+            constant, typed with the type of twig p.
+
+            Tall
+              !,  p
+                  q
+
+            Wide
+              !,(p q)
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%zpcn ~]
+XX determine function
+            !% ("zapcen")
+
+            Tall
+
+            Wide
+
+            Irregular
+
+            Reduction
+              See ++open
+
         [%zpfs p=twig]
+XX tall/wide
+            !/ ("zapfas") is a natural rune that should never be compiled. 
+            When compiled with error checking turned on, it reports its 
+            subject as an error.
+
+            Tall
+
+            Wide
+
+            Irregular
+
+            Reduction
+              See ++open
+
         [%zpgr p=twig]
+
+            !> ("zapgar") is a synthetic rune that produces a vase (a 
+            [type noun] cell) with the value p.
+
+            Tall
+              !>  p
+
+            Wide
+              !>(p)
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%zpsm p=twig q=twig]
+
+            !; ("zapsem") is a natural rune that produces the product of twig
+            q as a [type noun] pair, with twig p defining the type of the type.
+
+            Tall
+              !;  p
+                  q
+
+            Wide
+              !;(p q)
+
+            Irregular
+              none
+            
+            Reduction
+              none, natural
+
         [%zpts p=twig]
+
+            != ("zaptis") is a natural rune that produces the formula of twig
+            p as a noun.
+
+            Tall
+              !=  p
+
+            Wide
+              !=(p)
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
         [%zpwt p=$|(p=@ [p=@ q=@]) q=twig]
+
+            !? ("zapwut") is a synthetic rune that enforces a Hoon version
+            restriction.
+
+            Tall
+              !?  p
+              q
+
+            Wide
+              none
+
+            Irregular
+              none
+
+            Reduction
+              See ++open
+
         [%zpzp ~]
+
+            !! ("zapzap") is a natural rune that always causes a crash when
+            executed. 
+
+            Tall
+              none
+
+            Wide
+              !!
+
+            Irregular
+              none
+
+            Reduction
+              none, natural
+
     ++  tine  
     ++  tusk  
     ++  tyre  
