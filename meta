@@ -1,0 +1,123 @@
+Yo dawg. I heard you like doc.
+
+Source explanations:
+
+Rune phrase equivalents:
+
+    replace p's and q's with appropriate sample types:
+
+        @  atom
+        *  noun
+        ^  cell
+        ?  bean
+        ~  null
+
+        a=@  is atom a
+        foo=* is noun foo
+
+$_  Bunt p
+$,  Clam p
+$@  Whip p into q
+$*  Static bunt p
+$!  Bunt axil p
+
+|_  Build a dry %gold tray with sample p
+|%  Build a core
+|.  Build a dry %gold trap
+|/  Build a wet %gold tray with sample p
+|^  Build a %gold book
+|-  Kick a dry %gold trap
+|+  Build a dry %iron gate with sample p
+|*  Build a wet %gold gate with sample p
+|=  Build a dry %gold gate with sample p
+|?  Build a dry %lead trap
+
+:_  Reverse pair p and q
+:%  Double-null 
+:/  ???
+:^  Quad p, q, r and s
+:-  Pair p and q 
+:+  Triple p, q and r
+:~  Null-term
+:*  n-tuple
+
+.^  Data-grab x from p (where x is %cx, etc)
+.+  Increment
+.*  Eval Nock
+.=  p is q? (wut optional)
+.?  p is cell? (wut optional)
+
+#>  ???
+#<  ???
+
+^|  %iron cast p
+^.  Cast to type of (p q) 
+^+  Cast q to type of p 
+^-  Yield p
+^&  %zinc cast p
+^~  Static constant
+^=  Label p on q
+^?  %lead cast p
+
+~|  Error on crash
+~_  Add to q's trace
+~%  Ready jets
+~/  Activate jet
+~>  Hint to product
+~<  Hint
+~$  Profile
+~+  Cache
+~&  Printf (with optional priority)
+~=  Avoid duplication
+~?  Conditional hint
+~!  Add type to trace
+
+;:  n-ary extend
+;.  ???
+;~  Gonadify
+;"  Assemble string
+;;  ???  
+
+=|  Push bunt
+=:  Apply p changes 
+=.  Set p to q
+=<  Seek subject for p
+=-  Reverse push
+=>  Use p as subject
+=^  State change
+=+  Push (e.g. a=0, push a is 0)
+=*  Alias
+
+
+?|  p OR q
+?-  Switch on p
+?:  If: p, Then: q, Else: r
+?.  Unless: p Then: q, Else: r
+?^  Bunt-check
+?>  Assert that p
+?<  Deny that p
+?+  Switch on p
+?&  p AND q
+?@  If: p is atom, Then: q, Else r
+?~  If: p is null, Then: q, Else r
+?=  Fish for q in p
+?!  NOT
+
+!_  Debug info
+
+!/  Error Report
+!>  Produce vase
+!;  ???
+!=  Compile to Nock
+!?  Restrict versions
+!!  Fail
+
+$(a +(a)) Slam core (gate, trap etc.) with +(a).
+
+
+Add more convention as needed.
+
+
+
+
+
