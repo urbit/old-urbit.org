@@ -27,7 +27,8 @@ volume 1, Hoon models
         --- 
 
     ++  axis 
-        A Nock axis, an address inside a Nock noun. ---
+        A Nock axis, an address inside a Nock noun. 
+        ---
         Clammed atom [#axil].
         ---
 
@@ -56,12 +57,14 @@ volume 1, Hoon models
         ---
 
     ++  calf  
+
     ++  char  
         A single character.
         ---
         Atom with odor [#type]. A @tD is a single Unicode byte. 
         ---
         ++tape [#tape], which is a string type, is a list of chars.
+        ---
 
     ++  chum  
         The jet hint information that must be present in the body of a ~/
@@ -80,6 +83,7 @@ volume 1, Hoon models
     ++  coat  
     ++  coil  
     ++  coin  
+
     ++  cord  
         One of Hoon's two string types (the other being ++tape). A cord is an
         atom of UTF-8 text.
@@ -150,11 +154,67 @@ volume 1, Hoon models
     ++  rege  
     ++  ring  
     ++  rule  
-    ++  span  
+    ++  span
+        A restricted text atom for canonical atom syntaxes. The prefix is `~.`.
+        There are no escape sequences except `~~`, which means `~`, and `~-`,
+        which means `_`. - and .  encode themselves. No other characters
+        besides numbers and lowercase letters are permitted.
+        ---
+        ~zod/try=> `@t`~.foo
+        'foo'
+        ---
+        ~zod/try=> `@t`~.foo.bar
+        'foo.bar'
+        ---
+        ~zod/try=> `@t`~.foo~~bar
+        'foo~bar'
+        ---
+        ~zod/try=> `@t`~.foo~-bar
+        'foo_bar'
+        ---
+        ~zod/try=> `@t`~.foo-bar
+        'foo-bar'
+        ---
     ++  spot  
     ++  tank  
     ++  tape  
+        One of Hoon's two string types (the other being ++cord). A tape is a
+        list of chars.
+        ---
+        ~zod/try=> `(list ,char)`"foobar"
+        "foobar"
+        ---
+        ~zod/try=> `(list ,@)`"foobar"
+        ~[102 111 111 98 97 114]
+        ---
     ++  term  
+        A restricted text atom for Hoon constants. The only characters
+        permitted are lowercase ASCII, - except as the first or last character,
+        and 0-9 except as the first character.
+
+        The syntax for @tas is the text itself, always preceded by %. This
+        means a term is always cubical. You can cast it to @tas if you like,
+        but we just about always want the cube:
+        ---
+        ~waclux-tomwyc/try=> %dead-fish9
+        %dead-fish9
+        ---
+        ~waclux-tomwyc/try=> -:!>(%dead-fish9)
+        [%cube p=271.101.667.197.767.630.546.276 q=[%atom p=%tas]]
+        ---
+        The empty @tas has a special syntax, $:
+
+        ~waclux-tomwyc/try=> %$
+        %$
+        ---
+        A term without % is not a constant, but a name:
+
+        ~waclux-tomwyc/try=> dead-fish9
+        ! -find-limb.dead-fish9
+        ! find-none
+        ! exit
+        ---
+
     ++  tiki
 
     ++  tile  
@@ -2326,6 +2386,142 @@ XX tall/wide
     ++  tune  
     ++  twin  
     ++  type  
+
+        A type is a noun that:
+
+        One, it defines a set of nouns. Any finite noun is either in this set, or
+        not in it.
+
+        Two, it ascribes semantics to all nouns in this set. For example, a Hoon
+        type exports a semantic namespace.
+
+        A lot of other languages use dynamic types, in which the type of a
+        value is carried along with the data as you use it. Even languages like
+        Lisp, which are nominally typeless, look rather typed from the Hoon
+        perspective. For example, a Lisp atom knows dynamically whether it's a
+        symbol or an integer. A Hoon atom is just a Nock atom, which is just a
+        number. So without a static type, Hoon doesn't even know how to print
+        an atom properly.
+        ---
+        
+        There are 9 cases of ++type:
+
+        ?(%noun %void)
+
+            Either %noun or %void. %noun is the set of all nouns. %void is the
+            set of no nouns. 
+
+            ~waclux-tomwyc/try=> :type; *
+            0
+            *
+
+            ~waclux-tomwyc/try=> -:!>(*)
+            %noun
+
+            ~waclux-tomwyc/try=> :type; `*`%noun
+            1.853.189.998
+            *
+
+            ~waclux-tomwyc/try=> -:!>(`*`%noun)
+            %noun
+
+            We can't show any examples producing %void - by definition, none of
+            them would terminate. Because that's what %void means. All other
+            cases in ++type are subsets of %noun.
+
+        [%atom p=term]
+
+        [%bull p=twin q=type]
+
+        [%cell p=type q=type]
+
+            A pair of types. Set: all cells of p and q. 
+
+            ~waclux-tomwyc/try=> :type; [3 4]
+            [3 4]
+            [@ud @ud]
+
+            ~waclux-tomwyc/try=> -:!>([3 4])
+            [%cell p=[%atom p=%ud] q=[%atom p=%ud]]
+
+
+        [%core p=type q=coil]
+
+        [%cube p=* q=type]
+
+            When we enter an ordinary constant, like 42, its type [%atom %ud]
+            is the set of all atoms (with odor @ud, but any atom can have that
+            or any odor). Its type is certainly not the set consisting
+            exclusively of the value 42.
+
+            But here's how we produce this "cubical" constant:
+
+            ~waclux-tomwyc/try=> :type; %42
+            %42
+            %42
+
+            ~waclux-tomwyc/try=> -:!>(%42)
+            [%cube p=42 q=[%atom p=%ud]]
+            
+            In general, a %cube type contains p, a single noun, and q, a base
+            type which provides semantics.
+
+            Syntactically, any atomic constant can be preceded by % to generate
+            a cube. The exception is @tas, which always needs % and is always
+            cubical.
+
+        [%face p=term q=type]
+
+            A type is not just a set of nouns - it's also a meaning which makes
+            sense of any noun in that set. The typed noun exports a namespace -
+            give it a name, and it gives you another noun.
+
+            ~zod/try=> foo=42
+            foo=42
+            ~zod/try=> :type; foo=42
+            foo=42
+            foo=@ud
+            ~zod/try=> -:!>(foo=42)
+            [%face p=%foo q=[%atom p=%ud]]
+
+            With %face, we've simply wrapped a label around another type. Note
+            that this doesn't impair our ability to compute with the value.
+            Computationally, foo=42 is just 42:
+
+             ~zod/try=> (add 17 foo=42)
+             59
+             ---
+
+        [%fork p=type q=type]
+
+            A union type. [%fork p q] means "it could be a p, or maybe a q."
+
+            Any branching computation in which different branches produce
+            different types will generate a fork. For example:
+
+            ~zod/try=> :type; ?:(& %foo [13 10])
+            %foo
+            { %foo [@ud @ud] }
+
+            ~zod/try=> -:!>(?:(& %foo [13 10]))
+            [ %fork
+              p=[%cube p=7.303.014 q=[%atom p=%tas]]
+              q=[%cell p=[%atom p=%ud] q=[%atom p=%ud]]
+             ]
+
+            Here we start to understand why the type renderer is useful, as 
+            { %foo [@ud @ud] } (which is not in any way Hoon syntax) is a 
+            little easier to read than the actual type noun.
+
+            (Readers of a mathematical bent may ask: since Hoon has a union
+            type, where is the intersection type? There is none. Hoon is not
+            one of these languages whose goal is to be as mathematically
+            powerful as possible. Since a programming language is a UI for
+            programmers, and programmers are not mathematicians, Hoon is
+            designed to be as powerful as it has to be - and no more.)
+
+        [%hold p=(list ,[p=type q=twig])]
+
     ++  typo  
     ++  udal  
     ++  udon  
