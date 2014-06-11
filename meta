@@ -21,16 +21,16 @@ $@  Whip p into q
 $*  Static bunt p
 $!  Bunt axil p
 
-|_  Build a dry %gold tray with sample p
-|%  Build a core
-|.  Build a dry %gold trap
-|/  Build a wet %gold tray with sample p
-|^  Build a %gold book
-|-  Kick a dry %gold trap
-|+  Build a dry %iron gate with sample p
-|*  Build a wet %gold gate with sample p
-|=  Build a dry %gold gate with sample p
-|?  Build a dry %lead trap
+|_  Build dry %gold tray with sample p
+|%  Build core
+|.  Build dry %gold trap
+|/  Build wet %gold tray with sample p
+|^  Build %gold book
+|-  Kick dry %gold trap
+|+  Build dry %iron gate with sample p
+|*  Build wet %gold gate with sample p
+|=  Build dry %gold gate with sample p
+|?  Build dry %lead trap
 
 :_  Reverse pair p and q
 :%  Double-null 
@@ -113,11 +113,6 @@ $!  Bunt axil p
 !!  Fail
 
 $(a +(a)) Slam core (gate, trap etc.) with +(a).
-
+~(get by foo)  Slug tray by to get with foo.
 
 Add more convention as needed.
-
-
-
-
-

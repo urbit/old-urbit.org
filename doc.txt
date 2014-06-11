@@ -1569,7 +1569,7 @@ volume 2, Hoon libraries and compiler
   chapter 2a, basic unsigned math
 
     ++  add 
-        Sums two numbers.
+        Sum two numbers.
         ---
         Activate jet
         Build dry %gold gate with sample atoms a and b
@@ -1580,10 +1580,8 @@ volume 2, Hoon libraries and compiler
         ---
         ~palryp-hocsyt/try=> (add 2 2)
         4
-        ---
         ~palryp-hocsyt/try=> (add 1 1.000.000)
         1.000.001
-        ---
         ~palryp-hocsyt/try=> (add 1.333 (mul 2 2))
         1.337
 
@@ -1601,13 +1599,10 @@ volume 2, Hoon libraries and compiler
         ---
         ~palryp-hocsyt/try=> (cap 4)
         %2
-        ---
         ~palryp-hocsyt/try=> (cap 6)
         %3
-        ---
         ~palryp-hocsyt/try=> (cap (add 10 9))
         %2
-        ---
 
     ++  dec  
         Decrements a number - Subtracts one.
@@ -1619,22 +1614,20 @@ volume 2, Hoon libraries and compiler
         Let b be 0
         Kick dry %gold trap that yields atom.
         If: a is +(b)
-          Then, produce b
+          Then, produce b.
         Else, slam trap with +(b) 
         ---
         ~palryp-hocsyt/try=> (dec 7)
         6
-        ---
         ~palryp-hocsyt/try=> (dec 0)
         ! decrement-underflow
         ! exit
-        ---
 
     ++  div  
         Divides one number by another.
         ---
         Activate jet
-        Build dry %gold gate with sample atom a and atom b.
+        Build dry %gold gate with sample atom a, atom b.
         Yield atom
         Error on crash: 'div'
         Deny that b is 0
@@ -1646,13 +1639,10 @@ volume 2, Hoon libraries and compiler
         ---
         ~palryp-hocsyt/try=> (div 4 2)
         2
-        ---
         ~palryp-hocsyt/try=> (div 17 8)
         2
-        ---
         ~palryp-hocsyt/try=> (div 20 30)
         0
-        ---
 
     ++  fac  
         Produces the factorial of a number n, n!.
@@ -1667,13 +1657,10 @@ volume 2, Hoon libraries and compiler
         ---
         ~palryp-hocsyt/try=> (fac 3)
         6
-        ---
         ~palryp-hocsyt/try=> (fac 0)
         1
-        ---
         ~palryp-hocsyt/try=> (fac 11)
         39.916.800
-        ---
 
     ++  gte
         Is the first greater than or equal to the second?
@@ -1700,19 +1687,15 @@ volume 2, Hoon libraries and compiler
         Build dry %gold gate with sample atom a and atom b
         Yield bean.
         a is NOT less-equal b
-
-      Examples:
-            ~ronrem-lonsem/try=> (gth 4 5)
-            %.n
-            ---
-            ~ronrem-lonsem/try=> (gth 5 4)
-            %.y
-            ---
-            ~ronrem-lonsem/try=> (gth 5 5)
-            %.n
-            ---
-            ~ronrem-lonsem/try=> (gth 0 0)
-            %.n
+        ---
+        ~ronrem-lonsem/try=> (gth 4 5)
+        %.n
+        ~ronrem-lonsem/try=> (gth 5 4)
+        %.y
+        ~ronrem-lonsem/try=> (gth 5 5)
+        %.n
+        ~ronrem-lonsem/try=> (gth 0 0)
+        %.n
     ++  lte  
         Is the first less than or equal to the second?
         ---
@@ -1723,16 +1706,13 @@ volume 2, Hoon libraries and compiler
         ---
         ~ronrem-lonsem/try=> (lte 4 5)
         %.y
-        ---
         ~ronrem-lonsem/try=> (lte 5 4)
         %.n
-        ---
         ~ronrem-lonsem/try=> (lte 5 5)
         %.y
-        ---
         ~ronrem-lonsem/try=> (lte 0 0)
         %.y
-        ---
+
     ++  lth  
         Is the first less than the second?
         ---
@@ -1756,11 +1736,8 @@ volume 2, Hoon libraries and compiler
         ~ronrem-lonsem/try=> (lth 5 0)
         %.n
 ++  mas  
-  Comment:
-        tree body
-  Description:
-       Produces the axis of a within the head or the tail. 
-  Explanation:
+        Produces the axis of a within the head or the tail. 
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts an atom.
         Must produce an atom.
@@ -1769,7 +1746,7 @@ volume 2, Hoon libraries and compiler
         Produce 1 if a is either 2 or 3.
         Else, sum the modulus of a and 2 with the 2 multiplied by the recursive call of 
         mas with a replaced by a/2.
-  Examples:
+        ---
         1 ~ronrem-lonsem/try=> (mas 3)
         1
         ---
@@ -1794,11 +1771,8 @@ volume 2, Hoon libraries and compiler
         ~ronrem-lonsem/try=> (mas 1)
         ! exit
 ++  max  
-  Comment:
-        maximum
-  Description:
         Yields the larger of two atoms.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce an atom.
@@ -1815,11 +1789,10 @@ volume 2, Hoon libraries and compiler
         ~palryp-hocsyt/try=> (max 0 1)
         1
 ++  min  
-  Comment:
         minimum
   Description:
         Yields the smaller of two atoms.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce an atom.
@@ -1836,11 +1809,10 @@ volume 2, Hoon libraries and compiler
         ~palryp-hocsyt/try=> (min 0 1)
         0
 ++  mod  
-  Comment:
         remainder
   Description:
         Yields the modulus of (a mod b).
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce an atom.
@@ -1848,11 +1820,10 @@ volume 2, Hoon libraries and compiler
         Produce the difference of a and the product of b times a/b.
   Examples:
 ++  mul  
-  Comment:
         multiply
   Description:
         Multiplies two numbers.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce an atom.
@@ -1863,11 +1834,10 @@ volume 2, Hoon libraries and compiler
         Else, recursively call multiply with a replaced by decremented a and c replaced by b+c.
   Examples:
 ++  peg  
-  Comment:
         tree connect
   Description:
         Produces the axis of b within the axis of a.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce an atom.
@@ -1883,11 +1853,10 @@ volume 2, Hoon libraries and compiler
         ~ronrem-lonsem/try=> (mul 1 0)
         0
 ++  sub  
-  Comment:
         subtract
   Description:
         Accepts two atoms, a and b, and produces a-b.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         When the following code crashes, print "%subtract-underflow" in the stack trace.
@@ -1914,12 +1883,11 @@ chapter 2b, basic containers
 Section 2bA, units                    
 
 ++  biff 
-  Comment:
         apply
   Description:
         Accepts a unit 'a' and a gate 'b' which produces a unit from the type of u.a, slamming the gate 
         with the value of a when a isn't null and producing ~ when it is.
-  Explanation:
+        ---
         Creates a vulanixed wet gate with a sample which accepts a unit and a $+(* (unit)) tiled gate.
         Builds an if-then-else statement on "a is null."
         If so, produce null.
@@ -1931,11 +1899,10 @@ Section 2bA, units
         ~palryp-hocsyt/try=> (biff ~ |=(a=@ (some (add a 2))))
         ~
 ++  bind 
-  Comment:
         argue
   Description:
         Accepts a unit 'a' and a gate 'b', producing a unit with value (b u.a) or, when a is null, null.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts a unit and a gate.
         Builds an if-then-else statement on "a is null."
         If so, produce null.
@@ -1948,11 +1915,10 @@ Section 2bA, units
         ~talsur-todres/try=> (bind ((unit ,@) [~ 2]) a)
         [~ 3]
 ++  clap 
-  Comment:
         combine
   Description:
         Applies a binary operation to the values of two units, producing the product as a unit.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts two units and a gate.
         Builds an if-then-else statment on "a is null."
         If so, produce b.
@@ -1971,11 +1937,10 @@ Section 2bA, units
         ~talsur-todres/try=> (clap a b c)
         [~ 3]
 ++  drop 
-  Comment:
         enlist
   Description:
         Accepts a unit and produces the list [u.a ~] or null when the unit is null.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts a unit.
         Builds an if-then-else statement on "a is null."
         If so, produces null.
@@ -1989,11 +1954,10 @@ Section 2bA, units
         ~divreg-misdef/try=> (drop a)
         ~
 ++  fall 
-  Comment:
         default
   Description:
          a default value 'b' for the unit 'a' when it is null.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts a unit and any noun.
         Produces b if a is null and u.a if it is not.
   Examples:
@@ -2003,11 +1967,10 @@ Section 2bA, units
         ~talsur-todres/try=> (fall [~ u=0] `a`)
         0
 ++  mate 
-  Comment:
         choose
   Description:
         Produces the unit 'a' or 'b' which is not null and crashes with error "mate" if they are equal.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts a two units.
         Builds an if-then-else statement on "b is null."
         If so, produce a.
@@ -2031,11 +1994,10 @@ Section 2bA, units
         ! 'mate'
         ! exit
 ++  need 
-  Comment:
         demand
   Description:
         Retrieves the value from a unit, crashing if the unit is null.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts a unit.
         Builds an if-then-else statement on "a is an atom."
         If so, crash.
@@ -2049,11 +2011,10 @@ Section 2bA, units
         ~divreg-misdef/try=> (need a)
         ! exit
 ++  some 
-  Comment:
         lift
   Description:
         Casts any noun a to its unit, [~ a].
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts any noun.
         Produces the tuple [~ u=a], the unit of value a.
   Examples:
@@ -2066,11 +2027,10 @@ Section 2bA, units
 Section 2bB, lists                    
 
 ++  flop 
-  Comment:
         reverse
   Description:
         Produces the list 'a' with the elements reversed.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate with a sample which accepts a single list.
         'a' is then replaced with (homo a) and used as the subject for the code below (=>).
@@ -2091,11 +2051,10 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (flop (limo [1 'a' 2 'b' (some 10) ~]))
         ~[[~ u=10] 98 2 97 1]
 ++  homo 
-  Comment:
         homogenize
   Description:
         Homogenizes a lists' type information.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts a single list.
         Makes the type of the result the type of the product of the code below (^+).
         The subject of the arm ($) is then the product of the barcen statement below (=<).
@@ -2115,11 +2074,10 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (homo a)
         ~[1 2 3]
 ++  limo 
-  Comment:
         listify
   Description:
         Produces a list from any null-terminated tuple.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts a single list.
         Makes the type of the result the type of the product of the code below (^+).
         The subject of the arm ($) is then the product of the barcen statement below (=<).
@@ -2137,11 +2095,10 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (limo [2 1 ~])
         [i=2 t=[i=1 t=~]]
 ++  lent 
-  Comment:
         length
   Description:
         Produces the atomic length of any list.
-  Explanation:
+        ---
         This is a jetted arm.
         Creates a dry %gold gate with a sample which accpets a single list.
         Must produce an atom.
@@ -2156,11 +2113,10 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (lent (limo [1 'a' 2 'b' (some 10) ~]))
         5
 ++  levy
-  Comment:
        all of
   Description:
         Applies the loobean gate 'b' to every element of the list 'a', producing the logical AND of all the results.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate with a sample which accepts a list and a gate with a sample of any noun
         and produces a loobean.
@@ -2179,11 +2135,10 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (levy (limo [0 1 2 1 ~]) b)
         %.y        
 ++  lien 
-  Comment:
         some of
   Description:
         Applies the loobean gate 'b' to every element of the list 'a', producing the logical OR of all the results.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate with a sample which accepts a list and a gate with a sample of any noun
         and produces a loobean.
@@ -2200,12 +2155,11 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (lien (limo [0 1 2 1 ~]) a)
         %.n
 ++  reel 
-  Comment:
         right fold
   Description:
         Accepts a list 'a' and a gate 'b' which accepts two nouns, then folds (recursively calls 'b' across) the 
         list right to left, producing a value of the list element's type.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate with a sample which accepts a list and a trap which accepts two nouns.
         A dry %gold trap is created and kicked.  It must produce the type of the list's elements.
@@ -2225,12 +2179,11 @@ Section 2bB, lists
         ! subtract-underflow
         ! exit
 ++  roll 
-  Comment:
         left fold
   Description:
         Accepts a list 'a' and a gate 'b' which accepts two nouns, then folds (recursively calls 'b' across) the
         list left to right, producing a value of the list of the element's type.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate with a sample which accepts a list and a trap which accepts two nouns.
         A dry %gold trap is then created and kicked.  It must produce the type of the list's elements.
@@ -2246,12 +2199,11 @@ Section 2bB, lists
         ~barred-tidset/try=> (roll (limo [3 6 3 ~]) a)
         0
 ++  skid 
-  Comment:
        separate
   Description:
         Accepts a list and a gate which takes any noun and produces a loobean.  Produces two lists, one who's elements
         produce true and one who's produce false by slamming the gate with them.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts a list and a gate which accepts any noun and 
         produces a loobean.
         Creates and kicks a dry %gold trap.  It must produce a tuple of two lists af a's type
@@ -2264,12 +2216,11 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (skid (limo [0 1 2 3 ~]) a)
         [p=[i=2 t=[i=3 t=~]] q=[i=0 t=[i=1 t=~]]]
 ++  skim 
-  Comment:
         only
   Description:
         Accepts a list 'a' and a gate 'b' which takes any noun and produces loobean.  
         Produces the sublist of 'a' whose elements produce true by slamming the gate with them.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate with a sample which accepts a list and a gate which accepts any noun and 
         produces a loobean.
@@ -2285,12 +2236,11 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (skim (limo [0 1 2 3 ~]) a)
         [i=2 t=[i=3 t=~]]
 ++  skip 
-  Comment:
         except
   Description:
         Accepts a 'a' list and a gate 'b' which takes any noun and produces a loobean.
         Produces the sublist of 'a' whose elments produce false by slamming the gate with them.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate with a sample which accepts a list and a gate which accepts any noun and 
         produces a loobean.
@@ -2306,11 +2256,10 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (skip (limo [0 1 2 3 ~]) a)
         [i=0 t=[i=1 t=~]]
 ++  scag 
-  Comment:
         prefix
   Description:
         Accepts an atom 'n' and list 'b',  producing the first n elements at the front of the list.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts an atom and a list.
         A dry %gold trap is created and kicked.  It must produce a list of the same type as 'b'.
@@ -2325,11 +2274,10 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (scag 10 (limo [1 2 3 4 ~]))
         [i=1 t=[i=2 t=[i=3 t=[i=4 t=~]]]]
 ++  slag 
-  Comment:
         suffix
   Description:
         Accepts an atom 'n' and a list 'b', producing the last n elemnents at the back of the list.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts an atom and a list.
         A dry %gold trap is created and kicked.  It must produce a list of the same type as 'b'.
@@ -2345,12 +2293,11 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (slag 2 (limo [1 2 3 4 ~]))
         [i=3 t=[i=4 t=~]]
 ++  snag 
-  Comment:
         index
   Description:
         Accepts an atom and a list, producing the element at the index of the atom in the list and failing is the list
         is null.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts an atom and a list.
         A dry %gold trap is created and kicked.
@@ -2366,12 +2313,11 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (snag 4 (limo [1 2 3 4 5 6 7 8 ~]))
         5
 ++  sort 
-  Comment:
         quicksort
   Description:
         Accepts a list and a gate with a sample which accepts two nouns and produces a loobean.  'sort' then produces a 
         list of the elements of 'a' sorted according to 'b'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate with a sample which accepts a list and a gate which accepts two nouns and
         produces a loobean.
@@ -2388,12 +2334,11 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (sort (limo [0 1 2 3 ~]) a)
         ~[3 2 1 0]
 ++  swag 
-  Comment:
         infix
   Description:
         A range in a list - Produces the values in list 'c' starting at index 'a' and spanning 'b' elements
         more than that.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which gate which accepts a tuple of atoms and a list 'c'.
         The last 'a' elements in 'c' are selected by slag.  Then the first 'b' elements of 
         those last elements are selected and produced by scag.
@@ -2407,11 +2352,10 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (swag [1 2] (limo [1 2 3 ~]))
         [i=2 t=[i=3 t=~]] 
 ++  turn 
-  Comment:
         transform
   Description:
         Accepts a list and a gate.  Produces the list with the gate applied to each element of the original list.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts a list and a gate.
         Creates and kicks a dry %gold trap.
@@ -2422,11 +2366,10 @@ Section 2bB, lists
         ~dovryp-toblug/try=> (turn (limo [104 111 111 110 ~]) ,@t)
         <|h o o n|>
 ++  weld 
-  Comment:
         concatenate
   Description:
         Concatenates two lists.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts two lists.
         Homogenizes both lists and makes them the subject of the following code.
@@ -2440,22 +2383,20 @@ Section 2bB, lists
         ~palryp-hocsyt/try=> (weld "foo" "bar")
         ~[~~f ~~o ~~o ~~b ~~a ~~r]
 ++  welp 
-  Comment:
         perfect weld
   Description:
         Concatenates two lists without losing their type information to homogenization.
         Produces a tape when passed two tapes.
-  Explanation:
+        ---
         XXX DON'T WORRY ABOUT HOW THIS WORKS, IT IS A PERPETUAL MIYSTERY TO US ALL. XXX
   Examples:
         ~palryp-hocsyt/try=> (welp "foo" "bar")
         "foobar"
 ++  wild 
-  Comment:
         concatenate
   Description:
         Concatenates two lists without casting the product back to a list.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample which accepts two lists.
         Homogenizes both lists and makes them the subject of the following code.
         A dry %gold gate is created and kicked.
@@ -2477,11 +2418,10 @@ Section 2bB, lists
         ! find-fork
         ! exit
 ++  zing 
-  Comment:
         promote
   Description:
         Turns a list of lists into a single list by promoting the elements of each sublist into the higher.
-  Explanation:
+        ---
         Creates a wet %gold gate with a sample that accepts a list of lists.
         Casts the result to the type the homogenized list head, asserting that 'a' is at least a cell.
         A dry %gold trap is created and kicked.
@@ -2498,11 +2438,10 @@ chapter 2c, simple noun surgery
 section 2cA, bit surgery              **capitalization of "section" inconsistent in source**
 
 ++  bex  
-  Comment:
         binary exponent
   Description:
         Produces 2 to the nth power for some atom 'n'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts a single atom.
         Casts the result to an atom.
@@ -2517,11 +2456,10 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~palryp-hocsyt/try=> (bex 0)
         1
 ++  xeb  
-  Comment:
         binary logarithm
   Description:
         Takes the base-2 logarithm of an atom.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts an atom.
         Casts the result to an atom.
         Evaluates the logarithm by counting the number of bits the number in question occupies.
@@ -2544,11 +2482,10 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~palryp-hocsyt/try=> (xeb 2)
         2
 ++  can  
-  Comment:
         assemble
   Description:
         Assembles a 
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a bloq size (an atom) and
         a list of atomic tuples.
@@ -2575,11 +2512,10 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> `@ub`(can 1 ~[[2 4]])
         0b100
 ++  cat  
-  Comment:
         concatenate
   Description:
         Concatenates two atoms, obeying the given block size.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a bloq size (an atom) and
         two atoms.
@@ -2610,12 +2546,11 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (cat 3 256 255)
         16.711.936        
 ++  cut  
-  Comment:
         slice
   Description:
         Accepts a block size 'a', a cell of two atoms 'b' and 'c' and another atom 'd'.
         Produces the tail of 'd' that is 'c' blocks long after right-shifting 'd' 'b'-blocks.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block size (an atom),
         a cell of two atoms, and another atom which will be "cut."
@@ -2634,12 +2569,11 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (cut 1 [1 2] 255)
         15
 ++  end  
-  Comment:
         tail
   Description:
         Accepts a block 'a' and two atoms, 'b' and 'c'.
         Produces the 'b' blocks of length 'a' on the end of 'c'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block (an atom) and
         two atoms.
@@ -2667,11 +2601,10 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (end 3 1 255)
         255 
 ++  fil  
-  Comment:
         fill bloqstream
   Description:
         
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and
         two other atoms.
         Let 'n' be 0.
@@ -2684,12 +2617,11 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
   Examples:
         
 ++  lsh  
-  Comment:
         left shift
   Description:
         Accepts a block size 'a' and two atoms 'b' and 'c'.  Produces 'c' left-shifted 
         'b' times by the block size.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block (an atom) and
         two atoms.
@@ -2714,11 +2646,10 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (lsh 3 1 255)
         65.280
 ++  met  
-  Comment:
         measure
   Description:
         Measures the number of blocks of size 'a' are in 'b'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and
         an atom.
@@ -2739,11 +2670,10 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (met 3 256)
         2
 ++  rap  
-  Comment:
         assemble nonzero
   Description:
         Concatenates a list of atoms, obeying a given blocksize.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and
         a list of atoms.
@@ -2765,11 +2695,10 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~palryp-hocsyt/try=> (rap 0 (limo [0 0 1 ~]))
         1
 ++  rep  
-  Comment:
         assemble single
   Description:
         Assembles 
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and
         a list of atoms.
@@ -2804,12 +2733,11 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~palryp-hocsyt/try=> (rep 0 (limo [0 1 0 1 0 1 ~]))
         42
 ++  rip  
-  Comment:
         disassemble
   Description:
         Produces a list of the bits of an atom, in little endian order, according to
         block size.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and 
         any number.
@@ -2845,12 +2773,11 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~[0 1]
         
 ++  rsh  
-  Comment:
         right shift
   Description:
         Accepts a block size 'a' and two atoms, 'b' and 'c'.  Right-shifts 'c' by 'b' blocks
         of size 'a'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and
         two atoms.
@@ -2891,12 +2818,11 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
         ~ronrem-lonsem/try=> (rsh 0 1 1)
         0
 ++  swap 
-  Comment:
         reverse bloq order
   Description:
         Produces the reversed block order of a number, obeying block number.
         Switches little ending to big and vice versa.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts a block size (an atom) and
         an atom.
         Rips apart the atom by the block size, then reverses the tape that is produced.
@@ -2922,11 +2848,10 @@ section 2cA, bit surgery              **capitalization of "section" inconsistent
 section 2cB, bit logic                
 
 ++  con  
-  Comment:
         binary or
   Description:
         Produces the bit-wise logical OR of two atoms.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Let 'c' be 0, d be 0.
@@ -2956,11 +2881,10 @@ section 2cB, bit logic
         ~palryp-hocsyt/try=> (con 10.000 234)
         10.234
 ++  dis  
-  Comment:
         binary and
   Description:
         Produces the bit-wise logical AND of two atoms.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Pushes the bunt of a two atom tuple onto the subject.
@@ -2999,11 +2923,10 @@ section 2cB, bit logic
         ~ronrem-lonsem/try=> (dis 534 987)
         530
 ++  mix  
-  Comment:
         binary xor
   Description:
         Produces the bit-wise logical exclusive OR of two atoms.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Casts the result to an atom.
@@ -3031,11 +2954,10 @@ section 2cB, bit logic
         ~ronrem-lonsem/try=> (mix 2 2)
         0
 ++  not  
-  Comment:
         binary not (sized)
   Description:
         Produces the bit-wise logical NOT over 'b' blocks of the given blocksize.
-  Explanation:
+        ---
         First produces the binary exponent of the binary exponent of the block size times       
         'b'.  This is decremented before being multiplied by 'c'.
         Finally, this product is exclusive ORed and produced.
@@ -3061,11 +2983,10 @@ section 2cB, bit logic
 section 2cC, noun orders              
 
 ++  aor  
-  Comment:
         a-order
   Description:
         Alphabetic comparator gate.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts two nouns.
         Casts the result to a loobean.
@@ -3106,11 +3027,10 @@ section 2cC, noun orders
         ~tadbyl-hilbel/try=> (aor 10 9)
         %.n
 ++  dor  
-  Comment:
         d-order
   Description:
         Numeric comparator gate.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts two nouns.
         Casts the result to a loobean.
@@ -3141,11 +3061,10 @@ section 2cC, noun orders
         ~tadbyl-hilbel/try=> (dor ~[99 101 10.999] (limo ~[99 100 10.000]))
         %.n
 ++  gor  
-  Comment:
         g-order
   Description:
         Hash comparator gate.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts two nouns.
         Casts the result to a loobean.
@@ -3178,11 +3097,10 @@ section 2cC, noun orders
         ~palryp-hocsyt/try=> (gor (some 10) (limo [1 2 3 ~]))
         %.n
 ++  hor  
-  Comment:
         h-order
   Description:
         Recursive hash comparator gate.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts two nouns.
         Casts the result to a loobean.
@@ -3198,11 +3116,10 @@ section 2cC, noun orders
   Examples:
         
 ++  vor
-  Comment:
         v-order
   Description:
         Double hash comparator gate.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts two nouns.
         Casts the result to a loobean.
@@ -3223,11 +3140,10 @@ section 2cC, noun orders
 section 2cD, insecure hashing         
 
 ++  fnv
-  Comment:
         FNV scrambler
   Description:
         Hashes an atom with the 32-bit FNV non-cryptographic hash algorithm.
-  Explanationj
+        ---
         Multiplies 'a' by the prime number 16,777,619 and then takes the block of
         size 5 off the product's end.
   Examples:
@@ -3240,11 +3156,10 @@ section 2cD, insecure hashing
         ~palryp-hocsyt/try=> (fnv 1)
         16.777.619
 ++  mug
-  Comment:
         31bit nonzero FNV1a
   Description:
         Hashes any noun with the 31-bit nonzero FNV-1a non-cryptographic hash algorithm.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate with a sample accepting any noun.
 
@@ -3283,20 +3198,18 @@ section 2cD, insecure hashing
 section 2cE, phonetic base            
 
 ++  po
-  Comment:
         left-right syllable
   Description:
         Provides the phonetic syllables and name generators for the Urbit naming system.
-  Explanation:
+        ---
         This arm is jetted.
         Create the cell [sis dex] where 'sis' and 'dex' are the togas on the 
         left-hand ("sinister") and right-hand ("Dexter") phonetic syllable cords, respectively.
         Build a %gold core to contain the following arms.
   ++  ind 
-  Comment:
         
   Description:
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts and atom.
         Let 'b' be 0.
@@ -3307,10 +3220,9 @@ section 2cE, phonetic base
   Examples:
   
   ++  ins 
-  Comment:
         
   Description:
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts and atom.
         Let 'b' be 0.
@@ -3321,10 +3233,9 @@ section 2cE, phonetic base
   Examples:
 
   ++  tod 
-  Comment:
   Description:
         Selects right-hand phonetic syllable from 'dex'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts and atom.
         Assert that 'a' is less than 256.
@@ -3342,11 +3253,8 @@ section 2cE, phonetic base
         ~palryp-hocsyt/try=> (tod:po 256)
         ! exit
   ++  tos 
-  Comment:
-
-  Description:
         Selects left-hand phonetic syllable from 'sin'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts and atom.
         Assert that 'a' is less than 256.
@@ -3355,14 +3263,12 @@ section 2cE, phonetic base
 section 2cF, signed and modular ints  
 
 ++  si    
-  Comment:
         signed integer
   ++  abs 
-  Comment:
         absolute value
   Description:
         Produces the absolute value of a signed integer.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts a single atom.
         Sums the last bit of the atom with the single bit-wise block right-shift of the atom,
         producing the absolute value.
@@ -3376,11 +3282,10 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (abs:si --2)
         2
   ++  dif 
-  Comment:
         subtraction
   Description:
         Produces the difference between two signed integers.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts two signed integers.
         Sums the first signed integer with a new signed integer, made from the second by
         (new !(syn b) (abs b)), where !(syn b) is the negative of the second integer's sign.
@@ -3398,11 +3303,10 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (dif:si `@s`0 `@s`7)
         --4
   ++  dul 
-  Comment:
         modulus
   Description:
         Produces the modulus of two signed integers.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a signed integer and an atom.
         Let 'c' be the [sign value] representation of 'a'.
         Builds an if-then-else statement on -.c, the sign of 'a'.
@@ -3424,11 +3328,10 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (dul:si --90 --10)
         10
   ++  fra 
-  Comment:
         divide
   Description:
         Produces the quotient of two signed integers.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts two signed integers.
         Divides the absolute value of 'a', the dividend, and 'b', the divisor, and
         passes that value as the unsigned integer value of a new signed integer.
@@ -3455,11 +3358,10 @@ section 2cF, signed and modular ints
         ! type-fail
         ! exit
   ++  new 
-  Comment:
         [sign value] to @s
   Description:
         Produces a signed integer from a sign value (either & or |) and an atom.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which acccepts a loobean and an atom
         Builds an if-then-else statement on the sign value 'a'.
         If so, just produce 'b' multiplied by 2.
@@ -3474,11 +3376,10 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (new:si [%.y 7])
         --7
   ++  old
-  Comment:
         [sign value]
   Description:
         Produces the cell [sign value] representations of a signed integer.
-  Explanation:
+        ---
         Create a dry %gold date with a with a sample which accepts a signed integer.
         Produce a cell with head (syn a), the sign of 'a', and tail (abs), the absolute value of 'a'.
   Examples:
@@ -3498,55 +3399,39 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (old:si -0)
         [%.y 0]
   ++  pro       
-  Comment:
-        multiplication
-  Description:
         Produces the product of two signed integers.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts two signed integers.
         Produces their product by evaluating a new signed integer whose sign is the bitwise 
         XOR of the two number's signs and whose value is the product of their two absolute values.
-  Examples:
+        ---
         palryp-hocsyt/try=> (pro:si -4 --2)
         -8
-        ---
         ~palryp-hocsyt/try=> (pro:si -4 -2)
         --8
-        ---
         ~palryp-hocsyt/try=> (pro:si --10.000.000 -10)
         -100.000.000
-        ---
         ~palryp-hocsyt/try=> (pro:si -1.337 --0)
         --0
   ++  rem 
-  Comment:
-        remainder
-  Description:
         Produces the remainder from a division of two signed integers.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts two signed integers.
         Produces the difference between 'a' and the (b*(a/b)).
-  Examples:
+        ---
         ~palryp-hocsyt/try=> (rem:si -10 -4)
         -2
-        ---
         ~palryp-hocsyt/try=> (rem:si --10 --4)
         --2
-        ---
         ~palryp-hocsyt/try=> (rem:si --10 -4)
         --2
-        ---
         ~palryp-hocsyt/try=> (rem:si --7 --3)
         --1
-        ---
         ~palryp-hocsyt/try=> (rem:si --0 --10.000)
         --0
   ++  sum 
-  Comment:
-        addition
-  Description:
         Sums two signed integers.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts two signed integers.
         Prints '%si-sum' in the stack trace if the following code crashes.
         Let 'c' and 'd' be the [sign value] representation of 'a' and 'b', respectively.
@@ -3562,7 +3447,7 @@ section 2cF, signed and modular ints
         If so, produce a new, negative signed intger with value ((abs a)-(abs b))
         Else, produce a new, positive signed integer with value ((abs c)-(abs d))
         Else (if d is not positive), produce a new, negative signed with value ((abs c)+(abs d)).
-  Examples:
+        ---
         ~palryp-hocsyt/try=> (sum:si --10 --10)
         --20
         ---
@@ -3575,13 +3460,12 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (sum:si -10 --7)
         -3
   ++  sun 
-  Comment:
         @u to @s
   Description:
         Produces a signed integer from an unsigned integer.
         Note that the result must be manually cast to some @s odor to be inferred as an
         unsigned integer in the type system.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts any unsigned integer.
         Produces the integer multiplied by 2.
   Examples:
@@ -3600,11 +3484,10 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> `@sd`(sun:si 12.345)
         --12.345
   ++  syn 
-  Comment:
         sign test
   Description:
         Produces the sign of the signed integer, & being positive and | being negative.
-  Explanation:
+        ---
         Creates a dry %gold gate with a sample which accepts a signed integer.
         Produces the loobean of 0=(last bit in the signed integer)
   Examples:
@@ -3624,29 +3507,26 @@ section 2cF, signed and modular ints
         %.y
         
 ++  fe    
-  Comment:
         modulo bloq
   Description:
         Binary block modulo math engine.  Defaults to bloq size 1.
-  Explanation:
+        ---
         Builds an %gold tray with a sample accepting a bloq size (an atom).
   ++  dif 
-  Comment:
         subtraction
   Description:
         Produces the difference between two atoms in the modular basis representation.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts two atoms.
         Evaluate the difference between the sum of the 'out' and 
         
   Examples:
 
   ++  inv 
-  Comment:
         invert
   Description:
         Inverts the order of the modular field.
-  Explanation:
+        ---
   Examples:
         palryp-hocsyt/try=> (~(inv fe 3) 255)
         0
@@ -3661,21 +3541,18 @@ section 2cF, signed and modular ints
         ~palryp-hocsyt/try=> (~(inv fe 3) 3)
         252
   ++  net 
-  Comment:
   Description:
-  Explanation:
+        ---
   Examples:
 
   ++  out 
-  Comment:
   Description:
-  Explanation:
+        ---
   Examples:
 
   ++  rol 
-  Comment:
   Description:
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a block size (an atom) and two other atoms.
         The result of cast to an atom.  'd' is expressed in the modular base as 'e'.
         Let 'f' be the binary exponential difference between 'a' and 'b'.
@@ -3686,9 +3563,8 @@ section 2cF, signed and modular ints
   Examples:
 
   ++  ror 
-  Comment:
   Description:
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a block size (an atom) and two other atoms.
         The result of cast to an atom.  'd' is expressed in the modular base as 'e'.
         Let 'f' be the binary exponential difference between 'a' and 'b'.
@@ -3699,17 +3575,15 @@ section 2cF, signed and modular ints
   Examples:
 
   ++  sum 
-  Comment:
         
   Description:
-  Explanation:
+        ---
   Examples:
   ++  sit 
-  Comment:
         present
   Description:
         Produces the representation of any atom in the given bloq arithmetic.
-  Explanation:
+        ---
         Creates a dry %gold date that accepts an atom.
         Produces the trailing binary 'a'-block of the number.
   Examples:
@@ -3728,11 +3602,10 @@ section 2cG, floating point
 section 2cH, urbit time               
 
 ++  year
-  Comment:
         date to @d
   Description:
         Accepts a parsed date of form [[a=? y=@ud] m=@ud t=tarp] and produces its @d representation.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a parsed date of type 'date'.
         Casts the result to @d.
         Let 
@@ -3740,11 +3613,10 @@ section 2cH, urbit time
   Examples:
         
 ++  yore  
-  Comment:
         @d to date
   Description:
         Produces the parsed date representation of a @d date. 
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a @d atomic date.
         Casts the result to the parsed date form [[a=? y=@ud] m=@ud t=tarp].
         Let 'rip' be the 'tarp' [day, hour, minute, second time] of the day.
@@ -3752,11 +3624,10 @@ section 2cH, urbit time
         
   Examples:
 ++  yell  
-  Comment:
         tarp from @d
   Description:
         Produces a parsed daily time format from an atomic date.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts an atomic date, @d.
         Casts the result to a tarp.
         Let 'sec' be the single 64-bit block right-shift of 'now'.
@@ -3778,11 +3649,10 @@ section 2cH, urbit time
         ~tadbyl-hilbel/try=> (yell ~1776.7.4)
         [d=106.751.991.733.273 h=0 m=0 s=0 f=~]
 ++  yule  
-  Comment:
         time atom
   Description:
         Accepts a tarp, a parsed daily time, and produces a time atom, @d.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a tarp.
         Casts the result to an atomic date.
         Let
@@ -3804,19 +3674,17 @@ section 2cH, urbit time
         ~tadbyl-hilbel/try=> (yule (yell ~2014.6.9..19.09.40..8b66))
         0x8000000d223413f48b66000000000000
 ++  yall
-  Comment:
         day # to day of year
   Description:
         Produces what day of the year in year, month, day format a day of 
-  Explanation:
+        ---
   Examples:
 ++  yawn
-  Comment:
         days since Jesus
   Description:
         Accepts a year, month, and day (Three unsigned decimal integers) and produces the date's
         CE representation.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts three unsigned decimal integers.
         Casts the result to an unsigned decimal integer.
         Replaces the month and day values on the subject with their decrements.
@@ -3827,11 +3695,10 @@ section 2cH, urbit time
         
   Examples:
 ++  yelp  
-  Comment:
         leap year
   Description:
-        Produces a loobean indicating whether the given Commen Era year is a leap year.
-  Explanation:
+        Produces a loobean indicating whether the given Common Era year is a leap year.
+        ---
         Creates a dry %gold gate which accepts an unsigned decimal integer.  Casts the result to a loobean.
         Produces the logical AND of (0=(mod yer 4)) and the logical OR of (0=(mod yer 100)) and
         (0=(mod yer 400)).
@@ -3848,18 +3715,16 @@ section 2cH, urbit time
         ~tadbyl-hilbel/try=> (yelp 14.011)
         %.n
 ++  yo
-  Comment:
         time constants
   Description:
         Constants of time referenced in the urbit time section.
-  Explanation:
+        ---
         Produces a %gold core with |%.
       ++  cet
-      Comment:
         (add 24 (mul 100 365))
       Description:
         The number of days in a century.
-      Explanation:
+            ---
         Derived by multiplying the number of days in a year (365) by the number of yaers in a century (100),
         then adding the number days from leap years in a century (24).
       Examples:
@@ -3872,11 +3737,10 @@ section 2cH, urbit time
         ~tadbyl-hilbel/try=> (sub (add 24 (mul 100 365)) cet:yo)
         0
       ++  day 
-      Comment:
         (mul 24 hor)
       Description:
         The number of seconds in a day.
-      Explanation:
+            ---
         Derived by multiplying the the number of seconds in an hour by the hours in a day.
       Examples:
         ~tadbyl-hilbel/try=> day:yo
@@ -3885,39 +3749,35 @@ section 2cH, urbit time
         ~tadbyl-hilbel/try=> (add 60 day:yo)
         86.460
       ++  era 
-      Comment:
         (add 1 (mul 4 cet))
       Description:
         
-      Explanation:
+            ---
         
       Examples:
 
       ++  hor 
-      Comment:
         (mul 60 mit)
       Description:
         The number of seconds in an hour.
-      Explanation:
+            ---
         Derived by multiplying the number of seconds in a minute by the minutes in an hour.
       Examples:
         ~tadbyl-hilbel/try=> hor:yo
         3.600
       ++  jes
-      Comment:
         (mul 730.692.561 era)
       Description:
         
-      Explanation:
+            ---
         
       Examples:
 
       ++  mit 
-      Comment:
         seconds per minute
       Description:
         The number of seconds in a minute.
-      Explanation:
+            ---
         We just knew this one.
       Examples:
         ~tadbyl-hilbel/try=> mit:yo
@@ -3925,7 +3785,7 @@ section 2cH, urbit time
       ++  moh 
       Description:
         The days in each month of the Gregorian common year.
-      Explanation:
+            ---
         A list of unsigned decimal atoms (Either 28, 30, or 31) denoting the number of days in the month at the 
         year at that index.
       Examples:
@@ -3934,28 +3794,26 @@ section 2cH, urbit time
       ++  moy 
       Description:
         The days in each month of the Gregorian leap-year.
-      Explanation:
+            ---
         A list of unsigned decimal atoms (Either 29,30, or 31) denoting the number of days in the month at the
         leap-year at that index.
       Examples:
         ~tadbyl-hilbel/try=> moy:yo
         ~[31 29 31 30 31 30 31 31 30 31 30 31]
       ++  qad 
-      Comment:
         (add 1 (mul 4 yer))
       Description:
         The number of seconds in four years
-      Explanation:
+            ---
         Derived by adding one second to the number of seconds in four years.
       Examples:
         ~tadbyl-hilbel/try=> qad:yo
         126.144.001
       ++  yer 
-      Comment:
         (mul 365 day)
       Description:
         The number of seconds in a year.
-      Explanation:
+            ---
         Derived by multiplying the number of seconds in a day by 365.
       Examples:
         ~tadbyl-hilbel/try=> yer:yo
@@ -3964,11 +3822,10 @@ section 2cH, urbit time
 section 2cI, almost macros
 
 ++  hard
-  Comment:
         demand result type
   Description:
         Ruthlessly demands that a specific type be produced, crashing the program is it is not.
-  Explanation:
+        ---
         Creates a vulanized wet gate which accepts any gate which accepts any noun and produces
         any noun.
         Creates a dry %gold gate which accepts any noun and casts the result to the 
@@ -3988,11 +3845,10 @@ section 2cI, almost macros
         ! hard
         ! exit
 ++  soft
-  Comment:
         politely demand
   Description:
         Politely requests a specific type to be produced, producing null if it is not.
-  Explanation:
+        ---
         Creates a vulanized wet gate which accepts any gate which accepts any noun and produces
         any noun.
         Creates a dry %gold gate which accepts any noun and casts the result to the 
@@ -4019,11 +3875,10 @@ chapter 2d, containers
 section 2dA, sets     
                 
 ++  apt       
-  Comment:
         set invariant
   Description:
         Accepts any tree and produces a loobean indicating whether the tree is a set.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a tree.
         Builds an if-then-else statement on "a is an atom."
         If so, produce true.
@@ -4044,20 +3899,18 @@ section 2dA, sets
         ~tadbyl-hilbel/try=> (apt m)
         %.y
 ++  in        
-  Comment:
         set engine
   Description:
         Container arm for set operation arms.  The contained arms inherit it's sample set, 'a'. 
-  Explanation:
+        ---
         This arm is jetted.
         Creates a %gold trap with sample 'a', a set.
   +-  all
-  Comment:
         logical AND
   Description:
         Accepts a gate which accepts any noun and produces a loobean.  Slams the gate with each member
         of set 'a', produce the logical AND of the transformed set.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts any gate which produces a loobean.
         Creates and kicks a dry %gold gate, casts the result to a loobean.
@@ -4073,12 +3926,11 @@ section 2dA, sets
         ~tadbyl-hilbel/try=> (~(all in b) |=(a=@t (gte a 100)))
         %.y
   +-  any
-  Comment:
         logical OR
   Description:
         Accepts a gate which accepts any noun and produces a loobean.  Slams the gate with each member
         of set 'a', produce the logical OR of the transformed set.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts any gate which produces a loobean.
         Creates and kicks a dry %gold gate, casts the result to a loobean.
@@ -4094,11 +3946,10 @@ section 2dA, sets
         ~tadbyl-hilbel/try=> (~(any in b) |=(a=@t (lte a 100)))
         %.n
   +-  del
-  Comment:
         b without any a
   Description:
         Accepts any noun 'b' and removes it from the set 'a'.
-  Explanations:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts any noun.
         Creates and kicks a dry %gold gate, casts the result to the type of 'a'.
@@ -4121,11 +3972,10 @@ section 2dA, sets
         {'bonita' 'madeleine' 'daniel' 'john'}
 
   +-  dig
-  Comment:
         axis of b in a
   Description:
         Produces 
-  Explanations:
+        ---
         Creates a dry %gold gate which accepts a single noun.
         Let 'c' be 1.
         Creates and kicks a dry %gold trap.  Casts the result to an atomic unit.
@@ -4147,12 +3997,11 @@ section 2dA, sets
         ~talsur-todres/try=> (~(dig in a) 6)
         [~ 2]
   +-  gas
-  Comment:
         concatenate
   Description:
         Accepts a list 'b' with members of the same type as the set 'a' and produces 
         the union set of 'a' and 'b'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a dry %gold gate which accepts a list of elements of the same type as 'a'.
         Creates and kicks a dry %gold trap whose result is cast to the type of 'a'.
@@ -4169,11 +4018,10 @@ section 2dA, sets
         ~tadbyl-hilbel/try=> (~(gas in s) `(list ,@t)`['1' '2' '3' ~])
         {'1' '3' '2' 'e' 'd' 'a' 'c' 'b'}
   +-  has
-  Comment:
         b exists in a check
   Description:
         Accepts any noun and produces the loobean indicating whether or not that value (n.a) exists in 'a'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts any noun.
         Creates and kicks a dry %gold trap.  Casts the result to a loobean.
@@ -4190,11 +4038,10 @@ section 2dA, sets
         ~dovryp-toblug/try=> (~(has in a) 'z')
         %.n
   +-  put
-  Comment:
         puts b in a, sorted
   Description:
         Accepts any noun 'b' and produces the set 'a' with 'b' added to its sorted location.
-  Explanation:  
+        ---  
         This arm is jetted.
         Creates a wet %gold gate which accepts any atom.
         Creates and kicks a dry %gold gate.  Casts the result to the type of set 'a'.
@@ -4222,11 +4069,10 @@ section 2dA, sets
         ~talsur-todres/try=> -.l.+.b
         n=`d`
   +-  rep
-  Comment:
         fold
   Description:
         Accepts a noun and a binary gate.  Produces the 'a' with each member 'n.a' replaced by (c n.a b).
-  Explanation:
+        ---
         Creates a wet %gold gate which accpets a noun and a tile, 'a' and 'b'.
         Creates and kicks a dry %gold gate.
         Builds an if-then-else statement on "a is null."  If so, produce 'b'.
@@ -4242,11 +4088,10 @@ section 2dA, sets
         ---
         
   +-  tap
-  Comment:
         cell from concat
   Description:
         Accepts a list of elements of the set and produces a cell of the set with the list concatenated.
-  Explanation:  
+        ---  
         This arm is jetted.
         Creates a dry %gold gate which accepts a list of elements with elements of the set's elements type.
         Casts the result to the type of list 'b'.
@@ -4266,11 +4111,10 @@ section 2dA, sets
         ~tadbyl-hilbel/try=> (~(tap in b) `(list ,@t)`['david' 'people' ~])
         ~['john' 'daniel' 'madeleine' 'bonita' 'david' 'people']
   +-  wyt
-  Comment:
         depth of set
   Description:
         Produces the cardinality (number of elements) of the set.
-  Explanation:
+        ---
         Increment the value produced below.
         Creates and kicks a dry %gold gate.  Casts the result to an atom.
         Builds an if-then-else statement on "a is null."  If so, produce 0.
@@ -4289,12 +4133,11 @@ section 2dA, sets
 section 2dB, maps                     
 
 ++  ept       
-  Comment:
         map invariant
   Description:
         Accepts a tree of cell paris and produces the loobean indicating whther the tree is a map
         or not.
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a tree of cell pairs.
         If "a is an atom", produce true.
         Else, produce the logical AND of:
@@ -4316,83 +4159,73 @@ section 2dB, maps
         ! exit
         ---
 ++  ja
-  Comment:
         jar engine
   Description:
         Container arm for jar operation arms.  Jars are maps of lists.  The contained arms inherit it's sample jar. 'a'.
-  Explanation:
+        ---
         Builds a wet %gold tray with a sample jar.
   +-  get
-  Comment:
         gets list by key
   Description:
         Retrieves a list from the map by its key.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a noun.
         Let 'c' be the element retrieved from 'a' by key 'b'.
         If 'c' is null, produce null.  Else, produce the list value inside the unit 'c'.
   Examples:
         
   +-  add
-  Comment:
         adds key-list pair
   Description:
         Adds a key-list value to the jar.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts two nouns.
         Let 'd' be the value retrieved in 'a'
         
   Examples:
         
 ++  ju
-  Comment:
         jug engine
   Description:
         Container arm for jug operation arms.  Jugs are maps of sets.  The contained arms inherit it's sample jug, 'a'.
-  Explanation:
+        ---
         Builds a wet %gold tray with a sample jug.
   +-  get
-  Comment:
         gets set by key
   Description:
         Retrieves a set from the map by its key.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a noun.
         Let 'c' be the element retrieved from 'a' by key 'b'.
         If 'c' is null, produce null.  Else, produce the set value inside the unit 'c'.
-  Examples:
+        ---
         
   +-  has
-  Comment:
-        existence check
-  Description:
-        Produces the loobean indicating whether a given key-set pair exists in the jug.
-  Explanation:
+        Is [b=* c=*] key-value pair in set 'a'?
+        ---
         Creates a wet %gold gate which accepts two nouns.
         Casts the result to a loobean.
         Retrieves the set of the key 'b' in 'a', then checks 
-  Examples:
+        ---
+
   +-  put
-  Comment:
-        adds key-set pair
-  Description:
-  Explanation:
-  Examples:
+        Add key-value pair to set `a`.
+        ---
+        Build wet %gold gate with sample noun b. noun c.
+        Yield bean.
+        Produce tray `by` slugged to `put` with `a`, then slam the resulting gate with `b`, 
+                tray `in` slugged to `put` with `d`, then slammed with `c`.
+        ---
+
 ++  by
-  Comment:
-        map engine
-  Description:
         Container arm for map operation arms.  The contained arms inherit it's sample map, 'a'. 
-  Explanation:
+        ---
         This arm is jetted.
         Builds a %gold tray with a sample which accepts a map.
   +-  all
-  Comment:
-        logical AND
-  Description:
         Accepts a gate which accepts any noun and produces a loobean.  Slams the gate with each member
         of map 'a', produce the logical AND of the transformed map.
-  Explanations:
+        ---
         This arm is jetted.
         Builds a wet %gold gate which accepts the tile of a gate accepts any noun and produces a loobean.
         Creates and kicks a dry %gold gate.  Casts the result to loobean.
@@ -4411,12 +4244,9 @@ section 2dB, maps
         ~tadbyl-hilbel/try=> (~(all by a) |=(a=@ (lte a 4)))
         %.n
   +-  any
-  Comment:
-        logical OR
-  Description:
         Accepts a gate which accepts any noun and produces a loobean.  Slams the gate with each member
         of map 'a', produce the logical OR of the transformed map.
-  Explanations:
+        ---
         This arm is jetted.
         Builds a wet %gold gate which accepts the tile of a gate accepts any noun and produces a loobean.
         Creates and kicks a dry %gold gate.  Casts the result to loobean.
@@ -4433,11 +4263,10 @@ section 2dB, maps
         ~tadbyl-hilbel/try=> (~(any by a) |=(a=@ (lte a 4)))
         %.y
   +-  del
-  Comment:
         delete at key b
   Description:
         Accepts a noun 'b', producing the map with the key-value pair of key 'b' removed.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts a noun.
         Creates and kicks a dry %gold trap.  Casts the result to the type of map 'a'.
@@ -4463,11 +4292,10 @@ section 2dB, maps
         {[p=`b` q=[2 3]]}
         
   +-  dig
-  Comment:
         axis of 'b' key
   Description:
         Accepts any noun 'b' and produces the axis of 'b' in within the values of 'p.a' in map 'a'.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a noun.
         Let 'c' be 1.
         Creates and kicks a dry %gold gate.  Casts the result to an atomic unit. 
@@ -4482,11 +4310,10 @@ section 2dB, maps
         [~ 2]
 
   +-  gas
-  Comment:
         concatenate
   Description:
         Accepts any list 'b' of key-value pair cells and produces the map 'a' with the members of 'b' added.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts a list of cells.
         Replaces 'b' in the subject with the cast of 'b' to a list whose members have the 
@@ -4502,11 +4329,10 @@ section 2dB, maps
         ~talsur-todres/try=> (~(gas by a) b)
         {[p=`d` q=4] [p=`a` q=1] [p=`c` q=3] [p=`b` q=2]}
   +-  get
-  Comment:
         grab value by key
   Description:
         Produces the value in the map at key 'b'.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a noun.
         Creates and kicks a dry %gold trap.  Casts its result to the type of the map's values.
         Builds an if-then-else statement on "a is an atom."
@@ -4521,11 +4347,10 @@ section 2dB, maps
         ~talsur-todres/try=> (~(get by b) `b`)
         [~ [2 3]]
   +-  has
-  Comment:
         key existence check
   Description:
         Accepts any noun 'b' and produces the loobean indicating whether the noun exists in map 'a'.
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts a noun.
         Attempts to get 'b' from 'a', then produces the logical NOT of the loobean "get 'b' in 'a' is null"
@@ -4536,13 +4361,12 @@ section 2dB, maps
         ~talsur-todres/try=> (~(has by b) `c`)
         %.n
   +-  mar
-  Comment:
         add with validation
   Description:
         Accepts two nouns of the types of the map's keys and values, respectively. 
         Validates that the value is not null and puts the pair in the map. If the value is null, 
         it deletes the key.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a cell of two nouns: one of the type of the map's keys
         and one a unit of the map's value type.
         If "c is null", produce the map with 'b' deleted.
@@ -4550,11 +4374,10 @@ section 2dB, maps
   Examples:
         
   +-  put
-  Comment:
         adds key-value pair
   Description:
         
-  Explanation:
+        ---
         This arm is jetted.
         Creates a wet %gold gate which accepts two nouns.
         Creates and kicks a dry %gold trap.  Casts the result to the type of the map 'a'.
@@ -4564,12 +4387,11 @@ section 2dB, maps
 
   Examples:
   +-  rep
-  Comment:
         replace by product
   Description:
         Walks through the map, replacing 'b' with the product of (c n.a b).  Produces the resulting
         map.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a noun and a gate.
         Creates and kicks a dry %gold trap.
         If "a is null", produce 'b'.
@@ -4579,54 +4401,47 @@ section 2dB, maps
   Examples:
         
   +-  rib
-  Comment:
         transform + product
   Description:
         
-  Explanation:
+        ---
 
   Examples:
         
   +-  run
-  Comment:
         turns to tuples
   Description:
-  Explanation:
+        ---
   Examples:
   +-  tap
-  Comment:
         listify pairs
   Description:
-  Explanation:
+        ---
   Examples:
   +-  uni
-  Comment:
         union, merge
   Description:
-  Explanation:
+        ---
   Examples:
   +-  wyt
-  Comment:
         depth of map
   Description:
-  Explanation:
+        ---
   Examples:
 
 section 2dC, queues                   
 
 ++  to
-  Comment:
         queue engine
   Description:
         Container arm for queue operation arms.  The contained arms inherit it's sample queue, 'a'. 
-  Explanation:
+        ---
         Builds a wet %gold tray with sample 'a' of type 'qeu'.
   +-  bal
-  Comment:
         v-order queue
   Description:
         Walks through the queue using vor (v-order check) on all eleements.
-  Explanation:
+        ---
         Creates and kicks a dry %gold trap.  Casts the result to the type of the queue 'a'.
         If "a is null", produce null.
         Else, build an unless-then-else statement on the logical OR of:
@@ -4646,11 +4461,10 @@ section 2dC, queues
         ---
         
   +-  dep
-  Comment:
         max depth of queue
   Description:
         Produces the maximum depth of leaves (r.a and l.a) in the queue 'a'.
-  Explanation:
+        ---
         Creates and kicks a dry %gold trap.  Casts the result to an atom.
         If "a is null", produce 0.
         Else, increment the maximum of the recursive calls of the 'dep' to the left and right leaves of 'a',
@@ -4668,11 +4482,10 @@ section 2dC, queues
         ~palryp-hocsyt/try=> ~(dep to a)
         2
   +-  gas
-  Comment:
         insert list to que
   Description:
         Accepts a 
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a list of the elements of the queue.
         Creates and kicks a dry %gold gate.  Casts the result to the type of 'a', the queue.
         If "b is null", produce 'a'.
@@ -4687,11 +4500,10 @@ section 2dC, queues
         ~palryp-hocsyt/try=> (~(gas to a) b)
         {6 5 4 3 2 1}      
   +-  get
-  Comment:
         head-tail pair
   Description:
         Produces the queue 'a' in the format [p=head q=tail].
-  Explanation:
+        ---
         Creates and kicks a dry %gold trap.  Casts the head term of the resulting tuple to the type of the queue's elements
         and the tail type to that of the queue itself.
         If "a is null", crash the program.
@@ -4706,11 +4518,10 @@ section 2dC, queues
   Examples:
         
   +-  nap
-  Comment:
         removes head
   Description:
         Removes the head of a queue, producing the resulting queue.
-  Explanation:
+        ---
         Assert that 'a' is a cell.
         Builds an if-then-else statement on "l.a is null".  If so, produce r.a.
         Else, let 'b' be the result of getting the [p=head q=tail] pair from 'l.a'.
@@ -4727,11 +4538,10 @@ section 2dC, queues
         ~talsur-todres/try=> a
         {6 5 4 3 2 1}
   +-  put
-  Comment:
         insert new head
   Description:
         Accepts any noun and adds to the queue as the head, producing the resutling queue.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts any noun.
         Creates and kicks a dry %gold trap.  Casts the result to the type of the queue 'a'.
         If "a is null", produce [b ~ ~].
@@ -4742,11 +4552,10 @@ section 2dC, queues
         ~dovryp-toblug/try=> (~(put to a) 7)
         {7 6 5 4 2 1 3}
   +-  tap
-  Comment:
         adds list to end
   Description:
         Concatenates two lists from the first
-  Explanation:
+        ---
         Creates a dry %gold gate which accepts a list of elements of the type of the queue's elements.
         Casts the result to the type of 'b', the list.
         If "a is null", produce 'b'.
@@ -4757,11 +4566,10 @@ section 2dC, queues
         ~dovryp-toblug/try=> (~(tap to a) `(list ,@)`[99 100 101 ~])
         ~[3 1 2 4 5 6 99 100 101]
   +-  top
-  Comment:
         produces head
   Description:
         
-  Explanation:
+        ---
         Creates and kicks a dry %gold trap.  Casts the result to a unit of the type of the queue's element.
         If "a is null", produce null.
         Else, if "the right leaf of 'a' is null", produce [~ n.a].
@@ -4774,11 +4582,10 @@ section 2dC, queues
 section 2dD, casual containers        
 
 ++  mo
-  Comment:
         make a map
   Description:
         Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the left-right cell pairs of the list.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a list, 'a'.
         Pushes the homogenized list onto the context.
         Casts the list 'a' to a list of cells whose left-right types correspond to the key-value type pairs.
@@ -4789,11 +4596,10 @@ section 2dD, casual containers
         {[p=`a` q=1] [p=`b` q=2]}
         
 ++  sa        
-  Comment:
         make a set
   Description:
         Setify.  Accepts a list and produces a set of the list's elements.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a list, 'a'.
         Pushes the homogenized list onto the context.
         Let 'b' be the bunt of the set with elements of the same type of the elements of 'a'.
@@ -4805,40 +4611,141 @@ section 2dD, casual containers
         ~talsur-todres/try=> (sa `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
         {[`a` 1] [`b` 2]}
 ++  qu
-  Comment:
         make a set
   Description:
         XXX THIS APPEARS TO BE A COPY OF ++sa. QUEUIFY IS NOT IMPLEMENTED YET. XXX
-  Explanation:
+        ---
   Examples:
 
 chapter 2e, miscellaneous libs
 
 section 2eA, packing          
         
-++  cue       
+++  cue
+        Unpack an atom to a noun.  The inverse of jam.
+        ---
+        Activate jet.
+        Build a dry %gold gate with sample atom `a`.
+        Yield noun.
+        Push `b` is 0.
+        Push `m` is empty map of type (map ,@ ,*).
+        Seek subject for q.
+        Kick dry %gold trap, yield tuple [p=@ q=* r=_m]
+        If (0=(cut 0 [b 1] a)),
+                Then, push `c` is (rub +(b) a).
+                Produce
+         
+        ---
+        ~midlys-rocpet/try=> (cue (jam 1))
+        1
+        ~midlys-rocpet/try=> (cue 4.657)
+        [1 2]
+        ~midlys-rocpet/try=> (cue (jam [1 1]))
+        [1 1]
+        ~tadbyl-hilbel/try=> (cue 39.689)
+        [0 19]
 ++  jam       
+        Compress a noun to an atom.  The inverse of cue.
+        ---
+        Activate jet.
+        Build wet %gold gate with sample noun `a`.
+        Yield atom.
+        Push `b` is 0.
+        Push `m` is empty may of type (map ,@ ,*).
+                
+        ---
+        ~midlys-rocpet/try=> (jam 1)
+        12
+        ~midlys-rocpet/try=> (jam [1 1])
+        817
+        ~tadbyl-hilbel/try=> (jam [~ u=19])
+        39.689
 ++  mat       
-++  rub       
+        Encodes length.  Only used internally as helper function to jam and cue.
+        ---
+        Activate jet.
+        Build a dry %gold gate with sample atom a.
+        Yield atom a, atom b.
+        If: a is 0.
+                Then: Produce [1 1]
+        Else, push `b` is (met 0 a), the number of bits in `a`.
+        Push `c` is (met 0 b), the number of bits in `b`.
+        Produce pair: 
+                (add (add c c) b) and
+                (cat 0 (bex c) (mix (end 0 (dec c) b) (lsh 0 (dec c) a)))
+++  rub 
+        Decodes length.  Only used internally as a helper function to jam and cue.
+        ---
+        Activate jet.
+        Build wet %gold gold with sample atom a, atom b.
+        Yield atom p, atom q.
+        Push label `c` on:
+                Push `c` is 0, m is (met 0 b), the number of bits in `b`.
+                Kick dry %gold trap.  Deny that (gth c m), `c` is greater than `m`.
+                Unless:  (cut 0 [(add a c) 1] b)) is 0,
+                        Then:  `c`
+                Else:  Slam trap with +(c)
+        If: c is 0,
+        Then: Produce [1 0].
+        Else, push `d` is (add a +(c))
+        Push `e` is (add (bex (dec c)) (cut 0 [d (dec c)] b)).
+        Produce [(add (add c c) e) (cut 0 [(add d (dec c)) e] b)]
 
 section 2eB, parsing (tracing)        
 
-++  last  
+++  last
 ++  lust
 
 section 2eC, parsing (custom rules)   
 
 ++  cold  
-++  cook  
+        Build a gate to parse a nail with a rule, then replaced the parsed texted with a constant.
+        ---
+        Activate jet.
+        Build wet %gold gate with sample noun `cus`, rule `sef`.
+        Activate extra parsing jet.
+        Build dry %gold gate with sample nail `tub`.
+        Push `vex` is (sef tub), rule tub applied to the text to parse.
+        If: q.vex is an atom,
+                Then: Produce `vex`
+        Else: Produce [p=p.vex q=[~ u=[p=cus q=q.u.q.vex]]]
+        ---
+        ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
+        ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "bc"])
+        [p=[p=1 q=1] q=~]
+++  cook
+        Build a gate to parse a nail with a rule, then slam a gate with the parsed text.
+        ---
+        Activate jet.
+        Build wet %gold gate with sample clam gate `poq`, rule `sef`.
+        Activate extra parsing jet.
+        Build dry %gold gate with sample nail `tub`.
+        Push `vex` is (sef tub), rule tub applied to the text to parse.
+        If: `q.vex` is an atom,
+                Then: Produce `vex`
+        Else: Produce [p=p.vex q=[~ u=[p=(poq p.u.q.vex) q=q.u.q.vex]]],
+                where (poq p.u.q.vex) is gate `poq` slammed with the parsed text.
+        ---
+        ~midlys-rocpet/try=> ((cook ,@ud (just `a`)) [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
+        ~midlys-rocpet/try=> ((cook ,@tas (just `a`)) [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ u=[p=%a q=[p=[p=1 q=2] q="bc"]]]]
+        ~midlys-rocpet/try=> ((cook |=(a=@ +(a)) (just `a`)) [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ u=[p=98 q=[p=[p=1 q=2] q="bc"]]]]
+        ~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just `a`)) [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ u=[p=`b` q=[p=[p=1 q=2] q="bc"]]]]
 ++  easy  
+        ---
+        Activate jet.
+        Build wet %gold gate with sample
+        Activate extra parsing jet.
+        ---
 ++  fail  
 ++  full  
-  Comment:
-        has to fully parse
-  Description:
         Only succeeds if given a rule that successfully parses the entire nail to the end, producing
         a null hair if the rules fails.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a rule.
         Creates a dry %gold gate which accepts a nail.
         Let 'vex' be the rule slammed with the nail.
@@ -4856,6 +4763,11 @@ section 2eC, parsing (custom rules)
         [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
 ++  funk  
 ++  here  
+        ---
+        Activate jet.
+        Build wet %gold gate with sample
+        Activate extra parsing jet.
+        ---
 ++  jest  
 ++  just  
 ++  knee  
@@ -4962,21 +4874,18 @@ section 2eH, parsing (idioms)
 ++  qit 
 ++  qut 
 ++  sym
-  Comment:
   Description:
-  Explanation:
+        ---
   Examples:
 ++  ven 
-  Comment:
   Description:
-  Explanation:
+        ---
   Examples:
 ++  vit 
-  Comment:
         base64 digit
   Description:
         Parses a text and produces it in base64 encoding.
-  Explanation:
+        ---
         Builds a list of falling rules to match on with ';~' and pose.
         Encodes capital letters by 
   Examples:
@@ -4984,11 +4893,10 @@ section 2eH, parsing (idioms)
 section 2eI, parsing (external)       
 
 ++  rash
-  Comment:
         demand parse cord
   Description:
         Parse a given cord with a given rule, crashing if the cord isn't entirely parsed.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts an atom (cord) and a rule.
         Trips the cord to a tape and produces the result that is parsed with scan.
   Examples:
@@ -5006,11 +4914,10 @@ section 2eI, parsing (external)
         ! exit
 
 ++  rush
-  Comment:
         politely parse cord
   Description:
         Parse a given cord with a given rule, producing null if the cord isn't entirely parsed.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts an atom (cord) and a rule.
         Trips a cord to a tape and a produces the result that is parsed with rust.
   Examples:
@@ -5026,11 +4933,10 @@ section 2eI, parsing (external)
         ~
 
 ++  rust
-  Comment:
         demand parse tape
   Description:
         Parse a given tape with a given rule, producing null if the tape isn't entirely parsed.
-  Explanation:
+        ---
         Creates a wet %gold gate which accepts a tape and a rule.
         Let 'vex' be the full parse of the tape using the rule.
         Builds an if-then-else statement on "q.vex is an atom."  If so, produce null.
@@ -5044,11 +4950,10 @@ section 2eI, parsing (external)
         ~
 
 ++  scan
-  Comment:
         demand parse tape
   Description:
         Parses a given tape with a given rule, crashing if the tape isn't entirely parsed.
-  Explanation:
+        ---
         Creates a dry %gold gatet which accepts a tape and a rule.
         Let 'vex' be the full parse of the text by the rule.
         Builds an if-then-else statement on "q.vex is an atom."
@@ -5257,12 +5162,11 @@ section 2eN, pseudo-cryptography
 section 2eO, virtualization           
 
 ++  mack
-  Comment:
         XX
   Description:
         Accepts a nock subject-formula cell.
         Produces a unit result, treating 11 as a crash (i.e. pure nock).
-  Explanation:
+        ---
         Creates a dry %gold gate accepting cell ['sub' 'fol'].
         Its output is a unit (of a noun).
         Let 'ton' be the result of minking the sample, with a sky that produces
@@ -5281,14 +5185,13 @@ section 2eO, virtualization
         ~zod/try=> ;;((unit ,@tas) (mack [[1 %yes %no] 6 [0 2] [0 6] 0 7]))
         [~ %no]
 ++  mink
-  Comment:
         XX
   Description:
         Bottom-level mock (virtual nock) interpreter.
         Accepts a nock subject-formula cell, and an %iron gate which 
           accepts any noun and produces a unit, which is defined to be mock 11.
         Produces a ++tone, which is the result of the virtualized computation.
-  Explanation:
+        ---
         For clarity, a ++tone with stem %0 will be referred to as a "success",
         one with stem %1 as a "block", and one with stem %2 as a "crash".
         ---
@@ -5358,13 +5261,12 @@ section 2eO, virtualization
   Examples:
         XX
 ++  mock
-  Comment:
         XX
   Description:
         Accepts a nock subject-formula cell and an %iron gate which
           accepts any noun and produces a unit (this is used as nock 11).
         Produces a ++toon, which is a sucesful, blocked, or crashed result.
-  Explanation:
+        ---
         Compose ++mook and ++mink.
   Examples 
         ~zod/try=> (mock [5 4 0 1] ,~)
@@ -5383,12 +5285,11 @@ section 2eO, virtualization
         "14"
 
 ++  mook
-  Comment:
         XX
   Description:
         Intelligently render crash annotation.
         Accepts a ++tone, produces a ++toon
-  Explanation:
+        ---
         Create a dry %gold gate accepting a tone we name 'ton'
         Its output is a toon.
         Unless the stem of ton is %2, produce ton.
@@ -5439,47 +5340,42 @@ section 2eO, virtualization
         ~zod/try=> (mook [%2 ~[[%spot /b/repl [[1 1] 1 2]] [%mean |.(!!)]]])
         [%2 p=~[[%leaf p="/b/repl/:<[1 1].[1 2]>"] [%leaf p="####"]]]
 ++  mang
-  Comment:
         XX
   Description:
         XX
-  Explanation:
+        ---
         XX
   Examples 
         XX
 ++  mong
-  Comment:
         XX
   Description:
         XX
-  Explanation:
+        ---
         XX
   Examples 
         XX
 ++  mung
-  Comment:
         XX
   Description:
         XX
-  Explanation:
+        ---
         XX
   Examples 
         XX
 ++  mule 
-  Comment:
         XX
   Description:
         XX
-  Explanation:
+        ---
         XX
   Examples 
         XX
 ++  mute 
-  Comment:
         XX
   Description:
         XX
-  Explanation:
+        ---
         XX
   Examples 
         XX
