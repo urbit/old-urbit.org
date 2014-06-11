@@ -2722,7 +2722,7 @@ volume 2, Hoon libraries and compiler
         Yield atom
         If: a is 0
           Then: produce `b`
-        Else: slam gate with (dec a) and +(b).
+        Else: toss a for (dec a) and b for +(b)
         ---
         ~palryp-hocsyt/try=> (add 2 2)
         4
@@ -2732,7 +2732,7 @@ volume 2, Hoon libraries and compiler
         1.337
 
     ++  cap
-        Test if an atom is in the head or tail of a noun.
+        Is an axis in the head or tail of a noun?
         ---
         Activate jet
         Build dry %gold gate with sample atom a
@@ -2741,7 +2741,7 @@ volume 2, Hoon libraries and compiler
         if %2, produce %2 
         if %3, produce %3
         if either %0 or %1, fail
-        if noun, slam gate with (div a 2)
+        if noun, toss a for (div a 2)
         ---
         ~palryp-hocsyt/try=> (cap 4)
         %2
@@ -2761,7 +2761,7 @@ volume 2, Hoon libraries and compiler
         Kick dry %gold trap that yields atom.
         If: a is +(b)
           Then, produce b.
-        Else, slam trap with +(b) 
+        Else, toss b for +(b) 
         ---
         ~palryp-hocsyt/try=> (dec 7)
         6
@@ -2781,7 +2781,7 @@ volume 2, Hoon libraries and compiler
         Kick dry %gold trap
         If: a is less than b
           Then: produce c
-        Else, slam trap with (sub a b) +(c)
+        Else, toss a for (sub a b), and c for +(c)
         ---
         ~palryp-hocsyt/try=> (div 4 2)
         2
@@ -2798,8 +2798,7 @@ volume 2, Hoon libraries and compiler
         Yield atom
         If: a is 0
           Then: produce 1.
-        Else: slam gate with dec a
-          and multiply by a
+        Else: multiply a with the toss of a for (dec a)
         ---
         ~palryp-hocsyt/try=> (fac 3)
         6
@@ -2832,7 +2831,7 @@ volume 2, Hoon libraries and compiler
         Activate jet
         Build dry %gold gate with sample atom a and atom b
         Yield bean.
-        a is NOT less-equal b
+        a is NOT less than or equal to b
         ---
         ~ronrem-lonsem/try=> (gth 4 5)
         %.n
@@ -2864,11 +2863,12 @@ volume 2, Hoon libraries and compiler
         ---
         Activate jet
         Build dry %gold gate with a sample atom a and atom b
-        Must produce a loobean.
-        Use logical AND, thus immediately producing false if a=b.
-        Then, create and kick a dry %gold trap which produces true on a=0,
-        or false if a!=0 and b=0.
-        If none of these cases are met, recursively call lth with both a and b decremented.
+        Yield bean
+        Use logical AND, and produce %.n if a is b.
+        Kick a dry %gold trap
+        produce %.y if a is 0
+        produce %.n if a is NOT 0 AND b=0.
+        Else, toss a for (dec a), and b for (dec b)
   Examples:
         ~ronrem-lonsem/try=> (lth 4 5)
         %.y
@@ -2881,17 +2881,18 @@ volume 2, Hoon libraries and compiler
         ---
         ~ronrem-lonsem/try=> (lth 5 0)
         %.n
-++  mas  
+
+    ++  mas  
         Produces the axis of a within the head or the tail. 
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts an atom.
-        Must produce an atom.
-        Selects a case below for the actual type of a.
-        Exit if a is 1.
-        Produce 1 if a is either 2 or 3.
-        Else, sum the modulus of a and 2 with the 2 multiplied by the recursive call of 
-        mas with a replaced by a/2.
+        Activate jet
+        Build dry %gold gate with sample atom a
+        Yield atom
+        Switch on a
+        if 1, fail
+        if 2, produce 1
+        if 3, produce 1
+        Else, add a modulo 2 to 2 times the toss of a for (div a 2)
         ---
         1 ~ronrem-lonsem/try=> (mas 3)
         1
@@ -2916,15 +2917,16 @@ volume 2, Hoon libraries and compiler
         ---
         ~ronrem-lonsem/try=> (mas 1)
         ! exit
-++  max  
-        Yields the larger of two atoms.
+
+    ++  max  
+        Produce the larger of two atoms.
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts two atoms.
-        Must produce an atom.
-        Builds an if-else-then statement on a>b.
-        If so, produce a.
-        Else, produce b.
+        Activate jet
+        Build dry %gold gate with sample atom a and atom b
+        Yield atom
+        If: a is greater than b
+          Then: produce a
+        Else: produce b
   Examples:
         ~palryp-hocsyt/try=> (max 10 100)
         100
@@ -2934,17 +2936,16 @@ volume 2, Hoon libraries and compiler
         ---
         ~palryp-hocsyt/try=> (max 0 1)
         1
-++  min  
-        minimum
-  Description:
-        Yields the smaller of two atoms.
+
+    ++  min  
+        Produce the smaller of two atoms.
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts two atoms.
-        Must produce an atom.
-        Builds an if-then-else statement on a<b.
-        If so, produce a.
-        Else, produce b.
+        Activate jet
+        Build dry %gold gate with sample atom a and atom b
+        Yield atom
+        If: a is less than b 
+          Then: produce a
+        Else: produce b
   Examples:
         ~palryp-hocsyt/try=> (min 10 100)
         10
@@ -2954,63 +2955,60 @@ volume 2, Hoon libraries and compiler
         ---
         ~palryp-hocsyt/try=> (min 0 1)
         0
-++  mod  
-        remainder
-  Description:
-        Yields the modulus of (a mod b).
+
+    ++  mod  
+        Produce a modulo b
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts two atoms.
-        Must produce an atom.
-        Assert that b is not 0 before producing the below.
-        Produce the difference of a and the product of b times a/b.
-  Examples:
-++  mul  
-        multiply
-  Description:
-        Multiplies two numbers.
+        Activate jet
+        Build dry %gold gate with sample atom a and atom b
+        Yield atom
+        Deny that b is 0
+        Subtract from a the product of b and a divided by b
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts two atoms.
-        Must produce an atom.
-        Let 'c' be 0.
-        Create and kick a dry %gold trap.
-        Builds an if-then-else statement on a=0.
-        If so, produce c.
-        Else, recursively call multiply with a replaced by decremented a and c replaced by b+c.
-  Examples:
-++  peg  
-        tree connect
-  Description:
+        Examples
+
+    ++  mul  
+        Multiply two numbers
+        ---
+        Activate jet
+        Build dry %gold gate with sample atom a and atom b
+        Yield atom
+        Push 'c' is 0
+        Kick a dry %gold trap.
+        If: a is 0
+          Then: produce c.
+        Else: toss a for (dec a) and c for (add b c
+        Examples:
+
+    ++  peg  
         Produces the axis of b within the axis of a.
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts two atoms.
-        Must produce an atom.
-        Select a case below for the actual type of b.
-        Yield a on b=1.
-        Yield (mul a 2) on b=2.
-        Yield the increment of (mul a 2) on b=3.
-        Else, sum (b mod 2) with the product of 2 and the recursive call to peg with b replaced by b/2.
-  Examples:
+        Activate jet
+        Build dry %gold gate with sample atom a and atom b
+        Yield atom
+        Switch on b
+          if 1, produce a
+          if 2, produce (mul a 2)
+          if 3, produce +((mul a 2))
+          else, add (mod b 2) to 2 times the toss of b for (div b 2)
+        ---
         ~ronrem-lonsem/try=> (mul 5 3)
         15
         ---
         ~ronrem-lonsem/try=> (mul 1 0)
         0
-++  sub  
-        subtract
-  Description:
-        Accepts two atoms, a and b, and produces a-b.
+
+    ++  sub  
+        Subtract two numbers
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts two atoms.
-        When the following code crashes, print "%subtract-underflow" in the stack trace.
-        Must produce an atom.
-        Builds an if-then-else statement on b=0.
-        If so, produce a.
-        Else, produce the recursive call of subtract with a and b replaced by their respective decrements.
-  Examples:
+        Activate jet
+        Build dry %gold gate with sample atom a and atom b
+        Error on crash "%subtract-underflow"
+        Yield atom
+        If: b is 0
+          Then: produce a.
+        Else: toss a for (dec a) and b for (dec b)
+        ---
         ~ronrem-lonsem/try=> (sub 10 5)
         5
         ---
@@ -3028,50 +3026,44 @@ chapter 2b, basic containers
 
 Section 2bA, units                    
 
-++  biff 
-        apply
-  Description:
-        Accepts a unit 'a' and a gate 'b' which produces a unit from the type of u.a, slamming the gate 
-        with the value of a when a isn't null and producing ~ when it is.
+    ++  biff 
+        Apply a function which yields a unit to the value of a unit
         ---
-        Creates a vulanixed wet gate with a sample which accepts a unit and a $+(* (unit)) tiled gate.
-        Builds an if-then-else statement on "a is null."
-        If so, produce null.
-        Else, produce b slammed with u.a.
-  Examples:
+        Build wet gate with a sample unit a and tiled gate b
+        If: a is null
+          Then: produce null
+        Else: slam b with u.a.
+        ---
         ~palryp-hocsyt/try=> (biff (some 5) |=(a=@ (some (add a 2))))
         [~ u=7]
         ---
         ~palryp-hocsyt/try=> (biff ~ |=(a=@ (some (add a 2))))
         ~
-++  bind 
-        argue
-  Description:
-        Accepts a unit 'a' and a gate 'b', producing a unit with value (b u.a) or, when a is null, null.
+    ++  bind 
+        Apply a function to the value of a unit
         ---
-        Creates a wet %gold gate with a sample which accepts a unit and a gate.
-        Builds an if-then-else statement on "a is null."
-        If so, produce null.
-        Else, produce the a unit with value (b u.a), gate 'b' slammed with u.a.
-  Examples:
+        Build wet %gold gate with sample unit a and gate b
+        If: a is null
+          Then: produce null
+        Else, the unit of the slam of 'b' with u.a.
+        ---
         ~talsur-todres/try=> (bind ((unit ,@) [~ 97]) ,@t)
         [~ `a`]
         ---
         ~talsur-todres/try=> =a |=(a=@ (add a 1))
         ~talsur-todres/try=> (bind ((unit ,@) [~ 2]) a)
         [~ 3]
-++  clap 
-        combine
-  Description:
-        Applies a binary operation to the values of two units, producing the product as a unit.
+
+    ++  clap 
+        Apply a binary operation which yields a unit to the values of two units
         ---
-        Creates a wet %gold gate with a sample which accepts two units and a gate.
-        Builds an if-then-else statment on "a is null."
-        If so, produce b.
-        Else, build an if-then-else statement on "b is null."
-        If so, produce a.
-        Else, produce the unit with value (c u.a u.b)
-  Examples:
+        Build wet %gold gate with a sample unit a, unit b and gate c
+        If: a is null
+          Then: produce b
+        Else: If: b is null
+          Then: produce a
+        Else: the unit of the slam of c with [u.a u.b]
+        ---
         ~palryp-hocsyt/try=> =u ((unit ,@t) [~ 'a'])
         ~palryp-hocsyt/try=> =v ((unit ,@t) [~ 'b'])
         ~palryp-hocsyt/try=> (clap u v |=([a=@t b=@t] (welp (trip a) (trip b))))
@@ -3082,16 +3074,15 @@ Section 2bA, units
         ~talsur-todres/try=> =c |=([a=@ b=@] (add a b))
         ~talsur-todres/try=> (clap a b c)
         [~ 3]
-++  drop 
-        enlist
-  Description:
-        Accepts a unit and produces the list [u.a ~] or null when the unit is null.
+
+    ++  drop 
+        Produce a list of the unit-value 
         ---
-        Creates a wet %gold gate with a sample which accepts a unit.
-        Builds an if-then-else statement on "a is null."
-        If so, produces null.
-        Else, produce the list [u.a ~].
-  Examples:
+        Build wet %gold gate with sample unit a
+        If: a is null
+          Then: produce null
+        Else, produce the list [u.a ~]
+        ---
         ~divreg-misdef/try=> =a ((unit ,@) [~ 97])
         ~divreg-misdef/try=> (drop a)
         [i=97 t=~]
@@ -3099,23 +3090,22 @@ Section 2bA, units
         ~divreg-misdef/try=> =a ((unit ,@) [~])
         ~divreg-misdef/try=> (drop a)
         ~
-++  fall 
-        default
-  Description:
-         a default value 'b' for the unit 'a' when it is null.
+
+    ++  fall 
+        A default value 'b' for the unit 'a' when 'a' is null
         ---
-        Creates a wet %gold gate with a sample which accepts a unit and any noun.
-        Produces b if a is null and u.a if it is not.
-  Examples:
+        Build wet %gold gate with sample unit a and noun b 
+        If: a is null
+          Then: produce b
+        Else: produce the unit-value of a
+        ---
         ~talsur-todres/try=> (fall ~ `a`)
         `a`
         ---
         ~talsur-todres/try=> (fall [~ u=0] `a`)
         0
 ++  mate 
-        choose
-  Description:
-        Produces the unit 'a' or 'b' which is not null and crashes with error "mate" if they are equal.
+        Produce the unit 'a' or 'b' which is not null and crashes with error "mate" if they are equal.
         ---
         Creates a wet %gold gate with a sample which accepts a two units.
         Builds an if-then-else statement on "b is null."
