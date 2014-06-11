@@ -2593,340 +2593,340 @@ XX tall/wide
             Y   2MB
             Z   4MB
 
-            You of course can build an atom larger than 4MB, but
-            the type system cannot express a size odor above 4MB.
+              You of course can build an atom larger than 4MB, but
+              the type system cannot express a size odor above 4MB.
 
 
-        [%bull p=twin q=type]
+          [%bull p=twin q=type]
 
-        [%cell p=type q=type]
+          [%cell p=type q=type]
 
-            A pair of types. Set: all cells of p and q. 
+              A pair of types. Set: all cells of p and q. 
 
-            ~zod/try=> :type; [3 4]
-            [3 4]
-            [@ud @ud]
+              ~zod/try=> :type; [3 4]
+              [3 4]
+              [@ud @ud]
 
-            ~zod/try=> -:!>([3 4])
-            [%cell p=[%atom p=%ud] q=[%atom p=%ud]]
+              ~zod/try=> -:!>([3 4])
+              [%cell p=[%atom p=%ud] q=[%atom p=%ud]]
 
 
-        [%core p=type q=coil]
+          [%core p=type q=coil]
 
-        [%cube p=* q=type]
+          [%cube p=* q=type]
 
-            When we enter an ordinary constant, like 42, its type [%atom %ud]
-            is the set of all atoms (with odor @ud, but any atom can have that
-            or any odor). Its type is certainly not the set consisting
-            exclusively of the value 42.
+              When we enter an ordinary constant, like 42, its type [%atom %ud]
+              is the set of all atoms (with odor @ud, but any atom can have that
+              or any odor). Its type is certainly not the set consisting
+              exclusively of the value 42.
 
-            But here's how we produce this "cubical" constant:
+              But here's how we produce this "cubical" constant:
 
-            ~zod/try=> :type; %42
-            %42
-            %42
+              ~zod/try=> :type; %42
+              %42
+              %42
 
-            ~zod/try=> -:!>(%42)
-            [%cube p=42 q=[%atom p=%ud]]
-            
-            In general, a %cube type contains p, a single noun, and q, a base
-            type which provides semantics.
+              ~zod/try=> -:!>(%42)
+              [%cube p=42 q=[%atom p=%ud]]
+              
+              In general, a %cube type contains p, a single noun, and q, a base
+              type which provides semantics.
 
-            Syntactically, any atomic constant can be preceded by % to generate
-            a cube. The exception is @tas, which always needs % and is always
-            cubical.
+              Syntactically, any atomic constant can be preceded by % to generate
+              a cube. The exception is @tas, which always needs % and is always
+              cubical.
 
-        [%face p=term q=type]
+          [%face p=term q=type]
 
-            A type is not just a set of nouns - it's also a meaning which makes
-            sense of any noun in that set. The typed noun exports a namespace -
-            give it a name, and it gives you another noun.
+              A type is not just a set of nouns - it's also a meaning which makes
+              sense of any noun in that set. The typed noun exports a namespace -
+              give it a name, and it gives you another noun.
 
-            ~zod/try=> foo=42
-            foo=42
-            ~zod/try=> :type; foo=42
-            foo=42
-            foo=@ud
-            ~zod/try=> -:!>(foo=42)
-            [%face p=%foo q=[%atom p=%ud]]
+              ~zod/try=> foo=42
+              foo=42
+              ~zod/try=> :type; foo=42
+              foo=42
+              foo=@ud
+              ~zod/try=> -:!>(foo=42)
+              [%face p=%foo q=[%atom p=%ud]]
 
-            With %face, we've simply wrapped a label around another type. Note
-            that this doesn't impair our ability to compute with the value.
-            Computationally, foo=42 is just 42:
+              With %face, we've simply wrapped a label around another type. Note
+              that this doesn't impair our ability to compute with the value.
+              Computationally, foo=42 is just 42:
 
-             ~zod/try=> (add 17 foo=42)
-             59
-             ---
+               ~zod/try=> (add 17 foo=42)
+               59
+               ---
 
-        [%fork p=type q=type]
+          [%fork p=type q=type]
 
-            A union type. [%fork p q] means "it could be a p, or maybe a q."
+              A union type. [%fork p q] means "it could be a p, or maybe a q."
 
-            Any branching computation in which different branches produce
-            different types will generate a fork. For example:
+              Any branching computation in which different branches produce
+              different types will generate a fork. For example:
 
-            ~zod/try=> :type; ?:(& %foo [13 10])
-            %foo
-            { %foo [@ud @ud] }
+              ~zod/try=> :type; ?:(& %foo [13 10])
+              %foo
+              { %foo [@ud @ud] }
 
-            ~zod/try=> -:!>(?:(& %foo [13 10]))
-            [ %fork
-              p=[%cube p=7.303.014 q=[%atom p=%tas]]
-              q=[%cell p=[%atom p=%ud] q=[%atom p=%ud]]
-             ]
+              ~zod/try=> -:!>(?:(& %foo [13 10]))
+              [ %fork
+                p=[%cube p=7.303.014 q=[%atom p=%tas]]
+                q=[%cell p=[%atom p=%ud] q=[%atom p=%ud]]
+               ]
 
-            Here we start to understand why the type renderer is useful, as 
-            { %foo [@ud @ud] } (which is not in any way Hoon syntax) is a 
-            little easier to read than the actual type noun.
+              Here we start to understand why the type renderer is useful, as 
+              { %foo [@ud @ud] } (which is not in any way Hoon syntax) is a 
+              little easier to read than the actual type noun.
 
-            (Readers of a mathematical bent may ask: since Hoon has a union
-            type, where is the intersection type? There is none. Hoon is not
-            one of these languages whose goal is to be as mathematically
-            powerful as possible. Since a programming language is a UI for
-            programmers, and programmers are not mathematicians, Hoon is
-            designed to be as powerful as it has to be - and no more.)
+              (Readers of a mathematical bent may ask: since Hoon has a union
+              type, where is the intersection type? There is none. Hoon is not
+              one of these languages whose goal is to be as mathematically
+              powerful as possible. Since a programming language is a UI for
+              programmers, and programmers are not mathematicians, Hoon is
+              designed to be as powerful as it has to be - and no more.)
 
-        [%hold p=(list ,[p=type q=twig])]
+          [%hold p=(list ,[p=type q=twig])]
 
-    ++  typo  
-    ++  udal  
-    ++  udon  
-    ++  umph  
-    ++  unce  
-    ++  unit  
-    ++  upas  
-    ++  urge  
-    ++  vase  
-    ++  vise  
-    ++  wall  
-    ++  wain  
-    ++  wing  
-    ++  wine  
-    ++  woof  
-    ++  wonk  
-    ++  map  
-    ++  qeu  
-    ++  set  
-    ++  jar  
-    ++  jug  
+      ++  typo  
+      ++  udal  
+      ++  udon  
+      ++  umph  
+      ++  unce  
+      ++  unit  
+      ++  upas  
+      ++  urge  
+      ++  vase  
+      ++  vise  
+      ++  wall  
+      ++  wain  
+      ++  wing  
+      ++  wine  
+      ++  woof  
+      ++  wonk  
+      ++  map  
+      ++  qeu  
+      ++  set  
+      ++  jar  
+      ++  jug  
 
-volume 2, Hoon libraries and compiler
+  volume 2, Hoon libraries and compiler
 
-  chapter 2a, basic unsigned math
+    chapter 2a, basic unsigned math
 
-    ++  add 
-        Sum two numbers.
-        ---
-        Activate jet
-        Build dry %gold gate with sample atoms a and b
-        Yield atom
-        If: a is 0
-          Then: produce `b`
-        Else: toss a for (dec a) and b for +(b)
-        ---
-        ~palryp-hocsyt/try=> (add 2 2)
-        4
-        ~palryp-hocsyt/try=> (add 1 1.000.000)
-        1.000.001
-        ~palryp-hocsyt/try=> (add 1.333 (mul 2 2))
-        1.337
+      ++  add 
+          Sum two numbers.
+          ---
+          Activate jet
+          Build dry %gold gate with sample atoms a and b
+          Yield atom
+          If: a is 0
+            Then: produce `b`
+          Else: toss a for (dec a) and b for +(b)
+          ---
+          ~palryp-hocsyt/try=> (add 2 2)
+          4
+          ~palryp-hocsyt/try=> (add 1 1.000.000)
+          1.000.001
+          ~palryp-hocsyt/try=> (add 1.333 (mul 2 2))
+          1.337
 
-    ++  cap
-        Is an axis in the head or tail of a noun?
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a
-        Yield either %2 or %3
-        Switch on type of a
-        if %2, produce %2 
-        if %3, produce %3
-        if either %0 or %1, fail
-        if noun, toss a for (div a 2)
-        ---
-        ~palryp-hocsyt/try=> (cap 4)
-        %2
-        ~palryp-hocsyt/try=> (cap 6)
-        %3
-        ~palryp-hocsyt/try=> (cap (add 10 9))
-        %2
+      ++  cap
+          Is an axis in the head or tail of a noun?
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a
+          Yield either %2 or %3
+          Switch on type of a
+          if %2, produce %2 
+          if %3, produce %3
+          if either %0 or %1, fail
+          if noun, toss a for (div a 2)
+          ---
+          ~palryp-hocsyt/try=> (cap 4)
+          %2
+          ~palryp-hocsyt/try=> (cap 6)
+          %3
+          ~palryp-hocsyt/try=> (cap (add 10 9))
+          %2
 
-    ++  dec  
-        Decrements a number - Subtracts one.
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a
-        Error on crash: %decrement-underflow
-        Deny that a is 0
-        Let b be 0
-        Kick dry %gold trap that yields atom.
-        If: a is +(b)
-          Then, produce b.
-        Else, toss b for +(b) 
-        ---
-        ~palryp-hocsyt/try=> (dec 7)
-        6
-        ~palryp-hocsyt/try=> (dec 0)
-        ! decrement-underflow
-        ! exit
+      ++  dec  
+          Decrements a number - Subtracts one.
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a
+          Error on crash: %decrement-underflow
+          Deny that a is 0
+          Let b be 0
+          Kick dry %gold trap that yields atom.
+          If: a is +(b)
+            Then, produce b.
+          Else, toss b for +(b) 
+          ---
+          ~palryp-hocsyt/try=> (dec 7)
+          6
+          ~palryp-hocsyt/try=> (dec 0)
+          ! decrement-underflow
+          ! exit
 
-    ++  div  
-        Divides one number by another.
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a, atom b.
-        Yield atom
-        Error on crash: 'div'
-        Deny that b is 0
-        Let c be 0
-        Kick dry %gold trap
-        If: a is less than b
-          Then: produce c
-        Else, toss a for (sub a b), and c for +(c)
-        ---
-        ~palryp-hocsyt/try=> (div 4 2)
-        2
-        ~palryp-hocsyt/try=> (div 17 8)
-        2
-        ~palryp-hocsyt/try=> (div 20 30)
-        0
+      ++  div  
+          Divides one number by another.
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a, atom b.
+          Yield atom
+          Error on crash: 'div'
+          Deny that b is 0
+          Let c be 0
+          Kick dry %gold trap
+          If: a is less than b
+            Then: produce c
+          Else, toss a for (sub a b), and c for +(c)
+          ---
+          ~palryp-hocsyt/try=> (div 4 2)
+          2
+          ~palryp-hocsyt/try=> (div 17 8)
+          2
+          ~palryp-hocsyt/try=> (div 20 30)
+          0
 
-    ++  fac  
-        Produces the factorial of a number n, n!.
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a and atom b.
-        Yield atom
-        If: a is 0
-          Then: produce 1.
-        Else: multiply a with the toss of a for (dec a)
-        ---
-        ~palryp-hocsyt/try=> (fac 3)
-        6
-        ~palryp-hocsyt/try=> (fac 0)
-        1
-        ~palryp-hocsyt/try=> (fac 11)
-        39.916.800
+      ++  fac  
+          Produces the factorial of a number n, n!.
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a and atom b.
+          Yield atom
+          If: a is 0
+            Then: produce 1.
+          Else: multiply a with the toss of a for (dec a)
+          ---
+          ~palryp-hocsyt/try=> (fac 3)
+          6
+          ~palryp-hocsyt/try=> (fac 0)
+          1
+          ~palryp-hocsyt/try=> (fac 11)
+          39.916.800
 
-    ++  gte
-        Is the first greater than or equal to the second?
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a and atom b
-        Yield bean
-        a is NOT less-than b
-        ---
-        ~palryp-hocsyt/try=> (gte 100 10)
-        %.y
-        ---
-        ~palryp-hocsyt/try=> (gte 4 4)
-        %.y
-        ---
-        ~palryp-hocsyt/try=> (gte 3 4)
-        %.n
-        ---
+      ++  gte
+          Is the first greater than or equal to the second?
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a and atom b
+          Yield bean
+          a is NOT less-than b
+          ---
+          ~palryp-hocsyt/try=> (gte 100 10)
+          %.y
+          ---
+          ~palryp-hocsyt/try=> (gte 4 4)
+          %.y
+          ---
+          ~palryp-hocsyt/try=> (gte 3 4)
+          %.n
+          ---
 
-    ++  gth
-        Is the first greater than the second?
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a and atom b
-        Yield bean.
-        a is NOT less than or equal to b
-        ---
-        ~ronrem-lonsem/try=> (gth 4 5)
-        %.n
-        ~ronrem-lonsem/try=> (gth 5 4)
-        %.y
-        ~ronrem-lonsem/try=> (gth 5 5)
-        %.n
-        ~ronrem-lonsem/try=> (gth 0 0)
-        %.n
-    ++  lte  
-        Is the first less than or equal to the second?
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a and atom b
-        Yield bean
-        a is b OR a is less-than b
-        ---
-        ~ronrem-lonsem/try=> (lte 4 5)
-        %.y
-        ~ronrem-lonsem/try=> (lte 5 4)
-        %.n
-        ~ronrem-lonsem/try=> (lte 5 5)
-        %.y
-        ~ronrem-lonsem/try=> (lte 0 0)
-        %.y
+      ++  gth
+          Is the first greater than the second?
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a and atom b
+          Yield bean.
+          a is NOT less than or equal to b
+          ---
+          ~ronrem-lonsem/try=> (gth 4 5)
+          %.n
+          ~ronrem-lonsem/try=> (gth 5 4)
+          %.y
+          ~ronrem-lonsem/try=> (gth 5 5)
+          %.n
+          ~ronrem-lonsem/try=> (gth 0 0)
+          %.n
+      ++  lte  
+          Is the first less than or equal to the second?
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a and atom b
+          Yield bean
+          a is b OR a is less-than b
+          ---
+          ~ronrem-lonsem/try=> (lte 4 5)
+          %.y
+          ~ronrem-lonsem/try=> (lte 5 4)
+          %.n
+          ~ronrem-lonsem/try=> (lte 5 5)
+          %.y
+          ~ronrem-lonsem/try=> (lte 0 0)
+          %.y
 
-    ++  lth  
-        Is the first less than the second?
-        ---
-        Activate jet
-        Build dry %gold gate with a sample atom a and atom b
-        Yield bean
-        Use logical AND, and produce %.n if a is b.
-        Kick a dry %gold trap
-        produce %.y if a is 0
-        produce %.n if a is NOT 0 AND b=0.
-        Else, toss a for (dec a), and b for (dec b)
-  Examples:
-        ~ronrem-lonsem/try=> (lth 4 5)
-        %.y
-        ---
-        ~ronrem-lonsem/try=> (lth 5 4)
-        %.n
-        ---
-        ~ronrem-lonsem/try=> (lth 5 5)
-        %.n
-        ---
-        ~ronrem-lonsem/try=> (lth 5 0)
-        %.n
+      ++  lth  
+          Is the first less than the second?
+          ---
+          Activate jet
+          Build dry %gold gate with a sample atom a and atom b
+          Yield bean
+          Use logical AND, and produce %.n if a is b.
+          Kick a dry %gold trap
+          produce %.y if a is 0
+          produce %.n if a is NOT 0 AND b=0.
+          Else, toss a for (dec a), and b for (dec b)
+    Examples:
+          ~ronrem-lonsem/try=> (lth 4 5)
+          %.y
+          ---
+          ~ronrem-lonsem/try=> (lth 5 4)
+          %.n
+          ---
+          ~ronrem-lonsem/try=> (lth 5 5)
+          %.n
+          ---
+          ~ronrem-lonsem/try=> (lth 5 0)
+          %.n
 
-    ++  mas  
-        Produces the axis of a within the head or the tail. 
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a
-        Yield atom
-        Switch on a
-        if 1, fail
-        if 2, produce 1
-        if 3, produce 1
-        Else, add a modulo 2 to 2 times the toss of a for (div a 2)
-        ---
-        1 ~ronrem-lonsem/try=> (mas 3)
-        1
-        ---
-        ~ronrem-lonsem/try=> (mas 4)
-        2
-        ---
-        ~ronrem-lonsem/try=> (mas 5)
-        3
-        ---
-        ~ronrem-lonsem/try=> (mas 6)
-        2
-        ---
-        ~ronrem-lonsem/try=> (mas 7)
-        3
-        ---
-        ~ronrem-lonsem/try=> (mas 8)
-        4
-        ---
-        ~ronrem-lonsem/try=> (mas 0)
-        ! exit
-        ---
-        ~ronrem-lonsem/try=> (mas 1)
-        ! exit
+      ++  mas  
+          Produces the axis of a within the head or the tail. 
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a
+          Yield atom
+          Switch on a
+          if 1, fail
+          if 2, produce 1
+          if 3, produce 1
+          Else, add a modulo 2 to 2 times the toss of a for (div a 2)
+          ---
+          1 ~ronrem-lonsem/try=> (mas 3)
+          1
+          ---
+          ~ronrem-lonsem/try=> (mas 4)
+          2
+          ---
+          ~ronrem-lonsem/try=> (mas 5)
+          3
+          ---
+          ~ronrem-lonsem/try=> (mas 6)
+          2
+          ---
+          ~ronrem-lonsem/try=> (mas 7)
+          3
+          ---
+          ~ronrem-lonsem/try=> (mas 8)
+          4
+          ---
+          ~ronrem-lonsem/try=> (mas 0)
+          ! exit
+          ---
+          ~ronrem-lonsem/try=> (mas 1)
+          ! exit
 
-    ++  max  
-        Produce the larger of two atoms.
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a and atom b
-        Yield atom
-        If: a is greater than b
-          Then: produce a
-        Else: produce b
+      ++  max  
+          Produce the larger of two atoms.
+          ---
+          Activate jet
+          Build dry %gold gate with sample atom a and atom b
+          Yield atom
+          If: a is greater than b
+            Then: produce a
+          Else: produce b
   Examples:
         ~palryp-hocsyt/try=> (max 10 100)
         100
@@ -5830,7 +5830,44 @@ section 2eA, packing
 section 2eB, parsing (tracing)        
 
 ++  last
+        Compare two [line column] pairs and produce the one which is farther along in text.
+        ---
+        Build dry %gold gate with sample hair `zyc`, hair `naz`
+        Yield hair.
+        If: p.zyc is p.naz,
+                Then: If: q.zyc is greater than q.naz,
+                        Then: Produce zyc,
+                      Else:  Produce naz.
+        Else: If: p.zyc is greater than p.naz,
+                        Then: Produce zyc,
+              Else: Produce naz.
+        ---
+        ~tadbyl-hilbel/try=> (last [1 1] [1 2])
+        [p=1 q=2]
+        ~tadbyl-hilbel/try=> (last [2 1] [1 2])
+        [p=2 q=1]
+        ~tadbyl-hilbel/try=> (last [0 0] [99 0])
+        [p=99 q=0]
+        ~tadbyl-hilbel/try=> (last [7 7] [7 7])
+        [p=7 q=7]
+
 ++  lust
+        Produce the beginning of the next line after a newline character or increment the column number.
+        ---
+        Build dry %gold gate with sample char `weq`, hair `naz`
+        Yield hair.
+        If: `weq` is 10,
+                Then: Produce [+(p.naz) 1].
+        Else: Produce [p.naz +(q.naz)].
+        ---
+        ~tadbyl-hilbel/try=> (lust `a` [1 1])
+        [p=1 q=2]
+        ~tadbyl-hilbel/try=> (lust `@t`10 [1 1])
+        [p=2 q=1]
+        ~tadbyl-hilbel/try=> (lust '9' [10 10])
+        [p=10 q=11]
+        ~tadbyl-hilbel/try=> (lust `@t`10 [0 0])
+        [p=1 q=1]
 
 section 2eC, parsing (custom rules)   
 
@@ -5871,13 +5908,32 @@ section 2eC, parsing (custom rules)
         [p=[p=1 q=2] q=[~ u=[p=98 q=[p=[p=1 q=2] q="bc"]]]]
         ~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=`b` q=[p=[p=1 q=2] q="bc"]]]]
-++  easy  
+++  easy
+        Always succeed and consume no characters - Produce a nail at the same text position and with all text unparsed.
         ---
         Activate jet.
-        Build wet %gold gate with sample
+        Build wet %gold gate with sample noun, `huf`, which
+        
         Activate extra parsing jet.
+        Build dry %gold date with sample nail, `tub`
+        Yield 
+
+        Produce [p=p.tub q=[~ u=[p=huf q=tub]]]
         ---
+        ~midlys-rocpet/try=> ((easy %foo) [[1 1] "abc"])
+        [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
+        ~midlys-rocpet/try=> ((easy %foo) [[1 1] "bc"])
+        [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="bc"]]]]
 ++  fail  
+        Always fail parsing - Produce a nail at the same text position but with null text to parse.
+        ---
+        Build wet %gold gate with sample nail, `tub`.
+        Produce nail [p=p.tub q=~].
+        ---
+        ~tadbyl-hilbel/try=> (fail [[1 1] "abc"])
+        [p=[p=1 q=1] q=~]
+        ~tadbyl-hilbel/try=> (fail [[p=1.337 q=70] "Parse me, please?"])
+        [p=[p=1.337 q=70] q=~]
 ++  full  
         Only succeeds if given a rule that successfully parses the entire nail to the end, producing
         a null hair if the rules fails.
@@ -5885,10 +5941,10 @@ section 2eC, parsing (custom rules)
         Creates a wet %gold gate which accepts a rule.
         Creates a dry %gold gate which accepts a nail.
         Let 'vex' be the rule slammed with the nail.
-        Builds an if-then-else statement on "q.vex is an atom."  If so, produce 'vex'.
+        Build an if-then-else statement on "q.vex is an atom."  If so, produce 'vex'.
         Else, build an if-then-else statement on "q.q.u.q.vex is null."  If so, produce 'vex'.
         Else, produce the cell [p=p.vex q=~].
-  Examples:
+        ---
         ~tadbyl-hilbel/try=> ((full (just 'a')) [[1 1] "ab"])
         [p=[p=1 q=2] q=~]
         ---
@@ -5897,14 +5953,30 @@ section 2eC, parsing (custom rules)
         ---
         ~tadbyl-hilbel/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
         [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
-++  funk  
+++  funk
+        Prepend a tape to the text to be parsed, then parse the new tape.
+        ---
+        Build wet %gold gate with sample tape `pre`, rule `sef`
+        Build dry %gold gate with sample nail, `tub`
+        Produce the rule slammed with the hair index of `tub` and the 
+        concatenation of the prefix tape and the `tub` tape.
+        ---
+        ~tadbyl-hilbel/try=> ((funk "abc prefix-" (jest 'abc')) [[1 1] "to be parsed"])
+        [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=" prefix-to be parsed"]]]]
+        ~tadbyl-hilbel/try=> ((funk "parse" (just 'a')) [[1 4] " me"])
+        [p=[p=1 q=4] q=~]
 ++  here  
+        
         ---
         Activate jet.
         Build wet %gold gate with sample
         Activate extra parsing jet.
+        Build dry %gold gate with sample nail, `tub`
+        
         ---
+
 ++  jest  
+        Match a cord
 ++  just  
 ++  knee  
 ++  mask  
@@ -6022,7 +6094,7 @@ section 2eH, parsing (idioms)
   Description:
         Parses a text and produces it in base64 encoding.
         ---
-        Builds a list of falling rules to match on with ';~' and pose.
+        Build a list of falling rules to match on with ';~' and pose.
         Encodes capital letters by 
   Examples:
 
@@ -6075,7 +6147,7 @@ section 2eI, parsing (external)
         ---
         Creates a wet %gold gate which accepts a tape and a rule.
         Let 'vex' be the full parse of the tape using the rule.
-        Builds an if-then-else statement on "q.vex is an atom."  If so, produce null.
+        Build an if-then-else statement on "q.vex is an atom."  If so, produce null.
         Else, produce the unit with value 'p.u.q.vex'.
   Examples 
         ~tadbyl-hilbel/try=> (rust "I was the world in which I walked, and what I saw" (star (shim 0 200)))
@@ -6092,7 +6164,7 @@ section 2eI, parsing (external)
         ---
         Creates a dry %gold gatet which accepts a tape and a rule.
         Let 'vex' be the full parse of the text by the rule.
-        Builds an if-then-else statement on "q.vex is an atom."
+        Build an if-then-else statement on "q.vex is an atom."
         If so, insert the 'tank' producing trap (show [%m '{%d %d}'] p.p.vex q.p.vex ~),
         Then, crash the program and print "syntax-error" in the stack trace.
         Else, produce 'p.u.q.vex'.
