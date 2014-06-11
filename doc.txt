@@ -2756,7 +2756,7 @@ volume 2, Hoon libraries and compiler
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce an atom.
-        Builds an if-else-then statement on a>b.
+        Build an if-else-then statement on a>b.
         If so, produce a.
         Else, produce b.
   Examples:
@@ -2776,7 +2776,7 @@ volume 2, Hoon libraries and compiler
         This arm is jetted.
         Creates a dry %gold gate with a sample which accepts two atoms.
         Must produce an atom.
-        Builds an if-then-else statement on a<b.
+        Build an if-then-else statement on a<b.
         If so, produce a.
         Else, produce b.
   Examples:
@@ -2809,7 +2809,7 @@ volume 2, Hoon libraries and compiler
         Must produce an atom.
         Let 'c' be 0.
         Create and kick a dry %gold trap.
-        Builds an if-then-else statement on a=0.
+        Build an if-then-else statement on a=0.
         If so, produce c.
         Else, recursively call multiply with a replaced by decremented a and c replaced by b+c.
   Examples:
@@ -2841,7 +2841,7 @@ volume 2, Hoon libraries and compiler
         Creates a dry %gold gate with a sample which accepts two atoms.
         When the following code crashes, print "%subtract-underflow" in the stack trace.
         Must produce an atom.
-        Builds an if-then-else statement on b=0.
+        Build an if-then-else statement on b=0.
         If so, produce a.
         Else, produce the recursive call of subtract with a and b replaced by their respective decrements.
   Examples:
@@ -5674,7 +5674,44 @@ section 2eA, packing
 section 2eB, parsing (tracing)        
 
 ++  last
+        Compare two [line column] pairs and produce the one which is farther along in text.
+        ---
+        Build dry %gold gate with sample hair `zyc`, hair `naz`
+        Yield hair.
+        If: p.zyc is p.naz,
+                Then: If: q.zyc is greater than q.naz,
+                        Then: Produce zyc,
+                      Else:  Produce naz.
+        Else: If: p.zyc is greater than p.naz,
+                        Then: Produce zyc,
+              Else: Produce naz.
+        ---
+        ~tadbyl-hilbel/try=> (last [1 1] [1 2])
+        [p=1 q=2]
+        ~tadbyl-hilbel/try=> (last [2 1] [1 2])
+        [p=2 q=1]
+        ~tadbyl-hilbel/try=> (last [0 0] [99 0])
+        [p=99 q=0]
+        ~tadbyl-hilbel/try=> (last [7 7] [7 7])
+        [p=7 q=7]
+
 ++  lust
+        Produce the beginning of the next line after a newline character or increment the column number.
+        ---
+        Build dry %gold gate with sample char `weq`, hair `naz`
+        Yield hair.
+        If: `weq` is 10,
+                Then: Produce [+(p.naz) 1].
+        Else: Produce [p.naz +(q.naz)].
+        ---
+        ~tadbyl-hilbel/try=> (lust `a` [1 1])
+        [p=1 q=2]
+        ~tadbyl-hilbel/try=> (lust `@t`10 [1 1])
+        [p=2 q=1]
+        ~tadbyl-hilbel/try=> (lust '9' [10 10])
+        [p=10 q=11]
+        ~tadbyl-hilbel/try=> (lust `@t`10 [0 0])
+        [p=1 q=1]
 
 section 2eC, parsing (custom rules)   
 
@@ -5715,13 +5752,32 @@ section 2eC, parsing (custom rules)
         [p=[p=1 q=2] q=[~ u=[p=98 q=[p=[p=1 q=2] q="bc"]]]]
         ~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=`b` q=[p=[p=1 q=2] q="bc"]]]]
-++  easy  
+++  easy
+        Always succeed and consume no characters - Produce a nail at the same text position and with all text unparsed.
         ---
         Activate jet.
-        Build wet %gold gate with sample
+        Build wet %gold gate with sample noun, `huf`, which
+        
         Activate extra parsing jet.
+        Build dry %gold date with sample nail, `tub`
+        Yield 
+
+        Produce [p=p.tub q=[~ u=[p=huf q=tub]]]
         ---
+        ~midlys-rocpet/try=> ((easy %foo) [[1 1] "abc"])
+        [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
+        ~midlys-rocpet/try=> ((easy %foo) [[1 1] "bc"])
+        [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="bc"]]]]
 ++  fail  
+        Always fail parsing - Produce a nail at the same text position but with null text to parse.
+        ---
+        Build wet %gold gate with sample nail, `tub`.
+        Produce nail [p=p.tub q=~].
+        ---
+        ~tadbyl-hilbel/try=> (fail [[1 1] "abc"])
+        [p=[p=1 q=1] q=~]
+        ~tadbyl-hilbel/try=> (fail [[p=1.337 q=70] "Parse me, please?"])
+        [p=[p=1.337 q=70] q=~]
 ++  full  
         Only succeeds if given a rule that successfully parses the entire nail to the end, producing
         a null hair if the rules fails.
@@ -5729,10 +5785,10 @@ section 2eC, parsing (custom rules)
         Creates a wet %gold gate which accepts a rule.
         Creates a dry %gold gate which accepts a nail.
         Let 'vex' be the rule slammed with the nail.
-        Builds an if-then-else statement on "q.vex is an atom."  If so, produce 'vex'.
+        Build an if-then-else statement on "q.vex is an atom."  If so, produce 'vex'.
         Else, build an if-then-else statement on "q.q.u.q.vex is null."  If so, produce 'vex'.
         Else, produce the cell [p=p.vex q=~].
-  Examples:
+        ---
         ~tadbyl-hilbel/try=> ((full (just 'a')) [[1 1] "ab"])
         [p=[p=1 q=2] q=~]
         ---
@@ -5741,14 +5797,30 @@ section 2eC, parsing (custom rules)
         ---
         ~tadbyl-hilbel/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
         [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
-++  funk  
+++  funk
+        Prepend a tape to the text to be parsed, then parse the new tape.
+        ---
+        Build wet %gold gate with sample tape `pre`, rule `sef`
+        Build dry %gold gate with sample nail, `tub`
+        Produce the rule slammed with the hair index of `tub` and the 
+        concatenation of the prefix tape and the `tub` tape.
+        ---
+        ~tadbyl-hilbel/try=> ((funk "abc prefix-" (jest 'abc')) [[1 1] "to be parsed"])
+        [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=" prefix-to be parsed"]]]]
+        ~tadbyl-hilbel/try=> ((funk "parse" (just 'a')) [[1 4] " me"])
+        [p=[p=1 q=4] q=~]
 ++  here  
+        
         ---
         Activate jet.
         Build wet %gold gate with sample
         Activate extra parsing jet.
+        Build dry %gold gate with sample nail, `tub`
+        
         ---
+
 ++  jest  
+        Match a cord
 ++  just  
 ++  knee  
 ++  mask  
@@ -5866,7 +5938,7 @@ section 2eH, parsing (idioms)
   Description:
         Parses a text and produces it in base64 encoding.
         ---
-        Builds a list of falling rules to match on with ';~' and pose.
+        Build a list of falling rules to match on with ';~' and pose.
         Encodes capital letters by 
   Examples:
 
@@ -5919,7 +5991,7 @@ section 2eI, parsing (external)
         ---
         Creates a wet %gold gate which accepts a tape and a rule.
         Let 'vex' be the full parse of the tape using the rule.
-        Builds an if-then-else statement on "q.vex is an atom."  If so, produce null.
+        Build an if-then-else statement on "q.vex is an atom."  If so, produce null.
         Else, produce the unit with value 'p.u.q.vex'.
   Examples 
         ~tadbyl-hilbel/try=> (rust "I was the world in which I walked, and what I saw" (star (shim 0 200)))
@@ -5936,7 +6008,7 @@ section 2eI, parsing (external)
         ---
         Creates a dry %gold gatet which accepts a tape and a rule.
         Let 'vex' be the full parse of the text by the rule.
-        Builds an if-then-else statement on "q.vex is an atom."
+        Build an if-then-else statement on "q.vex is an atom."
         If so, insert the 'tank' producing trap (show [%m '{%d %d}'] p.p.vex q.p.vex ~),
         Then, crash the program and print "syntax-error" in the stack trace.
         Else, produce 'p.u.q.vex'.
