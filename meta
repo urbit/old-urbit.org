@@ -118,6 +118,7 @@ foo                             Pull foo,
 r.a                                  r.a,
 n.r.a                                n.r.a, etc...
 (p q)                           Slam gate p with q
+|-(p)                           Kick trap p
 $(a +(a), b c)                  Toss a for +(a), b for c, etc...
 $(a +(a), b c, d e,...)
 ~(get by foo)                   Slug tray by to get with foo.

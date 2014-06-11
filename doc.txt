@@ -196,20 +196,20 @@ volume 1, Hoon models
         means a term is always cubical. You can cast it to @tas if you like,
         but we just about always want the cube:
         ---
-        ~zod/try=> %dead-fish9
+        ~waclux-tomwyc/try=> %dead-fish9
         %dead-fish9
         ---
-        ~zod/try=> -:!>(%dead-fish9)
+        ~waclux-tomwyc/try=> -:!>(%dead-fish9)
         [%cube p=271.101.667.197.767.630.546.276 q=[%atom p=%tas]]
         ---
         The empty @tas has a special syntax, $:
 
-        ~zod/try=> %$
+        ~waclux-tomwyc/try=> %$
         %$
         ---
         A term without % is not a constant, but a name:
 
-        ~zod/try=> dead-fish9
+        ~waclux-tomwyc/try=> dead-fish9
         ! -find-limb.dead-fish9
         ! find-none
         ! exit
@@ -2411,18 +2411,18 @@ XX tall/wide
             Either %noun or %void. %noun is the set of all nouns. %void is the
             set of no nouns. 
 
-            ~zod/try=> :type; *
+            ~waclux-tomwyc/try=> :type; *
             0
             *
 
-            ~zod/try=> -:!>(*)
+            ~waclux-tomwyc/try=> -:!>(*)
             %noun
 
-            ~zod/try=> :type; `*`%noun
+            ~waclux-tomwyc/try=> :type; `*`%noun
             1.853.189.998
             *
 
-            ~zod/try=> -:!>(`*`%noun)
+            ~waclux-tomwyc/try=> -:!>(`*`%noun)
             %noun
 
             We can't show any examples producing %void - by definition, none of
@@ -2431,183 +2431,17 @@ XX tall/wide
 
         [%atom p=term]
 
-            An atom is a natural number, with a term (known as an
-            odor) that specificies an atomic subtype.
-
-            An odor is an ASCII span. This span is a taxonomy which
-            grows more specific to the right. For instance, @t
-            for UTF-8 text, @ta for URL-safe ASCII text, @tas for
-            a Hoon symbol; or @u for an unsigned integer, @ux for
-            an unsigned integer formatted as hexadecimal.
-
-            Hoon knows about the following odors, with defined meanings:
-
-            @c              UTF-32 codepoint
-            @d              date
-              @da           absolute date
-              @dr           relative date (ie, timespan)
-            @f              yes or no (inverse boolean)
-            @n              nil
-            @p              phonemic base
-            @r              IEEE floating-point
-              @rd           double precision  (64 bits)
-              @rh           half precision (16 bits)
-              @rq           quad precision (128 bits)
-              @rs           single precision (32 bits)
-            @s              signed integer, sign bit low
-              @sb           signed binary
-              @sd           signed decimal
-              @sv           signed base32
-              @sw           signed base64
-              @sx           signed hexadecimal
-            @t              UTF-8 text (cord)
-              @ta           ASCII text (span)
-                @tas        ASCII symbol (term)
-            @u              unsigned integer
-              @ub           unsigned binary
-              @ud           unsigned decimal
-              @uv           unsigned base32
-              @uw           unsigned base64
-              @ux           unsigned hexadecimal
-
-            Atoms change freely either up or down the taxonomy,
-            but not across. You can treat a @tas as
-            a @t, as in a strong type system; but you can also
-            treat a @t as a @tas, or an @ as anything. However,
-            passing a @t to a function that expects an @ux is a
-            type error.
-
-            Each of these forms has a URL-safe syntax. Each
-            parses as an atomic constant in Hoon, and each is
-            printed by the Hoon prettyprinter.
-            ---
-
-            ~zod/try=> :type; 0x42
-            0x42
-            @ux
-
-            ~zod/try=> `@ud`0x42
-            66
-
-            ~zod/try=> :type; 'foo'
-            'foo'
-            @ta
-
-            ~zod/try=> `@ud`'foo'
-            7.303.014
-
-            ~zod/try=> :type; ~2013.12.6
-            ~2013.12.6
-            @da
-
-            ~zod/try=> `@ud`~2013.12.6
-            170.141.184.500.724.667.905.957.736.036.171.776.000
-
-            ~zod/try=> `@ud`.127.0.0.1
-            2.130.706.433
-
-            ~zod/try=> :type; .127.0.0.1
-            .127.0.0.1
-            @if
-
-            ~zod/try=> :type; ~m45
-            ~m45
-            @dr
-
-            ~zod/try=> `@ud`~m45
-            49.806.208.999.015.789.363.200
-
-            ~zod/try=> :type; `@da`(add ~2013.12.6 ~m45)
-            ~2013.12.6..00.45.00
-            @da
-
-            ---
-            The variety of units and formats which an atom can
-            represent is essentially infinite. The set of
-            syntaxes which Hoon can parse and print is
-            fundamentally limited.
-
-            For instance, Hoon has no syntax which means "number
-            of miles." But within your program, nothing stops you
-            from using the odor system to distinguish a number of
-            miles from, for instance, a number of kilometers:
-
-            ~zod/try=> `@udm`25.717
-            25.717
-            ~zod/try=> `@udk`25.717
-            25.717
-
-            The printer has no idea what a @udm is, but it knows
-            what a @ud is and can print accordingly. Then, if you
-            have a function which expects a @udm and you try to
-            pass it a @udk, it will fail.
-            ---
-
-            Besides these prefixes, which indicate the rendering
-            and/or meaning of atoms, the odor system has another
-            orthogonal mechanism to restrict the size of atoms.
-            Like the prefix, this mechanism is weak - it is not
-            enforced and trivially evaded.
-
-            An odor span contains two parts, both optional: a
-            lowercase prefix and an uppercase suffix. The suffix,
-            if present, is a single character A-Z c which
-            indicates an atom of size less than or equal to n
-            bits, where n is 1 << (c - 'A'). Thus, @tD is one
-            UTF-8 byte (whatever that means); @tN is a kilobyte
-            or less of UTF-8.
-
-            When enforcing conversions, @t has no size
-            information and can be used as @tD; and @tD, of
-            course, can be used as @t. But using @tN as @tD is an
-            error. There is no way to generate the smell of size
-            from a constant without a cast. And of course
-            arithmetic results have no odor at all.
-
-            A full table for convenience:
-
-            A   1 bit
-            B   2 bits
-            C   4 bits
-            D   1 byte
-            E   2 bytes
-            F   4 bytes
-            G   8 bytes
-            H   16 bytes
-            I   32 bytes
-            J   64 bytes
-            K   128 bytes
-            L   256 bytes
-            M   512 bytes
-            N   1K
-            O   2K
-            P   4K
-            Q   8K
-            R   16K
-            S   32K
-            T   64K
-            U   128K
-            V   256K
-            W   512K
-            X   1MB
-            Y   2MB
-            Z   4MB
-
-            You of course can build an atom larger than 4MB, but
-            the type system cannot express a size odor above 4MB.
-
-
         [%bull p=twin q=type]
 
         [%cell p=type q=type]
 
             A pair of types. Set: all cells of p and q. 
 
-            ~zod/try=> :type; [3 4]
+            ~waclux-tomwyc/try=> :type; [3 4]
             [3 4]
             [@ud @ud]
 
-            ~zod/try=> -:!>([3 4])
+            ~waclux-tomwyc/try=> -:!>([3 4])
             [%cell p=[%atom p=%ud] q=[%atom p=%ud]]
 
 
@@ -2622,11 +2456,11 @@ XX tall/wide
 
             But here's how we produce this "cubical" constant:
 
-            ~zod/try=> :type; %42
+            ~waclux-tomwyc/try=> :type; %42
             %42
             %42
 
-            ~zod/try=> -:!>(%42)
+            ~waclux-tomwyc/try=> -:!>(%42)
             [%cube p=42 q=[%atom p=%ud]]
             
             In general, a %cube type contains p, a single noun, and q, a base
@@ -2818,13 +2652,10 @@ volume 2, Hoon libraries and compiler
         ---
         ~palryp-hocsyt/try=> (gte 100 10)
         %.y
-        ---
         ~palryp-hocsyt/try=> (gte 4 4)
         %.y
-        ---
         ~palryp-hocsyt/try=> (gte 3 4)
         %.n
-        ---
 
     ++  gth
         Is the first greater than the second?
@@ -2872,13 +2703,10 @@ volume 2, Hoon libraries and compiler
   Examples:
         ~ronrem-lonsem/try=> (lth 4 5)
         %.y
-        ---
         ~ronrem-lonsem/try=> (lth 5 4)
         %.n
-        ---
         ~ronrem-lonsem/try=> (lth 5 5)
         %.n
-        ---
         ~ronrem-lonsem/try=> (lth 5 0)
         %.n
 ++  mas  
@@ -2895,63 +2723,52 @@ volume 2, Hoon libraries and compiler
         ---
         1 ~ronrem-lonsem/try=> (mas 3)
         1
-        ---
         ~ronrem-lonsem/try=> (mas 4)
         2
-        ---
         ~ronrem-lonsem/try=> (mas 5)
         3
-        ---
         ~ronrem-lonsem/try=> (mas 6)
         2
-        ---
         ~ronrem-lonsem/try=> (mas 7)
         3
-        ---
         ~ronrem-lonsem/try=> (mas 8)
         4
-        ---
         ~ronrem-lonsem/try=> (mas 0)
         ! exit
-        ---
         ~ronrem-lonsem/try=> (mas 1)
         ! exit
 ++  max  
-        Yields the larger of two atoms.
+        Produce the larger of two atoms.
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts two atoms.
-        Must produce an atom.
-        Build an if-else-then statement on a>b.
-        If so, produce a.
-        Else, produce b.
-  Examples:
+        Activate jet.
+        Build a dry %gold gate with sample atom a, atom b.
+        Yield atom.
+        If: `a` is greater than `b`,
+                Then: Produce `a`,
+        Else: Produce `b`
+        ---
         ~palryp-hocsyt/try=> (max 10 100)
         100
-        ---
         ~palryp-hocsyt/try=> (max 10.443 9)
         10.443
-        ---
         ~palryp-hocsyt/try=> (max 0 1)
         1
 ++  min  
         minimum
-  Description:
-        Yields the smaller of two atoms.
         ---
-        This arm is jetted.
-        Creates a dry %gold gate with a sample which accepts two atoms.
-        Must produce an atom.
-        Build an if-then-else statement on a<b.
-        If so, produce a.
-        Else, produce b.
-  Examples:
+        Produce the smaller of two atoms.
+        ---
+        Activate jet.
+        Build dry %gold gate with sample atom a, atom b.
+        Yield atom.
+        If: `a` is less than `b`,
+                Then: Prduce `a`,
+        Else: Produce `b`
+        ---
         ~palryp-hocsyt/try=> (min 10 100)
         10
-        ---
         ~palryp-hocsyt/try=> (min 10.443 9)
         9
-        ---
         ~palryp-hocsyt/try=> (min 0 1)
         0
 ++  mod  
@@ -5885,7 +5702,7 @@ section 2eC, parsing (custom rules)
         Build a gate to parse a nail with a rule, then replaced the parsed texted with a constant.
         ---
         Activate jet.
-        Build wet %gold gate with sample noun `cus`, rule `sef`.
+        Build wet %gold gate with sample noun `cus`, bunt of a rule `sef`.
         Activate extra parsing jet.
         Build dry %gold gate with sample nail `tub`.
         Push `vex` is (sef tub), rule tub applied to the text to parse.
@@ -5897,11 +5714,12 @@ section 2eC, parsing (custom rules)
         [p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
         ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "bc"])
         [p=[p=1 q=1] q=~]
+
 ++  cook
         Build a gate to parse a nail with a rule, then slam a gate with the parsed text.
         ---
         Activate jet.
-        Build wet %gold gate with sample clam gate `poq`, rule `sef`.
+        Build wet %gold gate with sample clam gate `poq`, bunt of a rule `sef`.
         Activate extra parsing jet.
         Build dry %gold gate with sample nail `tub`.
         Push `vex` is (sef tub), rule tub applied to the text to parse.
@@ -5927,7 +5745,7 @@ section 2eC, parsing (custom rules)
         Activate extra parsing jet.
         Build dry %gold date with sample nail, `tub`
         Yield 
-
+        
         Produce [p=p.tub q=[~ u=[p=huf q=tub]]]
         ---
         ~midlys-rocpet/try=> ((easy %foo) [[1 1] "abc"])
@@ -5966,7 +5784,7 @@ section 2eC, parsing (custom rules)
 ++  funk
         Prepend a tape to the text to be parsed, then parse the new tape.
         ---
-        Build wet %gold gate with sample tape `pre`, rule `sef`
+        Build wet %gold gate with sample tape `pre`, bunt of a rule `sef`
         Build dry %gold gate with sample nail, `tub`
         Produce the rule slammed with the hair index of `tub` and the 
         concatenation of the prefix tape and the `tub` tape.
@@ -5980,28 +5798,165 @@ section 2eC, parsing (custom rules)
         ---
         Activate jet.
         Build wet %gold gate with sample
+
         Activate extra parsing jet.
-        Build dry %gold gate with sample nail, `tub`
-        
+        Build dry %gold gate with sample nail `tub`
+        Push `vex` is the gate (sef tub)
+        If: `q.vex` is an atom,
+                Then: Produce `vex`,
+        Else: Produce the hair,
+                p=p.vex
+                q=[~ 
+
         ---
 
 ++  jest  
-        Match a cord
-++  just  
+        Match and consume a cord.
+        ---
+        Build dry %gold gate with sample cord `daf`
+        Build dry %gold gate with sample nail `tub`
+        Push `fad` is `daf`
+        Kick dry %gold trap.  Yield edge of cord text.
+        If: `daf` is 0,
+                Then: 
+++  just
+        Match and consume a single character.
+        ---
+        Activate jet.
+        Build dry %gold gate with sample char `daf`
+        Activate extra parsing jet.
+        Build dry %gold gate wtih sample nail `tub`
+        Yield char edge.
+        If: `q.tub` is an atom,
+                Then: Produce the failed parse of `tub`
+        Else: Produce the 
 ++  knee  
 ++  mask  
+        Match the next char to a list of chars, a tape.
+        ---
+        Activate jet.
+        Build wet %gold gate with sample (list char) `bud`
+        Activate extra parsing jet.
+        Build dry %gold gate with sample nail `tub`
+        Yield char edge.        
+        If: `q.tub` is an atom,
+                Then: Produce the failed parse of `tub`
+        Else: If: 
+
+        ---
+        ~midlys-rocpet/try=> ((mask "abc") [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
+        ~midlys-rocpet/try=> ((mask "abc") [[1 1] "bbc"])
+        [p=[p=1 q=2] q=[~ [p=~~b q=[p=[p=1 q=2] q="bc"]]]]
+        ~midlys-rocpet/try=> ((mask "abc") [[1 1] "dbc"])
+        [p=[p=1 q=1] q=~]
 ++  next  
+        Always succeeds and consumes a character.
+        ---
 ++  sear  
+        Conditional cook - Build a gate to parse a nail with a rule then slam a
+        gate with the parsed text if it passes a conditional gate.
+        ---
+        Activate jet.
+        Build wet %gold gate with sample
+        Activate extra parsing jet.
+        ---
 ++  shim  
+        Match characters within a range.
+        ---
+        Activate jet.
+        Build wet %gold gate with sample atom `les`, atom `mos`
+        Activate extra parsing jet.
+        Build dry %Gold gate with sample nail, `tub`
+        Yield char edge.
+        If: `q.tub` is an atom,
+                Then: Produce the failed parse of `tub`,
+        Else: Unless: `i.q.tub` is greater than or equal to `les` AND `i.q.tub` is less than or equal to `mos`,
+                Then: Produce the failed parse of `tub`,
+        Else: Produce the single character parse of `tub`
+        ---
+        ~midlys-rocpet/try=> ((shim `a` 'z') [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
+        ~midlys-rocpet/try=> ((shim `a` 'Z') [[1 1] "abc"])
+        [p=[p=1 q=1] q=~]
+        ~midlys-rocpet/try=> ((shim `a` 'Z') [[1 1] "Abc"])
+        [p=[p=1 q=2] q=[~ [p=~~~41. q=[p=[p=1 q=2] q="bc"]]]]
 ++  stag  
+        Add a label to an edge parsed by a rule.
+        ---
+        Activate jet.
+        Build wet %gold gate with sample noun `gob`, bunt of a rule `sef`
+        Activate extra parsing jet.
+        Build dry %gold gate with sample nail `tub`
+        Push `vex` is the nail parsed by the rule.
+        If: `q.vex` is an atom,
+                Then: Produce `vex`
+        Else: Produce the edge with hair `p.vex` and unit with value hair u=[p=[gob p.u.q.vex] q=q.u.q.vex]
+        ---
+        ~tadbyl-hilbel/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ u=[p=[%foo ~~a] q=[p=[p=1 q=2] q="bc"]]]]
+        ~tadbyl-hilbel/try=> ((stag "xyz" (jest 'abc')) [[1 1] "abc"])
+        [p=[p=1 q=4] q=[~ u=[p=["xyz" 'abc'] q=[p=[p=1 q=4] q=""]]]]
+        ~tadbyl-hilbel/try=> ((stag 10.000 (shim 0 100)) [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ u=[p=[10.000 ~~a] q=[p=[p=1 q=2] q="bc"]]]]
 ++  stet
+        Listify a list of text position and bunt of rule pairs.
+        ---
+        Build wet %gold gate with sample list of position and bunt of rule pairs `leh`
+        Kick dry %gold trap.
+        If: `leh` is null,
+                Then: Produce null.
+        Else: Produce the cell,
+                with head: The cell of the head of the head of `leh`, p=-.i.leh, the tail of the head of `leh, q=+.i.leh.
+                with tail: Toss `leh` for `t.leh`
+        ---
+        ~tadbyl-hilbel/try=> (stet (limo [[5 (just 'a')] [1 (jest 'abc')] [[1 1] (shim 0 200)] [[1 10] (cold %foo (just 'a'))]~]))
+        ~[
+          [p=5 q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]
+          [p=1 q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]
+          [p=[1 1] q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]
+          [p=[1 10] q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]
+        ]
+        ~tadbyl-hilbel/try=> (stet (limo [[[1 1] (just 'a')] [[2 1] (shim 0 200)] ~]))
+        ~[
+          [p=[1 1] q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>] 
+          [p=[2 1] q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]
+        ]
 ++  stew
+        
+        ---
+        Activate jet.
+        Build wet %gold gate with sample list of position and bunt of rule pairs `leh`
+        Push label `wor` on:
+                Build dry %gold gate with sample 
+        ---
 ++  stir
+        ---
+        Activate jet.
+        Build wet %gold gate with sample
+        Activate extra parsing jet.
+        ---
 ++  stun  
+        ---
+        Activate jet.
+        Build wet %gold gate with sample
+        Activate extra parsing jet.
+        ---
 
 section 2eD, parsing (combinators)    
 
 ++  bend  
+        
+        ---
+        Activate jet.
+        Build wet %gold gate with sample gate accepting an atom and an atom and producing a unit of a two atom cell.
+        Activate extra parsing jet.
+        Build wet %gold gate with sample edge `vex`, rule `sab`
+        If: `q.vex` is an atom,
+                Then: Produce `vex`,
+        Else: Push `yit` is sab slammed with
+        
+        ---
 ++  comp
 ++  glue  
 ++  pfix  
@@ -6023,6 +5978,7 @@ section 2eE, parsing (composers)
 section 2eF, parsing (ascii)          
 
 ++  ace
+        
 ++  bar 
 ++  bas 
 ++  buc 
