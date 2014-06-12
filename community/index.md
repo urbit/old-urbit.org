@@ -58,6 +58,9 @@ One great way to test your understanding of Nock is to write an interpreter. Thi
 + `~nimtep-dibteb` [https://github.com/famousj/nock.js](https://github.com/famousj/nock.js)
 + `~rampyx-mirpec` [http://jsfiddle.net/anoxic/TXT5V/8/embedded/result/](http://jsfiddle.net/anoxic/TXT5V/8/embedded/result/)
 
+###Java
++ `hobdyt-tolpel` [https://github.com/sysprv/nock](https://github.com/sysprv/nock)
+
 ###Haskell
 + `mmakowski` [https://github.com/mmakowski/hock](https://github.com/mmakowski/hock)
 + `mbrubeck` [https://github.com/mbrubeck/mynock](https://github.com/mbrubeck/mynock)
