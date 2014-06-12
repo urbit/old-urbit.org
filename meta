@@ -20,6 +20,7 @@ $,  Clam p
 $@  Whip p into q
 $*  Static bunt p
 $!  Bunt axil p
+$+  Tile of gate accepting p and producing q
 
 |_  Build dry %gold tray with sample p
 |%  Build core
@@ -118,6 +119,7 @@ foo                             Pull foo,
 r.a                                  r.a,
 n.r.a                                n.r.a, etc...
 (p q)                           Slam gate p with q
+                                Slam of q to p 
 |-(p)                           Kick trap p
 $(a +(a), b c)                  Toss a for +(a), b for c, etc...
 $(a +(a), b c, d e,...)
