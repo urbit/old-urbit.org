@@ -196,20 +196,20 @@ volume 1, Hoon models
         means a term is always cubical. You can cast it to @tas if you like,
         but we just about always want the cube:
         ---
-        ~waclux-tomwyc/try=> %dead-fish9
+        ~zod/try=> %dead-fish9
         %dead-fish9
         ---
-        ~waclux-tomwyc/try=> -:!>(%dead-fish9)
+        ~zod/try=> -:!>(%dead-fish9)
         [%cube p=271.101.667.197.767.630.546.276 q=[%atom p=%tas]]
         ---
         The empty @tas has a special syntax, $:
 
-        ~waclux-tomwyc/try=> %$
+        ~zod/try=> %$
         %$
         ---
         A term without % is not a constant, but a name:
 
-        ~waclux-tomwyc/try=> dead-fish9
+        ~zod/try=> dead-fish9
         ! -find-limb.dead-fish9
         ! find-none
         ! exit
@@ -2411,18 +2411,18 @@ XX tall/wide
             Either %noun or %void. %noun is the set of all nouns. %void is the
             set of no nouns. 
 
-            ~waclux-tomwyc/try=> :type; *
+            ~zod/try=> :type; *
             0
             *
 
-            ~waclux-tomwyc/try=> -:!>(*)
+            ~zod/try=> -:!>(*)
             %noun
 
-            ~waclux-tomwyc/try=> :type; `*`%noun
+            ~zod/try=> :type; `*`%noun
             1.853.189.998
             *
 
-            ~waclux-tomwyc/try=> -:!>(`*`%noun)
+            ~zod/try=> -:!>(`*`%noun)
             %noun
 
             We can't show any examples producing %void - by definition, none of
@@ -2431,8 +2431,6 @@ XX tall/wide
 
         [%atom p=term]
 
-        [%bull p=twin q=type]
-=======
             An atom is a natural number, with a term (known as an
             odor) that specificies an atomic subtype.
 
@@ -2595,8 +2593,8 @@ XX tall/wide
             Y   2MB
             Z   4MB
 
-              You of course can build an atom larger than 4MB, but
-              the type system cannot express a size odor above 4MB.
+            You of course can build an atom larger than 4MB, but
+            the type system cannot express a size odor above 4MB.
 
 
           [%bull p=twin q=type]
@@ -2605,13 +2603,12 @@ XX tall/wide
 
               A pair of types. Set: all cells of p and q. 
 
-            ~waclux-tomwyc/try=> :type; [3 4]
-            [3 4]
-            [@ud @ud]
+              ~zod/try=> :type; [3 4]
+              [3 4]
+              [@ud @ud]
 
-            ~waclux-tomwyc/try=> -:!>([3 4])
-            [%cell p=[%atom p=%ud] q=[%atom p=%ud]]
-=======
+              ~zod/try=> -:!>([3 4])
+
               ~zod/try=> :type; [3 4]
               [3 4]
               [@ud @ud]
@@ -2630,19 +2627,19 @@ XX tall/wide
 
               But here's how we produce this "cubical" constant:
 
-            ~waclux-tomwyc/try=> :type; %42
-            %42
-            %42
+              ~zod/try=> :type; %42
+              %42
+              %42
 
-            ~waclux-tomwyc/try=> -:!>(%42)
-            [%cube p=42 q=[%atom p=%ud]]
-            
-            In general, a %cube type contains p, a single noun, and q, a base
-            type which provides semantics.
+              ~zod/try=> -:!>(%42)
+              [%cube p=42 q=[%atom p=%ud]]
+              
+              In general, a %cube type contains p, a single noun, and q, a base
+              type which provides semantics.
 
-            Syntactically, any atomic constant can be preceded by % to generate
-            a cube. The exception is @tas, which always needs % and is always
-            cubical.
+              Syntactically, any atomic constant can be preceded by % to generate
+              a cube. The exception is @tas, which always needs % and is always
+              cubical.
 
         [%face p=term q=type]
 
@@ -2803,7 +2800,7 @@ volume 2, Hoon libraries and compiler
         ---
         Activate jet.
         Build dry %gold gate with sample atom a and atom b.
-        Yield atom>
+        Yield atom
         If: a is 0
           Then: Produce 1.
         Else: slam gate with dec a
