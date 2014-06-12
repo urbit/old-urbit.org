@@ -7246,12 +7246,18 @@ section 2eO, virtualization
         XX
 ++  mong
         XX
+  Comment:
+        XX
   Description:
-        XX
+        Mang is just like mack, but accepting a sky.
+        It produces a unit computation result.
         ---
-        XX
-  Examples 
-        XX
+        Creates a dry %gold gate accepting cell ['sub' 'fol'] and an
+        %iron unit-clam 'sky'.
+        Its output is a unit (of a noun).
+        Let 'ton' be the result of monging the sample.
+        Unless ton has stem 0, produce the empty unit, otherwise produce one
+        containing ton's bulb.
 ++  mung
         XX
   Description:

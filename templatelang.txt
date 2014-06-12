@@ -1,1 +1,43 @@
 Hoon's template language
+
+Sail models:
+++tuna is an xml template tree, with leaves %a %b %c %d containg twigs and
+    being plain text, an empty tag, and a staitic or dynamic list respectively;
+    Full node %e being an element, containing a twig and a list of tuna
+    Empty node %f containing just a list of tuna
+Structure of ++sail:
+  ape:sail is the apex, converting a tuna(half-parsed tree of xml) to a twig
+  Approximately, it cooks amp with sag for actual conversion
+    sag:sail recursively constructs a %':*' list of twigs from a tuna list 'lut'
+      Null-terminated
+      Elements depend on the stem of the head of 'lut'
+       plaintext %a is %':/'ed (string interpolation, wrap in [%$ [%$ . ~] ~])
+       tag %b is passed through verbatim
+       list %c is generated XX
+       
+    amp:sail opens with a sem, and continues with bam if we're in tall form,
+    otherwise with bat
+     bam:sail parses a tall tuna, from several alternatives:
+       any number of ace followed by a puv cooked by rab, is a %f tuna list
+        puv:sail is a list of beets, from any number of:
+          bas-escaped pair of hex digits or any of -+*%;\{"
+          any of -+*% followed by a sump({}-wrapped wide hoon), stagged as
+          %a(text) %b(tag) %c(list) %d(dynamic list) respectively
+          ';' followed by a tall-form pub:sail, stagged %e(element)
+          any printable byte except '"' if in wide form and {}\ regardless
+          a sump stagged to %a(text)
+        rab:sail converts beets to tunas, by concatenating characters  XX
+       a hag(script or style) followed by a nal is an %e element 
+       a hul(tall-form preface) is also an %e element
+         hul:sail is a hog(tag head), a hoy(attributes), and then a nol(tail)
+       a nul('"'-wrapped interploated text), producing %f equivalently to 
+         sections prefixed by space(see above)
+       a '='-prefixed nol, stagged to %f
+       any of -+*% followed by whitespace and a tall-form twig, getting stagged
+         %a %b %c %d
+       the empty string, producing a node with an %a leaf containing newline
+       
+      bat:sail parses a wide tuna XX
+  hog:sail is a tag head, fancy term? XX
+  hoy:sail is an attribute list, in %'%=' format XX
+  nol:sail is a list of tuna XX
