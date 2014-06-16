@@ -48,8 +48,8 @@ $+  Tile of gate accepting p and producing q
 .=  p is q? (wut optional)
 .?  p is cell? (wut optional)
 
-#>  ???
-#<  ???
+#>  Produce a pretty-print tank XX review
+#<  Pretty-print to tape        XX review
 
 ^|  %iron cast p
 ^.  Cast to type of (p q) 
@@ -77,7 +77,7 @@ $+  Tile of gate accepting p and producing q
 ;.  ???
 ;~  Gonadify
 ;"  Assemble string
-;;  ???  
+;;  Force cast to XX review
 
 =|  Push bunt
 =:  Apply p changes 
