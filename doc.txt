@@ -6590,16 +6590,36 @@ section 2eC, parsing (custom rules)
                 Build dry %gold gate with sample 
         ---
 ++  stir
+        
         ---
         Activate jet.
-        Build wet %gold gate with sample
+        Build wet %gold gate with sample noun `rud`, gate accepting two nouns and producing , rule `fel`
         Activate extra parsing jet.
+        Build dry %gold with sample nail `tub`
+        Yield edge of types of `rud`
+        Push `vex` is the rule `fel` slammed with the nail `tub`A
+        If: The parsed text is null,
+                Then: Produce the edge of unit nail `rud` and `tub` at the hair index of `vex`
+        Else: Push `wag` is the toss of `tub` for the unparsed text in the unit nail of `vex`
+        Assert that the value 
+
+        Produce the edge with:
+                The farthest along hair index of `vex` and `wag`
+                The unit nail of 
+
         ---
+        
 ++  stun  
+        Parse several times
         ---
         Activate jet.
-        Build wet %gold gate with sample
+        Build wet %gold gate with sample atom `les`, atom `mos`, rule `fel`
         Activate extra parsing jet.
+        Build wet %gold gate with sample nail `tub`
+        Yield edge of 
+        
+        If: `mos` is 0,
+                Then: Produce the edge with 
         ---
 
 section 2eD, parsing (combinators)    
@@ -6757,10 +6777,26 @@ section 2eE, parsing (composers)
         Produce the gonadified:
         ---
 ++  star
+        Apply the rule
         ---
-        Build wet %gold gate with sample rule `fel`
+        Build wet %gold gate with sample rule `fel,
         Produce stir slammed with:
+                The list of /++  
         ---
+        ~tadbyl-hilbel/try=> (scan "aaaaa" (just 'a'))
+        ! {1 2}
+        ! 'syntax-error'
+        ! exit
+        ~tadbyl-hilbel/try=> (scan "aaaaa" (star (just 'a')))
+        "aaaaa"
+        ~tadbyl-hilbel/try=> (scan "abcdef" (star (just 'a')))
+        ! {1 2}
+        ! 'syntax-error'
+        ! exit
+        ~tadbyl-hilbel/try=> (scan "abcabc" (star (jest 'abc')))
+        <|abc abc|>
+        ~tadbyl-hilbel/try=> (scan "john smith" (star (shim 0 200)))
+        "john smith"
 
 section 2eF, parsing (ascii)          
 
@@ -6769,51 +6805,220 @@ section 2eF, parsing (ascii)
         ---
         Produce the rule just slammed with ' '
         ---
+        ~tadbyl-hilbel/try=> (scan " " ace)
+        ~~. 
+        ~tadbyl-hilbel/try=> `cord`(scan " " ace)
+        ' '
+        ~tadbyl-hilbel/try=> (ace [[1 1] " "])
+        [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (ace [[1 1] " abc "])
+        [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q="abc "]]]]
 ++  bar 
         Parse ASCII character 124, bar.
         ---
         Produce the rule just slammed with '|'
         ---
+       ~tadbyl-hilbel/try=> (scan "|" bar)
+        ~~~7c. 
+        ~tadbyl-hilbel/try=> `cord`(scan "|" bar)
+        '|'
+        ~tadbyl-hilbel/try=> (bar [[1 1] "|"])
+        [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (bar [[1 1] "|="])
+        [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q="="]]]]
 ++  bas 
         Parse ASCII character 92, bas.
-        Note the extra '\' in the slam of bas with just is to escape our escape character.
+        Note the extra '\' in the slam of bas with just is to escape the escape character, bas.
         ---
         Produce the rule just slammed with '\\'
         ---
+        ~tadbyl-hilbel/try=> (scan "\\" bas)
+        ~~~5c.
+        ~tadbyl-hilbel/try=> `cord`(scan "\\" bas)
+        '\'
+        ~tadbyl-hilbel/try=> (bas [[1 1] "\"])
+        ~ <syntax error at [1 18]>
+        ~tadbyl-hilbel/try=> (bas [[1 1] "\\"])
+        [p=[p=1 q=2] q=[~ [p=~~~5c. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (bas [[1 1] "\""])
+        [p=[p=1 q=1] q=~]
 ++  buc 
         Parse ASCII character 36, buc.
         ---
         Produce the rule just slammed with '$'
         ---
+        ~tadbyl-hilbel/try=> (scan "$" buc)
+        ~~~24.
+        ~tadbyl-hilbel/try=> `cord`(scan "$" buc)
+        '$'
+        ~tadbyl-hilbel/try=> (buc [[1 1] "$"])
+        [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (buc [[1 1] "$%"])
+        [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q="%"]]]]
 ++  cab 
+        Parse ASCII character 95, cab.
+        ---
+        Produce the rule just slammed with '_'
+        ---
+        ~tadbyl-hilbel/try=> (scan "_" cab)
+        ~~~5f.
+        ~tadbyl-hilbel/try=> `cord`(scan "_" cab)
+        '_'
+        ~tadbyl-hilbel/try=> (cab [[1 1] "_"])
+        [p=[p=1 q=2] q=[~ [p=~~~5f. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (cab [[1 1] "|_"])
+        [p=[p=1 q=1] q=~]
 ++  cen 
+        Parse ASCII character 37, cen.
+        ---
+        Produce the rule just slammed with '%'
+        ---
+        ~tadbyl-hilbel/try=> (scan "%" cen)
+        ~~~25.
+        ~tadbyl-hilbel/try=> `cord`(scan "%" cen)
+        '%'
+        ~tadbyl-hilbel/try=> (cen [[1 1] "%"])
+        [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (cen [[1 1] "%^"])
+        [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q="^"]]]] 
 ++  col 
+        Parse ASCII character 58, col.
+        ---
+        Produce the rule just slammed with ':'
+        ---
+        
 ++  com 
+        Parse ASCII character 44, com.
+        ---
+        Produce the rule just slammed with ','
+        ---
 ++  doq 
+        Parse ASCII character 34, doq.
+        ---
+        Produce the rule just slammed with '"'
+        ---
 ++  dot 
+        Parse ASCII character 46, dot.
+        ---
+        Produce the rule just slammed with '.'
+        ---
 ++  fas 
+        Parse ASCII character 47, fas.
+        ---
+        Produce the rule just slammed with '/'
+        ---
 ++  gal 
+        Parse ASCII character 60, gal.
+        ---
+        Produce the rule just slammed with '<'
+        ---
 ++  gar 
+        Parse ASCII character 62, gar.
+        ---
+        Produce the rule just slammed with '>'
+        ---
 ++  hax 
+        Parse ASCII character 35, hax.
+        ---
+        Produce the rule just slammed with '#'
+        ---
 ++  kel 
+        Parse ASCII character 123, kel.
+        ---
+        Produce the rule just slammed with '{'
+        ---
 ++  ker 
+        Parse ASCII character 125, ker.
+        ---
+        Produce the rule just slammed with '}'
+        ---
 ++  ket 
+        Parse ASCII character 94, ket.
+        ---
+        Produce the rule just slammed with '^'
+        ---
 ++  lus 
+        Parse ASCII character 43, lus.
+        ---
+        Produce the rule just slammed with '+'
+        ---
 ++  hep 
+        Parse ASCII character 45, hep.
+        ---
+        Produce the rule just slammed with '-'
+        ---
 ++  pel 
+        Parse ASCII character 40, pel.
+        ---
+        Produce the rule just slammed with '('
+        ---
 ++  pam 
+        Parse ASCII character 38, pam.
+        ---
+        Produce the rule just slammed with '&'
+        ---
 ++  per 
+        Parse ASCII character 41, per.
+        ---
+        Produce the rule just slammed with ')'
+        ---
 ++  pat 
+        Parse ASCII character 64, pat.
+        ---
+        Produce the rule just slammed with '@'
+        ---
 ++  sel 
+        Parse ASCII character 91, sel.
+        ---
+        Produce the rule just slammed with '['
+        ---
 ++  sem 
+        Parse ASCII character 59, sem.
+        ---
+        Produce the rule just slammed with ';'
+        ---
 ++  ser 
+        Parse ASCII character 93, ser.
+        ---
+        Produce the rule just slammed with ']'
+        ---
 ++  sig 
+        Parse ASCII character 126, sig.
+        ---
+        Produce the rule just slammed with '~'
+        ---
 ++  soq 
+        Parse ASCII character 39, soq.
+        Note the extra '\' in the slam of soq with just is to escape the first soq.
+        ---
+        Produce the rule just slammed with '\''
+        ---
+
 ++  tar 
+        Parse ASCII character 42, tar.
+        ---
+        Produce the rule just slammed with '*'
+        ---
 ++  tec 
+        Parse ASCII character 96, tec.
+        ---
+        Produce the rule just slammed with '`'
+        ---
 ++  tis 
+        Parse ASCII character 61, tis.
+        ---
+        Produce the rule just slammed with '='
+        ---
 ++  wut 
+        Parse ASCII character 63, wut.
+        ---
+        Produce the rule just slammed with '?'
+        ---
 ++  zap 
+        Parse ASCII character 33, zap.
+        ---
+        Produce the rule just slammed with '!'
+        ---
 
 section 2eG, parsing (whitespace)     
 

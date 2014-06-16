@@ -21,6 +21,7 @@ $@  Whip p into q
 $*  Static bunt p
 $!  Bunt axil p
 $+  Tile of gate accepting p and producing q
+$?  Fork between p, q, r, etc...
 
 |_  Build dry %gold tray with sample p
 |%  Build core
