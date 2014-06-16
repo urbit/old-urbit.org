@@ -6588,7 +6588,7 @@ section 2eD, parsing (combinators)
         
         ---
         Activate jet.
-        Build wet %gold gate with sample gate accepting an atom and an atom and producing a unit of a two atom cell.
+        Build wet %gold gate with sample gate accepting a noun `a`, noun `b` and producing a unit of the two noun's cell.
         Activate extra parsing jet.
         Build wet %gold gate with sample edge `vex`, rule `sab`
         If: `q.vex` is an atom,
@@ -6596,15 +6596,21 @@ section 2eD, parsing (combinators)
         Else: Push `yit` is sab slammed with
         ---
 ++  comp
+        Arbitrary compose
         ---
         Activate jet.
-        Build wet %gold gate with sample tile of gate accepting noun a, noun b and producing [a b]
+        Build wet %gold gate with sample gate accepting noun a, noun b and producing [a b]
         Activate extra parsing jet.
         Build wet %gold gate with sample edge `vex`, rule `sab`
         If: The parsing output in `vex` is an atom,
                 Then: Produce the edge.
-        Else: Push `yit`
+        Else: Push `yit` is the rule slammed with the text to parse in `vex`
+        Push `yur` is the hair of the edge that is farther along of `vex` and `yit`
+        If: The unit of parsed text in `yit` is null,
+                Then: Produce the edge with hair `yur` and unit of parse text from `yit`, which is null.
+        Else: Produce the edge with hari `yur` 
         ---
+
 ++  glue  
         ---
         Activate jet.
@@ -6615,25 +6621,79 @@ section 2eD, parsing (combinators)
                 The edge `vex`
                 The tuple of slamming bus and sab with pfix
         ---
+
 ++  pfix
-        
+        Discard the first rule of a two rule cell.
         ---
         Activate jet.
-        Build wet %gold gate with sample edge `vex`, rule `sab`
         Produce comp slammed with:
-                
+                Build wet %gold gate slammed with sample noun `a`, noun `b`.
+                Produce `b`
         ---
+        
+        
 ++  plug  
+        Apply parsing rules in order to an edge.
         ---
         Activate jet.
         Build wet %gold gate with sample edge `vex`, rule `sab`
+        If: The unit of text to parse is null,
+                Then: Produce null.
+        Else: Push `yit` is the rule `sab` slammed with the text to be parsed.
+        Push `yur` is the hair of the edge that is farther along of `vex` and `yit`
+        If: The unit of text parsed is null,
+                Then: Produce the edge [p=yur q=null].
+        Else: Produce the edge [p=yur q=[~ u=[p=[p.u.q.vex p.u.q.yit] q=q.u.q.yit]]],
+        the edge of the text parsed with the rule.
         ---
+        ~tadbyl-hilbel/try=> (;~(plug lus lus) [[1 1] "++"])
+        [p=[p=1 q=3] q=[~ u=[p=[~~~2b. ~~~2b.] q=[p=[p=1 q=3] q=""]]]]
+        ~tadbyl-hilbel/try=> (scan "++" ;~(plug lus lus))
+        [~~~2b. ~~~2b.]
+        ~tadbyl-hilbel/try=> (scan "++" (cold "slus" ;~(plug lus lus)))
+        "slus"
+        ~tadbyl-hilbel/try=> (scan "john doe" ;~(plug (jest 'john') ace (jest 'doe')))
+        ['john' ~~. 'doe']
+        ~tadbyl-hilbel/try=> (scan "john doe" ;~(plug (jest 'doe') ace (jest 'john')))
+        ! {1 1}
+        ! 'syntax-error'
+        ! exit 
+        ~tadbyl-hilbel/try=> (;~(plug bar hep) [[1 1] "|-"])
+        [p=[p=1 q=3] q=[~ u=[p=[~~~7c. ~~-] q=[p=[p=1 q=3] q=""]]]]
+        ~tadbyl-hilbel/try=> (;~(plug bar hep lus) [[1 1] "|-"])
+        [p=[p=1 q=3] q=~]
+        ~tadbyl-hilbel/try=> (scan "|-" ;~(plug bar hep lus))
+        ! {1 3}
+        ! 'syntax-error'
+        ! exit
 ++  pose  
+        Build a list of parsing rules and try to use any of them in order. 
+        `pose` has the same usage as `plug`, but does not fail if the rules are not 
+        successful in a certain order.
         ---
         Activate jet.
         Build wet %gold gate with sample edge `vex`, rule `sab`
+        If: The unit of text to parse is null,
+                Then: Push `roq` is the edge result of the rule `sab` applied to the 
+                Produce the edge with the hair that is farther along of `vex` and `yit` and the parse
+                results of the rule.
+        Else: Produce the initial edge, `vex` 
         ---
+        ~tadbyl-hilbel/try=> (;~(pose (just 'a') (just 'b') (just 'c')) [[1 1] "c"])
+        [p=[p=1 q=2] q=[~ [p=~~c q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (scan "c" ;~(pose (just 'a') (just 'b') (just 'c')))
+        ~~c
+        ~tadbyl-hilbel/try=> (;~(pose bar hep) [[1 1] "|-"])
+        [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q="-"]]]]
+        ~tadbyl-hilbel/try=> (scan "|-" (star ;~(pose bar hep)))
+        "|-"
+        ~tadbyl-hilbel/try=> (scan "|-" (star ;~(pose bar hep lus)))
+        "|-"
+        ~tadbyl-hilbel/try=> (scan "john doe" (star ;~(pose (jest 'doe') ace (jest 'john'))))
+        ~['john' ' ' 'doe']
+        
 ++  sfix  
+        Discard second rule.
         ---
         Activate jet.
         ---
