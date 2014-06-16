@@ -6265,9 +6265,8 @@ section 2eB, parsing (tracing)
         [p=99 q=0]
         ~tadbyl-hilbel/try=> (last [7 7] [7 7])
         [p=7 q=7]
-
 ++  lust
-        Produce the beginning of the next line after a newline character or increment the column number.
+        Produce the beginning of the next line after a newline character or increment the column number - The index of the next character to be parsed.
         ---
         Build dry %gold gate with sample char `weq`, hair `naz`
         Yield hair.
@@ -6302,7 +6301,6 @@ section 2eC, parsing (custom rules)
         [p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
         ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "bc"])
         [p=[p=1 q=1] q=~]
-
 ++  cook
         Build gate to parse a nail with a rule, then slam a gate with the parsed text.
         ---
@@ -6328,13 +6326,11 @@ section 2eC, parsing (custom rules)
         Always succeed and consume no characters - Produce a nail at the same text position and with all text unparsed.
         ---
         Activate jet.
-        Build wet %gold gate with sample noun, `huf`, which
-        
+        Build wet %gold gate with sample noun, `huf`, a noun to produce as the 'parsed' value.
         Activate extra parsing jet.
         Build dry %gold date with sample nail, `tub`
-        Yield 
-        
-        Produce [p=p.tub q=[~ u=[p=huf q=tub]]]
+        Yield `huf` edge.
+        Produce [p=p.tub q=[~ u=[p=huf q=tub]]], the edge with the noun `huf` as it's 'parsed' value and `tub` as unparsed.
         ---
         ~midlys-rocpet/try=> ((easy %foo) [[1 1] "abc"])
         [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
@@ -6351,31 +6347,30 @@ section 2eC, parsing (custom rules)
         ~tadbyl-hilbel/try=> (fail [[p=1.337 q=70] "Parse me, please?"])
         [p=[p=1.337 q=70] q=~]
 ++  full  
-        Only succeeds if given a rule that successfully parses the entire nail to the end, producing
-        a null hair if the rules fails.
+        Demand politely that the parsing rule parse the entire sample nail, produce a null edge otherwise.
         ---
-        Creates a wet %gold gate which accepts a rule.
-        Creates a dry %gold gate which accepts a nail.
-        Let 'vex' be the rule slammed with the nail.
-        Build an if-then-else statement on "q.vex is an atom."  If so, produce 'vex'.
-        Else, build an if-then-else statement on "q.q.u.q.vex is null."  If so, produce 'vex'.
-        Else, produce the cell [p=p.vex q=~].
+        Build wet %gold gate with sample rule, `sab`
+        Build dry %gold gate with sample nail `tub`
+        Push `vex` is the rule slammed with the text to parse.
+        If: Parse of `vex` is null,
+                Then: Produce `vex`
+        Else: If: The unparsed text in the produced edge is nulll,
+                Then: Produce `vex`
+        Else: Produce [p=p.vex q=~], the edge with a null unit nail.
         ---
         ~tadbyl-hilbel/try=> ((full (just 'a')) [[1 1] "ab"])
         [p=[p=1 q=2] q=~]
-        ---
         ~tadbyl-hilbel/try=> ((full (jest 'ab')) [[1 1] "ab"])
         [p=[p=1 q=3] q=[~ u=[p='ab' q=[p=[p=1 q=3] q=""]]]]
-        ---
         ~tadbyl-hilbel/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
         [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
 ++  funk
         Prepend a tape to the text to be parsed, then parse the new tape.
         ---
-        Build wet %gold gate with sample tape `pre`, bunt of a rule `sef`
+        Build wet %gold gate with sample tape `pre`, rule `sef`
         Build dry %gold gate with sample nail, `tub`
-        Produce the rule slammed with the hair index of `tub` and the 
-        concatenation of the prefix tape and the `tub` tape.
+        Produce the rule slammed with the hair index of `tub` and the concatenation of 
+        the prefix tape and the `tub` tape.
         ---
         ~tadbyl-hilbel/try=> ((funk "abc prefix-" (jest 'abc')) [[1 1] "to be parsed"])
         [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=" prefix-to be parsed"]]]]
@@ -6399,7 +6394,7 @@ section 2eC, parsing (custom rules)
                                 p is `hez` slammed with the pint cell of tub's position and vex's position.
                                 q is `q.u.q.vex`, the text not parsed.
         ---
-        
+
 
 ++  jest  
         Match and consume a cord.
@@ -6409,12 +6404,27 @@ section 2eC, parsing (custom rules)
         Push `fad` is `daf`
         Kick dry %gold trap.  Yield edge of cord text.
         If: `daf` is 0,
-                Then: Produce the edge,
+                Then: Produce the edge with:
                         p is `p.tub`
                         q is the unit:
                                 Null
                                 u is the cell [p=fad q=tub]
-        Else: Unless fish for null in q.tub OR compile to Nock the last byte in `daf` and the 
+        Else: If: fish for null in q.tub OR compile to Nock the last byte in `daf` and the 
+                Then: Produce the failed parse of `tub`,
+        Else: Toss `p.tub` for the index of the next character to be parsed, `q.tub` for the tail of `q.tub`, `daf` for the single byte right-shift of `daf`
+        ---
+        ~tadbyl-hilbel/try=> ((jest 'abc') [[1 1] "abc"])
+        [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=""]]]]
+        ~tadbyl-hilbel/try=> (scan "abc" (jest 'abc'))
+        'abc'
+        ~tadbyl-hilbel/try=> (scan "abc" (jest 'acb'))
+        ! {1 2}
+        ! 'syntax-error'
+        ! exit
+        ~tadbyl-hilbel/try=> ((jest 'john doe') [[1 1] "john smith"])
+        [p=[p=1 q=6] q=~]
+        ~tadbyl-hilbel/try=> ((jest 'john doe') [[1 1] "john doe"])
+        [p=[p=1 q=9] q=[~ [p='john doe' q=[p=[p=1 q=9] q=""]]]]
 ++  just
         Match and consume a single character.
         ---
@@ -6423,21 +6433,31 @@ section 2eC, parsing (custom rules)
         Activate extra parsing jet.
         Build dry %gold gate wtih sample nail `tub`
         Yield char edge.
-        If: `q.tub` is an atom,
-                Then: Produce the failed parse of `tub`
-        Else: Produce the 
-                
+        If: `q.tub` is null,
+                Then: Produce the failed parse of `tub`,
+        Else:  Unless: `daf` is `i.q.tub`,
+                Then: Produce the failed parse of `tub`,
+        Else: Produce the parse of the next character of `tub`
         ---
-        
+        ~tadbyl-hilbel/try=> ((just 'a') [[1 1] "abc"])
+        [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
+        ~tadbyl-hilbel/try=> (scan "abc" (just 'a'))
+        ! {1 2}
+        ! 'syntax-error'
+        ! exit
+        ~tadbyl-hilbel/try=> (scan "a" (just 'a'))
+        ~~a
+        ~tadbyl-hilbel/try=> (scan "%" (just '%'))
+        ~~~25.
 ++  knee
-        Callback
-        
+        Callback 
         ---
         Build wet %gold gate with sample noun `gar`, rule trap `sef`
         Build dry %gold gate with sample nail `tub`
         Yield char edge.
         Produce `tub` slammed to `sef`
         ---
+        
         
 ++  mask  
         Match the next char to a list of chars, a tape.
