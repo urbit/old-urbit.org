@@ -21,38 +21,58 @@ Structure of ++sail:
        through like %b, and the second, its children treated as %f
        Empty node %f is flattened into lut before proceeding 
        
-    amp:sail opens with a sem, and continues with bam if we're in tall form,
+    amp:sail opens with a sem, and continues with ba if we're in tall form,
     otherwise with bat
+    
+     bat:sail is a wide-form tuna, either:
+       A hig followed by a lif, stagged %e element
+        hig:sail is a tag head, slightly cooked hog:sail which is 
+          A fry:sail(element or attribute name, may contain '_' signifying ':')
+          Followed by optional:
+            class and/or id attributes, '.' or '#' followed by a term
+            href attribute, beginning with '/' and followed by a soil(tape)
+            ()-enclosed ', '-separated fry-(wide)hoon pair list: other attrs
+        lif:sail is a wide child list, ':' followed by pep
+       A nup or ped stagged %f tuna list
+        ped:sail is a ()-enclosed ' '-separated series of bet
+         bet:sail is inner wide form, either a bat, or any of -+*% followed by
+         wide hoon and stagged %a(text) %b(tag) %c(list) %d(dynamic list)
+         respectively.
+        nup:sail is a '"'-enclosed(wide) puv cooked by rav
+         puv:sail is a list of beets, from any number of:
+           Bas-escaped either pair of hex digits or any of -+*%;\{"
+           Any of -+*% followed by a sump({}-enclosed wide hoon)
+           ';' followed by a tall-form pab:sail, stagged %e(element)
+            pab:sail is element unquote form, {}-enclosed plug of hig and luf
+              luf:sail is any number of ' '-prefixed bet.
+           Any printable byte except '"' if in wide form and {}\ regardless
+           A sump, stagged to %a(text)
+     
      bam:sail parses a tall tuna, from several alternatives:
        Any number of ace followed by a puv cooked by rab, is a %f tuna list
-        puv:sail is a list of beets, from any number of:
-          bas-escaped either pair of hex digits or any of -+*%;\{"
-          any of -+*% followed by a sump({}-wrapped wide hoon), stagged as
-            %a(text) %b(tag) %c(list) %d(dynamic list) respectively
-          ';' followed by a tall-form pab:sail, stagged %e(element)
-            pab:sail is wide element form                                     XX
-          any printable byte except '"' if in wide form and {}\ regardless
-          a sump stagged to %a(text)
-        rab:sail converts beets to tunas, by concatenating characters         XX
-       A hag(script or style) followed by a nal is an %e element 
+        rab:sail converts beets to tunas, by concatenating characters 
+        and splitting on newlines.
+       A hag:sail(script or style) followed by a nal is an %e element 
        A hul(tall-form preface) is also an %e element
          hul:sail is a hog(tag head), a hoy(attributes), and then a nol(tail)
-       A nul('"'-wrapped interploated text), producing %f equivalently to 
+       A nup:sail('"'-enclosed quasiquoted text), producing %f equivalently to 
        sections prefixed by space(see above)
        A '='-prefixed nol, stagged to %f
        Any of -+*% followed by whitespace and a tall-form twig, getting stagged
          %a %b %c %d
        The empty string, producing a node with an %a leaf containing newline
-       
-      bat:sail parses a wide tuna                                             XX
-  hog:sail is a tag head, fancy term?                                         XX
-  hoy:sail is an attribute list, in %'%=' format                              XX
+
+  
+  hoy:sail is a tall-form attribute list, consisting of '='-prefixed fry
+  followed by twigs producing their values.
+  
   nol:sail is a tall-form child list, list of tuna from any of:
     A ';', producing ~
-    A ':'-prefixed pep
-      pep:sail                                                                XX
+    A ':'-prefixed wide pep
+     pep:sail is either a ped, or a single bat(wrapped into a list)
     A ': '-prefixed rab(quasiquote)
-    A wide-gapped stet-terminated series of amp.
+    A plural-spaced stet-terminated series of amp.
+
   
 To summarize:
   Base:
@@ -94,8 +114,14 @@ To summarize:
     ==
   A tag name(term?) immediately after ; is an element, with an optional
   %= syntax attribute list, and a list of children that can either be 
-  ';'(empty), ':' followed by any of the -+*% forms(or space for quasiquote),
+  ';'(empty), ':' followed by any of the -+*% forms(or space for quasiquote), XX no it can't?!
   or a double space followed by a '=='-terminated list of child elements.
   
+    ;elem
+      =data (trip '{"mah":"json}')
+      ;child;
+    ==
+  Tall-form attributes!                                                       XX
   
-  
+    ;a:b#cont:(d:f:"g" c(stuff "here"):"hey")
+  Nested structures!                                                          XX
