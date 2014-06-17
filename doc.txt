@@ -6628,13 +6628,14 @@ section 2eD, parsing (combinators)
         
         ---
         Activate jet.
-        Build wet %gold gate with sample gate accepting a noun `a`, noun `b` and producing a unit of the two noun's cell.
+        Build wet %gold gate with sample gate accepting a noun `a`, noun `b` and producing the unit of [a b]
         Activate extra parsing jet.
         Build wet %gold gate with sample edge `vex`, rule `sab`
         If: `q.vex` is an atom,
                 Then: Produce `vex`,
         Else: Push `yit` is sab slammed with
         ---
+
 ++  comp
         Arbitrary compose
         ---
@@ -6652,8 +6653,6 @@ section 2eD, parsing (combinators)
                 p is `raq` slammed with `p.u.q.vex` and `p.u.q.yit`, the parsed results `yit` and `vex`
                 q is `q.u.q.yit`, the unparsed text of `yit`
         ---
-        
-        
         
 
 ++  glue  
@@ -7279,14 +7278,109 @@ section 2eG, parsing (whitespace)
 section 2eH, parsing (idioms)         
 
 ++  alf 
+        Parse alphabetic characters, both upper and lowercase.
+        ---
+        Produce the rule of pose gonadified with low (The lowercase letter parsing idiom) and hig (The uppercase parsing idiom).
+        ---
+        ~tadbyl-hilbel/try=> (scan "a" alf)
+        ~~a
+        ~tadbyl-hilbel/try=> (scan "A" alf)
+        ~~~41.
+        ~tadbyl-hilbel/try=> (scan "AaBbCc" (star alf))
+        "AaBbCc"
 ++  aln 
+        Parse alphanumeric characters - both alphabetic characters and numbers.
+        ---
+        Produce the rule of pose gonadified with low (The lowercase letter parsing idiom),hig (The uppercase parsing idiom),
+        and nud (The number parsing idiom).
+        ---
+        ~tadbyl-hilbel/try=> (scan "0" aln)
+        ~~0
+        ~tadbyl-hilbel/try=> (scan "alf42" (star aln))
+        "alf42"
+        ~tadbyl-hilbel/try=> (scan "0123456789abcdef" (star aln))
+        "0123456789abcdef"
 ++  alp 
+        Parse alphanumeric strings and hep, "-".
+        ---
+        Produce the rule pose gonadified with low, hig, nud, hep.
+        ---     
+        ~tadbyl-hilbel/try=> (scan "7" alp)
+        ~~7
+        ~tadbyl-hilbel/try=> (scan "s" alp)
+        ~~s
+        ~tadbyl-hilbel/try=> (scan "123abc-" (star alp))
+        "123abc-"
 ++  bet 
+        Parse axis syntax
+        ---
+        Produce the rule pose gonadified with:
+                (cold 2 hep), which replaces parsed heps with 2s.
+                (cold 3 lus), which replaced parsed luses with 3s.
+        ---
+        ~tadbyl-hilbel/try=> (scan "-" bet)
+        2
+        ~tadbyl-hilbel/try=> (scan "+" bet)
+        3
 ++  bin 
+        Parse a tape of binary (0s and 1s) and produce its atomic representation.
+        ---
+        Produce the slam of bass with 2 and the most of 
+        
+        ---
+        ~tadbyl-hilbel/try=> (scan "0000" bin)
+        0
+        ~tadbyl-hilbel/try=> (scan "0001" bin)
+        1
+        ~tadbyl-hilbel/try=> (scan "0010" bin)
+        2
+        ~tadbyl-hilbel/try=> (scan "100000001111" bin)
+        2.063
 ++  but 
+        Parse a single binary digit.
+        ---
+        Produce rule cook slammed with a gate:
+                With sample atom `a` that results in the difference between `a` and '0' (48).
+                        All slammed with the rule shim slammed with '0' and '1', to parse either of those characters.
+        ---     
+        ~tadbyl-hilbel/try=> (scan "0" but)
+        0
+        ~tadbyl-hilbel/try=> (scan "1" but)
+        1
+        ~tadbyl-hilbel/try=> (scan "01" but)
+        ! {1 2}
+        ! 'syntax-error'
+        ! exit
+        ~tadbyl-hilbel/try=> (scan "01" (star but))
+        ~[0 1]
 ++  cit 
+        Parse a single octal digit.
+        ---
+        Produce rule cook slammed with a gate:
+                With sample atom `a` that results in the difference between `a` and '0' (48).
+                        All slammed with the rule shim slammed with '0' and '7', to parse any number between 0 and 7.
+        ---
+        ~tadbyl-hilbel/try=> (scan "1" cit)
+        1
+        ~tadbyl-hilbel/try=> (scan "7" cit)
+        7
+        ~tadbyl-hilbel/try=> (scan "8" cit)
+        ! {1 1}
+        ! 'syntax-error'
+        ! exit
+        ~tadbyl-hilbel/try=> (scan "60" (star cit))
+        ~[6 0]
 ++  dem 
+        Parse a decimal number to an atom.
+        ---
+        Produce the slam of bass with 10 and (most gon dit)
+        ---
 ++  dit 
+        Decimal digit.
+        ---
+        Produce the rule cook slammed with a gate:
+                With sample atom `a` that results in the difference between `a` and '0' (48).
+                        All slammed with the rule shim slammed with '0' and '9', to parse any number.
 ++  gul 
 ++  gon 
 ++  hex 
