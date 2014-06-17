@@ -6587,7 +6587,7 @@ section 2eC, parsing (custom rules)
         Activate jet.
         Build wet %gold gate with sample list of position and bunt of rule pairs `leh`
         Push label `wor` on:
-                Build dry %gold gate with sample 
+                Build dry %gold gate with sample fork between `ort` , fork `wan`
         ---
 ++  stir
         
@@ -6639,19 +6639,25 @@ section 2eD, parsing (combinators)
         Arbitrary compose
         ---
         Activate jet.
-        Build wet %gold gate with sample gate accepting noun a, noun b and producing [a b]
+        Build wet %gold gate with sample gate accepting noun a, noun b and producing [a b], `raq`
         Activate extra parsing jet.
         Build wet %gold gate with sample edge `vex`, rule `sab`
         If: The parsing output in `vex` is an atom,
-                Then: Produce the edge.
+                Then: Produce the edge `vex`
         Else: Push `yit` is the rule slammed with the text to parse in `vex`
         Push `yur` is the hair of the edge that is farther along of `vex` and `yit`
         If: The unit of parsed text in `yit` is null,
-                Then: Produce the edge with hair `yur` and unit of parse text from `yit`, which is null.
-        Else: Produce the edge with hari `yur` 
+                Then: Produce the edge with hair `yur` and unit nail from `yit`, which is null.
+        Else: Produce the edge with hair `yur`, unit [p=* q=nail] cell where:
+                p is `raq` slammed with `p.u.q.vex` and `p.u.q.yit`, the parsed results `yit` and `vex`
+                q is `q.u.q.yit`, the unparsed text of `yit`
         ---
+        
+        
+        
 
 ++  glue  
+        Add rule.
         ---
         Activate jet.
         Build wet %gold gate with sample rule `bus`
@@ -6661,6 +6667,7 @@ section 2eD, parsing (combinators)
                 The edge `vex`
                 The tuple of slamming bus and sab with pfix
         ---
+        
 
 ++  pfix
         Discard the first rule of a two rule cell.
@@ -6736,9 +6743,10 @@ section 2eD, parsing (combinators)
         Discard second rule.
         ---
         Activate jet.
+        Slam comp with a wet %gold gate accepting  noun `a`, noun `b` and producing noun `a`
         ---
 
-section 2eE, parsing (composers)      
+section 2eE, parsing (composers)
 
 ++  bass
         ---
@@ -6761,27 +6769,42 @@ section 2eE, parsing (composers)
         Produce the gonadified:
         ---
 ++  most
+
         ---
         Build wet %gold gate with sample rule `bus`, rule `fel`
         Produce gonadified:
+                Plug slammed with `fel`,
+                        star slammed with gonadified:
+                                pfix slammed with `bus` and `fel`, `bus` added as the prefix of `fel`
         ---
+        
 ++  plus  
         ---
         Build wet %gold gate with sample rule `fel`
         Produce gonadified:
+                plug slammed with `fel` and star slammed with `fel`, the repeated application of `fel`
+
         ---
+        
 ++  slug
+
         ---
         Build wet %gold gate with sample noun `rud`, gate accepting  cell of two nouns and producing [a b] `raq`
         Build wet %gold gate with sample rule `bus`, rule `fel`
         Produce the gonadified:
+                comp slammed with `raq`, 
+                        slammed with `fel`, 
+                                slammed with,
+                                        stir slammed with `rud`, `raq`, and `fel` prefixed with `bus`
         ---
+        
 ++  star
-        Apply the rule
+        Apply the parsing rule repeatedly until it fails.
         ---
         Build wet %gold gate with sample rule `fel,
         Produce stir slammed with:
-                The list of /++  
+                The list of elements of type of the icon of `fel` slammed to `wonk`
+        
         ---
         ~tadbyl-hilbel/try=> (scan "aaaaa" (just 'a'))
         ! {1 2}
@@ -6886,139 +6909,360 @@ section 2eF, parsing (ascii)
         ---
         Produce the rule just slammed with ':'
         ---
-        
+        ~tadbyl-hilbel/try=> (scan ":" col)
+        ~~~3a.
+        ~tadbyl-hilbel/try=> `cord`(scan ":" col)
+        ':'
+        ~tadbyl-hilbel/try=> (col [[1 1] ":"])
+        [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (col [[1 1] ":-"])
+        [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q="-"]]]]
 ++  com 
         Parse ASCII character 44, com.
         ---
         Produce the rule just slammed with ','
         ---
+        ~tadbyl-hilbel/try=> (scan "," com)
+        ~~~2c.
+        ~tadbyl-hilbel/try=> `cord`(scan "," com)
+        ','
+        ~tadbyl-hilbel/try=> (com [[1 1] ","])
+        [p=[p=1 q=2] q=[~ [p=~~~2c. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (com [[1 1] "not com"])
+        [p=[p=1 q=1] q=~]
 ++  doq 
         Parse ASCII character 34, doq.
         ---
         Produce the rule just slammed with '"'
         ---
+       ~tadbyl-hilbel/try=> (scan "\"" doq)
+        ~~~22.
+        ~tadbyl-hilbel/try=> `cord`(scan "\"" doq)
+        '"'
+        ~tadbyl-hilbel/try=> (doq [[1 1] "\""])
+        [p=[p=1 q=2] q=[~ [p=~~~22. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (doq [[1 1] "not successfully parsed"])
+        [p=[p=1 q=1] q=~]
+        ~tadbyl-hilbel/try=> (scan "see?" doq)
+        ! {1 1}
+        ! 'syntax-error'
+        ! exit 
 ++  dot 
         Parse ASCII character 46, dot.
         ---
         Produce the rule just slammed with '.'
         ---
+        ~tadbyl-hilbel/try=> (scan "." dot)
+        ~~~.
+        ~tadbyl-hilbel/try=> `cord`(scan "." dot)
+        '.'
+        ~tadbyl-hilbel/try=> (dot [[1 1] "."])
+        [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (dot [[1 1] ".^"])
+        [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q="^"]]]]
 ++  fas 
         Parse ASCII character 47, fas.
         ---
         Produce the rule just slammed with '/'
         ---
+        ~tadbyl-hilbel/try=> (scan "/" fas)
+        ~~~2f.
+        ~tadbyl-hilbel/try=> `cord`(scan "/" fas)
+        '/'
+        ~tadbyl-hilbel/try=> (fas [[1 1] "/"])
+        [p=[p=1 q=2] q=[~ [p=~~~2f. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (fas [[1 1] "|/"])
+        [p=[p=1 q=1] q=~]
 ++  gal 
         Parse ASCII character 60, gal.
         ---
         Produce the rule just slammed with '<'
         ---
+        ~tadbyl-hilbel/try=> (scan "<" gal)
+        ~~~3c.
+        ~tadbyl-hilbel/try=> `cord`(scan "<" gal)
+        '<'
+        ~tadbyl-hilbel/try=> (gal [[1 1] "<"])
+        [p=[p=1 q=2] q=[~ [p=~~~3c. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (gal [[1 1] "<+"])
+        [p=[p=1 q=2] q=[~ [p=~~~3c. q=[p=[p=1 q=2] q="+"]]]]
+        ~tadbyl-hilbel/try=> (gal [[1 1] "+<"])
+        [p=[p=1 q=1] q=~]
 ++  gar 
         Parse ASCII character 62, gar.
         ---
         Produce the rule just slammed with '>'
         ---
+        ~tadbyl-hilbel/try=> (scan ">" gar)
+        ~~~3e.
+        ~tadbyl-hilbel/try=> `cord`(scan ">" gar)
+        '>'
+        ~tadbyl-hilbel/try=> (gar [[1 1] ">"])
+        [p=[p=1 q=2] q=[~ [p=~~~3e. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (gar [[1 1] "=>"])
+        [p=[p=1 q=1] q=~]
 ++  hax 
         Parse ASCII character 35, hax.
         ---
         Produce the rule just slammed with '#'
         ---
+        ~tadbyl-hilbel/try=> (scan "#" hax)
+        ~~~23.
+        ~tadbyl-hilbel/try=> `cord`(scan "#" hax)
+        '#'
+        ~tadbyl-hilbel/try=> (hax [[1 1] "#"])
+        [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (hax [[1 1] "#!"])
+        [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q="!"]]]]
 ++  kel 
         Parse ASCII character 123, kel.
+        Note that this, with ker, opens and closes a Hoon expression for Hoon string interpolation.  Escape kel to parse it.
         ---
         Produce the rule just slammed with '{'
         ---
+        ~tadbyl-hilbel/try=> (scan "\{" kel)
+        ~~~7b.
+        ~tadbyl-hilbel/try=> `cord`(scan "\{" kel)
+        '{'
+        ~tadbyl-hilbel/try=> (kel [[1 1] "\{"])
+        [p=[p=1 q=2] q=[~ [p=~~~7b. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (kel [[1 1] " \{"])
+        [p=[p=1 q=1] q=~]
 ++  ker 
         Parse ASCII character 125, ker.
         ---
         Produce the rule just slammed with '}'
         ---
+        ~tadbyl-hilbel/try=> (scan "}" ker)
+        ~~~7d.
+        ~tadbyl-hilbel/try=> `cord`(scan "}" ker)
+        '}'
+        ~tadbyl-hilbel/try=> (ker [[1 1] "}"])
+        [p=[p=1 q=2] q=[~ [p=~~~7d. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (ker [[1 1] "\{}"])
+        [p=[p=1 q=1] q=~]
 ++  ket 
         Parse ASCII character 94, ket.
         ---
         Produce the rule just slammed with '^'
         ---
+        ~tadbyl-hilbel/try=> (scan "^" ket)
+        ~~~5e.
+        ~tadbyl-hilbel/try=> `cord`(scan "^" ket)
+        '^'
+        ~tadbyl-hilbel/try=> (ket [[1 1] "^"])
+        [p=[p=1 q=2] q=[~ [p=~~~5e. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (ket [[1 1] ".^"])
+        [p=[p=1 q=1] q=~]
 ++  lus 
         Parse ASCII character 43, lus.
         ---
         Produce the rule just slammed with '+'
         ---
+        ~tadbyl-hilbel/try=> (scan "+" lus)
+        ~~~2b.
+        ~tadbyl-hilbel/try=> `cord`(scan "+" lus)
+        '+'
+        ~tadbyl-hilbel/try=> (lus [[1 1] "+"])
+        [p=[p=1 q=2] q=[~ [p=~~~2b. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (lus [[1 1] ".+"])
+        [p=[p=1 q=1] q=~]
 ++  hep 
         Parse ASCII character 45, hep.
         ---
         Produce the rule just slammed with '-'
         ---
+        ~tadbyl-hilbel/try=> (scan "-" hep)
+        ~~-
+        ~tadbyl-hilbel/try=> `cord`(scan "-" hep)
+        '-'
+        ~tadbyl-hilbel/try=> (hep [[1 1] "-"])
+        [p=[p=1 q=2] q=[~ [p=~~- q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (hep [[1 1] ":-"])
+        [p=[p=1 q=1] q=~]
 ++  pel 
         Parse ASCII character 40, pel.
         ---
         Produce the rule just slammed with '('
         ---
+        ~tadbyl-hilbel/try=> (scan "(" pel)
+        ~~~28.
+        ~tadbyl-hilbel/try=> `cord`(scan "(" pel)
+        '('
+        ~tadbyl-hilbel/try=> (pel [[1 1] "("])
+        [p=[p=1 q=2] q=[~ [p=~~~28. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (pel [[1 1] ";("])
+        [p=[p=1 q=1] q=~]
 ++  pam 
         Parse ASCII character 38, pam.
         ---
         Produce the rule just slammed with '&'
         ---
+        ~tadbyl-hilbel/try=> (scan "&" pam)
+        ~~~26.
+        ~tadbyl-hilbel/try=> `cord`(scan "&" pam)
+        '&'
+        ~tadbyl-hilbel/try=> (pam [[1 1] "&"])
+        [p=[p=1 q=2] q=[~ [p=~~~26. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (pam [[1 1] "?&"])
+        [p=[p=1 q=1] q=~]
 ++  per 
         Parse ASCII character 41, per.
         ---
         Produce the rule just slammed with ')'
         ---
+        ~tadbyl-hilbel/try=> (scan ")" per)
+        ~~~29.
+        ~tadbyl-hilbel/try=> `cord`(scan ")" per)
+        ')'
+        ~tadbyl-hilbel/try=> (per [[1 1] ")"])
+        [p=[p=1 q=2] q=[~ [p=~~~29. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (per [[1 1] " )"])
+        [p=[p=1 q=1] q=~]
 ++  pat 
         Parse ASCII character 64, pat.
         ---
         Produce the rule just slammed with '@'
         ---
-++  sel 
+        ~tadbyl-hilbel/try=> (scan "@" pat)
+        ~~~4.
+        ~tadbyl-hilbel/try=> `cord`(scan "@" pat)
+        '@'
+        ~tadbyl-hilbel/try=> (pat [[1 1] "@"])
+        [p=[p=1 q=2] q=[~ [p=~~~4. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (pat [[1 1] "?@"])
+        [p=[p=1 q=1] q=~]
+++  sel
         Parse ASCII character 91, sel.
         ---
         Produce the rule just slammed with '['
         ---
+        ~tadbyl-hilbel/try=> (scan "[" sel)
+        ~~~5b.
+        ~tadbyl-hilbel/try=> `cord`(scan "[" sel)
+        '['
+        ~tadbyl-hilbel/try=> (sel [[1 1] "["])
+        [p=[p=1 q=2] q=[~ [p=~~~5b. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (sel [[1 1] "-["])
+        [p=[p=1 q=1] q=~]
 ++  sem 
         Parse ASCII character 59, sem.
         ---
         Produce the rule just slammed with ';'
         ---
+        ~tadbyl-hilbel/try=> (scan ";" sem)
+        ~~~3b.
+        ~tadbyl-hilbel/try=> `cord`(scan ";" sem)
+        ';'
+        ~tadbyl-hilbel/try=> (sem [[1 1] ";"])
+        [p=[p=1 q=2] q=[~ [p=~~~3b. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (sem [[1 1] " ;"])
+        [p=[p=1 q=1] q=~]
 ++  ser 
         Parse ASCII character 93, ser.
         ---
         Produce the rule just slammed with ']'
         ---
+        ~tadbyl-hilbel/try=> (scan "]" ser)
+        ~~~5d.
+        ~tadbyl-hilbel/try=> `cord`(scan "]" ser)
+        ']'
+        ~tadbyl-hilbel/try=> (ser [[1 1] "]"])
+        [p=[p=1 q=2] q=[~ [p=~~~5d. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (ser [[1 1] "[ ]"])
+        [p=[p=1 q=1] q=~]
 ++  sig 
         Parse ASCII character 126, sig.
         ---
         Produce the rule just slammed with '~'
         ---
+        ~tadbyl-hilbel/try=> (scan "~" sig)
+        ~~~~
+        ~tadbyl-hilbel/try=> `cord`(scan "~" sig)
+        '~'
+        ~tadbyl-hilbel/try=> (sig [[1 1] "~"])
+        [p=[p=1 q=2] q=[~ [p=~~~~ q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (sig [[1 1] "?~"])
+        [p=[p=1 q=1] q=~]
 ++  soq 
         Parse ASCII character 39, soq.
-        Note the extra '\' in the slam of soq with just is to escape the first soq.
+        Note the extra '\' in the slam of soq with just is to escape the first soq because soq denotes a crip.
         ---
         Produce the rule just slammed with '\''
         ---
-
+        ~tadbyl-hilbel/try=> (scan "'" soq)
+        ~~~27.
+        ~tadbyl-hilbel/try=> `cord`(scan "'" soq)
+        '''
+        ~tadbyl-hilbel/try=> (soq [[1 1] "'"])
+        [p=[p=1 q=2] q=[~ [p=~~~27. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (soq [[1 1] ">'"])
+        [p=[p=1 q=1] q=~]
 ++  tar 
         Parse ASCII character 42, tar.
         ---
         Produce the rule just slammed with '*'
         ---
+        ~tadbyl-hilbel/try=> (scan "*" tar)
+        ~~~2a.
+        ~tadbyl-hilbel/try=> `cord`(scan "*" tar)
+        '*'
+        ~tadbyl-hilbel/try=> (tar [[1 1] "*"])
+        [p=[p=1 q=2] q=[~ [p=~~~2a. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (tar [[1 1] ".*"])
+        [p=[p=1 q=1] q=~]
 ++  tec 
         Parse ASCII character 96, tec.
         ---
         Produce the rule just slammed with '`'
         ---
+        ~tadbyl-hilbel/try=> (scan "`" tec)
+        ~~~6.
+        ~tadbyl-hilbel/try=> `cord`(scan "`" tec)
+        '`'
+        ~tadbyl-hilbel/try=> (tec [[1 1] "`"])
+        [p=[p=1 q=2] q=[~ [p=~~~6. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (tec [[1 1] " `"])
+        [p=[p=1 q=1] q=~]
 ++  tis 
         Parse ASCII character 61, tis.
         ---
         Produce the rule just slammed with '='
         ---
+        ~tadbyl-hilbel/try=> (scan "=" tis)
+        ~~~3d.
+        ~tadbyl-hilbel/try=> `cord`(scan "=" tis)
+        '='
+        ~tadbyl-hilbel/try=> (tis [[1 1] "="])
+        [p=[p=1 q=2] q=[~ [p=~~~3d. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (tis [[1 1] "|="])
+        [p=[p=1 q=1] q=~]
 ++  wut 
         Parse ASCII character 63, wut.
         ---
         Produce the rule just slammed with '?'
         ---
+        ~tadbyl-hilbel/try=> (scan "?" wut)
+        ~~~3f.
+        ~tadbyl-hilbel/try=> `cord`(scan "?" wut)
+        '?'
+        ~tadbyl-hilbel/try=> (wut [[1 1] "?"])
+        [p=[p=1 q=2] q=[~ [p=~~~3f. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (wut [[1 1] ".?"])
+        [p=[p=1 q=1] q=~]
 ++  zap 
         Parse ASCII character 33, zap.
         ---
         Produce the rule just slammed with '!'
         ---
+        ~tadbyl-hilbel/try=> (scan "!" zap)
+        ~~~21.
+        ~tadbyl-hilbel/try=> `cord`(scan "!" zap)
+        '!'
+        ~tadbyl-hilbel/try=> (zap [[1 1] "!"])
+        [p=[p=1 q=2] q=[~ [p=~~~21. q=[p=[p=1 q=2] q=""]]]]
+        ~tadbyl-hilbel/try=> (zap [[1 1] "?!"])
+        [p=[p=1 q=1] q=~]
 
 section 2eG, parsing (whitespace)     
 
