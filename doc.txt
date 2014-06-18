@@ -6394,7 +6394,32 @@ section 2eC, parsing (custom rules)
                                 p is `hez` slammed with the pint cell of tub's position and vex's position.
                                 q is `q.u.q.vex`, the text not parsed.
         ---
-
+        
+++  inde
+        Apply rule to indented block starting at current column number,
+        omitting the leading whitespace.
+        ---
+        Build wet %gold gate with sample rule, 'sef'
+        Build dry %gold gate with sample nail and the same product type as sef.
+        Let 'har' and 'tap' be p and q within that nail
+        Let 'lev' be ' ' repeated once less than the column number in har.
+        Let roq be the result of parsing the nail as any number of either
+          Printable characters, or
+          Newlines followed by ignored lev.
+        If roq is a failure produce it.
+        Let 'vex' be the result of parsing with sef, with column restarted to
+        1, the result in roq which must be a tape.
+        If vex is a failure produce it with its p set to that of roq.
+        Produce an edge with parse reach from roq, succesful result from vex,
+        hair from vex with column number advanced by q.har - 1 (which was 
+        subtracted prior passing it to sef), and a continuation tape of:
+          Let res be the continuation in vex(section of block unconsumed).
+          Build an kick a trap (Do):
+            If res is empty produce the continuation in roq.
+            Unless res starts with newline produce the head of res followed
+            by the result of tossing res for its tail.
+            Welp together a newline, lev, and the result of tossing res for
+            its tail.
 
 ++  jest  
         Match and consume a cord.
