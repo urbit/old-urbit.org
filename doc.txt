@@ -6323,21 +6323,23 @@ section 2eC, parsing (custom rules)
         ~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=`b` q=[p=[p=1 q=2] q="bc"]]]]
 ++  easy
-        Always succeed and consume no characters - Produce a nail at the same text position and with all text unparsed.
+        Succeed but consume no characters - Produce an edge at the same text position with the text to parse unchanged, but with a
         ---
         Activate jet.
-        Build wet %gold gate with sample noun, `huf`, a noun to produce as the 'parsed' value.
+        Build wet %gold gate with sample noun, `huf`, a noun to produce as the parsed value.
         Activate extra parsing jet.
         Build dry %gold date with sample nail, `tub`
-        Yield `huf` edge.
-        Produce [p=p.tub q=[~ u=[p=huf q=tub]]], the edge with the noun `huf` as it's 'parsed' value and `tub` as unparsed.
+        Yield edge of type `huf`
+        Produce [p=p.tub q=[~ u=[p=huf q=tub]]], the edge with the noun `huf` as it's parsed value and `tub` as unparsed.
         ---
-        ~midlys-rocpet/try=> ((easy %foo) [[1 1] "abc"])
+        ~tadbyl-hilbel/try=> ((easy %foo) [[1 1] "abc"])
         [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
-        ~midlys-rocpet/try=> ((easy %foo) [[1 1] "bc"])
+        ~tadbyl-hilbel/try=> ((easy %foo) [[1 1] "bc"])
         [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="bc"]]]]
+        ~tadbyl-hilbel/try=> ((easy 'a') [[1 1] "bc"])
+        [p=[p=1 q=1] q=[~ [p='a' q=[p=[p=1 q=1] q="bc"]]]]
 ++  fail  
-        Always fail parsing - Produce a nail at the same text position but with null text to parse.
+        Fail to parse - Produce a nail at the same text position but with null text.
         ---
         Build wet %gold gate with sample nail, `tub`.
         Produce nail [p=p.tub q=~].
@@ -6596,7 +6598,7 @@ section 2eC, parsing (custom rules)
         Build wet %gold gate with sample noun `rud`, gate accepting two nouns and producing , rule `fel`
         Activate extra parsing jet.
         Build dry %gold with sample nail `tub`
-        Yield edge of types of `rud`
+        Yield edge of type of `rud`
         Push `vex` is the rule `fel` slammed with the nail `tub`A
         If: The parsed text is null,
                 Then: Produce the edge of unit nail `rud` and `tub` at the hair index of `vex`
@@ -7280,7 +7282,7 @@ section 2eH, parsing (idioms)
 ++  alf 
         Parse alphabetic characters, both upper and lowercase.
         ---
-        Produce the rule of pose gonadified with low (The lowercase letter parsing idiom) and hig (The uppercase parsing idiom).
+        Produce the rule of pose gonadified with low and hig.
         ---
         ~tadbyl-hilbel/try=> (scan "a" alf)
         ~~a
@@ -7291,8 +7293,7 @@ section 2eH, parsing (idioms)
 ++  aln 
         Parse alphanumeric characters - both alphabetic characters and numbers.
         ---
-        Produce the rule of pose gonadified with low (The lowercase letter parsing idiom),hig (The uppercase parsing idiom),
-        and nud (The number parsing idiom).
+        Produce the rule of pose gonadified with low,hig, and nud.
         ---
         ~tadbyl-hilbel/try=> (scan "0" aln)
         ~~0
@@ -7312,7 +7313,7 @@ section 2eH, parsing (idioms)
         ~tadbyl-hilbel/try=> (scan "123abc-" (star alp))
         "123abc-"
 ++  bet 
-        Parse axis syntax
+        Parse the hep and lus axis syntax.
         ---
         Produce the rule pose gonadified with:
                 (cold 2 hep), which replaces parsed heps with 2s.
@@ -7373,26 +7374,93 @@ section 2eH, parsing (idioms)
 ++  dem 
         Parse a decimal number to an atom.
         ---
-        Produce the slam of bass with 10 and (most gon dit)
+        Produce the slam of bass with 10 (The base number system) and (most gon dit), which produces 
+        
         ---
+        ~tadbyl-hilbel/try=> (scan "7" dem)
+        7
+        ~tadbyl-hilbel/try=> (scan "42" dem)
+        42
+        ~tadbyl-hilbel/try=> (scan "150000000" dem)
+        150.000.000
+        ~tadbyl-hilbel/try=> (scan "12456" dem)
+        12.456
 ++  dit 
-        Decimal digit.
+        Parse a single decimal digit.
         ---
         Produce the rule cook slammed with a gate:
                 With sample atom `a` that results in the difference between `a` and '0' (48).
                         All slammed with the rule shim slammed with '0' and '9', to parse any number.
+        ---
+        ~tadbyl-hilbel/try=> (scan "7" dit)
+        7
+        ~tadbyl-hilbel/try=> (scan "42" (star dit))
+        ~[4 2]
+        ~tadbyl-hilbel/try=> (scan "26000" (star dit))
+        ~[2 6 0 0 0]
 ++  gul 
+        Parse the axis gal and gar axis syntax.
+        ---
+        Produce the rule pose gonadified with:
+                (cold 2 gal), which replaces parsed gals with 2s.
+                (cold 3 gar), which replaced parsed gars with 3s.
+        ---
+        ~tadbyl-hilbel/try=> (scan "<" gul)
+        2
+        ~tadbyl-hilbel/try=> (scan ">" gul)
+        3
 ++  gon 
+        Parse long numbers - Numbers which wrap around the shell with the line break characters bas and fas.
+        ---
+        Produce the rule pose gonadified with:
+                The rule plug gonadified with:
+                        bas, gay, and fas, to succeed to parse a bas, fas, or a gap in text.
+                The rule (easy ~), to succeed to parse but produces null as the parsed text.
+        ---
+        ~tadbyl-hilbel/try=> (scan "\\/" gon)
+        [~~~5c. ~ ~~~2f.]
+        
 ++  hex 
+        Parse a hex digit to an atom.
+        ---
+        Produce bass slammed with 16 (The base number system) and (most gon hit), which produces
+        
+        ---
+        
 ++  hig 
+        Parse a single uppercase letter.
+        ---
+        ---
 ++  hit 
+        Parse a hexadecimal digit. 
+        ---
+        ---
 ++  low 
+        Parse a single lowercase letter.
+        ---
+        ---
 ++  mes 
+        Parse a hexbyte.
+        ---
+        ---
 ++  nix 
+        
 ++  nud 
+        Parse a numeric character - A number.
+        ---
+        ---
 ++  poy 
+        Parse an escape character.
+        ---
+        ---
 ++  qit 
+        Parse the individual characters in a cord.
+        ---
+        ---
 ++  qut 
+        Parse a cord.
+        ---
+        ---
 ++  sym
   Description:
         ---
