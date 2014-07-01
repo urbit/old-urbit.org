@@ -373,6 +373,13 @@ volume 1, Hoon models
     ++  toga  
     ++  trel  
     ++  tuna  
+        
+        An XML template tree.  
+
+        Leaf %a contains plain-text, %b an empty tag, %c a static list, %d a 
+        dynamic list, %e a full node element containing a twig and a list of
+        tuna, and %f is a empty node.
+        
     ++  twig    TODO: delete Form, normalize indentation
 
         A twig is an abstract syntax tree or AST, which we produce when we
@@ -2747,6 +2754,7 @@ volume 2, Hoon libraries and compiler
         if %3, produce %3
         if either %0 or %1, fail
         if noun, slam gate with (div a 2)
+        Terminate switch statement.
         ---
         ~palryp-hocsyt/try=> (cap 4)
         %2
@@ -5146,18 +5154,18 @@ section 2cH, urbit time
 
 ++  year
         date to @d
-  Description:
+        ---
         Accepts a parsed date of form [[a=? y=@ud] m=@ud t=tarp] and produces its @d representation.
         ---
         Creates a dry %gold gate which accepts a parsed date of type 'date'.
         Casts the result to @d.
         Let 
         Let 'day' be the
-  Examples:
+        ---
         
 ++  yore  
         @d to date
-  Description:
+        ---
         Produces the parsed date representation of a @d date. 
         ---
         Creates a dry %gold gate which accepts a @d atomic date.
@@ -5165,7 +5173,8 @@ section 2cH, urbit time
         Let 'rip' be the 'tarp' [day, hour, minute, second time] of the day.
         Let 'ger' be the day of the year in [year month day] format.
         
-  Examples:
+        ---
+
 ++  yell  
         tarp from @d
   Description:
@@ -6790,6 +6799,7 @@ section 2eE, parsing (composers)
         Produce the gonadified:
         ---
 ++  most
+        Parse to a list elements of the second rule seperated by the second.
 
         ---
         Build wet %gold gate with sample rule `bus`, rule `fel`
@@ -6800,6 +6810,8 @@ section 2eE, parsing (composers)
         ---
         
 ++  plus  
+        Like 'star', but "one or more" instead of "0 or more"
+
         ---
         Build wet %gold gate with sample rule `fel`
         Produce gonadified:
@@ -8501,12 +8513,93 @@ section 2fD, grammar
   ++  rood
   ++  rupl
   ++  sail 
+    Templating language for rendering HTML web documents.
+    ---
+    Build dry %gold gate with sample bean `tol`.  Push bunt of bean `lin` onto the core below.
+    Build core,
+    ---
     ++  ape
+        The apex node of 
+        ---
+        Slam cook with:
+            The reverse of `amp` and the following gate:
+                Build dry %gold gate with sample tuna `tum`.  Yield twig.
+                If: `tum` is [%e *], an element,
+                    Then: Produce the twig of
+
+        ---
     ++  amp
+        Entry point of the XML tree.  Start parsing a template at `sem`
+        ---
+        Gonadify pfix with:
+                sem,
+                If: tol,
+                    Then: bam,
+                Else: bat
+        ---
     ++  bam
+        Begin to parse the template in tall form.
+        ---
+        Slam knee with:
+            The bunt of tuna.
+            Build dry %gold trap which is cached (memoized)
+            Gonadify pose with:
+                Stag slammed with %f, pfix gonadified with:
+                    (plus ace), 1 or whitespaces,
+                    Cook slammed with rab, puv
+                Stag slammed with %e, pfix gonadified with:
+                    `ag,
+                     nal
+                Stag slammed with %e, hul, 
+                Stag slammed with %f, nup, 
+                Gonadify pfix with:
+                    tis,
+                    Stag slammed with %f, nol
+                Gonadify pfix with:
+                    hep
+                    Stag slammed with:
+                        %a,
+                        Gonadify pfix with gap, talL
+                Gonadify pfix with:
+                    lus
+                    Stag slammed with:
+                        %b,
+                        Gonadiffy pfix with gap, tall
+                Gonadify pfix with:
+                    tar
+                    Stag slammed with:
+                        %c,
+                        Gonadify pfix with gap, tall
+                Gonadify pfix with:
+                    cen
+                    Stag slammed with:
+                        %d,
+                        Gonadify pfix with gap, tall
+                Slam easy with [%f [%a [%smdq 10 ~]] ~]
+        ---
     ++  bat
+        Begin to parse an entire template line in wide form.
+        ---
+        Slam knee with:
+            The bunt of tuna
+            Build dry %gold trap which is cached (memoized)
+            Gonadify pose with:
+                Stag slammed with %f, nup
+                Stag slammed with %f, ped
+                Stag slammed with:
+                    %e, 
+                    Gonadify plug with hip, lif
+        ---
+    
     ++  bet
+        Begin to parse an inner line section in wide form.
+        ---
+        ---
+
     ++  fry
+        
+        ---
+        ---
     ++  hag
     ++  hig
     ++  hog
@@ -8525,6 +8618,32 @@ section 2fD, grammar
     ++  puv
     ++  rab
     ++  sag
+        Produce a twig from a tuna.
+        ---
+        Build dry %gold gate with sample list of tunas, `lut`
+        Yield twig.
+        Pair %cltr and,
+        Build dry %gold trap.  Yield list of twigs.
+        If: `lut` is null,
+            Then: Produce [[%dtzz %n ~] ~],
+        Else: Switch on the head of the head of `lut`,
+        if %a, produce [[%clfs p.i.lut] $(lut, t.lut)],
+        if %b, produce [p.i.lut $(lut t.lut)]
+        if %c, produce the reverse cell of null and,
+            Triple %cndt, cast of [p.i.lut $(lut t.lut)] to a twig and,
+            Triple %tsbr, cast of [[%axil %noun] [%axil %noun]] to a tile and,
+            Pair   %brcn and,
+            Yield a map of terms to feet,
+            Reverse cell of [~ ~] and,
+            Push `sug` is [[%& 12] ~]
+            Triple %$, %elm, and,
+            Quad %wtsg, `sug`, [%cnts `sug` [[[%& 1] ~] [~ 13]]]
+        if %d, produce [%cnhp]
+        if %e, produce 
+        if %f, produce 
+            where $(lut, t.lut) is the toss of `lut` for the tail of `lut`.
+        Terminate switch statement.
+        ---
   ++  scat
   ++  soil
   ++  sump 
