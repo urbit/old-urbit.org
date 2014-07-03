@@ -22,6 +22,7 @@ $*  Static bunt p
 $!  Bunt axil p
 $+  Tile of gate accepting p and producing q
 $?  Fork between p, q, r, etc...
+$:  Declare tile autocons [p q]
 
 |_  Build dry %gold tray with sample p
 |%  Build core
