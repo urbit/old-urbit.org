@@ -6697,7 +6697,14 @@ section 2eD, parsing (combinators)
                 The edge `vex`
                 The tuple of slamming bus and sab with pfix
         ---
-        
+++  less        
+        No first and second.
+        ---
+        Build wet %gold gate with sample edge `vex`, rule `sab`
+        If: `q.vex` is null,
+            Then: Push `roq` is `sab`.  Produce [p=(last p.vex p.roq) q=q.roq]
+        Else: Produce vex with q tossed for null.
+        ---
 
 ++  pfix
         Discard the first rule of a two rule cell.
@@ -8722,12 +8729,47 @@ section 2fD, grammar
             Easy slammed with null.
         Terminate pose gonadification.
     ++  lif
+       --- 
+       --- 
     ++  luf
+        Wide elements.
+       --- 
+       --- 
     ++  nal
+        
+       --- 
+       --- 
     ++  nol
+       --- 
+       --- 
     ++  nol
+       --- 
+       --- 
     ++  nup
+        Wide quote.
+        --- 
+        Slam cook with:
+            Build dry %gold gate with sample list of tuna `a` which produces `a`
+            Gonadify pose with:
+                Gonadify less with:
+                    jest slammed with '"""'<
+                    ifix slammed with:
+                        [doq doq]
+                        Cook slammed with rab, puv
+                inde slammed with:
+                    ifix slammed with:
+
+            Terminate pose gonnadification. 
+        --- 
+
     ++  pab
+        Bracketed element.
+        ---
+        Slam ifix with [kel ker], plug gonadified with:
+            hig, to parse an uppercase letter followed by,
+            luf, to parse wide elements.
+        ---
+
     ++  ped
         Wide flow.
         ---
