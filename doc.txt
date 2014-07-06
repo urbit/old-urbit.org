@@ -7350,6 +7350,7 @@ section 2eG, parsing (whitespace)
         ---
 
 ++  gap 
+        
         ---
         Produce cold slammed with:
                 null
@@ -8697,7 +8698,7 @@ section 2fD, grammar
                 Stag slammed with null, pfix gonadified with dot, stag slammed with %smdg, soil
                 Easy slammed with null,
             Pose gonadified with:
-                Ifix slammed with [pel per] and,
+                ifix slammed with [pel per] and,
                     More slammed with plug gonadified with com, ace and,
                         Plug gonadified with fry, pfix gonadified with ace, wide
                 Easy slammed with null
@@ -8723,27 +8724,69 @@ section 2fD, grammar
         Wide attributes
         ---
         Gonadify pose with:
-            Ifix slammed with [pel per] and,
+            ifix slammed with [pel per] and,
                 More slammed with plug gonadified with com, ace, and,
                 plug gonadified fry, pfix gonadified with ace, wide
             Easy slammed with null.
         Terminate pose gonadification.
     ++  lif
-       --- 
-       --- 
+        Wide elements.
+        --- 
+        Slam cook with:
+            Build dry %gold gate with sample list of tuna `a` which produces `a`
+            Gonadify pose with:
+                pfix gonadied with col, pep
+                cold slammed with null, sem
+                easy slammed with null
+        --- 
     ++  luf
         Wide elements.
-       --- 
-       --- 
+        ---
+        Slam cook with:
+            Build dry %gold gate with sample list of tuna `a` which produces `a`
+            Star slammed with:
+                Gonadify pfix with ace, bet.
+        --- 
     ++  nal
-        
-       --- 
-       --- 
+        Unescaped tall tail.
+        ---
+        Slam cook with sample:
+            Build dry %gold gate with sample list of tuna `a` which produces `a`,
+            Slam ifix with:
+                Tile autoons gap and plug gonadified with gap, duz,
+                Slam most with:
+                    gap,
+                    Gonadify pfix with:
+                        Gonadify pose with:
+                            Gonadify pfix with:
+                                ace,
+                                Cook slammed with:
+                                    Build dry %gold gate with sample tape `a` which produces:
+                                        [%a %smdq (weld a `tape`[`@`10 ~])],
+                                        where (weld a `tape`[`@`10 ~] is the concatenation
+                                        of tape `a` with the newline character.
+                                    Star slammed with shim slamme with 32, 255.
+                            Terminate pfix gonadification.
+                        Terminate pose gonadification.
+                    Terminate pfix gonadification.
+
+        --- 
     ++  nol
-       --- 
-       --- 
-    ++  nol
-       --- 
+        Tall tail.
+       ---
+        Assert that tol is true, that we are parsing a tall form part of the template.
+        Slam cook with:
+            Build dry %gold gate with sample list of tuna `a` which produces `a`,
+            Gonadify pose with:
+                Slam cold with null, sem
+                pfix gonadified with col, pep called with tol replaced by false, to continue to parse in wide form.
+                pfix gonadified with:
+                    Gonadify plug with col, ace.
+                    Slam cook with rab called with tol replaced by false, to continue to parse in wide form, and puv.
+                ifix slammed with:
+                    [gap :~(plug gap duz)], which disregards non-code before plug gonadifed with gap and duz.
+                    Most slammed with gap, amp.
+            Temrinate pose gonadification. 
        --- 
     ++  nup
         Wide quote.
@@ -8758,7 +8801,8 @@ section 2fD, grammar
                         Cook slammed with rab, puv
                 inde slammed with:
                     ifix slammed with:
-
+                        Jest slammed with '"""\0a' and jest slammed with '\0a"""',
+                        Cook slammed with rab, puv called with `lin` tossed for false.
             Terminate pose gonnadification. 
         --- 
 
