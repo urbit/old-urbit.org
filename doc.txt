@@ -5621,36 +5621,35 @@ section 2dA, sets
         ~talsur-todres/try=> -.l.+.b
         n=`d`
   +-  rep
-        fold
-  Description:
-        Accepts a noun and a binary gate.  Produces the 'a' with each member 'n.a' replaced by (c n.a b).
+        Accept a noun and a binary gate.  Produce the 'a' with each member 'n.a' replaced by (c n.a b).
         ---
+        XXX
         Creates a wet %gold gate which accpets a noun and a tile, 'a' and 'b'.
         Creates and kicks a dry %gold gate.
         Builds an if-then-else statement on "a is null."  If so, produce 'b'.
         Else, recursively call the trap with 'a' replaced by 'r.a' and 
         'b' replaced by the recursive call of the trap with 'a' replaced by 'l.a' and 'b' replaced by
         (c n.a b).
-  Examples:
+        ---
         ~talsur-todres/try=> =a (~(gas in *(set ,@)) [1 2 3 ~])
         ~talsur-todres/try=> a
         {1 3 2}
         ~talsur-todres/try=> (~(rep in a) 0 |=([a=@ b=@] (add a b)))
         6
         ---
+        XXX
         
   +-  tap
-        cell from concat
-  Description:
-        Accepts a list of elements of the set and produces a cell of the set with the list concatenated.
+        Accept a list of elements of the set and produce a cell of the set with the list concatenated.
         ---  
         Activate jet.
-        Creates a dry %gold gate which accepts a list of elements with elements of the set's elements type.
-        Casts the result to the type of list 'b'.
-        If "a is an atom.", produce 'b'.
-        Else, produce the resursive call to 'tap' with 'a' replaced by 'r.a' and 'b' replaced by [n.a $(a l.a)]
-        where $(a l.a) is the recursive call to 'tap' with 'a' replaced by 'l.a'.
-  Examples:
+        Build dry %gold gate with sample list of the same
+        Cast the following to the type of `b`
+        If: `a` is null,
+            Then: Produce `b`,
+        Else: Produce the toss of `a` for `r.a`, `b` for [n.a $(a l.a)]),
+            where $(a l.a) is the toss of `a` for the left twig of `a`.
+        ---
         ~tadbyl-hilbel/try=> =s (sa `(list ,@t)`['a' 'b' 'c' 'd' 'e' ~])
         ~tadbyl-hilbel/try=> s
         {'e' 'd' 'a' 'c' 'b'}
@@ -5663,16 +5662,16 @@ section 2dA, sets
         ~tadbyl-hilbel/try=> (~(tap in b) `(list ,@t)`['david' 'people' ~])
         ~['john' 'daniel' 'madeleine' 'bonita' 'david' 'people']
   +-  wyt
-        depth of set
-  Description:
-        Produces the cardinality (number of elements) of the set.
+        Produce the cardinality (number of elements) of the set.
         ---
-        Increment the value produced below.
-        Creates and kicks a dry %gold gate.  Casts the result to an atom.
-        Builds an if-then-else statement on "a is null."  If so, produce 0.
-        Else, produce the increment of the sum of the recursive calls to this trap where 'a' is replaced
-        by 'l.a' and 'r.a'.
-  Examples:
+        Increment the following.
+        Kick dry %gold trap.  Yield atom.
+        If:  `a` is null,
+            Then: Produce 0.
+        Else: Produce the increment of the sum of:
+            The toss of `a` for `l.a`, the left twig of `a`.
+            The toss of `a` for `r.a`, the right twig of `a`.
+        ---
         ~talsur-todres/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
         ~talsur-todres/try=> ~(wyt in a)
         4
@@ -5711,62 +5710,79 @@ section 2dB, maps
         ! exit
         ---
 ++  ja
-        jar engine
-  Description:
-        Container arm for jar operation arms.  Jars are maps of lists.  The contained arms inherit it's sample jar. 'a'.
+        The jar engine: A container arm for jar operation arms.  Jars are maps of lists.
+        The contained arms inherit it's sample jar. 'a'.
         ---
-        Builds a wet %gold tray with a sample jar.
+        Build a wet %gold tray with a sample jar `a`.
   +-  get
-        gets list by key
-  Description:
-        Retrieves a list from the map by its key.
+        Retrieve a list from the map by its key.
         ---
-        Creates a wet %gold gate which accepts a noun.
-        Let 'c' be the element retrieved from 'a' by key 'b'.
-        If 'c' is null, produce null.  Else, produce the list value inside the unit 'c'.
-  Examples:
-        
+        Build wet %gold gate with sample noun `b`
+        Push `d` is the slug of by to get with `a` slammed with `b`.
+        If: `c` is null,
+            Then: Produce null,
+        Else: Produce `u.c`, the unit value of `c`
+        ---
+               
+ 
   +-  add
-        adds key-list pair
-  Description:
-        Adds a key-list value to the jar.
+        Add a key-list value to the jar.
         ---
-        Creates a wet %gold gate which accepts two nouns.
-        Let 'd' be the value retrieved in 'a'
-        
-  Examples:
+        Build wet %gold gate with sample noun `b`, noun `c`
+        Push `d` is the call of get with the subject replaced by `a`, slammed with `b`
+        Produce the slam of by to put with `a` slammed with `b` and [c d].
+        ---
+
+        ---
+        Terminate the core.
         
 ++  ju
-        jug engine
-  Description:
-        Container arm for jug operation arms.  Jugs are maps of sets.  The contained arms inherit it's sample jug, 'a'.
+        The jug engine: container arm for jug operation arms.  Jugs are maps of sets.
+        The contained arms inherit it's sample jug, 'a'.
         ---
-        Builds a wet %gold tray with a sample jug.
+        Build a wet %gold tray with a sample jug `a`.
+  +-  del
+        Delete a value in a set and produce the resulting jug.
+        ---
+        Build wet %gold gate with sample noun `b`, noun `c`
+        Cast the following to the type of `a`
+        Push `d` is the call of get with the subject replaced by `a`, slammed with `b`
+        Push `e` is slug del to in by `d` slammed with `c`
+        If: `e` is null,
+            Then: Slug tray by to del with `a` slammed with `b`
+        Else: Produce the slug tray by to put with `a` slammedw ith `b`, `e`.
+        ---
+
   +-  get
-        gets set by key
-  Description:
-        Retrieves a set from the map by its key.
+        Retrieve a set from the map by its key.
         ---
-        Creates a wet %gold gate which accepts a noun.
-        Let 'c' be the element retrieved from 'a' by key 'b'.
-        If 'c' is null, produce null.  Else, produce the set value inside the unit 'c'.
+        Build wet %gold gate with sample noun `b`
+        Push `c` is the slug of by to get with `a` slammed with `b`
+        If: `c` is null,
+            Then: Produce null,
+        Else: Produce `u.c`, the unit value of `c`
         ---
         
   +-  has
-        Is [b=* c=*] key-value pair in set 'a'?
+        Is the element `c` in the set `b`?
         ---
-        Creates a wet %gold gate which accepts two nouns.
-        Casts the result to a loobean.
-        Retrieves the set of the key 'b' in 'a', then checks 
+        Build wet %gold gate with sample noun `b`, noun `c`
+        Yield boolean.
+        Produce the slug of in to has with the call of get with the subject replaced by `a` slammed with:
+            `b`, a set., slammed with:
+                slammed with `c`.  
+        I.e.: Check if `c` is in the set which is the value of the map key `b`.
         ---
 
   +-  put
-        Add key-value pair to set `a`.
+        Add a value to a specific set in the jug.
         ---
         Build wet %gold gate with sample noun b. noun c.
         Yield bean.
-        Produce tray `by` slugged to `put` with `a`, then slam the resulting gate with `b`, 
-                tray `in` slugged to `put` with `d`, then slammed with `c`.
+        Push `d` is the call of get with the subject replaced by `a`, slammed with `b` 
+        Produce the slug of by to put with `a` slammed with:
+            `b`, slammed with:
+                The slug of in to put by `d` slammed with `c`.
         ---
 
 ++  by
