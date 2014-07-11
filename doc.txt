@@ -2764,7 +2764,7 @@ volume 2, Hoon libraries and compiler
         %2
 
     ++  dec  
-        Decrements a number - Subtracts one.
+        Decrement a number - Subtracts one.
         ---
         Activate jet.
         Build dry %gold gate with sample atom a
@@ -2852,300 +2852,6 @@ volume 2, Hoon libraries and compiler
         %.n
         ~ronrem-lonsem/try=> (gth 0 0)
         %.n
-    ++  lte  
-        Is the first less than or equal to the second?
-        ---
-        Activate jet
-        Build dry %gold gate with sample atom a and atom b
-        Yield bean
-        a is b OR a is less-than b
-        ---
-        ~ronrem-lonsem/try=> (lte 4 5)
-        %.y
-        ~ronrem-lonsem/try=> (lte 5 4)
-        %.n
-        ~ronrem-lonsem/try=> (lte 5 5)
-        %.y
-        ~ronrem-lonsem/try=> (lte 0 0)
-        %.y
-
-    ++  lth  
-        Is the first less than the second?
-        ---
-        Activate jet.
-        Build dry %gold gate with a sample atom a and atom b
-        Yield bean.
-        Use logical AND, thus immediately producing false if a=b.
-        Then, create and kick a dry %gold trap which produces true on a=0,
-        or false if a!=0 and b=0.
-        If none of these cases are met, recursively call lth with both a and b decremented.
-  Examples:
-        ~ronrem-lonsem/try=> (lth 4 5)
-        %.y
-        ~ronrem-lonsem/try=> (lth 5 4)
-        %.n
-        ~ronrem-lonsem/try=> (lth 5 5)
-        %.n
-        ~ronrem-lonsem/try=> (lth 5 0)
-        %.n
-++  mas  
-        Produces the axis of a within the head or the tail. 
-        ---
-        Activate jet.
-        Creates a dry %gold gate with a sample which accepts an atom.
-        Must produce an atom.
-        Selects a case below for the actual type of a.
-        Exit if a is 1.
-        Produce 1 if a is either 2 or 3.
-        Else, sum the modulus of a and 2 with the 2 multiplied by the recursive call of 
-        mas with a replaced by a/2.
-        ---
-        1 ~ronrem-lonsem/try=> (mas 3)
-        1
-        ~ronrem-lonsem/try=> (mas 4)
-        2
-        ~ronrem-lonsem/try=> (mas 5)
-        3
-        ~ronrem-lonsem/try=> (mas 6)
-        2
-        ~ronrem-lonsem/try=> (mas 7)
-        3
-        ~ronrem-lonsem/try=> (mas 8)
-        4
-        ~ronrem-lonsem/try=> (mas 0)
-        ! exit
-        ~ronrem-lonsem/try=> (mas 1)
-        ! exit
-++  max  
-        Produce the larger of two atoms.
-        ---
-        Activate jet.
-        Build dry %gold gate with sample atom a, atom b.
-        Yield atom.
-        If: `a` is greater than `b`,
-                Then: Produce `a`,
-        Else: Produce `b`
-        ---
-=======
-              ~zod/try=> :type; %42
-              %42
-              %42
-
-              ~zod/try=> -:!>(%42)
-              [%cube p=42 q=[%atom p=%ud]]
-              
-              In general, a %cube type contains p, a single noun, and q, a base
-              type which provides semantics.
-
-              Syntactically, any atomic constant can be preceded by % to generate
-              a cube. The exception is @tas, which always needs % and is always
-              cubical.
-
-          [%face p=term q=type]
-
-              A type is not just a set of nouns - it's also a meaning which makes
-              sense of any noun in that set. The typed noun exports a namespace -
-              give it a name, and it gives you another noun.
-
-              ~zod/try=> foo=42
-              foo=42
-              ~zod/try=> :type; foo=42
-              foo=42
-              foo=@ud
-              ~zod/try=> -:!>(foo=42)
-              [%face p=%foo q=[%atom p=%ud]]
-
-              With %face, we've simply wrapped a label around another type. Note
-              that this doesn't impair our ability to compute with the value.
-              Computationally, foo=42 is just 42:
-
-               ~zod/try=> (add 17 foo=42)
-               59
-               ---
-
-          [%fork p=type q=type]
-
-              A union type. [%fork p q] means "it could be a p, or maybe a q."
-
-              Any branching computation in which different branches produce
-              different types will generate a fork. For example:
-
-              ~zod/try=> :type; ?:(& %foo [13 10])
-              %foo
-              { %foo [@ud @ud] }
-
-              ~zod/try=> -:!>(?:(& %foo [13 10]))
-              [ %fork
-                p=[%cube p=7.303.014 q=[%atom p=%tas]]
-                q=[%cell p=[%atom p=%ud] q=[%atom p=%ud]]
-               ]
-
-              Here we start to understand why the type renderer is useful, as 
-              { %foo [@ud @ud] } (which is not in any way Hoon syntax) is a 
-              little easier to read than the actual type noun.
-
-              (Readers of a mathematical bent may ask: since Hoon has a union
-              type, where is the intersection type? There is none. Hoon is not
-              one of these languages whose goal is to be as mathematically
-              powerful as possible. Since a programming language is a UI for
-              programmers, and programmers are not mathematicians, Hoon is
-              designed to be as powerful as it has to be - and no more.)
-
-          [%hold p=(list ,[p=type q=twig])]
-
-      ++  typo  
-      ++  udal  
-      ++  udon  
-      ++  umph  
-      ++  unce  
-      ++  unit  
-      ++  upas  
-      ++  urge  
-      ++  vase  
-      ++  vise  
-      ++  wall  
-      ++  wain  
-      ++  wing  
-      ++  wine  
-      ++  woof  
-      ++  wonk  
-      ++  map  
-      ++  qeu  
-      ++  set  
-      ++  jar  
-      ++  jug  
-
-  volume 2, Hoon libraries and compiler
-
-    chapter 2a, basic unsigned math
-
-      ++  add 
-          Sum two numbers.
-          ---
-          Activate jet
-          Build dry %gold gate with sample atoms a and b
-          Yield atom
-          If: a is 0
-            Then: produce `b`
-          Else: toss a for (dec a) and b for +(b)
-          ---
-          ~palryp-hocsyt/try=> (add 2 2)
-          4
-          ~palryp-hocsyt/try=> (add 1 1.000.000)
-          1.000.001
-          ~palryp-hocsyt/try=> (add 1.333 (mul 2 2))
-          1.337
-
-      ++  cap
-          Is an axis in the head or tail of a noun?
-          ---
-          Activate jet
-          Build dry %gold gate with sample atom a
-          Yield either %2 or %3
-          Switch on type of a
-          if %2, produce %2 
-          if %3, produce %3
-          if either %0 or %1, fail
-          if noun, toss a for (div a 2)
-          ---
-          ~palryp-hocsyt/try=> (cap 4)
-          %2
-          ~palryp-hocsyt/try=> (cap 6)
-          %3
-          ~palryp-hocsyt/try=> (cap (add 10 9))
-          %2
-
-      ++  dec  
-          Decrements a number - Subtracts one.
-          ---
-          Activate jet
-          Build dry %gold gate with sample atom a
-          Error on crash: %decrement-underflow
-          Deny that a is 0
-          Let b be 0
-          Kick dry %gold trap that yields atom.
-          If: a is +(b)
-            Then, produce b.
-          Else, toss b for +(b) 
-          ---
-          ~palryp-hocsyt/try=> (dec 7)
-          6
-          ~palryp-hocsyt/try=> (dec 0)
-          ! decrement-underflow
-          ! exit
-
-      ++  div  
-          Divides one number by another.
-          ---
-          Activate jet
-          Build dry %gold gate with sample atom a, atom b.
-          Yield atom
-          Error on crash: 'div'
-          Deny that b is 0
-          Let c be 0
-          Kick dry %gold trap
-          If: a is less than b
-            Then: produce c
-          Else, toss a for (sub a b), and c for +(c)
-          ---
-          ~palryp-hocsyt/try=> (div 4 2)
-          2
-          ~palryp-hocsyt/try=> (div 17 8)
-          2
-          ~palryp-hocsyt/try=> (div 20 30)
-          0
-
-      ++  fac  
-          Produces the factorial of a number n, n!.
-          ---
-          Activate jet
-          Build dry %gold gate with sample atom a and atom b.
-          Yield atom
-          If: a is 0
-            Then: produce 1.
-          Else: multiply a with the toss of a for (dec a)
-          ---
-          ~palryp-hocsyt/try=> (fac 3)
-          6
-          ~palryp-hocsyt/try=> (fac 0)
-          1
-          ~palryp-hocsyt/try=> (fac 11)
-          39.916.800
-
-      ++  gte
-          Is the first greater than or equal to the second?
-          ---
-          Activate jet
-          Build dry %gold gate with sample atom a and atom b
-          Yield bean
-          a is NOT less-than b
-          ---
-          ~palryp-hocsyt/try=> (gte 100 10)
-          %.y
-          ---
-          ~palryp-hocsyt/try=> (gte 4 4)
-          %.y
-          ---
-          ~palryp-hocsyt/try=> (gte 3 4)
-          %.n
-          ---
-
-      ++  gth
-          Is the first greater than the second?
-          ---
-          Activate jet
-          Build dry %gold gate with sample atom a and atom b
-          Yield bean.
-          a is NOT less than or equal to b
-          ---
-          ~ronrem-lonsem/try=> (gth 4 5)
-          %.n
-          ~ronrem-lonsem/try=> (gth 5 4)
-          %.y
-          ~ronrem-lonsem/try=> (gth 5 5)
-          %.n
-          ~ronrem-lonsem/try=> (gth 0 0)
-          %.n
       ++  lte  
           Is the first less than or equal to the second?
           ---
@@ -3162,7 +2868,6 @@ volume 2, Hoon libraries and compiler
           %.y
           ~ronrem-lonsem/try=> (lte 0 0)
           %.y
-
       ++  lth  
           Is the first less than the second?
           ---
@@ -3174,52 +2879,41 @@ volume 2, Hoon libraries and compiler
           produce %.y if a is 0
           produce %.n if a is NOT 0 AND b=0.
           Else, toss a for (dec a), and b for (dec b)
-    Examples:
+          ---
           ~ronrem-lonsem/try=> (lth 4 5)
           %.y
-          ---
           ~ronrem-lonsem/try=> (lth 5 4)
           %.n
-          ---
           ~ronrem-lonsem/try=> (lth 5 5)
           %.n
-          ---
           ~ronrem-lonsem/try=> (lth 5 0)
           %.n
-
       ++  mas  
-          Produces the axis of a within the head or the tail. 
+          Produce the axis of a within the head or the tail. 
           ---
           Activate jet
           Build dry %gold gate with sample atom a
-          Yield atom
-          Switch on a
-          if 1, fail
-          if 2, produce 1
-          if 3, produce 1
-          Else, add a modulo 2 to 2 times the toss of a for (div a 2)
+          Yield atom.
+          Switch on a:
+            if 1, fail
+            if 2, produce 1
+            if 3, produce 1
+            Else, add a modulo 2 to 2 times the toss of a for (div a 2)
           ---
           1 ~ronrem-lonsem/try=> (mas 3)
           1
-          ---
           ~ronrem-lonsem/try=> (mas 4)
           2
-          ---
           ~ronrem-lonsem/try=> (mas 5)
           3
-          ---
           ~ronrem-lonsem/try=> (mas 6)
           2
-          ---
           ~ronrem-lonsem/try=> (mas 7)
           3
-          ---
           ~ronrem-lonsem/try=> (mas 8)
           4
-          ---
           ~ronrem-lonsem/try=> (mas 0)
           ! exit
-          ---
           ~ronrem-lonsem/try=> (mas 1)
           ! exit
 
@@ -3239,30 +2933,17 @@ volume 2, Hoon libraries and compiler
           10.443
           ~palryp-hocsyt/try=> (max 0 1)
           1
-++  min  
-        minimum
-        ---
-        Produce the smaller of two atoms.
-        ---
-        Activate jet.
-        Build dry %gold gate with sample atom a, atom b.
-        Yield atom.
-        If: `a` is less than `b`,
-                Then: Prduce `a`,
-        Else: Produce `b`
-        ---
-=======
 
     ++  min  
         Produce the smaller of two atoms.
         ---
         Activate jet
         Build dry %gold gate with sample atom a and atom b
-        Yield atom
+        Yield atom.
         If: a is less than b 
           Then: produce a
         Else: produce b
-  Examples:
+        ---
         ~palryp-hocsyt/try=> (min 10 100)
         10
         ~palryp-hocsyt/try=> (min 10.443 9)
@@ -3279,7 +2960,6 @@ volume 2, Hoon libraries and compiler
         Deny that b is 0
         Subtract from a the product of b and a divided by b
         ---
-        Examples
 
     ++  mul  
         Multiply two numbers
@@ -5153,32 +4833,37 @@ section 2cG, floating point
 section 2cH, urbit time               
 
 ++  year
-        date to @d
+        Accept a parsed date of form [[a=? y=@ud] m=@ud t=tarp] and produce 
+        its @d representation.
         ---
-        Accepts a parsed date of form [[a=? y=@ud] m=@ud t=tarp] and produces its @d representation.
-        ---
-        Creates a dry %gold gate which accepts a parsed date of type 'date'.
-        Casts the result to @d.
-        Let 
-        Let 'day' be the
+        Build dry %gold gate with sample parsed date `det`
+        Yield @d.
+        Push `yer` is:
+            If: `a.det` is true.  I.e.
+                Then: The sum of 292,277,024,400 and `y.det`, the year.
+            Else: The difference of 292,277,024,400 and the decrement of `y.det`, the year.
+        Push `day` is yawn slammed with:
+            `yer`, `m.det`, `d.t.det`
+        Produce yule slammed with:
+            `day`, `h.t.det`, `m.t.det`, `s.t.det`, `f.t.det`
         ---
         
 ++  yore  
-        @d to date
+        Produce the parsed date [[a=? y=@ud] m=@ud t=tarp] representation of a @d date. 
         ---
-        Produces the parsed date representation of a @d date. 
-        ---
-        Creates a dry %gold gate which accepts a @d atomic date.
-        Casts the result to the parsed date form [[a=? y=@ud] m=@ud t=tarp].
-        Let 'rip' be the 'tarp' [day, hour, minute, second time] of the day.
-        Let 'ger' be the day of the year in [year month day] format.
+        Build dry %gold gate with sample @d `now`.
+        Yield date.
+        Push `rip` is yell slammed with `now`, the
+        Push `ger` is yall slammed with `d.rip`, the
+        Pair:
+            If:  y.ger is greater than ,
+                Then: ,
+            Else:  with,
         
         ---
 
 ++  yell  
-        tarp from @d
-  Description:
-        Produces a parsed daily time format from an atomic date.
+        Produce a parsed daily time format from an atomic date.
         ---
         Creates a dry %gold gate which accepts an atomic date, @d.
         Casts the result to a tarp.
@@ -5189,7 +4874,8 @@ section 2cH, urbit time
         Replace 'muc' with the decrement of 'muc' (3).
         Produce the cell [(cut 4 [muc 1] raw) $(raw (end 4 muc raw))], where
         (cut 4 [muc 1] raw) is the cut of 'raw' of 1-block of size 4 starting at 'muc'.
-        $(raw (end 4 muc raw)) is the recursive call to the trap with 'raw' replaced by the last 'muc' blockcs of size
+        $(raw (end 4 muc raw)) is the recursive call to the trap with 'raw' replaced by 
+        the last 'muc' blockcs of size
         4 in 'raw'. 
   Examples:
         ~dovryp-toblug/try=> (yell ~2014.3.20..05.42.53..7456)
@@ -5713,7 +5399,7 @@ section 2dB, maps
         The jar engine: A container arm for jar operation arms.  Jars are maps of lists.
         The contained arms inherit it's sample jar. 'a'.
         ---
-        Build a wet %gold tray with a sample jar `a`.
+        Build a wet %gold tray with a sample jar `a`...
   +-  get
         Retrieve a list from the map by its key.
         ---
@@ -5723,7 +5409,7 @@ section 2dB, maps
             Then: Produce null,
         Else: Produce `u.c`, the unit value of `c`
         ---
-               
+        
  
   +-  add
         Add a key-list value to the jar.
@@ -8019,10 +7705,8 @@ section 2eN, pseudo-cryptography
 section 2eO, virtualization           
 
 ++  mack
-        XX
-  Description:
-        Accepts a nock subject-formula cell.
-        Produces a unit result, treating 11 as a crash (i.e. pure nock).
+        Accpet a nock subject-formula cell.
+        Produce a unit result, treating 11 as a crash (i.e. pure nock).
         ---
         Creates a dry %gold gate accepting cell ['sub' 'fol'].
         Its output is a unit (of a noun).
@@ -8030,7 +7714,7 @@ section 2eO, virtualization
         ~ on any input, halting interpretation.
         Unless ton has stem 0, produce the empty unit, otherwise produce one
         containing ton's bulb.
-  Examples 
+        ---
         ~zod/try=> (mack [[1 2 3] [0 1]])
         [~ [1 2 3]]
         ~zod/try=> (mack [41 4 0 1])
