@@ -67,7 +67,7 @@ One great way to test your understanding of Nock is to write an interpreter. Thi
 
 + `~dilnem-nodfun` [https://github.com/cmm/nock](https://github.com/cmm/nock)
 
-###C
+###CSharp
 
 + `zass30` [https://github.com/zass30/Nock5KCSharp](https://github.com/zass30/Nock5KCSharp)
 
