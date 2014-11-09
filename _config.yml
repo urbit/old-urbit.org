@@ -21,7 +21,7 @@ author:
 paginate:         5
 
 # Custom vars
-version:          544 Kelvin
+version:          314 Kelvin
 
 github:
   repo:           https://github.com/urbit/urbit
