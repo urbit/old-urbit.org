@@ -67,7 +67,7 @@ Follow the instructions on the GitHub page, then proceed to "Run" below.
      Otherwise, `ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"`
      will install it.
 
-     And follow up with `brew install git gmp libsigsegv openssl`
+     And follow up with `brew install automake git gmp libsigsegv openssl`
 
      This will ask you for the root password, which ideally you know.
 
