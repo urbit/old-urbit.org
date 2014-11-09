@@ -1,6 +1,21 @@
+.dis {
+	padding: 1rem;
+	margin-left: -1rem;
+	background-color: #ECECEC;
+}
+
+.dis h1 {
+	color: #EC0000;
+}
+
+.dis p {
+	font-weight: 500;
+}
+
 .toggle {
 	display: none;
 }
+
 .subnav li.active .toggle, .toggle.active {
 	display: block;
 }

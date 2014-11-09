@@ -7,21 +7,6 @@ sort: 2
 
 The Urbit community continuously interacts on Urbit itself using `:chat`. Check out the [setup](/setup/) page for instructions on how to come join us. We're there to answer questions and discuss anything Urbit might bring up.
 
-##Regular Weekly Urbit Chat
-
-Wednesdays at 6PM PST (UTC-8) we get together on Urbit `:chat` to discuss what we have been building, answer questions, and check in. Logs are below.
-
-<ul class="chat">
-{% assign chats = site.axis.chat-log | reverse %}
-{% for page in chats %}
-<li>
-<h4>{{ page.title }}</h4>
-{{ page.content }}
-Complete log <a href="http://chat.urbit.org/{{ page.log }}">here</a>.
-</li>
-{% endfor %}
-</ul>
-
 ##Mailing List
 Long form discussion and technical support can be found on our [mailing list](https://groups.google.com/forum/#!forum/urbit-dev).
 
