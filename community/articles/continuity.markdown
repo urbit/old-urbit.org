@@ -5,7 +5,7 @@ axis: further-reading
 sort: 0
 author: jcb
 title: Continuity Breach
-date: 2014-11-09 09:59
+date: 2014-11-10
 ---
 
 A continuity breach occurs when the entire Urbit network gets recreated- this will not happen in real life! All ships and piers prior to the breach will no longer work with the new network.
