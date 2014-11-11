@@ -21,137 +21,64 @@ sort: 3
 
 ###Install
 
-Urbit runs on Unix machines only. If you don't have a Unix machine, try a VM (such as Virtual Box) or one of our Docker containers. 
+Urbit runs on Unix machines only. If you don't have a Unix machine, try a VM (such as Virtual Box), or a Docker container. 
 
-Please select your distro for specific instructions:
+<h3>Docker</h3>
+<a href="http://docker.io">Docker</a> is a very convenient way to get in to an Urbit ship quickly on any OS.
+<br><br>
+<code>~simmev-rabryd</code> maintains docker containers and utilities on GitHub <a href="https://github.com/yebyen/urbinit">here</a>.
+<br><br>
+Follow the instructions on the GitHub page, then proceed to <a href="#run">run</a>.
 
-<ul class="subnav">
-    <li>
-        <a href="#" class="expand"></a>
-        <a href="#" class="distro">OS X</a>
-        <div class="toggle">
-            <ol>
-            <li>Install the dependencies: 
-                <ul>
-                <li>Homebrew: <code>brew install git gmp libsigsegv openssl</code></li>
-                <li>Macports: <code>sudo port install git gmp libsigsegv openssl</code></li>
-                </ul>
-            </li>
-            <li>Download and run <code><a href="/packages/urbit.pkg">urbit.pkg</a></code>.</li>
-            <li>Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.</li>
-            </ol>
-        </div>
-    </li>
-    <li>
-        <a href="#" class="expand"></a>
-        <a href="#" class="distro">Debian</a>
-        <div class="toggle">
-            <ol>
-            <li>Install the dependencies: <code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags</code></li>
-            <li>Download <code><a href="/packages/urbit_0.2-1_amd64.deb">urbit.deb</a></code>.</li>
-            <li>Run <code>dpkg -i urbit.deb</code> to install.</li>
-            <li>Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.</li>
-            </ol>
-        </div>
-    </li>
-    <li>
-        <a href="#" class="expand"></a>
-        <a href="#" class="distro">Fedora</a>
-        <div class="toggle">
-            <ol>
-            <li>Install the dependencies: <code>sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags</code></li>
-            <li>Download <code><a href="/packages/urbit-0.2-1.fc20.x86_64.rpm">urbit.rpm</a></code>.</li>
-            <li>Run <code>rpm -vhU urbit.rpm</code> to install.</li>
-            <li>Proceed to <a href="#run">run</a>, replacing <code>bin/vere</code> with <code>vere</code> since vere is installed globally.</li>
-            </ol>
-        </div>
-    </li>
-    <li>
-        <a href="#" class="expand"></a>
-        <a href="#" class="distro">Amazon</a>
-        <div class="toggle">
-        <ol>
-        <li>Grab an AMI from any of the following locations:
-        <pre><code>us-west (oregon) ami-6cf88d5c
-us-west (n. california) ami-78d4ec3d
-us-east (n. virginia) ami-cd819ba4</code></pre>
-        </li>
-        <li><code>ssh -i /path/to/your/key/file.pem admin@123.123.123.123</code> with the IP of your instance to get in.
-        </li><li>Run the following on the server:
-        <pre><code>cd /urbit/
-git pull origin master
-make clean; make;</code></pre>
-        </li>
-        <li>Proceed to <a href="#run">run</a></li>
-        </ol>
-    </li>
-    <li>
-        <a href="#" class="expand"></a>
-        <a href="#" class="distro">Docker</a>
-        <div class="toggle">
-        <a href="http://docker.io">Docker</a> is a very convenient way to get in to an Urbit ship quickly on any OS.
-        <br><br>
-        <code>~simmev-rabryd</code> maintains docker containers and utilities on GitHub <a href="https://github.com/yebyen/urbinit">here</a>.
-        <br><br>
-        Follow the instructions on the GitHub page, then proceed to <a href="#run">run</a>.
-        </div>
-    </li>
-    <li>
-        <a href="#" class="expand"></a>
-        <a href="#" class="distro">From Source</a>
-        <div class="toggle">
-        <h3>1. Install Dependencies</h3>
-        <p>Urbit depends on:</p>
-        <ul>
-        <li>gcc</li>
-        <li>gmp</li>
-        <li>libsigsegv</li>
-        <li>openssl</li>
-        <li>libssl-dev (Linux only)</li>
-        <li>ncurses (Linux only)</li>
-        </ul>
-
-        <h4>Ubuntu or Debian</h4>
-        <ol><li><code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags</code></li></ol>
-
-        <h4>Fedora</h4>
-
-        <ol><li><code>sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags</code></li></ol>
-
-        <h4>AWS</h4>
-
-        <ol><li><code>sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags</code></li></ol>
-
-        <h4>OS X</h4>
-        <ol>
-        <li>
-            <p>Do you have XCode?  Type <code>gcc</code> at your terminal prompt.</p>
-            <p>If it says `no input files`, you have XCode.</p>
-            <p>Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the command line tools.</p>
-        </li>
-        <li>
-        To install dependencies pick either one of Homebrew or Macports, but not both:  
-        <ul>
-        <li>Homebrew? <code>brew install git gmp libsigsegv openssl</code></li>
-        <li>Macports? <code>sudo port install git gmp libsigsegv openssl</code></li>
-        </ul>
-        </li>
-        </ol>
-
-        <h3>2. Build</h3>
-        <p>`cd` to the unpacked Urbit directory you just created:</p>
-        <pre><code>cd urbit</code></pre>
-        <p>If this works, `ls .urb/` should show:</p>
-        <pre><code>urbit.pill  zod/</code></pre>
-        <p>Then just run <code>make</code> in the <code>urbit</code> directory.</p>
-        <p>Sometimes things are just easy.</p>
-        </div>
-    </li>
+<h3>From Source</h3>
+<h3>1. Install Dependencies</h3>
+<p>Urbit depends on:</p>
+<ul>
+<li>gcc</li>
+<li>gmp</li>
+<li>libsigsegv</li>
+<li>openssl</li>
+<li>libssl-dev (Linux only)</li>
+<li>ncurses (Linux only)</li>
 </ul>
+
+<h4>Ubuntu or Debian</h4>
+<ol><li><code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags</code></li></ol>
+
+<h4>Fedora</h4>
+<ol><li><code>sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags</code></li></ol>
+
+<h4>AWS</h4>
+<ol><li><code>sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags</code></li></ol>
+
+<h4>OS X</h4>
+<ol>
+<li>
+    <p>Do you have XCode?  Type <code>gcc</code> at your terminal prompt.</p>
+    <p>If it says `no input files`, you have XCode.</p>
+    <p>Otherwise, install XCode: `https://developer.apple.com/xcode/`, with the command line tools.</p>
+</li>
+<li>
+To install dependencies pick either one of Homebrew or Macports, but not both:  
+<ul>
+<li>Homebrew? <code>brew install git gmp libsigsegv openssl</code></li>
+<li>Macports? <code>sudo port install git gmp libsigsegv openssl</code></li>
+</ul>
+</li>
+</ol>
+
+<h3>2. Build</h3>
+<p>Clone the <a href="https://github.com/urbit/urbit">GitHub</a> repo</p>
+<pre><code>git clone https://github.com/urbit/urbit.git</code></pre>
+<p>Move to the unpacked Urbit directory you just created:</p>
+<pre><code>cd urbit</code></pre>
+<p>Run <code>make</code>.</p>
+<p>That's it.</p>
+</div>
 
 <h3 id="run">Run</h3>
 
-Run `bin/vere -c mypier` (or just `vere -c mypier`), where `mypier` is a directory that doesn't yet exist. All your state (an append-only log and a memory checkpoint) will live in this directory.  The name of your pier doesn't matter and is not visible internally.
+Run `bin/vere -c mypier`, where `mypier` is a directory that doesn't yet exist. All your state (an append-only log and a memory checkpoint) will live in this directory.  The name of your pier doesn't matter and is not visible internally.
 
 A _pier_ is an Urbit virtual machine that hosts one or more Urbit identities,
 or _ships_.  When you run `bin/vere -c`, it automatically creates a 128-bit ship,
