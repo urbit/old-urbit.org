@@ -38,18 +38,20 @@ Follow the instructions on the GitHub page, then proceed to <a href="#run">run</
 <li>gmp</li>
 <li>libsigsegv</li>
 <li>openssl</li>
+<li>autotools</li>
+<li>automake</li>
 <li>libssl-dev (Linux only)</li>
 <li>ncurses (Linux only)</li>
 </ul>
 
 <h4>Ubuntu or Debian</h4>
-<ol><li><code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make exuberant-ctags</code></li></ol>
+<ol><li><code>sudo apt-get install libgmp3-dev libsigsegv-dev openssl libssl-dev libncurses5-dev git make automake exuberant-ctags</code></li></ol>
 
 <h4>Fedora</h4>
-<ol><li><code>sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel ctags</code></li></ol>
+<ol><li><code>sudo yum install gcc gcc-c++ git gmp-devel openssl-devel openssl ncurses-devel libsigsegv-devel automake ctags</code></li></ol>
 
 <h4>AWS</h4>
-<ol><li><code>sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel ctags</code></li></ol>
+<ol><li><code>sudo yum --enablerepo epel install gcc git gmp-devel openssl-devel ncurses-devel libsigsegv-devel automake ctags</code></li></ol>
 
 <h4>OS X</h4>
 <ol>
@@ -61,8 +63,8 @@ Follow the instructions on the GitHub page, then proceed to <a href="#run">run</
 <li>
 To install dependencies pick either one of Homebrew or Macports, but not both:  
 <ul>
-<li>Homebrew? <code>brew install git gmp libsigsegv openssl</code></li>
-<li>Macports? <code>sudo port install git gmp libsigsegv openssl</code></li>
+<li>Homebrew? <code>brew install git gmp libsigsegv openssl automake autotools</code></li>
+<li>Macports? <code>sudo port install git gmp libsigsegv openssl automake autotools</code></li>
 </ul>
 </li>
 </ol>
