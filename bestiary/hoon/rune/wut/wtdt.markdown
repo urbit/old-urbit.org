@@ -22,7 +22,7 @@ that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
 
 ###Regular form (wide)###
 
-    ?:(p q r)
+    ?.(p q r)
 
 ###Expansion###
 
