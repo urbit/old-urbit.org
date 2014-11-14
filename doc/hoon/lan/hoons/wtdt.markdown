@@ -26,7 +26,7 @@ that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
 
 ####Wide
 
-    ?:(p q r)
+    ?.(p q r)
 
 ####Irregular
 
