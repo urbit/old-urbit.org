@@ -62,6 +62,7 @@ One great way to test your understanding of Nock is to write an interpreter. Thi
 ###Clojure
 
 + `~lapled-rammyn` [https://github.com/jordanlewis/nock-clj](https://github.com/jordanlewis/nock-clj)
++ `~dopbyr-novhec` [https://github.com/mattearnshaw/anock](https://github.com/mattearnshaw/anock)
 
 ###F
 

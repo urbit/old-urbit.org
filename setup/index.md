@@ -406,7 +406,7 @@ One, coding.  Two, chatting.
 To start coding, read the next chapter.  To start chatting,
 simply type
 
-    ~waclux-tomwyc/try=> :talk
+    ~waclux-tomwyc/try=> :chat
     &
 
 and type `?` for help.

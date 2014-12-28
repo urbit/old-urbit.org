@@ -16,6 +16,6 @@ What does this mean for the Urbit user? If your ships have spontaneously stopped
 4. `rm -rf $mypier` to wipe your piers, replace `$mypier` with whatever your pier names are.
 5. `bin/vere -c $mypier` to build a new pier
 6. `:begin` and relaunch your destroyers
-7. `:talk` to talk
+7. `:chat` to chat
 
 Email `urbit@urbit.org` if you have any questions or would like assistance. 
